@@ -1,6 +1,9 @@
 [ 자바 기반 풀스택 개발자 과정 - 기본전달사항 ]
 탐쌤이멜: tombap@naver.com
 
+-> 데일리 미션 주소:
+https://drive.google.com/drive/folders/1P-suVVa6anWBdieLX4QzaZe1rkEsivz6?usp=sharing
+
 1. 교재: NCS 5권
 
 2. 시험: 과목별 평가(각 과목이 끝나는날)
