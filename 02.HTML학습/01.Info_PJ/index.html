@@ -315,6 +315,19 @@
             /* 글자색 */
             color: #222;
         }
+        /* 이름만 구분한 span요소 */
+        .info address span{
+            /* 글자체 ff */
+            font-family: 'Black And White Picture', sans-serif;
+            /* 글자색 */
+            color: blue;
+            /* 글자크기 */
+            font-size: 20px;
+            /* 글자데코 밑줄 tdu */
+            text-decoration: underline;
+            /* 글자데코스타일 tds */
+            text-decoration-style: dotted;
+        }
     </style>
 </head>
 
@@ -348,7 +361,7 @@
         <!-- 회사주소 및 정보 -->
         <address>
             서울시 강남구 역삼동 119 대호B 8F <br>
-            대표: Tom Brace Parker <br>
+            대표: <span>Tom Brace Parker</span> <br>
             전화: 010-2222-3333
         </address>
     </footer>
@@ -375,6 +388,10 @@
             (보통 article 이나 section은 
             w3c에서 heading 태그(h1~h6)를 내용에
             사용할 것을 권고함!-안써도 무관!)
+
+            [ span 요소 : (span-범위) ]
+            - 아무런 특징이 없는 인라인요소
+            - 인라인 컨텐츠를 구분하여 구조화함
 
             [ img요소 : image ]
             - 이미지를 넣어주는 요소
