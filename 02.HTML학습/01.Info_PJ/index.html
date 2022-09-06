@@ -57,9 +57,12 @@
         4. border : 경계선
         -> 두께 종류 색상
         -> 두께 - 경계선의 두께
-        -> 종류 - solid(선형), dashed(데쉬형), dotted(점선형),
-                ridge(액자형), double(이중선형)
+        -> 종류 - solid(선형), dashed(데쉬형), 
+                dotted(점선형), ridge(액자형), double(이중선형)
         -> 색 - 경계선 색
+        (참고: outline: 두께 종류 색상 -> 박스모델 구성요소가 아님
+        그러나 외곽선만 표시할 경우 많이 사용됨! 주변에 영향없음!)
+
         5. margin : 바깥여백
         ______________________________________
 
@@ -228,12 +231,14 @@
 
         /* 마우스 오버시 */
         /* :hover 가상클래스 */
-        #gnb>a:hover{
+        /* a+a 앞에 a가 있는 형제a요소 */
+        #gnb>a+a:hover{
             /* 글자색 c */
             color: hotpink;
             /* 글자데코 td */
             text-decoration: overline;
-
+            /* 외곽선 표시 */
+            /* outline: 1px solid red; */
         }
 
 
