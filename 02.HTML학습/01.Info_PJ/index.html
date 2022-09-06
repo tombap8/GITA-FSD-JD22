@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>네이버 요약 뉴스</title>
+    <!-- 구글웹폰트 불러오기(CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap" rel="stylesheet">
     <!-- 스타일시트 인터널방식 -->
     <style>
         /* 스타일시트를 사용하는 영역 */
@@ -184,17 +186,31 @@
             /* 글자중앙 */
         }
 
+        /* 타이틀 */
+        header h1 {
+            /* 글자크기 fz */
+            font-size: 50px;
+            /* 글자두께 fw */
+            font-weight: normal;
+            /* 글자체 ff */
+            font-family: 'Black And White Picture', sans-serif;
+            /* font-family: san-serif,"긍서","글림","도움"; */
+            /* 글자색 c */
+            color: limegreen;
+            /* 글자자간 ls */
+            letter-spacing: 25px;
+
+        }
+
         /* 메인영역 이미지 */
         main img {
             width: 100%;
         }
 
         /* 하단영역 */
-        footer.info{
+        footer.info {
             text-align: center;
         }
-
-        
     </style>
 </head>
 
