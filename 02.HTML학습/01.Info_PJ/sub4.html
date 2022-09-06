@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>네이버 요약 뉴스 - IT/과학</title>
+    <!-- 구글웹폰트 불러오기(CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- 스타일시트 익스터널방식 -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <!-- 1. 상단영역 -->
+    <header class="part top">
+        <!-- 1-1.타이틀 -->
+        <h1>네이버 요약뉴스 - IT/과학</h1>
+        <!-- 1-2.GNB메뉴 -->
+        <!-- GNB: Global Navigation Bar -->
+        <div id="gnb">
+            <a href="index.html" title="메인 페이지로 이동하기">
+                <img src="images/naverlogo.png" alt="네이버로고" style="width: 20px;">
+
+            </a>
+            <a href="sub1.html">정치</a> | 
+            <a href="sub2.html">경제</a> | 
+            <a href="sub3.html">사회</a> | 
+            <a href="sub4.html">IT/과학</a> | 
+            <a href="sub5.html">TV/연예</a>
+        </div>
+
+    </header>
+    <!-- 2. 메인영역 -->
+    <main class="part main">
+        
+    </main>
+    <!-- 3. 하단영역 -->
+    <footer class="part info">
+        <!-- 회사주소 및 정보 -->
+        <address>
+            서울시 강남구 역삼동 119 대호B 8F <br>
+            대표: <span>Tom Brace Parker</span> <br>
+            전화: 010-2222-3333
+        </address>
+    </footer>
+
+    <!-- 
+            [ div요소 : divide / division ]
+            -> 영역을 구분하는 블록요소
+            -> 특징: 블록요소 옆에 다른 요소가
+            위치하지 못하며 내용을 구분하는 역할
+
+            [ div 형제 요소들! ]
+            -> div에 어떤 내용영역인지 알 수 있도록
+            의미를 부여한 새로운 레이아웃용 태그들!
+            -> 태그에 의미를 부여함!
+            -> 시멘틱태그!(sementic tag)
+
+            1. header : 상단영역(각 파트별 상단표시가능!)
+            2. footer : 하단영역(각 파트별 하단표시가능!)
+            3. main : 메인영역(한 페이지에 한번만 사용!)
+            4. nav : 네비게이션 영역
+            5. aside : 부수적인 내용 영역
+            6. section : 내용구분을 위한 영역
+            7. article : 독립적인 내용을 구분하는 영역
+            (보통 article 이나 section은 
+            w3c에서 heading 태그(h1~h6)를 내용에
+            사용할 것을 권고함!-안써도 무관!)
+
+            [ span 요소 : (span-범위) ]
+            - 아무런 특징이 없는 인라인요소
+            - 인라인 컨텐츠를 구분하여 구조화함
+
+            [ img요소 : image ]
+            - 이미지를 넣어주는 요소
+            - 필수속성:
+            1) src속성 - 이미지경로
+                (src -> source)
+            2) alt속성 - 이미지설명
+                (alt -> alternative text)
+                대체 텍스트 -> 웹접근성 필수!
+
+            [ 경로에 관하여... ]
+
+            1) 상대경로
+            -> 현재파일 위치를 기준으로 경로설정
+            ./ 현재위치
+            (또는 아무것도 안쓰고 시작)
+            ../ 한단계 위로
+            ../../../../ 계속 위로...
+
+            2) 절대경로
+            -> http://... 또는 https://...
+            이런식으로 웹주소가 절대경로임!
+
+            3) 절대상대경로
+            프로젝트 파일 최상위부터 설정하는 경로
+            / 루트부터 출발
+            예) /aaa/bbb
+            -> 서버에 올렸을때 개발환경과 루트가 
+            달라질 수 있으므로 절대상대경로는 주의요망!
+
+
+            [ 웹접근성이란? ]
+            -> 평등의 원칙! 즉, 누구나 웹정보에
+            접근하는 것에 불평등이 있어서는 안됨!
+            예컨데 이미지설명(alt)을 넣어야
+            스크린 리더기가 읽어준다!
+            -> 웹접근성 연구소 참조!
+            https://www.wah.or.kr:444/Participation/technique.asp
+
+            [ 웹표준이란? ]
+            - 모든 브라우저에서 공통으로 작성되는
+            코딩규칙 및 표준
+            (크로스브라우징은 같은 디자인과 
+            같은기능이 여러종류의 브라우저에서
+            동일하게 작동되는 것을 말한다!)
+
+            [ CSS 넣기 속성 ]
+            - style = "CSS속성설정"
+            - 속성설정 방법
+                속성명:값;
+            -> 이런 방법을 인라인 CSS라고함!
+
+            [ title 속성 ]
+            - 툴팁을 나오게 하는 속성임
+            - 값으로 메시지를 넣으면 마우스 오버시
+              툴팁으로 메시지가 보인다
+            - 어떤 요소에도 필요하면 사용가능함
+
+         -->
+
+</body>
+
+</html>
