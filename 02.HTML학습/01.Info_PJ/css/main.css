@@ -1,2 +1,143 @@
 @charset "utf-8";
 /* Info PJ 메인 CSS - main.css */
+
+/* 박스공통 */
+.part {
+    width: 750px;
+    border: 4px double #10d544;
+    /* 보더: 두께 종류 색상 (두종색) */
+    padding: 10px;
+    margin: 20px auto;
+    /* 마진: 위아래 양쪽
+            양쪽을 auto로 주면 블록박스가 중앙에옴!
+            margin: 0 auto 로 주는 경우가 많아서
+            마영오! 라고 불러줌! */
+
+    /* 박스 크기 유지설정 bxb */
+    box-sizing: border-box;
+
+    /* 둥근모서리 brad */
+    border-radius: 10px;
+}
+
+/* 상단영역 */
+header {
+    height: 150px;
+    text-align: center;
+    /* 글자중앙 */
+
+    /* 배경색 bgc */
+    background-color: #e5fbe6;
+
+
+}
+
+/* 타이틀 */
+header h1 {
+    /* 글자크기 fz */
+    font-size: 50px;
+    /* 글자두께 fw */
+    font-weight: normal;
+    /* 글자체 ff */
+    font-family: 'Black And White Picture', sans-serif;
+    /* font-family: san-serif,"긍서","글림","도움"; */
+    /* 글자색 c */
+    color: rgb(4, 93, 4);
+    /* 글자자간 ls */
+    letter-spacing: 2px;
+    /* 글자줄간격 lh */
+    line-height: 70px;
+    /* 글자단어간격 ws */
+    word-spacing: 10px;
+
+    /* 기본마진 없앰 m0 */
+    margin: 0;
+}
+
+/* 메뉴 GNB */
+#gnb>a {
+    /* a요소는 2가지 기본설정이 있다 -> 글자색,밑줄 */
+
+    /* 글자색 c */
+    color: navy;
+    /* 밑줄없앰 tdn */
+    text-decoration: none;
+
+    /* 글자셋팅 한번에하기 */
+    /* font: 스타일 두께 크기/줄간격 글자체 */
+    /* font: 스두크/줄체 */
+    font: bold 20px/40px 'Nanum Gothic';
+
+    /* 마진: 위아래 양쪽 */
+    margin: 0 5px;
+}
+
+/* 마우스 오버시 */
+/* :hover 가상클래스 */
+/* a+a 앞에 a가 있는 형제a요소 */
+#gnb>a+a:hover {
+    /* 글자색 c */
+    color: hotpink;
+    /* 글자데코 td */
+    text-decoration: overline;
+    /* 외곽선 표시 */
+    /* outline: 1px solid red; */
+}
+
+/* 로고링크 */
+#gnb img {
+    width: 30px !important;
+    /* 인라인 보다 최우선인 !important를 사용
+            하지만 주의하여 사용해야함! JS코드가 안먹히는 경우가 있음! */
+
+    /* 이미지 옆 인라인요소 세로방향 위치정렬속성 va */
+    vertical-align: -9px;
+    /* 특정값: top,bottom,baseline,middle,수치값 */
+
+    /* 오른쪽 마진 mr-9 */
+    margin-right: -9px;
+}
+
+
+/* 메인영역 이미지 */
+main img {
+    width: 100%;
+}
+
+/* 하단영역 */
+footer.info {
+    /* 글자중앙 */
+    text-align: center;
+    /* 배경색 bgc */
+    background-color: #eeeeee;
+
+
+}
+
+/* 주소요소 */
+.info address {
+    /* 글자스타일 */
+    font-style: normal;
+    /* 글자체 */
+    font-family: 'Nanum Gothic';
+    /* 글자크기 */
+    font-size: 14px;
+    /* 줄간격 */
+    line-height: 2;
+    /* 글자색 */
+    color: #222;
+}
+
+/* 이름만 구분한 span요소 */
+.info address span {
+    /* 글자체 ff */
+    font-family: 'Black And White Picture', sans-serif;
+    /* 글자색 */
+    color: blue;
+    /* 글자크기 */
+    font-size: 20px;
+    /* 글자데코 밑줄 tdu */
+    text-decoration: underline;
+    /* 글자데코스타일 tds */
+    text-decoration-style: dotted;
+}
