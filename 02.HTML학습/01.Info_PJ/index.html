@@ -85,10 +85,15 @@
         ___________________________________________
 
         [ 박스의 크기 설정시 패딩과 보더와의 관계 ]
-        
+
         1. 크기 설정없이 auto인 상태 : 패딩과 보더가 안쪽포함
+        
         2. width, height크기를 줄 경우 패딩과 보더는 바깥으로 나감!
         (박스가 설정된 크기보다 커짐!!! -> 컨텐트박스 content-box)
+
+        3. 만약 width, height크기를 유지하고 패딩과 보더를 안쪽으로
+        포함 시키려면 아래의 속성으로 셋팅한다!
+        >>>>> box-sizing: border-box (bxb)
 
         ___________________________________________
 
@@ -174,6 +179,14 @@
         - 모든 색상은 w3schools.com의 색상참조로 가서확인!
         https://www.w3schools.com/cssref/css_colors.asp
 
+        _________________________________________
+
+        [ CSS 적용 우선순위 ]
+        inline > id > class > type
+        - 인라인이 가장 쌤!
+        - 약한 경우에 순위를 가장 높이는 방법! -> !important
+        -> 이 방법은 인라인보다도 쌔기 때문에 함부로 쓰면 안됨!
+
 
         ******************************************/
 
@@ -185,9 +198,12 @@
             padding: 10px;
             margin: 20px auto;
             /* 마진: 위아래 양쪽
-                양쪽을 auto로 주면 블록박스가 중앙에옴!
-                margin: 0 auto 로 주는 경우가 많아서
-                마영오! 라고 불러줌! */
+            양쪽을 auto로 주면 블록박스가 중앙에옴!
+            margin: 0 auto 로 주는 경우가 많아서
+            마영오! 라고 불러줌! */
+
+            /* 박스 크기 유지설정 bxb */
+            box-sizing: border-box;
         }
 
         /* 상단영역 */
@@ -211,7 +227,7 @@
             /* 글자자간 ls */
             letter-spacing: 2px;
             /* 글자줄간격 lh */
-            line-height: 110px;
+            line-height: 70px;
             /* 글자단어간격 ws */
             word-spacing: 10px;
 
@@ -247,6 +263,15 @@
             text-decoration: overline;
             /* 외곽선 표시 */
             /* outline: 1px solid red; */
+        }
+
+        /* 로고링크 */
+        #gnb img{
+            width: 30px !important;
+            /* 인라인 보다 최우선인 !important를 사용
+            하지만 주의하여 사용해야함! JS코드가 안먹히는 경우가 있음! */
+
+            
         }
 
 
