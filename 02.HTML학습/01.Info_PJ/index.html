@@ -193,7 +193,7 @@
         /* 박스공통 */
         .part {
             width: 750px;
-            border: 10px dotted red;
+            border: 4px double #10d544;
             /* 보더: 두께 종류 색상 (두종색) */
             padding: 10px;
             margin: 20px auto;
@@ -204,6 +204,9 @@
 
             /* 박스 크기 유지설정 bxb */
             box-sizing: border-box;
+            
+            /* 둥근모서리 brad */
+            border-radius: 10px;
         }
 
         /* 상단영역 */
@@ -211,6 +214,11 @@
             height: 150px;
             text-align: center;
             /* 글자중앙 */
+
+            /* 배경색 bgc */
+            background-color: #e5fbe6;
+
+
         }
 
         /* 타이틀 */
@@ -223,7 +231,7 @@
             font-family: 'Black And White Picture', sans-serif;
             /* font-family: san-serif,"긍서","글림","도움"; */
             /* 글자색 c */
-            color: limegreen;
+            color: rgb(4, 93, 4);
             /* 글자자간 ls */
             letter-spacing: 2px;
             /* 글자줄간격 lh */
@@ -287,7 +295,25 @@
 
         /* 하단영역 */
         footer.info {
+            /* 글자중앙 */
             text-align: center;
+            /* 배경색 bgc */
+            background-color: #eeeeee;
+
+            
+        }
+        /* 주소요소 */
+        .info address{
+            /* 글자스타일 */
+            font-style: normal;
+            /* 글자체 */
+            font-family: 'Nanum Gothic';
+            /* 글자크기 */
+            font-size: 14px;
+            /* 줄간격 */
+            line-height: 2;
+            /* 글자색 */
+            color: #222;
         }
     </style>
 </head>
