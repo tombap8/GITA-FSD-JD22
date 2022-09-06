@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>네이버 요약 뉴스</title>
     <!-- 구글웹폰트 불러오기(CDN) -->
-    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Nanum+Gothic&display=swap" rel="stylesheet">
     <!-- 스타일시트 인터널방식 -->
     <style>
         /* 스타일시트를 사용하는 영역 */
@@ -200,10 +200,29 @@
             /* 글자자간 ls */
             letter-spacing: 2px;
             /* 글자줄간격 lh */
-            line-height: 1;
+            line-height: 110px;
             /* 글자단어간격 ws */
             word-spacing: 10px;
+
+            /* 기본마진 없앰 m0 */
+            margin: 0;
         }
+
+        /* 메뉴 GNB */
+        #gnb>a {
+            /* a요소는 2가지 기본설정이 있다 -> 글자색,밑줄 */
+
+            /* 글자색 c */
+            color: navy;
+            /* 밑줄없앰 tdn */
+            text-decoration: none;
+
+            /* 글자셋팅 한번에하기 */
+            /* font: 스타일 두께 크기/줄간격 글자체 */
+            /* font: 스두크/줄체 */
+            font: bold 20px/40px 'Nanum Gothic';
+        }
+
 
         /* 메인영역 이미지 */
         main img {
@@ -229,10 +248,10 @@
                 <img src="images/naverlogo.png" alt="네이버로고" style="width: 20px;">
 
             </a>
-            <a href="#">정치</a>
-            <a href="#">경제</a>
-            <a href="#">사회</a>
-            <a href="#">IT/과학</a>
+            <a href="#">정치</a> | 
+            <a href="#">경제</a> | 
+            <a href="#">사회</a> | 
+            <a href="#">IT/과학</a> | 
             <a href="#">TV/연예</a>
         </div>
 
