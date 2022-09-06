@@ -1,136 +1,155 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>네이버 요약 뉴스</title>
-        <!-- 스타일시트 인터널방식 -->
-        <style>
-            /* 스타일시트를 사용하는 영역 */
-            /* CSS문법만 쓸 수 있음 */
-            /* 
-                기본 사용법:
 
-                선택자{
-                    속성명:값;
-                }
+<head>
+    <meta charset="utf-8">
+    <title>네이버 요약 뉴스</title>
+    <!-- 스타일시트 인터널방식 -->
+    <style>
+        /* 스타일시트를 사용하는 영역 */
+        /* CSS문법만 쓸 수 있음 */
+        /************************************* 
+        기본 사용법:
 
-                - 선택자: 태그명, 아이디명, 클래스명 등
-                - 속성명: 각 요소를 구성하는 상세속성들
-                - 값: 각 속성에서 사용할 수 있는 값들
+        선택자{
+            속성명:값;
+        }
 
-                속성명 다음에 콜론(:)
-                값 다음에 세미콜론(;)
+        - 선택자: 태그명, 아이디명, 클래스명 등
+        - 속성명: 각 요소를 구성하는 상세속성들
+        - 값: 각 속성에서 사용할 수 있는 값들
 
-                [ CSS 선택자(Selector) ]
-                1. 타입선택자 : 요소명 (예:h1/a/p/div)
-                2. 자손선택자 : 띄어쓰기 (예:h1 a)
-                3. 아이디선택자 : # (예: #my)
-                4. 클래스선택자 : . (예: .you)
-                5. 직계자식선택자 : > (예: div>a)
-                6. 그룹선택자 : , (예: p,div)
-                7. 종속선택자 : 태그명+아이디/클래스명
-                    (예: div#top / a.my)
-                8. 형제선택자 : + (예: a+a)
-                    -> 해석 : 앞에 지정요소가 있는 형제요소선택
-                9. 다중형제선택자 : ~ (틸드)    
-                    (예: li:nth-child(2)~li)
-                    -> 해석 : 선택된 형제요소 뒤의 모든형제요소들
-                10. 속성선택자: [] (예: a[href=#])
-                    -> 특정속성을 가진 요소를 선택
+        속성명 다음에 콜론(:)
+        값 다음에 세미콜론(;)
+        _____________________________________
 
-                [ CSS 요소 박스모델 필수속성! ]
-                1. width :  가로크기
-                    -> 기본값 auto
-                    블록박스는 끝까지 차지
-                    인라인박스는 내용만큼 늘어남
-                2. height : 세로크기
-                    -> 기본값 auto
-                    내용만큼 늘어남!
-                3. padding : 안쪽여백
-                4. border : 경계선
-                -> 두께 종류 색상
-                -> 두께 - 경계선의 두께
-                -> 종류 - solid(선형), dashed(데쉬형), dotted(점선형),
-                        ridge(액자형), double(이중선형)
-                -> 색 - 경계선 색
-                5. margin : 바깥여백
+        [ CSS 선택자(Selector) ]
 
-                [ 여백 방향별 설정 : padding / margin ]
-                padding-top, padding-bottom, padding-left, padding-right
-                margin-top, margin-bottom, margin-left, margin-right
+        1. 타입선택자 : 요소명 (예:h1/a/p/div)
+        2. 자손선택자 : 띄어쓰기 (예:h1 a)
+        3. 아이디선택자 : # (예: #my)
+        4. 클래스선택자 : . (예: .you)
+        5. 직계자식선택자 : > (예: div>a)
+        6. 그룹선택자 : , (예: p,div)
+        7. 종속선택자 : 태그명+아이디/클래스명
+            (예: div#top / a.my)
+        8. 형제선택자 : + (예: a+a)
+            -> 해석 : 앞에 지정요소가 있는 형제요소선택
+        9. 다중형제선택자 : ~ (틸드)    
+            (예: li:nth-child(2)~li)
+            -> 해석 : 선택된 형제요소 뒤의 모든형제요소들
+        10. 속성선택자: [] (예: a[href=#])
+            -> 특정속성을 가진 요소를 선택
+        ____________________________________
 
-                padding: 한개 (4방향공통)
-                padding: 한개 두개 (위아래 양쪽)
-                padding: 한개 두개 세개 (위 양쪽 아래)
-                padding: 한개 두개 세개 네개 (4방향 모두 따로)
-                ____________________________________________
+        [ CSS 요소 박스모델 필수속성! ]
 
-                margin: 한개 (4방향공통)
-                margin: 한개 두개 (위아래 양쪽)
-                margin: 한개 두개 세개 (위 양쪽 아래)
-                margin: 한개 두개 세개 네개 (4방향 모두 따로)
+        1. width :  가로크기
+            -> 기본값 auto
+            블록박스는 끝까지 차지
+            인라인박스는 내용만큼 늘어남
+        2. height : 세로크기
+            -> 기본값 auto
+            내용만큼 늘어남!
+        3. padding : 안쪽여백
+        4. border : 경계선
+        -> 두께 종류 색상
+        -> 두께 - 경계선의 두께
+        -> 종류 - solid(선형), dashed(데쉬형), dotted(점선형),
+                ridge(액자형), double(이중선형)
+        -> 색 - 경계선 색
+        5. margin : 바깥여백
+        ______________________________________
+
+        [ 여백 방향별 설정 : padding / margin ]
+
+        padding-top, padding-bottom, padding-left, padding-right
+        margin-top, margin-bottom, margin-left, margin-right
+
+        padding: 한개 (4방향공통)
+        padding: 한개 두개 (위아래 양쪽)
+        padding: 한개 두개 세개 (위 양쪽 아래)
+        padding: 한개 두개 세개 네개 (4방향 모두 따로)
+        ____________________________________________
+
+        margin: 한개 (4방향공통)
+        margin: 한개 두개 (위아래 양쪽)
+        margin: 한개 두개 세개 (위 양쪽 아래)
+        margin: 한개 두개 세개 네개 (4방향 모두 따로)
 
 
-             */
-
-             /* 상단영역 */
-            header{
-                height: 150px;
-            }
-            /* 메인영역 이미지 */
-            main img{
-                width: 100%;
-            }
-            /* 박스공통 */
-            .part{
-                width: 750px;
-                border: 10px dotted red;
-                /* 보더: 두께 종류 색상 (두종색) */
-                padding: 20px;
-                margin: 50px auto;
-                /* 마진: 위아래 양쪽
+        ******************************************/
+        
+        /* 박스공통 */
+        .part {
+            width: 750px;
+            border: 10px dotted red;
+            /* 보더: 두께 종류 색상 (두종색) */
+            padding: 10px;
+            margin: 20px auto;
+            /* 마진: 위아래 양쪽
                 양쪽을 auto로 주면 블록박스가 중앙에옴!
                 margin: 0 auto 로 주는 경우가 많아서
                 마영오! 라고 불러줌! */
-            }
-        </style>
-    </head>
-    <body>
-        <!-- 1. 상단영역 -->
-        <header class="part top">
-            <!-- 1-1.타이틀 -->
-            <h1>네이버 요약뉴스</h1>
-            <!-- 1-2.GNB메뉴 -->
-            <!-- GNB: Global Navigation Bar -->
-            <div id="gnb">
-                <a href="#">
-                    <img src="images/naverlogo.png" alt="네이버로고" style="width: 20px;">
+        }
 
-                </a>
-                <a href="#">정치</a>
-                <a href="#">경제</a>
-                <a href="#">사회</a>
-                <a href="#">IT/과학</a>
-                <a href="#">TV/연예</a>
-            </div>
+        /* 상단영역 */
+        header {
+            height: 150px;
+            text-align: center;
+            /* 글자중앙 */
+        }
 
-        </header>
-        <!-- 2. 메인영역 -->
-        <main class="part main">
-            <!-- 메인이미지 -->
-            <img src="./images/mainillust.jpg" alt="메인뉴스 일러스트 이미지">
-        </main>
-        <!-- 3. 하단영역 -->
-        <footer class="part info">
-            <!-- 회사주소 및 정보 -->
-            <address>
-                서울시 강남구 역삼동 119 대호B 8F <br>
-                대표: Tom Brace Parker <br>
-                전화: 010-2222-3333
-            </address>
-        </footer>
+        /* 메인영역 이미지 */
+        main img {
+            width: 100%;
+        }
 
-        <!-- 
+        /* 하단영역 */
+        footer.info{
+            text-align: center;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- 1. 상단영역 -->
+    <header class="part top">
+        <!-- 1-1.타이틀 -->
+        <h1>네이버 요약뉴스</h1>
+        <!-- 1-2.GNB메뉴 -->
+        <!-- GNB: Global Navigation Bar -->
+        <div id="gnb">
+            <a href="#">
+                <img src="images/naverlogo.png" alt="네이버로고" style="width: 20px;">
+
+            </a>
+            <a href="#">정치</a>
+            <a href="#">경제</a>
+            <a href="#">사회</a>
+            <a href="#">IT/과학</a>
+            <a href="#">TV/연예</a>
+        </div>
+
+    </header>
+    <!-- 2. 메인영역 -->
+    <main class="part main">
+        <!-- 메인이미지 -->
+        <img src="./images/mainillust.jpg" alt="메인뉴스 일러스트 이미지">
+    </main>
+    <!-- 3. 하단영역 -->
+    <footer class="part info">
+        <!-- 회사주소 및 정보 -->
+        <address>
+            서울시 강남구 역삼동 119 대호B 8F <br>
+            대표: Tom Brace Parker <br>
+            전화: 010-2222-3333
+        </address>
+    </footer>
+
+    <!-- 
             [ div요소 : divide / division ]
             -> 영역을 구분하는 블록요소
             -> 특징: 블록요소 옆에 다른 요소가
@@ -205,6 +224,7 @@
             -> 이런 방법을 인라인 CSS라고함!
 
          -->
-        
-    </body>
+
+</body>
+
 </html>
