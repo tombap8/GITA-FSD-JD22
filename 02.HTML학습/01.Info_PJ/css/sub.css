@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* Info PJ 서브페이지 CSS - sub.css */
+
+/* 공통클래스 불러오기 */
+/* 
+    import 로 파일 합치기
+    외부 CSS파일에서 다른 외부 CSS파일을
+    import방식으로 불러올때 장점은?
+    html파일에서 link요소로 호출할 경우
+    http request(웹요청)이 많아져서
+    페이지 랜더링 속도가 더뎌진다!
+    따라서 이방식을 쓰면 한번에 여러 외부CSS를
+    불러올 수 있어서 속도에 유리하다!
+*/
+/* @import url(파일주소); */
+@import url(common.css);
+
+
