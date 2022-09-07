@@ -23,7 +23,7 @@ https://github.com/tombap8/GITA-FSD-JD22
 7. 사이트 벤치마킹 포털
 
 (1) 디비컷
-https://www.dbcut.com/bbs/index.php
+https://www.dbcut.com
 
 (2) 굿디자인웹
 https://www.gdweb.co.kr/main/
