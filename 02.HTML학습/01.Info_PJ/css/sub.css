@@ -15,4 +15,57 @@
 /* @import url(파일주소); */
 @import url(common.css);
 
+/* 메인영역박스 */
+.main{
+    /* 패딩 p15 */
+    padding: 15px;
+}
 
+/* 2-1. 언론사로고 */
+.prlogo img{
+    /* 높이값 h32 */
+    height: 32px;
+}
+/* 2-2. 기사제목 */
+.atit{
+    /* 글자크기 fz30 */
+    font-size: 30px;
+    /* 글자두께 보통 fwn */
+    font-weight: normal;
+    /* 글자체 ff */
+    font-family: "굴림","궁서",sans-serif;
+    /* 자간 ls-2 */
+    letter-spacing: -2px;
+    /* 단어간격 ws-1 */
+    word-spacing: -1px;
+
+    /* 줄바꿈방지 whs */
+    /* white-space: nowrap; */
+    /* 언제쓰나? 조금차이로 
+    줄바꿈되는 경우 안되게할때 
+    기본박스는 모두 wrap박스임! */
+
+}
+/* 2-3. 기사사진(+사진설명) */
+.afig{
+    /* 마진 m */
+    margin: 15px 0;
+    /* 마진: 위아래 양쪽 */
+
+    /* 컨텐츠 중앙정렬 tac */
+    text-align: center;
+}
+/* 기사 이미지 */
+.afig img{
+    /* 최대가로크기 maw100p */
+    max-width: 100%;
+    /* 이미지에 이설정을 하면
+    박스가 이미지보다 작아질때
+    이미지가 박스크기 맞게 작아짐! */
+
+    /* 가로크기 w100p */
+    /* width: 100%; */
+}
+/* 2-4. 기사내용 */
+/* 2-5. 기자정보 */
+/* 2-6. 기사원문 */
