@@ -85,6 +85,27 @@
     /* 패딩양쪽 */
     padding: 0 10px;
 }
+/* 중간 글자표시박스 변경 */
+.arti mark {
+    /* 인라인을 블록으로 전환! */
+    display: block;
+    /* 배경색 */
+    background-color: #eaeaea;
+    /* 글자중앙정렬 */
+    text-align: center;
+    /* 줄간격 */
+    line-height: 3;
+    /* 글자체 */
+    font-family: 'Nanum Gothic';
+    /* 글자크기 */
+    font-size: 20px;
+    /* 글자두께 */
+    font-weight: bold;
+    /* 보더위 */
+    border-top: 2px solid gray;
+    /* 보더아래 */
+    border-bottom: 2px solid #ccc;
+}
 
 /* 2-5. 기자정보 */
 /* 2-6. 기사원문 */
