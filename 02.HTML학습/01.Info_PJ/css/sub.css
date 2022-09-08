@@ -159,4 +159,13 @@
 }
 
 /* 공통 타이틀 h3 */
-
+.main h3{
+    /* 글자체 ff - 웹폰트적용 */
+    font-family: 'Black And White Picture', sans-serif;
+    /* 글자두께 얇게 fwn */
+    font-weight: normal;
+    /* 글자크기 fz */
+    font-size: 26px;
+    /* 패딩왼쪽 pl */
+    padding-left: 20px;
+}
