@@ -66,6 +66,25 @@
     /* 가로크기 w100p */
     /* width: 100%; */
 }
+/* 기사이미지 설명글 small */
+.afig small{
+    /* 글자체 ff */
+    font-family: gulim;
+    /* 글자색 c */
+    color: #555;    
+}
+
 /* 2-4. 기사내용 */
+.arti p{
+    /* 글자체 ff */
+    font-family: "Nanum Gothic","굴림";
+    /* 글자크기 fz */
+    font-size: 18px;
+    /* 줄간격 lh */
+    line-height: 1.6;
+    /* 패딩양쪽 */
+    padding: 0 10px;
+}
+
 /* 2-5. 기자정보 */
 /* 2-6. 기사원문 */
