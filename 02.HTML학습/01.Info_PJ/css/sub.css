@@ -106,6 +106,57 @@
     /* 보더아래 */
     border-bottom: 2px solid #ccc;
 }
+/* i요소 변경 */
+.arti i{
+    /* 글자스타일 노멀 fsn */
+    font-style: normal;
+    /* 글자 두껍게 fwb */
+    font-weight: bold;
+}
+/* q요소 변경 */
+.arti q{
+    /* 글자색 c */
+    color: darkmagenta;
+    /* 글자두껍게 fwb */
+    font-weight: bold;
+}
+/* del요소 변경 */
+.arti del{
+    /* 글자색 c */
+    color: lightpink;
+}
 
 /* 2-5. 기자정보 */
+.rinfo{
+    /* 패딩 p */
+    padding: 10px;
+    /* 글자크기 */
+    font-size: 14px;
+}
+
 /* 2-6. 기사원문 */
+.org a{
+    /* 패딩 p */
+    padding: 10px;
+    /* 글자크기 */
+    font-size: 20px;
+    /* 글자색 c */
+    color: lightseagreen;
+    /* 글자밑줄없앰 tdn */
+    text-decoration: none;
+    /* 보더 bd */
+    border: 1px dashed lightskyblue;
+}
+
+/* 공통박스 article */
+.main article{
+    /* 보더위 bdt */
+    border-top: 2px dashed #ccc;
+    /* 마진위 mt */
+    margin-top: 40px;
+    /* 패딩 p */
+    padding: 15px;
+}
+
+/* 공통 타이틀 h3 */
+
