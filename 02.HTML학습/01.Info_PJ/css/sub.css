@@ -243,3 +243,24 @@
     /* 패딩 p - 위아래 양쪽 */
     padding: 0 20px;
 }
+
+/* 오늘의 작품 & 느낌 */
+.work {
+    /* 글자중앙정렬 tac */
+    text-align: center;
+    /* 배경색 bgc */
+    background-color: #d7ffd6;
+}
+/* 오늘의 작품 cite요소 */
+.work cite {
+    /* cite요소 기본 이탤릭해제 */
+    font-style: normal;
+    /* 글자두껍게 fwb */
+    font-weight: bold;
+    /* 글자체 ff */
+    font-family: 'Black And White Picture', sans-serif;
+    /* 글자크기 fz */
+    font-size: 20px;
+    /* 글자색 c */
+    color: darkorange;
+}
