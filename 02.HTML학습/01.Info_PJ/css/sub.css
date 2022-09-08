@@ -176,6 +176,11 @@
     margin: 0;
     /* 패딩 p */
     padding: 5px;
+    /* float설정으로 망가진
+    부모박스는 overflow:hidden으로
+    고쳐준다(자식의 크기인식) */
+    /* 넘치는 자식요소 숨기기 oh */
+    overflow: hidden;
 }
 /* 블록인용박스 내 이미지 */
 .bquote img{
@@ -200,4 +205,8 @@
         (인라인요소를 오른쪽 끝으로 보낼때도 사용함!)
 
     */
+    /* 둥근모서리 brad */
+    border-radius: 5px;
+    /* 오른쪽마진 mr */
+    margin-right: 15px;
 }
