@@ -352,3 +352,62 @@
     :nth-of-type(n) n번째 자식요소 (n은 1부터)
     :last-of-type 마지막 자식요소
 */
+
+/* 사진뉴스 박스 */
+.pnews table{
+    /* 마영오! - 블록요소,테이블 중앙정렬 */
+    margin: 0 auto;
+}
+/* 첫번째 td - 숫자부분 */
+.pnews td:first-child{
+    /* 가로크기 w */
+    width: 50px;
+    /* 세로크기 h */
+    height: 70px;
+    /* 배경색 bgc */
+    background-color: #ccc;
+    /* 글자중앙 tac */
+    text-align: center;
+}
+/* 두번째 td - 뉴스제목링크 */
+.pnews td:nth-child(2){
+    /* 배경색 bgc */
+    background-color: #eaeaea;
+    /* 패딩 오른쪽 pr */
+    padding-right: 116px;
+    /* 패딩 왼쪽 pl */
+    padding-left: 20px;
+}
+/* 사진뉴스 이미지 */
+.pnews img{
+    /* 가로크기 w */
+    width: 151px;
+    /* 세로크기 h */
+    height: 103px;
+    /* td에서 이미지 세로중앙 */
+    vertical-align: middle;
+    /* 
+        원래 vertical-align은
+        인라인요소간 세로정렬을
+        셋팅하는 속성인데 테이블의
+        td에서 이 속성은 td의
+        세로정렬에 사용할 수 있다!
+        여기서는 높이값이 지정되지
+        않은 상태에서 middle값을
+        주면 아래쪽 빈공간이 사라진다!
+    */
+}
+/* 사진뉴스 테이블 설정 */
+.pnews table{
+    /* 테이블 기본간극 bdcoll */
+    /* 
+        값:
+        collapse - 기본간극 없앰!
+        seperate - 간극있음(기본값)
+    */
+    /* border-collapse: collapse; */
+    border-collapse: separate;
+    /* 사이간격 수치설정하기 bdsp
+    - 주의-seperate상태에서만 설정 */
+    border-spacing: 7px;
+}
