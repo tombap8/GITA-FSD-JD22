@@ -181,6 +181,16 @@
     고쳐준다(자식의 크기인식) */
     /* 넘치는 자식요소 숨기기 oh */
     overflow: hidden;
+
+    /* 글자설정 */
+    /* font: 스두크/줄체 */
+    font: 17px/1.7 'Nanum Gothic';
+    /* 글자정렬 ta */
+    text-align: justify;
+    /* justify 양쪽정렬 */
+
+    /* 들어쓰기 ti */
+    text-indent: 20px;
 }
 /* 블록인용박스 내 이미지 */
 .bquote img{
@@ -209,4 +219,27 @@
     border-radius: 5px;
     /* 오른쪽마진 mr */
     margin-right: 15px;
+}
+
+/* 주해박스 */
+/* .desc 앞에 .main부모를 쓴이유?
+기존 셋팅 .main article에서 설정한
+값이 우선하기 때문에 이것 보다
+우선하도록 상위 부모를 씀! */
+.main .desc{
+    /* 보더 하단 bdb */
+    border-bottom: 2px dashed #ccc;
+    /* 패딩 하단 pb */
+    padding-bottom: 40px;
+    /* 마진 하단 mb */
+    margin-bottom: 20px;
+    
+}
+
+/* 주해박스 small요소 */
+.desc small{
+    /* 전체 패딩적용위해 블록박스로 변경 */
+    display: block;
+    /* 패딩 p - 위아래 양쪽 */
+    padding: 0 20px;
 }
