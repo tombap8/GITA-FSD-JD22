@@ -236,6 +236,12 @@
             </dl>
          </article>
 
+         <!-- 사진뉴스 (테이블 table) -->
+         <article class="pnews">
+            <h3>사진뉴스</h3>
+
+         </article>
+
 
 
 
@@ -335,7 +341,8 @@
         - start 속성 : 시작번호
         - reverse 속성 : 일련번호를 거꾸로 진행
 
-    3. dl - 용어정의리스트(defines the description list)
+    3. dl - 용어정의리스트
+        (defines the description list)
         dl > dt + dd
         _______________
 
@@ -348,6 +355,19 @@
         __________________
 
         주의사항 - dl은 반드시 자식요소로 dt,dd를 한번이상 사용해야함!
+
+    4. table 테이블
+        table tr td
+        table > tbody > tr > td
+
+        table : 테이블 박스 부모요소
+        tr : 테이블 행요소(table row)
+        td : 테이블 데이터(table data)
+        참고) table tr td 로만 코딩구성한 경우
+        브라우저 분석기로 보면 table>tbody 가 있다!
+        이는 테이블 본문파트를 나타낸다
+        안싸줘도 기본코딩으로 자동추가됨!
+        (원래 테이블은 thead, tbody, tfoot 세부분으로 구성됨!)
 
 
  -->
