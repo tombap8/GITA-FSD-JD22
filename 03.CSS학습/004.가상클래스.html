@@ -79,35 +79,58 @@
 
         /* a요소 가상클래스 주기 */
 
-
         /* :link 링크최초상태 */
-        
+        h2 a:link {
+            /* 글자색 c */
+            color: red;
+            /* 밑줄없앰 tdn */
+            text-decoration: none;
+        }
+
 
         /* 일반적으로 a요소 자체 디자인을 잡는다! */
-        
+        h2 a {
+            /* 글자색 */
+            color: hotpink;
+            /* 밑줄없앰 */
+            text-decoration: none;
+            /* 글자그림자: x y 블러 색 - ts */
+            text-shadow: 2px 2px 2px #777;
+        }
 
 
         /* :hover 마우스 오버상태 */
-        
+        h2 a:hover {
+            /* 글자색 */
+            color: darkgreen;
+            /* 글자데코 - 윗줄 tdo */
+            text-decoration: overline;
+        }
 
 
 
         /* :active 마우스로 눌려진상태(클!) */
-        /* h2 a:active{
-            color: hotpink;
-            text-decoration: underline;
-            text-decoration-style: wavy;
-        } */
+        /* h2 a:active{ */
+        /* 글자색 - 핑크 */
+        /* color: hotpink; */
+        /* 글자데코 - 밑줄 */
+        /* text-decoration: underline; */
+        /* 글자데코 스타일 - 물결모양 */
+        /* text-decoration-style: wavy; */
+        /* } */
 
 
         /* :visited 링크 방문후(한번클릭후) */
         /* h2 a:visited{
-            color: blue;
+            color: lime;
         } */
 
 
         /* :focus 요소를 클릭/탭하여 초점이 올때 */
-        
+        h2 a:focus {
+            /* 외곽선:두 종 색 - ol */
+            outline: 10px dotted orangered;
+        }
 
 
 
@@ -133,7 +156,7 @@
         */
         ul.part1 {
             /* ul기본 3가지 없애기 */
-            margin: 0;
+            /* margin: 0; */
             padding: 20px 0;
             /* 위아래 패딩만줌 */
             list-style: none;
@@ -141,7 +164,7 @@
 
             width: 800px;
             margin: 0 auto;
-            /* 마영오! */
+            /* 마영오! - 블록박스 가로중앙 */
             margin-top: 20px;
             border: 2px solid #ccc;
             /* 보더 */
@@ -151,48 +174,73 @@
         }
 
         /* 1번 li */
-        
+        .part1 li:first-child {
+            /* 글자크기 fz */
+            font-size: 40px;
+            /* 글자체 ff */
+            font-family: "궁서";
+            /* 글자색 c */
+            color: red;
+        }
 
         /* 오버시(:hover) */
-        
+        .part1 li:first-child:hover {
+            /* 글자크기 fz50 */
+            font-size: 50px;
+            /* 글자색 blueviolet */
+            color: blueviolet;
+        }
 
         /* 2번째 li */
         /* 30px/"굴림"/lightcoral/bold */
-        
+        .part1 li:nth-child(2){
+            /* font: 스두크/줄체 */
+            font: bold 30px '굴림';
+            /* 글자색 */
+            color: lightcoral;
+        }
+
 
         /* 오버시 - 글자색 skyblue */
-        
+        .part1 li:nth-child(2):hover{
+            color: skyblue;
+        }
+
         /* 3번째 li */
         /* 24px/"돋움"/brown/bold/italic */
-        
+        .part1 li:nth-child(3){
+            font: italic bold 24px '돋움';
+            color: brown;
+        }
+
 
         /* 오버시 - 스타일 normal */
-        
+
 
         /* 4번째 li */
-        
+
 
         /* 처음에 한글(b태그)숨기기 */
-        
+
 
         /* 오버시 한글(b태그)보이고*/
-        
+
 
         /* 오버시 한자(span태그)숨기기 */
-        
+
 
         /* 오버시 li에 노란배경색 */
-        
+
 
         /* 4번 이후 모든 li 전부셋팅 */
         /* 틸드(~)를 사용한 다중형제 요소 선택 */
-        
+
 
         /* 오버시 - 28px / blue */
-        
+
 
         /* 마지막 li - 40px "맑은 고딕" coral */
-        
+
 
         /*      
             틸드(~)를 사용한 CSS가 한단계 더 선택하여서
@@ -220,15 +268,15 @@
         }
 
         /* 두번째 div - 30px 궁서 blueviolet */
-        
+
 
 
         /* 첫번째 i - 20px bold palevioletred */
-        
+
 
 
         /* 3번째 div 이후 div형제요소 모두 */
-        
+
 
 
 
