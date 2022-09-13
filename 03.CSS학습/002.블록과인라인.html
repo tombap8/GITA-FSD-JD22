@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>002.블록과 인라인</title>
+    <style>
+        /* 타이틀 */
+        .tit{
+            text-align: center;
+            border: 5px dotted orange;
+        }
+        /* 모든 인라인, 블록 요소에 디자인 적용하기 */
+        /* 별(*)은 모든요소를 선택! .ele아래 모든요소 선택 */
+        .ele * {
+            /* 박스모델의 기본속성 디자인주기! */
+            width: 200px;
+            height: 150px;
+            border: 10px solid blue;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        /*********************************************** 
+            [ CSS의 display 속성이란? ]
+
+            - 브라우저 화면에 요소를 어떻게 보이게할지를
+                결정해주는 속성! 
+                블록요소의 역할은 "내용구분!"
+
+            - 요소의 display는 크게 2가지
+
+            1. block 요소
+
+            (1) 표현법 :
+                display: block;
+            (2) 기본적으로 block인 요소들
+                h1~h6, div, p, figure, header, nav, ...
+            (3) 특징 :
+                1) 옆에 다른요소가 올 수 없다!(블로킹!)
+                2) 내용을 구분하는 박스다!
+                3) 박스모델 디자인 속성이 모두 적용된다!
+                : width, height, border, margin, padding
+                4) 위 아래 간 블록요소 마진은 중첩된다!
+                    -> 큰 마진값이 작은 마진값을 포함한다!
+                5) 가로크기를 지정하지 않으면 부모박스 끝까지 간다!
+                    -> width: auto; -> 패딩, 보더 포함(안커짐)
+                6) 세로크기를 지정하지 않으면 내용만큼 늘어남!
+                    -> height: auto;
+                7) 박스의 지정된 크기는 패딩과 보더 크기만큼 늘어남!
+                    -> 이런박스를 컨텐트 박스라고 함!
+
+                [ 보더와 패딩을 박스크기에 포함할지 말지에 대한 설정 ]
+                >>>>>> box-sizing 속성
+                1) box-sizing: border-box
+                -> 크기를 지정한 박스에 패딩과 보더를 포함시킴
+                (즉, 크기가 늘어나지 않는다!!!)
+                2) box-sizing: content-box (기본값)
+                -> 크기를 지정한 박스에 패딩과 보더 만큼 크기늘어남
+
+
+                ____________________________________________
+
+
+                2. inline 요소
+                (1) 표현법 :
+                    display: inline;
+                (2) 기본적으로 inline인 요소들
+                    a, img, span, b, i, em, strong, ...
+                (3) 특징 : 
+
+                    1) block 요소를 포함할 수 없다!
+
+                        예) <span><div></div></span> X
+                        -> 주의: 인라인을 블록요소로 변경해도
+                        원래 출신요소를 기준하여 판단한다!
+
+                        예외) a요소 -> 원래 블록을 싸면 안되는데
+                            하도 많이 싸서 허용으로 규칙변경함!
+                    2) width, height 크기가 적용안됨!
+                        -> 내용만큼 늘어남!
+                    3) margin은 양쪽만 적용됨!
+                        -> 위아래 마진은 적용되지 않는다!
+                    4) padding은 양쪽 패딩만 적용됨!
+                        단, 위아래 패딩은 디자인상만 보이고
+                        줄바꿈시 영향을 주지 않는다!
+                    5) border는 양쪽만 영향을 주고
+                    위아래는 영향이 없음. 단, 디자인은 적용됨
+
+                    참고) 인라인요소의 위아래 간격은 
+                          line-height로 설정함!
+
+                    [ 예외 인라인요소 -> img ]
+                    -> 이미지는 인라인요소지만 
+                    width, height, margin,padding, border
+                    모두 적용된다!
+
+                    [ 원래 display 출신을 바꿀 수 있나? ]
+                    ->>>> 변경가능하다!
+
+                    [ display를 숨기는 방법 ]
+                    display: none;
+                    -> 태그는 그대로인데 화면에 출력안됨!
+
+                    __________________________________
+
+                    3. inline-block 요소
+
+                    (1) 표현법 :
+                        display: inline-block;
+                    (2) 기본적으로 inline-block인 요소들
+                        button, input 등
+                    (3) 특징 :
+                        1) 인라인처럼 한줄에 온다!
+                        2) 블록처럼 박스모델요소가 적용된다!
+                        3) box-sizing: border-box가 기본 
+                        설정되어 있어서 크기설정시 
+                        패딩과 보더가 안쪽에 포함된다!
+
+
+        ***********************************************/
+        
+        
+
+    </style>
+</head>
+<body>
+    <h1 class="tit">002.블록과 인라인</h1>
+
+    <h2 class="tit">인라인 요소들</h2>
+    <div class="ele">   
+        <a href="#">나는 a다!</a>
+        <img src="imgs/blogo.png" alt="로고" title="나는 img다!">
+        <span>나는 span이다!</span>
+        <b>나는 b다!</b>
+        <!-- <button>
+            나는 button이다! 나는 인라인인가?
+        </button> -->
+        <i>나는 i다!</i>
+        <em>나는 em이다!</em>
+        <strong>나는 strong이다!</strong>
+    </div>
+
+    <h2 class="tit">블록 요소들</h2>
+    <div class="ele">
+        <h1>나는 h1이다!</h1>
+        <h4>나는 h4다!</h4>
+        <div>나는 div다!</div>
+        <p>나는 p다!</p>
+        <header>나는 header다!</header>
+
+    </div>
+    
+</body>
+</html>
