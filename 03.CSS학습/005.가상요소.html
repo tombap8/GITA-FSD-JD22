@@ -160,16 +160,28 @@
         }
 
         /* .story의 첫번째 p태그의 첫번째 글자 디자인 변경하기 */
-
-
+        dd.story p:first-of-type::first-letter{
+            font-size: 50px;
+            color: hotpink;
+            font-weight: bold;
+        }
 
         /* .story의 첫번째 p태그의 첫번째줄 디자인 변경하기 */
-
+        dd.story p:first-of-type::first-line{
+            color: blue;
+        }
 
 
 
         /* 두번째 p태그는 태그로 
         첫번째 글자(b태그), 첫번째 줄(span)변경 */
+        dd.story p:last-of-type b{
+            font-size: 50px;
+            color: hotpink;
+        }
+        dd.story p:last-of-type span{
+            color: blue;
+        }
 
 
         /* 기타 가상요소 ::selection */
