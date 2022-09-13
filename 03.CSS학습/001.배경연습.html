@@ -4,7 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <title>001.배경연습</title>
-    <style></style>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* 기본높이값이 auto 즉, 내용만큼 늘어남
+            보이는 화면에 기준하여 높이 채우기함!
+                body의 부모는? html
+                html의 부모는? window 즉, 보이는 화면!
+            */
+        }
+
+        h1{
+            margin: 0;
+            /* body의 자식요소인 블록요소 h1의
+            기본마진값이 body 바깥으로 나감!
+            body의 자식 요소 블록은 그 윗마진, 아랫마진은
+            부모박스이 바깥쪽으로 나감-> 기본특성임! 
+            나가지 않게 하려면 마진을 없애거나(대신 패딩씀) 또는 부모박스에 overflow:hidden을 씀
+            ->>> 유모차 아기가 유모차 바깥으로 밀면
+            엄마도 밀린다.... 이거 생각하면 됨!!! */
+
+        }
+
+        body{
+            /* 전체 배경넣기는 body에 할것! html에 하지마! */
+
+            /* 1. 배경색 bgc */
+            background-color: pink;
+
+            /* 2. 배경이미지: url(경로) - bgi */
+            background-image: url(./imgs/bg_logo_a_01.png);
+
+            /* 3. 반복여부: 
+            no-repeat 반복안함
+            repeat-x x축반복
+            repeat-y y축반복
+            repeat 모두반복(기본값)
+            - bgr */
+            background-repeat: no-repeat;
+            /* background-repeat: repeat-x; */
+            /* background-repeat: repeat-y; */
+
+            /* 4. 배경고정: fixed 스크롤이 있는 경우 배경이 보이는 화면에 고정된다! bga */
+            /* background-attachment: fixed;
+            height: 4000px; */ 
+
+            /* 5. 배경위치 : 가로 세로
+                값 - px, % 수치단위
+                가로 - left, center, right
+                세로 - top, center, bottom
+                - bgp
+            */
+            background-position: right bottom;
+
+            /* 6. 배경크기: 가로 세로
+            가로와 세로중 한쪽만 셋팅하면 이미지 비율유지!
+            auto 값 -> 세로값만 셋팅됨! 가로는 자동
+            값 auto -> 가로값만 셋팅됨! 세로는 자동
+            값을 하나만 쓰면 가로값만 셋팅한것과 같음!
+
+            특정값 쓰기
+            1) contain 모두 보이게 박스에 채움(빈틈있음)
+            2) cover 비율을 유지하면서 박스를 채움(빈틈없음)
+            - bgz
+            */
+            background-size: 150px auto;
+
+        }
+    </style>
 </head>
 
 <body>

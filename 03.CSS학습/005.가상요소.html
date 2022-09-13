@@ -50,6 +50,24 @@
 
              */
         /* h2요소 맨앞에 이미지 넣기 */
+        h2::before{
+            /* 내용넣기 속성 content-> 필수! */
+            /* content: '나야나!'; */
+            content: url(./imgs/blogo.png);
+            width: 20px;
+            height: 10px;
+            /* 이미지는 원본 그대로 사용해야함
+            가로,세로 크기를 변경하고 싶으면
+            박스로 만들고 배경이미지로 처리함! */
+
+            /* 마진 적용됨! */
+            margin-right: 20px;
+            /* 인라인요소간 세로정렬 va 
+            vertical-align: 값으로
+            top, middle, bottom, 숫자px 등*/
+            vertical-align: top;
+
+        }
         
         /* 맨뒤 추가요소 ::after */
        
