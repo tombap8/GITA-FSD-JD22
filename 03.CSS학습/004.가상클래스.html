@@ -269,7 +269,7 @@
         }
 
         /* 마지막 li - 40px "맑은 고딕" coral */
-        ul.part1 li:last-child {
+        /*ul.part1 /li:last-child {*/
         body .part1 li:last-child {
             font-size: 40px;
             font-family: '맑은 고딕';
@@ -283,6 +283,9 @@
             써준면 된다~!!!
             -> 여기서 한단계 위의 부모는 body!
             (호가호위! 여우 뒤에 호랑이!)
+
+            -> 참고) 기존선택자 .part 보다 ul.part로 쓰면
+            종속선택자가 한단계 선택을 더했으므로 우선순위를 높임!
         */
 
 
