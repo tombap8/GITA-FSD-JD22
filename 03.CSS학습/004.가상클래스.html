@@ -305,14 +305,32 @@
         }
 
         /* 두번째 div - 30px 궁서 blueviolet */
-
+        .part2 div:nth-of-type(2){
+            font-size: 30px;
+            font-family: "궁서";
+            color: blueviolet;
+        }
 
 
         /* 첫번째 i - 20px bold palevioletred */
+        .part2 i:first-of-type{
+            font-size: 20px;
+            font-weight: bold;
+            color: palevioletred;
+        }
 
 
 
-        /* 3번째 div 이후 div형제요소 모두 */
+        /* 3번째 div 이후 div형제요소 모두 - 궁서체 red */
+        /* .part2 div:nth-of-type(3)~div{ */
+        /* 3번째 div 이후 i형제요소 모두 - 궁서체 red */
+        /* .part2 div:nth-of-type(3)~i{ */
+        /* 3번째 div 이후 모든형제요소 - 궁서체 red */
+        .part2 div:nth-of-type(3)~*{
+            font-family: '궁서';
+            color: red;
+        }
+
 
 
 
