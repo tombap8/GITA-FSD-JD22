@@ -70,8 +70,33 @@
             2) cover 비율을 유지하면서 박스를 채움(빈틈없음)
             - bgz
             */
-            background-size: 150px auto;
+            background-size: auto 20%;
 
+        }
+        /* body 아래 박스 */
+        .wrap{
+            height: 100%;
+            /* 
+                [ 배경을 여러개 셋팅하려면? ]
+                -> 한번에 배경셋팅법으로 콤마로 구분하여
+                연결하여 여러개 셋팅가능!
+
+                background: 색이반고윙/크
+
+                background: 배경색 배경이미지 반복 고정 위치/크기
+
+                -> 주의: 위치를 잡을 필요가 없어도 0이라도 쓰고 슬래쉬 뒤에 값을 써야 그게 배경크기임!!!
+            */
+            background: 
+            url(./imgs/dc1.png) no-repeat center/400px,
+            url(./imgs/dc2.png) no-repeat right top/auto 150px,
+            url(./imgs/dc3.png) no-repeat left bottom/300px,
+            url(./imgs/dc4.png) no-repeat right/250px,
+            url(./imgs/bg_mainvisual.jpg) no-repeat 0/50%;
+
+            /* 배경위치 세로값을 안쓰면 기본값이 center임! */
+            /* 배경위치값을 0만쓰면 left center와 동일! */
+            /* 배경위아래 위치는 먼저쓴게 위에옴! */
         }
     </style>
 </head>
