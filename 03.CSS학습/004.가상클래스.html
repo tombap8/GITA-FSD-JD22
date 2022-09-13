@@ -215,29 +215,58 @@
 
 
         /* 오버시 - 스타일 normal */
-
+        .part1 li:nth-child(3):hover{
+            /* 글자스타일 fs */
+            font-style: normal;
+        }
 
         /* 4번째 li */
+        .part1 li:nth-child(4){
+            font-size: 50px;
+            font-family: "궁서";
+            color: dodgerblue;
+        }
 
 
         /* 처음에 한글(b태그)숨기기 */
-
+        .part1 li:nth-child(4) b{
+            /* 디스플레이 숨김 dn */
+            display: none;
+        }
 
         /* 오버시 한글(b태그)보이고*/
-
+        .part1 li:nth-child(4):hover b{
+            /* 자신의 원래 display로! di */
+            display: inline;
+        }
 
         /* 오버시 한자(span태그)숨기기 */
-
+        .part1 li:nth-child(4):hover span{
+            /* 디스플레이 숨기기 dn */
+            display: none;
+        }
 
         /* 오버시 li에 노란배경색 */
+        .part1 li:nth-child(4):hover{
+            /* 배경색 bgc */
+            background-color: #ff0;
+        }
 
 
         /* 4번 이후 모든 li 전부셋팅 */
         /* 틸드(~)를 사용한 다중형제 요소 선택 */
+        .part1 li:nth-child(4)~li{
+            font-size: 25px;
+            font-family: "궁서";
+            color: orangered;
+        }
 
 
         /* 오버시 - 28px / blue */
-
+        .part1 li:nth-child(4)~li:hover{
+            font-size: 28px;
+            color: blue;
+        }
 
         /* 마지막 li - 40px "맑은 고딕" coral */
 
