@@ -84,8 +84,27 @@
             vertical-align: middle;
             /* 왼쪽마진 ml20 */
             margin-left: 20px;
+            /* 배경: 색이반고윙/크 - bg */
+            background: url(./imgs/bg_logo_a_01.png) no-repeat center/80%;
 
-            outline: 2px dashed red;
+            /* 둥근모서리 brad */
+            border-radius: 5px;
+            /* 테두리 (보더) bd */
+            border: 2px solid #00cc25;
+            /* 박스그림자
+                box-shadow: x y blur spread 색
+                box-shadow: x위치 y위치 경계흐림 그림자크기 그림자색
+                맨앞에 inset을 쓰면 내부그림자!
+
+                콤마로 구분하여 여러개의 그림자효과 가능!
+
+                -bsh
+            */
+            box-shadow: 
+            inset 0 0 10px #b300c3c5,
+            10px 10px 5px 2px #00000049;
+
+            /* outline: 2px dashed red; */
         }
 
 
