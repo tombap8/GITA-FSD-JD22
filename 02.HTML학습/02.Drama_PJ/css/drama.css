@@ -120,3 +120,40 @@ html,body{
     /* 글자색 c */
     color: blueviolet;
 }
+
+/* 구분테이블 박스 */
+div.gubun{
+    /* 가로크기 w */
+    width: 1000px;
+    /* 마영오! */
+    margin: 0 auto;
+    /* 마진 아래 */
+    margin-bottom: 100px;
+    /* float으로 망가짐 방지 oh */
+    overflow: hidden;
+}
+/* 구분테이블 */
+table#gubun{
+    /* 글자크기 fz */
+    font-size: 20px;
+    /* 보더 */
+    border: 1px solid #999;
+    /* 오른쪽 끝으로 보냄 flr */
+    float: right;
+}
+/* 구분테이블 td */
+#gubun td{
+    /* 패딩 p */
+    padding: 10px;
+}
+/* 구분테이블 첫번째 tr의 첫번째 td의 오른쪽 점선넣기 */
+#gubun tr:first-child td:first-child{
+    /* 보더 오른쪽 bdr */
+    border-right: 1px dotted #999;
+}
+/* 구분테이블 두번째 tr부터 마지막 tr 까지 즉, 앞에 tr이 있는 tr형제요소만 선택하여 보더 상단 넣기!
+앞에 tr이 있는 tr -> tr+tr */
+#gubun tr+tr td{
+    /* 보더 윗쪽 bdt */
+    border-top: 1px dotted #999;
+}
