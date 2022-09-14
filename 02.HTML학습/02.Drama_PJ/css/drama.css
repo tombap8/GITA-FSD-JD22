@@ -76,3 +76,17 @@ html,body{
     /* 배경색 bgc */
     background-color: #ededed;
 }
+
+/* 본문(tbody)의 첫번째 td (번호항목) 중앙정렬 */
+#drama tbody td:first-child{
+    /* 글자중앙정렬 tac */
+    text-align: center;
+}
+
+/* 하단부분(tfoot) */
+#drama tfoot td{
+    /* 글자중앙 tac */
+    text-align: center;
+    /* 패딩 p */
+    padding: 45px 0;
+}
