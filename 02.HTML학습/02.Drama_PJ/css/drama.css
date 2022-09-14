@@ -90,3 +90,33 @@ html,body{
     /* 패딩 p */
     padding: 45px 0;
 }
+
+/* 드라마명 링크 처리 */
+#drama tbody a {
+    /* 글자색 c */
+    color: #222;
+    /* 밑줄없앰 tdn */
+    text-decoration: none;
+}
+/* 드라마명 오버시 */
+#drama tbody a:hover {
+    /* 글자색 c */
+    color: hotpink;
+    /* 글자데코 : 밑줄 tdu */
+    text-decoration: underline;
+    /* 글자데코 스타일 : 물결모양 */
+    text-decoration-style: wavy;
+}
+
+/* 하단 페이징 링크 처리 */
+#drama tfoot a {
+    /* 글자색 c */
+    color: #222;
+    /* 밑줄없앰 tdn */
+    text-decoration: none;
+}
+/* 하단 페이징 오버시 */
+#drama tfoot a:hover {
+    /* 글자색 c */
+    color: blueviolet;
+}
