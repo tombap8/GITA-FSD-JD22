@@ -9,3 +9,14 @@
     font-family: 'ZCOOL QingKe HuangYou', cursive;
     font-family: 'Nanum Gothic', sans-serif;
 */
+
+/* 전체 웹폰트 일반적용! */
+body{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 속박스 class */
+.ibx{
+    width: 1200px;
+    margin: 0 auto;
+}
