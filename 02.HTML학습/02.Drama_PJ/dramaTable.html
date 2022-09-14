@@ -7,22 +7,144 @@
     </head>
     <body>
         <!-- 한국 최신 드라마 리스트 -->
-  
+        <table class="tbl" id="drama" border="1">
+            <!-- 
+                테이블 기본 사이간극은
+                border="1" 속성을 넣고 확인해 본다!
+                없애려면 CSS에서
+                border-collapse:collapse 설정함!
+             -->
+            <!-- 1.테이블제목 -->
+            <caption>한국 최신 드라마 리스트</caption>
+            <!-- 2.테이블 머릿부분 -->
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>드라마명</th>
+                    <th>주연</th>
+                    <th>제작사</th>
+                    <th>구분</th>
+                    <th>방영시간</th>
+                    <th>방영횟수</th>
+                </tr>
+            </thead>
+            <!-- 3.테이블 메인부분 -->
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>경찰수업</td>
+                    <td>진영,차태현</td>
+                    <td>KBS2</td>
+                    <td>월화</td>
+                    <td>오후 09:30</td>
+                    <td>16부작</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>홍천기</td>
+                    <td>안효섭,김유정</td>
+                    <td>SBS</td>
+                    <td>월화</td>
+                    <td>오후10:00</td>
+                    <td>12부작</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>더 로드 : 1의 비극</td>
+                    <td>지진희,윤세아</td>
+                    <td>tvN</td>
+                    <td>수목</td>
+                    <td>오후10:50</td>
+                    <td>20부작</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>죽어야 산다</td>
+                    <td>지창욱,오윤아</td>
+                    <td>JTBC</td>
+                    <td>수목</td>
+                    <td>오후10:00</td>
+                    <td>18부작</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>아름다운 세상</td>
+                    <td>김동길,오세정</td>
+                    <td>MBC</td>
+                    <td>수목</td>
+                    <td>오후09:50</td>
+                    <td>16부작</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>혹여나 오시나요</td>
+                    <td>마윤석,이필모</td>
+                    <td>KBS2</td>
+                    <td>수목</td>
+                    <td>오후10:50</td>
+                    <td>20부작</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>당신오면 죽어</td>
+                    <td>성소희,이기로</td>
+                    <td>tvN</td>
+                    <td>토일</td>
+                    <td>오후09:50</td>
+                    <td>15부작</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>칼부림의 세계</td>
+                    <td>장윤배,오세동</td>
+                    <td>SBS</td>
+                    <td>금토</td>
+                    <td>오후10:00</td>
+                    <td>20부작</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>호떡집 사장</td>
+                    <td>송기영,판도라</td>
+                    <td>tvN</td>
+                    <td>수목</td>
+                    <td>오후10:50</td>
+                    <td>20부작</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>마이크로 칩</td>
+                    <td>이라미,박노라</td>
+                    <td>MBC</td>
+                    <td>수목</td>
+                    <td>오후10:50</td>
+                    <td>10부작</td>
+                </tr>
+            </tbody>
+            <!-- 4.테이블 하단부분-->
+            <tfoot>
+                <tr>
+                    <td>
+                        ◀ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 ▶
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
 
         <!-- 
             [ 가장 복잡한 그룹요소인 테이블!!! ]
-            32. table : 테이블 전체 부모요소
-            33. tr : 테이블 레코드행 (table row)
-            34. td : 테이블 데이터요소 (table data)
-            35. th : 테이블 머릿부분에 사용될 경우 
+            1. table : 테이블 전체 부모요소
+            2. tr : 테이블 레코드행 (table row)
+            3. td : 테이블 데이터요소 (table data)
+            4. th : 테이블 머릿부분에 사용될 경우 
             td대신 th를 사용할 수 있다.
             (기본디자인-중앙정렬+두꺼운글자)
             ________________________________  
             (테이블 구조를 위한 추가요소들)
-            36. caption : 테이블 제목
-            37. thead : 테이블 머릿부분
-            38. tbody : 테이블 중앙 내용부분
-            39. tfoot : 테이블 하단부분
+            5. caption : 테이블 제목
+            6. thead : 테이블 머릿부분
+            7. tbody : 테이블 중앙 내용부분
+            8. tfoot : 테이블 하단부분
 
             ※tbody는 일반적으로 table tr td 로 구성하는
             테이블일 경우 자동으로 생성되어 표시된다!
