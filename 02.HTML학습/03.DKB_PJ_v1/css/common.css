@@ -5,13 +5,13 @@
 
 /* 1. 상단영역 */
 .top{
-    height: 200px;
+    height: 128px;
 }
 /* 2. 메인영역 */
 .cont{
-    height: 500px;
+    height: 969px;
 }
 /* 3. 하단영역 */
 .info{
-    height: 300px;
+    height: 241px;
 }

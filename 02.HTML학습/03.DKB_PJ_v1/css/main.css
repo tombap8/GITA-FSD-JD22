@@ -11,3 +11,20 @@
 body * {
     outline: 2px dashed gray;
 }
+
+/* 컨텐츠 파트 최상위부모 */
+body{
+    /* 한번에 배경주기 + 여러개주기 */
+    /* background: 색이반고윙/크 */
+    /* 콤마로 구분하여 여러 배경이미지를 넣을 수 있고
+    먼저쓴 이미지가 위에 온다! */
+    background: 
+    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 30%/10%,
+    url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover;
+   
+    /*  
+        background-attachment: fixed;
+        고정의 기준은 보이는 화면이다!!!
+        스크롤해도 고정된 배경은 움직이지 않는다!
+     */
+}

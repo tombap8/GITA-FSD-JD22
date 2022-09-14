@@ -17,6 +17,9 @@ body{
 
 /* 속박스 class */
 .ibx{
-    width: 1200px;
+    max-width: 1200px;
+    /* 최대가로크기 1200px이면
+    싸고 있는 박스가 이것보다 작아질 경우
+    auto로 자동전환되어 가로스크롤이 안생김! */
     margin: 0 auto;
 }
