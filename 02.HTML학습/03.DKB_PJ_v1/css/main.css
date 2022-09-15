@@ -120,3 +120,19 @@ body{
 .cat:hover .ci figcaption img:last-child{
     display: none;
 }
+
+/* 캐릭터 설명박스 */
+.cd{
+    /* 배경: 색이반고윙/크 */
+    background: url(../images/eachBG.jpg) no-repeat center/cover;
+}
+
+/* 캐릭터 설명 타이틀 */
+.cd h3{
+    font-family: 'Gugi';
+}
+
+/* 캐릭터 설명 문단 */
+.cd p{
+    font-family: 'Single Day','ZCOOL KuaiLe';
+}
