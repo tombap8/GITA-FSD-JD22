@@ -109,3 +109,14 @@ body{
 .ci figcaption img:first-child{
     display: none;
 }
+/* 캐릭터박스 .cat에 오버시 */
+/* 마우스 오버시 처리1
+첫번째이미지 보이기(원래 inline) */
+.cat:hover .ci figcaption img:first-child{
+    display: inline;
+}
+/* 마우스 오버시 처리2
+마지막이미지 숨기기 */
+.cat:hover .ci figcaption img:last-child{
+    display: none;
+}
