@@ -32,8 +32,12 @@ body{
 
 /****** 메인영역 ******/
 .cont{
-    /* 높이값 h */
-    height: 969px;
+    /* 최소높이값 mh */
+    min-height: 969px;
+    /* 최소높이는 내용이 없어도
+    설정되 크기를 유지하다가 내용이
+    많아지면 늘어난다!(많이사용됨) */
+    
     /* 넘치는 자식요소숨기기 */
     overflow: hidden;
     /* 이거 왜했지? 첫번째 자식요소 마진탑값이
@@ -49,6 +53,8 @@ body{
     margin: 0 auto;
     /* 마진탑 mt */
     margin-top: 500px;
+    /* 마진아래 mb */
+    margin-bottom: 100px;
 }
 
 /* 자식요소의 float해제 설정 가상요소 after로! */
@@ -123,16 +129,52 @@ body{
 
 /* 캐릭터 설명박스 */
 .cd{
+    /* 높이값 설정 h */
+    height: 250px;
+    /* 넘치는 내용요소 자동스크롤 */
+    overflow: auto;
+    /* 
+        [ overflow 속성 ]
+        ->  넘치는 요소 처리속성
+        - visible 넘쳐도보임(기본값)
+        - hidden 넘치는 요소 숨기기
+        - scroll 스크롤바 생김
+            (x,y 두방향 모두 생김)
+            overflow-y 로 해야 y만생김
+        - auto 내용넘치면 자동으로
+            y축 스크롤만 생김
+    */
+    /* 마진 상단 mt */
+    margin-top: 15px;
+
     /* 배경: 색이반고윙/크 */
     background: url(../images/eachBG.jpg) no-repeat center/cover;
 }
 
 /* 캐릭터 설명 타이틀 */
 .cd h3{
+    /* 글자체 ff - 웹폰트 */
     font-family: 'Gugi';
+    /* 글자크기 fz */
+    font-size: 24px;
+    /* 글자두께 보통 fwn */
+    font-weight: normal;
+    /* 패딩 : 위 15px 양쪽 10px 아래 5px */
+    padding: 15px 10px 5px;
+    /* 자간 ls */
+    letter-spacing: -1px;
 }
 
 /* 캐릭터 설명 문단 */
 .cd p{
+    /* 글자체 ff */
     font-family: 'Single Day','ZCOOL KuaiLe';
+    /* 글자크기 fz */
+    font-size: 18px;
+    /* 줄간격 lh */
+    line-height: 1.6;
+    /* 패딩 p */
+    padding: 10px;
+    /* 양쪽정렬 justify */
+    text-align: justify;
 }
