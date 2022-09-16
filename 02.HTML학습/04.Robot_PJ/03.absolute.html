@@ -43,9 +43,42 @@
                 위치함(즉, 위로 올라옴!)
 
                 (2) 위치이동값을 사용한 경우
+
+                - 위치 이동값을 사용한 부분에 대해서만!!!!!!!!!!!!!!!!!!
+                앱솔루트가 위치를 잡을 때 기준이 되는
+                부모요소를 찾는다!
+
+                일반적으로 부모요소란 싸고있는 요소지만
+                앱솔루트가 위치를 잡기위한 기준이 되는
+                부모는 static이 아닌요소가 부모다!!!!!
+
+                -> static이 아닌 포지션이란?
+                relative / absolute / fixed / sticky
+
+                -> 위치 이동값을 쓰지 않은 부분에 대해서는 부모를 찾지 않는다!!!(젠틀함)
+
+                -> 부모자격이 있는 부모요소들 중 가장
+                가까운것이 부모가 된다!
+
+                -> 만약 부모자격이 모두 없으면
+                보이는 화면(window)을 기준한다!
+                ->>> 보이는 화면은 body가 아니다!!!
+                스크롤이 생겨도 스크롤위쪽에 보이는 화면
+                만을 지칭한다!
+
+                ->>>>> 또한!!!
+                width 나 height 값을
+                %로 줄 경우 부모자격이 있는 요소를
+                기준하여 크기를 잡는다!
+
                 
 
             2) 앱솔루트 가로, 세로 크기를 주지 않은 경우
+            일반적으로 block요소 이므로
+            width: auto 로써 부모끝까지 차지하지만
+            앱솔루트는...
+            내용만큼 그 크기가 자동으로 설정됨!
+            [-> 앱솔루트 판타롱스타킹!]
                 
             3) 
 
@@ -71,6 +104,7 @@
             position: absolute;
             top: 0;
             right: 0;
+            
 
             background: url(./ab_img/ab1.jpg) no-repeat center/cover;
             color: #fff;
@@ -98,6 +132,8 @@
         }
 
         /* 부모를 찾는 앱솔루트 */
+       
+
         .bx2{
             border: 2px dotted orange;
             padding: 50px;
@@ -106,21 +142,58 @@
         }
         /* 각 부모박스 */
         .s5{
+            position: relative;
             background-color: lightblue;
         }
         .s6{
+            position: relative;
             background-color: lightcoral;
         }
         .s7{
+            position: relative;
             background-color: lightgreen;
         }
         .s8{
+            position: relative;
             background-color: lightsalmon;
         }
         /* 부모찾는 앱솔루트 박스 */
         .abs{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+
             color: #fff;
             background: url(./ab_img/ab1.jpg) no-repeat center/cover;
+        }
+
+        /* .a3는 앱솔루트면서 위치값이 없으므로
+        젠틀하다!!! - 싸고있는 박스안에 그대로 있음! */
+
+        /* 부모박스를 찾는 .a4 */
+        .a4{
+            top: 0;
+            left: 0;
+            /* 나의 부모는? */
+            width: 20%;
+            height: 40%;
+            /* 앱솔루트인데 %로 가로,세로 크기를
+            설정할 경우 부모자격요소를 기준한다! */
+        }
+
+        /* 앱솔루트 : 판타롱스타킹 */
+        .a5{
+            position: absolute;
+            /* 크기를 안주면 내용만큼 늘어남! */
+            top: 20%;
+            right: 10%;
+            /* 부모는? 보이는 화면! */
+
+        }
+        .a5 img{
+            vertical-align: top;
+            /* 이미지 하단 간극 없앰!(기본4px)
+            top/middle/bottom 모두 가능! */
         }
         
 
