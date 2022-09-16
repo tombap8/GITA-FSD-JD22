@@ -207,6 +207,39 @@
             /* 부모는 .s8 */
             border: 4px dotted red;
         }
+
+        /* 앱솔루트끼리는 서로 겹친다 */
+        .absimg{
+            width: 92px;
+            height: 115px;
+            border: 10px ridge orange;
+        }
+        .absimg img{
+            position: absolute;
+            /* 젠틀앱솔루트여서
+            부모자격이 없는 일반 static
+            요소여도 그 자리에 가만히 있음! 
+            -> 앱솔루트 이미지끼리는
+            서로 겹쳐짐(위,아래는 z-index로 변경가능)*/
+        }
+        /* 두번째 닥스이미지 투명하게 변경 */
+        .absimg img:last-child{
+            opacity: 0;
+            /* 
+                [ opacity 속성 ]
+                - 투명도 속성
+                - 0 완전투명, 1 불투명
+                - 0.얼마 소수점값 반투명
+            */
+
+            /* 트랜지션 trs */
+            transition: 1s;
+        }
+        /* 오버시 닥스이미지 나타나기 */
+        .absimg:hover img:last-child{
+            /* 투명도 op */
+            opacity: 1;
+        }
         
 
         
