@@ -80,7 +80,11 @@
             내용만큼 그 크기가 자동으로 설정됨!
             [-> 앱솔루트 판타롱스타킹!]
                 
-            3) 
+            3) 블록이 아닌 요소에 앱솔루트를 준 경우
+            자동으로 display:block 로 설정됨!
+            이유는 자동크기를 설정할 경우 블록이 아니면
+            크기설정이 안되므로 자동전환된다!
+            -> 일반적으로 모든 앱솔루트는 block이다!
 
             4) 
 
@@ -193,6 +197,15 @@
             vertical-align: top;
             /* 이미지 하단 간극 없앰!(기본4px)
             top/middle/bottom 모두 가능! */
+        }
+
+        /* span을 앱솔루트로! */
+        .spabs{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            /* 부모는 .s8 */
+            border: 4px dotted red;
         }
         
 
