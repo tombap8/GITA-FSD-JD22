@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position - absolute</title>
+    <style>
+        .bx{
+            width: 100px;
+            height: 100px;
+            border: 2px solid blue;
+            /* 글자가로중앙 */
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            /* 글자세로중앙 */
+            line-height: 100px;
+        }
+
+
+        #a1{
+            
+            /****************************************** 
+            [ 3. absolute 포지션 ]
+
+            1) absolute 포지션은 위치이동값을
+            쓰기전과 후로 나눠볼 수 있다!
+
+                (1) 위치이동값을 쓰지 않은 경우
+
+                
+
+                (2) 위치이동값을 사용한 경우
+                
+
+            2) 앱솔루트 가로, 세로 크기를 주지 않은 경우
+                
+            3) 
+
+            4) 
+
+               
+
+            5) 
+
+            6) 
+
+            7) 
+
+
+            ******************************************/
+
+            background: url(./ab_img/ab1.jpg) no-repeat center/cover;
+            color: #fff;
+        }
+
+
+        #s1{
+            background-color: lightgreen;
+        }
+
+        #r1{
+            background: url(./ab_img/ab5.jpg) no-repeat center/cover;
+            color: #fff;
+        }
+        #r2{
+            background: url(./ab_img/ab4.jpg) no-repeat center/cover;
+            color: #fff;
+
+        }
+
+        /* 부모를 찾는 앱솔루트 */
+        .bx2{
+            border: 2px dotted orange;
+            padding: 50px;
+            font-size: 24px;
+            text-align: center;
+        }
+        /* 각 부모박스 */
+        .s5{
+            background-color: lightblue;
+        }
+        .s6{
+            background-color: lightcoral;
+        }
+        .s7{
+            background-color: lightgreen;
+        }
+        .s8{
+            background-color: lightsalmon;
+        }
+        /* 부모찾는 앱솔루트 박스 */
+        .abs{
+            color: #fff;
+            background: url(./ab_img/ab1.jpg) no-repeat center/cover;
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <div class="bx" id="r1">r1</div>
+    <div class="bx" id="s1">s1</div>
+    <div class="bx" id="a1">a1</div>
+    <div class="bx" id="r2">r2</div>
+    <div class="bx" id="s2">s2</div>
+
+    <!-- 앱솔루트 : 판타롱스타킹! -->
+    <div class="a5">
+        <img src="./ab_img/ab2.jpg" alt="타노스">
+    </div>
+
+    <!--  앱솔루트끼리는 서로 겹친다! -->
+    <div class="absimg">
+        <img src="./ab_img/ab3.jpg" alt="토르">
+        <img src="./ab_img/ab4.jpg" alt="닥스">
+    </div>
+
+    <!-- 부모를 찾는 앱솔루트! -->
+    <div class="bx2 s5">s5
+        <div class="bx2 s6">s6
+            <div class="bx2 s7">s7
+                <div class="bx2 s8">s8
+                    <div class="abs a3">a3</div>
+                    <div class="abs a4">a4</div>
+                    <span class="spabs">
+                        나는 span앱솔루트다!
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,788 @@
+@charset "utf-8";
+/* 로봇 PJ CSS - robot.css */
+
+
+/* 웹폰트 CDN */
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@500&display=swap");
+
+/* 
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Orbitron', sans-serif;
+*/
+
+/* 공사중표시 */
+/* body *{
+    outline: 2px dashed lime;
+} */
+
+html{
+    scroll-behavior: smooth;
+    /* 내부 아이디 요소 위치로 이동시
+    스크롤 애니메이션을 부드럽게 처리하는 속성!
+    최상위 요소인 html에 셋팅하면 전체페이지
+    스크롤에 적용됨! (JS사용없이 하는 방법!!!) */
+}
+
+
+/* 초기화 */
+html,body,h1,h2,h3,ul,ol{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    /* height: 3000px; */
+
+    /* 배경: 색이반고윙/크 */
+    background: url(../images/bg.jpg) no-repeat fixed top/cover;
+}
+/* 공통class */
+/* 메탈소재1 배경 */
+.mt1{
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+
+/* 메탈소재2 배경 */
+.mt2{
+    background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+/* 빛이나는 로봇 */
+.brRo, .brRo::after, .brRo::before{
+    box-shadow: 0 0 10px 5px cyan;
+}
+
+/*************************************************** 
+    [ CSS로 애니메이션 하기 ]
+
+    - 시간에 따라 CSS설정이 변경되어 애니메이션
+    되도록 키프레임을 설정하고 이것을 호출함으로
+    의도된 연출을 구현하는 것 CSS 애니메이션이다!
+
+    [ 애니메이션 키프레임 만들기 ]
+    - 키프레임이란? 애니메이션 장면을 넣는 코드
+
+    1. 두장면 애니메이션
+
+    @keyframes 키프레임이름{
+        from{시작CSS설정}
+        to{끝나는CSS설정}
+    }
+
+    또는
+
+    @keyframes 키프레임이름{
+        0%{시작CSS설정}
+        100%{끝나는CSS설정}
+    }
+
+    -> 만약 from(0%) 설정이 초기설정과 같다면
+        from 설정은 생략할 수 있다!
+
+    2. 여러장면 키프레임
+
+    @keyframes 키프레임이름{
+        0%{CSS설정}
+        10%{CSS설정}
+        20%{CSS설정}
+        ...
+        70%{CSS설정}
+        80%{CSS설정}
+        90%{CSS설정}
+        100%{CSS설정}
+    }
+
+    (1) 장면에 대한 시간계산은 어떻게 하나?
+    -> 전체시간 * 설정된% / 100
+
+    (2) 전체 애니메이션 시간은 언제 셋팅하나?
+    -> 호출시에 셋팅!
+
+    [ 설정된 키프레임 호출하는 방법 ]
+
+    animation: 이시이지반방마
+    (이름 시간 이징 지연 반복 방향 마지막상태)
+
+    1. 이름(animation-name) : 키프레임 이름
+
+    2. 시간(animation-duration) : 애니메이션 동작시간
+        -> 초단위(s)
+    
+    3. 이징(animation-timing-function) : easing 가속도
+
+    4. 지연(animation-delay) : 애니메이션 지연시간(s)
+
+    5. 반복(animation-iteration-count) : 애니메이션 반복
+        - 기본값 1, 숫자를 숫자만큼 반복함
+        - 영원히 infinite(인피니트)
+
+    6. 방향(animation-direction) : 시작 -> 끝
+        - 두번이상 반복할 경우 반대경로로 애니메이션 설정
+        -> alternate : 시작 -> 끝, 끝 -> 시작
+
+    7. 마지막 상태(animation-fill-mode) :
+        - 애니메이션이 끝났을때 처음으로 돌아가는게 기본!
+        -> forwards (앞쪽에...즉, 애니끝장면으로 마무리!)
+        -> 기본값 : backwards(뒤쪽으로,즉 처음으로)
+        -> 유의사항: infinite(영원히)일때는 해당사항 없음!
+
+
+
+
+***************************************************/
+
+/************** 1.상단영역 **************/
+/************** 1-1. 로고 **************/
+.logo{
+    position: fixed;
+
+    /* 정중앙 배치방법1 */
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    /* top,left - 애니대상1,2 */
+
+    /* 
+        -> calc 함수를 사용하여 중앙배치
+        calc(계산식) -> 4칙연산 가능
+        - 주의: 덧셈, 뺄샘 기호 앞뒤 공백 필수!
+        - 원리: 부모박스이 절반(50%)이동 후 
+        중앙에 올 자신의 크기의 절발을 빼서 중앙으로 이동!
+    */
+
+    /* 정중앙 배치방법2 */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    /* 
+    원리:
+    top,left를 부모박스의 절반(50%)만큼 밀고
+    트랜스폼 트랜스레이트로 내크기의 절반반큼
+    왼쪽, 윗쪽으로 이동하면 정중앙이된다! */
+
+    /* 처음에 2배 크게 설정 - 애니대상3 */
+    transform: scale(2);
+
+
+    width: 200px;
+    height: 200px;
+    /* 글자변경 */
+    color: aquamarine;
+    font: 45px/200px 'Orbitron';
+    text-align: center;
+    text-shadow: 2px 2px 5px #000;
+
+    /* 박스그림자
+    - 내부그림자+외부그림자(글로우효과) */
+    box-shadow: 
+    inset 0 0 20px 5px #000,
+    0 0 20px 5px pink;
+
+    background: pink url(../images/robot_03.png) no-repeat center 10px/160px;
+
+    border-radius: 50%;
+    border: 2px solid #ccc;
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: 
+    logoAni 1.5s ease-in-out 2s forwards,
+    logoAni2 .6s ease-in-out 3.5s infinite alternate;
+
+
+
+    /* animation: logoAni 1s ease-in-out 1s infinite alternate forwards; */
+}
+/* 로고 애니 키프레임 */
+@keyframes logoAni {
+    /* from{} - 최초값이 같으면 생략! */
+    80%{
+        /* 왼쪽위에 위치, 원래크기복원, 회전0 */
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(0deg);
+    }
+    100%{
+        /* 기존값 유지 + 회전20도 */
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(20deg);
+    }
+}/* 키프레임 */
+
+/* 로고 흔들기 애니 키프레임 */
+@keyframes logoAni2 {
+    0%{
+        transform: rotate(20deg);
+    }
+    100%{
+        transform: rotate(-20deg);
+    }
+}
+
+/* 내용링크, 위로가기버튼, TV
+를 위한 투명도 애니용 클래스 만들기 */
+.opa-ani{
+    opacity: 0;
+    /* 애니메이션: 이시이지반방마 */
+    animation: opaAni .2s linear 5s 5 alternate forwards;
+}
+/* 지연시간추가 */
+.opa-ani2{
+    animation-delay: 6s;
+}
+.opa-ani3{
+    animation-delay: 7s;
+}
+/* 투명도 애니 키프레임 */
+@keyframes opaAni {
+    to{
+        opacity: 1;
+    }
+} /* 키프레임 */
+
+
+/************** 1-2. 내용링크 **************/
+.link{
+    position: absolute;
+    top: 100px;
+    right: 50px;
+}
+.link a{
+    /* a요소에서 글자색, 밑줄 처리함! */
+    color: lawngreen;
+    text-decoration: none;
+    /* 글자: 스두크/줄체 */
+    font: 50px 'Black Ops One';
+    /* 글자그림자 */
+    text-shadow: 2px 2px 2px #000;
+    
+}
+/* 마우스 오버시 */
+.link a:hover{
+    color: orangered;
+    text-decoration: overline;
+}
+/************** 1-3. 위로가기버튼 **************/
+.btnTop{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    /* 보이는 화면에 고정! */
+    width: 100px;
+    height: 100px;
+    /* button 요소는 기본 중앙정렬에 세로중앙도
+    적용되어 있음! */
+    background-color: #ccc;
+    border-radius: 50%;
+    border: 5px outset #fff;
+    /* 오버시 MDN으로 보더 옵션 참조! 
+        w3c 참조:
+        https://www.w3schools.com/cssref/playdemo.asp?filename=playcss_border-style&preval=none
+    */
+    
+}
+/* 위로가기 버튼 오버시 */
+.btnTop:hover{
+    background-color: #ff0;
+    border-style: inset;
+}
+.btnTop:hover a{
+    color: red;
+}
+.btnTop a{
+    display: block;
+    /* 크기 디자인 적용위해 block! */
+    width: 100%;
+    height: 100%;
+    color: blue;
+    font: 30px/90px 'Black Ops One';
+    /* line-height가 90px인 이유:
+    버튼요소는 box-sizing:border-box 이므로
+    내부에 패딩과 보더크기를 포함함
+    따라서 보더크기인 5+5=10px을 빼야
+    컨텐츠 영역의 순수 높이가 된다! */
+    text-decoration: none;
+}
+/************** 2. 메인영역 **************/
+/************** 2-1. 로봇박스 **************/
+.robx{
+    height: 610px;
+    /* 높이값은 컨텐츠영역의 높이임(패딩불포함)
+    높이값을 준이유는? 자식요소인 .head의 relative
+    top값을 %로 이동시킬 경우 부모박스이 높이가
+    정해져야 하므로 줌! */
+    padding-top: 200px;
+    padding-bottom: 400px;
+}
+/* 하위요소 공통설정 */
+.robx>div>div{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    /* 배경공통 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/************** 2-1-1.로봇머리 **************/
+.head{
+    position: relative;
+    /* 부모자격! */
+    /* top은 애니메이션 변경대상! */
+    top: -100%;
+    /* 위쪽방향으로 부모박스 높이값의 100%만큼 이동 */
+    width: 250px;
+    height: 250px;
+    /* 마영오! - 블록가로중앙 */
+    margin: 0 auto;
+    /* 둥근모서리 : 왼위 오른위 오른아래 왼아래 */
+    border-radius: 50px 50px 0 0;
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: headAni 1s ease-out 4s forwards;
+}
+
+
+/* 헤드애니 키프레임 */
+@keyframes headAni {
+    to{
+        top: 0;
+    }
+}/* 키프레임 */
+
+/* 눈공통 */
+.eye{
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    
+    /* 둥근모서리: 50% 원 */
+    border-radius: 50%;
+    /* 보더 이중선 */
+    border: 4px double #000;
+}
+/* 왼눈 */
+.e1{
+    top: 50px;
+    left: 50px;
+    background-image: url(../images/e1.jpg);
+}
+/* 오른눈 */
+.e2{
+    top: 50px;
+    right: 50px;
+    background-image: url(../images/e2.jpg);
+}
+/* 코 */
+.nose{
+    top: 106px;
+    left: 98px;
+    width: 50px;
+    height: 53px;
+    background-image: url(../images/nose.jpg);
+    background-position-x: 0px !important;
+    background-position-y: -3px !important;
+    background-size: auto 106% !important;
+    border-radius: 30px;
+}
+/* 입 */
+.mouth{
+    bottom: 24px;
+    left: 82px;
+    width: 83px;
+    height: 46px;
+    background-image: url(../images/mouth.png);
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: mouthAni .05s linear 7s infinite alternate;
+}
+/* 입애니 키프레임 */
+@keyframes mouthAni {
+    to{
+        transform: scaleY(.5);
+    }
+} /* 키프레임 */
+
+/* 귀공통 */
+.ear{
+    top: 80px;
+    width: 60px;
+    height: 90px;
+}
+/* 왼귀 */
+.el{
+    left: -60px;
+    border-radius: 30px 0 0 30px;
+}
+/* 오른귀 */
+.er{
+    right: -60px;
+    border-radius: 0 30px 30px 0;
+}
+/************** 2-1-2.로봇몸 **************/
+.body{
+    position: relative;
+    /* 부모자격! */
+    /* left는 애니메이션 변경대상! */
+    left: -100%;
+    /* 왼쪽방향으로 부모박스 가로크기의 100%만큼 이동
+    -> 부모박스가 width:auto여도 %값이 적용된 이유는
+    기본 가로를 채우는 크기를 가지고 있기때문임! */
+    width: 250px;
+    height: 310px;
+    /* 마영오! - 블록가로중앙 */
+    margin: 0 auto;
+    margin-top: 50px;
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: bodyAni 1s ease-out 3s forwards;
+}
+
+/* 바디애니 키프레임 */
+@keyframes bodyAni {
+    to{
+        left: 0;
+    }
+}/* 키프레임 */
+
+
+/* 로봇몸에 가상요소로 하단 바 만들기 */
+.body::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #000;
+}
+/* 목 */
+.neck{
+    top: -50px;
+    left: 95px;
+    width: 60px;
+    height: 50px;
+}
+/* 팔공통 */
+/* !important없이 우선순위
+높이는 방법은 부모를 써준다! */
+.robx .arm{
+    width: 50px;
+    height: 250px;
+    background-size: 100%;
+    background-repeat: repeat-y;
+}
+/* 가상요소로 손만들기 */
+.arm::before{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -25px;
+
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid #222;
+    /* CSS3 그라데이션 */
+    background-image: radial-gradient(farthest-side at 20px 20px,white,#333);
+    /* 
+
+    [ 배경이미지에 있다! 뭐가? 그라데이션이!!! ]
+
+    [선형 그라데이션]
+    linear-gradient(방향/각도,색1 비율%, 색2 비율%,...)
+    - 방향값은 to top, to bottom, to left, to right
+    - 각도는 숫자deg
+    -> 방향 또는 각도를 사용, 안쓰면 to bottom 기본값
+    -> 색상을 쓰고 뒤에 필요한 경우 비율을 사용
+    -> 색상 뒤 비율을 안쓰면 등분할됨
+    예)
+    linear-gradient(45deg,red 30%, blue 70%,yellow); 
+
+    [ 원형 그라데이션 ]
+    radial-gradient(옵션,색1 비율%, 색2 비율%);
+    - 옵션: circle - 원형, 안쓰면 박스에 맞춤
+    - 세밀한 옵션주기! (특정위치를 중심으로 빛반사효과)
+        ->>> 세부옵션 at 가로위치 세로위치
+        ->>> 세부옵션 종류 4가지:
+            1) closest-side / 2)farthest-side
+            3) closest-corner / 4)farthest-corner
+            예) 
+            radial-gradient(
+                closest-corner at 30px 15px,white,blue)
+        -> 가로, 세로 위치는 px, % 단위사용가능
+
+    -> 색상을 쓰고 뒤에 필요한 경우 비율을 사용
+    -> 색상 뒤 비율을 안쓰면 등분할됨
+
+    예)
+    radial-gradient(circle,red 30%, blue 40%, yellow);
+    */
+}
+/* 왼손가상요소 */
+.arm.a1::before{
+    left: -15px;
+}
+/* 오른손가상요소 */
+.arm.a2::before{
+    right: -15px;
+}
+/* 가상요소로 손그림자주기 */
+.arm::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -25px;
+    width: 20px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 0 0 5px 5px;
+    /* 클리핑기법을 사용하여
+    그림자를 삼각형으로 만들자! 
+    -> 다각형 클리핑
+    clip-path: polygon(x1 y1,x2 y2,...)
+    -> 소괄호안은 비울 수 없다!
+    -> 각 좌표값은 px,%로 대상 내부영역임
+    예컨데 삼각형 점을 세개 찍어준다!
+    */
+    clip-path: polygon(0% 100%,50% 0%,100% 100%);
+
+}
+/* 왼손그림자 가상요소 */
+.arm.a1::after{
+    left: 12px;
+}
+/* 오른손그림자 가상요소 */
+.arm.a2::after{
+    right: 12px;
+}
+/* 왼팔 */
+.a1{
+    left: -60px;
+}
+/* 오른팔 */
+.a2{
+    right: -60px;
+    /* 트랜스폼 회전기준 */
+    transform: rotate(0deg);
+    /* 회전축변경 : 가로중앙 세로20px 위치 */
+    transform-origin: center 20px;
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: 
+    /* 애니1 - 팔들기 */
+    a2Ani .6s ease-in-out 8s forwards,
+    /* 애니2 - 팔흔들기 */
+    a2Ani2 .3s ease-in-out 8.6s infinite alternate;
+}
+
+/* 오른팔 들기 키프레임 */
+@keyframes a2Ani {
+    to{
+        transform: rotate(-158deg);
+    }
+} /* 키프레임 */
+
+/* 오른팔 흔들기 키프레임 */
+@keyframes a2Ani2 {
+    to{
+        transform: rotate(-128deg);
+    }
+} /* 키프레임 */
+
+/* 다리공통 */
+/* !important없이 우선순위
+높이는 방법은 부모를 써준다! */
+.robx .leg{
+    top: 100%;
+    width: 70px;
+    height: 300px;
+    background-size: 100%;
+    background-repeat: repeat-y;
+}
+/* 다리의 가상요소로 발만들기 */
+.leg::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    left: -6px;
+    width: 80px;
+    height: 40px;
+    /* 둥근모서리 - 위쪽만 둥글게 */
+    border-radius: 30px 30px 0 0;
+    border: 1px solid #222;
+    border-bottom: 20px solid #000;
+    /* CSS3 그라데이션 */
+    background-image: radial-gradient(farthest-side at 20px 20px,white,#333);
+}
+/* 왼다리 */
+.l1{
+    left: 0;
+}
+/* 오른다리 */
+.l2{
+    right: 0;
+}
+/* 어깨공통 */
+.shd{
+    top: -20px;
+    width: 90px;
+    height: 80px;    
+}
+/* 왼어깨 */
+.s1{
+    left: -80px;
+    border-radius: 50% 5px 5px 50%;
+}
+/* 오른어깨 */
+.s2{
+    right: -80px;
+    border-radius: 5px 50% 50% 5px;
+}
+/* TV */
+.tv{
+    top: 66px;
+    left: 15px;
+    width: 220px;
+    height: 166px;
+    border-radius: 5px;
+    background-image: url(../images/tv.jpg);
+}
+/* 스크린 */
+.screen{
+    position: absolute;
+    top: 18px;
+    left: 12px;
+    /* 부모는? .tv */
+    width: 154px;
+    height: 118px;
+    background-color: #000;
+    border-radius: 10px;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+}
+/* 아이프레임 */
+.screen iframe{
+    position: absolute;
+    top: -15px;
+    left: -56px;
+    width: 175%;
+    height: 129%;
+    /* 부모는? .screen */
+    /* 프레임 보더 없앰! */
+    border: none;
+}
+/************** 2-2. 로봇설명박스 **************/
+.dcbx{
+    max-width: 800px;
+    /* 마영오! */
+    margin: 0 auto;
+    /* 하단공간 */
+    margin-bottom: 200px;
+    padding: 15px 30px;
+    border: 3px solid #fff;
+    border-radius: 20px;
+    color: #fff;
+    /* 글자그림자: x y blur 색 */
+    text-shadow: 1px 1px 1px #000;
+    background-color: rgba(0, 0, 0, 0.54);
+    /* 박스그림자 : inset은 내부그림자 */
+    box-shadow: 
+    inset 0 0 20px blue,
+    inset 0 0 50px 10px cyan;
+}
+/* 2-2-1.로봇설명 제목 */
+.dcbx h2{
+    /* sticky예정 */
+    text-align: center;
+    font-size: 35px;
+    color: lime;
+    background-color: rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+}
+/* 2-2-2.로봇정보출처 */
+.dcbx small{
+    display: block;
+    text-align: center;
+    color: #ff0;
+    font-size: 12px;
+    padding: 10px;
+}
+/* 2-2-3.설명문단 */
+.dcbx p{
+    font-size: 15px;
+    line-height: 1.8;
+    /* 자간 */
+    letter-spacing: 1px;
+    /* 단어사이 */
+    word-spacing: 2px;
+
+    /* 가독성을 위한 다단설정 */
+    /* 다단표시(다중열속성) */
+
+    /* 다중열 개수 */
+    column-count: 3;
+    /* 다중열 구분선 
+    보더설정과 비슷
+    두께 종류 색상(두종색)*/
+    column-rule: 5px dotted lightgreen;
+    /* 다중열 사이간격 */
+    column-gap: 55px;
+
+    /* 양쪽정렬 */
+    text-align: justify;
+    /* 단어깨기
+    break-all 모든단어깨기 */
+    word-break: break-all;
+}
+/* 설명문단 첫글자 가상요소 */
+.dcbx p::first-letter{
+    font-size: 30px;
+    font-weight: bold;
+    color: orange;
+}
+
+/************** 3. 하단영역 **************/
+.info{
+    padding: 50px;
+    text-align: center;
+    color: #fff;
+    font: 30px 'Black Ops One';
+    text-shadow: 2px 2px 2px #000;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/* 가상요소로 아이콘 넣기 */
+.info span::before{
+    content: '';
+    display: inline-block;
+    vertical-align: -5px;
+    margin-right: 7px;
+    width: 30px;
+    height: 30px;
+    background: pink url(../images/robot_03.png) no-repeat;
+    /* 배경 세부설정은 한번에 설정하는
+    코드 아래에 있어야 덮어쓴다!! */
+    background-position: -11px -3px;
+    background-size: 60px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    /* outline: 1px solid lime; */
+}
+
+
+/*************** 미디어쿼리 ***************/
+@media screen and (max-width:770px) {    
+    /* 설명문단 다단변경 */
+    .dcbx p{
+        column-count: 2;
+    }
+} /* 미디어쿼리 770px이하 */
+
+@media screen and (max-width:550px) {
+    /* 설명문단 다단변경 */
+    .dcbx p{
+        column-count: 1;
+    }
+} /* 미디어쿼리 550px이하 */
+
+
+

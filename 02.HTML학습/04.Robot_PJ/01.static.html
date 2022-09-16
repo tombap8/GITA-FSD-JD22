@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position - static</title>
+    <style>
+        .bx{
+            width: 100px;
+            height: 100px;
+            border: 2px solid blue;
+            /* 글자가로중앙 */
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            /* 글자세로중앙 */
+            line-height: 100px;
+        }
+
+        #s1{
+            position: static;
+            top: 100px;
+            left: 100px;
+            margin-top: 100px;
+            margin-left: 100px;
+            /* 
+                [ CSS의 포지션이 뭐지? ]
+                - 
+
+                [ 1. static 포지션 ]
+                
+
+                [ 위치이동속성 ]
+                
+            */
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="bx" id="s1">s1</div>
+    <div class="bx" id="s2">s2</div>
+    <div class="bx" id="s3">s3</div>
+    
+    <!-- .bx#s$*3{s$}
+    에밋코딩의 여러개 만들경우 *(곱하기)사용
+    자동증가 부분은 $로 표시, 중괄호{}는 데이터부분 -->
+</body>
+</html>
