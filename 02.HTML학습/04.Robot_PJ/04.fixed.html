@@ -84,7 +84,18 @@
             color: #000;
         }
 
+        /* 일부를 화면바깥에 숨겼다가 보이기 박스 */
         .f2{
+            position: fixed;
+            top: 50%;
+            left: -50%;
+            /* 왼쪽 바깥에 반 나가있음! */
+
+            /* 트랜지션 trs */
+            transition: 1s;
+
+            /* 가로크기 화면채움 */
+            width: 100%;
             height: 100px;
             line-height: 50px;
             text-align: center;
@@ -92,6 +103,10 @@
             font-size: 30px;
             color: #fff;
             background: url(./ab_img/ab0.jpg) repeat-x 0/auto 100%;
+        }
+        /* 오버시 fixed 들어오기 */
+        .f2:hover{
+            left: 0;
         }
 
         

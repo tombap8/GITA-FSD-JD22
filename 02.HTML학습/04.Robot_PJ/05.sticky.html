@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Position - sticky</title>
     <style>
-        body{
+        body {
             height: 3000px;
         }
-        .bx{
+
+        .bx {
             width: 100px;
             height: 100px;
             border: 2px solid blue;
@@ -21,24 +23,31 @@
         }
 
         /* 달라붙어 사라지지 않는 포지션박스 */
-        .stk1{
-            
+        .stk1 {
+            position: sticky;
+            top: 0;
+            left: 50px;
             background-color: lightpink;
             /******************************************** 
                 [ 5. sticky 포지션 ]
 
-                1) 
+                1) 위치값 top 설정에 따라 화면에 고정되는 포지션
 
-                2) 
+                2) 원리: 처음에 relative하게(위치값left적용!)
+                        가만히 있다가 top 위치값(보이는 화면기준)
+                        설정하면 스크롤이 해당위치에 적용요소가
+                        도달할때 요소를 fixed하게 화면에 고정해준다!
+                        -> 만약 top값 설정을 하지 않으면
+                        relative와 유사하게 그대로 위치함!
                     
             ********************************************/
 
             width: 600px;
         }
 
-        .f1{
+        .f1 {
             position: fixed;
-           
+
             z-index: 999;
             width: 100%;
             height: 100px;
@@ -49,8 +58,9 @@
             color: #fff;
             background: url(./ab_img/ab0.jpg) repeat-x 0/auto 100%;
         }
+
         /* fixed를 부모로한 앱솔루트 */
-        .newabs{
+        .newabs {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -60,7 +70,7 @@
             color: #000;
         }
 
-        .f2{
+        .f2 {
             position: fixed;
             top: 0;
             left: 0;
@@ -77,21 +87,21 @@
             background: url(./ab_img/ab0.jpg) repeat-x 0/auto 100%;
         }
 
-        
-        #a1{
-            position: absolute;           
+
+        #a1 {
+            position: absolute;
             background: url(./ab_img/ab1.jpg) no-repeat center/cover;
             color: #fff;
         }
 
 
-        #s1{
+        #s1 {
             background-color: lightgreen;
             z-index: 999999999;
             /* static은 z-index적용X */
         }
 
-        #r1{
+        #r1 {
             position: relative;
             /* top: 50px;
             left: 50px;
@@ -101,7 +111,8 @@
             background: url(./ab_img/ab5.jpg) no-repeat center/cover;
             color: #fff;
         }
-        #r2{
+
+        #r2 {
             position: relative;
             bottom: 75px;
             right: -86px;
@@ -110,11 +121,9 @@
             color: #fff;
 
         }
-
-     
-
     </style>
 </head>
+
 <body>
     <div class="bx" id="r1">r1</div>
     <div class="bx" id="s1">s1</div>
@@ -126,6 +135,7 @@
         나는 달라붙어! 사라지지 않아!
     </div>
 
-    
+
 </body>
+
 </html>
