@@ -25,14 +25,14 @@
             -> 소괄호안의 값을 안쓰면 이미지를 채우는 중심원이 나옴
         */
         .clip-circle{
-            
+            clip-path: circle(114px at 127px 142px);
         }
         /* 2. 타원클리핑 
-            clip-path: ellipse(장축 단축 at x좌표 y좌표)
+            clip-path: ellipse(가로축 세로축 at x좌표 y좌표)
             -> 소괄호안의 값을 안쓰면 이미지를 채우는 타원이 나옴
         */
         .clip-ellipse{
-            
+            clip-path: ellipse(196px 68px at 198px 155px);
         }
         /* 3. 다각형클리핑 
             clip-path: polygon(x1 y1,x2 y2,...)
@@ -40,7 +40,7 @@
             -> 각 좌표값은 px,%모두 가능
         */
         .clip-polygon{
-            
+            clip-path: polygon(60% 1%,78% 0%,77% 73%,44% 100%,30% 100%,18% 80%,2% 57%,46% 34%);
         }
 
         /* 4. svg클리핑 
