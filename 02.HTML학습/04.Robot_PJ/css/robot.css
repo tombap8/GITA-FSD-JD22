@@ -337,15 +337,28 @@ body{
     height: 130px;
     background: url(../images/tv.jpg) no-repeat 0/100%;
     border: 5px ridge lightskyblue;
+    border-radius: 10px;
 }
 /* 스크린 */
 .screen{
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 4px;
+    left: 11px;
     /* 부모는? .tv */
-    width: 100px;
-    height: 100px;
-    background-color: #f00;
+    width: 141px;
+    height: 111px;
+    background-color: #000;
     border-radius: 10px;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+}
+/* 아이프레임 */
+.screen iframe{
+    position: absolute;
+    top: -5px;
+    left: -28px;
+    width: 143%;
+    height: 107%;
+    /* 기본보더없앰 */
+    border: none;
 }
