@@ -327,3 +327,14 @@ body{
     /* 둥근모서리: 오른위,오른아래 둥글게 */
     border-radius: 0 50% 50% 0;
 }
+
+/* TV */
+.tv{
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    width: 200px;
+    height: 130px;
+    background: url(../images/tv.jpg) no-repeat 0/100%;
+    border: 5px ridge lightskyblue;
+}
