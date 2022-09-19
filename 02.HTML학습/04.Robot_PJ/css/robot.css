@@ -176,7 +176,17 @@ body{
     /* linear-gradient(45deg,red,blue,yellow); */
     /* 원형 그라데이션 */
     /* radial-gradient(red,blue,yellow); */
-    radial-gradient(circle,red,blue,yellow);
+    /* radial-gradient(circle,red,blue,yellow); */
+    radial-gradient(farthest-side at 40% 40%,white,#333);
+}
+
+/* 왼쪽가상요소 위치 */
+.arm.a1::before{
+    left: -15px;
+}
+/* 오른쪽가상요소 위치 */
+.arm.a2::before{
+    right: -15px;
 }
 
 /* 
