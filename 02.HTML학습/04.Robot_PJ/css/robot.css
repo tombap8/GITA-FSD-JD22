@@ -173,7 +173,10 @@ body{
     /* linear-gradient(red,blue); */
     /* linear-gradient(to right,red,blue); */
     /* linear-gradient(to left,red 5%,blue 20%,blue 80%,yellow); */
-    linear-gradient(45deg,red,blue,yellow);
+    /* linear-gradient(45deg,red,blue,yellow); */
+    /* 원형 그라데이션 */
+    /* radial-gradient(red,blue,yellow); */
+    radial-gradient(circle,red,blue,yellow);
 }
 
 /* 
@@ -192,7 +195,15 @@ body{
     2. 원형 그라데이션
     radial-gradient(옵션,색1 비율%, 색2 비율%,...)
     1) 옵션: circle - 원형, 안쓰면 박스크기에 맞춤
-    2) 세밀한 옵션:
+    2) 세밀한 옵션: 특정위치를 중심으로 빛반사효과
+        ->>> 세부옵션 at 가로위치 세로위치
+        ->>> 세부옵션 종류 4가지:
+            (1) closest-side   (2) farthest-side
+            (3) closest-corner (4) farthest-corner
+        예) background-image:
+            radial-gradient(closest-side at 30px 15px,white,blue)
+            -> 가로, 세로 위치는 px / % 단위사용가능
+
     -> 색상을 쓰고 뒤에 필요한 경우 비율을 사용
     -> 색상뒤에 비율을 안쓰면 등분할 됨 
 */
