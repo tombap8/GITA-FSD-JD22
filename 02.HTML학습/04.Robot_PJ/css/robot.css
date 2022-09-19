@@ -338,3 +338,14 @@ body{
     background: url(../images/tv.jpg) no-repeat 0/100%;
     border: 5px ridge lightskyblue;
 }
+/* 스크린 */
+.screen{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    /* 부모는? .tv */
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    border-radius: 10px;
+}
