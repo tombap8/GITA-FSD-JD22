@@ -166,7 +166,14 @@ body{
     height: 70px;
     /* 둥근모서리: 원 */
     border-radius: 50%;
-    background-color: yellow;
+    /* background-color: yellow; */
+
+    /* 선형 그라데이션 */
+    background-image: 
+    /* linear-gradient(red,blue); */
+    /* linear-gradient(to right,red,blue); */
+    /* linear-gradient(to left,red 5%,blue 20%,blue 80%,yellow); */
+    linear-gradient(45deg,red,blue,yellow);
 }
 
 /* 
