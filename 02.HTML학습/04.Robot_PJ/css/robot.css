@@ -45,6 +45,9 @@ body{
     height: 250px;
     /* 마영오 */
     margin: 0 auto;
+
+    /* 둥근모서리 : 왼위 오른위 오른아래 왼아래(시계방향) */
+    border-radius: 50px 50px 0 0;
 }
 /* 눈공통 */
 .eye{
@@ -54,12 +57,19 @@ body{
     height: 50px;
 
     /* 배경공통 */
+    /* 배경색 */
+    background-color: #fff;
     /* 배경반복 : 반복안함 */
     background-repeat: no-repeat;
     /* 배경위치 : 중앙 */
     background-position: center;
     /* 배경크기 : 채움 */
     background-size: 100% 100%;
+
+    /* 둥근모서리: 50% 원 */
+    border-radius: 50%;
+    /* 보더 이중선 */
+    border: 4px double #000;
 }
 /* 왼눈 */
 .e1{
@@ -80,7 +90,9 @@ body{
     left: 99px;
     width: 50px;
     height: 70px;
-    background: url(../images/nose.jpg) no-repeat 0/100% 100%;
+    background: url(../images/nose.jpg) no-repeat 0/110% 100%;
+    /* 둥근모서리 */
+    border-radius: 30px;
 }
 /* 입 */
 .mouth{
@@ -90,4 +102,20 @@ body{
     width: 96px;
     height: 41px;
     background: url(../images/mouth.png) no-repeat 0/100% 100%;
+}
+
+/* 귀공통 */
+.ear{
+    position: absolute;
+    top: 80px;
+    width: 60px;
+    height: 90px;
+}
+/* 왼귀 */
+.er1{
+    left: -60px;
+}
+/* 오른귀 */
+.er2{
+    right: -60px;
 }
