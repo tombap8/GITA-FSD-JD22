@@ -123,3 +123,81 @@ body{
     /* 둥근모서리: 오른위,오른아래만 30px */
     border-radius: 0 30px 30px 0;
 }
+
+/******* 2-1-2.로봇몸통 *******/
+.body{
+    position: relative;
+    /* 부모자격 - 자식요소 앱솔루트 */
+    width: 250px;
+    height: 310px;
+
+    /* 마영오! */
+    margin: 0 auto;
+    /* 마진상단 */
+    margin-top: 50px;
+}
+/* 목 */
+.neck{
+    position: absolute;
+    top: -50px;
+    left: 95px;
+    width: 60px;
+    height: 50px;
+}
+/* 팔공통 */
+.arm{
+    position: absolute;
+    width: 50px;
+    height: 250px;
+    /* 배경셋팅변경 */
+    background-size: 100%;
+    background-repeat: repeat-y;
+}
+/* 왼팔 */
+.a1{
+    left: -50px;
+}
+/* 오른팔 */
+.a2{
+    right: -50px;
+}
+
+/* 다리공통 */
+.leg{
+    position: absolute;
+    top: 100%;
+    /* 부모높이값 만큼 100% 밀기 */
+    width: 70px;
+    height: 300px;
+    /* 배경셋팅변경 */
+    background-size: 100%;
+    background-repeat: repeat-y;
+}
+/* 왼다리 */
+.l1{
+    left: 0;
+    /* 안써도 기본방향이 left임! */
+}
+/* 오른다리 */
+.l2{
+    right: 0;
+}
+/* 어깨공통 */
+.shd{
+    position: absolute;
+    top: -20px;
+    width: 90px;
+    height: 80px;
+}
+/* 왼어깨 */
+.s1{
+    left: -80px;
+    /* 둥근모서리: 왼위,왼아래 둥글게 */
+    border-radius: 50% 0 0 50%;
+}
+/* 오른어깨 */
+.s2{
+    right: -80px;
+    /* 둥근모서리: 오른위,오른아래 둥글게 */
+    border-radius: 0 50% 50% 0;
+}
