@@ -136,6 +136,20 @@ body{
     /* 마진상단 */
     margin-top: 50px;
 }
+/* 가상요소로 몸박스 하단처리 */
+.body::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: -2%;
+    width: 104%;
+    height: 120px;
+    /* 선형 그라데이션 */
+    background-image: linear-gradient(hotpink,aqua,darkblue);
+    /* 다각형 클리핑(바지모양) */
+    clip-path: polygon(0 0,100% 0,100% 80%,70% 100%,30% 100%,0 80%);
+}
 /* 목 */
 .neck{
     position: absolute;
@@ -228,6 +242,14 @@ body{
     height: 40px;
     background-color: #000;
     border-radius: 5px;
+    /* 클리핑 기법을 사용하여
+    그림자를 삼각형으로 만들자!
+    -> 다각형 클리핑
+    clip-path: polygon(x1 y1,x2 y2,...)
+    -> 소괄호를 비울 수 없다
+    -> 각 좌표는 x,y좌표 하나는 띄어쓰기로
+    다른 좌표는 콤마로 구분한다! */
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
 }
 /* 왼손그림자 위치 */
 .arm.a1::after{
@@ -258,6 +280,25 @@ body{
     background-size: 100%;
     background-repeat: repeat-y;
 }
+/* 가상요소로 발만들기 */
+.leg::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    left: -6px;
+    width: 80px;
+    height: 40px;
+    /* 둥근모서리 윗쪽만 둥글게 */
+    border-radius: 30px 30px 0 0;
+    border: 1px solid #222;
+    border-bottom: 20px solid #000;
+    /* 원형그라데이션 */
+    background-image: 
+    radial-gradient(farthest-side at 20px 10px, #fff, #333);
+    background-color: #fff;
+}
+
 /* 왼다리 */
 .l1{
     left: 0;
