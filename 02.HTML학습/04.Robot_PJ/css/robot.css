@@ -153,6 +153,22 @@ body{
     background-size: 100%;
     background-repeat: repeat-y;
 }
+/* 가상요소로 손만들기 */
+.arm::before{
+    content: '';
+    /* 블록요소 느낌! */
+    display: block;
+    /* 앱솔루트 */
+    position: absolute;
+    bottom: -25px;
+
+    width: 70px;
+    height: 70px;
+    /* 둥근모서리: 원 */
+    border-radius: 50%;
+    background-color: yellow;
+}
+
 /* 왼팔 */
 .a1{
     left: -60px;
