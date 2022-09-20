@@ -2,9 +2,9 @@
 /* 로봇 PJ CSS - robot.css */
 
 /* 공사중표시 */
-body *{
+/* body *{
     outline: 2px dashed lime;
-}
+} */
 
 /* 초기화 */
 html,body,h1,h2,h3,ul,ol{
@@ -21,7 +21,7 @@ body{
     background: url(../images/bg.jpg) no-repeat fixed top/cover;
 }
 
-/* 공통class */
+/****** 공통class ******/
 /* 메탈소재1 배경 */
 .mt1{
     background: url(../images/metal01.jpg) no-repeat center/cover;
@@ -29,6 +29,12 @@ body{
 /* 메탈소재2 배경 */
 .mt2{
     background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+/* 빛이나는 로봇 */
+.brRo, .brRo::after, .brRo::before{
+    /* 박스 그림자 : x y blur spread 색 */
+    box-shadow: 0 0 10px 5px cyan;
+    /* 박스 그림자를 밝은색으로주면 빛나는 효과를 줄 수 있음 */
 }
 
 /* 2-1. 로봇박스 */
