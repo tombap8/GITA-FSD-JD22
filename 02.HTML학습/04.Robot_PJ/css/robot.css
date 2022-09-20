@@ -494,3 +494,23 @@ body{
     /* 글자색 */
     color: orange;
 }
+
+/************* 3. 하단영역 *************/
+
+.info{
+    /* 패딩 */
+    padding: 50px;
+    /* 글자중앙 */
+    text-align: center;
+    /* 글자색 */
+    color: #fff;
+    /* 글자: 스두크/줄체 */
+    font: 30px 'Black Ops One';
+    /* 글자그림자 */
+    text-shadow: 2px 2px 2px #000;
+    /* 배경색 검정반투명 */
+    background-color: rgba(0, 0, 0, 0.504);
+}
+
+
+
