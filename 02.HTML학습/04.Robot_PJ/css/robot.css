@@ -536,6 +536,12 @@ body{
 }
 /* 2-2-1.로봇설명 제목 */
 .dcbx h2{
+    /* 스티키 포지션 적용! */
+    position: sticky;
+    top: 10px;
+    /* top값을 지정하면
+    보이는화면에서 위치를 고정함! */
+
     /* 글자체 */
     font-family: 'Chakra Petch';
     /* 글자중앙 */
