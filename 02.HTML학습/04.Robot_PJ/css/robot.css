@@ -369,3 +369,32 @@ body{
     /* 기본보더없앰 */
     border: none;
 }
+
+/**** 2-2.로봇설명박스 ****/
+.dcbx{
+    /* 최대가로크기 maw */
+    max-width: 800px;
+    /* 마영오! */
+    margin: 0 auto;
+    /* 하단공간 */
+    margin-bottom: 200px;
+    /* 반투명 배경색 */
+    background-color: rgba(0, 0, 0, 0.514);
+    /* 글자색 */
+    color: #fff;
+    /* 글자그림자 ts */
+    text-shadow: 1px 1px 1px #000;
+    /* 패딩 : 위아래 양쪽 */
+    padding: 15px 30px;
+    /* 경계선 : 두종색 */
+    border: 3px solid #fff;
+    /* 둥근모서리 */
+    border-radius: 20px;
+    /* 박스그림자
+    - 콤마로 연결하면 다중셋팅가능
+    - inset은 내부그림자 */
+    box-shadow: 
+    inset 0 0 20px blue,
+    inset 0 0 50px 10px cyan;
+
+}
