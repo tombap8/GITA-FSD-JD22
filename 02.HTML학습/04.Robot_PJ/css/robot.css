@@ -396,5 +396,85 @@ body{
     box-shadow: 
     inset 0 0 20px blue,
     inset 0 0 50px 10px cyan;
+}
+/* 2-2-1.로봇설명 제목 */
+.dcbx h2{
+    /* 글자중앙 */
+    text-align: center;
+    /* 글자크기 */
+    font-size: 35px;
+    /* 글자색 */
+    color: lime;
+    /* 배경색 흰색반투명 */
+    background-color: rgba(255, 255, 255, 0.546);
+    /* 둥근모서리 */
+    border-radius: 20px;
+}
+/* 2-2-2.로봇정보출처 */
+.dcbx small{
+    /* 블록으로 변경
+    (텍스트중앙적용위해) */
+    display: block;
+    /* 텍스트중앙 */
+    text-align: center;
+    /* 글자색 */
+    color: #ff0;
+    /* 글자크기 */
+    font-size: 12px;
+    /* 패딩 */
+    padding: 10px;
+}
+/* 2-2-3.설명문단 */
+.dcbx p{
+    /* 글자크기 */
+    font-size: 15px;
+    /* 줄간격 */
+    line-height: 1.8;
+    /* 자간 */
+    letter-spacing: 1px;
+    /* 단어간격 */
+    word-spacing: 2px;
 
+    /* 가독성을 위한 다단설정 */
+    /* 다단표시(다중열속성) */
+
+    /* 다중열 개수 */
+    column-count: 3;
+
+    /* 다중열 구분선 */
+    column-rule: 
+    5px dotted lightgreen;
+    /* 보더셋팅과 유사함!
+    두께 종류 색상(두종색) */
+
+    /* 다중열 사이간격 */
+    column-gap: 55px;
+
+    /* 양쪽정렬 justify */
+    text-align: justify;
+    /* 단어깨기
+    break-all 모든단어깨기 */
+    word-break: break-all;
+    /* 단어를 깨는 이유는 
+    단어단위로 줄바꿈이 되는
+    1byte문자인 영어인 경우
+    단어단위로 모두 깨줘야
+    양쪽정렬시 중간 공백이 
+    생기지 않는다!
+    (한글과 같은 2byte문자는
+    단어깨기를 안해도 모두
+    떨어진다) */
+
+    /* 첫글자 들여쓰기 ti */
+    text-indent: 20px;
+}
+/* 설명문단 첫글자 가상요소로
+글자디자인 변경하기 */
+.dcbx p::first-letter{
+    /* 글자크기 */
+    font-size: 30px;
+    /* 글자두껍게 */
+    font-weight: bold;
+    /* 글자색 */
+    color: orange;
 }
