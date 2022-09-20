@@ -22,6 +22,15 @@ html,body,h1,h2,h3,ul,ol{
     padding: 0;
 }
 
+html{
+    scroll-behavior: smooth;
+    /* 내부 아이디 요소로 스크롤 위치
+    이동시 스크롤 애니메이션 처리가 되도록
+    설정하는 속성. html에 셋팅하면
+    전체 페이지 스크롤에 적용됨!
+    (JS사용없이 하는 방법!) */
+}
+
 /* 전체배경 */
 body{
     /* 스크롤확인용 */
@@ -152,7 +161,7 @@ body{
     text-decoration: none;
 
 }
-/* 위로가지 버튼 오버시 */
+/* 위로가기 버튼 오버시 */
 .btnTop:hover{
     /* 배경색 */
     background-color: #ff0;
