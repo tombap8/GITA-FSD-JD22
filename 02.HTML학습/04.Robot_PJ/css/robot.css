@@ -495,6 +495,7 @@ body{
     color: orange;
 }
 
+
 /************* 3. 하단영역 *************/
 
 .info{
@@ -511,13 +512,3 @@ body{
     /* 배경색 검정반투명 */
     background-color: rgba(0, 0, 0, 0.504);
 }
-.my::before{
-    content: '9999';
-}
-.my::first-line{
-    font-size: 50px;
-    color: pink;
-}
-
-
-
