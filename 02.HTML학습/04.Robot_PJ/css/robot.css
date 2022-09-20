@@ -1,6 +1,16 @@
 @charset "utf-8";
 /* 로봇 PJ CSS - robot.css */
 
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap');
+
+/* 
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+*/
+
 /* 공사중표시 */
 /* body *{
     outline: 2px dashed lime;
@@ -399,6 +409,8 @@ body{
 }
 /* 2-2-1.로봇설명 제목 */
 .dcbx h2{
+    /* 글자체 */
+    font-family: 'Chakra Petch';
     /* 글자중앙 */
     text-align: center;
     /* 글자크기 */
@@ -412,6 +424,8 @@ body{
 }
 /* 2-2-2.로봇정보출처 */
 .dcbx small{
+    /* 글자체 */
+    font-family: 'Chakra Petch';
     /* 블록으로 변경
     (텍스트중앙적용위해) */
     display: block;
@@ -426,6 +440,8 @@ body{
 }
 /* 2-2-3.설명문단 */
 .dcbx p{
+    /* 글자체 */
+    font-family: 'Barlow';
     /* 글자크기 */
     font-size: 15px;
     /* 줄간격 */
