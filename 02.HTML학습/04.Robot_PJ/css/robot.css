@@ -512,3 +512,25 @@ body{
     /* 배경색 검정반투명 */
     background-color: rgba(0, 0, 0, 0.504);
 }
+/* 가상요소로 아이콘 넣기 */
+.info span::before{
+    content: '';
+    /* 인라인이면서 디자인적용 */
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: pink url(../images/robot_03.png) no-repeat;
+    /* 배경세부설정을 한번에 셋팅한 background 아래에 쓰면 덮어써진다! */
+    background-position: -11px 2px;
+    background-size: 60px;
+
+    /* 원모양 */
+    border-radius: 50%;
+    /* 테두리 */
+    border: 2px solid #ccc;
+
+    /* 인라인요소간 세로정렬 */
+    vertical-align: -5px;
+    /* 오른쪽마진 */
+    margin-right: 7px;
+}
