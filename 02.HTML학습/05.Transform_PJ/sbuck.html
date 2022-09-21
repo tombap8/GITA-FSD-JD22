@@ -6,15 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>스타벅스 연습</title>
     <style>
+        /********************************************** 
+            [ CSS에서 변수 사용하기 ]
+
+            1. 변수 셋팅법
+            :root{
+                --변수명1: 값1;
+                --변수명2: 값2;
+                --변수명3: 값3;
+            }
+
+            2. 변수 호출 사용법
+            var(--변수명)
+
+            ->>> 변수는 언제 사용하나?
+            - 같은 값이 여러부분에서 사용될때
+            한번에 값 변경이 필요한 경우
+            변수를 사용하면 한번만 바꾸면
+            변수를 사용한 모든곳이 업데이트된다!
+            미디어쿼리에서 변수값만 변경하여
+            사용할때 편리함!
+
+
+        **********************************************/
+
+        /* 변수셋팅 */
+        :root{
+            /* 공통 크기설정 */
+            --wd1: 334px;
+            /* 트랜지션시간 설정 */
+            --td1: .4s;
+        }
+
         body{
             background: #000 url(./starbucks_img/reserve_bg.jpg) no-repeat top/100%;
         }
+
+        /* 기본박스 셋팅 */
+        #trans10{
+            width: var(--wd1);
+            height: var(--wd1);
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        /* 2개의 이미지를 겹치게한다 */
+        #trans10 img{
+            position: absolute;
+            /* 젠틀앱솔루트는 부모박스에
+            그대로 위치함(부모자격불필요!) */
+            width: var(--wd1);
+            /* 기존에 100%로 공통설정되어
+            있기때문에 %의 기준으로 부모를
+            찾는다! 따라서 그냥px로 셋팅! */
+        }
+
+
+        /* 1. 보거미 처음상태(돌아옴) */
+        /* Y축 0도로 돌아옴 - 0.4초 기다림 */
+        #trans10 img:last-child{            
+            /* 트랜지션 trs */
+            transition: transform var(--td1) ease-out var(--td1);
+            /* 돌아올때 0.4초후 돈다!
+            마지막에 천천히 ease-out */
+        }
+
+        /* 2. 보거미 오버상태 */
+        /* Y축 90도회전 - 회전후 안보임*/
+        #trans10:hover img:last-child{
+            /* 트랜스폼 tfry */
+            transform: rotateY(90deg);
+            /* 트랜지션 trs */
+            transition: transform ease-in var(--td1);
+            /* 처음에만 천천히 ease-in */
+        }
+
+        /* 3. 유정이 처음상태(돌아옴) */
+        /* 처음에 이미 Y축 90도 회전상태 - 안보임 */
+        #trans10 img:first-child{
+            /* 트랜스폼 tfry */
+            transform: rotateY(90deg);
+            /* 트랜지션 trs */
+            transition: transform var(--td1) ease-in;
+            /* 돌아갈때는 기다림없이 바로회전! 
+            처음에 천천히 ease-in */
+        }
+
+        /* 4. 유정이 오버상태 */
+        /* Y축 0도로 회전 
+        - 보거미 0.4초 돌동안 기다렸가 0.4초돌기 */
+        #trans10:hover img:first-child{
+            /* 트랜스폼 tfry */
+            transform: rotateY(0deg);
+            /* 트랜지션 trs */
+            transition: transform var(--td1) ease-out var(--td1);
+            /* 0.4초후 돈다! 마지막에 천천히 ease-out */
+        }
+
 
 
     </style>
 </head>
 
 <body>
+    <div id="trans10">
+        <img src="./starbucks_img/reserve_medal02.png" alt="리저브설명">
+        <img src="./starbucks_img/reserve_medal01.png" alt="리저브로고">
+    </div>
     
 </body>
 
