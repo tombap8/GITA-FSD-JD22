@@ -151,7 +151,7 @@
         
         /* #chk 체크박스 체크시 span 변경 */
         /* :checked 가상클래스 사용하여 체크시 형제요소(+)변경 */
-        #chk:checked+span{
+        #chk:checked + span{
             left: 70%;
             background-color: darkorchid;
             border-radius: 0;
@@ -194,8 +194,8 @@
 
     <h2>4.원본에 트랜지션을 각 속성별로 다르게 준다</h2>
     <div id="tr4">
-        <input type="checkbox" id="chk">
         <label for="chk">체크하면 작동!</label>
+        <input type="checkbox" id="chk">
         <!-- label은 input요소의 설명요소
         for속성은 input의 id와 연결됨(클릭시연결) -->
         <span></span>
