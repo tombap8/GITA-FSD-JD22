@@ -244,26 +244,59 @@
             - 순서는 나중에 그려진요소가 위에 온다
         */
         /* 2개의 이미지를 겹치게한다 */
-        
+        #trans10 img{
+            position: absolute;
+            /* 젠틀앱솔루트는 부모박스에
+            그대로 위치함(부모자격불필요!) */
+            width: 200px;
+            /* 기존에 100%로 공통설정되어
+            있기때문에 %의 기준으로 부모를
+            찾는다! 따라서 그냥px로 셋팅! */
+        }
 
 
         /* 1. 보거미 처음상태(돌아옴) */
         /* Y축 0도로 돌아옴 - 0.4초 기다림 */
+        #trans10 img:last-child{            
+            /* 트랜지션 trs */
+            transition: transform .4s .4s;
+            /* 돌아올때 0.4초후 돈다! */
+        }
         
 
 
         /* 2. 보거미 오버상태 */
         /* Y축 90도회전 - 회전후 안보임*/
+        #trans10:hover img:last-child{
+            /* 트랜스폼 tfry */
+            transform: rotateY(90deg);
+            /* 트랜지션 trs */
+            transition: transform .4s;
+        }
         
 
         /* 3. 유정이 처음상태(돌아옴) */
         /* 처음에 이미 Y축 90도 회전상태 - 안보임 */
-        
+        #trans10 img:first-child{
+            /* 트랜스폼 tfry */
+            transform: rotateY(90deg);
+            /* 트랜지션 trs */
+            transition: transform .4s;
+            /* 돌아갈때는 기다림없이 바로회전! */
+        }
 
 
         /* 4. 유정이 오버상태 */
         /* Y축 0도로 회전 
         - 보거미 0.4초 돌동안 기다렸가 0.4초돌기 */
+        #trans10:hover img:first-child{
+            /* 트랜스폼 tfry */
+            transform: rotateY(0deg);
+            /* 트랜지션 trs */
+            transition: transform .4s .4s;
+            /* 0.4초후 돈다! */
+        }
+
         
 
 
