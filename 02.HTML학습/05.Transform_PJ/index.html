@@ -130,6 +130,10 @@
             - % 단위를 쓸 경우 기준은 요소의 width
             - 이동방향: + 는 오른쪽, - 는 왼쪽
           */
+          #trans3:hover img{
+            /* 트랜스폼 tftx */
+            transform: translateX(-50%);
+          }
         
 
         /* 
@@ -140,6 +144,10 @@
             - % 단위를 쓸 경우 기준은 요소의 height
             - 이동방향: + 는 아랫쪽, - 는 윗쪽
           */
+          #trans4:hover img{
+            /* 트랜스폼 tfty */
+            transform: translateY(-100%);
+          }
         
 
         /* 
@@ -152,6 +160,10 @@
             - 이동방향: + 는 오른쪽/아랫쪽, 
                         - 는 왼쪽/윗쪽
           */
+          #trans5:hover img{
+            /* 트랜스폼 tft */
+            transform: translate(-120px, 100px);
+          }
         
 
         /* 
@@ -161,9 +173,25 @@
             - 기본회전축은 정중앙
                 (변경가능: transform-origin)
            */
+           #trans6:hover img {
+            /* 트랜스폼 tfr */
+            transform: rotate(5478deg);
+            /* 트랜지션 시간늘림 */
+            transition-duration: 10s;
+           }
         
 
         /* 회전축 변경하기 */
+        #trans6 img{
+            /* transform-origin: 100px 20px; */
+            /* 
+                [ 트랜스폼 축변경 속성 ]
+                 transform-origin: 가로 세로;
+                 - 가로값: left,right,center,몇px,몇%
+                 - 세로값: top,bottom,center,몇px,몇%
+                 - 기본값: 가로,세로 center임!
+            */
+        }
         
 
         /* 
@@ -172,6 +200,10 @@
             - skew(x축, y축)
             - 각도가 양수/음수에 따라 기울임 방향달라짐                
         */
+        #trans7:hover img{
+            /* 트랜스폼 tf:skx */
+            transform: skewX(-30deg);
+        }
         
 
         /* 
@@ -181,12 +213,27 @@
             - scaleX(배수), scaleY(배수) - x,y축별
             - 값이 0이면 사라짐
         */
+        #trans8:hover img{
+            /* 트랜스폼 tf:s */
+            transform: scale(2);
+        }
+        #trans8 img{
+            /* 트랜스폼 tf:s */
+            transform: scale(.5);
+            /* 1이하면 축소 */
+        }
         
 
         /* 
             9. 복합적용하기
             transform: 속성1 속성2 속성3 .....;
         */
+        #trans9:hover img{
+            /* 다중트랜스폼 tf */
+            transform: scale(5) translate(-200%, -100%) rotateX(1200deg) skewX(50deg) rotate(5300deg);
+            /* 트랜지션 시간늘림 trsd */
+            transition-duration: 20s;
+        }
         
 
         /* 
