@@ -158,7 +158,18 @@
     /* top값에 %가 적용안되는 이유:
     부모박스의 높이값이 auto 즉, 지정하지
     않아서 적용안됨. 특정크기를 주면 적용됨! */
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: headAni 1s ease-out 2.5s forwards;
 }
+
+/* 로봇머리 등장 키프레임 */
+@keyframes headAni {
+    to{
+        /* 원래위치로! */
+        top: 0;
+    }
+} /* 키프레임 */
 
 /* 3. 로봇몸 */
 .body{
@@ -189,3 +200,19 @@
     /* 투명상태 */
     opacity: 0;
 }
+
+/* 6. TV */
+.tv{
+    /* 투명상태 */
+    opacity: 0;
+    /* 애니메이션: 이시이지반방마 */
+    animation: opaAni .5s linear 4s forwards;
+}
+
+/* 설명링크, 위로이동버튼, TV 등장 공통 키프레임 */
+@keyframes opaAni {
+    to{
+        /* 보이게함! */
+        opacity: 1;
+    }
+} /* 키프레임 */
