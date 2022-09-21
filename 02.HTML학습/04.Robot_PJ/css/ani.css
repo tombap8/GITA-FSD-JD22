@@ -232,3 +232,26 @@
         opacity: 1;
     }
 } /* 키프레임 */
+
+/* 7. 오른팔 */
+.a2 {
+    /* 회전축변경(세로 상단) */
+    transform-origin: center 20px;
+    /* 애니메이션: 이시이지반방마 */
+    animation: 
+    a2Ani .4s ease-in-out 6s forwards,
+    a2Ani2 .2s linear 6.4s infinite alternate;
+}
+/* 오른팔 올리기 애니 */
+@keyframes a2Ani {
+    to{
+        transform: rotate(-150deg);
+    }
+}/* 키프레임 */
+
+/* 팔흔들기 애니 */
+@keyframes a2Ani2 {
+    to{
+        transform: rotate(-140deg);
+    }
+} /* 키프레임 */
