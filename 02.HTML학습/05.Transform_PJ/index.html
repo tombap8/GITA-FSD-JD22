@@ -259,8 +259,9 @@
         /* Y축 0도로 돌아옴 - 0.4초 기다림 */
         #trans10 img:last-child{            
             /* 트랜지션 trs */
-            transition: transform .4s .4s;
-            /* 돌아올때 0.4초후 돈다! */
+            transition: transform .4s ease-out .4s;
+            /* 돌아올때 0.4초후 돈다!
+            마지막에 천천히 ease-out */
         }
         
 
@@ -271,7 +272,8 @@
             /* 트랜스폼 tfry */
             transform: rotateY(90deg);
             /* 트랜지션 trs */
-            transition: transform .4s;
+            transition: transform ease-in .4s;
+            /* 처음에만 천천히 ease-in */
         }
         
 
@@ -281,8 +283,9 @@
             /* 트랜스폼 tfry */
             transform: rotateY(90deg);
             /* 트랜지션 trs */
-            transition: transform .4s;
-            /* 돌아갈때는 기다림없이 바로회전! */
+            transition: transform .4s ease-in;
+            /* 돌아갈때는 기다림없이 바로회전! 
+            처음에 천천히 ease-in */
         }
 
 
@@ -293,8 +296,8 @@
             /* 트랜스폼 tfry */
             transform: rotateY(0deg);
             /* 트랜지션 trs */
-            transition: transform .4s .4s;
-            /* 0.4초후 돈다! */
+            transition: transform .4s ease-out .4s;
+            /* 0.4초후 돈다! 마지막에 천천히 ease-out */
         }
 
         
