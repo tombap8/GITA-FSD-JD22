@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CSS 트랜스폼</title>
+    <style>
+        body {
+            background: url(images/bg-main.jpg) no-repeat fixed center top/cover;
+        }
+
+        /* 타이틀 */
+        .tit {
+            text-align: center;
+            color: #fff;
+            font-size: 50px;
+            line-height: 100px;
+            border-radius: 50px;
+            /* 그림자를 이용한 글자테두리 만들기 */
+            text-shadow: 2px 0 #000, -2px 0 #000,
+                0 2px #000, 0 -2px #000;
+            /* https://www.w3schools.com/css/css3_shadows.asp */
+            background-color: rgba(0, 0, 0, 0.459);
+        }
+
+        /* 전체부모박스 */
+        .cont {
+            width: 1500px;
+            max-width: 80%;
+            box-sizing: border-box;
+            padding: 20px;
+            border: 10px solid lime;
+            border-radius: 20px;
+            margin: 100px auto;
+            /* 블록가로중앙 - 마영오 */
+        }
+
+        /* 가상요소로 float해제하기 - 부모요소가 자식요소 높이값인식*/
+        .cont::after {
+            content: '';
+            /* 필수속성 */
+            display: block;
+            /* clear속성적용위해 */
+            clear: both;
+            /* float해제 */
+        }
+
+        /* 캐릭터박스 공통 */
+        .cont>div {
+            width: 200px;
+            height: 200px;
+            margin: 44px;
+            float: left;
+            /* 블록박스를 옆으로 흐르게 */
+        }
+
+        /* 이미지 맞춤 */
+        .cont>div>img {
+            width: 100%;
+            border-radius: 50%;
+            /* 원 */
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            /* 
+                [ 밴더 프레픽스(Vender Prefix) ]
+                - 브라우저 제조사(Vender) 별로
+                새로운 CSS 속성을 지원하는 경우
+                이전 브라우저 버전에 적용될 수
+                있도록 접두어를 사용한다
+                (W3C에서 확인 후 사용한다!)
+
+                [ 각 밴더별 접두어 ]
+                -webkit- : 크롬, 사파리
+                (크롱과 사파리로 웹킷을 가지고 놀러간다~!)
+                -moz- : 파이어폭스(모질라 불여우!)
+                -o- : 오페라
+                -ms- : 익스플로러
+             */
+
+            /* 트랜지션: 속시이지 */
+            transition: transform .6s;
+        }
+
+        /* 
+            [ Transform 효과주기 ]
+            - 선택요소의 크기, 회전, 이동, 기울임
+            등 변형을 하기위한 속성
+            - 2D, 3D 지원됨
+
+            1. rotateY(각도deg) - Y축회전
+            - deg는 각도의 단위(도:degree)
+         */
+        
+
+        /* 
+            2. rotateX(각도deg) - X축회전
+         */
+        
+
+        /* 
+            [ CSS 필터속성 ]
+            - 흑백, 흐림, 세피아, 명암, 채도 등 출력 이미지를
+            변경하고 할때 사용하는 속성
+            -> 소스 참고:
+            https://www.w3schools.com/cssref/playit.asp?filename=playcss_filter&preval=blur(5px)
+         */
+
+
+        /* 
+            3. translateX(거리) - X축이동
+            - 단위: px, %
+            - 현재 위치로부터 이동
+            - 기준점은 요소의 왼쪽
+            - % 단위를 쓸 경우 기준은 요소의 width
+            - 이동방향: + 는 오른쪽, - 는 왼쪽
+          */
+        
+
+        /* 
+            4. translateY(거리) - Y축이동
+            - 단위: px, %
+            - 현재 위치로부터 이동
+            - 기준점은 요소의 윗선
+            - % 단위를 쓸 경우 기준은 요소의 height
+            - 이동방향: + 는 아랫쪽, - 는 윗쪽
+          */
+        
+
+        /* 
+            5. translate(X축거리,Y축거리) - X,Y축이동
+            - 단위: px, %
+            - 현재 위치로부터 이동
+            - 기준점은 요소의 왼쪽선과 윗선
+            - % 단위를 쓸 경우 기준은 
+                요소의 width와 height
+            - 이동방향: + 는 오른쪽/아랫쪽, 
+                        - 는 왼쪽/윗쪽
+          */
+        
+
+        /* 
+            6. rotate(각도deg) - 원형회전
+            - 각도의 숫자가 양수면 시계방향
+                (음수는 반시계)
+            - 기본회전축은 정중앙
+                (변경가능: transform-origin)
+           */
+        
+
+        /* 회전축 변경하기 */
+        
+
+        /* 
+            7. skew - x,y축 기울임
+            - skewX(각도deg), skewY(각도deg)
+            - skew(x축, y축)
+            - 각도가 양수/음수에 따라 기울임 방향달라짐                
+        */
+        
+
+        /* 
+            8. scale(x축배수,y축배수)
+            - 값을 하나만 쓰면 양방향 같은값
+            - 배수가 1보다 크면 확대, 작으면 축소
+            - scaleX(배수), scaleY(배수) - x,y축별
+            - 값이 0이면 사라짐
+        */
+        
+
+        /* 
+            9. 복합적용하기
+            transform: 속성1 속성2 속성3 .....;
+        */
+        
+
+        /* 
+            10. 앞뒤로 있는 이미지 뒤집기
+            - 셋팅: 한박스 안에 이미지가 2장 있으므로 겹쳐지게 하기위해 이미지
+            포지션을 absolute로 준다!
+            - 앱솔루트 끼리는 서로 겹쳐진다
+            - 순서는 나중에 그려진요소가 위에 온다
+        */
+        /* 2개의 이미지를 겹치게한다 */
+        
+
+
+        /* 1. 보거미 처음상태(돌아옴) */
+        /* Y축 0도로 돌아옴 - 0.4초 기다림 */
+        
+
+
+        /* 2. 보거미 오버상태 */
+        /* Y축 90도회전 - 회전후 안보임*/
+        
+
+        /* 3. 유정이 처음상태(돌아옴) */
+        /* 처음에 이미 Y축 90도 회전상태 - 안보임 */
+        
+
+
+        /* 4. 유정이 오버상태 */
+        /* Y축 0도로 회전 
+        - 보거미 0.4초 돌동안 기다렸가 0.4초돌기 */
+        
+
+
+
+        /* 
+            [ 트랜지션 이징(easing) 가속도 ]
+            - transition-timing-function
+            - 설정에 따라 빠르기를 조정함
+            1. ease : 기본값
+                - 애니메이션 전후에 약간 느려짐
+            2. ease-in
+                - 처음에 천천히 마지막에 원속도
+            3. ease-out
+                - 처음에 원속도 마지막에 천천히
+            4. ease-in-out
+                - 처음과 마지막에 천천히
+                (ease보다 가속도가 강하다)
+            5. linear
+                - 일정한 속도
+
+            (1~5 예시)
+            https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_transition-timing-function2
+
+            6. cubic-bezier : 자유로운 가속도
+                - 설정은 브라우저에서 가속도
+                곡선을 변경하여 수치를 생성한다.
+                생성된 코드를 복사하여 사용한다!
+            
+            (6번 예시)
+            https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_transition-timing-function3
+        */
+    </style>
+</head>
+
+<body>
+    <h1 class="tit">트랜스폼 연습</h1>
+    <div class="cont">
+        <div id="trans1"><img src="images/cast01.jpg" alt="캐릭터"></div>
+        <div id="trans2"><img src="images/cast02.jpg" alt="캐릭터"></div>
+        <div id="trans3"><img src="images/cast03.jpg" alt="캐릭터"></div>
+        <div id="trans4"><img src="images/cast04.jpg" alt="캐릭터"></div>
+        <div id="trans5"><img src="images/cast05.jpg" alt="캐릭터"></div>
+        <div id="trans6"><img src="images/cast01.jpg" alt="캐릭터"></div>
+        <div id="trans7"><img src="images/cast02.jpg" alt="캐릭터"></div>
+        <div id="trans8"><img src="images/cast03.jpg" alt="캐릭터"></div>
+        <div id="trans9"><img src="images/cast04.jpg" alt="캐릭터"></div>
+        <div id="trans10">
+            <img src="images/cast02.jpg" alt="유정이">
+            <img src="images/cast03.jpg" alt="보거미">
+        </div>
+    </div>
+
+</body>
+
+</html>
