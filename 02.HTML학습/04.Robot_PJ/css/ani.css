@@ -193,12 +193,16 @@
 .link{
     /* 투명상태 */
     opacity: 0;
+    /* 애니메이션: 이시이지반방마 */
+    animation: opaAni 1s linear 4.5s forwards;
 }
 
 /* 5. 위로가기 버튼 */
 .btnTop{
     /* 투명상태 */
     opacity: 0;
+    /* 애니메이션: 이시이지반방마 */
+    animation: opaAni 1s linear 5s forwards;
 }
 
 /* 6. TV */
@@ -206,13 +210,25 @@
     /* 투명상태 */
     opacity: 0;
     /* 애니메이션: 이시이지반방마 */
-    animation: opaAni .5s linear 4s forwards;
+    animation: opaAni 1s linear 4s forwards;
 }
 
 /* 설명링크, 위로이동버튼, TV 등장 공통 키프레임 */
 @keyframes opaAni {
-    to{
-        /* 보이게함! */
+    /* 보였다 안보였다! */
+    20%{
+        opacity: 1;
+    }
+    40%{
+        opacity: 0;
+    }
+    60%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
         opacity: 1;
     }
 } /* 키프레임 */
