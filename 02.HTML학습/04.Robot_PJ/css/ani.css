@@ -114,18 +114,28 @@
     transform: scale(2);
 
     /* 애니메이션: 이시이지반방마 */
-    animation: logoAni 2s ease-in-out 1s forwards;
+    animation: 
+    /* 중앙에서 왼쪽위로 이동애니 */
+    logoAni 2s ease-in-out 1s forwards,
+    /* 이동후 반복회전애니 */
+    logoAni2 .5s ease-in-out 3s infinite alternate;
 
 }
 
 /* 로고애니 키프레임 */
 @keyframes logoAni {
     /* 초기설정이 from 이므로 생략! */
-    to{
+    80%{
         /* 원래 위치와 크기로! */
         top: 50px;
         left: 50px;
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
+    }
+    100%{
+        top: 50px;
+        left: 50px;
+        /* 회전위치 맞추기! */
+        transform: scale(1) rotate(20deg);
     }
 } /* 키프레임 */
 
@@ -137,7 +147,7 @@
     100%{
         transform: rotate(-20deg);
     }
-}
+} /* 키프레임 */
 
 
 
@@ -155,7 +165,18 @@
     left: -100%;
     /* 가로크기는 끝까지 채우는 크기이므로
     %단위가 바로 적용된다! */
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: bodyAni 1s ease-out 2s forwards;
 }
+
+/* 로봇몸 등장 키프레임 */
+@keyframes bodyAni {
+    to{
+        /* 원래위치로! */
+        left: 0;
+    }
+} /* 키프레임 */
 
 /* 4. 설명링크 */
 .link{
