@@ -100,7 +100,18 @@
         /* 
             2. rotateX(각도deg) - X축회전
          */
-        
+        #trans2 img{
+            /* 트랜스폼 tfrx */
+            transform: rotateX(180deg);
+            /* 흐림효과 */
+            filter: blur(2px);
+        }
+        #trans2:hover img{
+            /* 트랜스폼 */
+            transform: rotateX(0deg);
+            /* 흐림복원 */
+            filter: blur(0px);
+        }
 
         /* 
             [ CSS 필터속성 ]
