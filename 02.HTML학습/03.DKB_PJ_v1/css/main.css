@@ -81,6 +81,8 @@ body{
 
 /* 캐릭터 이미지박스 */
 .ci{
+    /* 하단패딩 - 아래 설명박스와 간격 */
+    padding-bottom: 15px;
     /* 트랜지션: 속시이지 trs */
     transition: margin-top .4s ease-out;
 }
@@ -163,11 +165,15 @@ body{
         - auto 내용넘치면 자동으로
             y축 스크롤만 생김
     */
-    /* 마진 상단 mt */
-    margin-top: 15px;
+    /* 마진 상단 mt -> 오버시 떨림문제 
+    -> .ci 하단패딩대체 */
+    /* margin-top: 15px; */
 
     /* 배경: 색이반고윙/크 */
     background: url(../images/eachBG.jpg) no-repeat center/cover;
+
+    /* 둥근모서리 : 왼위 부터 시계방향 */
+    border-radius: 20px 5px 5px 20px;
 
     /* 트랜지션 : 속시이지 trs */
     transition: height .4s ease-out;
