@@ -377,7 +377,7 @@
             // 3-3. 트랜지션주기
             // 전체 2초, 트랜스폼 1초동안 2초후 애니
             // top과 left는 3초간 2초후
-            목표.style.transition = "2s";
+            목표.style.transition = "2s,transform 1s 2s,top 3s 2s,left 3s 2s";
 
             // 3-4. 원모양 만들기
             목표.style.borderRadius = "50%";
@@ -389,9 +389,9 @@
             목표.style.top = "50%";
             목표.style.left = "50%";
 
-            // 3-7. 트랜스폼 적용(정중앙이동)
+            // 3-7. 트랜스폼 적용(정중앙이동,회전,스케일)
             목표.style.transform = 
-            "translate(-50%,-50%)"
+            "translate(-50%,-50%) rotate(360deg) scale(.7)";
 
 
        } ///////////// 보여줘 함수 /////////////////
