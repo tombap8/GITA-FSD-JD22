@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>JS01. 자바스크립트 기본 + DOM선택법</title>
-    <!-- 자바스크립트 코딩구역 -->
-    <script>
         // 한줄주석
         /* 여러줄 주석 */
 
@@ -330,286 +323,186 @@
             함수명: 보여줘
             기능: .pbox의 디자인을 변경한다!
         ***************************************/
-       function 보여줘(){
-            // 함수는 코드 저장소임!
-            // 만들고 처음할일은? -> 호출확인!
-
+            function 보여줘(){
+                // 함수는 코드 저장소임!
+                // 만들고 처음할일은? -> 호출확인!
+    
+                // 1. 호출확인
+                console.log("나야나!");
+    
+                // 2. HTML 변경하기 /////////////////////
+                // 변경대상: #name
+                document
+                // 현재 html문서 전체객체
+                .getElementById('name')
+                // 가져와요소아이디로(아이디명)
+                .innerHTML = '<img src="./images/kim.png" alt="김비서가 왜그럴까?">';
+                // innerHTML = 값
+                // innerHTML은 html코드를 넣는 메서드
+                // 이퀄 오른쪽값이 왼쪽으로 들어감!(할당!)
+                // 이퀄은 같다는 뜻이 아님!!!
+    
+                // 3. CSS변경하기 ///////////////////
+                // 대상: .pbox
+    
+                // 대상을 재사용하도록 변수에 할당한다!
+                // 변수는 값을 저장하는 메모리공간
+                // 변수명은 메모리공간의 호출주소!
+                // 변수명은 호출시 값이 나옴!
+                // 변수명은 따옴표로 싸지 않는다!
+                // 변수명은 문자이며 띄어쓰지 않는다!
+                // 변수선언은  var 키워드로 선언한다!
+    
+                var 목표 =
+                document.getElementsByClassName('pbox').item(0);
+                // 전체문서.가져와요소들클래스명으로(클래스명).아이템(0번째)
+    
+                // 3-1. 글자색변경
+                목표.style.color = "lime";
+                // style객체 - html의 CSS속성을 모두 정의함!
+                // 스타일객체 하위 속성은 모두 변수형으로 정의됨
+                // 변수형 속성이란 "font-size"-> fontSize
+                // 데쉬를 없애고 데쉬뒤 첫글자를 대문자로 정의
+    
+                // 3-2. 글자크기변경
+                목표.style.fontSize = "40px";
+    
+                // 3-3. 트랜지션주기
+                // 전체 2초, 트랜스폼 1초동안 2초후 애니
+                // top과 left는 3초간 2초후
+                목표.style.transition = "2s,transform 1s 2s,top 3s 2s,left 3s 2s";
+    
+                // 3-4. 원모양 만들기
+                목표.style.borderRadius = "50%";
+    
+                // 3-5. 배경이미지 넣기
+                목표.style.background = "url(./images/kimbs.jpg) no-repeat top/cover";
+    
+                // 3-6. 위치이동
+                목표.style.top = "50%";
+                목표.style.left = "50%";
+    
+                // 3-7. 트랜스폼 적용(정중앙이동,회전,스케일)
+                목표.style.transform = 
+                "translate(-50%,-50%) rotate(360deg) scale(.7)";
+    
+                // 3-8. 전체배경색 변경
+                // 대상: body
+                // JS에서 body는 특별히 취급해서
+                // document.body 라고 선택함!
+                var 바디 = document.body;
+                바디.style.backgroundColor = "lightgreen";
+                바디.style.transition = "5s 3s";
+    
+                // 4. title속성 메시지 변경하기
+                // 우영우 드라마로 더블클릭 안내하기
+                // 대상: .pbox -> 목표
+                목표.title = "더블클릭 하시면 우영우를 보실 수 있습니다!";
+                // 요소선택.속성명 = 값 -> 속성값 변경법
+    
+    
+           } ///////////// 보여줘 함수 /////////////////
+           ////////////////////////////////////////////
+    
+           /******************************************** 
+                함수명: 바꿔
+                기능: 다른 드라마의 배경과 글자로 변경함
+           ********************************************/
+          function 바꿔(){
+                // 1. 호출확인
+                console.log('바꿔!');
+    
+                // 2. 변경대상 : .pbox
+                var 목표 = 
+                document.getElementsByClassName('pbox')[0];
+                // 아이템선택시 .item(순번) 대신 [순번] 가능
+    
+                // 3. 변경내용 : 배경이미지 변경 + 글내용변경
+                // 배경이미지
+                목표.style.backgroundImage = "url(https://image.kmib.co.kr/online_image/2022/0727/2022072621325079008_1658838770_0017317378.jpg)";
+                // 글자변경
+                목표.innerHTML = "우 to the 영 to the 우";
+    
+          } /////////////// 바꿔 함수 ////////////////////
+          ///////////////////////////////////////////////
+    
+          /************************************************** 
+                함수명: 맘대로해라
+                기능: 선택요소를 중앙으로 보낸다!
+          **************************************************/
+         function 맘대로해라(헐){ // 헐 - 전달변수
+    
+            // 1. 호출확인!
+            console.log('맘대로해라!',헐);
+            // console.log('맘대로해라!'+헐);
+            // console.log(메시지,변수)
+            // 변수를 합칠때 콤마 또는 + 기호를 씀
+    
+            // 2. 변경대상: .원이야
+            var 멍청이 = 
+            document.querySelectorAll('.박스야 .원이야')[헐];
+            // 더 간단한 요소 선택법!
+            // 1) 하나의 요소만 선택시
+            // -> 선택요소.querySelector(CSS선택자)
+            // 2) 여러 요소 선택시
+            // -> 선택요소.querySelectorAll(CSS선택자)
+            // -> 여러개일 경우 컬랙션 집합에 담기므로 순번필요
+            // -> .item(순번) 또는 [순번]
+            // -> 순번은 0부터, 개수를 구할때 .length
+    
+    
+            // document.getElementsByClassName('박스야').item(0)
+            // .getElementsByClassName('원이야').item(헐);
+    
+            // console.log(멍청이);
+    
+            // 3. 변경내용 : 트랜지션으로 화면 중앙으로 이동하기
+            // .원이야 중에서 몇번째인지 헐변수에 담김!
+            멍청이.style.transition = '1s ease-out';
+            멍청이.style.top = '50%';
+            멍청이.style.right = '50%';
+            멍청이.style.transform = 'translate(50%,-50%)';
+    
+         } //////////// 맘대로해라 함수 /////////////////////
+         ///////////////////////////////////////////////////
+    
+         /**************************************************** 
+            함수명: 사각사각
+            기능: 오른쪽 상단으로 먼저 이동후 사각형으로
+                전체 채우기 애니메이션 + 환영메시지 넣기
+         ****************************************************/
+        function 사각사각(){
+    
             // 1. 호출확인
-            console.log("나야나!");
-
-            // 2. HTML 변경하기 /////////////////////
-            // 변경대상: #name
-            document
-            // 현재 html문서 전체객체
-            .getElementById('name')
-            // 가져와요소아이디로(아이디명)
-            .innerHTML = '<img src="./images/kim.png" alt="김비서가 왜그럴까?">';
-            // innerHTML = 값
-            // innerHTML은 html코드를 넣는 메서드
-            // 이퀄 오른쪽값이 왼쪽으로 들어감!(할당!)
-            // 이퀄은 같다는 뜻이 아님!!!
-
-            // 3. CSS변경하기 ///////////////////
-            // 대상: .pbox
-
-            // 대상을 재사용하도록 변수에 할당한다!
-            // 변수는 값을 저장하는 메모리공간
-            // 변수명은 메모리공간의 호출주소!
-            // 변수명은 호출시 값이 나옴!
-            // 변수명은 따옴표로 싸지 않는다!
-            // 변수명은 문자이며 띄어쓰지 않는다!
-            // 변수선언은  var 키워드로 선언한다!
-
-            var 목표 =
-            document.getElementsByClassName('pbox').item(0);
-            // 전체문서.가져와요소들클래스명으로(클래스명).아이템(0번째)
-
-            // 3-1. 글자색변경
-            목표.style.color = "lime";
-            // style객체 - html의 CSS속성을 모두 정의함!
-            // 스타일객체 하위 속성은 모두 변수형으로 정의됨
-            // 변수형 속성이란 "font-size"-> fontSize
-            // 데쉬를 없애고 데쉬뒤 첫글자를 대문자로 정의
-
-            // 3-2. 글자크기변경
-            목표.style.fontSize = "40px";
-
-            // 3-3. 트랜지션주기
-            // 전체 2초, 트랜스폼 1초동안 2초후 애니
-            // top과 left는 3초간 2초후
-            목표.style.transition = "2s,transform 1s 2s,top 3s 2s,left 3s 2s";
-
-            // 3-4. 원모양 만들기
-            목표.style.borderRadius = "50%";
-
-            // 3-5. 배경이미지 넣기
-            목표.style.background = "url(./images/kimbs.jpg) no-repeat top/cover";
-
-            // 3-6. 위치이동
-            목표.style.top = "50%";
-            목표.style.left = "50%";
-
-            // 3-7. 트랜스폼 적용(정중앙이동,회전,스케일)
-            목표.style.transform = 
-            "translate(-50%,-50%) rotate(360deg) scale(.7)";
-
-            // 3-8. 전체배경색 변경
-            // 대상: body
-            // JS에서 body는 특별히 취급해서
-            // document.body 라고 선택함!
-            var 바디 = document.body;
-            바디.style.backgroundColor = "lightgreen";
-            바디.style.transition = "5s 3s";
-
-            // 4. title속성 메시지 변경하기
-            // 우영우 드라마로 더블클릭 안내하기
-            // 대상: .pbox -> 목표
-            목표.title = "더블클릭 하시면 우영우를 보실 수 있습니다!";
-            // 요소선택.속성명 = 값 -> 속성값 변경법
-
-
-       } ///////////// 보여줘 함수 /////////////////
-       ////////////////////////////////////////////
-
-       /******************************************** 
-            함수명: 바꿔
-            기능: 다른 드라마의 배경과 글자로 변경함
-       ********************************************/
-      function 바꿔(){
-            // 1. 호출확인
-            console.log('바꿔!');
-
-            // 2. 변경대상 : .pbox
-            var 목표 = 
-            document.getElementsByClassName('pbox')[0];
-            // 아이템선택시 .item(순번) 대신 [순번] 가능
-
-            // 3. 변경내용 : 배경이미지 변경 + 글내용변경
-            // 배경이미지
-            목표.style.backgroundImage = "url(https://image.kmib.co.kr/online_image/2022/0727/2022072621325079008_1658838770_0017317378.jpg)";
-            // 글자변경
-            목표.innerHTML = "우 to the 영 to the 우";
-
-      } /////////////// 바꿔 함수 ////////////////////
-      ///////////////////////////////////////////////
-
-      /************************************************** 
-            함수명: 맘대로해라
-            기능: 선택요소를 중앙으로 보낸다!
-      **************************************************/
-     function 맘대로해라(헐){ // 헐 - 전달변수
-
-        // 1. 호출확인!
-        console.log('맘대로해라!',헐);
-        // console.log('맘대로해라!'+헐);
-        // console.log(메시지,변수)
-        // 변수를 합칠때 콤마 또는 + 기호를 씀
-
-        // 2. 변경대상: .원이야
-        var 멍청이 = 
-        document.querySelectorAll('.박스야 .원이야')[헐];
-        // 더 간단한 요소 선택법!
-        // 1) 하나의 요소만 선택시
-        // -> 선택요소.querySelector(CSS선택자)
-        // 2) 여러 요소 선택시
-        // -> 선택요소.querySelectorAll(CSS선택자)
-        // -> 여러개일 경우 컬랙션 집합에 담기므로 순번필요
-        // -> .item(순번) 또는 [순번]
-        // -> 순번은 0부터, 개수를 구할때 .length
-
-
-        // document.getElementsByClassName('박스야').item(0)
-        // .getElementsByClassName('원이야').item(헐);
-
-        // console.log(멍청이);
-
-        // 3. 변경내용 : 트랜지션으로 화면 중앙으로 이동하기
-        // .원이야 중에서 몇번째인지 헐변수에 담김!
-        멍청이.style.transition = '1s ease-out';
-        멍청이.style.top = '50%';
-        멍청이.style.right = '50%';
-        멍청이.style.transform = 'translate(50%,-50%)';
-
-     } //////////// 맘대로해라 함수 /////////////////////
-     ///////////////////////////////////////////////////
-
-     /**************************************************** 
-        함수명: 사각사각
-        기능: 오른쪽 상단으로 먼저 이동후 사각형으로
-            전체 채우기 애니메이션 + 환영메시지 넣기
-     ****************************************************/
-    function 사각사각(){
-
-        // 1. 호출확인
-        console.log("사각사각!");
-
-        // 2. 대상선정: .넌뭐냐
-        var 나야나 = document.querySelector('.넌뭐냐');
-        // querySelector() 는 무조건 하나만 선택한다!
-        console.log("나야나, 넌뭐냐? ", 나야나);
-
-        // 3. 변경내용: top, 트랜지션, width, height
-        나야나.style.top = "0";
-        나야나.style.borderRadius = "0";
-        나야나.style.width = "100vw";
-        나야나.style.height = "100vh";
-        나야나.style.transition = "3s 1s,top 1s 0s";
-        // top값은 1초간 기다림없이 애니
-        // 나머지는 모두 1초후 3초간 애니
-
-        // 4. 추가변경: 글자넣기
-        나야나.innerText = "JS입문을 환영합니다!";
-        // innerText = 값 -> 선택요소 내부에 글자 데이터 넣기!
-
-        // 5. 글자관련 CSS 변경하기
-        나야나.style.fontSize = "6vw"; // 화면가로크기의 6%
-        나야나.style.color = "aqua";
-        나야나.style.fontWeight = "bold";
-        나야나.style.textShadow = "5px 5px 3px #000";
-        나야나.style.lineHeight = "100vh"; 
-        // 100vh -> 보이는화면 높이값의 100%
-        
-    } /////////////////// 사각사각 함수 //////////////////
-    /////////////////////////////////////////////////////
-
-    </script>
-    <style>
-        .pbox {
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 2vw;
-            line-height: 8vw;
-            width: 35vw;
-            border: 4px solid purple;
-            padding: 10vw 5vw;
-            color: yellow;
-            /* 글자테두리 */
-            text-shadow:
-                1px 0 #000,
-                -1px 0 #000,
-                0 1px #000,
-                0 -1px #000;
-            /* 줄바꿈방지 */
-            white-space: nowrap;
-            /* 글자정렬 */
-            text-align: center;
-        }
-        /* 김비서글자 이미지 */
-        .pbox span img{
-            width: 30%;
-            vertical-align: middle;
-        }
-
-        /* 원모양 */
-        .원이야{
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-
-            /* 배경공통 */
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        /* 원모양 개별 셋팅 */
-        .원이야:nth-child(1){
-            right: 400px;
-            background-image: url(./images/01.png);
-        }
-        .원이야:nth-child(2){
-            right: 200px;
-            background-image: url(./images/02.png);
-        }
-        .원이야:nth-child(3){
-            background-image: url(./images/03.png);
-        }
-
-        /* 사각형으로 변할 원 */
-        .넌뭐냐{
-            position: absolute;
-            top: 40%;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            text-align: center;
-            line-height: 200px;
-            white-space: nowrap;
-            border-radius: 50%;
-            background: #bbd3b3 url(./images/prog.jpg) no-repeat center/auto 100%;
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- 드라마 소개박스 -->
-    <p class="pbox" title="여기를 클릭하세요!" onclick="보여줘()" ondblclick="바꿔()">
-        나는 요즘 매일 생각한다! <br>
-        도대체 <span id="name"></span>
-    </p>
-
-    <!-- 
-        모든요소에는 이벤트속성을 사용할 수 있다!
-        <요소명 on이벤트명="JS코드">
-     -->
-
-    <!-- 원모양 박스 -->
-    <div class="박스야">
-        <!-- 원모양 -->
-        <div class="원이야" onmouseover="맘대로해라(0)"></div>
-        <div class="원이야" onmouseover="맘대로해라(1)"></div>
-        <div class="원이야" onmouseover="맘대로해라(2)"></div>
-
-        <!-- 사각형으로 변할 원박스 -->
-        <div class="넌뭐냐" title="반드시 더블클릭 해주세요~!!!" ondblclick="사각사각()"></div>
-
-    </div>
-
-</body>
-
-</html>
+            console.log("사각사각!");
+    
+            // 2. 대상선정: .넌뭐냐
+            var 나야나 = document.querySelector('.넌뭐냐');
+            // querySelector() 는 무조건 하나만 선택한다!
+            console.log("나야나, 넌뭐냐? ", 나야나);
+    
+            // 3. 변경내용: top, 트랜지션, width, height
+            나야나.style.top = "0";
+            나야나.style.borderRadius = "0";
+            나야나.style.width = "100vw";
+            나야나.style.height = "100vh";
+            나야나.style.transition = "3s 1s,top 1s 0s";
+            // top값은 1초간 기다림없이 애니
+            // 나머지는 모두 1초후 3초간 애니
+    
+            // 4. 추가변경: 글자넣기
+            나야나.innerText = "JS입문을 환영합니다!";
+            // innerText = 값 -> 선택요소 내부에 글자 데이터 넣기!
+    
+            // 5. 글자관련 CSS 변경하기
+            나야나.style.fontSize = "6vw"; // 화면가로크기의 6%
+            나야나.style.color = "aqua";
+            나야나.style.fontWeight = "bold";
+            나야나.style.textShadow = "5px 5px 3px #000";
+            나야나.style.lineHeight = "100vh"; 
+            // 100vh -> 보이는화면 높이값의 100%
+            나야나.sty
+    
+        } /////////////////// 사각사각 함수 //////////////////
+        /////////////////////////////////////////////////////
+    
