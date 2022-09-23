@@ -14,6 +14,8 @@
 }
 /* 속박스 */
 .info{
+    /* 레러티브 포지션 - 부모자격(.brand) */
+    position: relative;
     height: 241px;
 }
 /* 3-1. 하단링크 */
@@ -67,5 +69,30 @@
     margin: 0 auto;
     padding: 10px;
     border: 4px double #222;
+}
+
+/* 3-3. 하단로고 */
+.blogo{
+    /* 글자중앙 */
+    text-align: center;
+}
+
+/* 3-4. 바로가기 */
+.brand {
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    top: 5px;
+    right: 0;
+    /* 부모는? .info */
+}
+/* 선택박스 */
+#sel {
+    /* 글자셋팅 */
+    color: #222;
+    font-weight: bold;
+    font-size: 14px;
+
+    /* 패딩 */
+    padding: 8px;
 }
 
