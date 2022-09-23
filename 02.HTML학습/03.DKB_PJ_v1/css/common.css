@@ -59,7 +59,7 @@
     position: absolute;
     bottom: 0;
     width: 0;
-    height: 4px;
+    height: 3px;
     background-color: red;
     /* 트랜지션: 속시이지 trs */
     transition: width .2s;
