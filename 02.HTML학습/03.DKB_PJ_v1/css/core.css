@@ -56,3 +56,12 @@ body{
     display: block;
     clear: both;
 }
+
+/* IR클래스 */
+/* 배경이미지 설명클래스 (Image Replacement) */
+.ir{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}

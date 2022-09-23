@@ -69,13 +69,65 @@
     width: 100%;
 }
 
-/* 1-3.sns메뉴 */
+/* 1-3.탑메뉴 */
 .tmenu{
     /*  앱솔루트포지션 */
     position: absolute;
     top: 20px;
     right: 0;
     /* 부모는? .top */
+}
+/* 탑메뉴 상위li */
+.tmenu>ul>li{
+    /* 패딩양쪽 */
+    padding: 0 5px;
+}
+/* 탑메뉴 상위a */
+.tmenu>ul>li>a{
+    /* 글자크기 */
+    font-size: 15px;
+}
+/* sns메뉴 */
+.sns {
+    /* 마진 상단 */
+    margin-top: -5px;
+}
+.sns li{
+    width: 30px;
+    height: 30px;
+    /* 배경이미지로 sns 아이콘 넣기(스프라이츠) */
+    background: url(../images/icons.png) no-repeat;
+}
+/* 트위터 */
+.sns li:nth-child(1){
+    background-position: 0 0;
+}
+/* 트위터 오버시 */
+.sns li:nth-child(1):hover{
+    background-position: 0 -30px;
+}
+/* 인스타그램 */
+.sns li:nth-child(2){
+    background-position: -30px 0;
+}
+/* 인스타그램 오버시 */
+.sns li:nth-child(2):hover{
+    background-position: -30px -30px;
+}
+/* 페이스북 */
+.sns li:nth-child(3){
+    background-position: -60px 0;
+}
+/* 페이스북 오버시 */
+.sns li:nth-child(3):hover{
+    background-position: -60px -30px;
+}
+
+/* sns a요소 확장 */
+.sns a{
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 
