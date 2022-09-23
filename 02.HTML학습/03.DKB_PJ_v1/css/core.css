@@ -45,3 +45,10 @@ body{
     background-color: #ddd;
     border-radius: 5px;
 }
+
+/* float설정 지우기 클래스 */
+.clb::after{
+    content: '';
+    display: block;
+    clear: both;
+}

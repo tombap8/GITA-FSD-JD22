@@ -8,6 +8,27 @@
     height: 128px;
 }
 /************** 3. 하단영역 **************/
+/* 겉박스 */
+#info{
+    background-color: rgba(255, 255, 255, 0.765);
+}
+/* 속박스 */
 .info{
     height: 241px;
+}
+/* 3-1. 하단링크 */
+.blink{
+    /* 패딩상단 pt */
+    padding-top: 5px;
+}
+/* 하단링크 리스트 */
+.blink ul{
+    /* 가로크기를 줘야 마영오적용확인! */
+    width: 1000px;
+    /* 마영오 - 블록박스 가로중앙 */
+    margin: 0 auto;
+}
+
+.blink li{
+    float: left;
 }
