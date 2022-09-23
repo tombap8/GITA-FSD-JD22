@@ -44,9 +44,29 @@
 }
 /* GNB 상위메뉴 a */
 .gnb>ul>li>a{
+    /* 레러티브 포지션 - 부모자격(a::after) */
+    position: relative;
+    /* 디스플레이 변경! 블록! */
+    display: block;
     /* 글자셋팅 */
     font-size: 17px;
     line-height: 2.5;
+}
+/* 가상요소로 하단바 만들기 */
+.gnb>ul>li>a::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 4px;
+    background-color: red;
+    /* 트랜지션: 속시이지 trs */
+    transition: width .2s;
+}
+/* 마우스 오버시 하단바 보이기 */
+.gnb>ul>li>a:hover::after{
+    width: 100%;
 }
 
 /* 1-3.sns메뉴 */
