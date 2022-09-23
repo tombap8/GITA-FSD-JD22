@@ -24,11 +24,29 @@
 /* 하단링크 리스트 */
 .blink ul{
     /* 가로크기를 줘야 마영오적용확인! */
-    width: 1000px;
+    width: 804px;
     /* 마영오 - 블록박스 가로중앙 */
     margin: 0 auto;
 }
 
 .blink li{
+    /* 옆으로 흐르게 */
     float: left;
+    /* 양쪽패딩 */
+    padding: 0 15px;
 }
+/* 글자셋팅 */
+.blink a{
+    /* 글자셋팅 */
+    color: #222;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 2.8;
+}
+/* 마우스 오버시 a */
+.blink a:hover{
+    /* 글자색변경, 밑줄 */
+    color: red;
+    text-decoration: underline;
+}
+
