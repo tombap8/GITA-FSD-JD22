@@ -50,3 +50,22 @@
     text-decoration: underline;
 }
 
+/* 3-2. 회사정보 */
+.addr{
+    /* 패딩 */
+    padding: 10px;
+}
+.addr address{
+    /* 글자셋팅 - address요소 기본 이탤릭해제 */
+    font-size: 14px;
+    font-style: normal;
+    text-align: center;
+    line-height: 2;
+
+    /* 박스셋팅 */
+    width: 804px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 4px double #222;
+}
+
