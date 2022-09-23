@@ -46,6 +46,10 @@ body{
     border-radius: 5px;
 }
 
+/* float 셋팅 클래스 */
+.clb > li{
+    float: left;
+}
 /* float설정 지우기 클래스 */
 .clb::after{
     content: '';
