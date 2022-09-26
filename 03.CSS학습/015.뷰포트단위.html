@@ -145,24 +145,41 @@
 
         /* 뷰포트 단위와 일반 %단위 비교 */
         .vp5 {
-            
+            width: 50%;
+            /* %를 쓰면 싸고 있는 요소가 기준이 된다! */
+            font-size: 24px;
         }
         /* 뷰포트단위사용! */
         .vp5-1{
+            width: 50vw;
+            /* 뷰포트 단위를 쓰면 부모가 있어도
+            무조건 보이는 화면을 기준한다! 주의!!! */
+            border: 5px dotted red;
             
         }
         /* %단위사용! */
         .vp5-2{
-            
+            width: 50%;
+            /* %를 쓰면 싸고 있는 요소가 기준이 된다! */
+            border: 5px dotted green;
+
         }
 
         /* 100vw */
         .vp6{
-            
+            width: 100vw;
+            /* 100vw는 스크롤바 트랙 무시!
+            보이는 화면 전체기준(모바일개념중심!) */
+            background-color: lightcoral;
+            font-size: 24px;
         }
         /* 100% */
         .vp7{
-            
+            width: 100%;
+            /* 100%는 스크롤바 트랙 존중!
+            이것을 뺀 화면전체!(데스크탑개념중심!) */
+            background-color: lightseagreen;
+            font-size: 24px;
         }
         
 
