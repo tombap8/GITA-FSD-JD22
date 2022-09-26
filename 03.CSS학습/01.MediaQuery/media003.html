@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃 미디어쿼리2 - 비율유지박스 적용하기</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 공통class */
+
+        
+        /* 속박스 */
+        .ibx {
+            width: 1200px;
+            max-width: 100%;
+            margin: 0 auto;
+            outline: 1px dashed red;
+        }
+
+        /* 플렉스박스 */
+        .fbx{
+            display: flex;
+            /* 랩핑박스 */
+            flex-wrap: wrap;
+        }
+        /* 플렉스 자식요소 등분할 */
+        .fbx .pbx{
+            flex: 1;
+        }
+
+        /* 비율유지박스 */
+        .rbx{
+            position: relative;
+            /* 부모자격 */
+        }
+        /* 가상요소 비율셋팅 */
+        .rbx::before{
+            content: '';
+            display: block;
+        }
+        /* 상단비 */
+        .rbx1::before{
+            padding-top: 80%;            
+        }
+        /* 메인비 */
+        .rbx2::before{
+            padding-top: 100%;            
+        }
+        /* 하단비 */
+        .rbx3::before{
+            padding-top: 50%;            
+        }
+
+        /* 비율유지 속박스 */
+        .rbxIn{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+
+        /* 파티션박스 */
+        .pbx {
+            font-size: 2rem;
+            text-align: center;
+            line-height: 3;
+            color: #fff;
+            text-shadow: 3px 3px 3px #000;
+            outline: 1px dotted lime;
+        }
+
+        
+
+        
+
+       
+
+        /* 개별 디자인 */
+
+        /* 1. 상단영역 */
+        .top>.pbx {
+            /* width: 33.33%; */
+            /* 3등분 */
+            /* height: 120px; */
+        }
+
+        .top1 {
+            background: url(./images/jeong1.jpg) no-repeat top/cover;
+        }
+
+        .top2 {
+            background: url(./images/jeong2.jpg) no-repeat top/cover;
+        }
+
+        .top3 {
+            background: url(./images/jeong3.jpg) no-repeat top/cover;
+        }
+
+        /* 2. 중앙영역 */
+        .cont>.pbx {
+            /* width: 25%; */
+            /* 4등분 */
+            /* height: 300px; */
+        }
+
+        .cont1 {
+            background: url(./images/jeong4.jpg) no-repeat top/cover;
+        }
+
+        .cont2 {
+            background: url(./images/jeong5.jpg) no-repeat top/cover;
+        }
+
+        .cont3 {
+            background: url(./images/jeong6.jpg) no-repeat top/cover;
+        }
+
+        .cont4 {
+            background: url(./images/jeong7.jpg) no-repeat top/cover;
+        }
+
+        /* 3. 하단영역 */
+        .info>.pbx {
+            /* width: 50%; */
+            /* 2등분 */
+            /* height: 200px; */
+        }
+
+        .info1 {
+            background: url(./images/jeong8.jpg) no-repeat top/cover;
+        }
+
+        .info2 {
+            background: url(./images/jeong9.jpg) no-repeat top/cover;
+        }
+
+        /* 크기별 미디어쿼리 */
+
+        /************** 1024px 이하 **************/
+
+        /* 1024px 이하 */
+
+        /*************** 800px 이하 ***************/
+
+
+        /**************** 500px 이하 ****************/
+
+        /* 500px 이하 */
+    </style>
+</head>
+
+<body>
+    <!-- 1. 상단영역 -->
+    <div>
+        <header class="ibx fbx top">
+            <div class="pbx rbx rbx1 top1">
+                <div class="rbxIn">
+                    스타일1
+                </div>
+            </div>
+            <div class="pbx rbx rbx1 top2">
+                <div class="rbxIn">
+                    스타일2
+                </div>
+            </div>
+            <div class="pbx rbx rbx1 top3">
+                <div class="rbxIn">
+                   스타일3 
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- 2. 중앙영역 -->
+    <div>
+        <main class="ibx fbx cont">
+            <div class="pbx rbx rbx2 cont1">
+                <div class="rbxIn">
+                    분위기1
+                </div>
+            </div>
+            <div class="pbx rbx rbx2 cont2">
+                <div class="rbxIn">
+                    분위기2
+                </div>
+            </div>
+            <div class="pbx rbx rbx2 cont3">
+                <div class="rbxIn">
+                    분위기3
+                </div>
+            </div>
+            <div class="pbx rbx rbx2 cont4">
+                <div class="rbxIn">
+                    분위기4
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- 3. 하단영역 -->
+    <div>
+        <footer class="ibx fbx info">
+            <div class="pbx rbx rbx3 info1">
+                <div class="rbxIn">
+                    내가 이정재다!
+                </div>
+            </div>
+            <div class="pbx rbx rbx3 info2">
+                <div class="rbxIn">
+                    내가 이정재다!
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
