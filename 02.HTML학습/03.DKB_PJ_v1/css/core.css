@@ -14,6 +14,12 @@
     font-family: 'Nanum Gothic', sans-serif;
 */
 
+/* 전체 글자크기 Root 셋팅! */
+html{
+    font-size: 10px;
+    /* 글자 rem단위 계산편의때문~! */
+}
+
 /* 전체 웹폰트 일반적용! */
 body{
     font-family: 'Nanum Gothic', sans-serif;

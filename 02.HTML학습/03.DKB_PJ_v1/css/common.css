@@ -49,7 +49,7 @@
     /* 디스플레이 변경! 블록! */
     display: block;
     /* 글자셋팅 */
-    font-size: 17px;
+    font-size: 1.7rem;
     line-height: 2.5;
 }
 /* 가상요소로 하단바 만들기 */
@@ -85,7 +85,7 @@
 /* 탑메뉴 상위a */
 .tmenu>ul>li>a{
     /* 글자크기 */
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 /* sns메뉴 */
 .sns {
@@ -166,7 +166,7 @@
     /* 글자셋팅 */
     color: #222;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 2.8;
 }
 /* 마우스 오버시 a */
@@ -183,7 +183,7 @@
 }
 .addr address{
     /* 글자셋팅 - address요소 기본 이탤릭해제 */
-    font-size: 14px;
+    font-size: 1.4rem;
     font-style: normal;
     text-align: center;
     line-height: 2;
@@ -214,7 +214,7 @@
     /* 글자셋팅 */
     color: #222;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1.4rem;
 
     /* 패딩 */
     padding: 8px;
