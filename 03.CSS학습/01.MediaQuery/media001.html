@@ -226,18 +226,98 @@
     /************ 미디어쿼리 적용하기 ************/
 
     /*************** 1200px 이하 ***************/
+    @media screen and (max-width:1200px) {
+
+      /* 1. 타이틀 변경하기 */
+      .tit::after {
+        content: "최대 1200px이하";
+        color: pink;
+      }
+
+      /* 2. 기존 이미지 숨기기 */
+      .screen img:first-child {
+        display: none;
+      }
+
+      /* 3. 다음 이미지 보이기 */
+      .screen img:nth-child(2) {
+        display: inline;
+      }
+
+
+    }
 
     /* 1200px이하 */
 
     /***************** 1100px 이하 *****************/
+    @media screen and (max-width:1100px) {
+
+      /* 1. 타이틀 변경하기 */
+      .tit::after {
+        content: "최대 1100px이하";
+        color: lime;
+      }
+
+      /* 2. 기존 이미지 숨기기 */
+      .screen img:nth-child(2) {
+        display: none;
+      }
+
+      /* 3. 다음 이미지 보이기 */
+      .screen img:nth-child(3) {
+        display: inline;
+      }
+
+
+    }
 
     /* 1100px 이하 */
 
     /****************** 1000px 이하 ******************/
+    @media screen and (max-width:1000px) {
+
+      /* 1. 타이틀 변경하기 */
+      .tit::after {
+        content: "최대 1000px이하";
+        color: lightsalmon;
+      }
+
+      /* 2. 기존 이미지 숨기기 */
+      .screen img:nth-child(3) {
+        display: none;
+      }
+
+      /* 3. 다음 이미지 보이기 */
+      .screen img:nth-child(4) {
+        display: inline;
+      }
+
+
+    }
 
     /* 1000px이하 */
 
     /*************** 900px 이하 ***************/
+    @media screen and (max-width:900px) {
+
+      /* 1. 타이틀 변경하기 */
+      .tit::after {
+        content: "최대 900px이하";
+        color: hotpink;
+      }
+
+      /* 2. 기존 이미지 숨기기 */
+      .screen img:nth-child(4) {
+        display: none;
+      }
+
+      /* 3. 다음 이미지 보이기 */
+      .screen img:nth-child(5) {
+        display: inline;
+      }
+
+
+    }
 
     /* 900px 이하 */
 
