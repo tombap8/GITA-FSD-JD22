@@ -73,7 +73,10 @@
 
 
         /* 32px */
-        .f1{}
+        .f1{
+            font-size: 2em;
+            /* 32px / 16px */
+        }
 
         /* 
             [ em 계산법 ]
@@ -81,10 +84,14 @@
         */
 
         /* 24px -> 24/32=0.75 */
-        .f2{}
+        .f2{
+            font-size: 0.75em;
+        }
 
         /* 14px -> 14/24=0.58 */
-        .f3{}
+        .f3{
+            font-size: 0.58em;
+        }
 
         /* 
             rem 단위 : 상속된 글자크기로 계산하기 불편해서
@@ -96,11 +103,17 @@
          */
 
          /* 32px -> 32/16=2rem */
-         .rf1{}
+         .rf1{
+            font-size: 2rem;
+         }
          /* 24px -> 24/16=1.5rem */
-         .rf2{}
+         .rf2{
+            font-size: 1.5rem;
+         }
          /* 14px -> 14/16=0.87rem */
-         .rf3{}
+         .rf3{
+            font-size: 0.87rem;
+         }
 
          /* 
             % 단위 : em단위 계산법에 100을 곱한 것과 같다!
@@ -111,12 +124,33 @@
             font-size: 0.58em; -> 58%
 
           */
-          .pf1{}
-          .pf2{}
-          .pf3{}
+          .pf1{
+            font-size: 200%;
+          }
+          .pf2{
+            font-size: 75%;
+          }
+          .pf3{
+            font-size: 58%;
+          }
 
           /* 미디어쿼리 */
-         
+         @media screen and (max-width:1000px) {
+            /* root인 html 만 글자크기를 변경하면
+            하위의 모든 상대단위 글자는 모두 바뀐다! */
+            html{
+                font-size: 12px;
+            }
+         }/* 미디어쿼리 1000px 이하 */
+          /* 미디어쿼리 */
+         @media screen and (max-width:800px) {
+            /* 부모요소를 기준한 상대단위 요소만
+            별도로 글자크기 변경하기 */
+            .f1{
+                font-size: 50px;
+            }
+            
+         }/* 미디어쿼리 800px 이하 */
           
 
 
