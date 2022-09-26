@@ -100,12 +100,21 @@
         }
         /* 1. vw단위 - 보이는 화면 가로폭기준 */
         .vp1 {
-            
+            width: 50vw;
+            font-size: 10vw;  
         }
         .vp1-2 {
-            
+            width: 50vw;
+            font-size: min(10vw,100px);
+            /* min(값들) -> 값들중 작은값 선택 
+            -> 결과적으로 최대크기 제한! */            
+
         }
         .vp1-3 {
+            width: 50vw;
+            font-size: max(10vw,50px);
+            /* max(값들) -> 값들중 큰값 선택 
+            -> 결과적으로 최소크기 제한! */ 
             
         }
         .vp1-4 {
@@ -115,17 +124,20 @@
         
         /* 2. vh단위 - 보이는 화면 세로폭기준 */
         .vp2{
-           
+           width: 50vh;
+           font-size: 10vh;
         }
 
         /* 3. vmax단위 - 보이는 화면 가로,세로폭 중 큰것기준 */
         .vp3{
-            
+            width: 50vmax;
+            font-size: 10vmax;
         }
 
         /* 4. vmin단위 - 보이는 화면 가로,세로폭 중 작은것기준 */
         .vp4{
-                  
+            width: 50vmin;
+            font-size: 10vmin;  
         }
         
 
