@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS3-1. 제어문 - if문, switch case문, for문, while문</title>
+    <script>
+        // 함수는 코드 저장소! - 호출시에 실행!
+        /********************************************* 
+                함수명: jumsu
+                기능: 점수에 따른 평가출력하기
+        *********************************************/
+        
+
+        /********************************************** 
+            [ if문 ]
+            - 조건문을 검사하여 true이면
+            중괄호안의 코드가 실행되는 제어문
+
+            - 조건문이란 결과가 true / false 로 나오는 구문
+            - 보통 비교연산자나 논리연산자가 사용된다!
+
+            ((구문))
+            _______________________
+
+            if(조건문){
+                실행코드
+            }
+            else if(조건문){
+                실행코드
+            }
+            ...
+            else{
+                실행코드
+            }
+            _________________________
+
+            ((구문해석))
+            1. if문은 단독으로 따로 사용가능
+            2. else if문은 if문 뒤에 또는 else if문 뒤에
+                사용가능함!
+                if와 else if문으로 구성된 조건문은
+                하나의 조건에 들어가면 다른 조건은 통과한다!
+                (셋트로 코딩하는 if문은 구간설정시 많이사용됨!)
+            3. else문은 조건에 해당이 없을때 사용하며
+                필요한 경우 if문 맨끝에 코딩한다!
+
+            ※ 주의사항 : else if나 else문은 단독으로 사용못함!
+
+            ※ 참고 : 만약 if문의 실행문이 한줄일 경우 중괄호를
+            생략할 수 있다!
+
+            예) 
+                if(aa>10){my="야야";}
+                아래처럼 중괄호 생략가능
+                if(aa>10) my="야야";
+
+            ->> 일반적으로 JS에서 
+                중괄호{}는 코드를 묶는 역할을함
+
+          **********************************************/
+
+        /************************************************* 
+            함수명: local
+            기능: 지역명을 입력하면 지역국번을 안내한다!
+          *************************************************/
+        
+
+        /************************************************ 
+           [ switch case 문 ]
+
+           - 단일조건을 분류하여 실행문을 만들어 줄때 사용하는
+           제어구문
+
+           ((구문구조))
+           _______________________________
+
+           switch(변수){
+               case 경우1: 실행코드; break;
+               case 경우2: 실행코드; break;
+               case 경우3: 실행코드; break;
+               ...
+               default: 실행문;
+           }
+           _________________________________
+
+           ((구문해석))
+
+           1. 변수값에 해당하는 경우 그 값에 해당하는
+           case에 들어가서 실행코드를 실행함
+
+           2. 각 case 끝에 break 예약어를 반드시 써야함!
+           -> 안쓰면 다른 case에 또 들어가는 경우가 생김
+           -> 일반적으로 break 키워드는 제어문을 빠져나갈때 씀!
+
+           3. default 는 if문의 else문과 비슷하여 해당 케이스가
+           없으면 이분이 실행됨(단, 필요시 사용)
+           -> default문에는 break를 쓰지 않는다!
+
+          ************************************************/
+
+        /************************************************* 
+              함수명: gugu
+              기능: 선택박스에서 선택된 구구단을 출력함(for문사용!)
+              연결이벤트: change
+                      -> 선택박스(select)의 option선택이
+                      변경될때 발생하는 이벤트
+                      -> onchange 이벤트속성을 사용함!
+          *************************************************/
+        
+        /*************************************************** 
+               [ for문 ]
+
+               - 어떤 실행문을 순서대로 여러번 반복
+               실행할 경우 사용하는 제어문
+
+               ((구문구조))
+               _______________________________
+
+               for(시;한;증){실행코드}
+               - 시 -> 시작값(변수선언과 함께 숫자할당)
+               - 한 -> 한계값(숫자를 조건문으로 사용)
+               - 증 -> 증감(1씩증가 ++ / 1씩감소 --)
+               ______________________________________
+
+               ((for문 진행순서))
+               1. 먼저 시작값을 변수에 선언 후 할당함
+               2. 중앙에 있는 한계값 조건에 맞문지 검사함
+               3. 맞으면(true) for문의 중괄호{}안의 코드실행
+               4. 중괄호 안의 코드를 실행후 세번째 증감으로 감
+                  ++ / -- 로 1씩 증감함
+              5. 중앙에 있는 한계값 조건에 맞는지 검사함
+              6. 조건에 맞는 동안 중괄호 안의 코드를 실행함
+              7. 중앙의 한계값 조건에 맞지 않으면(false)
+                  for문을 빠져 나온다!
+
+          ***************************************************/
+
+        /************************************************* 
+              함수명: gugu2
+              기능: 선택박스에서 선택된 구구단을 출력함(for문사용!)
+              연결이벤트: change
+                      -> 선택박스(select)의 option선택이
+                      변경될때 발생하는 이벤트
+                      -> onchange 이벤트속성을 사용함!
+          *************************************************/
+        
+
+        /**************************************************** 
+              [ while문 ]
+
+              - 반복실행코드를 위한 조건으로 만드는 제어문
+
+              ((구문구조))
+              ______________________________
+              시작값;
+
+              while(한계값){
+                  실행코드;
+                  증감;
+              }
+              ______________________________
+
+              ((구문해석))
+
+              - for문과 유사하나 시작값이 while문 윗쪽에 나옴
+              - 한계값은 while문 소괄호 안에 씀
+              - 증감은 while 실행코드 내부에 씀
+              (주의: 증감을 안쓰면 무한루프에 빠짐!)
+
+              - >>>>> while문과 for문은 무엇이 다른가?
+
+              시작값과 증감없이 단지 조건에 의해서
+              반복실행이 필요한 경우 사용할 수 있다!
+
+              while(조건){코드}
+
+              -> 예) 중복숫자 피하기, 직전값 피하기 등
+
+        ****************************************************/
+    </script>
+    <style>
+        /* 칭찬스티커 */
+        #jshow {
+            position: absolute;
+            top: -19px;
+            left: 133px;
+            width: 322px;
+            height: 322px;
+            background: url(./images/ifshow.jpg) no-repeat;
+            /* 배경포지션으로 처음에 안보이게함! */
+            background-position: 322px 0;
+            /* 크기줄이기 - 30%크기 */
+            transform: scale(0.3);
+            /* 트랜지션: 속시이지 */
+            transition: all 0.4s ease-out;
+        }
+
+        /* IR(배경이미지 설명 숨기기) */
+        .ir {
+            display: block;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        /* 구구단 출력박스 */
+        .gugu {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed blue;
+            text-align: center;
+            margin-top: 10px;
+            /* 박스 y축 스크롤 */
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JS 제어문</h1>
+    <hr />
+    <!-- if문 연습 -->
+    <h2>if문 연습</h2>
+    <h3 id="jexp">평가출력</h3>
+    <label for="jumsu">점수입력:</label>
+    <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" />
+    <button class="sbtn">평가하기</button>
+    <!-- 
+        onkeypress 이벤트 속성 
+        -> 키보드를 치면 발생하는 이벤트연결 속성
+        if 조건문
+        조건식: event.keyCode === 13
+        -> 키보드의 키코드가 13이냐? 엔터키 눌렀냐?
+        -> 엔터키의 키코드는 13번이다!
+        -> true이면 jumsu() 라는 함수를 호출해라!
+
+        참고) 키코드 참조: 아스키코드
+        https://www.w3schools.com/charsets/ref_html_ascii.asp
+
+     -->
+
+    <!-- 칭찬스티커 -->
+    <div id="jshow">
+        <span class="ir">칭찬스티커</span>
+    </div>
+
+    <!-- 
+        lable 요소 : input요소의 설명라벨
+        - for속성 
+        -> 클릭시 해당 아이디 input요소로 포커스 들어감
+
+        input 요소 : 입력요소
+        - type="text" -> 글자입력
+        - placeholder -> 안내문구출력
+        - maxlength -> 최대입력 글자수 지정
+
+     -->
+
+    <br /><br />
+    <hr />
+    <!-- switch case문 연습 -->
+    <h2>switch case문 연습</h2>
+    <h3 id="info">국번안내</h3>
+    <label for="local">지역명 입력:</label>
+    <input type="text" id="local" placeholder="지역명을 '도'를 빼고 쓰세요!" maxlength="10"
+      />
+    <button class="sbtn">국번문의</button>
+
+    <br /><br />
+    <hr />
+    <!-- for문 연습 -->
+    <h2>for문 연습</h2>
+    <h3>구구단 출력하기</h3>
+    <select name="sel" id="sel">
+        <!-- option[value=$]{$단}*20 -->
+        <option value="1">구구단을 선택하세요!</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+        <option value="10">10단</option>
+        <option value="11">11단</option>
+        <option value="12">12단</option>
+        <option value="13">13단</option>
+        <option value="14">14단</option>
+        <option value="15">15단</option>
+        <option value="16">16단</option>
+        <option value="17">17단</option>
+        <option value="18">18단</option>
+        <option value="19">19단</option>
+        <option value="20">20단</option>
+    </select>
+    <!-- 구구단 출력박스 -->
+    <div class="gugu g1"></div>
+
+    <br /><br />
+    <hr />
+    <!-- while문 연습 -->
+    <h2>while문 연습</h2>
+    <h3>구구단 출력하기</h3>
+    <select name="sel2" id="sel2">
+        <option value="1">구구단을 선택하세요!</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+        <option value="10">10단</option>
+        <option value="11">11단</option>
+        <option value="12">12단</option>
+        <option value="13">13단</option>
+        <option value="14">14단</option>
+        <option value="15">15단</option>
+        <option value="16">16단</option>
+        <option value="17">17단</option>
+        <option value="18">18단</option>
+        <option value="19">19단</option>
+        <option value="20">20단</option>
+    </select>
+    <!-- 구구단 출력박스 -->
+    <div class="gugu g2"></div>
+</body>
+
+</html>
