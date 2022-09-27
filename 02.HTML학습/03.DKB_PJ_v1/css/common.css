@@ -212,6 +212,23 @@
     height: 100%;
 }
 
+/* 모바일용 햄버거버튼 */
+.ham{
+   position: absolute; 
+   top: 20px;
+   right: 20px;
+   width: 50px;
+   height: 50px;
+   font-size: 40px;
+}
+/* 버튼가상요소로 기호넣기 */
+.ham::before{
+    content: '≡';
+    display: block;
+    transform: scaleX(1.5);
+    /* 트랜스폼은 인라인에 안먹힘! */
+}
+
 
 /************** 3. 하단영역 **************/
 /* 겉박스 */
