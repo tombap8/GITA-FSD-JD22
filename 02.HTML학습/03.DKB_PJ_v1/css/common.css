@@ -11,8 +11,9 @@
 }
 /* 속박스 */
 .top{
-    /* 레러티브 포지션 - 부모자격(.tmenu) */
-    position: relative;
+    /* 레러티브 포지션 - 부모자격(.tmenu)
+    -> 지운이유: .gnb 서브배경 가상요소때문! */
+    /* position: relative; */
     height: 128px;
 }
 /* 1-1.로고 */
@@ -64,18 +65,77 @@
     /* 트랜지션: 속시이지 trs */
     transition: width .2s;
 }
-/* 마우스 오버시 하단바 보이기 */
-.gnb>ul>li>a:hover::after{
+/* 상위li 마우스 오버시 하단바 보이기 */
+.gnb>ul>li:hover>a::after{
     width: 100%;
 }
+/* 서브메뉴 */
+.smenu{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+
+    /* 서브숨기기 */
+    height: 0;
+    overflow: hidden;
+
+    background-color: #fff;
+
+    /* 트랜지션: 속시이지 */
+    transition: height .4s ease-out;
+}
+/* 상위메뉴 li오버시 서브메뉴 보이기 */
+/* 프로그램소개 */
+.gnb>ul>li:nth-child(1):hover .smenu{
+    height: 120px;
+}
+/* 동영상 */
+.gnb>ul>li:nth-child(3):hover .smenu{
+    height: 150px;
+}
+/* 사진첩 */
+.gnb>ul>li:nth-child(4):hover .smenu{
+    height: 90px;
+}
+
+/* 서브메뉴 a요소 */
+.smenu a{
+    display: block;
+    font-size: 1.4rem;
+    padding: 10px 0;
+}
+
+/* 상위li 가상요소로 서브배경박스 넣기 
+- 서브메뉴 끝까지 차는 박스
+-> .sm인 li만 생성됨! */
+.gnb>ul>li.sm::after{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    /* 부모는?  */
+    width: 100%;
+    /* 가로크기에 %를 주었으므로
+    부모자격요소를 찾아서 크기를 잡는다! */
+    height: 200px;
+    background-color: #f00;
+}
+
 
 /* 1-3.탑메뉴 */
 .tmenu{
     /*  앱솔루트포지션 */
     position: absolute;
     top: 20px;
-    right: 0;
-    /* 부모는? .top */
+    left: 50%;
+    transform: translateX(-50%);
+    /* x축으로 중앙이동 */
+    /* 부모는? 보이는화면 */
+    width: 1200px;
+    outline: 2px dotted red;
+
+}
+.tmenu>ul{
+    float: right;
 }
 /* 탑메뉴 상위li */
 .tmenu>ul>li{
