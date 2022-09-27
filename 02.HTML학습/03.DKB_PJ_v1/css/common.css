@@ -73,6 +73,8 @@
 .smenu{
     /* 앱솔루트 포지션 */
     position: absolute;
+    z-index: 1;
+    /* 서브메뉴 배경 가상요소보다 위! */
 
     /* 서브숨기기 */
     height: 0;
@@ -85,15 +87,18 @@
 }
 /* 상위메뉴 li오버시 서브메뉴 보이기 */
 /* 프로그램소개 */
-.gnb>ul>li:nth-child(1):hover .smenu{
+.gnb>ul>li:nth-child(1):hover .smenu,
+.gnb>ul>li:nth-child(1):hover::after{
     height: 120px;
 }
 /* 동영상 */
-.gnb>ul>li:nth-child(3):hover .smenu{
+.gnb>ul>li:nth-child(3):hover .smenu,
+.gnb>ul>li:nth-child(3):hover::after{
     height: 150px;
 }
 /* 사진첩 */
-.gnb>ul>li:nth-child(4):hover .smenu{
+.gnb>ul>li:nth-child(4):hover .smenu,
+.gnb>ul>li:nth-child(4):hover::after{
     height: 90px;
 }
 
@@ -116,8 +121,11 @@
     width: 100%;
     /* 가로크기에 %를 주었으므로
     부모자격요소를 찾아서 크기를 잡는다! */
-    height: 200px;
-    background-color: #f00;
+    height: 0;
+    background-color: #fff;
+    
+    /* 트랜지션: 속시이지 */
+    transition: height .4s ease-out;
 }
 
 
