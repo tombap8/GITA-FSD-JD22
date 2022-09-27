@@ -136,12 +136,34 @@
       position: absolute;
       width: 200px;
 
+      /* 메뉴 숨기기 
+      - 높이값0,overflow:hidden */
+      height: 0;
+      overflow: hidden;
+      /* 주의: 숨기는 박스에 상하패딩이
+       있으면 완전히 숨길 수 없다! */
+
       /* 배경색 
       - 상위메뉴 오버시 배경색과 동일 */
       background-color: darkblue;
       /* 둥근모서리 - 양쪽아래만 */
       border-radius: 0 0 5px 5px;
+
+      /* 트랜지션: 속시이지 */
+      transition: height .4s ease-out;
     }
+
+    /* 상위메뉴 li오버시 서브메뉴 보이기
+    - 두번째 메뉴 */
+    .gnb>ul>li:nth-child(2):hover .smenu{
+      height: 170px;
+    }
+    /* 상위메뉴 li오버시 서브메뉴 보이기
+    - 세번째 메뉴 */
+    .gnb>ul>li:nth-child(3):hover .smenu{
+      height: 100px;
+    }
+
     /* 서브메뉴 ol */
     .smenu ol{
       /* 패딩 */
@@ -212,7 +234,7 @@
       <li>
         <a href="#"><span>게시판</span></a>
         <!-- 서브메뉴 -->
-        <!-- <div class="smenu">
+        <div class="smenu">
             <ol>
               <li>
                 <a href="#">Q&amp;A</a>
@@ -221,7 +243,7 @@
                 <a href="#">방명록</a>
               </li>
             </ol>
-          </div> -->
+          </div>
       </li>
       <li>
         <a href="#"><span>프로필</span></a>
