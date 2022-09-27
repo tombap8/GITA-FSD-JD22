@@ -8,6 +8,8 @@
 #top{
     /* 배경색 */
     background-color: #fff;
+    /* 하단구분선 */
+    border-bottom: 1px solid #ccc;
 }
 /* 속박스 */
 .top{
@@ -80,7 +82,7 @@
     height: 0;
     overflow: hidden;
 
-    background-color: #fff;
+    /* background-color: #fff; */
 
     /* 트랜지션: 속시이지 */
     transition: height .4s ease-out;
@@ -102,6 +104,11 @@
     height: 90px;
 }
 
+/* 서브메뉴 ol요소 */
+.smenu ol {
+    padding-top: 5px;
+}
+
 /* 서브메뉴 a요소 */
 .smenu a{
     display: block;
@@ -117,15 +124,22 @@
     display: block;
     position: absolute;
     left: 0;
-    /* 부모는?  */
+    /* 부모는? 보이는화면 */
     width: 100%;
     /* 가로크기에 %를 주었으므로
     부모자격요소를 찾아서 크기를 잡는다! */
     height: 0;
+    /* 상단 1px이동은 마진탑으로! */
+    margin-top: 1px;
     background-color: #fff;
     
     /* 트랜지션: 속시이지 */
     transition: height .4s ease-out;
+}
+
+/* 상위메뉴 li.sm 오버시 li가상요소에 하단선생김 */
+.gnb>ul>li.sm:hover::after{
+    border-bottom: 2px solid red;
 }
 
 
