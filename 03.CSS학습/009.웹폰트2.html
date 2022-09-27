@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>웹폰트 CDN방식으로 적용하기</title>
     <!-- 웹폰트 CDN : link방식  -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Pangolin&family=Rock+Salt&family=Tangerine&display=swap" rel="stylesheet"> -->
     <style>
         /* 
             [ CDN 방식으로 웹폰트 불러오기 ]
@@ -41,25 +42,35 @@
              */
 
         /* import방식 CDN 웹폰트 */
-        
+        @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Pangolin&family=Rock+Salt&family=Tangerine&display=swap');
+        /* 
+            font-family: 'Monoton', cursive;
+            font-family: 'Pangolin', cursive;
+            font-family: 'Rock Salt', cursive;
+            font-family: 'Tangerine', cursive;
+        */
 
         /* CDN 웹폰트 적용하기 */
         .cdn1 {
+            font-family: 'Monoton', cursive;
             color: darkviolet;
             font-weight: normal;
         }
 
         .cdn2 {
+            font-family: 'Pangolin', cursive;
             color: darkgreen;
             font-weight: normal;
         }
 
         .cdn3 {
+            font-family: 'Rock Salt', cursive;
             color: darkred;
             font-weight: normal;
         }
 
         .cdn4 {
+            font-family: 'Tangerine', cursive;
             color: darkcyan;
             font-weight: normal;
         }
