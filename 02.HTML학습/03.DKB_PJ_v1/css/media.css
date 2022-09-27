@@ -28,9 +28,74 @@
     .brand{
         display: none;
     }
+
+    /* 캐릭터 박스 한줄에 2개씩 */
+    .cat{
+        width: 49%;
+    }
+    /* 캐릭터 부모박스 */
+    .cbx{
+        margin-top: 100px;
+    }
+    /* 캐릭터 오버시 이미지박스 */
+    .cat:hover .ci {
+        margin-top: 0;
+    }
+    /* 캐릭터 오버시 z-index */
+    .cat:hover{
+        z-index: 1;
+    }
+    /* 설명박스 타이틀 */
+    .cd h3{
+        font-size: 3vw;
+    }
+    /* 설명박스 p요소 */
+    .cd p{
+        font-size: 2vw;
+    }
+
+
 } /**************** 1070px이하 ****************/
 
-/**************** 1070이하 ****************/
-@media screen and (max-width:1070px) {
-    
-} /**************** 1070px이하 ****************/
+/**************** 870이하 ****************/
+@media screen and (max-width:870px) {
+
+    /* 없어질 요소들 : 상단메뉴, GNB, 하단링크 */
+    .tmenu, .gnb, .blink{
+        display: none;
+    }
+
+    /* 상단영역 높이값 */
+    .top{
+        height: 80px;
+    }
+
+    /* 캐릭터부모박스 */
+    .cbx {
+        margin-top: 20px;
+    }
+
+    /* 캐릭터박스 한줄에 하나씩 */
+    .cat{
+        width: 99%;
+    }
+    /* 설명박스 자리자치하는 포지션으로! */
+    .cd{
+        position: static;
+    }
+    /* 설명박스 타이틀 */
+    .cd h3{
+        font-size: 4vw;
+    }
+    /* 설명박스 p요소 */
+    .cd p{
+        font-size: 3vw;
+    }
+
+    /* 하단영역 */
+    .info {
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+} /**************** 870px이하 ****************/
