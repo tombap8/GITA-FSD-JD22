@@ -65,6 +65,11 @@
         display: none;
     }
 
+    /* 보여질요소 */
+    .ham{
+        display: block;
+    }
+
     /* 상단영역 높이값 */
     .top{
         height: 80px;
