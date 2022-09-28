@@ -216,13 +216,20 @@
          function local(){
 
             // 1. 함수호출확인!
-            console.log("지역국번이 뭐야?");
+            // console.log("지역국번이 뭐야?");
 
             // 2. 대상선정
             // 2-1. 입력대상: input#local
             var tg = document.querySelector("#local");
 
-            console.log(tg);
+            // 2-2. 출력대상: #info
+            var info = document.querySelector("#info");
+
+            // 3. 입력된 값 읽어오기 -> 지역명!
+            var txt = tg.value;
+            // 요소.value -> 요소의 value값 읽기/쓰기
+
+            console.log("지역명:",txt);
 
          } /////////////// local 함수 ///////////////////////
          ///////////////////////////////////////////////////
