@@ -213,6 +213,19 @@
             함수명: local
             기능: 지역명을 입력하면 지역국번을 안내한다!
           *************************************************/
+         function local(){
+
+            // 1. 함수호출확인!
+            console.log("지역국번이 뭐야?");
+
+            // 2. 대상선정
+            // 2-1. 입력대상: input#local
+            var tg = document.querySelector("#local");
+
+            console.log(tg);
+
+         } /////////////// local 함수 ///////////////////////
+         ///////////////////////////////////////////////////
 
 
         /************************************************ 
@@ -412,8 +425,8 @@
     <h2>switch case문 연습</h2>
     <h3 id="info">국번안내</h3>
     <label for="local">지역명 입력:</label>
-    <input type="text" id="local" placeholder="지역명을 '도'를 빼고 쓰세요!" maxlength="10" />
-    <button class="sbtn">국번문의</button>
+    <input type="text" id="local" placeholder="지역명을 '도'를 빼고 쓰세요!" maxlength="10" onkeypress="if(event.keyCode===13)local()" />
+    <button class="sbtn" onclick="local()">국번문의</button>
 
     <br /><br />
     <hr />
