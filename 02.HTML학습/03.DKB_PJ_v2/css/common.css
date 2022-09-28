@@ -1,0 +1,331 @@
+@charset "utf-8";
+/* 도깨비 PJ 공통모듈 CSS - common.css */
+/* 상단영역, 하단영역 반복디자인 */
+
+
+/************** 1. 상단영역 **************/
+/* 겉박스 */
+#top{
+    /* 배경색 */
+    background-color: #fff;
+    /* 하단구분선 */
+    border-bottom: 1px solid #ccc;
+}
+/* 속박스 */
+.top{
+    /* 레러티브 포지션 - 부모자격(.tmenu)
+    -> 지운이유: .gnb 서브배경 가상요소때문! */
+    /* position: relative; */
+    height: 128px;
+}
+/* 1-1.로고 */
+.logo{
+    /* 이미지와 같은 width 셋팅 */
+    width: 100px;
+    /* 마영오! */
+    margin: 0 auto;
+    /* 패딩상단 */
+    padding-top: 20px;
+}
+/* 로고이미지 */
+.logo img{
+    width: 100px;
+}
+/* 1-2.GNB메뉴 */
+.gnb{
+    /* 가로크기를 주고 마영오적용! */
+    width: 574px;
+    /* 마영오! */
+    margin: 0 auto;
+    /* 마진상단 */
+    margin-top: 25px;
+}
+/* GNB 상위메뉴 li */
+.gnb>ul>li{
+    /* 패딩양쪽 */
+    padding: 0 15px;
+}
+/* GNB 상위메뉴 a */
+.gnb>ul>li>a{
+    /* 레러티브 포지션 - 부모자격(a::after) */
+    position: relative;
+    /* 디스플레이 변경! 블록! */
+    display: block;
+    /* 글자셋팅 */
+    font-size: 1.7rem;
+    line-height: 2.5;
+}
+/* 가상요소로 하단바 만들기 */
+.gnb>ul>li>a::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: red;
+    /* 트랜지션: 속시이지 trs */
+    transition: width .2s;
+}
+/* 상위li 마우스 오버시 하단바 보이기 */
+.gnb>ul>li:hover>a::after{
+    width: 100%;
+}
+/* 서브메뉴 */
+.smenu{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    z-index: 1;
+    /* 서브메뉴 배경 가상요소보다 위! */
+
+    /* 서브숨기기 */
+    height: 0;
+    overflow: hidden;
+
+    /* background-color: #fff; */
+
+    /* 트랜지션: 속시이지 */
+    transition: height .4s ease-out;
+}
+/* 상위메뉴 li오버시 서브메뉴 보이기 */
+/* 프로그램소개 */
+.gnb>ul>li:nth-child(1):hover .smenu,
+.gnb>ul>li:nth-child(1):hover::after{
+    height: 120px;
+}
+/* 동영상 */
+.gnb>ul>li:nth-child(3):hover .smenu,
+.gnb>ul>li:nth-child(3):hover::after{
+    height: 150px;
+}
+/* 사진첩 */
+.gnb>ul>li:nth-child(4):hover .smenu,
+.gnb>ul>li:nth-child(4):hover::after{
+    height: 90px;
+}
+
+/* 서브메뉴 ol요소 */
+.smenu ol {
+    padding-top: 5px;
+}
+
+/* 서브메뉴 a요소 */
+.smenu a{
+    display: block;
+    font-size: 1.4rem;
+    padding: 10px 0;
+}
+
+/* 상위li 가상요소로 서브배경박스 넣기 
+- 서브메뉴 끝까지 차는 박스
+-> .sm인 li만 생성됨! */
+.gnb>ul>li.sm::after{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    /* 부모는? 보이는화면 */
+    width: 100%;
+    /* 가로크기에 %를 주었으므로
+    부모자격요소를 찾아서 크기를 잡는다! */
+    height: 0;
+    /* 상단 1px이동은 마진탑으로! */
+    margin-top: 1px;
+    background-color: #fff;
+    
+    /* 트랜지션: 속시이지 */
+    transition: height .4s ease-out;
+}
+
+/* 상위메뉴 li.sm 오버시 li가상요소에 하단선생김 */
+.gnb>ul>li.sm:hover::after{
+    border-bottom: 2px solid red;
+}
+
+
+/* 1-3.탑메뉴 */
+.tmenu{
+    /*  앱솔루트포지션 */
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* x축으로 중앙이동 */
+    /* 부모는? 보이는화면 */
+    width: 1200px;
+    outline: 2px dotted red;
+
+}
+.tmenu>ul{
+    float: right;
+}
+/* 탑메뉴 상위li */
+.tmenu>ul>li{
+    /* 패딩양쪽 */
+    padding: 0 5px;
+}
+/* 탑메뉴 상위a */
+.tmenu>ul>li>a{
+    /* 글자크기 */
+    font-size: 1.5rem;
+}
+/* sns메뉴 */
+.sns {
+    /* 마진 상단 */
+    margin-top: -5px;
+}
+.sns li{
+    width: 30px;
+    height: 30px;
+    /* 배경이미지로 sns 아이콘 넣기(스프라이츠) */
+    background: url(../images/icons.png) no-repeat;
+}
+/* 트위터 */
+.sns li:nth-child(1){
+    background-position: 0 0;
+}
+/* 트위터 오버시 */
+.sns li:nth-child(1):hover{
+    background-position: 0 -30px;
+}
+/* 인스타그램 */
+.sns li:nth-child(2){
+    background-position: -30px 0;
+}
+/* 인스타그램 오버시 */
+.sns li:nth-child(2):hover{
+    background-position: -30px -30px;
+}
+/* 페이스북 */
+.sns li:nth-child(3){
+    background-position: -60px 0;
+}
+/* 페이스북 오버시 */
+.sns li:nth-child(3):hover{
+    background-position: -60px -30px;
+}
+
+/* sns a요소 확장 */
+.sns a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 모바일용 햄버거버튼 */
+.ham{
+   position: absolute; 
+   top: 20px;
+   right: 20px;
+   width: 50px;
+   height: 50px;
+   font-size: 40px;
+   background-color: transparent;
+   border: none;
+
+   /* 처음에 안보임 */
+   display: none;
+}
+/* 버튼가상요소로 기호넣기 */
+.ham::before{
+    content: '≡';
+    display: block;
+    transform: scaleX(1.5);
+    /* 트랜스폼은 인라인에 안먹힘! */
+}
+/* 가상요소 기호변경 */
+.ham.on::before{
+    content: '×';
+    transform: none;
+}
+
+
+/************** 3. 하단영역 **************/
+/* 겉박스 */
+#info{
+    background-color: rgba(255, 255, 255, 0.765);
+}
+/* 속박스 */
+.info{
+    /* 레러티브 포지션 - 부모자격(.brand) */
+    position: relative;
+    height: 241px;
+}
+/* 3-1. 하단링크 */
+.blink{
+    /* 패딩상단 pt */
+    padding-top: 5px;
+}
+/* 하단링크 리스트 */
+.blink ul{
+    /* 가로크기를 줘야 마영오적용확인! */
+    max-width: 804px;
+    /* 마영오 - 블록박스 가로중앙 */
+    margin: 0 auto;
+}
+
+.blink li{
+    /* 옆으로 흐르게 */
+    float: left;
+    /* 양쪽패딩 */
+    padding: 0 15px;
+}
+/* 글자셋팅 */
+.blink a{
+    /* 글자셋팅 */
+    color: #222;
+    font-weight: bold;
+    font-size: 1.4rem;
+    line-height: 2.8;
+}
+/* 마우스 오버시 a */
+.blink a:hover{
+    /* 글자색변경, 밑줄 */
+    color: red;
+    text-decoration: underline;
+}
+
+/* 3-2. 회사정보 */
+.addr{
+    /* 패딩 */
+    padding: 10px;
+}
+.addr address{
+    /* 글자셋팅 - address요소 기본 이탤릭해제 */
+    font-size: 1.4rem;
+    font-style: normal;
+    text-align: center;
+    line-height: 2;
+
+    /* 박스셋팅 */
+    max-width: 804px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 4px double #222;
+}
+
+/* 3-3. 하단로고 */
+.blogo{
+    /* 글자중앙 */
+    text-align: center;
+}
+
+/* 3-4. 바로가기 */
+.brand {
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    top: 5px;
+    right: 0;
+    /* 부모는? .info */
+}
+/* 선택박스 */
+#sel {
+    /* 글자셋팅 */
+    color: #222;
+    font-weight: bold;
+    font-size: 1.4rem;
+
+    /* 패딩 */
+    padding: 8px;
+}
+
