@@ -10,6 +10,9 @@
         /********************************************* 
                 함수명: jumsu
                 기능: 점수에 따른 평가출력하기
+                    1. 점수에 따른 메시지 출력
+                    2. 점수에 따른 메시지 글자색 변경
+                    3. 점수에 따른 칭찬스티커 보이기
         *********************************************/
        function jumsu(){
 
@@ -34,29 +37,42 @@
 
             // 평가결과 메시지 변수
             var msg;
+            // 평가결과 메시지 글자색 변수
+            var jc;
+            // 평가결과 칭찬스티커 위치변수
+            var bgp;
 
 
             // 4. 점수환산하기 
             if(score >= 90){
                 msg = "매우잘함";
+                jc = "blue";
             }
             else if(score >= 80){
                 msg = "잘함";
+                jc = "green";
             }
             else if(score >= 70){
                 msg = "보통";
+                jc = "purple";
             }
             else if(score >= 60){
                 msg = "노력요함";
+                jc = "orange";
             }
             else{
                 msg = "재시험";
+                jc = "red";
             }
 
             // console.log(msg);
 
             // 5. 화면출력 : #jexp -> jexp변수
             jexp.innerText = "평가결과는 " + msg;
+
+            // 6. 글자색 변경
+            jexp.style.color = jc;
+            // style.속성명 = 값
 
 
 
