@@ -79,11 +79,9 @@
             jexp.style.color = jc;
             // style.속성명 = 값
 
-            // 7. 칭찬스티커 배경위치변경 : #jshow -> jshow변수
+            // 7. 칭찬스티커 배경위치변경 : 
+            // #jshow -> jshow변수
             jshow.style.backgroundPosition = bgp;
-
-
-
 
 
             
@@ -304,7 +302,7 @@
     <h2>if문 연습</h2>
     <h3 id="jexp">평가출력</h3>
     <label for="jumsu">점수입력:</label>
-    <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" />
+    <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" onkeypress="if(event.keyCode===13)jumsu()" />
     <button class="sbtn" onclick="jumsu()">평가하기</button>
     <!-- 
         onkeypress 이벤트 속성 
