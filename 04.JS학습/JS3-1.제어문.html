@@ -19,7 +19,7 @@
             // 1. 함수호출 확인!
             // console.log("점수요~~!");
 
-            // 2. 대상선정
+            // 2. 대상선정 ////////////////////////////
             // 2-1. 점수입력요소 : input#jumsu
             var jumsu = document.getElementById("jumsu");
 
@@ -29,7 +29,7 @@
             // 2-3. 칭찬스티커 : #jshow
             var jshow = document.querySelector("#jshow");
 
-            // 3. 입력값 읽어오기
+            // 3. 입력값 읽어오기 ///////////
             var score = jumsu.value;
             // value속성 - 입력된 값을 읽기/쓰기
 
@@ -43,7 +43,7 @@
             var bgp;
 
 
-            // 4. 점수환산하기 
+            // 4. 점수환산하기 //////////
             if(score >= 90){
                 msg = "매우잘함";
                 jc = "blue";
@@ -78,6 +78,10 @@
             // 6. 글자색 변경
             jexp.style.color = jc;
             // style.속성명 = 값
+
+            // 7. 칭찬스티커 배경위치변경 : #jshow -> jshow변수
+            jshow.style.backgroundPosition = bgp;
+
 
 
 
