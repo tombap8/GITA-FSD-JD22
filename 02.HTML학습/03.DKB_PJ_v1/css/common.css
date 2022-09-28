@@ -153,7 +153,7 @@
     /* x축으로 중앙이동 */
     /* 부모는? 보이는화면 */
     width: 1200px;
-    outline: 2px dotted red;
+    /* outline: 2px dotted red; */
 
 }
 .tmenu>ul{
