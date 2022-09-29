@@ -1,17 +1,14 @@
 @charset "utf-8";
-/* 도깨비 PJ 공통클래스/웹폰트 CSS - core.css */
+/* CGV PJ 공통클래스/웹폰트 CSS - core.css */
+/* 웹폰트, 공용클래스 */
 
-/* 웹폰트 CDN */
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Nanum+Gothic&family=Single+Day&family=ZCOOL+KuaiLe&display=swap');
+/*********** 1. 웹폰트 : CDN ***********/
+/* Cute Font, Jua, Audiowide 체 */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Cute+Font&family=Jua&display=swap');
 /* 
-    1. 캐릭터 설명 제목체
-    font-family: 'Gugi', cursive;
-    2. 캐릭터 설명 내용체
-    font-family: 'Single Day', cursive;
-    3. 캐릭터 설명 한자체
-    font-family: 'ZCOOL KuaiLe', cursive;
-    4. 전체 공통체(메뉴 등)
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Audiowide', cursive;
+    font-family: 'Cute Font', cursive;
+    font-family: 'Jua', sans-serif;
 */
 
 /* 전체 글자크기 Root 셋팅! */
@@ -20,10 +17,7 @@ html{
     /* 글자 rem단위 계산편의때문~! */
 }
 
-/* 전체 웹폰트 일반적용! */
-body{
-    font-family: 'Nanum Gothic', sans-serif;
-}
+/******************** 2. 공통 클래스 ********************/
 
 /* 속박스 class */
 .ibx{
