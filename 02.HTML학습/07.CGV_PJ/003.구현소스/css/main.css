@@ -9,3 +9,26 @@
 body{
     background-color: #000;
 }
+
+/* 공사중표시 */
+body *{
+    outline: 1px dotted lime;
+}
+
+/****************** 1. 상단영역 ******************/
+.top{
+    height: 80px;
+    background: url(../images/curtain.jpg) repeat-x;
+}
+
+/****************** 2. 메인영역 ******************/
+.cont{
+    height: 788px;
+    background: url(../images/bg.jpg) no-repeat center;
+}
+
+/****************** 3. 하단영역 ******************/
+.info{
+    height: 100px;
+}
+
