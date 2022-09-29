@@ -113,16 +113,18 @@ input:focus{
 
 /* 체크박스 라벨과 세로정렬 */
 .addbx input{
-    vertical-align: -3px;
+    width: 0;/* 체크박스 안보임 */
+    /* vertical-align: -3px; */
 }
 /* 체크박스 아이콘을 라벨에 넣기! */
 .addbx input+label{
     display: inline-block;
     width: 20px;
     height: 20px;
-    vertical-align: middle;
+    vertical-align: -3px;
     font-size: 20px;
-    outline: 1px solid red;
+    margin-right: 5px;
+    /* outline: 1px solid red; */
 }
 /* 체크박스 체크시 아이콘 변경 */
 .addbx input:checked+label{
