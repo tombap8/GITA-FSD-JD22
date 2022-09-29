@@ -43,8 +43,30 @@ body *{
 
 /****************** 2. 메인영역 ******************/
 .cont{
+    /* 렐러티브 포지션 : 부모자격(#screen) */
+    position: relative;
     height: 788px;
     background: url(../images/bg.jpg) no-repeat center;
+}
+/* 2-1.스크린박스 */
+#screen{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    top: 136px;
+    left: calc(50% - 344px);
+    /* 화면이 줄어도 스크린이 중앙에 위치하도록
+    left 50%밀고 스크린 크기의 절반정도를 뺌! */
+    width: 702px;
+    height: 397px;
+    /* 부모는? .cont */
+    background-color: red;
+}
+/* 유튜브 아이프레임 */
+#screen iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* 기본프레임보더 없앰 */
 }
 
 /****************** 3. 하단영역 ******************/
