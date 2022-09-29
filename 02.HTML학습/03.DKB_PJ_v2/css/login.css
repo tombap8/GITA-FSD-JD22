@@ -115,6 +115,19 @@ input:focus{
 .addbx input{
     vertical-align: -3px;
 }
+/* 체크박스 아이콘을 라벨에 넣기! */
+.addbx input+label{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    font-size: 20px;
+    outline: 1px solid red;
+}
+/* 체크박스 체크시 아이콘 변경 */
+.addbx input:checked+label{
+    font-weight: 900;
+}
 
 /* 기타링크 구분선 */
 /* span+span 앞에 span이 있는 span형제 */
