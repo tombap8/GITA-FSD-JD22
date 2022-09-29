@@ -109,6 +109,8 @@ input:focus{
     margin-top: 50px;
     text-align: center;
     font-size: 1.6rem;
+    /* 글자 선택영역 안잡히게 방지 */
+    user-select: none;
 }
 
 /* 체크박스 라벨과 세로정렬 */
@@ -123,6 +125,7 @@ input:focus{
     height: 20px;
     vertical-align: -3px;
     font-size: 20px;
+    color: orangered;
     margin-right: 5px;
     /* outline: 1px solid red; */
 }
