@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>flex 레이아웃 연습</title>
+  <style>
+    html,
+    body,
+    ul,
+    ol {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    #wrap {
+      height: 100vh;
+      /* vh 로 보이는 화면 채움! */
+    }
+
+    #wrap ul {
+      /* 플렉스 박스 */
+      display: flex;
+      /****************************************** 
+          [ 플렉스 박스!!! ]
+          flex란? - flexible(유연한-에서 나온말)
+
+          - 가변적인 자식요소를 컨트롤하기 위해
+          CSS3에서 새롭게 선보인 display 기술
+
+          - 자식요소를 같은 비율로 혹은 다른비율로
+          분할이 쉽다
+          - 자식요소의 순서를 일괄적으로 변경할 수 있다
+          - 무엇보다도 블록요소를 옆으로 흐르게 하는데
+          탁월하다!
+
+          [ 셋팅법 ]
+          - 옆으로 흐르게할 요소들의 부모요소에
+           display: flex 로 설정함!
+          - 자식요소를 flex:1 로 설정하면 등분할 됨!
+          - 자식요소의 높이값은 자동으로 부모의 높이값을
+          채운다!
+        
+        ******************************************/
+
+      flex-direction: row-reverse;
+      /* 
+          flex-direction 속성 : 진행방향과 순서를 정함
+          1) row : 좌->우(기본값)
+          2) row-reverse : 우->좌
+          3) column : 위->아래
+          4) column-reverse : 아래->위
+        */
+
+      height: 100%;
+    }
+
+    #wrap>ul>li {
+      position: relative;
+      /* 부모자격 */
+
+      /* flex자식요소 등분할 셋팅 */
+      flex: 1;
+      /* 
+          [ flex 속성 : 플렉스 자식요소에 주는 속성 ]
+          -> flex : 한번에 아래 3가지 속성을 줌
+
+          flex: 1 숫자하나만 쓰면 
+          flex: 1 1 0 과 동일
+          해석) 
+          커질래? 응(1), 작아질래? 응(1), 가로크기 0 (설정없음)
+
+          따로 설정시 아래와 같다!
+          flex-grow: 1;
+          flex-shrink: 1;
+          flex-basis: 0;
+
+          1) flex-grow: 1 | 0 -> 커질래? 1 응 | 0 아니
+          2) flex-shrink: 1 | 0 -> 작아질래? 1 응 | 0 아니
+          3) flex-basis: 설정값(px,%,em,rem,vw등)
+          -> width 가로크기를 설정하는 속성
+          -> 만약 0을 쓰면 속성값 없음!
+
+        */
+
+        /* 배경공통 */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 100%;
+
+        /* 트랜지션: 속시이지 */
+        transition: flex .4s ease-in-out;
+    }
+
+    /* 가상요소로 오버레이효과 주기! */
+    /* 참고:  밝게 처리하는것이 트랜스페런트(transparent) 효과,
+    어둡게 처리하는것이 오버레이(overlay)효과라고 한다! */
+    #wrap>ul>li::before{
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      /* 앱솔루트로 부모박스 채우기! */
+      background-color: #000;
+      opacity: 0.5;
+      /* 트랜지션 */
+      transition: opacity .4s;
+    }
+    /* 마우스 오버시 가상요소 투명도0 */
+    #wrap>ul>li:hover::before{
+      opacity: 0;
+    }
+
+    /* 등분할 li에 마우스 오버시 
+    flex속성으로 비율조정하기! */
+    #wrap>ul>li:hover{
+      flex: 1.4;
+      /* flex속성에 쓴 숫자 하나!
+      이것은 flex-grow에 대한 값이다!
+      1값에 대응하여 2라고하면 2배,
+      0.5라고 하면 절반 크기의 비를 가진다!
+      소수점으로 세밀한 비율을 설정할 수 있다! */
+    }
+
+    #wrap>ul>li:nth-child(1) {
+      background-color: #dd1e2d;
+      background-image: url(./images/m01_bg.jpg);
+    }
+
+    #wrap>ul>li:nth-child(2) {
+      background-color: #5438a5;
+      background-image: url(./images/m02_bg.jpg);
+    }
+
+    #wrap>ul>li:nth-child(3) {
+      background-color: #1bb0a7;
+      background-image: url(./images/m03_bg.jpg);
+    }
+
+    #wrap>ul>li:nth-child(4) {
+      background-color: #ee9009;
+      background-image: url(./images/m04_bg.jpg);
+    }
+
+    #wrap>ul>li:nth-child(5) {
+      background-color: #3483d8;
+      background-image: url(./images/m05_bg.jpg);
+    }
+
+    /* 각 파트 타이틀 */
+    #wrap>ul>li>img:first-child{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* 부모자격? 싸고있는 li */
+      transform: translate(-50%, -50%);
+      /* [정중앙정렬하기]
+      top,left 50%, 
+      트랜스폼 트랜스레이트 -50%위치이동
+      박스 정중앙이동! */
+      width: min(14vw,190px);
+      /* min(유동적인값,특정값)
+      -> 둘중 작은값 선택-> 최대크기지정! */
+    }
+
+    /* 각 파트 로고 */
+    #wrap>ul>li>img:last-child{
+      position: absolute;
+      bottom: 10vh;
+      left: 50%;
+      /* 부모는? 싸고있는 li */
+      transform: translateX(-50%);
+    }
+
+    /* 타이틀 공통 */
+    .tit {
+      position: absolute;
+      top: 100px;
+      left: calc(50% - 250px);
+      /* calc(화면절반% - 자기크기절반) */
+      /* 가로중앙계산 (가로500px의 절반을 뺌) */
+      width: 500px;
+      height: 100px;
+      border: 5px double #fff;
+
+    }
+
+    /* 타이틀 하위 li 공통 */
+    .tit>li {
+      width: 50px;
+      height: 50px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      font: bold 14px/50px Verdana;
+      text-align: center;
+      color: #fff;
+      background-color: red;
+    }
+
+   
+
+    /* 타이틀박스7 */
+    .t7{
+      height: 200px;
+
+      /* 플렉스박스 */
+      display: flex;
+      /* 랩핑박스 */
+      flex-wrap: wrap;
+      /* 수평정렬 */
+      justify-content: space-evenly;
+      /* 수직정렬(여러줄) */
+      align-content: center;
+    }
+    /* .brk뒤의 li 마진탑 */
+    .t7 li.brk~li{
+      margin-top: 20px;
+    }
+
+    /* 자체 응용 - 줄바꿈을 위한 li */
+    /* 원리는 줄바꿈을 할 부분에서
+    가로크기 100%를 차지하게 해서
+    줄바꿈효과를 준다! */
+    .t7 li.brk{
+      /* width: 100%; */
+      flex-basis: 100%;
+      /* flex-basis는 width와 같다! */
+
+      /* 기존디자인을 없애고 안보이게 처리함! */
+      height: 0;
+      border: none;
+    }
+
+    /* 하단바 */
+    .info{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      padding: 10px;
+      text-align: center;
+      background-color: #d9041c;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <!-- 파티션박스 -->
+    <ul>
+      <li>
+        <img src="images/m01_txtbox.png" alt="타이틀">
+        <img src="images/m01_logo1.png" alt="로고">        
+      </li>
+      <li>
+        <img src="images/m02_txtbox.png" alt="타이틀">
+        <img src="images/m02_logo.png" alt="로고">        
+      </li>
+      <li>
+        <img src="images/m03_txtbox.png" alt="타이틀">
+        <img src="images/m03_logo.png" alt="로고">        
+      </li>
+      <li>
+        <img src="images/m04_txtbox.png" alt="타이틀">
+        <img src="images/m04_logo.png" alt="로고">        
+      </li>
+      <li>
+        <img src="images/m05_txtbox.png" alt="타이틀">
+        <img src="images/m05_logo.png" alt="로고">        
+      </li>
+    </ul>
+
+    <!-- 타이틀박스7 -->
+    <ol class="tit t7">
+      <li>L</li>
+      <li>O</li>
+      <li>T</li>
+      <li>T</li>
+      <li>E</li>
+      
+      <!-- 줄바꿈요소 -->
+      <li class="brk"></li>
+
+      <li>W</li>
+      <li>O</li>
+      <li>R</li>
+      <li>L</li>
+      <li>D</li>
+    </ol>
+
+  </div>
+
+
+
+  <!-- 하단바 -->
+  <footer class="info">
+    <img src="images/lotte_logo.gif" alt="하단로고">
+  </footer>
+
+</body>
+
+</html>
