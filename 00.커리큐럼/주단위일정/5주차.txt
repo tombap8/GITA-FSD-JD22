@@ -39,7 +39,7 @@ ____________________________________________
 3) 미디어쿼리 - 완료!
 4) 뷰포트 단위 - 완료!
 
-5) Flex Display(목)
+5) Flex Display(목) - 완료!
 
 6) 3D 애니메이션 : (금)
     - Open Door : 원근기법(Perspective) 
@@ -55,13 +55,15 @@ ____________________________________________
 2) 변수 바.렛.콘스트 (JS2-2) 
 3) 제어문(JS3) :  
     - if문 + switch case문 - 완료!
-    - for문 + while문
-    - 제어문 연습 : for문연습 / switch문연습
+    - for문 - 완료!
+    - while문
+    - 제어문 연습 : 
+      if문연습 / switch문연습
 4) for문 옵션(JS3-4) 
 5) for문 연습(JS3-5) 
 6) 추가 for문 응용 : 
-        - for of문(JS3-6)
-        - for in문(JS3-7) 
+- for of문(JS3-6) + forEach문
+- for in문(JS3-7) 
 7) 배열과 객체(JS4)  
 8) 함수(JS5) : 선언적 함수 + 익명함수 
 9) 함수의 ES6기법 : Arrow Function
