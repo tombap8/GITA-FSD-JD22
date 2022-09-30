@@ -69,6 +69,21 @@ body *{
     /* 기본프레임보더 없앰 */
 }
 
+/* 2-2.예고편 선택메뉴 */
+.mlist{
+    /* position: absolute; */
+}
+/* 선택메뉴 ul */
+.mlist ul{
+    /* 플렉스 박스 */
+    display: flex;
+}
+/* 포스터 이미지 */
+.mlist img{
+    width: 99px;
+    height: 140px;
+}
+
 /****************** 3. 하단영역 ******************/
 .info{
     height: 100px;
