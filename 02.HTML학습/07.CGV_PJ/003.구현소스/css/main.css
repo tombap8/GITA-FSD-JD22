@@ -11,12 +11,14 @@ body{
 }
 
 /* 공사중표시 */
-body *{
+/* body *{
     outline: 1px dotted lime;
-}
+} */
 
 /****************** 1. 상단영역 ******************/
 .top{
+    /* 렐러티브 포지션 - 부모자격(.gnb) */
+    position: relative;
     height: 80px;
     background: url(../images/curtain.jpg) repeat-x;
 }
@@ -40,6 +42,25 @@ body *{
         text-shadow: 0 0 12px aquamarine;
     }
 } /* 키프레임 */
+
+/* 1-2.GNB */
+.gnb{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    /* 부모는? .top */
+}
+/* 네비 ul */
+.gnb ul{
+    /* 플렉스박스 - 직계li만 옆으로! */
+    display: flex;
+}
+.gnb ul li{
+    font-family: 'Jua', sans-serif;
+    font-size: 2rem;
+    padding: 0 10px;
+}
 
 /****************** 2. 메인영역 ******************/
 .cont{
