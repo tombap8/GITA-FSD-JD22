@@ -71,13 +71,25 @@ body *{
 
 /* 2-2.예고편 선택메뉴 */
 .mlist{
-    /* position: absolute; */
+    position: absolute;
+    bottom: 57px;
+    width: 100%;
+    /* 앱솔루트 판타롱스타킹 이므로
+    가로크기를 부모박스에 맞춘다!
+    왜? flex 정렬을 쓰려고! */
 }
 /* 선택메뉴 ul */
 .mlist ul{
     /* 플렉스 박스 */
     display: flex;
+    /* 수평방향 정렬 */
+    justify-content: center;
 }
+/* 상위li 2번째 부터 끝까지 선택 */
+.mlist>ul>li+li{
+    margin-left: 10px;
+}
+
 /* 포스터 이미지 */
 .mlist img{
     width: 99px;
