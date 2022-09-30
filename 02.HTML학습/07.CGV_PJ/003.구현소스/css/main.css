@@ -132,7 +132,15 @@ body *{
     font-size: 1.4rem;
     text-align: center;
     line-height: 2;
+
+    /* 트랜지션: 속시이지 */
+    transition: top 0.5s cubic-bezier(0.74, 0.1, 0.34, 0.93);
 }
+/* 상위li에 마우스 오버시 영화정보 올라오기 */
+.mlist ul>li:hover .movtxt{
+    top: 0;
+}
+
 /* 영화제목만 변경 */
 .movtxt li:first-child{
     color: aqua;

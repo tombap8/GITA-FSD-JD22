@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV에 오신것을 환영합니다!</title>
     <link rel="stylesheet" href="./css/main.css">
+    <!-- 메인 JS 연결 -->
+    <script src="./js/main.js" defer></script>
+    <!-- 스크립트 연결시 defer(미루다...의미) 속성을 사용하면
+    html 요소가 모두 로딩된 후 실행함 
+    이방법을 안쓸때는 소스코드에서 로딩후 실행 설정을 하면됨!-->
 </head>
 
 <body>
@@ -26,7 +31,9 @@
             <div id="screen">
                 <!-- 유튜브 아이프레임 -->
                 <iframe
-                    src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I"></iframe>
+                    src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I" allow="autoplay"></iframe>
+                    <!-- allow="autoplay"는 유튜브
+                    동영상 요청시 자동재생의 필수다! -->
                 <!-- 
                     [iframe 요소 : inline frame]
                     - 다른 페이지를 삽입하는 요소
@@ -60,70 +67,81 @@
             <nav class="mlist">
                 <ul>
                     <li>
-                        <a href="#">
+                        <!-- 
+                            data-내가지은이름
+                            데이터를 저장하기 위한
+                            속성은 data-로 시작하면 된다!
+                          -->
+                        <a href="#" data-mv="mI9oyFMUlfg">
                             <img src="./images/m1.jpg" alt="닥터스트레인지2">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>닥터스트레인지2</li>
+                                <li>베네딕트 컴버배치</li>
+                                <li>액션, 판타지, 모험</li>
+                            </ol>
                         </a>
-                        <!-- 영화정보 -->
-                        <ol class="movtxt">
-                            <li>닥터스트레인지2</li>
-                            <li>베네딕트 컴버배치</li>
-                            <li>액션, 판타지, 모험</li>
-                        </ol>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" data-mv="aOu1ubTZdH8">
                             <img src="./images/m2.jpg" alt="쥬라기월드:도미니언">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>쥬라기월드:도미니언</li>
+                                <li>크리스 프랫</li>
+                                <li>액션, 모험</li>
+                            </ol>
                         </a>
-                        <!-- 영화정보 -->
-                        <ol class="movtxt">
-                            <li>쥬라기월드:도미니언</li>
-                            <li>크리스 프랫</li>
-                            <li>액션, 모험</li>
-                        </ol>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" data-mv="DpVAb7Bi5UQ">
                             <img src="./images/m3.jpg" alt="브로커">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>브로커</li>
+                                <li>송강호, 강동원</li>
+                                <li>드라마</li>
+                            </ol>
                         </a>
-                        <!-- 영화정보 -->
-                        <ol class="movtxt">
-                            <li>브로커</li>
-                            <li>송강호, 강동원</li>
-                            <li>드라마</li>
-                        </ol>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" data-mv="aw9j_23nORs">
                             <img src="./images/m4.jpg" alt="범죄도시2">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>범죄도시2</li>
+                                <li>마동석, 손석구</li>
+                                <li>범죄, 액션</li>
+                            </ol>
                         </a>
-                        <!-- 영화정보 -->
-                        <ol class="movtxt">
-                            <li>범죄도시2</li>
-                            <li>마동석, 손석구</li>
-                            <li>범죄, 액션</li>
-                        </ol>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" data-mv="OTiqmI6Ooqs">
                             <img src="./images/m5.jpg" alt="몬스터싱어">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>몬스터싱어</li>
+                                <li>바네사 파라디</li>
+                                <li>애니메이션</li>
+                            </ol>
                         </a>
-                        <!-- 영화정보 -->
-                        <ol class="movtxt">
-                            <li>몬스터싱어</li>
-                            <li>바네사 파라디</li>
-                            <li>애니메이션</li>
-                        </ol>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" data-mv="W7edvITC9g4">
                             <img src="./images/m6.jpg" alt="스파이터맨:노웨이홈">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>스파이더맨:노웨이홈</li>
+                                <li>톰 홀랜드</li>
+                                <li>액션,모험</li>
+                            </ol>
                         </a>
-                        <!-- 영화정보 -->
-                        <ol class="movtxt">
-                            <li>스파이더맨:노웨이홈</li>
-                            <li>톰 홀랜드</li>
-                            <li>액션,모험</li>
-                        </ol>
                     </li>
                 </ul>
             </nav>
