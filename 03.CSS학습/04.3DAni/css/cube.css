@@ -23,6 +23,22 @@ body{
     /* calc()로 정중앙 계산! */
     width: 300px;
     height: 300px;
+
+    /* 
+        [ 입체로 설정하기 ]
+        - 입체로 설정할 요소의 부모박스에
+        아래와 같이 설정해 준다!
+        transform-style: preserve-3d;
+        - 기본값 flat, 즉 2D
+        - preserve-3d 는 3D 전환설정!
+    */
+    transform-style: preserve-3d;
+
+    /* 입체를 잘보이게 하기 위해 약간회전 */
+    transform: 
+    rotateX(10deg) rotateY(30deg);
+
+
     outline: 1px solid #000;
 }
 /* 큐브각면 공통 */
@@ -37,4 +53,41 @@ body{
     /* 투명도 */
     opacity: 0.8;
     outline: 2px dashed red;
+}
+/* 1. 앞면 */
+.cube span:nth-child(1){
+    background: url(../images/newyorkCity.jpg) no-repeat right/auto 105%;
+
+    /* 화면방향(z축) */
+    transform: translateZ(150px);
+}
+/* 2.오른쪽면 */
+.cube span:nth-child(2){
+    background: url(../images/seoulCity.jpg) no-repeat center/cover;
+    /*  y축회전하고 화면방향(z)밀기 */
+    transform: rotateY(90deg) translateZ(150px);
+}
+/* 3.뒷면 */
+.cube span:nth-child(3){
+    background: url(../images/parisCity.jpg) no-repeat center/cover;
+    /*  y축회전하고 화면방향(z)밀기 */
+    transform: rotateY(180deg) translateZ(150px);
+}
+/* 4.뒷면 */
+.cube span:nth-child(4){
+    background: url(../images/cityMain.jpg) no-repeat center/cover;
+    /*  y축회전하고 화면방향(z)밀기 */
+    transform: rotateY(-90deg) translateZ(150px);
+}
+/* 5.윗면 */
+.cube span:nth-child(5){
+    background: url(../images/citys.jpg) no-repeat center/cover;
+    /*  x축회전하고 화면방향(z)밀기 */
+    transform: rotateX(90deg) translateZ(150px);
+}
+/* 6.아랫면 */
+.cube span:nth-child(6){
+    background: url(../images/London_city.jpg) no-repeat center/cover;
+    /*  x축회전하고 화면방향(z)밀기 */
+    transform: rotateX(-90deg) translateZ(150px);
 }
