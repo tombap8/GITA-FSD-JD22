@@ -99,7 +99,7 @@
         var uk = "영국";
 
         // 바깥에서 korea - 함수호출전
-        // console.log("바깥에서 korea변수 함수호출전:", korea);
+        console.log("바깥에서 korea변수 함수호출전:", korea);
 
         // 바깥에서 usa - 함수호출전
         // console.log("바깥에서 usa변수 함수호출전:",usa);
@@ -117,11 +117,19 @@
         console.log("바깥에서 함수호출후 전역변수uk변수:", uk);
 
 
-        // 바깥에서 usa - 함수호출후 -> 에러!
+        // 바깥에서 usa - 함수호출전 -> 에러!
+        // console.log("바깥에서 usa변수 함수호출전:",usa);
+        
+        // 함수 호출!
+        callMe();
+        
+        // 바깥에서 usa - 함수호출후 -> 역시 에러!
+        // 함수내 지역변수 이므로 바깥에서 참조 못함!
         // console.log("바깥에서 usa변수 함수호출후:",usa);
 
+
         // 바깥에서 korea - 함수호출후
-        console.log("바깥에서 korea변수 함수호출후:", korea);
+        // console.log("바깥에서 korea변수 함수호출후:", korea);
 
         /// 2. if문에서 중괄호 var ////////
         if (true) {
