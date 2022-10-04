@@ -31,6 +31,8 @@
             3. 함수영역에서 전역변수와 같은 이름의 변수를
             선언하면 전역변수와 다른 지역변수로 관리된다!
             (이렇게 하면 코딩이 매우 혼란스러워진다!)
+            또는 변수이름을 같은 이름이지만 지역변수로
+            사용할 수 있으므로 장점이 되기도 함!
 
 
             ***************************************
@@ -87,6 +89,8 @@
             var uk = "유케이";
             // 전역변수가 같은 이름의 지역변수 때문에
             // 전역변수를 호출할 수 없다!!!
+            // -> 이것은 같은 이름의 전역변수를 쓸 수 있으므로
+            // 장점으로 볼 수 있다!!!
             
 
 
@@ -104,26 +108,18 @@
         // 바깥에서 korea - 함수호출전
         console.log("바깥에서 korea변수 함수호출전:", korea);
 
-        // 바깥에서 usa - 함수호출전
-        // console.log("바깥에서 usa변수 함수호출전:",usa);
-        
-
-
         // 바깥에서 함수호출전 전역변수uk
-        // console.log("바깥에서 함수호출전 전역변수uk변수:", uk);
-
-
-        // callMe() 함수호출!
-        callMe();
-
-        // 바깥에서 함수호출후 전역변수uk
-        console.log("바깥에서 함수호출후 전역변수uk변수:", uk);
-
+        console.log("바깥에서 함수호출전 전역변수uk변수:", uk);
 
         // 바깥에서 usa - 함수호출전 -> 에러!
         // console.log("바깥에서 usa변수 함수호출전:",usa);
         
+        // callMe() 함수호출!
+        callMe();
         
+        // 바깥에서 함수호출후 전역변수uk
+        console.log("바깥에서 함수호출후 전역변수uk변수:", uk);
+
         // 바깥에서 usa - 함수호출후 -> 역시 에러!
         // 함수내 지역변수 이므로 바깥에서 참조 못함!
         // console.log("바깥에서 usa변수 함수호출후:",usa);
@@ -132,20 +128,26 @@
         // 바깥에서 korea - 함수호출후
         console.log("바깥에서 korea변수 함수호출후:", korea);
 
+        ////////////////////////////////////////////////////
+
         /// 2. if문에서 중괄호 var ////////
         if (true) {
             var who = "누구?";
-            // console.log("if문안 who:", who);
+            console.log("if문안 who:", who);
         } /////// if ////////
 
-        // console.log("if문밖 who:", who);
+        console.log("if문밖 who:", who);
+        // if문의 중괄호 안에서 변수를 선언하면
+        // 전역변수와 같다! 즉, 지역변수아님!!!
 
         /// 3. for문 중괄호 var /////////////
         for (var i = 3; i > 0; i--) {
-            // console.log("for문안 i:", i);
+            console.log("for문안 i:", i);
         } ////////// for /////////////
 
-        // console.log("for문밖 i:", i);
+        console.log("for문밖 i:", i);
+        // for문 안에서 선언한 변수를 바깥에서 참조할 수 있다!
+        // 즉, 전역변수와 같다!
 
         // ->>>>>> 결론!!!
         // ->>>>>> var는 오직 함수의 중괄호에서만 선언시 지역변수가 된다!!!
@@ -165,28 +167,57 @@
             // 블록내부에서 전역변수 찍기! 앞
             console.log("블록내부에서 전역변수 찍기! 앞");
             console.log("seoul:", seoul);
-            console.log("jeju:", jeju);
-            console.log("toktok:", toktok);
+
+            // console.log("jeju:", jeju); -> 에러남!
+
+            // 지역 아래에서 let으로 같은 이름의 전역변수를 
+            // 선언하여 할당하면 이 지역에서 지역변수가 되므로
+            // 위에서 미리 호출할 수 없다! -> let의 장점1
+            // -> 에러 메시지:
+            // Uncaught ReferenceError: 
+            // Cannot access 'jeju' before initialization
+            // -> 선언하여 초기화 하기 전에는 접근불가 에러남!
+
+            // console.log("toktok:", toktok); -> 에러남!
+
+            // 아래에서 let 선언하였으므로 지역변수가 되고
+            // 순서상 위에서 호출불가!
+
             console.log("sport:", sport);
 
             // 블록에서 변수 재선언하기! //////////
-            // var seoul = "강남구";
+            var seoul = "강남구";
+            // -> 전역변수가 다시 선언되어 할당된 결과임!
+            // 문제: 전역변수가 중간에 다시 선언되어 변경되므로
+            // 코드 관리상 혼선이 오게 되는 치명적 단점이 된다!
 
-            // let jeju = "마라도";
+            let jeju = "마라도";
             // 전역변수 var로 선언된 같은 이름의 변수를
             // let으로 블록영역에서 선언하여 할당하면?
             
 
-            // let toktok = "라인";
+            let toktok = "라인";
             // 전역변수 let으로 선언된 같은 이름의 변수를
             // let으로 블록영역에서 선언하여 할당하면?
+            // -> 에러나는 이유는 jeju와 동일함!
             
 
             // var sport = "배구"; 
-            // let으로 이미 전역변수에 선언된 변수를 var로 재선언하면?
 
-            // myitem = "곰인형";
+            // let으로 이미 전역변수에 선언된 변수를 var로 재선언하면?
+            // let으로 전역변수 선언한 것을 안에서 다시
+            // var로 선언할 경우 전역변수를 다시 덮어쓰지 못하게
+            // let에서 변수를 관리함!!!
+            // -> 에러메시지:
+            // Uncaught SyntaxError: -> 문법에러!
+            // Identifier 'sport' has already been declared
+            // -> 이미선언된 전역변수를 다시 전역으로 덮을 수 없다!
+
+            myitem = "곰인형";
             // 선언없이 변수를 할당하면?
+            // 기본적으로 var로 선언하여 자동으로 전역변수에 등록함
+            // 함수안에서도 선언없이 변수를 쓰면 이렇게 된다!
+            // 매우 변수관리가 어려워짐!!! 나쁜케이스!!!
 
             // 블록내부에서 전역변수 찍기! 뒤
             console.log("블록내부에서 전역변수 찍기! 뒤");
@@ -194,18 +225,18 @@
             console.log("jeju:", jeju);
             console.log("toktok:", toktok);
             console.log("sport:", sport);
-            // console.log("myitem:", myitem);
+            console.log("myitem:", myitem);
 
         }
         /***********************************************/
 
-        // 블록내부에서 전역변수 찍기!
+        // 전역에서 전역변수 찍기!
         console.log("전역에서 전역변수 찍기!");
         console.log("seoul:", seoul);
         console.log("jeju:", jeju);
         console.log("toktok:", toktok);
         console.log("sport:", sport);
-        // console.log("myitem:", myitem);
+        console.log("myitem:", myitem);
 
         ///////////////////////////////////////////////
 
