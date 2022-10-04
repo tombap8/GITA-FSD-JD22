@@ -38,8 +38,7 @@ body{
     transform: 
     rotateX(10deg) rotateY(30deg);
 
-
-    outline: 1px solid #000;
+    /* outline: 1px solid #000; */
 }
 /* 큐브각면 공통 */
 .cube span{
@@ -52,7 +51,7 @@ body{
 
     /* 투명도 */
     opacity: 0.8;
-    outline: 2px dashed red;
+    outline: 1px solid #000;
 }
 /* 1. 앞면 */
 .cube span:nth-child(1){
@@ -91,3 +90,28 @@ body{
     /*  x축회전하고 화면방향(z)밀기 */
     transform: rotateX(-90deg) translateZ(150px);
 }
+
+/* 애니메이션 호출 클래스 */
+.cube-ani{
+    /* 애니메이션: 이시이지반방마 */
+    animation: cubeAni 4s linear infinite;
+}
+
+/* 큐브회전 키프레임 */
+@keyframes cubeAni {
+    to{
+        transform: 
+        rotateX(370deg) rotateY(-330deg);
+        /* 
+            x축 양의 방향으로 10도에서 출발
+            양의 방향 360도+10도=370도
+            음의 방향 -360도+10도=-350도
+
+            y축 양의 방향으로 30도에서 출발
+            양의 방향 360도+30도=390도
+            음의 방향 -360도+30도=-330도
+
+            -> rotateZ() - z축회전도 가능함!
+        */
+    }
+} /* 키프레임 */
