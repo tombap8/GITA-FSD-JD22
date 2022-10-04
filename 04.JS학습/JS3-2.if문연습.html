@@ -107,14 +107,14 @@
 
                 // 방법1: onclick 속성에 익명함수 할당방식
                 btns[i].onclick = function () {
-                    chgImg(this)
+                    chgImg(this);
                 };
 
                 // 방법2: 이벤트 등록 내장함수 사용방식
                 // btns[i].addEventListener("click", function () {
                 //     chgImg(this);
                 // });
-                
+
                 // 함수호출시 이벤트가 걸린 나 자신->this 를 보냄!
 
             } /////////// for ///////////////
