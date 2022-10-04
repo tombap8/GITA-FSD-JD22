@@ -88,11 +88,11 @@
             // console.log("이벤트설정!");
 
             // 2.대상선정 : 버튼들 - .btns
-            let btns = document.querySelectorAll(".btns");
+            const btns = document.querySelectorAll(".btns");
             // querySelectorAll() 은 가져온 요소를 컬렉션집합에 담는다!
             // 컬렉션 집합은 반드시 개별요소 접근시 .item(n) / [n] 사용함!
             // 버튼개수 변수할당
-            let cnt = btns.length;
+            const cnt = btns.length;
             // console.log("버튼들:", btns, "/개수:", cnt);
 
             // 3. 대상만큼 모두 돌아서 click이벤트 셋팅하기!
@@ -104,9 +104,17 @@
 
                 // 개별버튼들 접근하여 셋팅!
                 // 익명함수를 할당하여 이벤트 발생시 코드실행!
+
+                // 방법1: onclick 속성에 익명함수 할당방식
                 btns[i].onclick = function () {
                     chgImg(this)
                 };
+
+                // 방법2: 이벤트 등록 내장함수 사용방식
+                // btns[i].addEventListener("click", function () {
+                //     chgImg(this);
+                // });
+                
                 // 함수호출시 이벤트가 걸린 나 자신->this 를 보냄!
 
             } /////////// for ///////////////
@@ -156,13 +164,13 @@
             } ///// else if ////
 
             // 이미지 경로확인!
-            console.log("이미지경로:",isrc);
+            console.log("이미지경로:", isrc);
 
             // 3. 대상 이미지에 src값 변경하기
             // 대상이미지 : #scene
             // 속성변경하기 JS내장함수 : setAttribute(속성값,값)
             document.querySelector("#scene")
-            .setAttribute("src",isrc);
+                .setAttribute("src", isrc);
 
         } ///////////// chgImg 함수 /////////////
         /////////////////////////////////////////
