@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* 큐브애니 CSS - cube.css */
+
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* 보이는 화면기준 채우기! */
+}
+
+/* 전체배경 */
+body{
+    background-image: 
+    linear-gradient(to bottom, #41b79f 30%, #ccffc6 70%);
+}
+
+/* 큐브 */
+.cube{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    /* calc()로 정중앙 계산! */
+    width: 300px;
+    height: 300px;
+    outline: 1px solid #000;
+}
+/* 큐브각면 공통 */
+.cube span{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    /* 앱솔루트는 자동 block변경됨! */
+    width: 100%;
+    height: 100%;
+    /* 부모는? .cube */
+
+    /* 투명도 */
+    opacity: 0.8;
+    outline: 2px dashed red;
+}
