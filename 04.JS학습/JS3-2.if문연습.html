@@ -61,24 +61,51 @@
         // 대상: window객체 -> window
         // 사용 JS내장함수 : addEventListener(이벤트명,함수)
         // 사용할 이벤트 : DOMContentLoaded
-        window.addEventListener("DOMContentLoaded",setFn);
+        window.addEventListener("DOMContentLoaded", setFn);
+        // window.addEventListener("click",setFn);
         // 만약 전달값이 없다면 함수 호출시 소괄호 없이 사용함!
-        // 전달값이 있다면 ...
+        // 전달값이 있다면 ... 익명함수 안에서 전달값과 같이 호출함
+        /* 
+            예)
+            window.addEventListener("DOMContentLoaded",
+            function(){
+                setFn(전달값);
+            });
+
+            -> 또는 익명함수안에 직접 구현코드를 넣을 수 있음!
+            -> 익명함수의 특성상 코드를 바로 실행않고 보관하다가
+            -> 이벤트가 발생하면 함수안의 코드를 실행함!
+        
+        */
 
         /************************************* 
             함수명: setFn
             기능: 버튼에 이벤트 설정하기
         *************************************/
-       function setFn(){
+        function setFn() {
 
             // 1. 함수호출확인
             console.log("이벤트설정!");
 
             // 2.대상선정 : 버튼들 - .btns
             let btns = document.querySelectorAll(".btns");
-            console.log("버튼들:",btns);
+            // querySelectorAll() 은 가져온 요소를 컬렉션집합에 담는다!
+            // 컬렉션 집합은 반드시 개별요소 접근시 .item(n) / [n] 사용함!
+            // 버튼개수 변수할당
+            let cnt = btns.length;
+            console.log("버튼들:", btns, "/개수:", cnt);
 
-       } ///////////// setFn 함수 /////////////
+            // 3. 대상만큼 모두 돌아서 click이벤트 셋팅하기!
+            // 이벤트 적용대상 : 버튼들 -> btns변수 : 컬렉션에 담김(0부터)
+            // 사용할 이벤트속성 : onclick
+            // 셋팅내용 : 이미지 src변경 기능함수 호출! -> chgImg함수
+            // for(시;한;증){코드}
+            for (let i = 0; i < cnt; i++) {
+
+            } /////////// for ///////////////
+
+
+        } ///////////// setFn 함수 /////////////
 
 
 
@@ -96,14 +123,13 @@
             함수명: chgImg
             기능: 이미지 src변경하기
         **************************************/
-       function chgImg(){
+        function chgImg() {
 
             // 1. 호출확인
             console.log("나야나!");
-        
-       } ///////////// chgImg 함수 /////////////
-       /////////////////////////////////////////
-        
+
+        } ///////////// chgImg 함수 /////////////
+        /////////////////////////////////////////
     </script>
 </head>
 
