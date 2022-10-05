@@ -56,6 +56,19 @@
                 mini[1].onclick = () => insMini(5);
                 mini[2].onclick = () => insMini(10);
 
+                // 리셋버튼 기능구현 ///
+                // 리셋요소
+                const rbtn = 
+                document.querySelector(".rbtn");
+
+                // 글자크게
+                rbtn.style.fontSize = "40px";
+
+                // 기능구현
+                rbtn.onclick = 
+                () => bcase.innerHTML = "";
+                // 함수도 명령문이 하나면 중괄호{} 생략가능
+
 
                 /*////////////////////////////////////////
                     함수명: insMini
@@ -91,7 +104,7 @@
     <img src="./images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 열개씩 가방에 들어갈꼬얌~!">
 
     <!-- 리셋을 한다면 이렇게...! -->
-    <button>리셋</button>
+    <button class="rbtn">리셋</button>
 
     <!-- 파란상자 -->
     <div class="Bcase"></div>
