@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>for문 확장 - for of문</title>
+    <title>for문 확장 - for of문 / forEach() 메서드</title>
     <script>
         // 배열 만들기
         const mv1 = [
@@ -30,14 +30,64 @@
             console.log("로딩완료!");
 
             // 2. 이벤트 대상: .btngo
-            
+            const btngo = document.querySelectorAll(".btngo");
+            // console.log(btngo);
 
             // 3. 출력대상 : .minfo
-            
+            const minfo = document.querySelectorAll(".minfo");
+            // console.log(minfo);
 
-                    
 
-                    
+            // 4. 버튼에 클릭이벤트 설정하기
+            // for(시;한;증){} -> 일반for문설정
+            // 시작값은 0부터, 한계값은 개수보다 작게, 증감은 ++
+            // -> 항상 셋팅이 너무 뻔하다~~~~!
+
+            /* for (let i = 0; i < btngo.length; i++) {
+                실행문코드;
+            } */
+
+            for (let x of btngo) {
+                // 변수 x는? 컬렉션에 담긴 각각의 요소
+                // console.log(x);
+
+                // 클릭 이벤트 설정하기
+                x.onclick = () => {
+                    // 1. 버튼텍스트
+                    let btxt = x.innerText;
+                    console.log("버튼텍스트:", btxt);
+
+                    // 2. 버튼에 따른 배열변수 할당!
+                    let data;
+
+                    // 버튼별 배열할당 분기
+                    switch (btxt) {
+                        case "조제":
+                            data = mv1;
+                            break;
+                        case "원더 우먼 1984":
+                            data = mv2;
+                            break;
+                        case "도굴":
+                            data = mv3;
+                            break;
+                    } ////////// switch ///////
+
+                    // data변수에 담긴 배열값은?
+                    console.log("data변수:",data);
+
+                    //
+
+
+
+
+                }; ///////// click ///////
+
+
+            } //////// for of ///////////
+
+
+
 
 
             /******************************************* 
