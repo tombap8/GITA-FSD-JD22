@@ -55,7 +55,7 @@
                 x.onclick = () => {
                     // 1. 버튼텍스트
                     let btxt = x.innerText;
-                    console.log("버튼텍스트:", btxt);
+                    // console.log("버튼텍스트:", btxt);
 
                     // 2. 버튼에 따른 배열변수 할당!
                     let data;
@@ -74,9 +74,27 @@
                     } ////////// switch ///////
 
                     // data변수에 담긴 배열값은?
-                    console.log("data변수:",data);
+                    // console.log("data변수:",data);
 
-                    //
+                    // 3. 배열값 화면출력하기
+                    // 출력대상: .minfo요소 
+                    // -> 배열순서와 출력순서가 일치함!
+                    // 배열도 for of사용!!!
+
+                    // 출력할 요소(.minfo)의 순번변수사용!
+                    let num = 0;
+
+                    for(let y of data){
+                        // y는? 배열값!
+                        // console.log(y);
+
+                        // .minfo요소에 순서대로 배열값 출력
+                        minfo[num].innerHTML = y;
+
+                        // 순번변수 증가
+                        num++;
+
+                    } ////// for of ///////////
 
 
 
