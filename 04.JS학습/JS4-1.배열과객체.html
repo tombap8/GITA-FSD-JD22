@@ -427,30 +427,32 @@
 
                     // 삽입된 동영상박스(#mv) CSS설정하기
                     const mv = document.querySelector("#mv");
+                    let mst = mv.style;
 
-                    mv.style.position = "fixed";
-                    mv.style.top = "50%";
-                    mv.style.left = "50%";
-                    mv.style.transform = "translate(-50%,-50%)";
-                    mv.style.width = "700px";
-                    mv.style.height = "450px";
-                    mv.style.backgroundColor = "#000";
+                    mst.position = "fixed";
+                    mst.top = "50%";
+                    mst.left = "50%";
+                    mst.transform = "translate(-50%,-50%)";
+                    mst.width = "700px";
+                    mst.height = "450px";
+                    mst.backgroundColor = "#000";
 
                     // 닫기버튼 셋팅
                     const cbtn = document.querySelector(".cbtn");
+                    let cbst = cbtn.style;
 
-                    cbtn.style.position = "absolute";
-                    cbtn.style.top = "0";
-                    cbtn.style.right = "-70px";
-                    cbtn.style.width = "50px";
-                    cbtn.style.height = "50px";
-                    cbtn.style.backgroundColor = "blue";
-                    cbtn.style.border = "none";
-                    cbtn.style.color = "#fff";
-                    cbtn.style.fontSize = "40px";
-                    cbtn.style.fontWeight = "bold";
-                    cbtn.style.borderRadius = "50%";
-                    cbtn.style.cursor = "pointer";
+                    cbst.position = "absolute";
+                    cbst.top = "0";
+                    cbst.right = "-70px";
+                    cbst.width = "50px";
+                    cbst.height = "50px";
+                    cbst.backgroundColor = "blue";
+                    cbst.border = "none";
+                    cbst.color = "#fff";
+                    cbst.fontSize = "40px";
+                    cbst.fontWeight = "bold";
+                    cbst.borderRadius = "50%";
+                    cbst.cursor = "pointer";
 
                     // 닫기버튼 클릭시 #mv지우기
                     cbtn.onclick = () => mv.remove();
