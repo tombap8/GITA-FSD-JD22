@@ -319,6 +319,24 @@
                 msg: (txt)=>{ // txt 전달변수
                     // 1. 메지시 띄우기
                     alert("팬레터:"+txt);
+                    // 2. 배경이미지 넣기
+                    tg[4].style.background = 
+                    "url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Gong_Yoo_%28Sep_2016%29.png/250px-Gong_Yoo_%28Sep_2016%29.png) repeat-x top/auto 100%";
+                    // 3. 글자색
+                    tg[4].style.color = "#fff";
+                    // 4. 글자그림자
+                    tg[4].style.textShadow = 
+                    "0 0 5px #000";
+                    // 5. 줄간격
+                    tg[4].style.lineHeight = "30px";
+                    // 6. 높이값 변경
+                    tg[4].style.height = "100px"
+                    // 7. 상단패딩 변경
+                    tg[4].style.paddingTop = "100px";
+                    // 8. 트랜지션
+                    tg[4].style.transition = 
+                    "2s ease-in-out .5s";
+                    
                 } /////// msg 메서드 ////////
 
             }; /////// GU객체 ///////////////
@@ -344,12 +362,17 @@
 
             // 툴팁 띄우기
             // setAttribute(속성명,값)
+            tg[4].setAttribute("title", 
+            GU.name+"의 팬레터를 확인하세요! 바로클릭!");
             
-
             // 손가락모양
-            
+            tg[4].style.cursor = "pointer";
 
             // 공유박스 클릭시 GU객체 메서드 호출하기
+            tg[4].onclick = ()=>{
+                GU.msg("\n공유오빠, 오징어게임 싸다고 멋쪘어요!\n차기작도 기대해요! 화이팅!!!");
+                // \n은 alert창에서 줄바꿈해줌!
+            }; //////////// click ////////////
             
 
             // 미션: tg[5]에 자신이 만든 객체의 정보를 출력하시오
