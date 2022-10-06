@@ -50,7 +50,64 @@
 
             // 4. 버튼에 클릭이벤트 설정하기
             // 버튼 요소 만큼 돌아줌! : btngo변수
-            btngo.forEach(()=>{});
+            btngo.forEach((ele)=>{
+
+                // ele는 버튼 요소 자신
+
+                // 요소에 클릭설정하기
+                ele.onclick = ()=>{
+
+                    // 1. 버튼 텍스트
+                    let btxt = ele.innerText;
+                    console.log(btxt);
+
+                    // 2. 버튼에 따른 배열변수 할당!
+                    let data;
+
+                    // 버튼별 배열할당 분기
+                    switch (btxt) {
+                        case "조제":
+                            data = mv1;
+                            break;
+                        case "원더 우먼 1984":
+                            data = mv2;
+                            break;
+                        case "도굴":
+                            data = mv3;
+                            break;
+                        case "공조2: 인터내셔날":
+                            data = mv4;
+                            break;
+                        case "육사오(6/45)":
+                            data = mv5;
+                            break;
+                    } ////////// switch ///////
+
+                    // data변수에 담긴 배열값은?
+                    console.log("data변수:",data);
+
+                    // 3. 배열값 화면출력하기
+                    // 출력대상: .minfo요소 
+                    // -> 배열순서와 출력순서가 일치함!
+                    // 배열값을 forEach()메서드로 돌아주기!
+                    // 대상변수: data -> 해당배열
+
+                    // data.forEach((val,idx)=>{
+                    //     // val-배열값, idx-배열순번
+                    //     // 배열순번===출력요소순번
+                    //     // 출력대상: minfo
+                    //     minfo[idx].innerText = val;
+                    // }); ////////// data forEach ////////
+
+                    // 줄여서 쓰기!
+                    data.forEach((val,idx)=>
+                        minfo[idx].innerText = val);
+
+
+                }; /////////// click ////////
+                
+
+            }); ////////// btngo forEach /////////
 
 
 
