@@ -418,7 +418,7 @@
                     mvbx.innerHTML = `
                         <div id="mv">
                             <!--유튜브 아이프레임-->
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Mrj9XACVJ8U?autoplay=1" title="[탑건: 매버릭] 메인 예고편" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Mrj9XACVJ8U?autoplay=1"></iframe>
 
                             <!--닫기버튼-->
                             <button class="cbtn">×</button>
@@ -439,20 +439,20 @@
 
                     // 닫기버튼 셋팅
                     const cbtn = document.querySelector(".cbtn");
-                    let cbst = cbtn.style;
+                    let cst = cbtn.style;
 
-                    cbst.position = "absolute";
-                    cbst.top = "0";
-                    cbst.right = "-70px";
-                    cbst.width = "50px";
-                    cbst.height = "50px";
-                    cbst.backgroundColor = "blue";
-                    cbst.border = "none";
-                    cbst.color = "#fff";
-                    cbst.fontSize = "40px";
-                    cbst.fontWeight = "bold";
-                    cbst.borderRadius = "50%";
-                    cbst.cursor = "pointer";
+                    cst.position = "absolute";
+                    cst.top = "0";
+                    cst.right = "-70px";
+                    cst.width = "50px";
+                    cst.height = "50px";
+                    cst.backgroundColor = "blue";
+                    cst.border = "none";
+                    cst.color = "#fff";
+                    cst.fontSize = "40px";
+                    cst.fontWeight = "bold";
+                    cst.borderRadius = "50%";
+                    cst.cursor = "pointer";
 
                     // 닫기버튼 클릭시 #mv지우기
                     cbtn.onclick = () => mv.remove();
