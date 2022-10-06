@@ -74,17 +74,39 @@ body{
     left: 50%;
     /* 부모는? 싸고있는 li */
 
-    /* 트랜스폼 x축으로 중앙이동! */
-    transform: translateX(-50%);
+    /* 트랜스폼 x축으로 중앙이동! y축은 5px이동 */
+    transform: translate(-50%,5px);
     width: 140px;
     padding: 3px;
     background: url(../images/bg_smenu.png) no-repeat center/cover;
     border-radius: 5px;
     box-shadow: 0 0 5px #fff;
+
+    /* 처음에 안보임! */
+    display: none;
+}
+/* 상위메뉴li에 마우스 오버시 하위메뉴 보이기 */
+.gnb ul>li:hover .smenu{
+    display: block;
 }
 
 /* 가상요소로 삼각형 모양 만들기 */
+.smenu::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    /* 부모는? .smenu */
+    transform: translateX(-50%);
 
+    /* 삼각형 만들기 */
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #353535;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
 
 /* 서브메뉴 ol */
 .smenu ol{
