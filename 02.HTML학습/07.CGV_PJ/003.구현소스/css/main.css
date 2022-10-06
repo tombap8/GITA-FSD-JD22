@@ -21,6 +21,8 @@ body{
     position: relative;
     height: 80px;
     background: url(../images/curtain.jpg) repeat-x;
+    /* 가장위 */
+    z-index: 9999;
 }
 /* 1-1.로고 */
 .tit{
@@ -55,12 +57,66 @@ body{
 .gnb ul{
     /* 플렉스박스 - 직계li만 옆으로! */
     display: flex;
-}
-.gnb ul li{
+    /* 메뉴박스 공통 글자체 */
     font-family: 'Jua', sans-serif;
+}
+/* 상위 li만 적용! ul>li */
+.gnb ul>li{
+    /* 렐러티브 포지션 - 부모자격 */
+    position: relative;
     font-size: 2rem;
     padding: 0 10px;
 }
+
+/* GNB 서브메뉴 */
+.smenu{
+    position: absolute;
+    left: 50%;
+    /* 부모는? 싸고있는 li */
+
+    /* 트랜스폼 x축으로 중앙이동! */
+    transform: translateX(-50%);
+    width: 140px;
+    padding: 3px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #fff;
+}
+
+/* 가상요소로 삼각형 모양 만들기 */
+
+
+/* 서브메뉴 ol */
+.smenu ol{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+/* 서브메뉴 li */
+.smenu li{
+    font-size: 1.6rem;
+    line-height: 2;
+}
+/* 서브메뉴 a요소 */
+.smenu a{
+    display: block;
+    /* li요소 패딩안쪽까지 확장! */
+}
+/* 서브메뉴 오버시 빨간색 글자 */
+.smenu a:hover{
+    color: red;
+}
+/* 서브메뉴 오버시 이모지 가상요소로 넣기 */
+/* 이모지는 윈도우키+세미콜론(;) 단축키 */
+.smenu a:hover::after{
+    content: '😍';
+    float: right;
+}
+
+/* 서브메뉴 중 li 보더 상단 class */
+.bdt{
+    border-top: 1px solid #ccc;
+}
+
 
 /****************** 2. 메인영역 ******************/
 .cont{
