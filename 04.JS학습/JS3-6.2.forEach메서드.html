@@ -49,82 +49,27 @@
 
 
             // 4. 버튼에 클릭이벤트 설정하기
-            // for(시;한;증){} -> 일반for문설정
-            // 시작값은 0부터, 한계값은 개수보다 작게, 증감은 ++
-            // -> 항상 셋팅이 너무 뻔하다~~~~!
 
-            /* for (let i = 0; i < btngo.length; i++) {
-                실행문코드;
-            } */
+            // forEach() 메서드 테스트!
+            // 컬렉션인 경우 -> minfo변수 : .minfo요소들
+            minfo.forEach(function(나,순,객){
+                console.log(
+                    `나자신:${나}/순서:${순}/객체:${객}`);
+            });
 
-            for (let x of btngo) {
-                // 변수 x는? 컬렉션에 담긴 각각의 요소
-                // console.log(x);
+            // 배열인 경우 -> mv5변수 : 특정배열
+            mv5.forEach(function(값,순,객){
+                console.log(
+                    `배열값:${값}/순서:${순}/객체:${객}`);
+            });
 
-                // 클릭 이벤트 설정하기
-                x.onclick = () => {
-                    // 1. 버튼텍스트
-                    let btxt = x.innerText;
-                    // console.log("버튼텍스트:", btxt);
-
-                    // 2. 버튼에 따른 배열변수 할당!
-                    let data;
-
-                    // 버튼별 배열할당 분기
-                    switch (btxt) {
-                        case "조제":
-                            data = mv1;
-                            break;
-                        case "원더 우먼 1984":
-                            data = mv2;
-                            break;
-                        case "도굴":
-                            data = mv3;
-                            break;
-                        case "공조2: 인터내셔날":
-                            data = mv4;
-                            break;
-                        case "육사오(6/45)":
-                            data = mv5;
-                            break;
-                    } ////////// switch ///////
-
-                    // data변수에 담긴 배열값은?
-                    // console.log("data변수:",data);
-
-                    // 3. 배열값 화면출력하기
-                    // 출력대상: .minfo요소 
-                    // -> 배열순서와 출력순서가 일치함!
-                    // 배열도 for of사용!!!
-
-                    // 출력할 요소(.minfo)의 순번변수사용!
-                    let num = 0;
-
-                    for(let y of data){
-                        // y는? 배열값!
-                        // console.log(y);
-
-                        // .minfo요소에 순서대로 배열값 출력
-                        minfo[num].innerHTML = y;
-
-                        // 순번변수 증가
-                        num++;
-
-                    } ////// for of ///////////
-
-
-
-
-                }; ///////// click ///////
-
-
-            } //////// for of ///////////
-
+            
 
             /************************************ 
                 [ 배열과 컬렉션을 위한 forEach() ]
                 forEach()는 
                 배열과 컬렉션을 위한 JS메서드임!
+                -> ES5에서 새롭게 등장!(배열메서드!)
 
                 1. 컬렉션에 사용시
 
