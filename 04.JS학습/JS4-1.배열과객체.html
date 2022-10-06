@@ -336,13 +336,27 @@
                     // 8. 트랜지션
                     tg[4].style.transition = 
                     "2s ease-in-out .5s";
-                    
+
                 } /////// msg 메서드 ////////
 
             }; /////// GU객체 ///////////////
             
-            // GU객체 찍어보기
-            console.log(GU);
+            // GU객체 찍어보기-> 변경내용이 전체객체 찍기에 반영됨!
+            console.log("GU객체:",GU);
+
+            // GU객체 속성중 work 값 업데이트!
+            GU.work = "도깨비,부산행,오징어게임";
+
+            // 객체속성 추가하기 //////
+            // 추가방법: Object객체의 속성 정의 메서드 사용함!
+            // -> Object.defineProperty(객체명,속성명,{value:속성값})
+            Object.defineProperty(GU,"foot",{value:"280cm"});
+            // GU객체에 발사이즈인 foot속성과 값을 추가함!
+
+            // 객체속성 지우기 //////
+            // delete 객체명.속성명 -> 선택속성제거!
+            // 추가속성말고 이미 처음에 있는 속성을 제거해 보자!
+            // delete GU.work;
 
             // GU객체 출력하기 ////////
             // 출력대상: tg[4]
@@ -379,6 +393,98 @@
             // 주제는 영화정보
             // 변수명도 자신이 지어본다!
             // 객체의 속성명도 변수형으로 자신이 지어본다!
+
+            const myMV = {
+                // 1. 영화제목
+                제목: "탑건: 매버릭",
+                // 2. 감독
+                감독: "조셉 코신스키",
+                // 3. 배우
+                배우: "톰 크루즈, 마일즈 텔러",
+                // 4. 장르
+                장르: "액션",
+                // 5. 관람가
+                관람가: "12세 관람가",
+                // 6. 예고편
+                예고편: () => {
+                    // 1. 호출확인
+                    console.log("예고편");
+
+                    // 2. 영화박스 만들고 iframe 넣기
+                    // 대상: #mvbx
+                    const mvbx = document.querySelector("#mvbx");
+
+                    // 영화박스에 아이프레임용 박스넣기
+                    mvbx.innerHTML = `
+                        <div id="mv">
+                            <!--유튜브 아이프레임-->
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Mrj9XACVJ8U?autoplay=1" title="[탑건: 매버릭] 메인 예고편" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                            <!--닫기버튼-->
+                            <button class="cbtn">×</button>
+                        </div>
+                    `;
+
+                    // 삽입된 동영상박스(#mv) CSS설정하기
+                    const mv = document.querySelector("#mv");
+
+                    mv.style.position = "fixed";
+                    mv.style.top = "50%";
+                    mv.style.left = "50%";
+                    mv.style.transform = "translate(-50%,-50%)";
+                    mv.style.width = "700px";
+                    mv.style.height = "450px";
+                    mv.style.backgroundColor = "#000";
+
+                    // 닫기버튼 셋팅
+                    const cbtn = document.querySelector(".cbtn");
+
+                    cbtn.style.position = "absolute";
+                    cbtn.style.top = "0";
+                    cbtn.style.right = "-70px";
+                    cbtn.style.width = "50px";
+                    cbtn.style.height = "50px";
+                    cbtn.style.backgroundColor = "blue";
+                    cbtn.style.border = "none";
+                    cbtn.style.color = "#fff";
+                    cbtn.style.fontSize = "40px";
+                    cbtn.style.fontWeight = "bold";
+                    cbtn.style.borderRadius = "50%";
+                    cbtn.style.cursor = "pointer";
+
+                    // 닫기버튼 클릭시 #mv지우기
+                    cbtn.onclick = () => mv.remove();
+                    // ()=>{실행문}
+                    // 실행문이 하나일때 중괄호 생략가능
+                    // ()=>실행문;
+                    // remove() 메서드는 선택요소를 제거함!
+
+
+                } ///// 예고편 메서드 ////
+
+            }; //////// myMV 객체 //////////
+
+            // 줄간격 조정
+            tg[5].style.lineHeight = "34px";
+
+            // 내용 출력하기
+            tg[5].innerHTML = `
+                ♣ 영화명 : ${myMV['제목']}
+                ♣ 감독 : ${myMV.감독} <br>
+                ♣ 배우 : ${myMV.배우}
+                ♣ 장르 : ${myMV.장르}
+                ♣ 등급 : ${myMV.관람가}
+            `;
+
+            // 툴팁 보이기
+            tg[5].title =
+                `클릭하시면 ${myMV.제목} 예고편을 보실 수 있습니다!`;
+
+            // 손가락 모양
+            tg[5].style.cursor = "pointer";
+
+            // 예고편  메서드 호출
+            tg[5].onclick = myMV.예고편;
 
             
 
