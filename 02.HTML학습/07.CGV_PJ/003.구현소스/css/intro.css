@@ -48,3 +48,40 @@ html,body{
         트랜스페런트효과(transparent) - 밝게 처리
     */
 }
+
+/* 들어가기 버튼 박스 */
+#enter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* 트랜스폼 정중앙이동 */
+    transform: translate(-50%, -50%);
+
+    /* outline: 4px dotted lime; */
+}
+/* Click Here! 글자박스 */
+#enter span{
+    display: block;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    font-size: 3.4rem;
+    /* 트랜지션: 속시이지 */
+    transition: all .4s ease-out;
+}
+/* 오버시 글자박스 */
+#enter:hover span{
+    transform: scale(2);
+    color: chartreuse;
+    /* 트랜지션 오버시에만 지연시간 */
+    transition-delay: .2s;
+
+}
+/* 엔터박스 로고이미지 */
+#enter img{
+    /* 트랜지션: 속시이지 */
+    transition: all .4s ease-out;
+}
+/* 오버시 로고이미지 */
+#enter:hover img{
+    transform: rotate(-15deg) scale(1.5);
+}
