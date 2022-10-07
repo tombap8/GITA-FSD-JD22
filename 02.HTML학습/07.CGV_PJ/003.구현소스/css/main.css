@@ -11,9 +11,9 @@ body{
 }
 
 /* 공사중표시 */
-body *{
+/* body *{
     outline: 1px dotted lime;
-}
+} */
 
 /****************** 1. 상단영역 ******************/
 .top{
@@ -201,6 +201,8 @@ body *{
     display: flex;
     /* 수평방향 정렬 */
     justify-content: center;
+    /* 원근설정 - 하위li에 주기위함 */
+    perspective: 480px;
 }
 /* 상위 li */
 .mlist ul>li{
@@ -210,7 +212,21 @@ body *{
     /* 부모자격이 있는 요소가
     앱솔루트 숨길 수 있다! */
     overflow: hidden;
+    /* 트랜스폼 축변경 - 하위 */
+    transform-origin: bottom;
+    /* 트랜스폼 x축회전 */
+    transform: rotateX(40deg);
+    /* 트랜지션: 속시이지 */
+    transition: all .4s ease-out;
 }
+/* 상위 li에 마우스 오버시 일어나!! */
+.mlist ul>li:hover{
+    transform: rotateX(0deg);
+    outline: 1px solid aqua;
+    /* 오버시 맨위로 오게 z-index */
+    z-index: 1;
+}
+
 /* 상위 li 2번째 부터 끝까지 선택 */
 .mlist>ul>li+li{
     margin-left: 10px;
