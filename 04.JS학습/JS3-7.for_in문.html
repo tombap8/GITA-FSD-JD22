@@ -104,7 +104,20 @@
                     let btxt = x.innerText;
                     // console.log(btxt);
 
-                    
+                    // 2. 버튼 텍스트와 같은 객체속성명
+                    // 의 값을 가져오기(영화정보객체)
+                    let data = mvi[btxt];
+                    console.log("할당객체:",data);
+
+                    // 3. 해당요소에 데이터 넣어주기
+                    // for in문 사용!!!
+                    // for(변수 in 객체){코드}
+                    for(let z in data){
+                        // z는 무엇? 
+                        console.log(z);
+
+                    } /////////// for in //////////
+
                     
                 }; /////// click ///////////
 
