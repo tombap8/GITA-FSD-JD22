@@ -113,8 +113,50 @@
                     // for in문 사용!!!
                     // for(변수 in 객체){코드}
                     for(let z in data){
-                        // z는 무엇? 
-                        console.log(z);
+                        // z는 무엇? 속성명
+                        // console.log(z);
+                        // 객체의 값은 객체명[속성명]
+                        // console.log(data[z]);
+
+                        // 각 속성명에 해당하는 데이터 셋팅하기!
+                        switch(z){
+                            // 1. 포스터 넣기
+                            case "포스터":
+                                document
+                                .querySelector(".photo")
+                                .innerHTML =
+                                `<img src="${data[z]}" 
+                                alt="${btxt}의 포스터">`;
+                                break;
+                            // 2. 제목넣기
+                            case "제목":
+                                document
+                                .querySelector(".tit")
+                                .innerText =
+                                `영화명: ${data[z]}`;
+                                break;
+                            // 3. 장르넣기
+                            case "개요":
+                                document
+                                .querySelector(".sum")
+                                .innerText =
+                                `장르: ${data[z]}`;
+                                break;
+                            // 4. 감독넣기
+                            case "감독":
+                                document
+                                .querySelector(".dir")
+                                .innerText =
+                                `감독: ${data[z]}`;
+                                break;
+                            // 5. 배우넣기
+                            case "출연":
+                                document
+                                .querySelector(".act")
+                                .innerText =
+                                `배우: ${data[z]}`;
+                                break;
+                        } /////////// switch //////////
 
                     } /////////// for in //////////
 
