@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV 인트로 페이지</title>
     <link rel="stylesheet" href="./css/intro.css">
 </head>
+
 <body>
     <!-- 1. 배경 비디오 넣기 -->
-    <video src="./images/cgv.mp4" autoplay muted loop playsinline></video>
+    <!-- 동영상이 끝나면 첫페이지 자동이동할 것이므로
+    loop옵션은 주지 않는다! -->
+    <video id="myvid" src="./images/cgv.mp4" autoplay muted playsinline></video>
+
+
+        <!-- 2. 들어가기 버튼 -->
+        <h1 id="enter">
+            <a href="index.html">
+                <img src="./images/logo_cgv.png" alt="CGV로고">
+                <span>Click Here!</span>
+            </a>
+        </h1>
+
+
+    <!-- object-fit 옵션 적용이 이미지도 동일한지 테스트 -->
+    <!-- <img src="./images/poster.png" alt="포스터" id="myvid"> -->
+
 
     <!-- 동영상 자동재생루프옵션 -->
     <!-- <video src="./images/cgv.mp4" controls autoplay muted loop playsinline></video> -->
@@ -67,4 +85,5 @@
 
 
 </body>
+
 </html>
