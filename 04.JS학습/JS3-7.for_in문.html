@@ -44,7 +44,7 @@
     </style>
     <script>
         /// 영화정보 객체 ////
-        let mvi = {
+        const mvi = {
             "조제": {
                 "포스터": "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
                 "제목": "조제",
@@ -87,7 +87,31 @@
                     대상의 각 내용에 맞게 객체로부터 정보를 셋팅함!
             ********************************************************/
 
-            
+            // 대상변수 할당하기
+
+            // 이벤트 대상: .btns button
+            const btns =
+                document.querySelectorAll(".btns button");
+            // console.log("버튼틀:", btns);
+
+            // 대상변수 click 이벤트 설정하기
+            // for of문 사용!
+            for(let x of btns){ // x - 버튼요소자신
+
+                // 클릭이벤트 걸기
+                x.onclick = ()=>{
+                    // 1. 클릭된 버튼의 글자
+                    let btxt = x.innerText;
+                    // console.log(btxt);
+
+                    
+                    
+                }; /////// click ///////////
+
+
+            } ///////////// for of /////////////////
+
+
 
             /************************************************* 
                 [ 객체를 위한 for in 문 ]
