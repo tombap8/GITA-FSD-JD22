@@ -131,8 +131,24 @@ body *{
 }
 /* 서브메뉴 오버시 이모지 가상요소로 넣기 */
 /* 이모지는 윈도우키+세미콜론(;) 단축키 */
-.smenu a:hover::after{
+/* "영화"하위메뉴 이모지 */
+.gnb ul>li:nth-child(1) .smenu a:hover::after{
     content: '😍';
+    float: right;
+}
+/* "예매"하위메뉴 이모지 */
+.gnb ul>li:nth-child(2) .smenu a:hover::after{
+    content: '🎬';
+    float: right;
+}
+/* "극장"하위메뉴 이모지 */
+.gnb ul>li:nth-child(3) .smenu a:hover::after{
+    content: '📣';
+    float: right;
+}
+/* "이벤트&컬처"하위메뉴 이모지 */
+.gnb ul>li:nth-child(4) .smenu a:hover::after{
+    content: '🎪';
     float: right;
 }
 
