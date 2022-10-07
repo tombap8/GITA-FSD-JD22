@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 뷰포트필수! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGV에 오신것을 환영합니다!</title>
+    <!-- 링크아이콘 폰트어썸 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- 메인 JS 연결 -->
+    <script src="./js/main.js" defer></script>
+    <!-- 스크립트 연결시 defer(미루다...의미) 속성을 사용하면
+    html 요소가 모두 로딩된 후 실행함 
+    이방법을 안쓸때는 소스코드에서 로딩후 실행 설정을 하면됨!-->
+</head>
+
+<body>
+    <!-- 1. 상단영역 -->
+    <div id="top">
+        <header class="top ibx">
+            <!-- 1-1.로고 -->
+            <h1 class="tit">CGV 예고편 상영관</h1>
+            <!-- 1-2.GNB메뉴 -->
+            <nav class="gnb">
+                <ul>
+                    <li>
+                        <a href="#">영화</a>
+                        <!-- 서브메뉴 -->
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">무비차트</a>
+                                </li>
+                                <li>
+                                    <a href="#">HD 트레일러</a>
+                                </li>
+                                <li>
+                                    <a href="#">무비파인더</a>
+                                </li>
+                                <li class="bdt">
+                                    <a href="#">CGV아트하우스</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">예매</a>
+                        <!-- 서브메뉴 -->
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">빠른예매</a>
+                                </li>
+                                <li>
+                                    <a href="#">상영시간표</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">극장</a>
+                        <!-- 서브메뉴 -->
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">CGV 극장</a>
+                                </li>
+                                <li>
+                                    <a href="#">특별관</a>
+                                </li>
+                                <li class="bdt">
+                                    <a href="#">CLUB 서비스</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">이벤트&컬처</a>
+                        <!-- 서브메뉴 -->
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">기프트샵</a>
+                                </li>
+                                <li>
+                                    <a href="#">매거진</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!-- 2. 메인영역 -->
+    <div id="cont">
+        <main class="cont ibx">
+            <!-- 2-1.스크린박스 -->
+            <div id="screen">
+                <!-- 유튜브 아이프레임 -->
+                <iframe src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I"
+                    allow="autoplay"></iframe>
+                <!-- allow="autoplay"는 유튜브
+                    동영상 요청시 자동재생의 필수다! -->
+                <!-- 
+                    [iframe 요소 : inline frame]
+                    - 다른 페이지를 삽입하는 요소
+                    - src속성 : 필수속성으로 경로를 지정
+                    - 프레임보더가 있음
+                    (border:none으로 없앰)
+                    - 디자인은 css에서 컨트롤 권고
+
+                    [ 유튜브 동영상 호출시 파라미터사용 ]
+
+                    동영상옵션을 GET방식으로 키=값 넘기기
+                    -> 유튜브 본사에서 지정함!
+
+                    형식: 유튜브url?키=값&키=값&...
+                    -> GET방식 데이터 전송폼
+
+                    중요옵션
+                    1. 자동재생 : autoplay=1
+                    2. 소리없음 : mute=1
+                    -> 자동재생시 소리없음해야 자동재생됨!
+                    (이유: 소리있고 자동재생했던 시절
+                    심장마비로 죽는 사고가 많이 발생!
+                    그래서 법적으로 자동재생은 소리가 
+                    없어야허용-> video태그도 동일!)
+                    3. 반복설정 : loop=1
+                    4. 반복재생리스트 : playlist=동영상ID
+                    -> 반복설정시 반복재생리스트도 같이씀!
+                 -->
+            </div>
+            <!-- 2-2.예고편 선택메뉴 -->
+            <nav class="mlist">
+                <ul>
+                    <li>
+                        <!-- 
+                            data-내가지은이름
+                            데이터를 저장하기 위한
+                            속성은 data-로 시작하면 된다!
+                          -->
+                        <a href="#" data-mv="mI9oyFMUlfg">
+                            <img src="./images/m1.jpg" alt="닥터스트레인지2">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>닥터스트레인지2</li>
+                                <li>베네딕트 컴버배치</li>
+                                <li>액션, 판타지, 모험</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-mv="aOu1ubTZdH8">
+                            <img src="./images/m2.jpg" alt="쥬라기월드:도미니언">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>쥬라기월드:도미니언</li>
+                                <li>크리스 프랫</li>
+                                <li>액션, 모험</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-mv="DpVAb7Bi5UQ">
+                            <img src="./images/m3.jpg" alt="브로커">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>브로커</li>
+                                <li>송강호, 강동원</li>
+                                <li>드라마</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-mv="aw9j_23nORs">
+                            <img src="./images/m4.jpg" alt="범죄도시2">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>범죄도시2</li>
+                                <li>마동석, 손석구</li>
+                                <li>범죄, 액션</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-mv="OTiqmI6Ooqs">
+                            <img src="./images/m5.jpg" alt="몬스터싱어">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>몬스터싱어</li>
+                                <li>바네사 파라디</li>
+                                <li>애니메이션</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-mv="W7edvITC9g4">
+                            <img src="./images/m6.jpg" alt="스파이터맨:노웨이홈">
+
+                            <!-- 영화정보 -->
+                            <ol class="movtxt">
+                                <li>스파이더맨:노웨이홈</li>
+                                <li>톰 홀랜드</li>
+                                <li>액션,모험</li>
+                            </ol>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </main>
+    </div>
+    <!-- 3. 하단영역 -->
+    <div id="info">
+        <footer class="info ibx">
+            <!-- 3-1.하단로고 -->
+            <div>
+                <img src="./images/blogo.png" alt="하단로고">
+            </div>
+            <!-- 3-2.회사주소 -->
+            <div>
+                <address>
+                    (04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동) <br>
+                    대표이사 : 최병환사업자등록번호 : 104-81-45690통신판매업신고번호 : 2017-서울용산-0662 <br>
+                    개인정보보호 책임자 : 정종민대표이메일 : cjcgvmaster@cj.netCGV고객센터 : 1544-1122
+                </address>
+            </div>
+            <!-- 3-3.SNS박스 -->
+            <div>
+                <ol class="sns">
+                    <li>
+                        <a href="#" class="fa-brands fa-square-facebook">
+                            <span class="ir">
+                                페이스북 바로가기
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="fa-brands fa-square-twitter">
+                            <span class="ir">
+                                트위터 바로가기
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="fa-brands fa-square-instagram">
+                            <span class="ir">
+                                인스타그램 바로가기
+                            </span>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
