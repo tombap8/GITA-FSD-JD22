@@ -220,7 +220,9 @@ body{
     transition: all .4s ease-out;
 }
 /* 상위 li에 마우스 오버시 일어나!! */
-.mlist ul>li:hover{
+/* + 클래스on 적용시 같은 변경적용! */
+.mlist ul>li:hover,
+.mlist ul>li.on{
     transform: rotateX(0deg);
     outline: 1px solid aqua;
     /* 오버시 맨위로 오게 z-index */
