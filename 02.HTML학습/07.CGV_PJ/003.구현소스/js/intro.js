@@ -42,7 +42,4 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
 }); ///////////// 로딩구역 //////////////////////
