@@ -11,9 +11,9 @@ body{
 }
 
 /* 공사중표시 */
-/* body *{
+body *{
     outline: 1px dotted lime;
-} */
+}
 
 /****************** 1. 상단영역 ******************/
 .top{
@@ -49,7 +49,7 @@ body{
 .gnb{
     /* 앱솔루트 포지션 */
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     right: 20px;
     /* 부모는? .top */
 }
@@ -66,6 +66,8 @@ body{
     position: relative;
     font-size: 2rem;
     padding: 0 10px;
+    /* 하단패딩-서브메뉴 아웃문제해결! */
+    padding-bottom: 5px;
 }
 
 /* GNB 서브메뉴 */
