@@ -12,6 +12,25 @@
     outline: 1px dotted red;
 } */
 
+/* 공통 메시지박스 */
+.msg{
+    position: absolute;
+    top: 35px;
+    left: 0;
+    /* 부모는? .scont li */
+    height: 15px;
+    line-height: 15px;
+    /* 줄바꿈방지 */
+    white-space: nowrap;
+
+    font-size: 10px;
+    color: red;
+}
+/* 메시지 글자색 변경 클래스 */
+.msg.on{
+    color: green;
+}
+
 
 /* 메인 겉박스 */
 #cont{
@@ -60,6 +79,8 @@
 }
 /* 리스트 li */
 .scont li{
+    /* 렐러티브 포지션 - 부모자격(.msg) */
+    position: relative;
     height: 50px;
     line-height: 50px;
     /* outline: 2px dotted red; */
@@ -125,7 +146,7 @@
 
     float: right;
     margin-top: 5px;
-    margin-right: 25px;
+    margin-right: 45px;
 
     /* 손가락모양 */
     cursor: pointer;
