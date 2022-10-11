@@ -165,6 +165,25 @@
                             // 1. 데이터 담기
                             let txt = data[z];
                             console.log("문구데이터:",txt);
+                            // 만들어진 span태그 문구를 담을 변수
+                            let newtxt = ""; // 빈문자할당!
+
+                            // 문구 데이터를 for of문으로 하나씩 넣기
+                            for(let m of txt){
+                                console.log("한글자씩:",m);
+                                if(m===" ") // 스페이스일 경우
+                                    newtxt += "&nbsp;&nbsp;&nbsp;";
+                                else // 그 밖에 문자일 경우
+                                    newtxt += `<span>${m}</span>`;
+                            } /////// for of ////////
+
+                            // 문구 데이터 대상에 출력!
+                            document.querySelector(".show")
+                            .innerHTML = newtxt;
+
+                            // "영화 한마디" 타이틀 보이기
+                            document.querySelector(".showtit")
+                            .style.display = "block";
 
                         } //////// if //////////////
 
