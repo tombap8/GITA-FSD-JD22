@@ -163,14 +163,42 @@
             // 이벤트 종류: change
             // 변경대상: 메뉴, 메인이미지, 하단정보
             /////////////////////////////////////////////////
-            // sel.onchange = () => {
-            sel.onchange = function(){
+            sel.onchange = () => { // 화살표함수일때
+            // sel.onchange = function(){ // 일반익명함수일때
+
                 // 1. 호출확인
-                console.log("나야나!",this,event.currentTarget);
+                // console.log("나야나!",this,event.currentTarget);
+
                 // this키워드: 이벤트걸린 요소자신(.sel)
                 // 화살표함수를 썼다면 this는 window객체임!
                 // 자기자신은 event.currentTarget으로 구함!
+
+                // 2. 다국어 언어코드를 선택박스 선택값에서 가져옴
+                // let opt = this.value; // 일반익명함수일때
+                let opt = event.currentTarget.value; // 화살표함수
+                // console.log("선택값:",opt);
+
+                // 3. 가져온 언어코드로 객체에서 언어를 선택함!
+                let data = lang[opt];
+                console.log("선택값:",data);
+
+                // 4. 메뉴변경하기
+                // 대상: menu변수
+                // forEach((요소/배열값,순번,객체)=>{})
+                menu.forEach((ele,idx)=>
+                    ele.innerText = data["메뉴"][idx]);
                 
+                // 5. 메인이미지 변경하기
+                // 대상: mimg 변수
+                // setAttribute(속성명,값) -> 속성변경 JS내장함수
+                mimg.setAttribute("src",`images/${opt}.jpg`);
+                // 메인 이미지명은 코드명과 동일함!
+                // opt는 선택된 코드명이 담겨있음!
+
+                // 6. 하단주소 변경하기
+                // 대상: info변수
+                // innerText로 글자변경
+                info.innerText = data["주소"];
 
             } /////////// change //////////////
 
