@@ -1,0 +1,156 @@
+@charset "utf-8";
+/* 도깨비 PJ 시청자게시판 페이지 CSS - board.css */
+/* 시청자게시판 페이지에만 적용되는 CSS */
+
+/* 외부 CSS합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+/* 공사중 표시 */
+/* body * {
+    outline: 1px dotted red;
+} */
+
+/* 메인 겉박스 */
+#cont{
+    /* 전체 메인 배경색 */
+    background-color: #d7d7d7;
+}
+
+/* 메인 속박스 */
+.cont{
+    /* 최소높이설정 : 내용넘칠경우 자동auto */
+    min-height: 600px;
+    padding: 10px;
+}
+
+/* 1. 타이틀 */
+.stit{
+    font-size: 5rem;
+    text-align: center;
+    padding: 40px 0 20px;
+    font-weight: normal;
+}
+/* 2. 컨텐츠박스 */
+.scont{
+    /* 렐러티브 포지션 (부모자격:.btnbx) */
+    position: relative;
+    max-width: 1000px;
+    min-height: 275px;
+    margin: 0 auto;
+
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid #777;
+    padding: 60px 15px 0;
+    /* 박스크기유지: 보더,패딩포함 bxb */
+    box-sizing: border-box;
+}
+
+/* 테이블 공통 */
+.tbl{
+    /* 글자색 c */
+    color: #222;
+    /* 테이블 기본 사이간극 없애기 */
+    border-collapse: collapse;
+}
+
+/* 드라마 리스트 테이블 */
+#drama{
+    /* 글자크기 fz */
+    font-size: 1.8rem;
+    /* 블록or테이블 가로중앙정렬 - 마.영.오! */
+    margin: 0 auto;
+    /* 가로크기 w */
+    width: 95%;
+    /* 테이블 width지정이 없으면 내용만큼 늘어남!
+    좁으면 아래로 내용이 줄바꿈됨 */
+}
+/* 테이블 제목 */
+#drama caption{
+    /* 글자크기 fz */
+    font-size: 35px;
+    /* 글자두껍게 fwb */
+    font-weight: bold;
+    /* 자간 ls */
+    letter-spacing: 5px;
+    /* 패딩 p */
+    padding: 50px 0 20px;
+    /* 위 양쪽 아래 */
+}
+/* td와 th 패딩 */
+#drama td,
+#drama th{
+    padding: 8px 10px;
+    /* 위아래 양쪽 */
+}
+
+/* td에 밑줄넣기 - 테이블본문에만 적용 */
+#drama tbody td{
+    /* 보더아래 bdb */
+    border-bottom: 1px solid #ccc;
+}
+/* th에 윗줄, 아랫줄 두꺼운 보더 넣기 */
+#drama th{
+    /* 보더위 bdt */
+    border-top: 2px solid #555;
+    /* 보더아래 bdb */
+    border-bottom: 2px solid #555;
+}
+/* 본문(tbody) 마지막 tr의 td 아랫쪽 보더 넣기 */
+#drama tbody tr:last-child td{
+    /* 보더아래 bdb */
+    border-bottom: 2px solid #555;
+}
+/* 본문(tbody)의 짝수번째 tr의 td에 배경색 넣기 */
+/* nth-child(순번) - 순번에 짝/홀수
+-> odd(홀수), even(짝수) */
+#drama tbody tr:nth-child(even) td{
+    /* 배경색 bgc */
+    background-color: #ededed;
+}
+
+/* 본문(tbody)의 첫번째 td (번호항목) 중앙정렬 */
+#drama tbody td:first-child{
+    /* 글자중앙정렬 tac */
+    text-align: center;
+}
+
+/* 하단부분(tfoot) */
+#drama tfoot td{
+    /* 글자중앙 tac */
+    text-align: center;
+    /* 패딩 p */
+    padding: 45px 0;
+}
+
+/* 드라마명 링크 처리 */
+#drama tbody a {
+    /* 글자색 c */
+    color: #222;
+    /* 밑줄없앰 tdn */
+    text-decoration: none;
+}
+/* 드라마명 오버시 */
+#drama tbody a:hover {
+    /* 글자색 c */
+    color: hotpink;
+    /* 글자데코 : 밑줄 tdu */
+    text-decoration: underline;
+    /* 글자데코 스타일 : 물결모양 */
+    text-decoration-style: wavy;
+}
+
+/* 하단 페이징 링크 처리 */
+#drama tfoot a {
+    /* 글자색 c */
+    color: #222;
+    /* 밑줄없앰 tdn */
+    text-decoration: none;
+}
+/* 하단 페이징 오버시 */
+#drama tfoot a:hover {
+    /* 글자색 c */
+    color: blueviolet;
+}
