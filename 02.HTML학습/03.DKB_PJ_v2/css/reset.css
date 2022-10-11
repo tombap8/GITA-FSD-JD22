@@ -36,3 +36,10 @@ img{
         결정되는 경우에 한한다!)
     */
 }
+
+/* 포커스 아웃라인 제거
+모든 브라우저에 기본 포커스 아웃라인 셋팅됨! */
+input:focus,
+select:focus{
+    outline: none;
+}

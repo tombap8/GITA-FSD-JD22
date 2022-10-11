@@ -12,6 +12,7 @@
     outline: 1px dotted red;
 } */
 
+
 /* 메인 겉박스 */
 #cont{
     /* 전체 메인 배경색 */
@@ -22,6 +23,7 @@
 .cont{
     /* 최소높이설정 : 내용넘칠경우 자동auto */
     min-height: 600px;
+    padding: 15px;
 }
 
 /* 1. 타이틀 */
@@ -42,101 +44,89 @@
     background-color: #fff;
     border-radius: 10px;
     border: 2px solid #777;
-    padding: 60px 15px;
+    padding: 30px 50px;
     /* 박스크기유지: 보더,패딩포함 bxb */
     box-sizing: border-box;
 }
 
-/* 입력창 공통 라벨 */
-.minput label{
-    /* 크기디자인 적용위해 */
-    display: inline-block;
-    width: 150px;
+/* 리스트 ul */
+.scont ul{
+    width: 100%;
+    height: 100%;
     font-size: 2rem;
+    /* html 10px*2=20px */
     font-weight: bold;
-    color: #555;
-    text-align: center;
-    line-height: 3.6rem;
+    color: #333;
 }
-
-/* 입력양식공통 */
-.minput input{
-    width: 320px;
+/* 리스트 li */
+.scont li{
+    height: 50px;
+    line-height: 50px;
+    /* outline: 2px dotted red; */
+}
+/* 라벨공통 타이틀(.itit) */
+.itit{
+    /* 디자인 적용위해 */
+    display: inline-block;
+    width: 200px;
+}
+/* 입력박스 공통 */
+/* []는 속성(attribute)선택자 */
+.scont input[type=text],
+.scont input[type=password]{
+    width: 340px;
     height: 36px;
+    font-size: 2rem;
     border: 1px solid #777;
     border-radius: 5px;
-    font-size: 1.8rem;
-    padding-left: 15px;
-    /* 크기유지 bxb */
-    box-sizing: border-box;
-    color: #555;
+    padding-left: 5px;
 }
-
-/* 비밀번호박스 */
-.scont div:nth-child(2){
-    margin-top: 20px;
+/* 라디오버튼 */
+.scont input[type=radio]{
+    width: 20px;
+    height: 20px;
+    /* 인라인요소간 세로정렬 */
+    vertical-align: -4px;
 }
-
-/* 포커스 아웃라인 제거
-모든 브라우저에 기본 포커스 아웃라인 셋팅됨! */
-input:focus{
-    outline: none;
+/* 이메일 앞주소 */
+#email1{
+    width: 170px;
 }
-
-/* 버튼영역 */
-.btnbx{
-    position: absolute;
-    top: 60px;
-    right: 60px;
-    /* 부모는? .scont */
-}
-/* 서브밋버튼 */
-#sbtn{
-    width: 113px;
-    height: 92px;
-    border: 1px solid #888;
+/* 이메일 선택박스
+(=드롭다운박스=콤보박스) */
+#seleml{
+    width: 146px;
+    height: 40px;
     border-radius: 5px;
-    /* 배경 그라데이션 */
+    font-size: 2rem;
+}
+/* 이메일 뒷주소 */
+#email2{
+    width: 136px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 25px;
+    /* 처음에 안보임 */
+    display: none;
+}
+/* 가입하기 버튼 */
+#btnj{
+    width: 113px;
+    height: 40px;
+    border: 1px solid #777;
+    border-radius: 5px;
     background-image: 
     linear-gradient(to bottom,#ddd,#555);
     color: #fff;
-    font-size: 1.5rem;
-    text-shadow: 1px 1px #555;
-}
+    text-shadow: 1px 1px 1px #555;
 
-/* 체크박스 영역 */
-.addbx{
-    margin-top: 50px;
-    text-align: center;
+    font-weight: bold;
     font-size: 1.6rem;
-    /* 글자 선택영역 안잡히게 방지 */
-    user-select: none;
-}
 
-/* 체크박스 라벨과 세로정렬 */
-.addbx input{
-    width: 0;/* 체크박스 안보임 */
-    /* vertical-align: -3px; */
-}
-/* 체크박스 아이콘을 라벨에 넣기! */
-.addbx input+label{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    vertical-align: -3px;
-    font-size: 20px;
-    color: orangered;
-    margin-right: 5px;
-    /* outline: 1px solid red; */
-}
-/* 체크박스 체크시 아이콘 변경 */
-.addbx input:checked+label{
-    font-weight: 900;
-}
+    float: right;
+    margin-top: 5px;
+    margin-right: 25px;
 
-/* 기타링크 구분선 */
-/* span+span 앞에 span이 있는 span형제 */
-.addbx span+span::before{
-    content: '|';
-    margin: 0 15px;
+    /* 손가락모양 */
+    cursor: pointer;
 }
