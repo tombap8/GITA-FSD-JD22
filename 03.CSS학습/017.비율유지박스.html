@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>017.비율유지박스(Ratio Box)</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* 보이는 화면기준! */
+        }
+
+        /* 비율유지박스 */
+        .rbx{
+            width: 60%;
+            /* height: 45%; */
+            /* 결론: 높이값으로는 비율유지 안됨! */
+            margin: 0 auto;
+
+            /* height값 없이 강제로 높이값을
+            어떻게 만들까? -> 패딩으로 만들자!
+            padding-top만 사용해서 높이를 만든다! 
+            단위를 %를 쓰면?
+            자기자신에게 준 패딩탑값에 %를 쓰면
+            비율유지박스가 되지만 정확한 비를
+            계산하기 어렵다!
+            -> 이 패딩탑값을 자식 블록요소에게 줘본다! */
+            /* padding-top: 50%; */
+
+            background: url(./images/mobum.jpg) no-repeat center/cover;
+        }
+        /* 비율유지박스 가상요소로 비율만들기!!! */
+        .rbx::before{
+            content: '';
+            /* div와 같은 블록으로 설정! */
+            display: block;
+            /* 비율을 만드는 패딩탑 %로주기! */
+            padding-top: 52.47%;
+            /* 
+                배경이미지의 비율로 계산해 보기!
+                가로 : 세로 = 1170 : 614 = 100% : x%
+                x% = 614 * 100 / 1170
+                   = 52.47%
+            */
+        }
+    </style>
+</head>
+<body>
+    <!-- 비율유지박스 -->
+    <div class="rbx">
+        <!-- <div style="padding-top: 56.25%;"></div> -->
+
+        <!-- 직계자식 블록요소에게 패딩탑값을
+        %단위로 주면 정확한 비가 성립한다!
+        100%를 주면 1:1 비율임!
+        
+        비율계산의 예:
+        16 : 9 = 100 : x
+        16x = 9*100
+        x = 900/16 = 56.25%
+
+        ->>> 직접 태그를 쓰면 위험요소가 되므로(변경등)
+        가상요소 ::before를 사용하면 해결!!!
+    
+        -->
+
+        <!-- 컨텐츠 넣기 -->
+        <dl class="cat">
+            <dt>출연진</dt>
+            <dd>이제훈(김도기역)</dd>
+            <dd>이솜(강하나역)</dd>
+            <dd>김의성(장성철역)</dd>
+        </dl>
+
+
+
+    </div>
+    
+</body>
+</html>

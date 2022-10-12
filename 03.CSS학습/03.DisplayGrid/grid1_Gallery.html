@@ -87,9 +87,18 @@
             /* [ 세로 그리드 템플릿 ] */
             /* 1. 구체적인 수치 높이값 쓴만큼 셋팅
             - 나머지는 자동높이!(자동생성값) */
-            grid-template-rows: 
-            100px 200px 300px;
+            /* grid-template-rows: 
+            100px 200px 300px; */
 
+            /* 2. 높이값 전체에서의 비를 쓴만큼 셋팅 */
+            /* grid-template-rows: 1fr 3fr 5fr 2fr; */
+
+            /* 3. repeat(수치의 반복수, 반복수치) */
+            /* grid-template-rows: repeat(4,300px); */
+
+            /* 4. 모든 높이값을 동일하게 셋팅 
+            -> grid-auto-rows (기본값 auto) */
+            grid-auto-rows: 400px;
 
 
             /* [ 수평방향 간격 ] */
