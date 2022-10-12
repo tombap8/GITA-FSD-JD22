@@ -1,2 +1,15 @@
 @charset "utf-8";
 /* 회전하는 아이폰 + 흐르는 글자 CSS - iPhone.css */
+
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* 보이는 화면 채우기 */
+}
+body{
+    background-image: 
+    linear-gradient(to bottom, #fff 20%,skyblue 40%,#fff);
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+}
