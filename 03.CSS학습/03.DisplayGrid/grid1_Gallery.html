@@ -53,11 +53,12 @@
         /* 타이틀 */
         .tit {
             text-align: center;
-            font-size: 3vw;
+            /* 글자 최소크기 지정 */
+            font-size: max(3vw,25px);
         }
 
         /* 그리드 박스 */
-        .grid{
+        .grid {
             display: grid;
 
             /* [가로 그리드 템플릿] */
@@ -71,8 +72,8 @@
             1fr 3fr 5fr 2fr; */
 
             /* 3. repeat(수치의 반복수,반복수치) */
-            grid-template-columns: 
-            repeat(5, 1fr);
+            grid-template-columns:
+                repeat(5, 1fr);
 
             /* 3번 repeat()에 대한 다양한 실험! */
             /* grid-template-columns: 
@@ -118,20 +119,21 @@
 
         /* 갤러리 div박스에 가상요소 before이용하여
         비율 만들기! */
-        .grid>div::before{
+        .grid>div::before {
             content: '';
             display: block;
             padding-top: 142%;
             /* 이미지의 비율에 맞게 조정함! */
         }
+
         /* 갤러리 각박스 공통 */
-        .grid>div{
+        .grid>div {
             /* 렐러티브 부모자격 -> ::before */
             position: relative;
         }
 
         /* 갤러리 이미지 - 비율패딩때문에 앱솔루트로 변경! */
-        .grid img{
+        .grid img {
             position: absolute;
             top: 0;
             /* 부모는? 싸고있는 div */
@@ -145,32 +147,108 @@
         }
 
         /* 상품설명박스 */
-        .grid aside{
+        .grid aside {
             position: absolute;
             bottom: 0;
             width: 100%;
             text-align: center;
             color: #fff;
-            background-color: 
-            rgba(0, 0, 0, 0.471);
+            background-color:
+                rgba(0, 0, 0, 0.471);
         }
 
         /* 상품명 글자박스 */
-        .grid aside h2{
+        .grid aside h2 {
             /* min으로 둘중 작은값(최대크기지정) */
-            font-size: min(1.8vw,24px);
+            font-size: min(1.8vw, 24px);
             font-weight: normal;
-            margin: min(1.2vw,14px) 0 0;
+            margin: min(1.2vw, 14px) 0 0;
             /* 마진: 위 양쪽 아래 */
         }
+
         /* 상품가격 글자박스 */
-        .grid aside h3{
-            font-size: min(1.4vw,18px);
+        .grid aside h3 {
+            font-size: min(1.4vw, 18px);
             font-weight: normal;
-            margin: min(0.5vw,10px) 0;
+            margin: min(0.5vw, 10px) 0;
         }
 
+        /* 1100px이하 미디어쿼리 시작 */
+        @media screen and (max-width:1100px) {
+            .grid {
+                /* 가로방향 4개 */
+                grid-template-columns:
+                    repeat(4, 1fr);
+            }
+        }
 
+        /* 1100px이하 미디어쿼리 끝 */
+
+        /* 1000px이하 미디어쿼리 시작 */
+        @media screen and (max-width:1000px) {
+            .grid {
+                /* 가로방향 3개 */
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+        }
+
+        /* 1000px이하 미디어쿼리 끝 */
+
+        /* 800px이하 미디어쿼리 시작 */
+        @media screen and (max-width:800px) {
+            .grid {
+                /* 가로방향 2개 */
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            /* 상품명 글자박스 */
+            .grid aside h2 {
+                font-size: 3vw;
+                margin: 2vw 0 0;
+            }
+
+            /* 상품가격 글자박스 */
+            .grid aside h3 {
+                font-size: 2vw;
+                margin: 2vw 0;
+            }
+        }
+
+        /* 800px이하 미디어쿼리 끝 */
+
+        /* 600px이하 미디어쿼리 시작 */
+        @media screen and (max-width:600px) {
+            body{
+                margin: 0;
+            }
+            .grid {
+                /* 가로방향 1개 */
+                grid-template-columns:
+                    repeat(1, 1fr);
+
+                /* [ 수평방향 간격 ] */
+                grid-column-gap: 0;    
+
+                /* [ 수직방향 간격 ] */
+                grid-row-gap: 0;
+            }
+
+             /* 상품명 글자박스 */
+             .grid aside h2 {
+                font-size: 5.5vw;
+                margin: 4vw 0 0;
+            }
+
+            /* 상품가격 글자박스 */
+            .grid aside h3 {
+                font-size: 4vw;
+                margin: 4vw 0;
+            }
+        }
+
+        /* 600px이하 미디어쿼리 끝 */
     </style>
 </head>
 
