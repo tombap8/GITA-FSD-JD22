@@ -28,3 +28,22 @@ body{
     /* 입체를 잘보이게 약간회전 */
     transform: rotateX(10deg) rotateY(30deg);
 }
+/* 폰 각면 공통 */
+.iphone span{
+    position: absolute;
+    width: 200px;
+    height: 400px;
+
+    /* 배경공통 */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    outline: 1px dashed red;
+}
+/* 1.앞면 */
+.iphone span:nth-child(1){
+    background-image: url(../images/ip01.png);
+    /* z축 밀기 */
+    transform: translateZ(10px);
+    display: none;
+}
