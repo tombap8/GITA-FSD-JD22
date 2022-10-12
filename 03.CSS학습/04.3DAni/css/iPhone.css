@@ -1,6 +1,12 @@
 @charset "utf-8";
 /* 회전하는 아이폰 + 흐르는 글자 CSS - iPhone.css */
 
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* font-family: 'Anton', sans-serif; */
+
+
 html,body{
     margin: 0;
     padding: 0;
