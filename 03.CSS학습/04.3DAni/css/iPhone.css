@@ -21,7 +21,7 @@ body{
     /* 계산을 통한 정중앙셋팅! */
     width: 200px;
     height: 400px;
-    outline: 2px solid blue;
+    /* outline: 2px solid blue; */
 
     /* 입체설정 */
     transform-style: preserve-3d;
@@ -35,10 +35,11 @@ body{
     height: 400px;
 
     /* 배경공통 */
+    background-color: #fff;
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
-    outline: 1px dashed red;
+    /* outline: 1px dashed red; */
 }
 /* 1.앞면 */
 .iphone span:nth-child(1){
@@ -85,3 +86,17 @@ body{
     transform: 
     translateZ(-10px) rotateY(180deg);
 }
+
+/* 애니호출 클래스 */
+.ip-ani{
+    /* 애니메이션: 이시이지반방마 */
+    animation: ipAni 1.5s ease-in-out 1s 2 alternate;
+}
+
+/* 아이폰 회전 키프레임 */
+@keyframes ipAni {
+    to{
+        transform: 
+        rotateX(370deg) rotateY(-330deg);
+    }
+} /* 키프레임 */
