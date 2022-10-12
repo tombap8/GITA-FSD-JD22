@@ -71,3 +71,11 @@ body{
     /* x축회전 -90도 */
     transform: rotateX(-90deg);
 }
+/* 5.윗쪽면 */
+.iphone span:nth-child(5){
+    background-image: url(../images/ip06.png);
+    height: 20px;
+    top: -10px;
+    /* x축회전 -90도 */
+    transform: rotateX(-90deg);
+}
