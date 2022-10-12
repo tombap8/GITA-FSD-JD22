@@ -121,7 +121,8 @@
         .grid>div::before{
             content: '';
             display: block;
-            padding-top: 100%;
+            padding-top: 142%;
+            /* 이미지의 비율에 맞게 조정함! */
         }
         /* 갤러리 각박스 공통 */
         .grid>div{
@@ -152,6 +153,20 @@
             color: #fff;
             background-color: 
             rgba(0, 0, 0, 0.471);
+        }
+
+        /* 상품명 글자박스 */
+        .grid aside h2{
+            /* min으로 둘중 작은값(최대크기지정) */
+            font-size: min(1.8vw,24px);
+            font-weight: normal;
+            margin: min(1.2vw,14px) 0;
+        }
+        /* 상품가격 글자박스 */
+        .grid aside h3{
+            font-size: min(1.4vw,18px);
+            font-weight: normal;
+            margin: min(0.5vw,10px) 0;
         }
 
 
