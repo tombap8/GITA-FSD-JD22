@@ -106,3 +106,89 @@ body{
         rotateX(370deg) rotateY(-330deg);
     }
 } /* 키프레임 */
+
+
+/* 흘러가는 글자 부모박스 */
+.fbx{
+    position: absolute;
+    width: 100vw;
+}
+/* 텍스트 박스 (움직일박스) */
+.tbx{
+    position: relative;
+    /* left초기값 */
+    left: 0;
+    /* 가로크기는 화면의 2배 */
+    width: 200vw;    
+    /* 플렉스박스 : 하위 ul옆으로 흐름 */
+    display: flex;
+}
+/* 텍스트박스 하위 ul 2개공통 */
+.tbx ul{
+    /* 플렉스 박스 : 직계하위 li가 옆으로 흐름 */
+    display: flex;
+    /* 상위 .tbx의 플렉스에 대한 등분할 설정 */
+    flex: 1;
+
+    /* 기본없앰 */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* 하위 li 공통셋팅 */
+.tbx li{
+    /* 상위 ul의 플렉스 등분할 설정 */
+    flex: 1;
+
+    text-align: center;
+    font-family: 'Anton';
+    font-size: 4vw;
+    color: #a0a0a0;
+}
+
+/* 글자애니 호출 클래스1 */
+.txt-ani1{
+    /* 애니메이션: 이시이지반방마 */
+    animation: txtFlow1 10s linear infinite;
+}
+
+/* 글자흐르기 키프레임1 */
+@keyframes txtFlow1 {
+    to{
+        left: -100%;
+        /* 왼쪽방향 화면크기만큼 이동 */
+    }
+} /* 키프레임 */
+
+/* .f1 위치 */
+.f1{
+    bottom: 5vh;
+}
+
+
+/* 여기서 부터 아래쪽은 .f2 글자흐름 셋팅입니다~! */
+
+/* .f2 위치 */
+.f2{
+    top: 5vh;
+}
+
+/* .f2 .tbx 초기셋팅 */
+.f2 .tbx{
+    left: -100%;
+}
+
+
+/* 글자애니 호출 클래스2 */
+.txt-ani2{
+    /* 애니메이션: 이시이지반방마 */
+    animation: txtFlow2 10s linear infinite;
+}
+
+/* 글자흐르기 키프레임2 */
+@keyframes txtFlow2 {
+    to{
+        left: 0;
+        /* 왼쪽방향 화면크기만큼 이동 */
+    }
+} /* 키프레임 */
