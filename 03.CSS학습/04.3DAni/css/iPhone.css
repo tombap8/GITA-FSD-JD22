@@ -55,3 +55,19 @@ body{
     /* y축회전 90도 */
     transform: rotateY(90deg);
 }
+/* 3.왼쪽면 */
+.iphone span:nth-child(3){
+    background-image: url(../images/ip04.png);
+    width: 20px;
+    left: -10px;
+    /* y축회전 -90도 */
+    transform: rotateY(-90deg);
+}
+/* 4.아래쪽면 */
+.iphone span:nth-child(4){
+    background-image: url(../images/ip05.png);
+    height: 20px;
+    bottom: -10px;
+    /* x축회전 -90도 */
+    transform: rotateX(-90deg);
+}
