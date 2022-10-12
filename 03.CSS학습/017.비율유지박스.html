@@ -14,6 +14,8 @@
 
         /* 비율유지박스 */
         .rbx{
+            /* 렐러티브 부모자격 - .rbxIn */
+            position: relative;
             width: 60%;
             /* height: 45%; */
             /* 결론: 높이값으로는 비율유지 안됨! */
@@ -45,6 +47,33 @@
                    = 52.47%
             */
         }
+
+        /* 가상요소 패딩때문에 내용이 밀리므로
+        내부에 컨텐츠 박스를 앱솔루트로 만든다! */
+        .rbxIn{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            /* 이때 반드시 .rbx가 부모자격이 있어야함!!! */
+        }
+
+
+        /* 내용셋팅 */
+        .cat{
+            /* position: absolute; */
+            bottom: 2%;
+            left: 5%;
+            /* 부모는? .rbxIn */
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-size: 1.5vw;
+            font-weight: bold;
+            line-height: 2;
+            text-shadow: 2px 2px 2px #000;
+        }
     </style>
 </head>
 <body>
@@ -66,13 +95,18 @@
     
         -->
 
-        <!-- 컨텐츠 넣기 -->
-        <dl class="cat">
-            <dt>출연진</dt>
-            <dd>이제훈(김도기역)</dd>
-            <dd>이솜(강하나역)</dd>
-            <dd>김의성(장성철역)</dd>
-        </dl>
+        <!-- 비율유지 속박스 -->
+        <div class="rbxIn">
+            
+            <!-- 컨텐츠 넣기 -->
+            <dl class="cat">
+                <dt>출연진</dt>
+                <dd>이제훈(김도기역)</dd>
+                <dd>이솜(강하나역)</dd>
+                <dd>김의성(장성철역)</dd>
+            </dl>
+
+        </div>
 
 
 
