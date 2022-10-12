@@ -45,7 +45,6 @@ body{
     background-image: url(../images/ip01.png);
     /* z축 밀기 */
     transform: translateZ(10px);
-    display: none;
 }
 /* 2.오른쪽면 */
 .iphone span:nth-child(2){
@@ -68,8 +67,8 @@ body{
     background-image: url(../images/ip05.png);
     height: 20px;
     bottom: -10px;
-    /* x축회전 -90도 */
-    transform: rotateX(-90deg);
+    /* x축회전 90도 */
+    transform: rotateX(90deg);
 }
 /* 5.윗쪽면 */
 .iphone span:nth-child(5){
@@ -78,4 +77,11 @@ body{
     top: -10px;
     /* x축회전 -90도 */
     transform: rotateX(-90deg);
+}
+/* 6.뒷면 */
+.iphone span:nth-child(6){
+    background-image: url(../images/ip02.png);
+    /* z축 밀기 + Y축 회전 180도 */
+    transform: 
+    translateZ(-10px) rotateY(180deg);
 }
