@@ -13,3 +13,18 @@ body{
     /* 넘치는 자식요소 숨기기 */
     overflow: hidden;
 }
+/* 폰박스 */
+.iphone{
+    position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 100px);
+    /* 계산을 통한 정중앙셋팅! */
+    width: 200px;
+    height: 400px;
+    outline: 2px solid blue;
+
+    /* 입체설정 */
+    transform-style: preserve-3d;
+    /* 입체를 잘보이게 약간회전 */
+    transform: rotateX(10deg) rotateY(30deg);
+}
