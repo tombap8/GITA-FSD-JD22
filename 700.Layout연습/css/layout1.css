@@ -1,0 +1,116 @@
+@charset "utf-8";
+/* 레이아웃 연습1 */
+
+/* 외부파일 합치기 */
+@import url(reset.css);
+@import url(gs12.css);
+
+/* 
+    [ 클래스 이름정의 ]
+
+    1. .ibx - 속박스 (inbox)
+        특정 가로크기를 가지고
+        중앙에 위치하는 컨텐츠 최대영역박스
+        max-width, margin:0 auto 로 셋팅
+        -> 만약 100%로 차는 박스를 만들때는
+        max-width: 1920px 정도로 셋팅추천!
+
+    2. .cbx - 내용 파티션 박스(contents box)
+        옆으로 흐르는 설정을 주는 박스임
+        자기자신이 float설정을 가질 수 있고
+        그리드 시스템의 클래스로 줄 수 도 있음
+
+*/
+
+/* 중앙 속박스 */
+.ibx{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* .ibx의 파티션 float을 위한 해제설정
+-> float된 자식요소의 높이값 인식위해! */
+.ibx::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/* 3중박스일때 높이값은 최상위부모, 부모, 자식 중 어디에 
+줘야 할까? 자식에게 줘야 컨트롤이 편함! 왜?
+부모박스는 자식만큼 커지니까 height:auto!!! */
+
+.cbx{
+    position: relative;
+    /* 부모자격! */
+}
+/* 검수용 이미지 넣기 */
+.cbx>img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 앱솔루트 크기가 %이면 부모기준 -> .cbx */
+    object-fit: cover;
+    /* 
+        이미지, 비디오의 박스 채우기 옵션
+        object-fit 속성
+        1) fill : 가로, 세로 비율무시 무조건 채움
+        2) contain: 비율유지 모두보임 빈공간 있음
+        3) cover : 비율유지 빈틈없음 (일부가 잘릴수 있음)
+        -> 배경이미지 사이즈 cover와 유사함!
+    */
+
+    /* 검수용 이미지이니 반투명, 아래 위치시킴! */
+    opacity: 0.5;
+    z-index: -1;
+    /* 기본층이 0층이므로 -1은 선택되지 않음! */
+}
+
+
+/* 영역별 개별 높이 */
+/* 1. 상단영역 */
+.top .cbx{
+    height: 100px;
+}
+/* 2. 배너영역 */
+.ban .cbx{
+    height: 344px;
+}
+/* 3. 추천영역 */
+.chu .cbx{
+    height: 362px;
+}
+/* 4. 대표서비스 */
+.dae .cbx{
+    height: 120px;
+}
+/* 5. 무역지원사업일정 */
+/* .cbx+.cbx 는 앞에 .cbx가 있는 형제 .cbx요소
+즉 첫번째만 제외하고 모두 선택! 
+플러스(+) 형제선택자 */
+.moo .cbx+.cbx{
+    height: 219px;
+}
+
+/* 6. 무역지원서비스 */
+/* .cbx:first-child~.cbx 
+첫번째 .cbx 뒤의 모든 형제 .cbx
+틸드(~) 다중형제선택자 */
+.moo2 .cbx:first-child~.cbx{
+    height: 287px;
+}
+
+/* 7. 무역통계등 */
+.sta .cbx{
+    height: 243px;
+}
+
+/* 8. 하단링크 */
+.blink .cbx{
+    height: 74px;
+}
+
+/* 9. 하단영역 */
+.info .cbx{
+    height: 115px;
+}
