@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* 레이아웃3 CSS - layout3.css */
+
+/* 초기화 */
+html,body{
+    margin: 0;
+    padding: 0;
+}
+/* 헤딩태그 */
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+
+/* 임시표시 */
+.cont h2{
+    line-height: 100vh;
+    font-size: 5vw;
+    text-align: center;
+}
+
+
+/* 속박스 셋팅 */
+.ibx{
+    max-width: 1400px;
+    margin: 0 auto;
+    outline: 1px dashed gray;
+    /* 임시높이 */
+    min-height: 100px;
+}
+
+/* 컨텐츠 영역 공통 클래스 */
+.cont{
+    height: 100vh;
+}
