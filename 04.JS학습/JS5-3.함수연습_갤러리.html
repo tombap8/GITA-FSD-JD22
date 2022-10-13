@@ -149,30 +149,44 @@
 
 
             // 변경대상1: 메인이미지 - #mbox img
-            
+            const mimg = document.querySelector("#mbox img");
 
             // 변경대상2: 글자박스 - .imgtxt
-            
+            const imgtxt = document.querySelector(".imgtxt");
 
             // 처음글자 넣기 : 각 배너 데이터의 첫번째!
-            
-
+            imgtxt.innerText = itxt[0];
+            imgtxt.style.color = tcolor[0];
 
             // 이벤트 대상: 이동버튼
-            
+            const btn = document.querySelectorAll(".btn");
 
-            // 오른쪽버튼 - 두번째버튼
-            
+            // 이동버튼 클릭설정하기
+            btn.forEach(
+                (ele, idx) => ele.onclick = () => goSlide(idx)
+            ); //// forEach //////////
 
-
-            // 왼쪽버튼 - 첫번째버튼
-            
+            // 위의 실행문 원복!
+            /* 
+                (ele,idx) => {
+                    ele.onclick = () => {goSlide(idx)}}
+                ________________________________________
+                
+                function(ele,idx){
+                    ele.onclick = function(){goSlide(idx)}
+                } 
+            */
 
             /**************************************** 
                 함수명: goSlide
                 기능: 갤러리 이미지,글자 변경하기
             ****************************************/
-            
+            const goSlide = dir => { // dir - 버튼구분(방향)
+
+                // 1. 호출 및 전달값 확인!
+                console.log("넌 누구냐?", dir);
+
+            }; //////////// goSlide함수 //////////////
 
 
 
@@ -217,14 +231,14 @@
 
             // 자동넘김 버튼 클릭시 인터발함수 셋팅하기!! ///
             // 이벤트 대상: .abtn button
-            
+
 
 
             // 타임아웃 함수로 미니언즈 애니하기!!! ////
             // 원리: 미리셋팅된 클래스를 미니언즈요소에
             // 일정시간 후 넣고/빼고/넣기를 해준다!
             // 변경대상: #mini
-            
+
 
         }); /////////// 로드구역 ///////////////////
     </script>
