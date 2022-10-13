@@ -108,16 +108,33 @@
 
             // 버튼요소
             let btn = document.querySelectorAll(".btn");
+            // console.log(btn);
 
             // 버튼요소 클릭시 글자 바꾸기 //////
 
             // 기존방식 /////
+            btn[0].onclick = function(){
+                // 클릭된 요소 자신 -> this키워드!
+                // console.log(this);
+                // 버튼 글자변경
+                this.innerText = "올드익명함수다!";
+            }; ///// click ////////////
 
 
 
             // 새로운 방식 ////
+            btn[1].onclick = () => {
+                // 클릭된 요소 자신 -> this키워드!
+                // 화살표함수에서는 this는 window객체임!
+                // 요소자신은 이벤트객체속성을 사용하여 구함!
+                // -> event.currentTarget 
+                // -> 이벤트가 발생한 현재타겟 요소
 
-
+                console.log(this,event.currentTarget);
+                // 버튼 글자변경
+                event.currentTarget.innerText = 
+                "화살표함수다!";
+            }; ///// click ////////////
 
 
             /************************************ 
