@@ -189,18 +189,18 @@
 
                 // 2. 버튼별 분기
                 // 2-1. 오른쪽버튼일때
-                if(dir){ // dir만 쓰면 1인경우 true!
+                if (dir) { // dir만 쓰면 1인경우 true!
                     // 이미지번호 1증가
                     inum++;
                     // 한계값 체크(처음으로)
-                    if(inum===8) inum=1;
+                    if (inum === 8) inum = 1;
                 } //////// if /////////
                 // 2-2. 왼쪽버튼일때
-                else{ /// dir값이 0일때 else에서 처리!
+                else { /// dir값이 0일때 else에서 처리!
                     // 이미지번호 1감소
                     inum--;
                     // 한계값 체크(끝으로)
-                    if(inum===0) inum=7;
+                    if (inum === 0) inum = 7;
                 } /////// else /////////
 
                 // 3. 변경대상: #mbox img -> mimg 변수
@@ -210,8 +210,8 @@
 
                 // 5. 추가변경내용 : 글자내용 + 글자색
                 // 이미지번호보다 배열번호가 1작다!(inum-1)
-                imgtxt.innerText = itxt[inum-1];
-                imgtxt.style.color = tcolor[inum-1];
+                imgtxt.innerText = itxt[inum - 1];
+                imgtxt.style.color = tcolor[inum - 1];
 
             }; //////////// goSlide함수 //////////////
 
@@ -258,7 +258,37 @@
 
             // 자동넘김 버튼 클릭시 인터발함수 셋팅하기!! ///
             // 이벤트 대상: .abtn button
+            const abtn =
+                document.querySelectorAll(".abtn button");
+            // console.log(abtn);
 
+            // 인터발용변수
+            let autoI;
+
+            // 버튼에 클릭이벤트 설정하기!
+            for (let x of abtn) {
+
+                x.onclick = () => {
+                    // 클릭된요소의 클래스이름 여부
+                    let isB = x.classList.contains("start");
+                    // classList.contains(클래스명)
+                    // -> 클래스명이 맞으면 true
+                    console.log("자동넘김버튼인가?", isB);
+
+                    // 분기문 ////////
+                    if (isB) { // true이면 "자동넘김"
+                        // 인터발 주기: 1초간격 goSlide(1)호출!
+                        setInterval(() => goSlide(1), 1000);
+                        // 자기자신 버튼 없애기
+                        x.style.display = "none";
+                        // "멈춤"버튼 보이기
+                        abtn[1].style.display = "inline-block";
+
+                    } //////// if ///////////
+
+                }; //////// click /////////
+
+            } //////////// for of //////////////
 
 
             // 타임아웃 함수로 미니언즈 애니하기!!! ////
