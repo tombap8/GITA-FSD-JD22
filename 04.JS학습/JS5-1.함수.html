@@ -338,6 +338,9 @@
         // 기본 전달값 배열변수가 있다! ->>> arguments
         // 주의: 화살표함수는 이것을 못씀!
         // 글자찍기 함수 //////
+
+        // const Fn = () => { // 화살표함수 -> arguments사용불가!
+        // const Fn = function() { // 일반익명함수는 arguments OK!
         function Fn(){
             // 호출시 전달되는 arguments 찍어보기!
             console.log("전달값 arguments:",arguments);
