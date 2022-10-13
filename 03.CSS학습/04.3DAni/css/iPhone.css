@@ -192,3 +192,22 @@ body{
         /* 왼쪽방향 화면크기만큼 이동 */
     }
 } /* 키프레임 */
+
+
+
+/* 이벤트 처리박스 */
+.evt{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* 플렉스박스 */
+    display: flex;
+}
+/* 등분할 박스 */
+.evt div{
+    flex: 1;
+    outline: 2px dashed blue;
+    background-color: rgba(255, 0, 0, 0.509);
+}
