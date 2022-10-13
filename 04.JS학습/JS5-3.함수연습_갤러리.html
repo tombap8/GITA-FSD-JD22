@@ -208,6 +208,11 @@
                 // -> 이미지파일명에 inum변수 사용!
                 mimg.src = `./images/img${inum}.jpg`;
 
+                // 5. 추가변경내용 : 글자내용 + 글자색
+                // 이미지번호보다 배열번호가 1작다!(inum-1)
+                imgtxt.innerText = itxt[inum-1];
+                imgtxt.style.color = tcolor[inum-1];
+
             }; //////////// goSlide함수 //////////////
 
 
