@@ -281,22 +281,24 @@
                         // 멈추기위해 변수에 인터발할당!
                         autoI = setInterval(
                             () => goSlide(1), 1000);
-                        // 자기자신 버튼 없애기
-                        x.style.display = "none";
-                        // "멈춤"버튼 보이기
-                        abtn[1].style.display = "inline-block";
 
                     } //////// if ///////////
                     else{ // "멈춤"버튼
                         // 인터발지우기
                         clearInterval(autoI);
-                        // 자기자신버튼 없애기
-                        x.style.display = "none";
-                        // "자동넘김"버튼보이기
-                        abtn[0].style.display = "inline-block";
                     } //////// else //////////
+                    
+                    // 자기자신버튼 없애기
+                    x.style.display = "none";
+                    // "멈춤"/"자동넘김"버튼보이기
+                    abtn[isB?1:0].style.display = "inline-block";
+                    // isB?1:0 의 해석
+                    // 삼항연산자 -> 비?집:놀이동산
+                    // isB가 true이면 즉, "자동넘김"이면
+                    // 1 즉 두번째 버튼출력
+                    // 아니면 0 즉, 첫번째 버튼출력
 
-                    console.log("autoI변수:",autoI);
+                    // console.log("autoI변수:",autoI);
 
                 }; //////// click /////////
 
