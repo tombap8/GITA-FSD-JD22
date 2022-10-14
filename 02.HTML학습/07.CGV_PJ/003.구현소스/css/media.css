@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CGV 메인 페이지 미디어쿼리 CSS - media.css */
+
+/* 1310px이하 미디어쿼리 시작 */
+@media screen and (max-width:1310px) {
+
+    /* gnb위치변경 */
+    .gnb {
+        right: 73px;
+    }
+}
+
+/* 1310px이하 미디어쿼리 끝 */
+
+/* 1024px이하 미디어쿼리 시작 */
+@media screen and (max-width:1024px) {
+
+    /* 네비 ul */
+    .gnb ul {
+        position: absolute;
+        top: 17px;
+        right: -59px;
+        width: 117px;
+        flex-direction: column;
+        align-items: flex-end;
+        /* 처음에 안보임 */
+        display: none;
+    }
+    /* gnb오버시 상위메뉴 보임 */
+    .gnb:hover ul{
+        display: flex;
+        /* 원래 display로 가야함! */
+    }
+
+    /* 오버시 서브메뉴 안나옴! */
+    .gnb ul>li:hover .smenu {
+        display: none;
+    }
+}
+
+/* 1024px이하 미디어쿼리 끝 */
+
+
+/* 1024px이하 미디어쿼리 시작 */
+@media screen and (max-width:1024px) {}
+
+/* 1024px이하 미디어쿼리 끝 */
