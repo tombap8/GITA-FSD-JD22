@@ -42,10 +42,32 @@ window.addEventListener("DOMContentLoaded",()=>{
                 case "트위터 바로가기": url = "twit"; break;
                 case "인스타그램 바로가기": url = "insta"; break;
                 case "페이스북 바로가기": url = "fab"; break;
-                default : url = "home";
+                default : url = "index";
             } //////// switch case ///////
 
             console.log("url:",url);
+
+            // 3. 해당 url로 페이지 이동
+            if(url==="etc"){
+                alert("현재 페이지는 공사중입니다~!");
+            } //////// if /////////
+            else{
+                // sns거르기 /////////
+                if(url==="twit"||url==="insta"||url==="fab"){
+                    // 새창열고 페이지이동
+                    window.open().location.href = 
+                    url==="twit"? // 트위터냐?
+                    "https://twitter.com/chtvn":
+                    url==="insta"? // 인스타냐?
+                    "https://www.instagram.com/tvn_joy/":
+                    "https://www.facebook.com/cjtvngo";
+                    // 삼항연산자(비?집:놀이동산 -> 2번씀!)
+                } /////////// if /////////
+                else{ // 해당이름 페이지로 이동!
+                    location.href = url + ".html";
+                } ///////// else ///////////
+
+            }/ //////// else //////////
 
         }; //////// click //////////
 
