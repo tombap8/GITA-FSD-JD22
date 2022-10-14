@@ -42,7 +42,52 @@
 /* 1024px이하 미디어쿼리 끝 */
 
 
-/* 1024px이하 미디어쿼리 시작 */
-@media screen and (max-width:1024px) {}
+/* 700px이하 미디어쿼리 시작 */
+@media screen and (max-width:700px) {
 
-/* 1024px이하 미디어쿼리 끝 */
+    /* 하단영역 */
+    .info{
+        flex-direction: column;
+        /* 세로진행방향 */
+        padding: 0 15px 20px;
+    }
+    /* 하단영역 파티션박스 div공통 */
+    .info>div{
+        padding-top: 10px;
+    }
+    /* 하단로고 박스 */
+    .info>div:first-child {
+        margin-right: 0;
+        /* 오른쪽마진 없앰 */
+    }
+    /* 회사주소박스 */
+    .info address {
+        text-align: center;
+        /* 글자정렬변경 */
+    }
+    /* sns박스 */
+    .info>div:last-child {
+        margin-left: 0;
+        /* 오른쪽끝설정 해제 */
+    }
+
+}/* 700px이하 미디어쿼리 끝 */
+
+
+/* 500px이하 미디어쿼리 시작 */
+@media screen and (max-width:500px) {
+
+    /* 메인 컨텐츠 박스 */
+    .cont{
+        /* 배경위치,크기변경 */
+        background-position: top;
+        background-size: 140%;
+    }
+
+    /* 메인 컨텐츠 박스 비율변경 */
+    .cont::before {
+        padding-top: 140%;
+    }
+
+
+} /* 500px이하 미디어쿼리 끝 */
