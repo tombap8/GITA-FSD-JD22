@@ -140,6 +140,14 @@
         */
     }
 
+    /* 영화선택메뉴 글자 */
+    .movtxt{
+        font-size: 4vw;
+    }
+    .movtxt li:first-child{
+        font-size: 5vw;
+    }
+
     /* 회사주소 */
     .info address span{
         display: none;
