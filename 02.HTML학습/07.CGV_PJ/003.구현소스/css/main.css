@@ -157,6 +157,35 @@ body{
     border-top: 1px solid #ccc;
 }
 
+/* 영사기박스 */
+#cam{
+    position: absolute;
+    bottom: -11px;
+    right: -60px;
+    /* 부모는? .gnb */
+
+    outline: 1px dashed yellow;
+}
+/* 영사기 이미지 */
+#cam img{
+    width: 50px;
+}
+/* 빔박스 */
+.beam{
+    position: absolute;
+    top: -16px;
+    right: 12px;
+    /* 부모는? #cam */
+    width: 200px;
+    height: 70px;
+    background: url(../images/bim.png) no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+
+
+    outline: 2px dotted pink;
+}
+
 
 /****************** 2. 메인영역 ******************/
 .cont{
