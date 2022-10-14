@@ -164,17 +164,16 @@ body{
     right: -60px;
     /* 부모는? .gnb */
 
-    outline: 1px dashed yellow;
+    /* outline: 1px dashed yellow; */
 }
 /* 영사기 이미지 */
 #cam img{
-    position: relative;
-    /* z-index적용위해 렐러티브! */
     width: 50px;
     transform: rotate(25deg);
-    z-index: 1;
+    
     /* 트랜지션 : 속시이지 */
-    transition: .5s ease-out .5s;
+    transition: .5s ease-out .3s;
+    /* 아웃시 지연시간(빔애니시간) */
 }
 /* .gnb에 마우스 오버시
  영사기이미지 회전 */
@@ -189,6 +188,8 @@ body{
     position: absolute;
     top: -16px;
     right: 12px;
+    z-index: -1;
+    /* z-index -1은 static보다 아래! */
     /* 부모는? #cam */
     width: 0;/* 200px; */
     height: 70px;
@@ -196,10 +197,10 @@ body{
     background-position: right center;
     background-size: auto 100%;
     /* 트랜지션 : 속시이지 */
-    transition: .5s ease-out;
+    transition: .3s ease-out;
 
 
-    outline: 2px dotted pink;
+    /* outline: 2px dotted pink; */
 }
 /* .gnb에 마우스 오버시
  빔박스 width 늘리기 */
