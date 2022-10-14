@@ -216,20 +216,33 @@ body{
 .cont{
     /* 렐러티브 포지션 : 부모자격(#screen) */
     position: relative;
-    height: 788px;
-    background: url(../images/bg.jpg) no-repeat center;
+    /* height: 788px;
+    -> 비율박스를 위해 높이값 없앰! */
+    background: url(../images/bg.jpg) no-repeat center/100%;
+}
+/* 비율유지 가상요소 패딩주기 */
+.cont::before{
+    content: '';
+    display: block;
+    /* div박스와 비슷함! */
+    padding-top: 65.66%;
+    /* 
+        배경이미지와 같은 비율계산하기!
+        1200:788 = 100:x
+        x = 788*100/1200
+          = 65.66%
+    */
 }
 /* 2-1.스크린박스 */
 #screen{
     /* 앱솔루트 포지션 */
     position: absolute;
-    top: 136px;
-    left: calc(50% - 344px);
-    /* 화면이 줄어도 스크린이 중앙에 위치하도록
-    left 50%밀고 스크린 크기의 절반정도를 뺌! */
-    width: 702px;
-    height: 397px;
-    /* 부모는? .cont */
+    top: 17.1%;
+    left: 21.3%;
+    width: 58.6%;
+    height: 50.6%;
+    /* 부모는? .cont
+    -> 부모가 비율박스니까 %로 모두설정! */
     background-color: #000;
 }
 /* 유튜브 아이프레임 */
