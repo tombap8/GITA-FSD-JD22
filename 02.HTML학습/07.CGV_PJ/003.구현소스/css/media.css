@@ -84,6 +84,16 @@
 /* 500px이하 미디어쿼리 시작 */
 @media screen and (max-width:500px) {
 
+    /* 메인 타이틀 */
+    .tit{
+        font-size: 10vw;
+    }
+
+    /* GNB */
+    .gnb{
+        bottom: -14px;
+    }
+
     /* 메인 컨텐츠 박스 */
     .cont {
         /* 배경위치,크기변경 */
@@ -118,7 +128,7 @@
     /* 상위 li */
     .mlist ul>li {
         /* 3등분의 적절한 조정 */
-        flex-basis: 30.43%;
+        flex-basis: 29.23%;
         /* 
             기존에 flex:1 등분할 설정
             되어서 flex-basis는
@@ -128,6 +138,12 @@
             flex-basis가 더 우선한다!
             width말고 flex-basis로 셋팅!
         */
+    }
+
+    /* 회사주소 */
+    .info address span{
+        display: none;
+        /* 회사주소의 일부를 숨김 */
     }
 
 
