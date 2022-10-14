@@ -18,9 +18,10 @@
     /* 네비 ul */
     .gnb ul {
         position: absolute;
-        top: 17px;
+        top: 12px;
         right: -59px;
         width: 117px;
+        padding-top: 12px;
         flex-direction: column;
         align-items: flex-end;
         /* 처음에 안보임 */
