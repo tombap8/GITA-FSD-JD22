@@ -27,6 +27,37 @@
             width: 100%;
         }
     </style>
+    <script>
+        /////////////// 로드구역 ///////////////////
+        window.addEventListener("DOMContentLoaded",
+        ()=>{
+
+            // 로딩확인
+            console.log("로딩완료!");
+
+            // 변경대상: .tt - 각 시간출력 요소들
+            const tt = document.querySelectorAll(".tt");
+            console.log(tt);
+
+            /*********************************** 
+                함수명: showTime
+                기능: 오늘날짜, 현재시간 찍기
+            ***********************************/
+           const showTime = () => {
+
+                // 1. 호출확인
+                console.log("나야나!");
+
+           }; /////////// showTime 함수 ///////////
+
+           // 임시호출
+           window.onclick = () => showTime();
+
+
+        }); /////////// 로드구역 ///////////////////
+
+
+    </script>
     
 </head>
 
