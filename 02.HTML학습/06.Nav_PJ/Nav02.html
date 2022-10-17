@@ -71,14 +71,16 @@
       left: 0;
       /* 부모는? .gnb */
       width: 100%;
-      height: 0;/* 65px; */
-      background-color: #f00;
+      height: 0;
+      /* 65px; */
+      background-color: darkblue;
       z-index: -1;
       /* .smenu 보다 아래! */
 
       /* 트랜지션: 속시이지 -> .smenu와 동일! */
       transition: height .4s ease-out;
     }
+
     /* 상위li.on에 마우스 오버시 */
     .gnb>ul>li.on:hover::after {
       height: 65px;
@@ -156,7 +158,7 @@
       */
 
     /* 서브메뉴 */
-    .smenu{
+    .smenu {
       /* 앱솔루트 포지션 */
       position: absolute;
       /* width: 200px; */
@@ -179,12 +181,13 @@
     }
 
     /* 상위메뉴 li오버시 서브메뉴 보이기 */
-    .gnb>ul>li:hover .smenu{
-      height: 65px;/* 모든 하위메뉴 공통! */
+    .gnb>ul>li:hover .smenu {
+      height: 65px;
+      /* 모든 하위메뉴 공통! */
     }
 
     /* 서브메뉴 ol */
-    .smenu ol{
+    .smenu ol {
       /* 플렉스박스 : 직계li만 옆으로 */
       display: flex;
       /* 패딩 */
@@ -192,7 +195,7 @@
     }
 
     /* 서브메뉴 a */
-    .smenu a{
+    .smenu a {
       /* a요소 확장 */
       display: block;
 
@@ -201,12 +204,15 @@
       text-decoration: none;
       font-size: 14px;
       line-height: 35px;
+      padding: 0 7px;
+      margin: 0 7px;
 
       /* 트랜지션: 속시이지 */
       transition: .2s;
     }
+
     /* 서브메뉴 오버시 */
-    .smenu a:hover{
+    .smenu a:hover {
       background-color: lightskyblue;
       color: darkblue;
     }
@@ -256,15 +262,15 @@
         <a href="#"><span>게시판</span></a>
         <!-- 서브메뉴 -->
         <div class="smenu">
-            <ol>
-              <li>
-                <a href="#">Q&amp;A</a>
-              </li>
-              <li>
-                <a href="#">방명록</a>
-              </li>
-            </ol>
-          </div>
+          <ol>
+            <li>
+              <a href="#">Q&amp;A</a>
+            </li>
+            <li>
+              <a href="#">방명록</a>
+            </li>
+          </ol>
+        </div>
       </li>
       <li>
         <a href="#"><span>프로필</span></a>
