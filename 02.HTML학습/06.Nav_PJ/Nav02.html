@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>유형1. 가로네비 서브별 드롭다운 세로형</title>
+  <title>유형2. 가로네비 서브별 드롭다운 가로형</title>
   <style>
     /* 초기화 */
     html,
@@ -138,7 +138,7 @@
     .smenu{
       /* 앱솔루트 포지션 */
       position: absolute;
-      width: 200px;
+      /* width: 200px; */
 
       /* 메뉴 숨기기 
       - 높이값0,overflow:hidden */
@@ -157,19 +157,15 @@
       transition: height .4s ease-out;
     }
 
-    /* 상위메뉴 li오버시 서브메뉴 보이기
-    - 두번째 메뉴 */
-    .gnb>ul>li:nth-child(2):hover .smenu{
-      height: 170px;
-    }
-    /* 상위메뉴 li오버시 서브메뉴 보이기
-    - 세번째 메뉴 */
-    .gnb>ul>li:nth-child(3):hover .smenu{
-      height: 100px;
+    /* 상위메뉴 li오버시 서브메뉴 보이기 */
+    .gnb>ul>li:hover .smenu{
+      height: 65px;/* 모든 하위메뉴 공통! */
     }
 
     /* 서브메뉴 ol */
     .smenu ol{
+      /* 플렉스박스 : 직계li만 옆으로 */
+      display: flex;
       /* 패딩 */
       padding: 15px;
     }
@@ -208,7 +204,7 @@
 </head>
 
 <body>
-  <h1>유형1. 가로네비 서브별 드롭다운 세로형</h1>
+  <h1>유형2. 가로네비 서브별 드롭다운 가로형</h1>
   <!-- GNB 네비게이션 -->
   <nav class="gnb">
     <ul>
