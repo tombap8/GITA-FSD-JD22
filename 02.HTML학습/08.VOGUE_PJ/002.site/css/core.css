@@ -1,0 +1,210 @@
+@charset "utf-8";
+/* 보그 PJ 공통핵심 CSS - core.css */
+/* 웹폰트, 공용클래스 */
+
+/*********** 1. 웹폰트 ***********/
+/* Roboto체 + Roboto Condensed체 - CDN */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@300&display=swap");
+
+/* 
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Condensed', sans-serif;
+*/
+/* 나눔바른고딕 */
+@font-face {
+  font-family: nbg;
+  src: url(../fonts/NanumBarunGothicLightSubset.woff) format("woff");
+}
+
+/* Pistilli체 */
+@font-face {
+  font-family: pist;
+  src: url(../fonts/Pistilli-Roman.woff) format("woff");
+}
+
+/* 
+  [ 공통 클래스 이름정의 ]
+  1. ibx - inside box 속박스
+  2. rbx - ratio box 비율박스
+  3. rbxIn - box in ratio box 비율유지 속박스
+  4. fbx - flex box 플렉스 디스플레이 박스
+  5. pt1, pt2 - part1, part2 각 부분박스
+  6. cbx - content box 내용박스
+  7. bgi - background image 관련 속성
+*/
+
+/* 공사중 표시 */
+/* body * {
+  outline: 1px dashed gray;
+} */
+
+/************* 2. 공통 class *************/
+/* 중앙 속박스 */
+.ibx {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* 한개짜리 파티션 박스의 높이값 100% */
+.pt1 .cbx{
+  height: 100%;
+}
+
+/* 플렉스박스 클래스 */
+.fbx {
+  display: flex;
+}
+
+.fbx .cbx {
+  flex: 1;
+  /* 동일비율 + 높이값 자동채움 */
+}
+
+/* 비율유지 박스 클래스 */
+.rbx {
+  position: relative;
+  /* 비율유지 앱솔루트 속박스의 부모자격! */
+}
+
+/* 가상요소 비율밀기 */
+.rbx::before {
+  content: '';
+  display: block;
+  /* 패딩탑 설정은 .pt1, .pt2에서 따로함! */
+}
+
+/* 컨텐츠박스 유형1 - 1개구성 비율밀기 */
+.rbx.pt1::before {
+  padding-top: 55.69%;
+  /* 
+    비율계산
+    1300 : 724 = 100 : x
+    x = 724 * 100 / 1300
+    x = 55.69%
+  */
+}
+
+
+/* 컨텐츠박스 유형2 - 3개구성 비율밀기 */
+.rbx.pt2::before {
+  padding-top: 50%;
+  /* 
+    비율계산
+    1300 : 650 = 100 : x
+    x = 650 * 100 / 1300
+    x = 50%
+  */
+}
+
+
+/* 비율유지 속박스
+- 가상요소 속박스가 패딩탑으로
+밀기때문에 내부 컨텐츠 영역을 잡는다! */
+.rbxIn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* 컨텐츠 박스 */
+.cbx{
+  position: relative;
+  /* 부모자격 */
+}
+
+
+/* 가상요소로 반투명 검정배경 그라데이션 넣기 */
+/* h2요소보다 먼저 그려져서 자연스럽게 아래오도록 ::before사용! */
+.cbx::before{
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  /* 그라데이션: 아래쪽에서 위쪽으로
+  검정색에서 투명으로 변화함 */
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+}
+
+
+/* 컨텐츠박스 가상요소로 보더애니 구현 */
+.cbx::after{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 0px solid red;
+
+  /* 트랜지션: 속시이지 */
+  transition: border .2s ease-in;
+}
+
+/* .cbx에 마우스 오버시 보더애니 */
+.cbx:hover::after{
+  border: min(1.6vw,20px) solid red;
+}
+
+/* 컨텐츠 타이틀박스 */
+.cbx h2{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* 부모는? 싸고있는 .cbx */
+
+  /* 글자설정 */
+  font-family: pist,nbg;
+  font-size: min(3vw,33px);
+  font-weight: normal;
+  text-align: center;
+  color: #fff;
+
+  padding: min(50px,3.4vw);
+  /* 박스크기유지 - 패딩,보더포함 */
+  box-sizing: border-box;
+}
+
+
+/* 컨텐츠 타이틀 작은글자 */
+.cbx h2 small {
+  font-size: 14px;
+}
+
+
+/* 배경이미지 공통 class */
+.bgi{
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* IR(Image Replacement) 또는 일반숨김용 클래스 */
+.ir {
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* 공통 적용 배경색 클래스 */
+.bgc{
+  background-color: #f9f9f9;
+}
+
+/* 등장액션 클래스 */
+.scAct{
+  transform: translateY(20%);
+  opacity: 0;
+  transition: .8s ease-in-out;
+}
+/* 등장클래스(on추가) */
+.scAct.on{
+  transform: translateY(0);
+  opacity: 1;
+}
