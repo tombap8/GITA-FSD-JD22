@@ -33,11 +33,11 @@
         ()=>{
 
             // 로딩확인
-            console.log("로딩완료!");
+            // console.log("로딩완료!");
 
             // 변경대상: .tt - 각 시간출력 요소들
             const tt = document.querySelectorAll(".tt");
-            console.log(tt);
+            // console.log(tt);
 
             /*********************************** 
                 함수명: showTime
@@ -46,7 +46,22 @@
            const showTime = () => {
 
                 // 1. 호출확인
-                console.log("나야나!");
+                // console.log("나야나!");
+
+                // 날짜 객체로 시간찍기
+                // Date객체 : 날짜, 시간 표현하는 객체
+                // -> 객체 생성법 : new 키워드로 생성!
+                // new키워드로 생성하는 순간
+                // 실제 객체가 메모리에 생성됨(인스턴스)
+
+                let today = new Date();
+                // Data객체를 메모리에 생성함!
+
+                // 2. 출력하기
+                // (1) 년도출력
+                tt[0].innerText = today.getFullYear();
+
+
 
            }; /////////// showTime 함수 ///////////
 
