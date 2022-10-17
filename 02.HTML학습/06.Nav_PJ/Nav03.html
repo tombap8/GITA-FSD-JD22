@@ -33,6 +33,12 @@
       /* 포지션이 있어야 z-index적용됨!
         GNB 하위메뉴가 위에 오도록 z-index를 높인다! */
       background-color: lightskyblue;
+      /* 트랜지션:속시이지 */
+      transition: .3s;
+    }
+    /* .gnb에 마우스 오버시 전체배경색변경 */
+    .gnb:hover{
+      background-color: darkblue;
     }
 
     /* ul 초기화 */
@@ -94,8 +100,8 @@
       transition: .3s;
     }
 
-    /* 부모li에 마우스 오버시 상위메뉴 a요소 변경 */
-    .gnb>ul>li:hover>a {
+    /* .gnb에 마우스 오버시 상위메뉴 a요소 변경 */
+    .gnb:hover>ul>li>a {
       color: lightskyblue;
       background-color: darkblue;
     }
