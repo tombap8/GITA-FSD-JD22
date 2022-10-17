@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>유형6. 가로네비 서브별 드롭다운 전체창</title>
+  <style>
+    /* 초기화 */
+    html,
+    body,
+    ul,
+    ol {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ul,ol초기화 */
+    ul,
+    ol {
+      /* 리스트박스 기본3無
+            - 마진0, 패딩0, 리스트스타일없음 */
+      list-style: none;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    /* GNB메뉴박스 */
+    .gnb {
+      position: relative;
+      z-index: 999;
+      /* 포지션이 있어야 z-index적용됨!
+        GNB 하위메뉴가 위에 오도록 z-index를 높인다! */
+      background-color: lightskyblue;
+    }
+
+    /* ul 초기화 */
+    .gnb ul {
+      display: flex;
+      width: 800px;
+      margin: 0 auto;
+      /* outline: 1px solid red; */
+    }
+
+    /* 가상요소로 clear설정하기 */
+    /* .gnb ul::after {
+        content: '';
+        display: block;
+        clear: both;
+      } */
+
+    /* 상위li 리스트요소 */
+    .gnb>ul>li {
+      width: 200px;
+      /* height: 40px; */
+      text-align: center;
+      /* outline: 1px dashed blue; */
+      /* float: left; */
+      /* box-sizing: border-box; */
+    }
+
+    /* 상위 li에 마우스 오버시 나타날 서브메뉴 배경
+      가상요소로 만들기!!! 서브메뉴있는 li만(li.sm) */
+    .gnb>ul>li.sm::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      /* left,top의 부모는? .gnb */
+      height: 0;
+      /* 65px -> 오버시 */
+      background-color: darkblue;
+
+      /* 트랜지션 */
+      transition: 0.4s;
+    }
+
+    /* 상위 li에 마우스 오버시 
+      서브메뉴 배경 가상요소 보이기 */
+    .gnb>ul>li:hover::after {
+      height: 200px;
+    }
+
+    /* li사이에 구분선 넣기 */
+    .gnb>ul>li+li::before {
+      content: "";
+      display: block;
+      position: absolute;
+      /* 젠틀앱솔루트:
+        부모박스안에 그대로있음! */
+      width: 1px;
+      height: 20px;
+      margin-top: 10px;
+      margin-left: 1px;
+      background-color: blue;
+
+      /* border-left: 1px solid #000; */
+    }
+
+    /* li 상위메뉴 a요소 */
+    .gnb>ul>li>a {
+      /* a요소 확장 */
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      font-size: 17px;
+      line-height: 40px;
+      color: #000;
+      text-decoration: none;
+      /* 트랜지션:속시이지 */
+      transition: 0.3s;
+    }
+
+    /* 부모li에 마우스 오버시 상위메뉴 a요소 변경 */
+    .gnb>ul>li:hover>a {
+      color: lightskyblue;
+      background-color: darkblue;
+    }
+
+    /* 상단 메뉴 글자에 밑줄애니 */
+    .gnb>ul>li>a>span {
+      position: relative;
+      /* 부모자격 */
+    }
+
+    /* 가상요소로 밑줄넣기 */
+    .gnb>ul>li>a>span::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      /* 부모는? 싸고있는 span */
+      width: 0;
+      /* 마우스오버시 100% */
+      height: 2px;
+      background-color: #fff;
+      /* 트랜지션: 속시이지 - 돌아올때 지연시간 없음! */
+      transition: width 0.2s ease-out;
+    }
+
+    /* 상위메뉴 오버시 가상요소 밑줄애니 */
+    .gnb>ul>li:hover>a>span::after {
+      width: 100%;
+      /* 오버시에 기다리는 시간 0.4초 */
+      transition-delay: 0.4s;
+    }
+
+    /* 
+        [ 부모요소로 부터 상속되는 속성은 무엇인가? ]
+        글자체, 글자색, 글자크기, 글자정렬 등 글자관련속성들
+      */
+
+    /* 서브메뉴 */
+    .smenu {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      /* 가로중앙이동 */
+      z-index: 1;
+      /* li가상요소 앱솔루트 보다 위! */
+
+      /* 크기유지박스 왼쪽 패딩적용 */
+      width: 800px;
+      box-sizing: border-box;
+      padding-left: 80px;
+      /* outline: 1px dotted lime; */
+
+      /* 플렉스박스 */
+      display: flex;
+
+      /* width: 200px; 
+        -> 가로크기없이 auto 여야 옆으로 늘어남! */
+      /* 서브메뉴 박스 숨기기 */
+      height: 0;
+      /* 1 */
+      overflow: hidden;
+      /* 2 */
+      /* 주의사항: 높이값 0으로
+        숨기는 박스는 위아래 패딩,보더는
+        숨겨지지 않으므로 쓰지 않는다!
+        디자인은 하위요소에서 할것! */
+
+      background-color: darkblue;
+      border-radius: 0 0 5px 5px;
+      color: lightskyblue;
+      text-align: center;
+
+      /* 트랜지션 */
+      transition: 0.4s;
+    }
+
+    /* 두번째 li의 .smenu 배경 이미지 */
+    .gnb>ul>li:nth-child(2) .smenu{
+      background: url(./images/bgi001.jpg) no-repeat right 10px/auto 180px;
+    }
+    /* 세번째 li의 .smenu 배경 이미지 */
+    .gnb>ul>li:nth-child(3) .smenu{
+      background: url(./images/bgi002.jpg) no-repeat right 10px/auto 180px;
+    }
+
+
+    /* 상위메뉴 li 오버시 서브메뉴 보이기 */
+    .gnb>ul>li:hover .smenu {
+      height: 200px;
+    }
+
+    /* 서브메뉴 ol */
+    .smenu ol {
+      /* 플렉스박스 */
+      display: flex;
+      padding: 15px;
+      /* outline: 1px dashed red; */
+    }
+
+    /* 서브메뉴 li */
+    .smenu li {
+      margin-right: 20px;
+    }
+
+    .smenu a {
+      /* a확장 */
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      font-size: 14px;
+      color: lightskyblue;
+      text-decoration: none;
+      line-height: 35px;
+
+      padding: 0 5px;
+
+      /* 트랜지션 */
+      transition: 0.2s;
+    }
+
+    /* 서브메뉴 dd하위 a에 오버시 */
+    .smenu dd a:hover {
+      background-color: lightskyblue;
+      color: darkblue;
+    }
+
+    /* 서브메뉴 하위 디자인 */
+    .smenu dl{
+      width: 120px;
+      margin-left: 30px;
+    }
+    .smenu dt{
+      border-bottom: 1px solid lightskyblue;
+      margin-bottom: 5px;
+    }
+    .smenu dt a{
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .smenu dd{
+      margin: 0;
+    }
+
+
+
+    /* 본문내용 */
+    .cont {
+      position: relative;
+      /* 하위 박스가 포지션이 있으면 나중에 그린박스가
+        윗박스보다 위에 올라온다! 따라서 메뉴박스가 위에 오도록
+        z-index를 상위박스에서 높여줘야 하위메뉴가 밑에 깔리지 않는다! */
+      background-color: #fdfccf;
+      text-align: center;
+      line-height: 50;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>유형6. 가로네비 서브별 드롭다운 전체창</h1>
+  <!-- GNB 네비게이션 -->
+  <nav class="gnb">
+    <ul>
+      <li>
+        <a href="#"><span>Home</span></a>
+      </li>
+      <li class="sm">
+        <a href="#"><span>웹개발</span></a>
+        <!-- 서브메뉴 -->
+        <div class="smenu">
+          <h2>웹개발</h2>
+          <!-- 1번서브 -->
+          <dl>
+            <dt>
+              <a href="#">웹디자인</a>
+            </dt>
+            <dd>
+              <a href="#">HTML5+CSS3</a>
+            </dd>
+            <dd>
+              <a href="#">jQuery</a>
+            </dd>
+            <dd>
+              <a href="#">웹+모바일</a>
+            </dd>
+          </dl>
+          <!-- 2번서브 -->
+          <dl>
+            <dt>
+              <a href="#">미디어쿼리</a>
+            </dt>
+            <dd>
+              <a href="#">CSS애니메이션</a>
+            </dd>
+            <dd>
+              <a href="#">3D MAX</a>
+            </dd>
+            <dd>
+              <a href="#">사물인터넷</a>
+            </dd>
+          </dl>
+
+        </div>
+      </li>
+      <li class="sm">
+        <a href="#"><span>게시판</span></a>
+        <!-- 서브메뉴 -->
+        <div class="smenu">
+          <h2>게시판</h2>
+          <!-- 1번서브 -->
+          <dl>
+            <dt>
+              <a href="#">일반게시판</a>
+            </dt>
+            <dd>
+              <a href="#">Q&amp;A</a>
+            </dd>
+            <dd>
+              <a href="#">방명록</a>
+            </dd>
+          </dl>
+          <!-- 2번서브 -->
+          <dl>
+            <dt>
+              <a href="#">IDEA 나누기</a>
+            </dt>
+            <dd>
+              <a href="#">우리들의 세계</a>
+            </dd>
+            <dd>
+              <a href="#">자유게시판</a>
+            </dd>
+            <dd>
+              <a href="#">직거래장터</a>
+            </dd>
+          </dl>
+
+        </div>
+      </li>
+      <li>
+        <a href="#"><span>프로필</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 내용박스 -->
+  <div class="cont">본문내용</div>
+</body>
+
+</html>
