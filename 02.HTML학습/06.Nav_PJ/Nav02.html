@@ -63,6 +63,27 @@
       /* box-sizing: border-box; */
     }
 
+    /* 상위 li.on에 가상요소로 하위메뉴 100%배경바 만들기 */
+    .gnb>ul>li.on::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      /* 부모는? .gnb */
+      width: 100%;
+      height: 0;/* 65px; */
+      background-color: #f00;
+      z-index: -1;
+      /* .smenu 보다 아래! */
+
+      /* 트랜지션: 속시이지 -> .smenu와 동일! */
+      transition: height .4s ease-out;
+    }
+    /* 상위li.on에 마우스 오버시 */
+    .gnb>ul>li.on:hover::after {
+      height: 65px;
+    }
+
     /* li사이에 구분선 넣기 */
     .gnb>ul>li+li::before {
       content: '';
@@ -211,7 +232,7 @@
       <li>
         <a href="#"><span>Home</span></a>
       </li>
-      <li>
+      <li class="on">
         <a href="#"><span>웹개발</span></a>
         <!-- 서브메뉴 -->
         <div class="smenu">
@@ -231,7 +252,7 @@
           </ol>
         </div>
       </li>
-      <li>
+      <li class="on">
         <a href="#"><span>게시판</span></a>
         <!-- 서브메뉴 -->
         <div class="smenu">
