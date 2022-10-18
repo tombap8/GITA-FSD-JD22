@@ -47,6 +47,8 @@
                 right: 20px;
                 width: 80px;
                 height: 50px;
+                z-index: 99999;
+                /* GNB박스 보다위 */
                 outline: 2px solid red;
             }
             /* 햄버거 버튼바 */
@@ -58,6 +60,12 @@
                 /* 트랜지션 */
                 transition: 0.3s;
             }
+            /* 햄버거on일때 */
+            .ham.on span{
+                background-color: #fff;
+            }
+
+            /* 햄버거 span바 초기셋팅 */
             .ham span:nth-child(1) {
                 top: 0px;
             }
@@ -104,6 +112,24 @@
             .gnb.on{
                 top: 0;
             }
+            /* gnb ul */
+            .gnb ul{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            /* gnb 메뉴 */
+            .gnb a{
+                font-size: 9vw;
+                /* 영문자 대소문자설정
+                uppercase - 대문자
+                lowercase - 소문자 */
+                text-transform: uppercase;
+                line-height: 0.8;
+                color: #fff;
+                text-decoration: none;
+            }
         </style>
         <script>
             // 로드구역
@@ -114,7 +140,33 @@
                 // 대상: .ham
                 const ham = document.querySelector(".ham");
                 // 이벤트 설정
-                ham.onclick = () => ham.classList.toggle("on");
+                ham.onclick = () => {
+                    // 햄버거버튼에 클래스 on넣기/빼기
+                    ham.classList.toggle("on");
+                    // GNB박스에 클래스 on넣기/빼기
+                    gnb.classList.toggle("on");
+
+                }; ////////// click //////////////
+
+                // 전체메뉴셋팅
+                // 대상: .gnb
+                const gnb = document.querySelector(".gnb");
+
+
+                // 전체메뉴 변경함수
+                // const chgGNB = () => {
+                //     // 1. 햄버거버튼 클래스 on존재여부체크
+                //     // classList.contains(클래스명)
+                //     // 있으면 true / 없으면 false
+                //     let isC = ham.classList.contains("on");
+                //     console.log(isC);
+
+                //     // 2. 햄버거 on있을때
+                //     if(isC) gnb.classList.add("on");
+                //     // 3. 햄버거 on없을때
+                //     else  gnb.classList.remove("on");
+                // };
+
 
             }); //////////// 로드구역 ///////////////
         </script>
@@ -133,6 +185,20 @@
 
         <!-- 전체메뉴박스 -->
         <nav class="gnb">
+            <ul>
+                <li>
+                    <a href="#">Identity</a>
+                </li>
+                <li>
+                    <a href="#">Experience</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Let's talk</a>
+                </li>
+            </ul>
 
         </nav>
     </body>
