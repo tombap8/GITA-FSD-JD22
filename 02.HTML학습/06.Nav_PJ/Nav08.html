@@ -61,6 +61,24 @@
         .ham span:nth-child(3){
             top: 40px;
         }
+        /* 햄버거 마우스 오버시 중앙바변경 */
+        .ham:hover span:nth-child(2){
+            left: 0;
+        }
+
+        /* 클릭이벤트JS처리시 클래스on셋팅 */
+        .ham.on span:nth-child(1){
+            transform: rotate(45deg);
+            top: 20px;
+        }
+        .ham.on span:nth-child(1){
+            width: 0;
+            left: 50%;
+        }
+        .ham.on span:nth-child(1){
+            transform: rotate(-45deg);
+            top: 20px;
+        }
 
     </style>
 </head>
