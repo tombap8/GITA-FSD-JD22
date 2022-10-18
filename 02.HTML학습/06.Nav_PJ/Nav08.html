@@ -118,18 +118,51 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+
+                /* 블릿없앰 */
+                list-style: none;
+            }
+            /* gnb li */
+            .gnb li{
+                /* 나가있는 글자 숨기기 */
+                overflow: hidden;
+                outline: 2px dashed yellow;
+            }
+            /* 2번째 li부터 끝까지 */
+            .gnb li+li{
+                margin-top: 3vh;
             }
             /* gnb 메뉴 */
             .gnb a{
-                font-size: 9vw;
+                display: block;
+                /* 트랜스폼은 인라인요소 적용안됨! */
+                transform: translateY(100%);
+                /* 자신의 세로크기만큼 아래쪽이동 */
+                font-size: 20vh;
                 /* 영문자 대소문자설정
                 [ text-transform ]
                 uppercase - 대문자
                 lowercase - 소문자 */
                 text-transform: uppercase;
-                line-height: 0.8;
+                line-height: 1;
                 color: #fff;
                 text-decoration: none;
+                /* 트랜지션 */
+                transition: transform .6s ease-out .5s;
+            }
+            /* 글자의 등장은 .gnb.on일때 적용! */
+            .gnb.on a{
+                transform: translateY(0);
+            }
+            /* 두번째 ~ 마지막 li 트랜지션 지연시간변경 */
+            .gnb li:nth-child(2) a{
+                transition-delay: .8s;
+            }
+            .gnb li:nth-child(3) a{
+                transition-delay: 1.1s;
+            }
+            .gnb li:nth-child(4) a{
+                transition-delay: 1.4s;
             }
         </style>
         <script>
@@ -145,7 +178,7 @@
                     // 햄버거버튼에 클래스 on넣기/빼기
                     ham.classList.toggle("on");
                     // GNB박스에 클래스 on넣기/빼기
-                    gnb.classList.toggle("on");
+                    // gnb.classList.toggle("on");
 
                 }; ////////// click //////////////
 
@@ -185,7 +218,7 @@
         </div>
 
         <!-- 전체메뉴박스 -->
-        <nav class="gnb">
+        <nav class="gnb on">
             <ul>
                 <li>
                     <a href="#">Identity</a>
