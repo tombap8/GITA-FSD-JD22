@@ -86,6 +86,24 @@
                 transform: rotate(-45deg);
                 top: 20px;
             }
+
+            /* 전체메뉴박스 */
+            .gnb{
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: #000;
+                z-index: 9999;
+                /* 트랜지션 */
+                transition: top .5s ease-out;
+            }
+            /* 햄버거버튼 클릭시 JS로 처리할 클래스on구현 */
+            /* 전체메뉴 위에서 내려오기 */
+            .gnb.on{
+                top: 0;
+            }
         </style>
         <script>
             // 로드구역
@@ -114,5 +132,8 @@
         </div>
 
         <!-- 전체메뉴박스 -->
+        <nav class="gnb">
+
+        </nav>
     </body>
 </html>
