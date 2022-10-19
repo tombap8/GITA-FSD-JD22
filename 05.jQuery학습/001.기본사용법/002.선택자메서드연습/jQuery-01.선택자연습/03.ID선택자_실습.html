@@ -30,20 +30,44 @@
                   // 배경노란색, 글자색파랑,보더1px solid green,
                   // 글자크기 42px, 애니메이션 시간 0.8초
                   $("#sub").text("이승기")
+                  .css({border:"1px dotted #000"}) //초기값
                   .animate({
                     backgroundColor: "yellow",
                     color:"blue",
-                    border:"1px solid green",
+                    borderWidth:"10px",
+                    borderColor:"green",
                     fontSize:"42px"
-                  },800)
+                  },800); ///// animate ////////
 
+                  // 아이디가 #main 는 글자를 "공유"로 바꾸고
+                  // 배경파랑, 글자색흰색,보더3px solid yellow,
+                  // 글자크기 52px, 트랜지션 0.8초 -> 1초후
+                  $("#main").text("공유")
+                  .css({border:"3px solid yellow"}) //초기값
+                  .delay(1000) // 애니앞에 지연시간 delay(초)
+                  .animate({
+                    backgroundColor: "blue",
+                    color:"white",
+                    borderWidth:"10px",
+                    borderColor:"red",
+                    fontSize:"52px"
+                  },800); ///// animate ////////
+                  
+                  // 아이디가 #total 는 글자를 "싸랑해요~!"로 바꾸고
+                  // 배경검정, 글자색빨강,보더2px solid purple,
+                  // 글자크기 152px, 트랜지션 0.8초 -> 2초후
+                  $("#total").text("싸랑해요~!")
+                  .css({border:"2px double purple"}) //초기값
+                  .delay(2000) // 애니앞에 지연시간 delay(초)
+                  .animate({
+                    backgroundColor: "black",
+                    color:"red",
+                    borderWidth:"20px",
+                    borderColor:"blue",
+                    fontSize:"152px"
+                  },800); ///// animate ////////
+                  
                 }); ////////// click ///////////
-                // 아이디가 #main 는 글자를 "공유"로 바꾸고
-                // 배경파랑, 글자색흰색,보더3px solid yellow,
-                // 글자크기 52px, 트랜지션 0.8초 -> 1초후
-                // 아이디가 #total 는 글자를 "싸랑해요~!"로 바꾸고
-                // 배경검정, 글자색빨강,보더2px solid purple,
-                // 글자크기 152px, 트랜지션 0.8초 -> 2초후
             }); ////////////// jQB ///////////////
         </script>
     </head>
