@@ -2,17 +2,17 @@
 /* 도깨비 PJ 미디어쿼리 CSS - media.css */
 
 /**************** 1200이하 ****************/
-@media screen and (max-width:1200px) {
+@media screen and (max-width: 1200px) {
     /* 탑메뉴 가로크기 화면맞춤 */
-    .tmenu{
+    .tmenu {
         width: 100%;
     }
 } /**************** 1200px이하 ****************/
 
 /**************** 1070이하 ****************/
-@media screen and (max-width:1070px) {
+@media screen and (max-width: 1070px) {
     /* 상대단위 rem글자 크기변경 위해 html변경 */
-    html{
+    html {
         font-size: 8px;
     }
     /* GNB메뉴 조정 */
@@ -25,16 +25,16 @@
         max-width: 680px;
     }
     /* 브랜드박스 */
-    .brand{
+    .brand {
         display: none;
     }
 
     /* 캐릭터 박스 한줄에 2개씩 */
-    .cat{
+    .cat {
         width: 49%;
     }
     /* 캐릭터 부모박스 */
-    .cbx{
+    .cbx {
         margin-top: 100px;
     }
     /* 캐릭터 오버시 이미지박스 */
@@ -42,38 +42,88 @@
         margin-top: 0;
     }
     /* 캐릭터 오버시 z-index */
-    .cat:hover{
+    .cat:hover {
         z-index: 1;
     }
     /* 설명박스 타이틀 */
-    .cd h3{
+    .cd h3 {
         font-size: 3vw;
     }
     /* 설명박스 p요소 */
-    .cd p{
+    .cd p {
         font-size: 2vw;
     }
-
-
 } /**************** 1070px이하 ****************/
 
 /**************** 870이하 ****************/
-@media screen and (max-width:870px) {
-
+@media screen and (max-width: 870px) {
     /* 없어질 요소들 : 
-    상단메뉴, GNB, 하단링크, 서브메뉴, 서브배경가상요소 */
-    .tmenu, .blink, .smenu,.gnb>ul>li.sm::after{
+    상단메뉴, GNB, 하단링크, 
+    서브메뉴, 서브배경가상요소,
+    상위메뉴 밑줄 가상요소 */
+    .tmenu,
+    .blink,
+    .smenu,
+    .gnb > ul > li.sm::after,
+    .gnb > ul > li > a::after {
         display: none;
     }
 
     /* 보여질요소 */
-    .ham{
+    .ham {
         display: block;
     }
 
     /* 상단영역 높이값 */
-    .top{
+    .top {
         height: 80px;
+    }
+
+    
+    .logo {
+        position: fixed;
+        width: 100vw;
+        text-align: center;
+        z-index: 9999;
+    }
+    .ham {
+        position: fixed;
+        z-index: 9999;
+    }
+
+    /* GNB 메뉴 모바일형으로 변경하기 */
+    .gnb {
+        /* 화면기준변경 포지션 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.512);
+        z-index: 999;
+        /* 기존마진없앰 */
+        margin: 0;
+    }
+    /* GNB ul */
+    .gnb > ul {
+        padding-top: 20vh;
+        /* line-height가 10vh이므로
+        6개메뉴니까 60%임. 나머지 40%의 반을
+        상단 패딩으로 설정하여 세로 중앙위치 */
+    }
+    /* GNB li */
+    .gnb > ul > li {
+        float: none;
+        /* float해제 */
+        /* outline: 2px dashed yellow; */
+    }
+    /* GNB a */
+    .gnb > ul > li > a {
+        color: #fff;
+        font-size: 5vh;
+        text-align: center;
+        line-height: 10vh;
+        /* li의 높이를 만들어줌! */
     }
 
     /* 캐릭터부모박스 */
@@ -82,19 +132,19 @@
     }
 
     /* 캐릭터박스 한줄에 하나씩 */
-    .cat{
+    .cat {
         width: 99%;
     }
     /* 설명박스 자리자치하는 포지션으로! */
-    .cd{
+    .cd {
         position: static;
     }
     /* 설명박스 타이틀 */
-    .cd h3{
+    .cd h3 {
         font-size: 4vw;
     }
     /* 설명박스 p요소 */
-    .cd p{
+    .cd p {
         font-size: 3vw;
     }
 
@@ -103,5 +153,4 @@
         height: auto;
         padding-bottom: 20px;
     }
-
 } /**************** 870px이하 ****************/
