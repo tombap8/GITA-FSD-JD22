@@ -60,8 +60,9 @@
 /**************** 870이하 ****************/
 @media screen and (max-width:870px) {
 
-    /* 없어질 요소들 : 상단메뉴, GNB, 하단링크 */
-    .tmenu, .gnb, .blink{
+    /* 없어질 요소들 : 
+    상단메뉴, GNB, 하단링크, 서브메뉴, 서브배경가상요소 */
+    .tmenu, .blink, .smenu,.gnb>ul>li.sm::after{
         display: none;
     }
 
