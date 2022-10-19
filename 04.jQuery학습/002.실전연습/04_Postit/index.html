@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>drag and drop 기능</title>
+	<style>
+		div.draggable {
+			float: left;
+			width: 160px;
+			height: 160px;
+			padding: 10px 0px 0px 20px;
+			background: url(post.png) no-repeat;
+			font-size: 14px;
+		}
+
+		div.draggable img {
+			width: 130px;
+			height: 80px;
+		}
+
+		div.invert {
+			background: url(post2.png) no-repeat;
+		}
+
+		/* 드롭박스 */
+		.dropshow {
+			width: 500px;
+			height: 400px;
+			text-align: center;
+			background:
+				url(addimg/effect2.jpg) no-repeat center/cover;
+			font: bold 36px/400px "맑은 고딕", "굴림";
+			color: #f00;
+			text-shadow: 1px 0 #fff, -1px 0 #fff,
+				0 1px #fff, 0 -1px #fff;
+			/* 글자그림자를 이용한 테두리 */
+			margin: 50px auto;
+			/* 가로중앙 */
+		}
+
+		/* 드래그 박스 */
+		.dbox {
+			width: 720px;
+			height: 170px;
+			margin: 0 auto;
+			border: 2px dashed blue;
+		}
+	</style>
+
+	<script src="jquery-3.6.0.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<!-- 제이쿼리 라이브러리 아래에 제이쿼리 UI 가 있어야 
+		드래그 앤 드롭 기능을 사용할 수 있다! -->
+	<script src="jquery-touch-punch.min.js"></script>
+	<!-- 제이쿼리 드래그기능을 모바일에서 사용하려면
+	 jquery-touch-punch.min.js을 아래 추가해야함! 
+	제이쿼리 터치펀치는 모바일이벤트로 전환해주는 기능을 가짐 -->
+	<!-- 
+		미리보기:
+		https://tombap8.github.io/FED211/004.jQuery학습/jQuery-02.실전연습/04.jQuery_utility/01_Postit/ready.html
+	 -->
+	<script>
+		$(() => { /////////// jQB ////////////////////////
+
+			// 드래그 대상: .draggable
+			let dg = $(".draggable");
+
+			// 드래그 기능 적용하기
+			// 제이쿼리 UI의 draggable() 메서드를 호출함
+			// 대상: .draggable
+			dg.draggable({
+				cursor: "move",
+				// 커서모양 "이동중"표시(값에따라 다름)
+				stack: ".draggable",
+				// 드래그 대상 상위처리(선택요소명)
+				opacity: 0.7
+				// 이동중 투명도 설정
+			});
+
+
+			/// 1. 드래그가 시작될때 배경이미지 class로 변경하기
+			// 이벤트 종류: dragstart (드래그시작시 발생하는 이벤트)
+			// 이벤트와 함수를 묶어주는 메서드를 사용함!
+			// -> on(이벤트명,함수)
+			// 대상: .draggable
+			dg.on("dragstart", (e) => { //e-내부로 전달 이벤트
+				// 화살표함수는 this대신 e.currentTarget
+				$(e.currentTarget).addClass("invert");
+			}); //////// dragstart /////////
+
+
+
+
+			/// 2. 드래그가 끝날때 배경이미지 class로 변경하기
+			// 이벤트 종류: dragstop (드래그끝날때 발생하는 이벤트)
+			// 이벤트와 함수를 묶어주는 메서드를 사용함!
+			// -> on(이벤트명,함수)
+			// 대상: .draggable			
+			dg.on("dragstop", function () {
+				$(this).removeClass("invert");
+			}); //////// dragstop /////////
+
+
+			//// 드롭할때 발생하는 이벤트 처리하기 ///////
+			/// droppable() 메서드 : 드롭되는 요소처리 ///
+			/// 이벤트 대상: .dropshow
+
+			// 드래그 기능구현 후 여기 아래부터 주석풀것!
+
+			$(".dropshow").droppable({
+				// 드롭처리 속성 -> drop : 함수
+				drop: function (evt, ui) {
+					// evt - 이벤트 전달변수, ui-드롭관련객체
+					// console.log("나, 빠졌다~!");
+
+					// 1. 드롭된 요소의 이미지의 src를 읽어옴
+					// 드롭된 요소 -> ui.draggable
+					let isrc =
+						ui.draggable.find("img").attr("src");
+					// console.log("이미지경로:"+isrc);
+
+					// 2. 드롭영역의 배경이미지 변경하기
+					// $(this) === $(".dropshow")
+					$(this).css({
+						backgroundImage: "url(" + isrc + ")"
+					}); /////////////// css /////////////////
+
+					// 3. 드롭된 요소의 자식 p태그의 글자 읽어오기
+					let dtxt = ui.draggable.find("p").text();
+					// console.log("글자:"+dtxt);
+
+					// 4. 드롭영역에 글자넣기
+					$(this).text(dtxt + " 당첨~!!!");
+
+					// 5. 드롭된 요소 사라지게 하기
+					ui.draggable.hide();
+
+					// 6. 유튜브 동영상 박스 넣기
+					$("body").append(
+						'<div id="mbox"><a href="#">×</a></div>'
+					);
+
+					// 동영상박스요소 변수에 할당!
+					let mbox = $("#mbox");
+
+					// 7. 동영상박스 CSS셋팅하기
+					mbox.css({
+						position: "fixed",
+						top: "0",
+						left: "0",
+						width: "100%",
+						height: "100%",
+						zIndex: "999",
+						backgroundColor: "#000"
+					}); /////////// css //////////
+
+					// 8. 동영상 박스에 유튜브 iframe 넣기
+					// a요소 닫기버튼이 있으므로 append로 추가!
+					// 동영상 정보는 드롭된요소의 data-mv속성에 있음!
+					let mv = ui.draggable.attr("data-mv");
+					// console.log("동영상코드:"+mv);
+					mbox.append(
+							'<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' +
+							mv + // 동영상코드 삽입!
+							'?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+						)
+						// 9. 동영상 박스 숨기고 1초후 
+						//		slideDown으로 보이기
+						.hide().delay(1000).slideDown(2000);
+
+					// 10. 닫기버튼 셋팅 및 클릭시 동영상 닫기
+					mbox.find("a").css({
+							position: "absolute",
+							top: "50px",
+							right: "50px",
+							width: "50px",
+							height: "50px",
+							textDecoration: "none",
+							font: "bold 48px Verdana",
+							color: "#fff",
+							textShadow: "0 0 5px #777"
+						}) //////////// css ////////////
+						.click(function () { // 닫기버튼 클릭시
+
+							// 1. #mbox 닫기
+							mbox.slideUp(1000,
+								function () { // 애니후 실행
+
+									// 2.자기자신 없애기(this===mbox)
+									$(this).remove();
+
+									// 3.드롭된 요소 다시 보이기
+									// 동시에 자기 위치로 돌아가기
+									// 드롭된요소-> ui.draggable
+									ui.draggable.show()
+										.css({ //relative이므로! 원위치!
+											top: "0",
+											left: "0"
+										}); ////// css ///////
+
+									// 4.드롭박스 초기화
+									$(".dropshow")
+										.text("여기에 드롭하세요~~!")
+										.css({
+											backgroundImage: "url(addimg/effect2.jpg)"
+										}); ////// css ////////
+
+								}); /////// slideUp //////////
+
+						}); /////////// click /////////////
+
+
+
+				} //// drop속성 ////////
+
+			}); ///////// droppable //////////////////////
+			//////////////////////////////////////////////
+
+
+
+		}); /////////////// jQB ////////////////////////
+	</script>
+</head>
+
+<body>
+
+	<!-- 드롭 박스 -->
+	<div class="dropshow">
+		여기에 드롭하세요~~!
+	</div>
+
+	<!-- 
+		w3c에서 허용하는 새로운 속성은 data- 라는 시작명으로
+		작성하면 된다!
+		-> data-내가지은이름="값"
+		예) data-myhouse="값"
+
+	 -->
+
+	<!-- 드래그 박스 -->
+	<div class="dbox">
+		<!-- data-mv속성은 동영상코드 셋업 -->
+		<div class="draggable" data-mv="67O-LdK3kFA">
+			<p>쇼핑몰 자유이용권</p>
+			<img src="addimg/gm.jpg" alt="쥐마켓">
+		</div>
+		<div class="draggable" data-mv="JDKhD-QNcvM">
+			<p>롯떼월들 자유이용권</p>
+			<img src="addimg/lottee.jpg" alt="롯떼월들">
+		</div>
+		<div class="draggable" data-mv="miSL86dtqis">
+			<p>큐챠 자유이용권</p>
+			<img src="addimg/coocha.jpg" alt="큐챠">
+		</div>
+		<div class="draggable" data-mv="ISTsLeAGQ9Q">
+			<p>해외여행 자유이용권</p>
+			<img src="addimg/effect1.jpg" alt="허나투어">
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>
