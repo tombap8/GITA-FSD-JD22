@@ -1,31 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title> ID 선택자  </title>
-<!-- 제이쿼리 라이브러리 -->
+    <head>
+        <meta charset="utf-8" />
+        <title>ID 선택자</title>
+        <!-- 제이쿼리 라이브러리 -->
+        <script src="js/jquery-3.6.1.min.js"></script>
+        <!-- 이징과 색상애니메이션을 위한 제이쿼리 UI넣기! -->
+        <script src="js/jquery-ui.min.js"></script>
+        <script>
+            /////////// jQB //////////////
+            $(() => {
+                // [ 제이쿼리 글자넣기 메서드 : text() ]
+                // $(선택자).text(넣을글자).css()
+                // 이어서 메서드를 쓰는 방법을 메서드 체인이라함!
+                // 주어가 하나! 나는 밥을 먹고 공부를 했다!
+                // [ 제이쿼리 애니메이션 메서드 : animate() ]
+                // -> animate({CSS설정},시간,이징,함수)
+                // css설정 - css요소변경
+                // 시간 : 1/1000초(단위안씀) - 기본값: 400(안쓰면적용)
+                // 이징 : 제이쿼리 이징(https://easings.net/ko)
+                //      -> 이징은 반드시 제이쿼리 UI가 있어야함!
+                // 함수 : 콜백함수(애니메이션이 끝나면 실행하는 함수!)
 
-      
-</head>
-  
-<body>
 
-<div id="container">
 
- <header>
-   <h2> 여기를 클릭하세요~!</h2>
- </header>
+                // 미션: h2태그를 클릭하면
+                $("h2").click(()=>{
+                  // 아이디가 #sub 는 글자를 "이승기"로 바꾸고
+                  // 배경노란색, 글자색파랑,보더1px solid green,
+                  // 글자크기 42px, 애니메이션 시간 0.8초
+                  $("#sub").text("이승기")
+                  .animate({
+                    backgroundColor: "yellow",
+                    color:"blue",
+                    border:"1px solid green",
+                    fontSize:"42px"
+                  },800)
 
- <nav>
-   <ul class="list">
-       <li id="sub">One</li>
-       <li id="main">Two</li>
-       <li id="total">Three</li>
-  </ul>
- </nav>
+                }); ////////// click ///////////
+                // 아이디가 #main 는 글자를 "공유"로 바꾸고
+                // 배경파랑, 글자색흰색,보더3px solid yellow,
+                // 글자크기 52px, 트랜지션 0.8초 -> 1초후
+                // 아이디가 #total 는 글자를 "싸랑해요~!"로 바꾸고
+                // 배경검정, 글자색빨강,보더2px solid purple,
+                // 글자크기 152px, 트랜지션 0.8초 -> 2초후
+            }); ////////////// jQB ///////////////
+        </script>
+    </head>
 
-</div>
+    <body>
+        <div id="container">
+            <header>
+                <h2>여기를 클릭하세요~!</h2>
+            </header>
 
-</body>
+            <nav>
+                <ul class="list">
+                    <li id="sub">One</li>
+                    <li id="main">Two</li>
+                    <li id="total">Three</li>
+                </ul>
+            </nav>
+        </div>
+    </body>
 </html>
-
