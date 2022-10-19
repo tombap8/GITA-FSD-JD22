@@ -149,43 +149,7 @@
         }
 
     </style>
-    <script src="js/jquery-1.7.2.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script>
-        $(function(){ /// jQB ////////////////////////
-
-            //// GNB메뉴 클릭시 해당 페이지 위치로 이동 애니메이션
-            // 이벤트 대상: .gnb a
-            // 변경 대상: html,body
-            $(".gnb a").click(function(e){
-
-                // 1. a 기본이동막기
-                e.preventDefault();
-
-                // 2. a요소의 href값 읽어오기
-                let idnm = $(this).attr("href");
-                console.log("href값:"+idnm);
-
-                // 3. 아이디값에 해당하위 top값 위치구하기
-                // top값을 구해서 스크롤 애니메이션 이동에 사용함!
-                let pos = $(idnm).offset().top;
-                // offset() 메서드 : 요소의 기본 셋팅 정보를 리턴함
-                // - top,left,width,height 등 을 알수 있다!
-                console.log("위치값:"+pos);
-
-                // 4. 스크롤 애니메이션으로 페이지 이동하기
-                // 세로스크롤 이동속성: scrollTop
-                // 참고: 가로스크롤 이동속성: scrollLeft
-                // 스크롤 이동대상: html,body
-                // -> 범용브라우저에서 사용하는 스크롤대상
-                $("html,body").animate({
-                    scrollTop: pos + "px"
-                }, 1200,"easeOutQuint");//// animate /////
-
-            }); ///////////// click ///////////////
-
-        }); ///////////// jQB ////////////////////////
-    </script>
+    
 </head>
 <body>
     <!-- 1. 상단영역 -->
