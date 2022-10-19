@@ -66,7 +66,17 @@
     width: 95%;
     /* 테이블 width지정이 없으면 내용만큼 늘어남!
     좁으면 아래로 내용이 줄바꿈됨 */
+
+    /* 모두 중앙정렬 - 제목 데이터부분은 왼쪽정렬임! */
+    text-align: center;
 }
+/* 제목 데이터 부분(2번째 td) */
+#drama tbody tr td:nth-child(2){
+    /* 왼쪽정렬 */
+    text-align: left;
+}
+
+
 /* 테이블 제목 */
 #drama caption{
     /* 글자크기 fz */
