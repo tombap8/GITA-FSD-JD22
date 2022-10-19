@@ -2,8 +2,15 @@
 /* 시청자게시판 페이지 미디어쿼리 CSS - media_board.css */
 
 /**************** 750이하 ****************/
+
 @media screen and (max-width: 750px) {
-    /* 첫번째, 마지막 열 없애기 */
+
+    /* 1. 타이틀 글자크기 */
+    .stit {
+        font-size: min(8vw,5rem);
+    }
+
+    /* 2. 첫번째, 마지막 열 없애기 */
     #drama thead tr th:first-child,
     #drama tbody tr td:first-child,
     #drama thead tr th:last-child,
