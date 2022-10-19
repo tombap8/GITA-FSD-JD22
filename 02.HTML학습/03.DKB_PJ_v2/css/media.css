@@ -62,6 +62,7 @@
     서브메뉴, 서브배경가상요소,
     상위메뉴 밑줄 가상요소 */
     .tmenu,
+    .gnb,
     .blink,
     .smenu,
     .gnb > ul > li.sm::after,
@@ -79,16 +80,23 @@
         height: 80px;
     }
 
-    
-    .logo {
+    /* 전체메뉴가 보일 경우 셋팅 1,2,3 */
+    /* .top.on은 .top에 .on을 넣은 경우적용! */
+    /* 1. 로고고정! */
+    .top.on .logo {
         position: fixed;
         width: 100vw;
         text-align: center;
         z-index: 9999;
     }
-    .ham {
+    /* 2.햄버거 고정! */
+    .top.on .ham {
         position: fixed;
         z-index: 9999;
+    }
+    /* 3.GNB보이기! */
+    .top.on .gnb{
+        display: block;
     }
 
     /* GNB 메뉴 모바일형으로 변경하기 */
