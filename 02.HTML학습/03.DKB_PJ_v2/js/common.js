@@ -1,4 +1,4 @@
-// 도깨비 PJ v2 - 메인 페이지 JS - main.js
+// 도깨비 PJ v2 - 공통기능 JS - common.js
 
 ////////////////// 로드구역 ////////////////
 window.addEventListener("DOMContentLoaded",
