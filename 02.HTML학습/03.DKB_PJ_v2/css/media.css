@@ -93,6 +93,12 @@
     .top.on .ham {
         position: fixed;
         z-index: 9999;
+        color: #fff;
+    }
+    /* + 햄버거 가상요소 모양변경 */
+    .top.on .ham::before{
+        content: '×';
+        transform: scale(1.5);
     }
     /* 3.GNB보이기! */
     .top.on .gnb{
