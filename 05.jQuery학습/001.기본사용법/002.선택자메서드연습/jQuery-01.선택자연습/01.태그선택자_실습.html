@@ -4,7 +4,65 @@
 <head>
   <meta charset="utf-8">
   <title> 태그 선택자 </title>
-  
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+  <script>
+    /********************************************** 
+      [ 제이쿼리 기본 ]
+
+      - 제이쿼리는 JS를 쉽게 사용하기 위한 함수집합!
+      - 흔히 이런 코드를 라이브러리라고함!
+      - 도서관에 가야 책을 빌리지!!! 위에 반드시 호출하고 사용!
+
+      [ 제이쿼리 요소 선택법 ]
+      -> 기존 JS : document.get........./.querySelector.....
+      ->>>> $(선택자)
+
+      [ 제이쿼리 로딩구역 ]
+      -> 기존 JS : window.addEventListener(...)
+      ->>>> $(function(){코드})
+      ->>>> $(()=>{코드})
+
+      [ 제이쿼리 메서드 ]
+      -> 기존 JS : 이벤트로 함수를 할당하여 사용했음
+      ->>>> 이벤트에 해당하는 메서드를 별도로 구현함!
+      예) click() / mouseover()
+      ->>>>> 기타 유용한 메서드가 많이 구비되어 있다!
+      예) append() / eq() / parent() 
+
+      [ 제이쿼리 for문 ]
+      ->>> 기본적으로 선택한 요소가 다수이면 자동으로 돌아줌!
+      ->>> 제이쿼리 for문은 each() 메서드가 있음!
+    
+    **********************************************/
+
+    // 제이쿼리 로드구역 : jQB /////////////////
+    $(()=>{
+        // 미션: header 클릭하면 아래 있는 h2변경하기
+        $("header").click(()=>{
+            $("header h2")
+            .css({
+              color:"red",
+              fontSize:"50px",
+              transform:"rotateY(720deg)",
+              transition:"2s"
+            }); ///// css ///////
+
+        }); ///////// click /////////
+
+        // 미션2: #third>span에 마우스 오버시 전체배경색 변경
+        $("#third span").mouseover(()=>{
+          // 전체 배경색 변경
+          $("body").css({
+            backgroundColor:"pink",
+            transition:"3s"
+          });
+        }); ///////// mouseover //////////
+
+
+    }); ////////////// jQB ///////////////////
+
+  </script>
 
 </head>
 
@@ -24,7 +82,9 @@
       <ul class="list">
         <li id="first">One</li>
         <li id="second">Two</li>
-        <li id="third">오버해봐~! 전체 배경색 바꿔!</li>
+        <li id="third">
+          <span>오버해봐~! 전체 배경색 바꿔!</span>
+        </li>
       </ul>
     </nav>
 
