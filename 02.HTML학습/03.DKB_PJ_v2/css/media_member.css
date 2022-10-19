@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* 회원가입 페이지 미디어쿼리 CSS - media_member.css */
+
+/**************** 750이하 ****************/
+@media screen and (max-width: 750px) {
+
+    /* 1. 라벨공통 */
+    .itit{
+        display: block;
+    }
+
+    /* 2. li높이값 해제 */
+    .scont li {
+        height: auto;
+    }
+
+
+} /**************** 750px이하 ****************/
