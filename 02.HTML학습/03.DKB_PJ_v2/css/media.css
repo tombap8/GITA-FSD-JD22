@@ -80,7 +80,7 @@
         height: 80px;
     }
 
-    /* 전체메뉴가 보일 경우 셋팅 1,2,3 */
+    /* 전체메뉴가 보일 경우 셋팅 1,2,3,4 */
     /* .top.on은 .top에 .on을 넣은 경우적용! */
     /* 1. 로고고정! */
     .top.on .logo {
@@ -104,6 +104,48 @@
     .top.on .gnb{
         display: block;
     }
+    /* 4.탑메뉴 보이기 */
+    .top.on .tmenu{
+        position: fixed;
+        top: auto;/* 기존top해제 */
+        bottom: 5vh;
+        /* 기존 width 100% 초기화 */
+        width: auto;
+        z-index: 9999;
+        /* 보이게함! */
+        display: block;
+    }
+    /* + 탑메뉴 글자 */
+    .top.on .tmenu a{
+        color: #fff;
+        font-size: 3vh;
+    }
+    /* + float없애기 */
+    .top.on .tmenu li{
+        float: none;
+    }
+    /* + flex로 변경 */
+    .top.on .tmenu ul,
+    .top.on .tmenu ol{
+        /* 플렉스박스 */
+        display: flex;
+        /* 줄바꿈설정 */
+        flex-wrap: wrap;
+        /* 수평방향중앙정렬 */
+        justify-content: center;
+    }
+    /* + 로그인, 회원가입 한줄에오게함 */
+    .top.on .tmenu ul>li{
+        width: 50%;
+        padding-bottom: 15px;
+        /* 패딩포함박스 */
+        box-sizing: border-box;
+    }
+    /* + 로그인 박스만 오른쪽정렬 */
+    .top.on .tmenu>ul>li:first-child{
+        text-align: right;
+    }
+
 
     /* GNB 메뉴 모바일형으로 변경하기 */
     .gnb {
