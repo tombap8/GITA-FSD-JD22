@@ -36,7 +36,59 @@
                     no-repeat center/cover;
             }
         </style>
-        <script></script>
+        <script>
+            /// 로드구역 /////
+            window.addEventListener("DOMContentLoaded", () => {
+                // 대상박스: section
+                const box = document.querySelector("section");
+                // 이벤트대상: section img
+                const tg = box.querySelectorAll("img");
+                // 글자출력 대상: h2
+                const exp = document.querySelector("h2");
+
+                // 클릭이벤트 설정하기
+                for (let x of tg) {
+                    x.onclick = () => {
+                        // 화살표함수는 this대신
+                        // event.currentTarget
+
+                        // 클릭된 img 자신!
+                        let me = event.currentTarget;
+                        
+                        // 1. 클릭된 img가 맨뒤로 감!!!
+                        box.appendChild(me);
+
+                        // 2. 클릭된 이미지의 src에서 번호에 해당하는
+                        // 데이터를 잘라서 가져온 후 h2에 출력한다!
+                        let isrc = me.src;
+
+                        // 가공1: 슬래쉬(/)로 잘라서 맨끝 데이터
+                        // split(자를기준) -> 배열이됨!
+                        isrc = isrc.split("/");
+                        // 맨끝순번 담기
+                        isrc = isrc[isrc.length-1];
+
+                        // 가공2: 점(.)으로 잘라서 앞에것[0] 담기
+                        isrc = isrc.split(".")[0];
+
+                        // 가공3: "num_0" 까지는 모두 동일하므로
+                        // 순번 5번부터 끝까지 잘라서 가져옴!
+                        // substr(시작순번,개수) 
+                        // -> 뒤엣것 안쓰면 끝까지 가져옴
+                        isrc = isrc.substr(5);
+                        console.log(isrc);
+
+                        // 결국 이미지번호만 추출됨!!
+                        // 이것으로 h2에 출력!!
+
+                        // exp변수에 h2담김
+                        exp.innerText = isrc+"번 맨뒤로가~!!!";
+
+
+                    }; ////// click ///////
+                } //////// for of ////////////
+            }); ////////// 로드구역 /////////////////////
+        </script>
     </head>
 
     <body>
