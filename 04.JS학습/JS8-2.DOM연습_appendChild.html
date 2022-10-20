@@ -13,6 +13,14 @@
                 color: #fff;
                 text-align: center;
             }
+
+            /* h2를 위한 클래스 */
+            .action{
+                transition: .5s;
+                transform: scale(3) rotate(15deg);
+                color: lime;
+            }
+
             section {
                 position: relative;
                 top: 200px;
@@ -83,6 +91,9 @@
 
                         // exp변수에 h2담김
                         exp.innerText = isrc+"번 맨뒤로가~!!!";
+
+                        // 이때 h2에 클래스 action을 준다!
+                        exp.classList.add("action");
 
 
                     }; ////// click ///////
