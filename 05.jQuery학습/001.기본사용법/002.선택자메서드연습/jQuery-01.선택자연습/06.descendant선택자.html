@@ -1,37 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title> descendant  선택자 </title>
+    <head>
+        <meta charset="utf-8" />
+        <title>descendant 선택자</title>
+        <!-- 제이쿼리 라이브러리 -->
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script>
+            $(() => {
+                //////// jQB /////////////////////
+                // 미션: 아래의 각 li에 미니언즈 이미지를
+                // 웹으로 찾아서 html로 넣고 이미지크기를
+                // width: 100px로 고정한다.
 
-</head>
-  
-<body>
+                // JS에서는 html넣기는 innerHTML = "코드"
+                // 제이쿼리는 html(코드)
+                $("#first").html('<img src="https://hercanberra.com.au/wp-content/uploads/2019/06/Minions_feature.jpg" alt="미니언즈">');
+                $("#second").html('<img src="https://www.partyrama.co.uk/wp-content/uploads/2017/06/minions-kevin-lifesize-cardboard-cutout-180cms-product-image.jpg" alt="미니언즈">');
+                $("#third").html('<img src="https://5.imimg.com/data5/XQ/KP/MY-40305254/kids-toy-500x500.jpg" alt="미니언즈">');
 
-<div id="container">
+                // 한번에 이미지 크기 고정하기
+                $(".list img").css({width:"100px"});
+                // for문 없이 한번에 셋팅!!!
 
- <header>
-   <h2> Welcome mySite </h2>
-   <p> Lorem Ipsum is simply </p>
- </header>
+                // 각 이미지 클릭시 이미지크기가 클릭할때마다
+                // 10px씩 커지게함과 동시에 한번은 오른쪽,
+                // 한번은 왼쪽으로 10도씩 기울어지게 애니메이션 하시오.
+                $(".list img").click(function(){
 
- <nav>
-   <ul class="list">
-     <li id="first">One</li>
-     <li id="second">Two</li>
-     <li id="third">Three</li>
-  </ul>
- </nav>
- 
- <p> Lorem Ipsum is simply </p>
- 
-</div>
+                  $(this).css({
+                    width:"+=10px",
+                    transform:"rotate(10deg)",
+                    transition:".3s"
+                  }); ///// css ///////
 
-<!---------- jQuery code Start ---------->
-<script>
+                }); //////////// click //////////
+            }); /////////// jQB /////////////////////
+        </script>
+    </head>
 
-</script>
+    <body>
+        <div id="container">
+            <header>
+                <h2>Welcome mySite</h2>
+                <p>Lorem Ipsum is simply</p>
+            </header>
 
-</body>
+            <nav>
+                <ul class="list">
+                    <li id="first">One</li>
+                    <li id="second">Two</li>
+                    <li id="third">Three</li>
+                </ul>
+            </nav>
+
+            <p>Lorem Ipsum is simply</p>
+        </div>
+
+        <!---------- jQuery code Start ---------->
+        <script></script>
+    </body>
 </html>
-
