@@ -266,6 +266,19 @@
                 // 사용 메서드: appendChild(요소)
                 // -> 기존요소를 선택하면 이동이 됨!
                 /////////////////////////////////////////////////
+                const mvl = document.querySelector(".mvl");
+                /// 클릭이벤트 설정하기 ////
+                mvl.onclick = () => {
+                    // 1. 호출확인
+                    console.log("맨뒤로가!");
+
+                    // 2. 이동대상: 변수 ctg 아래 li중 첫번째요소
+                    let fele = ctg.querySelectorAll("li")[0];
+                    // fele -> first element (첫번째 요소)
+
+                    // 3. 맨뒤로 이동 : appendChild(요소)
+                    ctg.appendChild(fele);
+                }; ///////////// click //////////////
 
                 /// 맨뒤요소 맨앞으로 이동하기 ///////////////////////
                 // 이벤트 종류: click
@@ -277,6 +290,13 @@
                 // 넣을놈 - 마지막 li요소
                 // 넣을놈전놈 - 맨처음 li요소
                 //////////////////////////////////////////////////
+                const mvf = document.querySelector(".mvf");
+                //// 클릭 이벤트 설정 /////
+                mvf.onclick = ()=>{
+                    // 1. 호출확인
+                    console.log("맨앞으로!");
+
+                }; ///////////// click //////////////
 
                 /************************************************* 
                     ※ appendChild() 와 insertBefore()는 대상을
