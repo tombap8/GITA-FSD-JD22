@@ -185,6 +185,9 @@
                 // ctg -> current target! 현재 타겟!
                 // console.log(ctg);
 
+                // 이미지 설명 배열변수
+                const ialt = ["아이언맨","딱딱이","토르","닥스","스타로드"];
+
                 /////////////////////////////////////////////
                 // 새리스트 생성 버튼 클릭시 리스트 만들기 ////
                 // 이벤트 종류: click
@@ -199,10 +202,12 @@
                     // 2. 새로운 li를 생성하여 변수에 할당
                     let ne = document.createElement("li");
                     // createElement() 는 메모리상에 생성
-                    // 3. 이미지번호 랜덤
+                    // 3. 이미지번호 랜덤(1~5사이 랜덤수)
+                    let rnum = Math.ceil(Math.random()*5);
+                    console.log("랜덤수:",rnum);
                     // 4. 메모리상에 생성된 li에 이미지 넣기
                     ne.innerHTML =
-                    `<img src="images/ab1.jpg" alt="아이언맨">`;
+                    `<img src="images/ab${rnum}.jpg" alt="${ialt[rnum-1]}">`;
                     // 5. 새로운 li요소 title속성으로 툴팁넣기
                     // 6. 새로운 li클릭시 지우기 셋팅
                     // 7. 변경대상(ctg)에 새로운 li 맨뒤에 추가!
