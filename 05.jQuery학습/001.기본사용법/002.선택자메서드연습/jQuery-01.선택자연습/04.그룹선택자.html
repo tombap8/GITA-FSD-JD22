@@ -3,7 +3,32 @@
 <head>
 <meta charset="utf-8">
 <title> 그룹 선택자  </title>
+<!-- 제이쿼리 라이브러리 부터 호출! -->
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script>
+   $(()=>{ ////////// jQB ////////////
 
+      // 미션: p태그 또는 #nav li 태그를 클릭하면
+	// 클릭된 것만 글자를 나야나~! 라고 바꾸고
+	// 글자크기를 72px 빨간색 글자로 트랜지션 주시오.
+	// transition: all .4s
+
+   $("p,#nav li").click(e=>{
+      // 클릭된 요소 자신은? this
+      // 화살표함수는 event.currentTarget임
+      // 익명함수에 이벤트 전달변수 (여기서는 e)
+      // 를 사용하여 e.currentTarget으로 써도됨!
+      $(e.currentTarget)
+      .text("나야나~!")
+      .css({
+         fontSize:"72px",
+         color:"red",
+         transition:".4s"
+      })
+   }); ///////// click ///////////
+
+   }); ////////////// jQB ////////////
+</script>
 </head>
   
 <body>
