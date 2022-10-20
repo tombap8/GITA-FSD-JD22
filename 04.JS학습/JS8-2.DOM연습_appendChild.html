@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS8-2. DOM연습 - appendChild</title>
+        
+        <style>
+            body{
+                background-color: #000;
+            }
+            h1,h2{
+                color: #fff;
+                text-align: center;
+            }
+            section{
+                position: relative;
+                top: 200px;
+                width: 1000px;
+                float: right;
+            }
+            section img{
+                width: 9%;
+                height: 200px;
+                margin-left: 2px;
+            }
+            section::before{
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: -350px;
+                width: 350px;
+                height: 400px;
+                background: url(https://preview.clipartkorea.co.kr/2017/02/07/ti238a7412.jpg) no-repeat center/cover;
+
+            }
+        </style>
+        <script>
+            
+        </script>
+    </head>
+
+    <body>
+        <h1>DOM 연습 - appendChild</h1>
+        <h2>클릭하는 것이 맨뒤로 간다!</h2>
+        <section>
+            <img src="./images/num/num_01.png" alt="숫자">
+            <img src="./images/num/num_02.png" alt="숫자">
+            <img src="./images/num/num_03.png" alt="숫자">
+            <img src="./images/num/num_04.png" alt="숫자">
+            <img src="./images/num/num_05.png" alt="숫자">
+            <img src="./images/num/num_06.png" alt="숫자">
+            <img src="./images/num/num_07.png" alt="숫자">
+            <img src="./images/num/num_08.png" alt="숫자">
+            <img src="./images/num/num_09.png" alt="숫자">
+            <img src="./images/num/num_010.png" alt="숫자">
+
+        </section>
+    </body>
+</html>
