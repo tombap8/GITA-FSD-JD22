@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <title>JS8. DOM(Document Object Model)</title>
-    <script>
-        //////////// 로드구역 ///////////////////////////
-        window.addEventListener("DOMContentLoaded",
-            function () {
-
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS8. DOM(Document Object Model)</title>
+        <script>
+            //////////// 로드구역 ///////////////////////////
+            window.addEventListener("DOMContentLoaded", function () {
                 // 로드구역 확인
-                // console.log("로딩완료!");
+                console.log("로딩완료!");
 
                 ////////////////////////////////////////////////////////
                 //// #div01의 각 메뉴에 마우스 오버시 하위메뉴 보이기 ////
                 ////////////////////////////////////////////////////////
 
-                
+                // 이벤트 대상: .smenu
+                const smenu = document.querySelectorAll(".smenu");
+                // console.log(smenu);
 
+                // 이벤트 종류: mouseover / mouseout
+                // 변경대상: .smenu > div
+                // 변경내용: 마우스 오버시 서브메뉴 보이기/아웃시 숨기기
+                // 특이사항: 각 서브메뉴의 높이값 만큼 트랜지션으로 보이기
 
+                // 마우스 오버/아웃시 이벤트를 for of문으로 걸어보자!
+                for (let x of smenu) {
+                    // x는 li.smenu 각 요소
+
+                    // 1. 마우스 오버시 설정
+                    x.onmouseover = () => {
+                        // (1) 대상: 하위직계 div요소
+                        let tg = x.querySelector("div");
+
+                        // (2) 대상의 높이값 알아오기
+                        let hv = tg.querySelector("ol").offsetHeight;
+                        console.log("ol높이값:", hv);
+                        // (3) 서브메뉴 열리기 (hv + 보정값)
+                        tg.style.height = hv + 10 + "px";
+                        tg.style.transition = "height .4s ease-out";
+                    }; //////// mouseover ///////
+
+                    // 2. 마우스 아웃시 설정
+                    x.onmouseout = () => {
+                        // (1) 대상: 하위직계 div요소
+                        let tg = x.querySelector("div");
+
+                        // (2) 서브메뉴 열리기
+                        tg.style.height = "0";
+                    }; /////////// mouseout /////////
+                } //////// for of /////////////////
 
                 /******************************************************** 
                     [ 선택요소의 현재 크기, 위치값 알아오는 JS속성 ]
@@ -31,10 +60,6 @@
                 /////////////////////////////////////////////////////////
                 // #div01의 서브메뉴 a요소를 클릭하면 해당주소로 새창열기 //
                 /////////////////////////////////////////////////////////
-
-                
-
-
 
                 /************************************************** 
                 
@@ -67,16 +92,12 @@
                 //// DOM 요소 제어 및 조작하기 //////////////
                 ////////////////////////////////////////////
 
-                
-
-
                 /////////////////////////////////////////////
                 // 새리스트 생성 버튼 클릭시 리스트 만들기 ////
                 // 이벤트 종류: click
                 // 이벤트 대상: .nbt
                 // 변경 대상: #div02 ul -> ctg 변수에 할당!
                 /////////////////////////////////////////////
-                
 
                 ///////////////////////////////////////////////
                 ///// 최초 리스트의 li를 클릭하면 지우기 셋팅! //
@@ -88,14 +109,10 @@
                 // 변경내용: 삭제 셋팅하기
                 /////////////////////////////////////////////
 
-                
-
-
-
                 ///// 맨앞요소를 맨뒤로 이동하기 ////////////////////
                 // 이벤트 종류: click
                 // 이벤트 대상: .mvl
-                // 변경 대상1: #div02 ul li 
+                // 변경 대상1: #div02 ul li
                 //          (매번 새로 갱신해야 함-리스트가 바뀌니까!)
                 // 변경 대상2: #div02 ul -> ctg 변수에 할당!
                 //          (부모ul에서 자식추가해야함!)
@@ -103,9 +120,6 @@
                 // 사용 메서드: appendChild(요소)
                 // -> 기존요소를 선택하면 이동이 됨!
                 /////////////////////////////////////////////////
-                
-
-
 
                 /// 맨뒤요소 맨앞으로 이동하기 ///////////////////////
                 // 이벤트 종류: click
@@ -118,160 +132,146 @@
                 // 넣을놈전놈 - 맨처음 li요소
                 //////////////////////////////////////////////////
 
-
-
-
                 /************************************************* 
                     ※ appendChild() 와 insertBefore()는 대상을
                     정하는 것에 따라 중간에 적용할 수 있다!
                 *************************************************/
-
-
-
             }); ///////// 로드구역 //////////////////////////////////////
-        //////////////////////////////////////////////////////////
-    </script>
-    <style>
-        body>div {
-            outline: 1px solid red;
-            width: 200px;
-            display: inline-block;
-            vertical-align: top;
-            /*인라인블록은 인라인성격이 있어서 기본 옆으로 세로정렬은
+            //////////////////////////////////////////////////////////
+        </script>
+        <style>
+            body > div {
+                outline: 1px solid red;
+                width: 200px;
+                display: inline-block;
+                vertical-align: top;
+                /*인라인블록은 인라인성격이 있어서 기본 옆으로 세로정렬은
             baseline이므로 아래쪽선을 기준한다. 이것을 위줄 기준변경함*/
-        }
+            }
 
-        div img {
-            width: 50px;
-        }
+            div img {
+                width: 50px;
+            }
 
-        /*서브메뉴 숨기기*/
-        .smenu>div {
-            height: 0;
-            overflow: hidden;
-        }
+            /*서브메뉴 숨기기*/
+            .smenu > div {
+                height: 0;
+                overflow: hidden;
+            }
 
-        #div02 {
-            width: 600px;
-            padding: 10px;
-        }
+            #div02 {
+                width: 600px;
+                padding: 10px;
+            }
 
-        #div02 ul {
-            display: flex;
-            /* 플렉스 박스 */
-            flex-wrap: wrap;
+            #div02 ul {
+                display: flex;
+                /* 플렉스 박스 */
+                flex-wrap: wrap;
 
-            margin: 0;
-            padding: 10px;
-            list-style: none;
-            text-align: center;
-        }
+                margin: 0;
+                padding: 10px;
+                list-style: none;
+                text-align: center;
+            }
 
-        #div02 ul li {
-            padding: 10px;
-        }
-    </style>
+            #div02 ul li {
+                padding: 10px;
+            }
+        </style>
+    </head>
 
-</head>
+    <body>
+        <div id="div01">
+            마우스오버시 <br />
+            1. 서브메뉴 보이기 <br />
+            2. 링크이동하기
 
-<body>
-    <div id="div01">
-        마우스오버시 <br>
-        1. 서브메뉴 보이기 <br>
-        2. 링크이동하기
+            <ul>
+                <li class="smenu">
+                    <a href="#">검색포털사이트</a>
+                    <div>
+                        <ol>
+                            <li><a href="#">Google</a></li>
+                            <li><a href="#">Naver</a></li>
+                            <li><a href="#">Daum</a></li>
+                            <li><a href="#">Nate</a></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="smenu">
+                    <a href="#">통신사사이트</a>
+                    <div>
+                        <ol>
+                            <li><a href="#">SK</a></li>
+                            <li><a href="#">KT</a></li>
+                            <li><a href="#">Uplus</a></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="smenu">
+                    <a href="#">영화관사이트</a>
+                    <div>
+                        <ol>
+                            <li><a href="#">CGV</a></li>
+                            <li><a href="#">MEGABOX</a></li>
+                            <li><a href="#">LOTTE CINEMA</a></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="smenu">
+                    <a href="#">쇼핑몰사이트</a>
+                    <div>
+                        <ol>
+                            <li><a href="#">GMARKET</a></li>
+                            <li><a href="#">11번가</a></li>
+                            <li><a href="#">Auction</a></li>
+                            <li><a href="#">스토어팜</a></li>
+                            <li><a href="#">인터파크</a></li>
+                            <li><a href="#">쿠팡</a></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="smenu">
+                    <a href="#">스마트폰사이트</a>
+                    <div>
+                        <ol>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Samsung</a></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="smenu">
+                    <a href="#">게임사이트</a>
+                    <div>
+                        <ol>
+                            <li><a href="#">넷마블</a></li>
+                            <li><a href="#">넥슨</a></li>
+                            <li><a href="#">IMC</a></li>
+                        </ol>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-        <ul>
-            <li class="smenu">
-                <a href="#">검색포털사이트</a>
-                <div>
-                    <ol>
-                        <li><a href="#">Google</a></li>
-                        <li><a href="#">Naver</a></li>
-                        <li><a href="#">Daum</a></li>
-                        <li><a href="#">Nate</a></li>
-                    </ol>
-                </div>
-
-            </li>
-            <li class="smenu">
-                <a href="#">통신사사이트</a>
-                <div>
-                    <ol>
-                        <li><a href="#">SK</a></li>
-                        <li><a href="#">KT</a></li>
-                        <li><a href="#">Uplus</a></li>
-                    </ol>
-                </div>
-
-            </li>
-            <li class="smenu">
-                <a href="#">영화관사이트</a>
-                <div>
-                    <ol>
-                        <li><a href="#">CGV</a></li>
-                        <li><a href="#">MEGABOX</a></li>
-                        <li><a href="#">LOTTE CINEMA</a></li>
-                    </ol>
-                </div>
-
-            </li>
-            <li class="smenu">
-                <a href="#">쇼핑몰사이트</a>
-                <div>
-                    <ol>
-                        <li><a href="#">GMARKET</a></li>
-                        <li><a href="#">11번가</a></li>
-                        <li><a href="#">Auction</a></li>
-                        <li><a href="#">스토어팜</a></li>
-                        <li><a href="#">인터파크</a></li>
-                        <li><a href="#">쿠팡</a></li>
-                    </ol>
-                </div>
-
-            </li>
-            <li class="smenu">
-                <a href="#">스마트폰사이트</a>
-                <div>
-                    <ol>
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Samsung</a></li>
-                    </ol>
-                </div>
-
-            </li>
-            <li class="smenu">
-                <a href="#">게임사이트</a>
-                <div>
-                    <ol>
-                        <li><a href="#">넷마블</a></li>
-                        <li><a href="#">넥슨</a></li>
-                        <li><a href="#">IMC</a></li>
-                    </ol>
-                </div>
-
-            </li>
-        </ul>
-
-    </div>
-
-    <div id="div02">
-        <h2>요소의 생성,삭제,이동하기</h2>
-        <button class="nbt">새리스트생성</button> <br><br>
-        <button class="mvl">맨뒤이동</button> <br><br>
-        <button class="mvf">맨앞이동</button>
-        <ul>
-            <li><img src="images/ab1.jpg" alt="아이언맨" title="아이언맨"></li>
-            <li><img src="images/ab2.jpg" alt="딱딱이" title="딱딱이"></li>
-            <li><img src="images/ab3.jpg" alt="토르" title="토르"></li>
-            <li><img src="images/ab4.jpg" alt="닥스" title="닥스"></li>
-            <li><img src="images/ab5.jpg" alt="스타로드" title="스타로드"></li>
-        </ul>
-    </div>
-
-
-
-
-
-</body>
-
+        <div id="div02">
+            <h2>요소의 생성,삭제,이동하기</h2>
+            <button class="nbt">새리스트생성</button> <br /><br />
+            <button class="mvl">맨뒤이동</button> <br /><br />
+            <button class="mvf">맨앞이동</button>
+            <ul>
+                <li>
+                    <img src="images/ab1.jpg" alt="아이언맨" title="아이언맨" />
+                </li>
+                <li>
+                    <img src="images/ab2.jpg" alt="딱딱이" title="딱딱이" />
+                </li>
+                <li><img src="images/ab3.jpg" alt="토르" title="토르" /></li>
+                <li><img src="images/ab4.jpg" alt="닥스" title="닥스" /></li>
+                <li>
+                    <img src="images/ab5.jpg" alt="스타로드" title="스타로드" />
+                </li>
+            </ul>
+        </div>
+    </body>
 </html>
