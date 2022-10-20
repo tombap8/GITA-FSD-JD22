@@ -199,23 +199,29 @@
                 nbt.onclick = () => {
                     // 1. 호출확인
                     console.log("새리스트 생성!");
+
                     // 2. 새로운 li를 생성하여 변수에 할당
                     let ne = document.createElement("li");
                     // createElement() 는 메모리상에 생성
+
                     // 3. 이미지번호 랜덤(1~5사이 랜덤수)
                     let rnum = Math.ceil(Math.random() * 5);
                     console.log("랜덤수:", rnum);
+
                     // 4. 메모리상에 생성된 li에 이미지 넣기
                     ne.innerHTML = `<img src="images/ab${rnum}.jpg" alt="${
                         ialt[rnum - 1]
                     }">`;
+
                     // 5. 새로운 li요소 title속성으로 툴팁넣기
                     ne.querySelector("img").title =
                         ialt[rnum - 1] +
                         (rnum === 1 ? "을" : "를") +
                         " 클릭하면 삭제됩니다!";
+
                     // 6. 새로운 li클릭시 지우기 셋팅
                     ne.onclick = () => ne.remove();
+
                     // 7. 변경대상(ctg)에 새로운 li 맨뒤에 추가!
                     // appendChild(요소) -> 맨뒤에 요소추가!
                     ctg.appendChild(ne);
@@ -247,7 +253,6 @@
 
                     // 3. 기존 li를 클릭시 지우기 셋팅
                     x.onclick = () => x.remove();
-                    
                 } ///////// for of //////////
 
                 ///// 맨앞요소를 맨뒤로 이동하기 ////////////////////
