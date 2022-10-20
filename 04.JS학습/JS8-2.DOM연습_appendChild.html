@@ -14,11 +14,17 @@
                 text-align: center;
             }
 
-            /* h2를 위한 클래스 */
-            .action{
-                transition: .5s;
+            /* h2를 위한 클래스1 */
+            .action {
+                transition: 0.5s;
                 transform: scale(3) rotate(15deg);
                 color: lime;
+            }
+            /* h2를 위한 클래스2 */
+            .action2 {
+                transition: 0.3s;
+                transform: scale(2) rotate(-25deg);
+                color: hotpink;
             }
 
             section {
@@ -53,6 +59,8 @@
                 const tg = box.querySelectorAll("img");
                 // 글자출력 대상: h2
                 const exp = document.querySelector("h2");
+                // 두가지 상태변경을 위한 변수
+                let sts = 0; // 두가지상태를 0,1로 구분
 
                 // 클릭이벤트 설정하기
                 for (let x of tg) {
@@ -62,7 +70,7 @@
 
                         // 클릭된 img 자신!
                         let me = event.currentTarget;
-                        
+
                         // 1. 클릭된 img가 맨뒤로 감!!!
                         box.appendChild(me);
 
@@ -74,14 +82,14 @@
                         // split(자를기준) -> 배열이됨!
                         isrc = isrc.split("/");
                         // 맨끝순번 담기
-                        isrc = isrc[isrc.length-1];
+                        isrc = isrc[isrc.length - 1];
 
                         // 가공2: 점(.)으로 잘라서 앞에것[0] 담기
                         isrc = isrc.split(".")[0];
 
                         // 가공3: "num_0" 까지는 모두 동일하므로
                         // 순번 5번부터 끝까지 잘라서 가져옴!
-                        // substr(시작순번,개수) 
+                        // substr(시작순번,개수)
                         // -> 뒤엣것 안쓰면 끝까지 가져옴
                         isrc = isrc.substr(5);
                         console.log(isrc);
@@ -90,12 +98,17 @@
                         // 이것으로 h2에 출력!!
 
                         // exp변수에 h2담김
-                        exp.innerText = isrc+"번 맨뒤로가~!!!";
+                        exp.innerText = isrc + "번 맨뒤로가~!!!";
 
-                        // 이때 h2에 클래스 action을 준다!
-                        exp.classList.add("action");
+                        console.log("상태값:", sts);
 
+                        // 이때 h2에 클래스 "action"/"action2"
+                        // 을 번갈아준다!
+                        exp.classList.add(sts ? "action2" : "action");
+                        exp.classList.remove(sts ? "action" : "action2");
 
+                        // 상태업데이트(1이면0,0이면1)
+                        sts ? (sts = 0) : (sts = 1);
                     }; ////// click ///////
                 } //////// for of ////////////
             }); ////////// 로드구역 /////////////////////
