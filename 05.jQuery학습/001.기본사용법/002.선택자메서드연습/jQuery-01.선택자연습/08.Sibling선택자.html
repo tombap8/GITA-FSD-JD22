@@ -11,7 +11,8 @@
                 // 미션: .first를 클릭하면 다음에 있는 형제요소인
                 // li의 글자가 42px로 커지면서 margin-left값이
                 // 50px로 변경되게 하시오. 트랜지션 설정도 하시오.
-                $(".first").click((e) => {
+               //  $(".first").click(function(){
+                $(".first").click(e => {
                     $("+li", e.currentTarget)
                         // 클릭된 요소 -> this
                         // (화살표함수는 event.currentTarget)
