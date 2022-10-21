@@ -1,8 +1,7 @@
 // 옷소매 갤러리 JS - main.js
 
 //////////////// 로드구역 ////////////////////
-window.addEventListener("DOMContentLoaded",
-()=>{
+window.addEventListener("DOMContentLoaded", () => {
     // 기능구현내용:
     // 버튼클릭시 갤러리 div박스를 순서이동하기
     // 오른쪽버튼클릭시 -> 맨앞요소 맨뒤로 이동
@@ -26,14 +25,17 @@ window.addEventListener("DOMContentLoaded",
         함수명: goSlide
         기능: 내부 박스요소 앞뒤로 이동
     ************************************/
-   function goSlide(dir){ // dir - 0 왼쪽,1 오른쪽
-        // 0. 광클금지 /////////////////
-        if(prot) return; 
+    function goSlide(dir) {
+        // dir - 0 왼쪽,1 오른쪽
+        // 0. 광클금지 /////////
+        if (prot) return;
         // prot===1이면 돌아가!
         prot = 1; //잠금!
-        setTimeout(()=>{prot=0},400);
+        setTimeout(() => {
+            prot = 0;
+        }, 400);
         // 0.4초후 잠금 해제
-        ///////////////////////////////
+        //////////////////////
 
         // 1. 전달값 및 호출확인
         console.log("나야나!", dir);
@@ -45,17 +47,15 @@ window.addEventListener("DOMContentLoaded",
 
         // 3. 분기하기
         // 3-1. 오른쪽버튼일때: dir===1 (true)
-        if(dir){
+        if (dir) {
             // 맨앞요소 맨뒤로 이동
             gbx.appendChild(tg[0]);
         } //////////// if ///////////
         // 3-2. 왼쪽버튼일때: dir===0 (false)
-        else{
+        else {
             // 맨뒤요소 맨앞으로 이동
-            gbx.insertBefore(tg[tg.length-1],tg[0]);
+            gbx.insertBefore(tg[tg.length - 1], tg[0]);
             // 맨뒤요소는 [개수-1]
         } /////////// else /////////
-
-   } //////////// goSlide 함수 //////////
-
+    } //////////// goSlide 함수 //////////
 }); ///////////// 로드구역 ///////////////////
