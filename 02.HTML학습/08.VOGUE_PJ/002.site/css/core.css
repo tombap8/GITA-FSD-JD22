@@ -52,6 +52,19 @@ body * {
   (비율유지속박스 앱솔루트의 부모) */
     position: relative;
 }
+/* 가상요소로 비율밀기 */
+.rbx::before {
+    content: "";
+    display: block;
+}
+/* .pt1 비율: 55.7% */
+.pt1.rbx::before {
+    padding-top: 55.7%;
+}
+/* .pt2 비율: 50% */
+.pt2.rbx::before {
+    padding-top: 50%;
+}
 
 /* 2-3. 비율유지속박스 */
 .rbxIn {
@@ -77,13 +90,13 @@ body * {
 
 /* 2-5. 유형별 박스 */
 /* 1개 컨텐츠박스형 */
-.pt1 {
+/* .pt1 {
     height: 724px;
-}
+} */
 /* 3개 컨텐츠박스형 */
-.pt2 {
+/* .pt2 {
     height: 650px;
-}
+} */
 
 /* 2-6. 컨텐츠 박스 */
 .cbx {
