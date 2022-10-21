@@ -113,39 +113,42 @@ body * {
 
 /* 가상요소로 반투명 검정배경 그라데이션 넣기 */
 /* h2요소보다 먼저 그려서 자연스럽게 아래오도록 ::before사용! */
-.cbx::before{
-  content: '';
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  /* background-color: red; */
-  /* 그라데이션: 아래쪽에서 위쪽으로
+.cbx::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    /* background-color: red; */
+    /* 그라데이션: 아래쪽에서 위쪽으로
   검정색에서 투명으로 변화함! */
-  background-image: 
-  linear-gradient(to top,rgba(0, 0, 0, 0.839),rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.839),
+        rgba(0, 0, 0, 0)
+    );
 }
 
 /* 컨텐츠박스 가상요소로 보더애니 구현 */
-.cbx::after{
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  border: 0 solid red;
+.cbx::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 0 solid red;
 
-  /* 트랜지션: 속시이지 */
-  transition: border .2s ease-in;
+    /* 트랜지션: 속시이지 */
+    transition: border 0.2s ease-in;
 }
 /* .cbx에 오버시 보더애니 */
-.cbx:hover::after{
-  border-width: 20px;
-  /* 보더 두께만 변경됨! */
+.cbx:hover::after {
+    border-width: 20px;
+    /* 보더 두께만 변경됨! */
 }
 
 /* 컨텐츠 타이틀 박스(h2) */
@@ -173,4 +176,12 @@ body * {
 .bgi {
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* 글자 숨김 클래스(IR배경이미지 설명 등  숨기기) */
+.ir {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }
