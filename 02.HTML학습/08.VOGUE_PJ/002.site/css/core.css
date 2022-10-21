@@ -91,15 +91,17 @@ body * {
 /* 2-5. 유형별 박스 */
 /* 1개 컨텐츠박스형 */
 /* .pt1 {
-    height: 724px;
+    height: 724px; -> 비율박스적용시 높이값 없음!
 } */
 /* 3개 컨텐츠박스형 */
 /* .pt2 {
-    height: 650px;
+    height: 650px; -> 비율박스적용시 높이값 없음!
 } */
 
 /* 2-6. 컨텐츠 박스 */
 .cbx {
+    /* 렐러티브 부모자격 */
+    position: relative;
     /* 크기유지박스 설정 - 보더,패딩 포함 */
     box-sizing: border-box;
     padding: 15px;
@@ -107,6 +109,27 @@ body * {
 /* .pt1 하위 .cbx만 높이값 100%설정 */
 .pt1 .cbx {
     height: 100%;
+}
+
+/* 컨텐츠 타이틀 박스(h2) */
+.cbx h2 {
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* 부모는? .cbx */
+
+    padding: 50px;
+    /* 보더,패딩포함 크기유지박스 */
+    box-sizing: border-box;
+
+    /* 글자설정 - 영문체,한글체 */
+    font-family: pist, nbg;
+    font-size: 33px;
+    font-weight: normal;
+    text-align: center;
+    color: #fff;
 }
 
 /* 2-7. 배경공통 적용 클래스 */
