@@ -1,82 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Sibling(+) 선택자</title>
+        <!-- jQuery library -->
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script>
+            $(() => {
+                ///////////// jQB ///////////////////////////////
+                // 미션: .first를 클릭하면 다음에 있는 형제요소인
+                // li의 글자가 42px로 커지면서 margin-left값이
+                // 50px로 변경되게 하시오. 트랜지션 설정도 하시오.
+                $(".first").click((e) => {
+                    $("+li", e.currentTarget)
+                        // 클릭된 요소 -> this
+                        // (화살표함수는 event.currentTarget)
+                        // 다음형제요소 -> +li
+                        .css({
+                            fontSize: "42px",
+                            marginLeft: "50px",
+                            color: "red",
+                            transition: `
+                        font-size .5s,
+                        color 2s .5s,
+                        margin-left 2s .5s
+                     `,
+                        }); /////// css //////
+                }); ///////// click //////////
+            }); //////////////// jQB ////////////////////////////
+        </script>
+    </head>
 
-<head>
-   <meta charset="utf-8">
-   <title> Sibling(+) 선택자 </title>
-   <!-- jQuery library -->
-   
-</head>
+    <body>
+        <div id="container">
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="list">
+                    <li class="first">나를 클릭해봐~!</li>
+                    <li class="second">내가 커지지! ㅋㅋ</li>
+                    <li class="third">난 뭥미?</li>
+                </ul>
+            </nav>
+        </div>
 
-<body>
+        <!---------- jQuery code Start ---------->
 
-   <div id="container">
-
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-      <nav>
-         <ul class="list">
-            <li class="first">나를 클릭해봐~!</li>
-            <li class="second">내가 커지지! ㅋㅋ</li>
-            <li class="third">난 뭥미?</li>
-         </ul>
-      </nav>
-
-
-   </div>
-
-   <!---------- jQuery code Start ---------->
-
-   <script>
-   </script>
-
-</body>
-
+        <script></script>
+    </body>
 </html>
