@@ -112,10 +112,19 @@
     background-color: #fafafa;
     color: #333;
 }
+/* 사이드 메뉴 상위 첫번째 a요소 커서 */
+.smbx>li:first-child>a{
+    cursor: text;
+    /* 커서 text는 글자입력모양(I자) */
+}
+/* 커서모양값 참고:
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
+
 /********** 1-2.로고박스 **********/
 .logo{
     height: 115px;
     text-align: center;
+    margin-top: 1px;
 }
 /********** 1-3.GNB박스 **********/
 .gnb{
