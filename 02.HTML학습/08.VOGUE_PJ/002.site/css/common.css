@@ -82,7 +82,23 @@
     margin-left: -1px;
     /* 앱솔루트의 미세위치조정은 마진으로! */
 
+    /* 처음에 투명 - 트랜지션처리! */
+    opacity: 0;
+    /* 처음에 높이값 0 */
+    height: 0;
+    /* 넘치는 자식숨기기 */
+    overflow: hidden;
+
     border: 1px solid #e5e5e5;
+}
+/* 상위메뉴에 오버시 나타나기 */
+.smbx>li:first-child:hover .smsub{
+    /* 투명도 1 - 보임! */
+    opacity: 1;
+    /* 처음높이값 복원 */
+    height: auto;
+    /* 트랜지션 - 오버시에만 적용! */
+    transition: .5s;
 }
 /* 서브메뉴 a요소 */
 .smsub a{
