@@ -55,8 +55,15 @@
 
 
 /* 1-1-2.사이드메뉴 */
-.sideMenu{
+.smbx{
+    /* 플렉스박스 */
+    display: flex;
+    /* 수평방향정렬 - 오른쪽끝 */
+    justify-content: flex-end;
 
+    /* 글자체: Roboto, 나눔바른고딕 */
+    font-family: 'Roboto',nbg;
+    font-size: 12px;
 }
 /********** 1-2.로고박스 **********/
 .logo{
