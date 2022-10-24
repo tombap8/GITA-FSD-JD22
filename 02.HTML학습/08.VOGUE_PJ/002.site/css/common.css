@@ -72,14 +72,29 @@
     line-height: 44px;
     color: #747474;
 }
+/* 사이드 메뉴 상위 첫번째li 사이구분선 */
+.smbx>li:first-child{
+    border-right: 1px solid #e5e5e5;
+}
 /* 사이드 메뉴 서브박스 */
 .smsub{
     position: absolute;
+    margin-left: -1px;
+    /* 앱솔루트의 미세위치조정은 마진으로! */
+
     border: 1px solid #e5e5e5;
 }
 /* 서브메뉴 a요소 */
 .smsub a{
-    
+    display: block;
+    padding: 7px 10px;
+    padding-right: 19px;
+    color: #747474;
+}
+/* 서브메뉴 마우스 오버시 */
+.smsub a:hover{
+    background-color: #fafafa;
+    color: #333;
 }
 /********** 1-2.로고박스 **********/
 .logo{
