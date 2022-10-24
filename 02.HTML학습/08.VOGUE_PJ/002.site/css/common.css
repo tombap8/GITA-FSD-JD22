@@ -132,6 +132,7 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     /* 글자설정 */
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 16px;
+    line-height: 40px;
 
     min-height: 46px;
 }
@@ -141,6 +142,8 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     display: flex;
     /* 수평방향중앙정렬 */
     justify-content: center;
+    /* 플렉스 랩핑박스 */
+    flex-wrap: wrap;
 }
 /* 리스트 요소 */
 .gnb li{
@@ -155,7 +158,14 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     font-weight: bold;
     padding-top: 2px;
 }
-/*  */
+/* GNB a링크 트랜지션 */
+.gnb a{
+    transition: color .2s linear;
+}
+/* 오버시 a요소 */
+.gnb a:hover{
+    color: red;
+}
 
 /*************** 2. 하단영역 ***************/
 .info{
