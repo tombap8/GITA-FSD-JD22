@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG 기본원리 및 애니메이션</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: linear-gradient(to bottom,lightgreen,lightpink,lightblue);
+        }
+        .wrap{
+            /* 플렉스박스 */
+            display: flex;
+            /* 플렉스 랩핑박스 */
+            flex-wrap: wrap;
+            width: 100vw;
+            height: 100vh;
+        }
+        .wrap>section {
+            /* 가로, 세로 등분할 채우기 */
+            flex: 1;
+            /* 한줄에 2개씩 */
+            flex-basis: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <!-- 1.아이언맨 -->
+        <section>
+            <div class="cbx svg1">
+                <svg>
+                    <circle class="c1" cx="150" cy="150" r="140"></circle>
+                </svg>
+            </div>
+        </section>
+        <section></section>
+        <section></section>
+        <section></section>
+    </div>
+    <!-- 
+        [ SVG란? ]
+        SVG - Scalable Vector Graphic
+        -> 이미지를 확대해도 깨지지 않는 백처방식의 그래픽요소
+        -> 이미지가 코드로 되어있음
+        -> 백터 그래픽: 일러스트레이터 같은 툴에서 제작함
+        -> https://www.w3schools.com/graphics/svg_intro.asp
+
+        비교) 포토샵에서 픽셀로 만드는 이미지는? -> 비트맵 이미지!
+        -> canvas요소 : 비트맵 이미지 그래픽요소
+        : canvas는 JS로 코딩함!
+        -> http://www.effectgames.com/demos/canvascycle/
+
+        [ svg 요소 표현법 ]
+        - svg요소 내부에 자식요소로 각 도형요소를 넣고 코딩함
+
+        [ circle 요소 : 원 ]
+        - cx : 중심원 x좌표 (center x), 단위없는 숫자는 px
+        - cy : 중심원 y좌표 (center y), 단위없는 숫자는 px
+        - r : 반지름(radius)
+        - transform 속성 : svg 요소를 변형하기 위한 속성
+            rotate(각도,x위치,y위치)
+            -> 회전속성으로 각도를 단위없이 사용, 마이너스는 반시계
+            -> 이 속성을 쓰는 이유는 circle에는 일반 transform이 
+            적용되지 않기 때문임!
+            (svg요소 transform이 적용됨!)
+
+     -->
+</body>
+</html>
