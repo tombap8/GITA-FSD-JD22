@@ -192,4 +192,17 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 }
 
 /* 3-3. 하단링크 */
+.blink{
+    /* 플렉스박스 */
+    display: flex;
+    /* 수평방향정렬 중앙 */
+    justify-content: center;
+    /* 플렉스 랩핑박스 */
+    flex-wrap: wrap;
+}
+.blink a{
+    color: #747474;
+    font-size: 13px;
+    margin: 0 6px;
+}
 
