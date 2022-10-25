@@ -47,7 +47,7 @@
                     "navy",
                     "purple",
                     "pink",
-                    "skyblue"
+                    "skyblue",
                 ];
                 // 배열순번변수
                 let cseq = 0;
@@ -88,8 +88,12 @@
                     // 초기화!(모두 투명)
                     $(".nav1 li").css({ backgroundColor: "transparent" });
 
-                    // 순번을 사용하여 .nav1 li의 같은 순번배경색 변경
+                    // 순번을 사용하여 .nav1 li의 같은
+                    // 순번배경색 변경
+
                     // :eq(순번) -> 제이쿼리 전용!
+                    // sequnce에서 나온말! (순번)
+                    // 순번은 0부터 시작!
                     $(`.nav1 li:eq(${opt})`).css({
                         backgroundColor: rcolor[opt],
                     });
