@@ -41,6 +41,28 @@ function loadFn() {
     // 1. 호출확인
     console.log("로딩완료!");
 
+    // 2. 대상선정
+    // 2-1. 이벤트대상: .abtn
+    const abtn = document.querySelectorAll(".abtn");
+    // 2-2. 변경대상: #slide
+    const slide = document.querySelector("#slide");
+    
+    abtn[1].onclick = ()=>{
+
+        slide.style.left = "-100%";
+        slide.style.transition = ".8s";
+        // 0.8초후 맨앞li 잘라서 맨뒤로 이동!
+        setTimeout(() => {
+            // 1. 맨앞li 잘라서 맨뒤로 이동!
+            slide.appendChild(
+                slide.querySelectorAll("li")[0])
+            // 2. left값 0으로 초기화!
+            slide.style.left = "0";
+            /* 3. 트랜지션 없애기 */
+            slide.style.transition = "none";
+        }, 800);
+    }
+
     
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
