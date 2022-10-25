@@ -37,7 +37,7 @@
             /* 정중앙이동 */
             width: 300px;
             height: 300px;
-            outline: 2px dotted blue;
+            /* outline: 2px dotted blue; */
         }
 
         /* svg요소 공통 */
@@ -49,14 +49,67 @@
         /* 1. 아이언맨 */
         .svg1 {
             background: url(./images/man.jpg) no-repeat top/cover;
+            /* 정원표시 */
+            border-radius: 50%;
+            /* 박스그림자 */
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.583);
+        }
+        .svg1 svg{
+            /* svg자체엔 트랜스폼 적용됨! */
+            transform: rotate(-90deg);
+            /* transform: rotate(-90deg) rotateX(180deg); */
         }
 
         /* circle 설정 */
         .c1{
             /* 채우기색 - 기본색 검정
-            투명(transparent), 없음(none) */
+            투명(transparent), 
+            없음(none)-뚫린상태 */
             fill: none;
+            /* 선색(안쓰면 안나옴) */
+            stroke: red;
+            /* 선두께 (안쓰면 1px)
+            -> 단위를 안쓰면 기본px
+            -> 중심선을 기준으로 생김 */
+            stroke-width: 20;
+            /* 선끝속성 : 둥글게 */
+            stroke-linecap: round;
+            /* 데쉬선 속성 
+            -선,공백 순으로 셋팅 */
+            stroke-dasharray: 300%;
+            /* 
+            선,공백에서 선으로 모두 채우기 
+            방법: 50%를 줘본다
+                몇조각인지 센다
+                50% X 조각수
+                여기서는 50% X 6조각 = 300%
+            */
+            /* 데쉬선 시작위치 속성 */
+            stroke-dashoffset: 300%;
+            /* 
+                [ 데쉬셋팅을 이용한 svg 애니 ]
+                1. stroke-dasharray값을
+                50% 준후 조각수 만큼 곱하여
+                전체 선부터 채워지게함
+
+                2. 선만큼 채워진 %를
+                stroke-dashoffset에 값을 설정하여
+                공백부터 시작하게 함!
+
+                (오버시 선애니할 경우)
+                3. 여기에 트랜지션 준다
+                4. 오버시에 
+                stroke-dashoffset:0;
+                으로 셋팅하면 도형이 그려지는 애니!
+            */
+            transition: stroke-dashoffset .8s ease-in-out;
+            /* -> svg내부요소엔 트랜스폼 적용안됨 
+            transform: rotate(-90deg); */
         }
+        /* 컨텐츠 박스에 마우스 오버시 라인애니 */
+        .svg1:hover .c1{
+            stroke-dashoffset: 0;
+        } 
     </style>
 </head>
 <body>
@@ -66,6 +119,8 @@
             <div class="cbx svg1">
                 <svg>
                     <circle class="c1" cx="150" cy="150" r="140"></circle>
+
+                    <!-- <circle class="c1" cx="150" cy="150" r="140" transform="rotate(-90,150,150)"></circle> -->
                 </svg>
             </div>
         </section>
