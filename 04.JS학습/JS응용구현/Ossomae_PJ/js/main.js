@@ -83,6 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // 인터발함수 최초호출!
     slideAuto();
+    
     // 타임아웃용 변수
     let autoT;
 
