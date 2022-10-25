@@ -170,4 +170,26 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 /*************** 2. 하단영역 ***************/
 .info{
     min-height: 286px;
+    background-color: #000;
+    padding: 70px;
+    /* 크기유지박스 bxb - 보더,패딩포함 */
+    box-sizing: border-box;
+    /* 공통 글자체 */
+    font-family: "Roboto", nbg;
 }
+/* 3-1. 하단로고 */
+.blogo{
+    text-align: center;
+}
+/* 3-2. 회사주소 */
+.addr{
+    color: #747474;
+    text-align: center;
+    font-size: 11px;
+    /* address 기본 이탤릭해제 */
+    font-style: normal;
+    margin: 20px 0 10px;
+}
+
+/* 3-3. 하단링크 */
+
