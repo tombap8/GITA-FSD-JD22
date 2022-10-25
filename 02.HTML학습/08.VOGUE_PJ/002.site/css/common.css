@@ -205,4 +205,8 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     font-size: 13px;
     margin: 0 6px;
 }
+/* 마지막 링크 글자 두껍게 */
+.blink li:last-child a{
+    font-weight: bold;
+}
 
