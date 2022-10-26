@@ -120,7 +120,7 @@
 </head>
 <body>
     <div class="wrap">
-        <!-- 1.아이언맨 -->
+        <!-- 1.아이언맨 : 원 -->
         <section>
             <div class="cbx svg1">
                 <svg>
@@ -130,7 +130,14 @@
                 </svg>
             </div>
         </section>
-        <section></section>
+        <!-- 2. 블랙위도우 : 사각형 -->
+        <section>
+            <div class="cbx svg2">
+                <svg>
+                    <rect class="rt1" width="280" height="280" x="10" y="10"></rect>
+                </svg>
+            </div>
+        </section>
         <section></section>
         <section></section>
     </div>
@@ -149,6 +156,9 @@
 
         [ svg 요소 표현법 ]
         - svg요소 내부에 자식요소로 각 도형요소를 넣고 코딩함
+        (유의사항: svg는 처음에 px단위의 특정크기로 만들어야
+        한다. 그래야 기본형으로 정하고 유동적인 크기는 
+        viewBox설정으로 얼마든지 변경이 가능하다!!!)
 
         [ circle 요소 : 원 ]
         - cx : 중심원 x좌표 (center x), 단위없는 숫자는 px
@@ -160,6 +170,12 @@
             -> 이 속성을 쓰는 이유는 circle에는 일반 transform이 
             적용되지 않기 때문임!
             (svg요소 transform이 적용됨!)
+
+        [ rect 요소 : 사각형 ]
+        - rectangle(사각형) 이라는 말에서 나온 요소명
+        - width : 가로크기
+        - height : 세로크기
+        - x, y : x축, y축
 
      -->
 </body>
