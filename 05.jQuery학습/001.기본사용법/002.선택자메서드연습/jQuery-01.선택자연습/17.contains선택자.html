@@ -51,9 +51,11 @@
                     // 1초간 사라짐(애니) -> 그후 실행함수(콜백함수)
                     .hide(1000, function () {
                         // 'lion' -> '사자'변경
-                        $("li:contains('lion')").text("사자").show(1000);
+                        $("li:contains('lion')")
+                        .text("사자").show(1000);
                         // 'fox' -> '여우'변경
-                        $("li:contains('fox')").text("여우").show(1000);
+                        $("li:contains('fox')")
+                        .text("여우").show(1000);
                     }); ///////// hide //////////
 
             }); //////////////////// jQB //////////////////////
