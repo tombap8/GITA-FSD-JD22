@@ -116,6 +116,36 @@
         .svg1:hover .c1{
             stroke-dashoffset: 0;
         } 
+
+        /* 2. 블랙위도우 */
+        .svg2 svg{
+            background: url(./images/black.jpg) no-repeat top/cover;
+        }
+        .rt1{
+            /* 채우기(색) */
+            fill: none;
+            /* 선색 */
+            stroke: black;
+            /* 선두께 */
+            stroke-width: 20;
+            /* 선끝처리 */
+            stroke-linecap: round;
+            /* 
+                stroke-linecap 선끝옵션
+                1) butt - 끝에 중심선이 보임(기본값)
+                2) square - 끝에 사각형으로 덮음
+                3) round - 끝에 둥근모양으로 덮음
+            */
+            /* 데쉬선 : 50% X 8조각 = 400% */
+            stroke-dasharray: 15%;
+            stroke-dashoffset: 102%;
+            /* 트랜지션 */
+            transition: .8s;
+        }
+        .svg2:hover .rt1{
+            stroke-dashoffset: 0;
+        }
+
     </style>
 </head>
 <body>
