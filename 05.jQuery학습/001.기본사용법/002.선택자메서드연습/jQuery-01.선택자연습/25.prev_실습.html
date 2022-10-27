@@ -19,14 +19,62 @@
 
                 // first(), last()는 맨앞과 뒤를 선택하는 메서드
                 $("#container")
-                .children("p") // 직계p요소들
-                .last() // 마지막 p요소
+                    .children("p") // 직계p요소들
+                    .last() // 마지막 p요소
+                    .click(function () {
+                        $(this) // 클릭된 p요소
+                            .animate(
+                                {
+                                    backgroundColor: "red",
+                                },
+                                500
+                            )
+                            .prev() // 앞에 있는 p형제요소
+                            .delay(1000) // 1초기다림
+                            .animate(
+                                {
+                                    backgroundColor: "yellow",
+                                },
+                                500
+                            )
+                            .prev() // 앞에 있는 p형제요소
+                            .delay(2000) // 2초기다림
+                            .animate(
+                                {
+                                    backgroundColor: "lime",
+                                },
+                                500
+                            )
+                            .prev() // 앞에 있는 div형제요소
+                            .find("p") // 자식요소 p
+                            .delay(3000) // 3초기다림
+                            .animate(
+                                {
+                                    backgroundColor: "green",
+                                },
+                                500
+                            );
+                    }); ////// click /////////
+
+                // 추가미션:
+                // .sub 아래 마지막 p태그를 클릭하면
+                // 이전 p태그 모두를 배경색 yellow, 
+                // 가로,세로 크기 100px로 원으로 변경
+                // 애니메이션 하시오!
+                // prevAll() 사용!
+                $(".sub").find("p").last()
                 .click(function(){
-                  $(this) // 클릭된 p요소
+                  $(this) // 마지막 p요소
+                  .prevAll() // 이전 형제p 모두
                   .animate({
-                    backgroundColor:"red"
-                  },500)
-                }); ////// click /////////
+                    backgroundColor:"yellow",
+                    width: "100px",
+                    height: "100px",
+                    borderRadius:"50%"
+                  },1000); ///// animate /////
+                })
+
+                // animate({CSS설정},시간,이징,함수)
 
             }); ////////// jQB /////////////
         </script>
