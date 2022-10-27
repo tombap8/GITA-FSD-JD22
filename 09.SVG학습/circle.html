@@ -146,6 +146,11 @@
             stroke-dashoffset: 0;
         }
 
+        /* 3. 닥스박스 : 다각형(6각형) */
+        .svg3 svg{
+            background: url(./images/doc.jpg) no-repeat top/cover;
+        }
+
     </style>
 </head>
 <body>
@@ -172,7 +177,7 @@
         <section>
             <div class="cbx svg3">
                 <svg>
-                    <polygon class="pg1" points=""></polygon>
+                    <polygon class="pg1" points="150,10 290,100 290,200 150,290 10,200 10,100"></polygon>
                 </svg>
             </div>
         </section>
@@ -213,6 +218,12 @@
         - width : 가로크기
         - height : 세로크기
         - x, y : x축, y축
+
+        [ polygon 요소 : 다각형 ]
+        - points 속성
+        - 표현법: <polygon points="x1,y1 x2,y2 ...">
+            -> x,y 좌표를 콤마로 구분하고
+            다른 좌표는 띄어쓰기로 구분함
 
      -->
 </body>
