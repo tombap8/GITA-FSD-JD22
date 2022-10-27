@@ -5,6 +5,75 @@
   <meta charset="utf-8">
   <title> Traversal- siblings </title>
   
+        <!-- 제이쿼리 라이브러리 -->
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <!-- 제이쿼리 UI : 컬러애니메이션 등 필요! -->
+        <script src="./js/jquery-ui.min.js"></script>
+
+        <script>
+          $(()=>{// jQB /////
+
+            /* 
+              siblings() 메서드
+              - 선택요소를 제외한 나머지 형제요소들 선택함
+
+              siblings(필터) 메서드
+              - 필터에 특정요소나 요소명을 쓰면
+              다른 형제요소들 중 특정요소만 선택함!
+            */
+
+            // 전체박스
+            let tg = $("#container");
+
+            // 미니언즈 300개 셋팅하기
+            // for(시;한;증){실행코드}
+            // 기존요소에 계속 더하기 메서드는?
+            // -> append(요소) : 새요소추가 / 이동
+            for(let i=0;i<300;i++){
+              tg.append('<img src="images/mini.jpg" alt="미니언즈">');
+            } ////// for ////
+
+            // 미니언즈 크기 변경
+            tg.find("img") // 모든 미니언즈 이미지
+            .css({
+              width:"100px"
+            }) ///// css ////
+            .click(function(){
+              // 미니언즈 이미지 클릭시 
+              // 클릭된 미니언즈 200px로 커지는 애니
+              // 나머지는 모두 50px로 작아지는 애니
+              $(this).animate({width:"200px"},800)
+              .siblings() // 다른 미니언즈 모두
+              .delay(800) // 0.8초 기다려
+              .animate({width:"50px"},500);
+
+
+              // siblings(필터) 를 활용한 테두리주기!
+              // 클릭된 미니언즈 이외의 다른 미니언즈 중
+              // class가 "my"인 형제요소를
+              // 선택하여 테두리주기!
+              $(this).css({
+                border: "none"
+              }) ///// css /////
+              .siblings(".my") // -> 형제들 중 ".my"인요소들
+              .css({
+                border:"5px dotted orange"
+              });///// css //////
+
+            }); //////////////// click //////////////
+
+
+            // 미니언즈 중 7n+1번째 이미지에 클래스 my넣기
+            // class넣는 메서드는? addClass(클래스명)
+            tg.find("img:nth-child(7n+1)").addClass("my");
+            // n은 0부터 자동 적용됨!
+
+
+
+
+
+          }); ////////// jQB /////////
+        </script>
 
   <style>
     div,
