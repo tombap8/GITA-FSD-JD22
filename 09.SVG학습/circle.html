@@ -162,6 +162,18 @@
             stroke: lightgreen;
             /* 선두께 */
             stroke-width: 20;
+            /* 선끝처리 */
+            stroke-linecap: square;
+            /* 데쉬설정: 50% X 6조각 = 300% */
+            stroke-dasharray: 300%;
+            /* 데쉬 시작위치 밀기 */
+            stroke-dashoffset: 300%;
+            /* 트랜지션 */
+            transition: .6s ease-out;
+        }
+        /* 다각형 박스에 마우스 오버시 */
+        .svg3:hover .pg1{
+            stroke-dashoffset: 0;
         }
 
     </style>
