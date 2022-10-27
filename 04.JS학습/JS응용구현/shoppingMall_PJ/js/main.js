@@ -53,11 +53,11 @@ function loadFn() {
 
     // 3. 이벤트 설정하기 및 기능구현
     // 3-1. 오른쪽 버튼 클릭시
-    abtn[1].onclick = () => {        
+    abtn[1].onclick = () => {
         // 광클금지 ////////////
-        if(prot) return;// 나가!
+        if (prot) return; // 나가!
         prot = 1; // 잠금!
-        setTimeout(()=>prot=0,800);
+        setTimeout(() => (prot = 0), 800);
         ////////////////////////////
 
         slide.style.left = "-100%";
@@ -75,15 +75,14 @@ function loadFn() {
         // 블릿변경함수 호출!
         // -> 오른쪽버튼은 두번째 슬라이드가 주인공!
         chgIndic(1);
-
     }; //////////// click ////////////////
 
     // 3-2. 왼쪽버튼 클릭시 : 왼쪽버튼 abtn변수 0번째
-    abtn[0].onclick = () => {    
+    abtn[0].onclick = () => {
         // 광클금지 ////////////
-        if(prot) return;// 나가!
+        if (prot) return; // 나가!
         prot = 1; // 잠금!
-        setTimeout(()=>prot=0,800);
+        setTimeout(() => (prot = 0), 800);
         ////////////////////////////
 
         // 1. 맨뒤요소를 잘라서 맨앞으로 이동한다!
@@ -120,9 +119,8 @@ function loadFn() {
     // 대상: #slide li -> 여기에 속성을 넣는다!
     // 사용메서드 : forEach((요소,순번)=>{코드})
     // 사용메서드 : setAttribute(속성명,값)
-    slide.querySelectorAll("li")
-    .forEach((ele,idx)=>{
-        ele.setAttribute("data-seq",idx);
+    slide.querySelectorAll("li").forEach((ele, idx) => {
+        ele.setAttribute("data-seq", idx);
     }); /////// forEach ////////////////
 
     // 5. 블릿변경함수
@@ -130,22 +128,23 @@ function loadFn() {
     // 순번의 블릿의 li에 클래스"on"을 넣고
     // 나머지는 클래스를 제거함
     // chgIndic -> change Indicator (변경하라! 표시자를!)
-    const chgIndic = idx => { // idx - 대상슬라이드 순번
+    const chgIndic = (idx) => {
+        // idx - 대상슬라이드 순번
         // 1. 현재 슬라이드 순번 알아오기!
         // cseq -> current sequence number(현재 순번)
-        let cseq = 
-        slide.querySelectorAll("li")[idx] // 대상 li
-        .getAttribute("data-seq"); // "data-seq"속성값
+        let cseq = slide
+            .querySelectorAll("li")
+            [idx] // 대상 li
+            .getAttribute("data-seq"); // "data-seq"속성값
         // getAttribute(속성명) -> 속성값 읽어오는 JS내장함수
 
-        console.log("순번:",cseq);
+        console.log("순번:", cseq);
 
+        // 2. 슬라이드 li 클래스 초기화!
+        for (let x of indic) x.classList.remove("on");
+
+        // 2. 슬라이드 순번과 동일한 블릿li 클래스 "on"넣기
+        indic[cseq].classList.add("on");
     }; ////////////// chgIndic 함수 ////////////////
-
-
-
-
-
-
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
