@@ -1,44 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title> Traversal- prev </title>
+    <head>
+        <meta charset="utf-8" />
+        <title>Traversal- prev</title>
 
+        <!-- 제이쿼리 라이브러리 -->
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <!-- 제이쿼리 UI : 컬러애니메이션 등 필요! -->
+        <script src="./js/jquery-ui.min.js"></script>
+        <script>
+            $(() => {
+                /* 
+              prev() - 선택요소의 이전형제요소 선택
+              prevAll() - 선택요소의 이전형제요소들 전부선택
+            */
+                // 미션: 마지막 p태그를 클릭하면 0.5초 간격으로
+                //  이전 형제요소의 배경색을 차례로 넣으시오.(p태그만!)
 
-<style>
-  div, p {float:left;margin:10px; background-color:#FFF;}
-  div#sub { width:80px; height:80px; border:#000 thin solid;}
-  p { width:50px; height:50px; border:#000 thin solid;}
-</style>
-</head>
-<body>
-<div id="container">
+                // first(), last()는 맨앞과 뒤를 선택하는 메서드
+                $("#container")
+                .children("p") // 직계p요소들
+                .last() // 마지막 p요소
+                .click(function(){
+                  $(this) // 클릭된 p요소
+                  .animate({
+                    backgroundColor:"red"
+                  },500)
+                }); ////// click /////////
 
-    <div id = "sub">
-      <p>div p</p>
-    </div>
-    <p id="part1">p</p>
-    <p>p</p>
-    <p>p:나를클릭해!</p>
+            }); ////////// jQB /////////////
+        </script>
 
-</div>
+        <style>
+            div,
+            p {
+                float: left;
+                margin: 10px;
+                background-color: #fff;
+            }
+            div#sub {
+                width: 80px;
+                height: 80px;
+                border: #000 thin solid;
+            }
+            p {
+                width: 50px;
+                height: 50px;
+                border: #000 thin solid;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="sub">
+                <p>div p</p>
+            </div>
+            <p id="part1">p</p>
+            <p>p</p>
+            <p>p:나를클릭해!</p>
+        </div>
 
+        <div class="sub">
+            <p>p</p>
+            <p>p</p>
+            <p>p</p>
+            <p>p</p>
+            <p>p:나도클릭!</p>
+        </div>
 
-<div class="sub">
-  <p>p</p>
-  <p>p</p>
-  <p>p</p>
-  <p>p</p>
-  <p>p:나도클릭!</p>
-</div>
-
-
-
-
-<!---------- jQuery code Start ---------->
-<script>
-
-</script>
-
-</body>
+        <!---------- jQuery code Start ---------->
+        <script></script>
+    </body>
 </html>
