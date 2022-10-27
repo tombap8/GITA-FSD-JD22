@@ -3,6 +3,44 @@
 <head>
 <meta charset="utf-8">
 <title> children </title>
+<!-- 제이쿼리 라이브러리 -->
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script>
+  $(()=>{///////////// jQB ////////////////////
+
+    /* 
+      [ 탐색기능(Traversing:트래버싱) ]
+      - 선택자 필터링이 끝난후 내부에서 다시 한번
+      선택할 수 있는 기능을 가진 탐색 기능의 메서드
+      (활용도 1000% - 제이쿼리 흥행의 핵심!!!)
+
+      - 사용법: $(선택자).트래버싱메서드()
+      예) $("#cont>li").eq(5).css().parent().find()...
+
+      ___________________________________________
+
+      1. children(선택요소)
+      -> 선택요소의 직계자식요소를 선택하는 트래버싱
+      
+      */
+     
+     // 미션: #container를 클릭하면
+     $("#container").click(function(){
+       // 직계자식인 p태그를 찾아서 배경색을 노란색으로 바꾸고
+       $(this).children("p")
+       .css({
+          backgroundColor:"yellow"
+       })
+       // 동시에 직계자식인 div 를 찾아서  배경색을 빨간색으로 변경하시오.
+       $(this).children("div")
+       .css({
+          backgroundColor:"red"
+       })
+
+     });
+
+  }); //////////////// jQB ////////////////////
+</script>
 
 
 <style>
