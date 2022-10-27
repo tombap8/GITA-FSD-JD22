@@ -171,7 +171,7 @@ function loadFn() {
     *******************************/
     function slideAuto() {
         autoI = setInterval(() => {
-            // 오른쪽버튼 클릭시 이동코드와 동일함!!!
+            // 오른쪽버튼 클릭시 이동코드와 동일함!!! /////////
             slide.style.left = "-100%";
             slide.style.transition = ".8s ease-in-out";
             // 0.8초후 맨앞li 잘라서 맨뒤로 이동!
@@ -187,6 +187,7 @@ function loadFn() {
             // 블릿변경함수 호출!
             // -> 오른쪽버튼은 두번째 슬라이드가 주인공!
             chgIndic(1);
+            ///////////////////////////////////////////
         }, 2000);
     } //////// slideAuto 함수 //////////
 
