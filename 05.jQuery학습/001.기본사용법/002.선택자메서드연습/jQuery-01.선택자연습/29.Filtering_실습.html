@@ -11,11 +11,21 @@
         <script>
             $(() => {
                 /* 
+                [ 추가 트래버싱 메서드 ]
+
                 first() 메서드 : 선택요소가 집합일때 그 중 첫번째요소
                 last() 메서드 : 선택요소가 집합일때 그 중 마지막째요소
                 eq(n) 메서드 : 선택요소가 집합일때 그 중 n번째요소
                 filter(선택자) : 선택요소의 내부에서 다신 한번 선택함
                 has(선택자) : 선택요소 내부에서 특정요소를 포함하는 요소선택
+
+                [ 선택요소의 클래스나 아이디 여부를 판별하는 메서드 ]
+                is(요소명) -> 요소명(클래스명/아이디명) 
+                있으면 -> true
+                없으면 -> false
+                예) $("p").is(".my") -> p태그의 클래스가 my이면 true
+
+                비교) JS에서는 classList.contains(요소명) 과 비슷함!
               */
 
                 ////////////// jQB ////////////////////
@@ -40,16 +50,34 @@
                     $("div")
                         .filter(".middle") // 선택된 div중 .middle인것
                         .css({
+                            transition: ".8s ease-out", //트랜지션 맨위
                             marginTop: "200px",
                             height: "200px",
                             backgroundColor: "lime",
-                            transition: ".8s ease-out",
                         }); ////////// css /////////
 
                     // 5. div 중에서 p태그를 포함하는 요소를 선택하여
                     // 		border를 10px ridge blue로 설정하시오.
                     $("div").has("p").css({ border: "10px ridge blue" });
                 }); ////////// click ////////////////////
+
+                // is() 메서드 테스트
+                // p태그를 클릭했을때
+                // 클래스가 "my"인 p요소만 텍스트를
+                // "나야나!"로 변경하시오! 
+                // 아닌것은 "아님"이라고 출력
+                $("p").click(function(){
+                  // 클릭된 p요소가 .my인지 판별!
+                  let isP = $(this).is(".my");
+                  console.log("is판별:",isP);
+
+                  if(isP){
+                    $(this).text("나야나!");
+                  }
+                  else{
+                    $(this).text("아님");
+                  }
+                }); //////// click ////////
             }); ///////////////// jQB ////////////////////
         </script>
 
