@@ -10,7 +10,7 @@
         <script src="./js/jquery-ui.min.js"></script>
         <script>
             $(() => {
-              /* 
+                /* 
                 first() 메서드 : 선택요소가 집합일때 그 중 첫번째요소
                 last() 메서드 : 선택요소가 집합일때 그 중 마지막째요소
                 eq(n) 메서드 : 선택요소가 집합일때 그 중 n번째요소
@@ -20,37 +20,35 @@
 
                 ////////////// jQB ////////////////////
                 // 미션: #main을 클릭할때 각 미션을 수행하라!
-                $("#main").click(function(){
-                  // 1. p태그를 찾아 그 중 첫번째 요소의 배경색 red
-                  $("p").first().css({backgroundColor:"red"});
+                $("#main").click(function () {
+                    // 1. p태그를 찾아 그 중 첫번째 요소의 배경색 red
+                    $("p").first().css({ backgroundColor: "red" });
 
-                  // 2. p태그를 찾아 그 중 마지막 요소의 배경색을 yellow
-                  $("p").last().css({backgroundColor:"yellow"});
+                    // 2. p태그를 찾아 그 중 마지막 요소의 배경색을 yellow
+                    $("p").last().css({ backgroundColor: "yellow" });
 
-                  // 3. p태그 중 2번째 요소를 선택하여 margin-top값을
-                  //		100px로 transition 0.4초로 설정하시오.
-                  $("p").eq(1).css({
-                    marginTop:"100px",
-                    transition:".4s"
-                  }); /////// css ///////
-                  
-                  // 4. div 중 클래스가 middle인 요소를 찾아
-                  //		margin-top값을 200px, height값을 200px,
-                  // 		배경색을 lime 색으로 transition 주시오.
-                  $("div").filter(".middle") // 선택된 div중 .middle인것
-                  .css({
-                    marginTop:"200px",
-                    height:"200px",
-                    backgroundColor:"lime",
-                    transition:".8s ease-out"
-                  }); ////////// css /////////
+                    // 3. p태그 중 2번째 요소를 선택하여 margin-top값을
+                    //		100px로 transition 0.4초로 설정하시오.
+                    $("p").eq(1).css({
+                        marginTop: "100px",
+                        transition: ".4s",
+                    }); /////// css ///////
 
-                  // 5. div 중에서 p태그를 포함하는 요소를 선택하여
-                  // 		border를 10px ridge blue로 설정하시오.
-                  $("div").has("p")
-                  .css({border:"10px ridge blue"});
-                  
+                    // 4. div 중 클래스가 middle인 요소를 찾아
+                    //		margin-top값을 200px, height값을 200px,
+                    // 		배경색을 lime 색으로 transition 주시오.
+                    $("div")
+                        .filter(".middle") // 선택된 div중 .middle인것
+                        .css({
+                            marginTop: "200px",
+                            height: "200px",
+                            backgroundColor: "lime",
+                            transition: ".8s ease-out",
+                        }); ////////// css /////////
 
+                    // 5. div 중에서 p태그를 포함하는 요소를 선택하여
+                    // 		border를 10px ridge blue로 설정하시오.
+                    $("div").has("p").css({ border: "10px ridge blue" });
                 }); ////////// click ////////////////////
             }); ///////////////// jQB ////////////////////
         </script>
