@@ -4,6 +4,30 @@
 <head>
   <meta charset="utf-8">
   <title> parent </title>
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+  <!-- 제이쿼리 UI -->
+  <script src="./js/jquery-ui.min.js"></script>
+  <script>
+    $(()=>{///////// jQB //////////////////////
+
+      /* 
+        [ parent() 메서드 ]
+        - 선택요소를 싸고 있는 부모요소를 선택함
+        -> 만약 parent()를 여러번 쓰면 쓴 횟수만큼 부모로 올라감!
+        예) div>p>a>span 이런 구조라면
+          $("span").parent().parent() -> 부모들 중 p태그임!
+      */
+
+      // 미션: p태그를 클릭하면 부모요소의 배경색을 빨간색으로 변경하시오.
+      // animate() 사용!
+      $("p").click(function(){
+        $(this).parent()
+        .animate({backgroundColor:"red"},1000);
+      });
+
+    }); //////////// jQB //////////////////////
+  </script>
   
 
   <style>
