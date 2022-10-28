@@ -17,17 +17,20 @@
 		
 		//친척네집
 		$("div").click(function(e){
+			e.stopPropagation();
 			$(this).css({backgroundColor:"green"});
 		});///// click ////////////
 		
 		//엄마집
 		$("p").click(function(e){
+			e.stopPropagation();
 			$(this).css({backgroundColor:"yellow"});
 		});///// click ////////////
 		
 		//아들방
 		$("a").click(function(e){
 			$(this).css({backgroundColor:"red"});
+			return false;
 		});///// click ////////////
 		
 		/*

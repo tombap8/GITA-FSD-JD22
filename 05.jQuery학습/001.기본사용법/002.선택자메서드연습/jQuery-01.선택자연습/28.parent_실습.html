@@ -26,6 +26,30 @@
         .animate({backgroundColor:"red"},1000);
       });
 
+
+      // parents(요소명) -> 부모들 중 특정 부모를 선택함!
+
+      // 미션: a를 클릭하면 부모들 중 
+      // p태그는 배경색을 노란색, 
+      // div태그는 배경색을 녹색으로 지정하시오.
+      $("a").click(function(e){ // e - 이벤트 전달변수
+
+        // 이벤트 버블링 막기!
+        e.stopPropagation();
+        // 위에 있는 p가 클릭되는 이벤트 전달현상을 막음!
+
+        $(this) // a요소
+        .parents("p") // 부모들 중 p요소
+        .animate({backgroundColor:"yellow"},500);
+
+        $(this) // a요소
+        .parents("#sub") // 부모들 중 #sub요소
+        .animate({backgroundColor:"green"},1000);
+
+
+      }); /////// click //////////
+
+
     }); //////////// jQB //////////////////////
   </script>
   
