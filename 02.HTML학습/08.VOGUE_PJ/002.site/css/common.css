@@ -238,6 +238,13 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
         /* 왼쪽 공간 보정값 */
     }
 }
+/* 860px이하 수치조정 */
+@media screen and (max-width:860px) {
+    #top.on .gnb{
+        margin-left: 120px;
+        /* 왼쪽 공간 보정값 */
+    }
+}
 
 /*************** 2. 하단영역 ***************/
 .info{
