@@ -210,15 +210,15 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 }
 
 /* 5. GNB메뉴 */
-.gnb{
+#top.on .gnb{
     font-size: 14px;
 }
 /* GNB li요소 */
-.gnb li{
+#top.on .gnb li{
     padding-right: 35px;
 }
 /* GNB a요소 */
-.gnb a{
+#top.on .gnb a{
     color: #333;
 }
 
