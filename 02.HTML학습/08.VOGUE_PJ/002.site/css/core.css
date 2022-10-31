@@ -185,3 +185,8 @@ font-family: 'Roboto Condensed', sans-serif;
     height: 0;
     overflow: hidden;
 }
+
+/* 공통 배경색 클래스 */
+.bgc{
+    background-color: #f9f9f9;
+}
