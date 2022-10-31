@@ -196,6 +196,32 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     display: none;
 }
 
+/* 4. 로고박스 */
+#top.on .logo{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    height: auto;
+    margin-top: 0;
+}
+/* 로고이미지 */
+#top.on .logo img{
+    width: 100px;
+}
+
+/* 5. GNB메뉴 */
+.gnb{
+    font-size: 14px;
+}
+/* GNB li요소 */
+.gnb li{
+    padding-right: 35px;
+}
+/* GNB a요소 */
+.gnb a{
+    color: #333;
+}
+
 /*************** 2. 하단영역 ***************/
 .info{
     min-height: 286px;
