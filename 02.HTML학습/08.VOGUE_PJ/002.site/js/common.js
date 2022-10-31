@@ -30,23 +30,32 @@ $(() => {
         if(scTop >= 100){ // 100px이상
             topA.addClass("on");
             // addClass(클래스명) - 클래스넣기
+
+            // 스크롤 방향에 따라 .up추가/제거
+            if(scTop > lastSc){ // 스크롤 아랫방향
+                topA.removeClass("up");
+            } ///// if ////
+            else{ // 스크롤 윗방향
+                topA.addClass("up");
+            } //// else /////
         } ///////// if /////////
         else{ // 100px 미만
-            topA.removeClass("on");
+            topA.removeClass("on up");
             // removeClass(클래스명) - 클래스지우기
+            // 클래스명에 띄어쓰기로 복수의 클래스 적용가능!
         } //////// else /////////
 
-        //////////////////////////
-        // 스크롤 방향 알아내기 ///
-        if(scTop > lastSc){
-            console.log("아랫방향!");
-        }
-        else{
-            console.log("윗방향!");
-        }
+        ////////////////////////////
+        //// 스크롤 방향 알아내기 ///
+        // if(scTop > lastSc){
+        //     console.log("아랫방향!");
+        // }
+        // else{
+        //     console.log("윗방향!");
+        // }
         // 마지막위치 업데이트 필수!
         lastSc = scTop;
-
+        ////////////////////////////
 
 
     }); //////// scroll /////////////////

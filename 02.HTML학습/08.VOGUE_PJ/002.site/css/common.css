@@ -180,11 +180,18 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 /* 1. 상단영역 최상위 고정 */
 #top.on {
     position: fixed;
-    top: 0;
+    top: -50px; /* 기본상단위에 숨김! */
     left: 0;
     width: 100%;
     background-color: #fff;
     padding-top: 5px;
+    /* 트랜지션 */
+    transition: .4s ease-out;
+}
+/* 스크롤방향에 따라 top값 변경하기! 스크롤 올라갈때니까 .up */
+#top.on.up{
+    top: 0; 
+    /* 슬림메뉴 보이는 위치로! */
 }
 
 /* 2. 상단영역 속박스(.top) 최소높이 해제 */
