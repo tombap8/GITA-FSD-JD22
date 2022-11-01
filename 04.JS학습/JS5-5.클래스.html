@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS5-5. JS클래스</title>
-    <script>
-        /********************************************** 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS5-5. JS클래스</title>
+        <script>
+            /********************************************** 
             [ JS 클래스란? ]
 
             1. ES6버전에서 JS 클래스가 도입됨!
@@ -71,45 +71,85 @@
 
         **********************************************/
 
-        class MovieInfo {
-            // 생성자 메서드 : 주로 속성만 셋팅함!
-            constructor(tit,sum,dir,act,des){
-                this.제목 = tit;
-                this.개요 = sum;
-                this.감독 = dir;
-                this.출연 = act;
-                this.문구 = des;
-            } ////// constructor ///////
+            class MovieInfo {
+                // 생성자 메서드 : 주로 속성만 셋팅함!
+                constructor(tit, sum, dir, act, des) {
+                    this.제목 = tit;
+                    this.개요 = sum;
+                    this.감독 = dir;
+                    this.출연 = act;
+                    this.문구 = des;
+                } ////// constructor ///////
 
-            // 내가 만들고자 하는 메서드는 아래에 따로생성한다!
-            메서드(msg){ // msg 응원메시지 전달변수
-                return `영화 ${this.제목}의 
-                감독님 이름은 ${this.감독},
-                나의 응원은 ${msg}`;
-            }
+                // 내가 만들고자 하는 메서드는 아래에 따로생성한다!
+                메서드(msg) {
+                    // msg 응원메시지 전달변수
+                    return `영화 ${this.제목}의 
+                            감독님 이름은 ${this.감독},
+                            나의 응원은 ${msg}`;
+                }
+            } ////////// class /////////////////
 
-        } ////////// class /////////////////
+            // 클래스는 함수와 달리 호이스팅이 불가하다!
+            // 만들고 호출해야지 위에서 호출하면 안됨!!!
 
-        // 클래스는 함수와 달리 호이스팅이 불가하다!
-        // 만들고 호출해야지 위에서 호출하면 안됨!!!
+            // 클래스의 데이터형은 뭐지?
+            // typeof 변수 -> 변수(객체,클래스)의 데이터형을 리턴함
+            console.log("클래스의 형은 뭐지? ", typeof MovieInfo);
+            // 클래스는 함수형이다!!!
 
-        // 클래스의 데이터형은 뭐지?
-        // typeof 변수 -> 변수(객체,클래스)의 데이터형을 리턴함
-        console.log("클래스의 형은 뭐지? ",typeof MovieInfo);
-        // 클래스는 함수형이다!!!
+            document.write("<h1>JS5-5. JS 클래스</h1>");
 
-        document.write("<h1>JS5-5. JS 클래스</h1>");
+            // 클래스로 객체 만들기!
+            const mi1 = new MovieInfo(
+                "이웃사촌",
+                "드라마, 코미디",
+                "이환경",
+                "정우, 김희원",
+                "이웃을 사랑합시다"
+            );
 
-        // 클래스로 객체 만들기!
-        const mi1 = new MovieInfo("이웃사촌","드라마, 코미디","이환경","정우, 김희원","이웃을 사랑합시다");
+            // 클래스를 new키워드로 생성한 것이 객체인지 확인!
+            console.log("mi1이 객체인지 확인: ", mi1);
 
-        // 클래스를 new키워드로 생성한 것이 객체인지 확인!
-        console.log("mi1이 객체인지 확인: ",mi1);
+            // 만들어진 객체를 화면에 출력: 객체니까 for in 사용!
+            for (let x in mi1) {
+                // x는 속성명
+                document.write(`<h2>${x} : ${mi1[x]}</h2>`);
+            } /////// for in ////////////
+            // -> 생성자함수와 달리 클래스는 객체찍기에서 메서드가
+            // 별도로 관리되고 constructor로 생성된 속성만 찍힌다!
 
+            // 객체 메서드 호출!
+            document.write(`<h2>${mi1.메서드("굉장허네!")}</h2>`);
 
-    </script>
-</head>
-<body>
-    
-</body>
+            document.write("<hr>");
+            ///////////////////////////////////
+            // 클래스를 이용한 객체를 하나 더 만들고 화면에 찍기!
+            // **********************************************
+
+            // 클래스로 객체 만들기!
+            const mi2 = new MovieInfo(
+                "브이 포 벤데타",
+                "액션, 드라마, SF, 스릴러",
+                "제임스 맥티그",
+                "나탈리 포트만",
+                "재개봉 흥해라!!!"
+            );
+
+            // 클래스를 new키워드로 생성한 것이 객체인지 확인!
+            console.log("mi2 객체인지 확인:", mi2);
+
+            // 만들어진 객체를 화면에 출력: 객체니까 for in 사용!
+            for (let x in mi2) {
+                document.write(`<h2>${x} : ${mi2[x]}</h2>`);
+            } ///////// for in //////////
+
+            // 객체 메서드 호출!
+            document.write(
+                `<h2>${mi2.메서드("나탈리 포트만 싸랑해요~!!!")}</h2>`
+            );
+        </script>
+    </head>
+    <body></body>
 </html>
