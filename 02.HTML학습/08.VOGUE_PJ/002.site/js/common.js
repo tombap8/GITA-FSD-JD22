@@ -27,18 +27,30 @@ $(() => {
     // console.log("등장액션요소 개수:",scAct.length);
     // length는 제이쿼리에도 동일한 이름으로 개수를 가져옴!
 
+    // 윈도우 높이 절반값
+    const hw = $(window).height() / 2;
+
     // 제이쿼리에서 for문대신 쓰는 each() 메서드!!!
     // 요소.each((순번,요소)=>{구현부})
 
-    // 등장액션 클래스 요소의 위치를 배열에 담기!
-    scAct.each((idx,ele)=>{
-        scpos[idx] = $(ele).offset().top;
+    // 등장액션 클래스 요소의 위치를 배열에 담기! //
+    // 조건:
+    // 현재스크롤위치(scTop)가
+    // 등장액션요소위치(scpos[순번])
+    // - 상단영역크기(260)
+    // - 윈도우화면높이값절반(hw변수)
+    // 보다 커지면...
+    // 해당순번의 등장액션요소에 클래스"on"을 추가한다!
+    // -> 위의 조건에서 뺀값을 미리셋팅해 준다!
+    scAct.each((idx, ele) => {
+        scpos[idx] = $(ele).offset().top - 206 - hw;
+        // 시작위치보정: 원래위치-상단높이-윈도우절반
         // $(ele) 제이쿼리 선택필수!
         // offset().top -> 맨위에서부터 top위치값
     }); /////////// each 메서드 ///////////
 
     // 위치배열값 확인하기!
-    console.log("위치배열값:",scpos);
+    console.log("위치배열값:", scpos);
 
     ///////////////////////////////////////
     //////// 스크롤 이벤트 함수 /////////////
@@ -57,18 +69,20 @@ $(() => {
             // addClass(클래스명) - 클래스넣기
 
             // 스크롤 방향에 따라 숨겼다보이는 top값 변경
-            if (scTop > lastSc) { // 숨기기
+            if (scTop > lastSc) {
+                // 숨기기
                 // #top의 높이값(동적으로 높이값 설정!)
                 let temp = topA.innerHeight();
                 // 스크롤 아랫방향
-                topA.css({top:-temp+"px"});
+                topA.css({ top: -temp + "px" });
                 // console.log(temp);
                 // height() - 패딩이 빠진 순수높이값
                 // innerHeight() - 패딩포함 내부높이값
             } ///// if ////
-            else { // 보이기
+            else {
+                // 보이기
                 // 스크롤 윗방향
-                topA.css({top:"0"});
+                topA.css({ top: "0" });
             } //// else /////
         } ///////// if /////////
         else {
@@ -91,50 +105,39 @@ $(() => {
         ////////////////////////////
 
         // 2. TOP버튼 보이기/숨기기
-        if(scTop >= 300){ // 300이상
-            tbtn.addClass("on")
+        if (scTop >= 300) {
+            // 300이상
+            tbtn.addClass("on");
         } ///// if /////
-        else{ // 300미만
-            tbtn.removeClass("on")
+        else {
+            // 300미만
+            tbtn.removeClass("on");
         } ///// else /////
 
-
         // 3. 등장액션 적용하기 ///////
-        // 조건:
-        // 현재스크롤위치(scTop)가
-        // 등장액션요소위치(scpos[순번])
-        // - 상단영역크기(260)
-        // - 윈도우화면높이값절반($(window).height()/2)
-        // 보다 커지면...
-        // 해당순번의 등장액션요소에 클래스"on"을 추가한다!
-        // -> 위의 조건에서 뺀값을 미리셋팅해 준다!
-        if(scTop > scpos[0]-206-$(window).height()/2){
+        // 구간은 사이구간으로 설정해야 다음구간과 겹쳐지지 않음!
+        if (scTop > scpos[0] && scTop < scpos[0]+200) {
             scAct.eq(0).addClass("on");
         }
-
-
-
-
     }); //////// scroll /////////////////
 
-
     ////// TOP버튼 클릭 설정 ///////
-    tbtn.click(()=>{
-        // 스크롤 최상단으로 
+    tbtn.click(() => {
+        // 스크롤 최상단으로
         // 애니메이션 스크롤 이동
         // 전체스크롤 이동의 대상은?
         // -> html,body 두 최상위 요소를
         // 대상으로 한다! 왜? 그래야 모든
         // 브라우저에서 공통으로 작동함!
-        $("html,body").animate({
-            scrollTop:"0"
-        },800,"easeOutQuart");
+        $("html,body").animate(
+            {
+                scrollTop: "0",
+            },
+            800,
+            "easeOutQuart"
+        );
         // scrollTop 속성은 제이쿼리 전용
         // 세로스크롤 위치값을 셋팅할 수 있다!
         // 참고) 가로스크롤은 scrollLeft 임!
     }); /////// click ///////////
-
-
-
-
 }); //////////////// jQB ///////////////////
