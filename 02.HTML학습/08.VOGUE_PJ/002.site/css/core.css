@@ -190,3 +190,15 @@ font-family: 'Roboto Condensed', sans-serif;
 .bgc{
     background-color: #f9f9f9;
 }
+
+/* 등장액션 클래스 */
+.scAct{
+    transform: translateY(20%);
+    opacity: 0;
+    transition: .8s ease-in-out;
+}
+/* 등장클래스(on추가) */
+.scAct.on{
+    transform: translateY(0);
+    opacity: 1;
+}
