@@ -25,8 +25,11 @@ $(() => {
     // 1. 호출확인
     console.log("로딩완료!");
 
-    // 2. 변경대상: #slide li
+    // 2. 변경대상: 
+    // 2-1. 슬라이드 li : #slide li
     const slide = $("#slide li");
+    // 2-2. 블릿 li : .indic li
+    const indic = $(".indic li");
 
     // 3. 순번변수: 슬라이드순번 + 블릿순번
     let sno = 0; // 첫순번은 0번
@@ -53,9 +56,13 @@ $(() => {
             // 한계값 체크(마지막으로 돌림!)
             if (sno === -1) sno = slide.length-1;
         } ///////// else ///////////
-        
-        // 해당순번(sno)클래스넣기
+
+        // 3. 슬라이드 해당순번(sno) 클래스(on)넣기
         // + 나머지 다른형제li는 on제거
         slide.eq(sno).addClass("on").siblings().removeClass("on");
+
+        // 4. 블릿 해당순번(sno) 클래스(on)넣기
+        // + 나머지 다른형제li는 on제거
+        indic.eq(sno).addClass("on").siblings().removeClass("on");
     }); ////////// click //////////////
 }); //////////////// jQB ///////////////////////
