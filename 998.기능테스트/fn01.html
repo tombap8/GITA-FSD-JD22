@@ -1,94 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>스크롤 액션 기능 테스트</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>스크롤 액션 기능 테스트</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            height: 4000px;
-            background-image: linear-gradient(to bottom,
+            body {
+                height: 4000px;
+                background-image: linear-gradient(
+                    to bottom,
                     lightpink,
                     green,
                     yellow,
                     purple,
-                    gray);
-        }
+                    gray
+                );
+            }
 
-        .falling {
-            position: fixed;
-            left: 30%;
-            top: 0;
-            bottom: 0;
-            right: 30%;
-            outline: 1px dashed red;
-        }
+            .falling {
+                position: fixed;
+                left: 30%;
+                top: 0;
+                bottom: 0;
+                right: 30%;
+                outline: 1px dashed red;
+            }
 
-        .woman {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30%;
-            transition: top 0.12s linear;
-        }
-    </style>
+            .woman {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 30%;
+                transition: top 0.12s linear;
+            }
+        </style>
 
-    <!-- 제이쿼리 라이브러리 CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <!-- 제이쿼리 라이브러리 CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-    <!-- 제이쿼리 UI CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+        <!-- 제이쿼리 UI CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
-    <script>
-        $(()=>{
+        <script>
+            $(() => {
+                // 윈도우 높이값
+                const winH = $(window).height();
 
-            // 윈도우 높이값
-            const winH = $(window).height();
+                // 전체 페이지 길이 = 문서길이 - 화면높이 -> 스크롤이동한계값!
+                const fullPage = $(document).height() - winH;
+                console.log("전체페이지길이:", fullPage);
 
-            // 전체 페이지 길이 = 문서길이 - 화면높이 -> 스크롤이동한계값!
-            const fullPage = $(document).height() - winH;
-            console.log("전체페이지길이:",fullPage);
+                // 비례식
+                // 페이지전체길이 : 윈도우높이 = 스크롤이동값 : 이미지이동값
+                // 이미지이동값 = 윈도우높이 * 스크롤이동값 / 페이지전체길이
+                // x = winH * scTop / fullPage;
 
-            // 비례식
-            // 페이지전체길이 : 윈도우높이 = 스크롤이동값 : 이미지이동값
-            // 이미지이동값 = 윈도우높이 * 스크롤이동값 / 페이지전체길이
-            // x = winH * scTop / fullPage;
+                // 여자이미지
+                const woman = $(".woman");
 
+                // 스크롤 위치값
+                let scTop;
+                $(window).scroll(() => {
+                    scTop = $(this).scrollTop();
+                    console.log("sc:", scTop);
 
-            // 여자이미지
-            const woman = $(".woman");
+                    // 여자위치값
+                    let x = (winH * scTop) / fullPage;
 
-            // 스크롤 위치값
-            let scTop;
-            $(window).scroll(()=>{
-                scTop = $(this).scrollTop();
-                console.log("sc:",scTop);
+                    // 여자 이미지 떨어지기
+                    woman.css({ top: x + "px" });
+                }); /////// scroll /////////////////
+            });
+        </script>
+    </head>
 
-                // 여자위치값
-                let x = winH * scTop / fullPage;
-
-                // 여자 이미지 떨어지기
-                woman.css({top:x+"px"});
-
-            }); /////// scroll /////////////////
-
-
-        });
-    </script>
-</head>
-
-<body>
-    <section class="falling">
-        <img src="./images/woman.png" alt="woman" class="woman" />
-    </section>
-</body>
-
+    <body>
+        <section class="falling">
+            <img src="./images/woman.png" alt="woman" class="woman" />
+        </section>
+    </body>
 </html>
