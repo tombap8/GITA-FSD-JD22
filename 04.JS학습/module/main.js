@@ -1,6 +1,7 @@
 // 모듈 연습 메인 JS - main.js
 
 // 로딩구역없이...=> script 태그에 defer 속성사용!
+// type="module" 사용할 경우 defer없이도 자동 defer처리됨!
 
 // 모듈화 JS파일 import하기!
 // import {mTitle, sTitle, personInfo} from "./textData.js"
