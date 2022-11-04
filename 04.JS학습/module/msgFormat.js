@@ -6,4 +6,7 @@ const message = (name,age) =>
     나이는 ${age}살입니다. 반갑습니다!!!^^<br>`;
 
 // 단일한 함수 내보내기!
-export default message;
+// export default message;
+export {message};
+// 만약 import에서 별칭을 쓰고 싶다면 default로 내보낼 수 없다!
+// default빼고 중괄호{} 로 묶어서 내보내야함!!!
