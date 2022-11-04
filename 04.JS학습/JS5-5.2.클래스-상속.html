@@ -80,7 +80,7 @@
             class CGV extends MovieInfo {
                 // 속성셋팅 생성자 메서드는 필수!
                 // 기본적으로 부모 생성자 메서드 전달변수사용!
-                constructor(tit, sum, dir, act, des, msg, num){
+                constructor(tit, sum, dir, act, des, msg, num) {
                     // super() 메서드 : 부모 생성자,메서드호출!
                     super(tit, sum, dir, act, des);
 
@@ -92,28 +92,25 @@
                 /// CGV만의 메서드 만들기
                 // this.메서드() 는 부모클래스의 메서드임!(접근가능!)
                 // super.부모메서드 -> 이방법으로 부모메서드 가져오기!
-                show(mm) { // mm 부모메서드에 전달값변수
-                    return super.메서드(mm) + 
-                    ", CGV안내 : " + this.극장안내
+                show(mm) {
+                    // mm 부모메서드에 전달값변수
+                    return super.메서드(mm) + ", CGV안내 : " + this.극장안내;
                 } //////////// show 메서드 //////
 
                 //// 겟터 셋터 셋팅하기 //////////
                 // 목적: 수용인원 속성값에 대한 유효성검사 //
-                get people(){
+                get people() {
                     return this.수용인원;
                 }
-                set people(n){ // n - 셋팅값
+                set people(n) {
+                    // n - 셋팅값
                     // 숫자가 아니면 걸러주기!
-                    if(isNaN(n)) n = "출력불가!"
-                        
+                    if (isNaN(n)) n = "출력불가!";
+
                     // 값 셋팅코드
                     this.수용인원 = n;
                 }
-                
-
             } //////////// class ///////////////
-
-
 
             ////////////////////////////////////
             //// MegaBox 영화상영관 클래스 ///////////
@@ -121,7 +118,7 @@
             class MegaBox extends MovieInfo {
                 // 속성셋팅 생성자 메서드는 필수!
                 // 기본적으로 부모 생성자 메서드 전달변수사용!
-                constructor(tit, sum, dir, act, des, msg, num){
+                constructor(tit, sum, dir, act, des, msg, num) {
                     // super() 메서드 : 부모 생성자,메서드호출!
                     super(tit, sum, dir, act, des);
 
@@ -133,24 +130,28 @@
                 /// MegaBox만의 메서드 만들기
                 // this.메서드() 는 부모클래스의 메서드임!(접근가능!)
                 // super.부모메서드 -> 이방법으로 부모메서드 가져오기!
-                show(mm) { // mm 부모메서드에 전달값변수
-                    return super.메서드(mm) + 
-                    ", MegaBox 팝콘소식 : " + this.팝콘소식;
+                show(mm) {
+                    // mm 부모메서드에 전달값변수
+                    return (
+                        super.메서드(mm) +
+                        ", MegaBox 팝콘소식 : " +
+                        this.팝콘소식
+                    );
                 } //////////// show 메서드 //////
 
                 //// 겟터 셋터 셋팅하기 //////////
                 // 목적: 상영관수 속성값에 대한 유효성검사 //
-                get hallNum(){
+                get hallNum() {
                     return this.상영관수;
                 }
-                set hallNum(n){ // n - 셋팅값
+                set hallNum(n) {
+                    // n - 셋팅값
                     // 숫자가 아니면 걸러주기!
-                    if(isNaN(n)) n = "출력불가!"
-                        
+                    if (isNaN(n)) n = "출력불가!";
+
                     // 값 셋팅코드
                     this.상영관수 = n;
                 }
-
             } //////////// class ///////////////
             /////////////////////////////////////////////
 
@@ -168,30 +169,74 @@
             ); ///////// cgv 객체생성 ////////
 
             /// cgv 객체확인 /////
-            console.log("cgv객체확인: ",cgv);
+            console.log("cgv객체확인: ", cgv);
 
             // 만들어진 객체 화면출력 : 객체니까 for in문 사용!
-            for(let x in cgv){
+            for (let x in cgv) {
                 document.write(`<h2>★${x} : ${cgv[x]}</h2>`);
             } //////// for in ////////////
 
             // 객체 메서드 호출!
-            document.write(
-                `<h2>♣ 메시지 : ${cgv.show("아주 훌륭해요!")}</h2>`);
-            
+            document.write(`<h2>♣ 메시지 : ${cgv.show("아주 훌륭해요!")}</h2>`);
+
             // 극장평균수용인원 출력하기
             // 겟터,셋터 셋팅 후엔 이것을 사용!
             // cgv.수용인원 -> cgv.people 사용!
             document.write(
-                `<h2>♣ CGV의 극장평균 수용인원은 ${cgv.people}명입니다!(2021년)</h2>`);
+                `<h2>♣ CGV의 극장평균 수용인원은 ${cgv.people}명입니다!(2021년)</h2>`
+            );
 
             // 극장평균 수용인원 2022년 변경분 화면출력하기!
             // cgv.수용인원 = "사백오십명"; // 변경 -> 데이터문제해결은?
             // 겟터,셋터를 셋팅했으므로 이것을 사용한다!
             // cgv.people = "사백오십명"; // -> 셋터가 걸러줌!
             cgv.people = 450; // 셋터로 셋팅!
-            document.write( // 겟터로 읽기!
-                `<h2>♣ CGV의 극장평균 수용인원은 ${cgv.people}명입니다!(2022년)</h2>`);
+            document.write(
+                // 겟터로 읽기!
+                `<h2>♣ CGV의 극장평균 수용인원은 ${cgv.people}명입니다!(2022년)</h2>`
+            );
+
+            ////////////////////////////////////////////
+
+            document.write("<hr>"); /// 구분선
+
+            // 메가박스 객체 생성하기 //////////////////
+            const megabox = new MegaBox(
+                // 부모클래스 속성 전달값
+                "스파이더맨: 노 웨이 홈",
+                "액션/어드벤처/SF",
+                "존 왓츠",
+                "톰 홀랜드, 젠데이아 콜먼",
+                "닥스도 나오는 스파이더맨이양~!!!",
+                // 메가박스 클래스용 전달값
+                "롤리팝과 먹는 새로운 롤리팝콘 출시!!!",
+                50
+            ); ///////// megabox 객체 생성 //////
+
+
+            /// megabox 객체확인 /////
+            console.log("megabox객체확인: ", megabox);
+
+            // 만들어진 객체 화면출력 : 객체니까 for in문 사용!
+            for (let x in megabox) {
+                document.write(`<h2>★${x} : ${megabox[x]}</h2>`);
+            } //////// for in ////////////
+
+            // 객체 메서드 호출!
+            document.write(`<h2>♣ 메시지 : ${megabox.show("역시 스파이더맨이야~!")}</h2>`);
+
+            // 극장 상영관수 출력하기
+            document.write(
+                `<h2>♣ MegaBox의 극장 상영관수은 ${megabox.hallNum}개입니다!(2021년)</h2>`
+            );
+
+            // 극장평균 상영관수 2022년 변경분 화면출력하기!
+            megabox.hallNum = 100; // 셋터로 셋팅!
+            document.write(
+                // 겟터로 읽기!
+                `<h2>♣ megabox의 극장 상영관수은 ${megabox.hallNum}개입니다!(2022년)</h2>`
+            );
+
 
         </script>
     </head>
