@@ -37,33 +37,7 @@
     </style>
     <script>
         // Get방식으로 넘어온 값 받기!
-        // location.href로 받는다!!!
-        let pm  = location.href;
-        // console.log("파라미터:",pm);
-
-
-        // 파라미터 데이터를 자르기전 물음표 체크하기!
-        console.log("물음표찾기:",pm.indexOf("?"));
-        // indexOf(찾을문자열) -> 찾는 문자열의 순번을 리턴함
-        // 그.러.나... 찾는 문자열이 없으면 -1을 리턴함!!!
-
-        // 에러 방지를 위해 물음표 존재여부 체크하기!
-        if(pm.indexOf("?")===-1){
-            alert("비정상적인 접근입니다!");
-            location.href = "Get01.html";
-            // 첫페이지로 돌아감!
-        } //////////// if /////////////
-
-
-        // 넘어온 파라미터를 분리하여 얻어낸다!
-        // url?키=값 -> 물음표로 잘라서 배열에 담는다!
-        // 변수.split("?") -> 물음표로 자른 값의 뒤엣것! -> [1]
-        // 변수.split("=") -> 이퀄로 자른 값의 뒤엣것! -> [1]
-        pm = pm.split("?")[1].split("=")[1];
-        // console.log("파라미터:",pm);
-
-        pm = unescape(pm);
-        console.log("파라미터복원:",pm);
+        
 
         
         /// 데이터 셋업하기! //////
@@ -98,20 +72,7 @@
             // 로딩구역 확인
             console.log("로딩완료!!!");
 
-            // 타이틀박스
-            let tit = document.querySelector("#title");
-            // 메인 박스
-            let main = document.querySelector("#main");
-
-            // 1. 타이틀 넣기
-            tit.innerText = pm;
-
-            // 2. 타이틀 배경색 넣기
-            tit.style.backgroundColor = sdata[pm]["배경색"];
-
-            // 3. 메인 박스 배경이미지 변경
-            main.style.backgroundImage = 
-            `url(images/${sdata[pm]["이미지"]})`;
+            
 
 
 

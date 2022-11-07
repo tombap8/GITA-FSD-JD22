@@ -83,33 +83,7 @@
             // 로딩구역 확인
             console.log("로딩완료!!!");
 
-            // a요소 click이벤트 설정하기 ////
-            // 대상: #gnb a
-            let gnb = document.querySelectorAll("#gnb a");
-            // console.log("개수:",gnb.length);
-
-            // 각 a요소 for of 로 click셋팅하기
-            for(let x of gnb){
-                x.onclick = ()=>{
-
-                    // 1. 클릭된 a텍스트
-                    let txt = x.innerText;
-                    console.log("텍스트:",txt);
-
-                    // 2. 페이지 이동하기
-                    // location.href = 이동할 페이지 주소
-                    // 자기자신창에서 변경된다!
-                    location.href = 
-                    "Get02.html?shop="+escape(txt);
-                    // Get02.html?키=값
-                    // -> Get방식으로 테이터 넘기기
-                    // 2byte문자인 한글은 url로 보낼때
-                    // 깨지므로 JS 내장함수인 escape()로
-                    // 1byte 규칙문자열로 변환하여 보내준다!
-                    // 받는 페이지에서 본 문자를 unescape()로 풀어줘야함!
-
-                }; ////// click ///////
-            } ////////// for of ///////////////
+            
 
 
             /* 
