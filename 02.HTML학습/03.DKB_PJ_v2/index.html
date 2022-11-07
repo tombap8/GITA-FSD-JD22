@@ -19,9 +19,13 @@
     <link rel="stylesheet" href="css/main.css">
     <!-- 미디어쿼리는 메인css 아래위치(덮어씀!) -->
     <link rel="stylesheet" href="css/media.css">
-    <!-- 링크시스템 JS -->
+    <!-- 1.제이슨 불러오기 -->
+    <script src="./js/common.json"></script>
+    <!-- 2.상단,하단영역 html셋팅 JS -->
+    <script src="./js/include.js"></script>    
+    <!-- 3.링크시스템 JS -->
     <script src="./js/linksys.js"></script>
-    <!-- 공통기능 JS -->
+    <!-- 4.공통기능 JS -->
     <script src="./js/common.js"></script>
 </head>
 
@@ -33,93 +37,7 @@
             속박스 - 내용을 특정크기로 중앙정렬(마.영.오!)
     -->
     <!-- 1. 상단영역 -->
-    <div id="top">
-        <header class="top ibx">
-            <!-- 1-1.로고 -->
-            <h1 class="logo">
-                <a href="#">
-                    <img src="./images/tvnlogo2.png" alt="tvN로고">
-                </a>
-            </h1>
-            <!-- 1-2.GNB메뉴 -->
-            <nav class="gnb">
-                <ul class="clb">
-                    <li class="sm">
-                        <a href="#">프로그램 소개</a>
-                        <div class="smenu">
-                            <ol>
-                                <li><a href="#">프로그램 소개</a></li>
-                                <li><a href="#">인물소개</a></li>
-                                <li><a href="#">인물관계도</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li><a href="#">미리보기</a></li>
-                    <li class="sm">
-                        <a href="#">동영상</a>
-                        <div class="smenu">
-                            <ol>
-                                <li><a href="#">클립영상</a></li>
-                                <li><a href="#">다시보기</a></li>
-                                <li><a href="#">예고편</a></li>
-                                <li><a href="#">스페셜</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li class="sm">
-                        <a href="#">사진첩</a>
-                        <div class="smenu">
-                            <ol>
-                                <li><a href="#">현장 포토</a></li>
-                                <li><a href="#">대표 포스터</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li><a href="#">OST</a></li>
-                    <li><a href="#">시청자 게시판</a></li>
-                </ul>
-            </nav>
-            <!-- 1-3.탑메뉴 -->
-            <aside class="tmenu">
-                <ul class="clb">
-                    <li>
-                        <a href="#">로그인</a>
-                    </li>
-                    <li>
-                        <a href="#">회원가입</a>
-                    </li>
-                    <li>
-                        <!-- sns메뉴 -->
-                        <ol class="sns clb">
-                            <li>
-                                <a href="#">
-                                    <span class="ir">
-                                        트위터 바로가기
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="ir">
-                                        인스타그램 바로가기
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="ir">
-                                        페이스북 바로가기
-                                    </span>
-                                </a>
-                            </li>
-                        </ol>
-                    </li>
-                </ul>
-            </aside>
-            <!-- 모바일용 햄버거버튼 -->
-            <button class="ham"></button>
-        </header>
-    </div>
+    <div id="top"></div>
     <!-- 2. 메인영역 -->
     <div>
         <!-- 메인영역 속박스는 .ibx적용안함! -->
@@ -240,54 +158,7 @@
     </div>
 
     <!-- 3. 하단영역 -->
-    <div id="info">
-        <footer class="info ibx">
-            <!-- 3-1. 하단링크 -->
-            <div class="blink">
-                <ul class="clb">
-                    <li><a href="#">법적고지</a></li>
-                    <li><a href="#">영상정보처리기기운영/관리방침</a></li>
-                    <li><a href="#">이메일무단수집거부</a></li>
-                    <li><a href="#">사이버감사실</a></li>
-                    <li><a href="#">찾아오시는길</a></li>
-                    <li><a href="#">개인정보처리방침</a></li>
-                </ul>
-            </div>
-            <!-- 3-2. 회사정보 -->
-            <div class="addr">
-                <address>
-                    (주)씨제이이엔엠 CJ ENM 대표이사 강호성, 허민호 <br>
-                    주소 (03926) 서울시 마포구 상암산로 66 사업자 등록번호 106-81-51510 개인정보보호책임자 김재환 <br>
-                    © CJ ENM. All Rights Reserved.
-                </address>
-            </div>
-            <!-- 3-3. 하단로고 -->
-            <div class="blogo">
-                <img src="images/blogo.png" alt="하단로고">
-            </div>
-            <!-- 3-4. 바로가기 -->
-            <div class="brand">
-                <select name="sel" id="sel">
-                    <option value="init">브랜드 바로가기</option>
-                    <option value="tvn">tvN</option>
-                    <option value="ocn">OCN</option>
-                    <option value="mnet">MNET</option>
-                </select>
-            </div>
-            <!-- 
-                [ select 요소 ]
-                - 지정된 값을 선택하는 입력요소
-                - name속성은 폼요소로 전송시 사용됨
-                - 하위필수요소 : option - 각 선택항목
-                - 옵션을 그룹화하는 요소 : optgroup
-                - 유의사항 : 값을 선택할 경우 선택값은
-                option 요소의 속성인 value값을 읽어감
-                단, value를 안쓸 수 있는데 안쓰게되면
-                내부 데이터값을 읽어감
-
-             -->
-        </footer>
-    </div>
+    <div id="info"></div>
 
 
 </body>
