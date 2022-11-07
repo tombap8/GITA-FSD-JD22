@@ -18,30 +18,13 @@
     <link rel="stylesheet" href="css/media.css">
     <!-- 로그인페이지 미디어쿼리 -->
     <link rel="stylesheet" href="./css/media_login.css">
-    <!-- 제이슨 불러오기 -->
+    <!-- 1.제이슨 불러오기 -->
     <script src="./js/common.json"></script>
-    <script>
-        window.addEventListener("DOMContentLoaded",()=>{
-            // 제이슨파일에 hcode변수에 할당함
-            // 제이슨 파싱하여 할당하기
-            let myjson = JSON.parse(JSON.stringify(hcode));
-            console.log(myjson);
-
-            // 데이터 넣을 대상
-            // 1. 상단영역
-            let topPart = document.querySelector("#top");
-            // 2. 하단영역
-            let bottomPart = document.querySelector("#info");
-            // 3. 각 영역에 제이슨 데이터 넣기
-            topPart.innerHTML = myjson["상단영역"];
-            bottomPart.innerHTML = myjson["하단영역"];
-        }); //////////// 로딩구역 ////////////////
-
-        
-    </script>    
-    <!-- 링크시스템 JS -->
+    <!-- 2.상단,하단영역 html셋팅 JS -->
+    <script src="./js/include.js"></script>    
+    <!-- 3.링크시스템 JS -->
     <script src="./js/linksys.js"></script>
-    <!-- 공통기능 JS -->
+    <!-- 4.공통기능 JS -->
     <script src="./js/common.js"></script>
 </head>
 
