@@ -91,9 +91,16 @@
             // for of사용!
             for(let x of gnb){ // x는 각a요소
                 x.onclick = ()=>{
-                    // 클릭된 a요소의 텍스트읽기
+                    // 1.클릭된 a요소의 텍스트읽기
                     let atxt = x.innerText;
                     console.log(atxt);
+                    // 2.Get02.html 페이지이동(get방식 전달!)
+                    // 호출페이지에 물음표(?)뒤에 (키=값) 쌍으로 전달
+                    // 페이지이동 :
+                    // location.href = 이동페이지주소
+                    location.href = 
+                    "Get02.html?shop="+encodeURIComponent(atxt);
+                    // 예) Get02.html?shop=레드샵
                 };
             } ////////// for of ///////////
 
@@ -108,15 +115,13 @@
                 따라서 규칙성 있게 변환하여 보내고
                 받는 페이지에서 그 규칙을 풀어서 복원한다!
 
-                1) 보낼때: escape(2byte문자)
-                - escape() JS내장함수는 2byte문자를 규칙변환함
-                - escape는 "피하다"라는 뜻의 단어(깨짐을 피한다!)
+                1) 보낼때: encodeURIComponent(값)
+                - 2byte문자를 변환하여 보냄
 
-                2) 받을때: unescape(변환해서보낸문자)
-                - unescape() JS내장함수는 escape변환문자를
-                다시 원래문자로 복원해 준다!
+                2) 받을때: decodeURIComponent(값)
+                - 2byte문자를 변환하여 받음(복원)
 
-                -> 참고로 escape변환은 암호화가 아니다!
+                -> 참고로 encodeURIComponent변환은 암호화가 아니다!
                 변환하는 규칙이 있고 잘 보면 읽을 수 있다!
 
                 엔코딩 표준에 따라 모든문자는 16진수 2 디짓

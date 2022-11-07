@@ -37,7 +37,20 @@
     </style>
     <script>
         // Get방식으로 넘어온 값 받기!
-        
+        // location.href로 받는다!!!
+        // 페이지이동 : location.href = url주소 
+        // url값 읽기 : 변수 = location.href
+        let pm  = location.href;
+        // url에서 물음표로 값을 잘라오기 중 뒤엣값[1]
+        // split(자를기준문자열) -> 배열에 담긴다!
+        pm = pm.split("?")[1];
+        // 이퀄(=)로 잘라서 뒤엣값[1] -> (키=값) 중 (값)만!
+        pm = pm.split("=")[1];
+        // encodeURIComponent로 변환해서 보냈으므로 
+        // decodeURIComponent로 재변환!
+        pm = decodeURIComponent(pm);
+        // 샵명확인!
+        console.log(pm); 
 
         
         /// 데이터 셋업하기! //////
@@ -72,6 +85,21 @@
             // 로딩구역 확인
             console.log("로딩완료!!!");
 
+            // 샵명에 따라 페이지의 데이터 셋팅하기
+            // 타이틀박스
+            let tit = document.querySelector("#title");
+            // 메인박스
+            let main = document.querySelector("#main");
+
+            // 1. 타이틀넣기
+            tit.innerText = pm;
+
+            // 2. 타이틀 배경색 넣기
+            tit.style.backgroundColor = sdata[pm]["배경색"];
+
+            // 3. 메인박스 배경이미지 변경
+            main.style.backgroundImage =
+            `url(images/${sdata[pm]["이미지"]})`;
             
 
 
