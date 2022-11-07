@@ -83,6 +83,20 @@
             // 로딩구역 확인
             console.log("로딩완료!!!");
 
+            // 이벤트 대상: #gnb a
+            let gnb = document.querySelectorAll("#gnb a");
+            // console.log(gnb);
+
+            // 클릭 이벤트 설정
+            // for of사용!
+            for(let x of gnb){ // x는 각a요소
+                x.onclick = ()=>{
+                    // 클릭된 a요소의 텍스트읽기
+                    let atxt = x.innerText;
+                    console.log(atxt);
+                };
+            } ////////// for of ///////////
+
             
 
 
