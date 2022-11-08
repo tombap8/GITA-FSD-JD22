@@ -5,3 +5,36 @@
 @import url(reset.css);
 @import url(core.css);
 @import url(common.css);
+
+/* 2-1-1.서브타이틀 */
+.stit{
+    font-family: pist;
+    font-weight: normal;
+    font-size: 50px;
+    text-align: center;
+    padding: 40px 0 20px;
+}
+/* 2-1-2. 서브메뉴(LNB) */
+.lnb{
+
+}
+.lnb ul{
+    /* 플렉스박스 */
+    display: flex;
+    justify-content: center;
+}
+.lnb li{
+    margin: 0 10px;
+}
+.lnb a{
+    font-family: nbg;
+    font-size: 18px;
+    color: #333;
+    /* 트랜지션: 속시이지 */
+    transition: color .5s;
+}
+/* 첫번째 메뉴 + 오버시 빨간색글자 */
+.lnb li:first-child a,
+.lnb a:hover{
+    color: red;
+}
