@@ -50,27 +50,30 @@ console.log(pm);
 let jdata;
 // 제이슨 데이터 연결하여 할당하기!
 // html이 로딩된 후 작업해야 하므로 로딩구역 안에 코딩한다!
-$(()=>{ /////////////// jQB ////////////////////////
+$(() => {
+    /////////////// jQB ////////////////////////
 
     // 제이슨 경로는 삽입된 html페이지위치에서 가져온다!
-    // 경로에 있는 제이슨파일을 가져와서 
+    // 경로에 있는 제이슨파일을 가져와서
     // 변환후 변수에 담는다!
     // 여기서는 jdata라는 변수에 담았다!
-    $.getJSON("./js/cat.json",jdata=>{loadFn(jdata)});
-
+    $.getJSON("./js/cat.json", (jdata) => {
+        loadFn(jdata);
+    });
 }); /////////////////// jQB //////////////////////////
 
 /*********************************************** 
     함수명: loadFn    
     기능: 제이슨 파일 로딩후 실행함수
 ***********************************************/
-function loadFn(cdata){ // cdata - 제이슨 전달값
+function loadFn(cdata) {
+    // cdata - 제이슨 전달값
 
     // 1. 해당 카테고리 데이터 셋업 ////////////////
     const data = cdata[pm];
     // 제이슨 데이터는 객체이며 객체[속성명]
     // 즉, cdata["fashion"] 과 같이 셋팅됨!
-    console.log("선택데이터:",data);
+    console.log("선택데이터:", data);
 
     // 2. 데이터 페이지 바인딩하기 /////////////////
 
@@ -89,8 +92,8 @@ function loadFn(cdata){ // cdata - 제이슨 전달값
     // 넣을 데이터: 객체중 "메뉴"
     // 메뉴 데이터가 "없음"이 아닐경우 셋팅함
     let menu = data["메뉴"];
-    console.log("메뉴:",menu);
-    
+    console.log("메뉴:", menu);
+
     // 대상: .lnb
     let lnb = $(".lnb");
 
@@ -101,16 +104,18 @@ function loadFn(cdata){ // cdata - 제이슨 전달값
     // 빈 데이터가 셋팅되어있으므로 에러가 남!!!
 
     // 분기: 조건 - 데이터가 "없음"인가?
-    if(menu==="없음"){ // lnb박스 삭제
+    if (menu === "없음") {
+        // lnb박스 삭제
         lnb.remove(); // 태그제거!
     } ///// if ////////
-    else{ // 메뉴가 있는 경우
-        // html코드이므로 
+    else {
+        // 메뉴가 있는 경우
+        // html코드이므로
         // hcode변수에 모아준다!
         hcode += "<ul>";
 
         // 배열개수만큼 li코드 생성하기
-        menu.forEach((val)=>{
+        menu.forEach((val) => {
             hcode += `
                 <li>
                     <a href="#">${val}</a>
@@ -121,14 +126,13 @@ function loadFn(cdata){ // cdata - 제이슨 전달값
 
         // 코드넣기
         lnb.html(hcode);
-
     } ///// else ////////
 
     // (4) 각 컨텐츠 박스에 타이틀 넣기 //////////
     // 대상: .cbx h2
     // 데이터: 객체중 "타이틀"
     // 제이쿼리 사용메서드: each((순번,요소)=>{})
-    $(".cbx h2").each((idx,ele)=>{
+    $(".cbx h2").each((idx, ele) => {
         $(ele).html(data["타이틀"][idx]);
         // data["타이틀"][배열순번]
     }); ///////// each ////////////////
@@ -139,9 +143,4 @@ function loadFn(cdata){ // cdata - 제이슨 전달값
     $("title").prepend(data["제목"]);
     // prepend() :  앞에 데이터추가(기존데이터 살아있음!)
     // 참고) append() : 뒤에 데이터추가!
-
-
-    
-
-
 } ////////// loadFn 함수 ///////////////////////
