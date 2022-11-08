@@ -5,7 +5,84 @@
 	<meta charset="utf-8">
 	<title> hide()/show() </title>
 	<!-- jQuery library -->
-	
+	<script src="jquery-1.7.2.min.js"></script>
+	<script>
+		$(function () { /// jQB ///
+
+			/* 
+				show(시간,이징,함수)
+				-> display를 보이게하는 메서드
+
+				hide(시간,이징,함수)
+				-> display:none 으로 변경하는 메서드
+
+				toggle(시간,이징,함수)
+				-> display:none 인 여부에 따라
+				show()/hide() 전환해 주는 메서드
+
+				1) 시간을 쓰면 애니메이션이 됨
+				2) show(), hide() 괄호안에 아무것도 안쓰면 일반적으로
+					display:none 하거나 보이게 할때 많이 사용함
+
+
+				[ 대부분의 애니메이션 기능을 가진 메서드의 3가지 전달값 ]
+				1. 시간: 1/1000초 단위로 애니메이션 시간을 설정함(단위안씀)
+				2. 이징: easing 은 애니메이션 동작시 가속도 설정
+					- 매우 다양하며 jQuery UI 를 사용해야 작동함!
+				3. 함수: 콜백함수로 애니메이션 실행 후 실행할 코드를 설정해
+						주는 함수다.
+			*/
+
+
+
+			//미션: #hide 버튼을 클릭하면 이미지가 1초동안 사라지고 
+			//		사라진 후 이미지를 변경한다.
+			//#show버튼을 누르면 이미지가 1초동안  나타난다.
+
+			// 이미지 순번
+			let inum = 1;
+
+			$("#hide").click(function () {
+				$("img").hide(1000,
+					function () { //콜백함수
+
+						inum++; // 이미지 번호 1씩증가
+						if (inum === 4) inum = 1; //한계값체크
+
+						$(this).attr("src", "sample" + inum + ".jpg");
+					}); //////// hide ///////////
+			}); ////////// click /////////////
+
+			$("#show").click(function () {
+				$("img").show(1000);
+			}); //////// click /////////////////
+
+			// show()/hide() 의 동일 기능을 toggle버튼으로 구현하기
+			$("#toggle").click(function () {
+				$("img").toggle(1000,
+					function () { // 콜백함수
+						// display:none일때만 이미지변경하기
+						// css(속성명) 은 속성값을 읽어옴!
+						if ($(this).css("display") === "none") {
+
+							inum++; // 이미지 번호 1씩증가
+							if (inum === 4) inum = 1; //한계값체크
+
+							$(this).attr("src", "sample" + inum + ".jpg");
+
+						} ////////// if /////////////////////
+
+
+					}); /////// toggle //////////////
+			}); //////////// click ////////////////
+
+
+
+
+
+
+		}); /// jQB /////////////////////////////////
+	</script>
 
 
 	<style>

@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<title> animateColor </title>
 	<!-- jQuery library -->
-	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-1.7.2.min.js"></script>
 	<!-- script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script -->
 	<script src="jquery-ui-1.8.23.custom.min.js"></script>
 	<script>
@@ -37,7 +37,29 @@
 			//		배경색은 a태그의 data-bg 속성의 값으로 
 			//		애니메이션 되면서 변경, 아웃시는 원상복귀
 			// 이벤트(hover) 대상: #menu>li>a
-			
+			$("#menu>li>a").hover(
+				function () { // over
+
+					// data-bg 속성값 읽어오기
+					let bgc = $(this).attr("data-bg");
+					console.log("배경색:" + bgc);
+
+					// 변경 애니메이션 ///////
+					$(this).stop().animate({
+						color: "#fff",
+						backgroundColor: bgc
+					}, 300); //// animate /////
+				},
+				function () { // out
+
+					// 변경 애니메이션 ///////
+					$(this).stop().animate({
+						color: "black",
+						backgroundColor: "#9AB92E"
+					}, 300); //// animate /////
+
+				}); //////// hover ////////////////
+
 				// 애니메이션이 큐(Queue)에 쌓이므로 
 				// stop() 으로 지운다!
 				// animate() 앞에서 지운다

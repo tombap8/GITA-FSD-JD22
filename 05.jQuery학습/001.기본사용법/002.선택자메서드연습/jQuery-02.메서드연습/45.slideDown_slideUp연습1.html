@@ -100,7 +100,37 @@
 			height: 100px;
 		} */
 	</style>
-	
+	<!-- jQuery library -->
+	<script src="jquery-1.7.2.min.js"></script>
+	<script>
+		$(function () { /// jQB ////////////
+
+			// 1. 서브메뉴 숨기기
+			$(".smenu").hide();//display:none
+
+			// 2. slide설정
+			// 이벤트 대상: .gnb>ul>li
+			// 변경 대상: .smenu
+			$(".gnb>ul>li").hover(
+				function(){ // over
+					$(".smenu",this).slideDown(400);
+				},
+				function(){ // out
+					$(".smenu",this).stop().slideUp(400);
+				}); ////// hover ///////
+
+				/// stop() 메서드
+				// 애니메이션이 큐에 등록되어 실행되는데 
+				// 이것을 지워주는 기능을함
+				// 여기서는 마우스 아웃시에만 지워줌!
+
+			// hover() 메서드 ////////////////////////
+			// 형식: $(선택자).hover(함수1,함수2)
+			// - 마우스 오버시 함수1실행, 아웃시 함수2실행
+
+
+		}); /// jQB /////////////////////////////////	
+	</script>
 
 
 </head>

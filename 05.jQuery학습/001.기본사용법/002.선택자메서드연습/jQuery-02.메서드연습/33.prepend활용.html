@@ -3,7 +3,25 @@
 <head>
 <meta charset="utf-8">
 <title> prepend활용  </title>
+<!-- jQuery library -->
+<script src="jquery-1.7.2.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			// 미션: prepend버튼을 클릭하면 #container안에있는 이미지 중 마지막 이미지를 맨앞으로 이동시키시오.
+			
+			$("#prepend").click(function(){
+				// 맨끝이미지
+				let last = $("#container img:last");
+
+				// 맨끝이미지 앞으로 이동
+				$("#container").prepend(last);
+			});//////////// click //////////////
 	
+			
+		});//////// jQB ////////////////////
+	
+	
+	</script>
 	
 	
 <style>

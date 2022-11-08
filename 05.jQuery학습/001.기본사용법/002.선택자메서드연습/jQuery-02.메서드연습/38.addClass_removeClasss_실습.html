@@ -4,7 +4,54 @@
 <head>
   <meta charset="utf-8">
   <title> addClass_removeClasss </title>
-  
+  <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+  <script>
+    $(function () { /// jQB ///
+      /* 
+        [ 제이쿼리 class 컨트롤 메서드 ]
+
+        1. addClass(클래스명)
+        - 선택요소에 class를 추가하는 메서드
+
+        2. removeClass(클래스명)
+        - 선택요소의 특정 class를 제거하는 메서드
+        - 클래스명을 안쓰면 모든 class를 제거함!
+
+        3. toggleClass(클래스명)
+        - 선택요소에 특정 class가 있으면 넣고 없으면 지움
+
+
+        ※ 비교하기!!!
+        [ JS에서 클래스 넣고 빼기 메서드 ]
+        classList 객체
+        1) add(클래스명) : 클래스넣기
+        2) remove(클래스명) : 클래스빼기
+        3) toggle(클래스명) : 없으면 넣고 있으면 뺌
+
+
+      */
+
+      // 랜덤수 함수
+      const rdm = () => Math.ceil(Math.random() * 5);
+      // 1~5사이 랜덤수 리턴함!
+
+      // 미션: img태그를 클릭하면 img의 class를 
+      //      랜덤으로 변경하시오.(type1~type5 의 class중 하나)
+      $("img").click(function () {
+        $(this).removeClass() // 모든 class지우기
+        .addClass("type"+rdm()); // 랜덤 class넣기!
+      }); ////////// click /////////
+
+      // 추가미션: .my 박스를 클릭하면 .pos를 넣기/빼기
+      // .pos가 없으면 넣고 있으면 뺀다! -> toggleClass()를 사용!
+      $(".my").click(function(){
+        $(this).toggleClass("pos");
+      }); ///////// click ////////////
+
+
+
+    }); /////// jQB ////////////////////////////
+  </script>
 
 
   <style>

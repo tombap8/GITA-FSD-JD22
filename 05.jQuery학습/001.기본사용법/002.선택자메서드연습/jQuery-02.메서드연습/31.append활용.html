@@ -3,7 +3,70 @@
 <head>
 <meta charset="utf-8">
 <title> append()활용  </title>
+<!-- jQuery library -->
+<script src="jquery-1.7.2.min.js"></script>
+	<script>
+	$(function(){// jQB //////////////////////////
+		// 미션: 추가버튼을 클릭하면 이미지가 랜덤하게 #container에 추가되게하시오.
+		
+		// 이전랜덤수 변수
+		let temp = 0;//1~5사이의 수가 아닌수 처음에 담아준다!
+
+		// 추가버튼: #append
+		$("#append").click(function(){
+
+			// 랜덤수 만들기
+			// Math.ceil(Math.random()*원하는최대수)
+			let rdm = Math.ceil(Math.random()*5);
+			console.log("랜덤수:"+rdm);
+
+			// 같은수가 연속되지 않게 while문으로 중복방지하기!
+			while(rdm === temp){ // 이전랜덤수와 같으면 다시 생성
+				rdm = Math.ceil(Math.random()*5);
+				console.log("다시랜덤수:"+rdm);
+			} /////////// while문 ////////////////////
+
+			// 통과후 이전랜덤수 변수에 저장!
+			temp = rdm;
+
+			$("#container")
+			.append('<img src="th_pic'+rdm+'.jpg" alt="이미지">');
+		});//////// click //////////////
 	
+		// 인터발변수(지우기위해!)
+		let autoI;//할당안된상태값은 undefined -> 조건문에서 false남
+
+		// 자동버튼 클릭시 인터발설정하기
+		// 자동버튼: #auto
+		$("#auto").click(function(){
+			// 여러번 클릭시 중복실행 막기!
+			if(autoI) return; //할당되었으면 true 
+
+			autoI = setInterval(() => {
+				$("#append").trigger("click");
+				// tirgger(이벤트명) 메서드
+				// -> 선택요소에 이벤트를 강제발생시키는 메서드
+			}, 200);
+		});//////// click /////////////////
+
+		// 멈춤버튼 클릭시 인터발 지우기
+		// 멈춤버튼 : #stop
+		$("#stop").click(function(){
+			clearInterval(autoI);
+			autoI = false;//변수초기화!
+			console.log(typeof(autoI));
+			// 조건문에서 false가 나는 3가지값은?
+			// 1.undefined 할당안된(값이없는) 변수의 값
+			// 2.null 빈값
+			// 3.false 
+		});////////// click ////////////
+		
+		
+	});/// jQB ////////////////////////////////////
+	//////////////////////////////////////////////
+	
+	
+	</script>
 	
 	
 	

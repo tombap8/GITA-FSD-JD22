@@ -3,7 +3,44 @@
 <head>
 <meta charset="utf-8">
 <title> append()  </title>
+<!-- jQuery library -->
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){/// jQB ///////////////////
+		/* 
+			append(추가이동요소) 메서드
+			- 새로운 요소나 데이터를 추가하거나 기존요소를 맨뒤로
+			이동하는 메서드
+			비교) JS내장함수 appendChild 와 유사함
+		*/
+		
+		// 미션: #container를 클릭하면 자식요소 p태그에 "내가 좋아하는 배우는 아무개입니다."라고 써서 추가하시오.
+		$("#container").click(function(){
+			$(this)
+			.append("<p>내가 좋아하는 배우는 공유입니다.</p>");
+		});////////// click ///////////////////
 
+		// 추가미션: #btngo버튼 클릭시 #container의 첫번째 p요소를
+		//			맨뒤로 이동하시오!
+		$("#btngo").click(function(){
+			// 첫번째 p요소
+			let first = $("#container p:first");
+			// 첫번째 p요소를 맨뒤로 이동!
+			$("#container").append(first);
+
+		});////////// click ///////////////////
+
+	
+	});//// jQB ///////////////////////////////////
+	//////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	</script>
 	
 	
 	

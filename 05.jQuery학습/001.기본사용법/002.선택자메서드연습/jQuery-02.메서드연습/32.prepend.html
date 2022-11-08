@@ -3,7 +3,51 @@
 <head>
 <meta charset="utf-8">
 <title> prepend()  </title>
+<!-- jQuery library -->
+<script src="jquery-1.7.2.min.js"></script>
+	<script>
+	$(function(){// jQB /////////////////////////////
+
+		/* 
+			prepend() 메서드
+			- 선택요소 내부에 자식요소로 맨앞에 추가 또는 기존요소
+			이동을 해주는 메서드
+
+			비교) JS내장함수 : insertBefore(넣을놈,넣을놈전놈)
+		*/
+		
+		//미션: p태그의 글자를 클릭하면 #pic 요소의 내부에 자식요소로 웹 경로 이미지가 번갈아서 앞쪽에 추가되게하시오.
+
+		// 웹이미지 경로 ///
+		let isrc = [
+			"https://pbs.twimg.com/profile_images/1283948126974308352/DZThCpB-_400x400.jpg",
+			"https://img.etoday.co.kr/pto_db/2020/06/600/20200610210200_1471006_646_672.jpg"
+		]; ///// 배열 ////////////
+
+		// 배열순번변수
+		let seq = 0;
+
+		$("p").click(function(){
+			// 이미지 넣기
+			$("#pic")
+			.prepend('<img src="'+isrc[seq]+'" alt="이미지">');
+
+			// 배열순번 변수변경하기(0,1번갈아변경)
+			seq === 0 ? seq = 1 : seq = 0;
+			// 비?집:놀이동산; (조건연산자===삼항연산자)
+
+			// 이미지 크기조정
+			$("#pic img").css({height:"100px"});
+		});///////// click ////////////////
 	
+		
+		
+	});/// jQB //////////////////////////////////////
+	
+	
+	
+	
+	</script>
 </head>
  
 <body>

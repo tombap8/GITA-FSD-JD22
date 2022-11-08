@@ -30,7 +30,18 @@
 		//		slideUp, slideDown 애니메이션을 지정하시오.
 		
 		//이벤트(click)  대상선정: button
-		
+		$("button").click(function(){
+
+			// 1.이징명 가져오기
+			let easing = $(this).text();
+			console.log("이징명:"+easing);
+
+			// 2. 대상박스 닫았다 열기(이징적용!)
+			$("#box")
+			.slideUp(800,easing)
+			.slideDown(800,easing);
+
+		});//////// click /////////////
 		
 		
 		
