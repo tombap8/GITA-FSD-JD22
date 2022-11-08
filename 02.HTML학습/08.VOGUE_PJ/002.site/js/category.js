@@ -107,6 +107,20 @@ function loadFn(cdata){ // cdata - 제이슨 전달값
         // html코드이므로 
         // hcode변수에 모아준다!
         hcode += "<ul>";
+
+        // 배열개수만큼 li코드 생성하기
+        menu.forEach((val)=>{
+            hcode += `
+                <li>
+                    <a href="#">${val}</a>
+                </li>
+            `;
+        }); /////// forEach /////
+        hcode += "</ul>";
+
+        // 코드넣기
+        lnb.html(hcode);
+
     } ///// else ////////
     
 
