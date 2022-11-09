@@ -39,10 +39,10 @@ $(()=>{ /////////// jQB ///////////////////
         let msg = $(".msg");
 
         // (5) 좀비,주사기 요소 변수처리
-        let mz1 = `<img src="images/mz1.png" alt="좀비1">`;
-        let mz2 = `<img src="images/mz2.png" alt="좀비2">`;
-        let zom = `<img src="images/zom.png" alt="좀비들">`;
-        let inj = `<img src="images/inj.png" alt="주사기">`;
+        let mz1 = `<img src="images/mz1.png" alt="좀비1" class="mz">`;
+        let mz2 = `<img src="images/mz2.png" alt="좀비2" class="mz">`;
+        let zom = `<img src="images/zom.png" alt="좀비들" class="mz">`;
+        let inj = `<img src="images/inj.png" alt="주사기" class="inj">`;
 
         // console.log(mi,bd,btns,msg);
 
@@ -53,7 +53,10 @@ $(()=>{ /////////// jQB ///////////////////
             $(ele).text(idx);
             // 좀비넣기, 주사기 넣기
             switch(idx){
-                case 9: $(ele).append();
+                case 9: $(ele).append(mz1);break;
+                case 7: $(ele).append(mz2);break;
+                case 1: $(ele).append(zom);break;
+                case 2: $(ele).append(inj);break;
             } ///// siwtch case ////
         }); //////////// each ////////////////
 
