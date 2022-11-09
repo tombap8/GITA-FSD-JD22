@@ -38,6 +38,26 @@ $(()=>{ /////////// jQB ///////////////////
         // (4) 메시지박스
         let msg = $(".msg");
 
+        // (5) 좀비,주사기 요소 변수처리
+        let mz1 = `<img src="images/mz1.png" alt="좀비1">`;
+        let mz2 = `<img src="images/mz2.png" alt="좀비2">`;
+        let zom = `<img src="images/zom.png" alt="좀비들">`;
+        let inj = `<img src="images/inj.png" alt="주사기">`;
+
+        // console.log(mi,bd,btns,msg);
+
+        // 1. 건물 각 방에 번호넣기
+        // each((순서,요소)=>{})
+        bd.each((idx,ele)=>{
+            // text() 텍스트 넣기
+            $(ele).text(idx);
+            // 좀비넣기, 주사기 넣기
+            switch(idx){
+                case 9: $(ele).append();
+            } ///// siwtch case ////
+        }); //////////// each ////////////////
+
+
 
 
 }); /////////////// jQB ////////////////////
