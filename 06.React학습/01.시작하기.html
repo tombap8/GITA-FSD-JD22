@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01.리액트 시작하기</title>
-    <script>
-        /***************************************** 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>01.리액트 시작하기</title>
+        <script>
+            /***************************************** 
             [ 리액트란? ]
 
             -> 프론트엔드 JS 라이브러리다!
@@ -22,12 +22,48 @@
 
             -> 리액트는 변경하고자 하는 부분만 업데이트 가능함!
 
+            [ 리액트 구현의 2가지 스타일 ]
+
+            # 스타일1 : 리액트는 JS 라이브러리 이므로
+            필요한 부분에만 적용한다! 
+            -> 라이브러리 CDN방식으로 구현(별도설치 필요없다!)
+
+            # 스타일2 : 리액트는 
+            SPA(Single Page Application)이므로
+            Node.js 등을 사용하여 한 페이지로만 구현하는
+            웹을 만들 수 있다!
+            -> NodeJS, 리액트SPA 프로젝트 설치 및 생성 필요!
+            
+
 
         *****************************************/
+        </script>
 
-    </script>
-</head>
-<body>
-    
-</body>
+        <!-- 가장먼저 리액트 라이브러리를
+        구현JS 상단에 불러온다! -->
+
+        <!-- 1.리액트 기본 라이브러리 -->
+        <script
+            src="https://unpkg.com/react@18/umd/react.production.min.js"
+            crossorigin
+        ></script>
+        <!-- 2.리액트 가상돔 라이브러리 -->
+        <script
+            src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+            crossorigin
+        ></script>
+        <!-- 3.리액트 바벨 라이브러리 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <!-- 4. 내가 리액트로 구현한 JS -->
+        <!-- type을 반드시 "text/babel"로 셋팅한다 -->
+        <script src="./js/01.시작하기.jsx" type="text/babel"></script>
+    </head>
+    <body>
+        <!-- 리액트 기본문법에서는 요소를 #root로 만들것을 
+        권고한다. 그러나 내맘대로~! -->
+        <!-- <div id="root"></div> -->
+        <div class="mydiv"></div>
+
+    </body>
 </html>
