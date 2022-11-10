@@ -77,18 +77,29 @@ $(()=>{ /////////// jQB ///////////////////
         // 4. 들어가기 버튼 클릭시 ///////////////
         btns.first()
         .click(function(){
-            // 1. 메시지 없애기 : .msg -> msg변수
+            // 1. 클릭된 버튼 사라지기
+            $(this).slideUp(300);
+            // slideUp(시간,이징,함수)
+            // 높이값이 0되면서 애니, 0된후 display:none처리함
+
+            // 2. 메시지 없애기 : .msg -> msg변수
             msg.fadeOut(300);
             // fadeOut(시간,이징,함수)
             // 서서히 사라짐,사라진후 display:none처리됨
 
-            // 2. 메시지 함수 : msgFn()
+            // 3. 메시지 함수 : msgFn() + 다음버튼 보이기
             const msgFn = txt => {
                 msg.text(txt) // 텍스트 변경
                 .fadeIn(300); // 나타나기
-            }; //////// msgFn 함수 ///////
+                // 다음버튼 보이기
+                $(this).next()
+                .delay(500).slideDown(300);
+                // slideDown(시간,이징,함수)
+                // - 자동으로 원래 높이값복원 애니
+                // - 최초상태는 항상 display:none이다!
+            }; ////////// msgFn 함수 ////////
 
-            // 3. 이동하기
+            // 4. 이동하기
             // 위치: li 8번방 -> bd변수에 모든 li있음
             let pos = [];
             // top 위치값
