@@ -274,7 +274,28 @@
         <section>
             <div class="cbx svg3">
                 <svg viewBox="0 0 300 300">
-                    <polygon class="pg1" points="150,10 290,100 290,200 150,290 10,200 10,100"></polygon>
+                    <!-- 
+                        [defs요소] : 요소에 효과를 정의함
+
+                        [linearGradient요소] : 선형그라데이션
+                        - id속성 : 적용할 요소에 이 id명을 연결함
+                            예) stroke:url(#아이디명)
+                        - x1,y1 하나의점에서 x2,y2 하나의 점
+                         방향으로 그라데이션이 적용된다!
+
+                        [stop요소] : 색상옵션 설정요소
+                        - offset속성: 색상변경 지점
+                        - stop-color속성: 실제색적용
+                     -->
+                     <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stop-color="rgb(43, 255, 0)" />
+                          <stop offset="30%" stop-color="rgb(0, 81, 255)" />
+                          <stop offset="60%" stop-color="rgb(255, 0, 212)" />
+                          <stop offset="100%" stop-color="rgb(238, 255, 0)" />
+                        </linearGradient>
+                      </defs>
+                    <polygon style="stroke:url(#grad1)" class="pg1" points="150,10 290,100 290,200 150,290 10,200 10,100"></polygon>
                 </svg>
             </div>
         </section>
