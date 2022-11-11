@@ -178,17 +178,18 @@ $(() => {
             // 이동후 함수
             let fn = () => {
                 // 메시지 보이기
-                msg.html(`여긴없겠지?`)
-                .fadeIn(200);
+                msg.html(`여긴없겠지?`).fadeIn(200);
 
                 // 좀비보이기
-                bd.eq(7).find(".mz")
-                .delay(1000).fadeIn(400,()=>{
-                    // 메시지 변경하기
-                    msg.html(`악, 여기도!!!`);
-                    // 다음버튼 보이기
-                    $(this).next().slideDown(300);
-                });
+                bd.eq(7)
+                    .find(".mz")
+                    .delay(1000)
+                    .fadeIn(400, () => {
+                        // 메시지 변경하기
+                        msg.html(`악, 여기도!!!`);
+                        // 다음버튼 보이기
+                        $(this).next().slideDown(300);
+                    });
             };
 
             // 액션함수호출
@@ -198,10 +199,22 @@ $(() => {
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                // 첫번째 메시지
+                msg.html(`여긴 없겠지?`)
+                    .fadeIn(200)
+                    .delay(1000) // 1초지연(지연시간은 애니메이션메서드 앞)
+                    .fadeIn(200, () => {
+                        // 두번째 메시지
+                        msg.html(`그래도 무서우니
+                    <br>윗층으로 가자!`);
+                        // 다음버튼 보이기
+                        $(this).next().slideDown(300);
+                    }); /////// fadeIn ////////
+            };
 
             // 액션함수호출
-            actMini(this, 7, fn);
+            actMini(this, 6, fn);
         })
         // 8. 무서우니 윗층으로! 버튼 클릭시 ///////////////
         .next()
