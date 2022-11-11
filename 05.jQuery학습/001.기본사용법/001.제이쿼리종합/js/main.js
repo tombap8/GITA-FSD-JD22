@@ -222,39 +222,68 @@ $(() => {
             // 이동후 함수
             let fn = () => {
                 // 무.서.워... 메시지
-                msg.text('무')
-                .fadeIn(200)
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.'))
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.서'))
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.서.'))
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.서.워'))
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.서.워.'))
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.서.워..'))
-                .delay(500)
-                .fadeIn(200,()=>msg.text('무.서.워...'))
-                .delay(500)
-                .fadeIn(200,
-                    ()=>{
+                msg.text("무")
+                    .fadeIn(200)
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무."))
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무.서"))
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무.서."))
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무.서.워"))
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무.서.워."))
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무.서.워.."))
+                    .delay(500)
+                    .fadeIn(200, () => msg.text("무.서.워..."))
+                    .delay(500)
+                    .fadeIn(200, () => {
                         // 7번방 좀비가 올라와서
                         // 달겨든다!
-                        bd.eq(7).find(".mz")
-                        .animate({ // 윗층으로 올라옴
-                            bottom:bd.eq(7).height()+"px"
-                            // li 높이값 만큼 bottom을 올려준다!
-                        },500,"easeOutElastic")
-                        .delay(500) // 기다림
-                        .animate({ // 달겨들기
-                            right:(bd.eq(7).width()*1.2)+"px"
-                            // li 가로크기 만큼 right값 변경(보정*1.2)
-                        },1000,"easeOutBounce")
-                    })
+                        bd.eq(7)
+                            .find(".mz")
+                            .animate(
+                                {
+                                    // 윗층으로 올라옴
+                                    bottom: bd.eq(7).height() + "px",
+                                    // li 높이값 만큼 bottom을 올려준다!
+                                },
+                                500,
+                                "easeOutElastic"
+                            )
+                            .delay(500) // 기다림
+                            .animate(
+                                {
+                                    // 달겨들기
+                                    right: bd.eq(7).width() * 1.2 + "px",
+                                    // li 가로크기 만큼 right값 변경(보정*1.2)
+                                },
+                                1000,
+                                "easeOutBounce",
+                                () => {
+                                    // 물린후 대사
+                                    msg
+                                    .css({left:"-110%"})
+                                    .html(`아~악! 물렸다!<br>
+                                    어서 치료주사방으로!`);
 
+                                    // 미니언즈 좀비 이미지 변경(1초후)
+                                    setTimeout(() => {
+                                        mi.find("img")
+                                        .attr("src","images/mz1.png")
+                                        .css({filter:"grayscale(100%)"});
+                                        // 흑백변경: 필터 그레이스케일
+
+                                        // 다음버튼 보이기
+                                        $(this).next().slideDown(300);
+
+                                    }, 1000); ///// setTimout ///////
+
+
+                                }); ////// animate /////
+                    });
             };
 
             // 액션함수호출
