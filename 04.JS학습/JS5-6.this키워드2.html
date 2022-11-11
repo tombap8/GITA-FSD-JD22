@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this 키워드 의미2 - setTimeout 함수안에서</title>
+    <script>
+        const healthObj = {
+            name: "말코랑",
+            codeLine: "300",
+            showHealth: function () {
+                setTimeout(function () {
+                    console.log(this.name + "님, 오늘은 " + this.codeLine + "줄 코딩하셨네요!");
+                }, 500);
+                // 타이밍함수의 익명함수안의 this는
+                // 싸고 있는 함수의 this와 실행 시차로
+                // 의미가 달라져서 객체의 속성을
+                // 읽어올 수 없다!
+            }
+        }
+
+        // healthObj.showHealth();
+
+        const healthObj2 = {
+            name: "호랑말코",
+            codeLine: "500",
+            showHealth: function () {
+                setTimeout(function () {
+                    console.log(this.name + "님, 오늘은 " + this.codeLine + "줄 코딩하셨네요!");
+                }.bind(this), 500);
+                // bind(this)는 타이밍함수의 시차로 인해
+                // this의 의미가 달라시는 것을 방지해줌!
+                // 즉, 원래함수의 this를 묶어줌!
+            }
+        }
+
+        // healthObj2.showHealth();
+
+        const healthObj3 = {
+            name: "방당거",
+            codeLine: "600",
+            showHealth: function () {
+                setTimeout(() => {
+                    console.log(this.name + "님, 오늘은 " + this.codeLine + "줄 코딩하셨네요!");
+                }, 500);
+                // 화살표함수를 타이밍함수안에 사용하면
+                // bind(this)를 사용하지 않아도
+                // 기존 싸고있는 this키워드의미로
+                // 사용가능함!
+                // 이유는 화살표함수는 자신을 싼 객체를 
+                // 가리킴!
+            }
+        }
+
+        // healthObj3.showHealth();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

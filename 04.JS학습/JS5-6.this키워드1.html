@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS5-6.this 키워드</title>
+    <script>
+        /******************************************** 
+            [ this 키워드란 무엇인가? ]
+
+            JavaScript에서 this키워드는 객체 를 나타낸다
+            어떤this 객체가 호출 되는지에 따라 달라진다
+            this키워드는 사용 방법에 따라 다른 객체를 참조한다
+            ___________________________________________
+
+            1. 객체 메서드에서 객체자신을 의미
+                - 단, 화살표함수는 전역객체(window)를 의미
+            2. 단독으로 전역객체(window)를 의미
+            3. 함수에서 전역객체(window)를 의미
+            4. 함수에서 엄격모드(use strict)일 경우 undefined
+            5. 이벤트에서 이벤트를 수신한 요소자신을 의미
+            6. call(), apply(), bind() 각 객체를 의미
+
+        ********************************************/
+
+        // 엄격모드
+        // "use strict";
+        // (참고) https://www.w3schools.com/js/js_strict.asp
+
+        // 1. 객체 메서드에서 객체자신을 의미 확인!
+        const obj = {
+            name: "김종서",
+
+            // 익명함수 메서드
+            fn1: function(){
+                console.log("객체안 익명메서드:", 
+                this);
+                console.log("객체안 익명메서드 name:", 
+                this.name);
+            },
+
+            // 화살표함수 메서드
+            fn2: ()=>{
+                console.log("객체안 화살표함수:", 
+                this);
+                console.log("객체안 화살표함수 name:", 
+                this.name);
+                // this는 window객체이므로 내부 속성에 접근불가!
+                console.log("객체안 화살표함수 name:", 
+                obj.name);
+                // 이미 obj라는 객체가 전역등록되어서 객체명으로 접근
+            }
+        };
+
+        // 객체메서드호출
+        // obj.fn1();
+        // obj.fn2();
+
+
+        // 2. 단독으로 전역객체(window)를 의미 확인!
+        // console.log("단독으로:", this);
+
+        // 3. 함수에서 전역객체(window)를 의미 확인!
+        // (함수)() -> 함수자신을 바로실행!
+        (function () {
+            // console.log("함수1:", this);
+            // 엄격모드에서 this는 undefined임! window객체가 아님!
+        })();
+
+        (() => {
+            // console.log("함수2:", this);
+            // 엄격모드에서도 화살표함수는 this가 window객체임!
+        })();
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
