@@ -176,27 +176,65 @@ $(() => {
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                
+            };
 
             // 액션함수호출
             actMini(this, 7, fn);
         })
         // 7. 다시옆방으로! 버튼 클릭시 ///////////////
         .next()
-        .click(function () {})
+        .click(function () {
+            // 이동후 함수
+            let fn = () => {};
+
+            // 액션함수호출
+            actMini(this, 7, fn);
+        })
         // 8. 무서우니 윗층으로! 버튼 클릭시 ///////////////
         .next()
-        .click(function () {})
+        .click(function () {
+            // 이동후 함수
+            let fn = () => {};
+
+            // 액션함수호출
+            actMini(this, 7, fn);
+        })
         // 9. 치료주사방으로! 버튼 클릭시 ///////////////
         .next()
-        .click(function () {})
+        .click(function () {
+            // 이동후 함수
+            let fn = () => {};
+
+            // 액션함수호출
+            actMini(this, 7, fn);
+        })
         // 10. 3번방으로! 버튼 클릭시 ///////////////
         .next()
-        .click(function () {})
+        .click(function () {
+            // 이동후 함수
+            let fn = () => {};
+
+            // 액션함수호출
+            actMini(this, 7, fn);
+        })
         // 11. 1번방으로! 버튼 클릭시 ///////////////
         .next()
-        .click(function () {})
+        .click(function () {
+            // 이동후 함수
+            let fn = () => {};
+
+            // 액션함수호출
+            actMini(this, 7, fn);
+        })
         // 12. 헬기를 호출! 버튼 클릭시 ///////////////
         .next()
-        .click(function () {});
+        .click(function () {
+            // 이동후 함수
+            let fn = () => {};
+
+            // 액션함수호출
+            actMini(this, 7, fn);
+        });
 }); /////////////// jQB ////////////////////
