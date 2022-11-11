@@ -177,7 +177,18 @@ $(() => {
         .click(function () {
             // 이동후 함수
             let fn = () => {
-                
+                // 메시지 보이기
+                msg.html(`여긴없겠지?`)
+                .fadeIn(200);
+
+                // 좀비보이기
+                bd.eq(7).find(".mz")
+                .delay(1000).fadeIn(400,()=>{
+                    // 메시지 변경하기
+                    msg.html(`악, 여기도!!!`);
+                    // 다음버튼 보이기
+                    $(this).next().slideDown(300);
+                });
             };
 
             // 액션함수호출
