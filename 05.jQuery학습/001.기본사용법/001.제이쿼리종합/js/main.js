@@ -220,10 +220,29 @@ $(() => {
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                // 무.서.워... 메시지
+                msg.text('무')
+                .fadeIn(200)
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.'))
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.서'))
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.서.'))
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.서.워'))
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.서.워.'))
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.서.워..'))
+                .delay(500)
+                .fadeIn(200,()=>msg.text('무.서.워...'))
+
+            };
 
             // 액션함수호출
-            actMini(this, 7, fn);
+            actMini(this, 4, fn);
         })
         // 9. 치료주사방으로! 버튼 클릭시 ///////////////
         .next()
