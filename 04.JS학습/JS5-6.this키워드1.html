@@ -53,22 +53,22 @@
         };
 
         // 객체메서드호출
-        // obj.fn1();
-        // obj.fn2();
+        obj.fn1();
+        obj.fn2();
 
 
         // 2. 단독으로 전역객체(window)를 의미 확인!
-        // console.log("단독으로:", this);
+        console.log("단독으로:", this);
 
         // 3. 함수에서 전역객체(window)를 의미 확인!
         // (함수)() -> 함수자신을 바로실행!
         (function () {
-            // console.log("함수1:", this);
+            console.log("함수1:", this);
             // 엄격모드에서 this는 undefined임! window객체가 아님!
         })();
 
         (() => {
-            // console.log("함수2:", this);
+            console.log("함수2:", this);
             // 엄격모드에서도 화살표함수는 this가 window객체임!
         })();
 
