@@ -264,25 +264,22 @@ $(() => {
                                 "easeOutBounce",
                                 () => {
                                     // 물린후 대사
-                                    msg
-                                    .css({left:"-110%"})
-                                    .html(`아~악! 물렸다!<br>
+                                    msg.css({ left: "-110%" })
+                                        .html(`아~악! 물렸다!<br>
                                     어서 치료주사방으로!`);
 
                                     // 미니언즈 좀비 이미지 변경(1초후)
                                     setTimeout(() => {
                                         mi.find("img")
-                                        .attr("src","images/mz1.png")
-                                        .css({filter:"grayscale(100%)"});
+                                            .attr("src", "images/mz1.png")
+                                            .css({ filter: "grayscale(100%)" });
                                         // 흑백변경: 필터 그레이스케일
 
                                         // 다음버튼 보이기
                                         $(this).next().slideDown(300);
-
                                     }, 1000); ///// setTimout ///////
-
-
-                                }); ////// animate /////
+                                }
+                            ); ////// animate /////
                     });
             };
 
