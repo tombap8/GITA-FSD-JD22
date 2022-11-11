@@ -154,7 +154,32 @@
     <script>
         $(()=>{/////////// jQB /////////////////////
 
-            
+            //////////////////////////////////////
+            // a클릭시 스크롤이동 애니메이션 구현 //
+            //////////////////////////////////////
+
+            // 대상: .gnb a
+            $(".gnb a").click(function(e){//e-이벤트전달변수
+                // a 기본이동막기
+                e.preventDefault();
+
+                // 1. 클릭시 스크롤 위치 아이디 알아내기
+                let idnm = $(this).attr("href");
+                // console.log(idnm);
+
+                // 2. 해당 아이디박스 위치값 알아내기(top값)
+                let pos = $(idnm).offset().top;
+                // offset().top - top위치값 리턴
+                console.log(pos);
+
+                // 3. 위치이동 스크롤 애니메이션
+                // 전체스크롤 대상: html,body(최상위 부모2개 동시에!)
+                $("html,body").animate({
+                    scrollTop: pos+"px"
+                },800,"easeInOutQuint");
+
+            }); ///////// click /////////////
+
 
 
 
