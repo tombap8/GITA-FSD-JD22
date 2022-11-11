@@ -250,7 +250,8 @@ $(() => {
                         },500,"easeOutElastic")
                         .delay(500) // 기다림
                         .animate({ // 달겨들기
-                            right:bd.eq(7).width()+"px"
+                            right:(bd.eq(7).width()*1.2)+"px"
+                            // li 가로크기 만큼 right값 변경(보정*1.2)
                         },1000,"easeOutBounce")
                     })
 
