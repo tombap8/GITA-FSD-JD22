@@ -360,9 +360,20 @@ $(() => {
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                // 메시지 보이기
+                msg.html("도와줘요!")
+                .fadeIn(200);
+
+                // 1번방 단체좀비들 달겨듬!
+                bd.eq(1).find(".mz")
+                .fadeIn(300)
+                .animate({
+                    right: bd.eq(1).width() + "px"
+                },3000,"easeInExpo");
+            };
 
             // 액션함수호출
-            actMini(this, 7, fn);
+            actMini(this, 0, fn);
         });
 }); /////////////// jQB ////////////////////
