@@ -306,12 +306,19 @@ $(() => {
                     // 이미지변경
                     mi.find("img").attr("src","images/m2.png")
                     .css({filter:"grayscale(0)"}); //다시컬러!
+
                     // 대사
                     msg.html("이제 조그만 더<br>가면 탈출이닷!")
-                    .css({left:"-150%"})
+                    .css({left:"-84%"})
                     .fadeIn(200);
-                }, 1000);
 
+                    // 주사기 없애기
+                    $(".inj").hide();
+
+                    // 다음버튼 보이기
+                    $(this).next().slideDown(300);                    
+                    
+                }, 1000);
             };
 
             // 액션함수호출
@@ -321,19 +328,33 @@ $(() => {
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                // 메시지 보이기
+                msg.html("어서윗층으로 가자!")
+                .fadeIn(200);
+
+                // 다음버튼 보이기
+                $(this).next().slideDown(300);
+            };
 
             // 액션함수호출
-            actMini(this, 7, fn);
+            actMini(this, 3, fn);
         })
         // 11. 1번방으로! 버튼 클릭시 ///////////////
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                // 메시지 보이기
+                msg.html("이제 곧 탈출이닷!")
+                .fadeIn(200);
+
+                // 다음버튼 보이기
+                $(this).next().slideDown(300);
+            };
 
             // 액션함수호출
-            actMini(this, 7, fn);
+            actMini(this, 1, fn);
         })
         // 12. 헬기를 호출! 버튼 클릭시 ///////////////
         .next()
