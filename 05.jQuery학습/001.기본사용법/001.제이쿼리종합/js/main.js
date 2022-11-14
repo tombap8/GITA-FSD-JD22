@@ -371,6 +371,20 @@ $(() => {
                 .animate({
                     right: bd.eq(1).width() + "px"
                 },3000,"easeInExpo");
+
+                // 헬기등장
+                $(".heli")
+                .animate({
+                    left:"20%"
+                }, 4000,"easeOutBack",
+                function(){ // 여기서 this는 .heli
+                    // 헬기도착 후 탑승이미지 변경
+                    $(this).attr("src","images/heli2.png");
+                    // 원본 미니언즈는 사라짐
+                    mi.hide();
+                })
+
+
             };
 
             // 액션함수호출
