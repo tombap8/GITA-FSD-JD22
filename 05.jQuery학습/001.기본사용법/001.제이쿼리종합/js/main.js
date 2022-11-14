@@ -302,6 +302,15 @@ $(() => {
                 }); //////// css ///////
 
                 // 미니언즈로 다시 태어나다!(1초후)
+                setTimeout(() => {
+                    // 이미지변경
+                    mi.find("img").attr("src","images/m2.png")
+                    .css({filter:"grayscale(0)"})//다시컬러!
+                    // 대사
+                    msg.html("이제 조그만 더<br>가면 탈출이닷!")
+                    .css({left:"-150%"})
+                    .fadeIn(200);
+                }, 1000);
 
             };
 
