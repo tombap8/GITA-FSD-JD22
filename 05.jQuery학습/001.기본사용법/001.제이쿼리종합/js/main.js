@@ -419,10 +419,10 @@ $(() => {
                             // -> 간판에 class "on"주기
                             let tit = $(".tit");
                             tit.addClass("on");
-                            setTimeout(() => {
+                            setTimeout(
                                 // -> 간판에 class "on2"주기
                                 ()=>tit.addClass("on2")
-                            }, 3000);
+                            , 3000);
 
                             // 빌딩 무너뜨리기
                             // 간판 떨어진 후 실행(6초)
