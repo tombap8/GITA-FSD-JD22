@@ -305,7 +305,7 @@ $(() => {
                 setTimeout(() => {
                     // 이미지변경
                     mi.find("img").attr("src","images/m2.png")
-                    .css({filter:"grayscale(0)"})//다시컬러!
+                    .css({filter:"grayscale(0)"}); //다시컬러!
                     // 대사
                     msg.html("이제 조그만 더<br>가면 탈출이닷!")
                     .css({left:"-150%"})
