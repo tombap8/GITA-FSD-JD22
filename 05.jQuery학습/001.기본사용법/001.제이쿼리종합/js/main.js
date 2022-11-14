@@ -421,13 +421,14 @@ $(() => {
                             tit.addClass("on");
                             setTimeout(
                                 // -> 간판에 class "on2"주기
-                                ()=>tit.addClass("on2")
-                            , 3000);
+                                () => tit.addClass("on2"),
+                                3000
+                            );
 
                             // 빌딩 무너뜨리기
                             // 간판 떨어진 후 실행(6초)
                             setTimeout(() => {
-                                bd.parent().addClass("on")
+                                bd.parent().addClass("on");
                                 // parent() 부모요소인 .building
                             }, 6000);
                         }
@@ -436,13 +437,25 @@ $(() => {
 
             // 액션함수호출
             actMini(this, 0, fn);
-        });
+        }); ///////// "헬기를 호출!" 버튼 클릭 마무리 ///////
 
-        
-
-
-
-
-
-
+    /// 간판에 마우스 오버시/아웃시 색상변경하기
+    // hover(함수1,함수1)
+    // - 함수1은 오버시, 함수2는 아웃시 실행!
+    $(".tit").hover(
+        function () {
+            // over
+            $(this).css({
+                backgroundColor: "blue",
+                color: "cyan",
+            }); //// css ///
+        },
+        function () {
+            // out
+            $(this).css({
+                backgroundColor: "pink",
+                color: "yellow",
+            }); //// css ///
+        }
+    ); ///////// hover ////////////
 }); /////////////// jQB ////////////////////
