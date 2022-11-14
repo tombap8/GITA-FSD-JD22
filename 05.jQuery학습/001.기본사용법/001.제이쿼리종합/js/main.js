@@ -78,7 +78,10 @@ $(() => {
     // 2. 버튼 셋팅하기
     // 모든 버튼은 숨기고 첫번재 버튼만 보여!
     // 버튼.숨겨().첫번째().보여()
-    btns.hide().first().show();
+    // btns.hide().first().show();
+
+    //테스트시 중간버튼부터
+    btns.hide().eq(4).show();
 
     // 3. 공통함수 : actMini() ///////////////////////
     const actMini = (ele, seq, fn) => {
@@ -290,10 +293,20 @@ $(() => {
         .next()
         .click(function () {
             // 이동후 함수
-            let fn = () => {};
+            let fn = () => {
+                // 주사기돌기(animate는 트랜스폼 적용안됨)
+                $(".inj").css({
+                    transform:"rotate(-150deg)", // 반시계방향회전
+                    transition:".5s .5s", // 0.5초후 0.5초간 애니
+                    zIndex:"9999" // 미니언즈 보다 위
+                }); //////// css ///////
+
+                // 미니언즈로 다시 태어나다!(1초후)
+
+            };
 
             // 액션함수호출
-            actMini(this, 7, fn);
+            actMini(this, 2, fn);
         })
         // 10. 3번방으로! 버튼 클릭시 ///////////////
         .next()
