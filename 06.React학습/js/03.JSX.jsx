@@ -58,4 +58,11 @@ root2.render(myele2);
 
 *********************************************/
 
+let num1 = 1000;
+let num2 = 7;
+
 // 3. JSX 표현식 사용하기
+const myele3 = <h1>리액트는 {num1*num2} 번 사용해도 좋다!</h1>;
+const root3 = ReactDOM.createRoot(
+    document.querySelectorAll("#root div")[2]);
+root3.render(myele3);
