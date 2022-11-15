@@ -78,18 +78,22 @@ root3.render(myele3);
     3) <기존태그>태그들</기존태그>
 
     -> 1),2)번은 CDN방식에서는 지원안함!(설치형SPA지원!)
+    -> 2)번 CDN에서 사용하려면 아래와 같이 사용한다!
+        <React.Fragment></React.Fragment>
+    -> 1),2)번을 사용하는 이유는 쓸때 없는 태그삽입을 막는데있다!
     -> 기존태그는 <div>,<section> 등 원래있는 html태그를 말함
+        (단점, 원하는 않는 태그가 삽입됨!!!)
 
 ***********************************************************/
 const myele4 = (
-    <section>
+    <React.Fragment>
         <h2>[ 다수의 HTML요소 블록 삽입 ]</h2>
         <ul>
             <li>프론트앤드개발</li>
             <li>리액드사용개발</li>
             <li>백앤드개발</li>
         </ul>
-    </section>
+    </React.Fragment>
 );
 const root4 = ReactDOM.createRoot(
     document.querySelectorAll("#root div")[3]
@@ -99,7 +103,7 @@ root4.render(myele4);
 //// 5번에는 내가 원하는 태그요소를 출력해 본다!
 
 const myele5 = (
-    <nav>
+    <React.Fragment>
         <h2>나의 리액트 JSX출력!</h2>
         <ul>
             <li>리액트 메뉴1</li>
@@ -107,9 +111,33 @@ const myele5 = (
             <li>리액트 메뉴3</li>
             <li>리액트 메뉴4</li>
         </ul>
-    </nav>
+    </React.Fragment>
 );
 const root5 = ReactDOM.createRoot(
     document.querySelectorAll("#root div")[4]
 );
 root5.render(myele5);
+
+/***************************************************** 
+    [ JSX는 홀로태그이더라도 끝에 닫기해줘야함! ]
+    예) <br> -> <br />
+        <input type="text"> -> <input type="text" />
+*****************************************************/
+const myele6 = 
+<input type="text" value="홀로태그는 스스로 닫아라!" />;
+const root6 = ReactDOM.createRoot(
+    document.querySelectorAll("#root div")[5]
+);
+root6.render(myele6);
+/**************************************************** 
+    [ JSX에서 속성클래스는 className 으로 표기한다! ]
+    <태그 class="클래스명">
+    class는 JS에서 키워드이므로 사용못함! 대신...
+    <태그 className="클래스명">
+****************************************************/
+const myele7 = 
+<h1 className="myclass">className속성으로 클래스셋팅!!!</h1>;
+const root7 = ReactDOM.createRoot(
+    document.querySelectorAll("#root div")[6]
+);
+root7.render(myele7);
