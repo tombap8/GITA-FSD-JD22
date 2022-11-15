@@ -66,3 +66,50 @@ const myele3 = <h1>리액트는 {num1*num2} 번 사용해도 좋다!</h1>;
 const root3 = ReactDOM.createRoot(
     document.querySelectorAll("#root div")[2]);
 root3.render(myele3);
+
+/*********************************************************** 
+    [ JSX 태그요소 작성시 여러줄일 경우 ]
+    1. 최상위를 하나 만들고 여러요소를 작성한다!
+    2. 소괄호로 전체를 싸준다!
+
+    - 지원되는 스타일:
+    1) <>태그들</>
+    2) <Fragment>태그들</Fragment>
+    3) <기존태그>태그들</기존태그>
+
+    -> 1),2)번은 CDN방식에서는 지원안함!(설치형SPA지원!)
+    -> 기존태그는 <div>,<section> 등 원래있는 html태그를 말함
+
+***********************************************************/
+const myele4 = (
+    <section>
+        <h2>[ 다수의 HTML요소 블록 삽입 ]</h2>
+        <ul>
+            <li>프론트앤드개발</li>
+            <li>리액드사용개발</li>
+            <li>백앤드개발</li>
+        </ul>
+    </section>
+);
+const root4 = ReactDOM.createRoot(
+    document.querySelectorAll("#root div")[3]
+);
+root4.render(myele4);
+
+//// 5번에는 내가 원하는 태그요소를 출력해 본다!
+
+const myele5 = (
+    <nav>
+        <h2>나의 리액트 JSX출력!</h2>
+        <ul>
+            <li>리액트 메뉴1</li>
+            <li>리액트 메뉴2</li>
+            <li>리액트 메뉴3</li>
+            <li>리액트 메뉴4</li>
+        </ul>
+    </nav>
+);
+const root5 = ReactDOM.createRoot(
+    document.querySelectorAll("#root div")[4]
+);
+root5.render(myele5);
