@@ -48,3 +48,11 @@ class Gogh extends React.Component {
 } /////// Gogh 클래스 컴포넌트 ///////
 
 // 랜더링하기
+// ReactDOM 은 가상돔을 만드는 객체
+// createRoot(요소) 출력요소를 설정함 
+const root1 = ReactDOM.createRoot(
+    document.getElementById("root1"));
+root1.render(<Gogh />);
+// render(출력할 요소)
+// 출력할 요소 -> 클래스를 호출하면 구성된 태그가 들어옴
+// 클래스 호출법: <클래스명 />
