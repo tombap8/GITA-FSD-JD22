@@ -46,10 +46,54 @@ $(() => {
         // console.log("아이콘클릭!");
 
         // 1. 클릭된 a요소 텍스트읽기
+        // -> 실제는 하위 span의 텍스트이므로
+        // 앞뒤공백이 생긴다! 꼭 trim() 처리필수!
         let atxt = $(this).text().trim();
-        console.log(atxt);
+        // console.log(atxt);
 
+        // 2. 이동할 페이지 주소 할당하기
+        let url;
+        switch (atxt) {
+            case "인스타그램":
+                url = "https://www.instagram.com/VOGUEKOREA/";
+                break;
+            case "페이스북":
+                url = "https://www.facebook.com/VOGUEkr";
+                break;
+            case "트위터":
+                url = "https://twitter.com/VogueKorea";
+                break;
+            case "유튜브":
+                url =
+                    "https://www.youtube.com/user/VogueKorea?sub_confirmation=1";
+                break;
+            case "로그인":
+                url = "login";
+                break;
+            case "회원가입":
+                url = "member";
+                break;
+            case "갤러리":
+                url = "gallery";
+                break;
+            case "카카오스토리":
+                url = "https://story.kakao.com/ch/voguekr";
+                break;
+        } ////////// switch /////////////
 
+        // console.log(url);
+
+        // 3. 페이지 이동하기
+        if (
+            atxt === "로그인" || 
+            atxt === "회원가입" || 
+            atxt === "갤러리") {
+            location.href = url + ".html";
+        } ////// if //////
+        else {
+            // 기타 sns는 새창열기(window.open())
+            window.open().location.href = url;
+        } ///// else //////
     }); ///////////// click ////////////////
 
     /********************************** 
