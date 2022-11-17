@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* 큐브애니 CSS - cube.css */
+
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* 보이는 화면기준 채우기! */
+}
+
+/* 전체배경 */
+body{
+    background-image: 
+    linear-gradient(to bottom, #41b79f 30%, #ccffc6 70%);
+}
+
+/* 큐브 */
+.cube{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    /* calc()로 정중앙 계산! */
+    width: 300px;
+    height: 300px;
+
+    /* 
+        [ 입체로 설정하기 ]
+        - 입체로 설정할 요소의 부모박스에
+        아래와 같이 설정해 준다!
+        transform-style: preserve-3d;
+        - 기본값 flat, 즉 2D
+        - preserve-3d 는 3D 전환설정!
+    */
+    transform-style: preserve-3d;
+
+    /* 입체를 잘보이게 하기 위해 약간회전 */
+    transform: 
+    rotateX(10deg) rotateY(30deg);
+
+    /* outline: 1px solid #000; */
+}
+/* 큐브각면 공통 */
+.cube span{
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    /* 앱솔루트는 자동 block변경됨! */
+    width: 100%;
+    height: 100%;
+    /* 부모는? .cube */
+
+    /* 투명도 */
+    opacity: 0.8;
+    outline: 1px solid #000;
+}
+/* 1. 앞면 */
+.cube span:nth-child(1){
+    background: url(../images/newyorkCity.jpg) no-repeat right/auto 105%;
+
+    /* 화면방향(z축) */
+    transform: translateZ(150px);
+}
+/* 2.오른쪽면 */
+.cube span:nth-child(2){
+    background: url(../images/seoulCity.jpg) no-repeat center/cover;
+    /*  y축회전하고 화면방향(z)밀기 */
+    transform: rotateY(90deg) translateZ(150px);
+}
+/* 3.뒷면 */
+.cube span:nth-child(3){
+    background: url(../images/parisCity.jpg) no-repeat center/cover;
+    /*  y축회전하고 화면방향(z)밀기 */
+    transform: rotateY(180deg) translateZ(150px);
+}
+/* 4.뒷면 */
+.cube span:nth-child(4){
+    background: url(../images/cityMain.jpg) no-repeat center/cover;
+    /*  y축회전하고 화면방향(z)밀기 */
+    transform: rotateY(-90deg) translateZ(150px);
+}
+/* 5.윗면 */
+.cube span:nth-child(5){
+    background: url(../images/citys.jpg) no-repeat center/cover;
+    /*  x축회전하고 화면방향(z)밀기 */
+    transform: rotateX(90deg) translateZ(150px);
+}
+/* 6.아랫면 */
+.cube span:nth-child(6){
+    background: url(../images/London_city.jpg) no-repeat center/cover;
+    /*  x축회전하고 화면방향(z)밀기 */
+    transform: rotateX(-90deg) translateZ(150px);
+}
+
+/* 버튼박스 */
+.btns{
+    text-align: center;
+    padding: 50px;
+}
+/* 버튼 */
+.btns button{
+    font-size: 40px;
+    border-radius: 10px;
+}
+
+
+
+/* 애니메이션 호출 클래스 */
+.cube-ani{
+    /* 애니메이션: 이시이지반방마 */
+    animation: cubeAni 4s linear infinite;
+    /* 처음에 멈춰있기 */
+    animation-play-state: paused;
+}
+/* 애니메이션 플레이 클래스 */
+.cube-ani.on{
+    /* 애니메이션 재생 */
+    animation-play-state: running;
+}
+
+/* 큐브회전 키프레임 */
+@keyframes cubeAni {
+    to{
+        transform: 
+        rotateX(370deg) rotateY(-330deg);
+
+        /* transform:
+        rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
+
+        /* 
+            x축 양의 방향으로 10도에서 출발
+            양의 방향 360도+10도=370도
+            음의 방향 -360도+10도=-350도
+
+            y축 양의 방향으로 30도에서 출발
+            양의 방향 360도+30도=390도
+            음의 방향 -360도+30도=-330도
+
+            -> rotateZ() - z축회전도 가능함!
+        */
+    }
+} /* 키프레임 */

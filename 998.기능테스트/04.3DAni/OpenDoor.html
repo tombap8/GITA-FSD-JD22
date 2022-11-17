@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Door - 3D애니 원근법</title>
+    <style>
+        /* 웹폰트 */
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+        /* font-family: 'Comfortaa', cursive; */
+
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 전체배경색 */
+        body{
+            background-color: #9c0;
+        }
+
+        /* 전체 타이틀 */
+        .tit{
+            font-family: 'Comfortaa', cursive; 
+            font-size: 42px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 2px #222;
+        }
+
+        /* 전체문부모 */
+        .cont{
+            position: relative;
+            top: 100px;
+            width: 200px;
+            height: 300px;
+            background-color: #900;
+            margin: 0 auto;
+        }
+        /* 문프레임 */
+        .frame{
+            position: relative;
+            top: 20px;
+            width: 150px;
+            height: 280px;
+            background: url(./images/seashore.jpg) no-repeat center/auto 100%;
+            margin: 0 auto;
+
+            /* 
+                [ 3D 원근설정 ]
+                1. 셋팅위치: 3D원근 설정을 할 대상의 부모요소
+                2. 설정방법:
+                    perspective: 수치;
+                    - 수치는 px단위로 기준선에서 소실점까지의 거리
+                    - 숫자가 크면 소실점이 멀리 있으므로 각도가 작음                
+            */
+            perspective: 480px;
+            /* 
+                [ 뷰포인트(관찰자위치) 변경옵션 ]
+                perspective-origin: 가로 세로; 
+                - 가로축: left, center, right, px, % 등 단위
+                - 세로축: top, center, bottom, px, % 등 단위
+                -> 기본값은 center (정중앙)
+            */
+            perspective-origin: 50% 50%;
+        }
+
+        /* 문짝 */
+        .door{
+            position: relative;
+            /* 부모자격 .handle */
+            width: 150px;
+            height: 280px;
+            background-color: #c90;
+
+            /* 문회전하기 : Y축 */
+            transform: rotateY(0deg);
+            /* 회전축 변경 */
+            transform-origin: left;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: 
+            /* 1. 닫힌문 처음열기 애니메이션 */
+            firstAni 1s ease-in-out forwards,
+            /* 2. 열린후 이어받아서 무한애니(처음에 1초기다림) */
+            doorAni 2s ease-in-out 1s infinite alternate;
+
+            /* 애니메이션 멈추기 옵션 */
+            animation-play-state: paused;
+            /* 
+                [ 애니메이션 작동/멈춤 속성 ]
+                animation-play-state:
+                -> running : 애니메이션 작동
+                -> paused : 애니메이션 멈춤
+            */
+        }
+        /* 마우스 오버시 작동하기 */
+        .cont:hover .door{
+            animation-play-state: running;
+        }
+
+        /* 키프레임 */
+        @keyframes doorAni {
+            from{
+                transform: rotateY(60deg);
+            }
+            to{
+                transform: rotateY(-60deg);
+            }
+        } /* 키프레임 */
+        /* 처음열기 애니메이션 */
+        @keyframes firstAni {
+            to{
+                transform: rotateY(60deg);
+            }
+        } /* 키프레임 */
+
+
+        /* 손잡이 */
+        .handle{
+            position: absolute;
+            top: 140px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 전체 타이틀 -->
+    <h1 class="tit">Open Door</h1>
+
+    <!-- 전체문부모 -->
+    <div class="cont">
+        <!-- 문프레임 -->
+        <div class="frame">
+            <!-- 문짝 -->
+            <div class="door">
+                <!-- 손잡이 -->
+                <div class="handle"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
