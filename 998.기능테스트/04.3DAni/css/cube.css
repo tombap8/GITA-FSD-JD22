@@ -12,6 +12,21 @@ html,body{
 body{
     background-image: 
     linear-gradient(to bottom, #41b79f 30%, #ccffc6 70%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+.wrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    perspective: 500px;
+}
+.cont{
+    height: 4000px;
+    transform-style: preserve-3d;
 }
 
 /* 큐브 */
@@ -35,8 +50,7 @@ body{
     transform-style: preserve-3d;
 
     /* 입체를 잘보이게 하기 위해 약간회전 */
-    transform: 
-    rotateX(10deg) rotateY(30deg);
+    transform: rotateY(30deg);
 
     /* outline: 1px solid #000; */
 }
@@ -93,6 +107,9 @@ body{
 
 /* 버튼박스 */
 .btns{
+    position: fixed;
+    top: 0;
+    width: 100vw;
     text-align: center;
     padding: 50px;
 }
@@ -120,8 +137,7 @@ body{
 /* 큐브회전 키프레임 */
 @keyframes cubeAni {
     to{
-        transform: 
-        rotateX(370deg) rotateY(-330deg);
+        transform: rotateY(-330deg);
 
         /* transform:
         rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
