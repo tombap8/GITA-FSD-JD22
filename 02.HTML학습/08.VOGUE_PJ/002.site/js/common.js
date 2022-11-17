@@ -1,5 +1,11 @@
 // 보그PJ 공통JS - common.js
 
+// 현재 페이지명을 알아내어 제어에 활용한다!
+// 페이지명 변수
+let pname = location.pathname;
+// location.pathname 페이지명이 포함된 전체경로
+console.log("페이지이름:",pname);
+
 // 제이쿼리 구역 길게쓰기도 있음~!
 // $(document).ready(function(){})
 
