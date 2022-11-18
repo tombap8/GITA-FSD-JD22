@@ -18,8 +18,11 @@
         <!-- 3.리액트 바벨 라이브러리 -->
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
+        <!-- import로 호출한 JSX도 여기에 등록한다(CDN에서만!) -->
+        <script src="./js/Avengers.jsx" data-plugins="transform-es2015-modules-umd" type="text/babel"></script>
+
         <!-- 리액트 컴포넌트 JSX 호출 -->
-        <script src="./js/04.컴포넌트.jsx" type="text/babel"></script>
+        <script src="./js/04.컴포넌트.jsx" data-plugins="transform-es2015-modules-umd" type="text/babel"></script>
     </head>
     <body>
 
@@ -29,6 +32,7 @@
         <div id="root3"></div>
         <div id="root4"></div>
         <div id="root5"></div>
+        <div id="root6"></div>
 
 
     </body>

@@ -1,5 +1,8 @@
 // 04.리액트 컴포넌트 JSX
 
+// 어벤져스 컴포넌트 import하기
+import Avengers from "./Avengers";
+// import하는 js/jsx파일의 확장자는 생략가능함!
 
 /************************************************
     [ 리액트 컴포넌트 ]
@@ -140,6 +143,9 @@ root5.render(<Who />);
 
 ***************************************************/
 
+const root6 = ReactDOM.createRoot(
+    document.getElementById("root6"));
+root6.render(<Avengers />);
 
 /************************************************* 
   [ 바벨을 사용할때 모듈로 파일 호출시 주의사항! ]
