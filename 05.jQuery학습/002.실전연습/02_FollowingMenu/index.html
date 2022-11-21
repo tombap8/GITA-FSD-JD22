@@ -1,112 +1,111 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8" />
 
-<head>
-	<meta charset="utf-8">
+        <title>어디서나 펼쳐지는 내비게이션</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
 
-	<title>어디서나 펼쳐지는 내비게이션</title>
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-		}
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                /* 보이는 화면에 맞춤! */
+                overflow: hidden;
+            }
 
-		html,
-		body {
-			width: 100%;
-			height: 100%;
-			/* 보이는 화면에 맞춤! */
-			overflow: hidden;
-		}
+            body {
+                background-color: #000;
+            }
 
-		body {
-			background-color: #000;
-		}
-
-		div#mbx {
-			position: absolute;
-			top: 40%;
-			left: 40%;
-			width: 220px;
-			height: 220px;
-			transition: .6s ease-out;
-			/* 애니메이션을 위해 트랜지션을 줄때 이징설정이 매우중요함!
+            div#mbx {
+                position: absolute;
+                top: 40%;
+                left: 40%;
+                width: 220px;
+                height: 220px;
+                transition: 0.6s ease-out;
+                /* 애니메이션을 위해 트랜지션을 줄때 이징설정이 매우중요함!
 			ease-out으로 주면 시작할때 가속도가 빠르게 되므로 자연스럽다! */
-		}
+            }
 
-		div#home {
-			position: absolute;
-			left: 0px;
-			top: 0px;
-			width: 200px;
-			height: 200px;
-			background: #99ff9e;
-			border-radius: 50%;
-			border: 10px solid darkgreen;
-			text-align: center;
-			font-size: 40px;
-			line-height: 200px;
-			white-space: nowrap;
-			/* 줄바꿈방지 */
-			z-index: 2;
-			cursor: pointer;
-			user-select: none;
-			/* 더블클릭으로 선택안되게함! */
-		}
+            div#home {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 200px;
+                height: 200px;
+                background: #99ff9e;
+                border-radius: 50%;
+                border: 10px solid darkgreen;
+                text-align: center;
+                font-size: 40px;
+                line-height: 200px;
+                white-space: nowrap;
+                /* 줄바꿈방지 */
+                z-index: 2;
+                cursor: pointer;
+                user-select: none;
+                /* 더블클릭으로 선택안되게함! */
+            }
 
-		#menu {
-			position: absolute;
-			top: 0px;
-			left: 100px;
-			display: flex;
-			/* 플랙스박스 */
-			width: 0;
-			height: 220px;
-			padding-left: 120px;
-			list-style: none;
-			z-index: 1;
-			overflow: hidden;
-			/* 자식요소숨김 */
-		}
+            #menu {
+                position: absolute;
+                top: 0px;
+                left: 100px;
+                display: flex;
+                /* 플랙스박스 */
+                width: 0;
+                height: 220px;
+                padding-left: 120px;
+                list-style: none;
+                z-index: 1;
+                overflow: hidden;
+                /* 자식요소숨김 */
+            }
 
-		#menu li {
-			position: relative;
-			/* 부모자격 */
-			width: 220px;
-			height: 220px;
-			opacity: 0.7;
-			border-radius: 50%;
-			overflow: hidden;
-			cursor: pointer;
-		}
+            #menu li {
+                position: relative;
+                /* 부모자격 */
+                width: 220px;
+                height: 220px;
+                opacity: 0.7;
+                border-radius: 50%;
+                overflow: hidden;
+                cursor: pointer;
+            }
 
-		#menu img {
-			width: 220px;
-		}
+            #menu img {
+                width: 220px;
+            }
 
-		/* 글자박스 */
-		#menu li span {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+            /* 글자박스 */
+            #menu li span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
 
-			font-size: 30px;
-			color: #fff;
-			text-align: center;
-			line-height: 220px;
-			display: none;
-		}
-	</style>
-	<!-- 미리보기: 
+                font-size: 30px;
+                color: #fff;
+                text-align: center;
+                line-height: 220px;
+                display: none;
+            }
+        </style>
+        <!-- 미리보기: 
 		https://tombap8.github.io/FED211/004.jQuery학습/jQuery-02.실전연습/02.jQuery_naviation/02_FollowingMenu/ready.html 
 	-->
-	<script src="jquery-3.6.0.min.js"></script>
-	<script src="jquery-ui.min.js"></script>
-	<script>
-		$(()=>{
-			/*********************************************** 
+        <script src="jquery-3.6.0.min.js"></script>
+        <script src="jquery-ui.min.js"></script>
+        <script>
+            $(() => {
+            /*********************************************** 
 				마우스 무브 이벤트로 마우스 포인터 따라다니기
 				___________________________________________
 				이벤트 대상: body
@@ -116,56 +115,137 @@
 				중요정보: 마우스 포인터의 x,y 위치값
 				사용메서드: mousemove()
 			***********************************************/
-			// 움직일 대상: #mbx
-			const mbx = $("#mbx");
-			// #mbx박스 크기의 절반(가로,세로동일)
-			const hz = mbx.width() / 2;
-
-			// body에 마우스 무브 이벤트 메서드 설정하기
-			// mousemove()
-			$("body").mousemove(e=>{ // e-이벤트전달변수
-
-				// 1. 마우스 위치값 알아내기(hz보정값 뺌!)
-				let posx = e.pageX - hz;
-				let posy = e.pageY - hz;
-				console.log(`x:${posx}/y:${posy}`);
-
-				// 2. 변경대상이 마우스 포인터 위치로 이동하기
-				mbx.css({
-					top: posy + "px",
-					left: posx + "px"
-				}); ////////// css /////////
-
-			}); //////////// mousemove //////
-
-		}); //////////// jQB /////////////////////
-	</script>
-</head>
-
-<body>
+                // 움직일 대상: #mbx
+                const mbx = $("#mbx");
+                // #mbx박스 크기의 절반(가로,세로동일)
+                const hz = mbx.width() / 2;
+				// 마우스 무브 멈춤 상태값
+				let mmsts = 0; // 1-멈춤, 0-계속
 
 
+                // body에 마우스 무브 이벤트 메서드 설정하기
+                // mousemove()
+                $("body").mousemove((e) => {
+                    // e-이벤트전달변수
 
-	<div id="mbx">
-		<div id="home">눌러봐!</div>
+					// 마우스 무브 멈추기
+					if(mmsts) return;
+					// 메뉴 클릭시 mmsts값을 1/0 전환해줌!
 
-		<ul id="menu">
-			<li>
-				<img src="th_bg1.jpg" alt="메뉴배경">
-				<span>Google</span>
-			</li>
-			<li>
-				<img src="th_bg2.jpg" alt="메뉴배경">
-				<span>Naver</span>
-			</li>
-			<li>
-				<img src="th_bg3.jpg" alt="메뉴배경">
-				<span>Daum</span>
-			</li>
-		</ul>
-	</div>
+                    // 1. 마우스 위치값 알아내기(hz보정값 뺌!)
+                    let posx = e.pageX - hz;
+                    let posy = e.pageY - hz;
+                    console.log(`x:${posx}/y:${posy}`);
 
+                    // 2. 변경대상이 마우스 포인터 위치로 이동하기
+                    mbx.css({
+                        top: posy + "px",
+                        left: posx + "px",
+                    }); ////////// css /////////
+                }); //////////// mousemove //////
 
-</body>
+                // #mbx 클릭시 메뉴 보이기
+                // 변경대상: #menu
+                let menu = $("#menu");
+                // 변경값: 최대사이즈 660px
+                let mw = 660;
 
+                mbx.click(() => {
+                    // 메뉴 펼치기/숨기기
+                    // stop()은 애니메이션 앞에서 지움
+                    menu.stop().animate(
+                        {
+                            width: mw + "px",
+                        },
+                        450
+                    );
+
+                    // 현재상태값 변경하기(마우스무므 멈춤)
+                    mw === 660 ? (mmsts = 1) : (mmsts = 0);
+
+                    // 토글전환하기
+                    mw === 660 ? (mw = 0) : (mw = 660);
+                    // 비? 집:놀이동산
+                }); //////////// click //////////
+
+                /// 메뉴 li에 마우스 오버시
+                menu.find("li").hover(
+                    function () {
+                        // over
+                        // 1. li자신의 opacity 1
+                        $(this).stop().fadeTo(200, 1);
+                        // fadeTo(시간,오파)
+
+                        // 2. 아래 span요소 보이기
+                        $("span", this).stop().fadeIn(200);
+                        // 자손선택 위와동일
+                        // $(this).find('span')
+
+                        // 참고)직계자식선택 동일
+                        // $('>span',this)
+                        // $(this).children('span')
+                    },
+                    function () {
+                        // out
+                        // 1. li자신의 opacity 0.7
+                        $(this).stop().fadeTo(200, 0.7);
+
+                        // 2. 아래 span요소 숨기기
+                        $("span", this).stop().fadeOut(200);
+                    }
+                ); /////////// hover //////////
+
+                // 메뉴 li클릭시 사이트 새창이동하기
+                menu.find("li").click(function (e) {
+                    // 이벤트 버블링 차단하기
+                    e.stopPropagation();
+                    // 자식요소의 클릭이 부모요소의
+                    // 클릭으로 전달되는
+                    // 것을 막아준다!!!
+                    // JS에서는 이벤트버블링 차단을
+                    // 최하단 return false 를 사용함!
+                    // 제이쿼리에서도 사용가능!
+
+                    let txt = $("span", this).text();
+
+                    let url;
+                    switch (txt) {
+                        case "Google":
+                            url = "https://www.google.co.kr/";
+                            break;
+                        case "Naver":
+                            url = "https://www.naver.com/";
+                            break;
+                        case "Daum":
+                            url = "https://www.daum.net/";
+                            break;
+                    } ///////// switch case /////////
+
+                    // 새창열기
+                    window.open().location.href = url;
+                }); /////////// click /////////////////
+            }); //////////// jQB /////////////////////
+        </script>
+    </head>
+
+    <body>
+        <div id="mbx">
+            <div id="home">눌러봐!</div>
+
+            <ul id="menu">
+                <li>
+                    <img src="th_bg1.jpg" alt="메뉴배경" />
+                    <span>Google</span>
+                </li>
+                <li>
+                    <img src="th_bg2.jpg" alt="메뉴배경" />
+                    <span>Naver</span>
+                </li>
+                <li>
+                    <img src="th_bg3.jpg" alt="메뉴배경" />
+                    <span>Daum</span>
+                </li>
+            </ul>
+        </div>
+    </body>
 </html>
