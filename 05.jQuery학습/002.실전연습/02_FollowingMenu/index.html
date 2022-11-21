@@ -135,7 +135,7 @@
                     // 1. 마우스 위치값 알아내기(hz보정값 뺌!)
                     let posx = e.pageX - hz;
                     let posy = e.pageY - hz;
-                    console.log(`x:${posx}/y:${posy}`);
+                    // console.log(`x:${posx}/y:${posy}`);
 
                     // 2. 변경대상이 마우스 포인터 위치로 이동하기
                     mbx.css({
@@ -162,6 +162,7 @@
 
                     // 현재상태값 변경하기(마우스무므 멈춤)
                     mw === 660 ? (mmsts = 1) : (mmsts = 0);
+					console.log("무브멈춤상태:",mmsts);
 
                     // 토글전환하기
                     mw === 660 ? (mw = 0) : (mw = 660);
