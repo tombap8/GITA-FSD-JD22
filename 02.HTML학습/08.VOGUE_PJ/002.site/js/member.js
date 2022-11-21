@@ -28,8 +28,12 @@ $(()=>{
        // 1. 방금 블러가 발생한 요소의 id는?
        let cid = $(this).attr("id");
        // cid는 current id 즉, 현재아이디라는 뜻으로 작명!
+
+       // 2. 블러가 발생한 요소의 입력값은?
+       let cv = $(this).val();
+       // cv는 current value 즉, 현재값이라는 뜻으로 작명!
        
-       console.log("블러발생!", cid);
+       console.log("블러발생!", cid, "/", cv);
 
    }); //////////// blur //////////////
 
