@@ -18,12 +18,19 @@ $(()=>{
         ->>>> 제이쿼리 선택표현법:
         input[type=text][id!=email2][class!=search],
         input[type=password]
-        >>> 대괄호는 속성선택자, != 같지않다(제이쿼리전용)
-        
+        >>> 대괄호는 속성선택자(CSS원래문법) 
+        != 같지않다(제이쿼리전용)
+
     *********************************************/
    $(`input[type=text][id!=email2][class!=search],
    input[type=password]`).blur(function(){
-        console.log("블러발생!");
+       
+       // 1. 방금 블러가 발생한 요소의 id는?
+       let cid = $(this).attr("id");
+       // cid는 current id 즉, 현재아이디라는 뜻으로 작명!
+       
+       console.log("블러발생!", cid);
+
    }); //////////// blur //////////////
 
 
