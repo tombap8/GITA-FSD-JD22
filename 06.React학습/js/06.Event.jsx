@@ -66,6 +66,18 @@ function AlaLamp(props){
     return <img src={props.isrc} alt="알라딘 램프" />;
 } /////// AlaLamp 컴포넌트 ///////////
 
+// 축구공 이미지 출력 컴포넌트
+function Ball(props){
+    return <img id="bb" src={props.isrc} alt="축구공" title="클릭하시면 공이 날아가요!" onClick={move} />;
+} /////// AlaLamp 컴포넌트 ///////////
+
+// 일반 함수로 구현! 공움직이기! ////////////
+function move(){
+    let bb = document.getElementById("bb");
+    bb.style.transform = "translateX(200%) rotate(720deg)";
+    bb.style.transition = "2s ease-in-out";
+} ///////////// move함수 ///////////////////
+
 
 
 
