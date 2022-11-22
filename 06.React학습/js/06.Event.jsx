@@ -46,8 +46,16 @@ function EventShow(){
     // 4. 이벤트 적용할 버튼들이 출력됨
     return(
         <React.Fragment>
+            {/* 소원을 말해봐 이미지 출력 : onmousover 이벤트 적용! */}
             <img src="./images/logoM.png" 
             onMouseOver={()=>{aladin("./images/ala4.jpg")}} />
+            {/* 첫번째 슛 버튼 : onclick 이벤트 적용! */}
+            <button onClick={shoot}>골을 팡~!하고 차봐!</button>
+            {/* 두번째 슛 버튼 : onclick 이벤트 적용!(메서드 전달값 있음) */}
+            <button onClick={()=>{shoot2("./images/ball.jpg")}}>
+                골을 팡~!하고 또차봐!
+            </button>
+
         </React.Fragment>
     );
 
