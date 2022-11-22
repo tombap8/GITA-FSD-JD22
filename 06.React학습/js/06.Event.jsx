@@ -69,6 +69,7 @@ function AlaLamp(props){
 // 축구공 이미지 출력 컴포넌트
 function Ball(props){
     return <img id="bb" src={props.isrc} alt="축구공" title="클릭하시면 공이 날아가요!" onClick={move} />;
+    // 리액트 이벤트 설정시 일반함수도 연결가능함!
 } /////// AlaLamp 컴포넌트 ///////////
 
 // 일반 함수로 구현! 공움직이기! ////////////
