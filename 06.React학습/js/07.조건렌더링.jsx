@@ -137,13 +137,13 @@ function MissedGoal(){
 }
 
 // 골인 여부를 결정하는 메인 컴포넌트
-function Goal(props){
-    const isGoal = props.속성명;
+function Goal(props){ // 전달되는 속성명은 isGoal
+    const result = props.isGoal; // true / false 전달됨
     return(
         <React.Fragment>
             <h2>한국팀 지금 슛~~~!</h2>
             {/* 삼항연산자 -> 조건식 ? 출력1 : 출력2 */}
-            { isGoal ? <MadeGoal /> : <MissedGoal /> }
+            { result ? <MadeGoal /> : <MissedGoal /> }
         </React.Fragment>
     );
 
