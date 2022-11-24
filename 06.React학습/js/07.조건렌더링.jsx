@@ -30,3 +30,25 @@ root1.render(<Developer isDev={true} />);
 // 컴포넌트 호출출력
 const root2 = ReactDOM.createRoot(document.getElementById("root2"));
 root2.render(<Developer isDev={false} />);
+
+
+
+// 리스트를 출력하는 컴포넌트
+// 내가 사고싶은 자동차 리스트
+function WishList(props){ // 전달되는 속성명은 wlist
+    const cars = props.wlist;
+    return(
+        <React.Fragment>
+            <h1>자동차 위시리스트</h1>
+            <h2>
+                내가 사고 싶은 자동차는 모두 {cars.length}대입니다.
+            </h2>
+        </React.Fragment>
+    );
+
+} ////// WishList 컴포넌트 /////////////////////
+
+const cars = ["제네시스","그랜져","롤스로이스"];
+const root3 = ReactDOM.createRoot(document.getElementById("root3"));
+root3.render(<WishList wlist={cars} />);
+
