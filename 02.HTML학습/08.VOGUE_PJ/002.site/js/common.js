@@ -1,6 +1,8 @@
 // 보그PJ 공통JS - common.js
 
 // 윈도우 가로 크기가 모바일 사이즈면 코드를 변경한다!
+// 모바일일때 적용하고 싶거나 싶지않으면 mobsts값을 활용한다!
+// 모바일일때 1, 모바일이 아닐때 0 (가로크기 500기준)
 let mobsts = 0;
 if ($(window).width() <= 500) mobsts = 1;
 console.log("모바일적용여부:", mobsts);
@@ -82,7 +84,9 @@ $(() => {
     //////// 스크롤 이벤트 함수 /////////////
     $(window).scroll(() => {
         // 슬림메뉴와 상단이동버튼 보이기 작동안할 페이지셋팅
-        if (pname === "login" || pname === "member" || pname === "gallery") {
+        if (pname === "login" || 
+        pname === "member" || 
+        pname === "gallery") {
             return; // 여기서 나감!
         } ////////// if /////////////
 
@@ -94,7 +98,8 @@ $(() => {
 
         // 1. 슬림메뉴 클래스on적용
         // 기준위치는 스크롤위치 100px이상
-        if (scTop >= 100) {
+        // mobsts === 0 모바일이 아닐때만 들어옴!
+        if (scTop >= 100 && mobsts === 0) {
             // 100px이상
             topA.addClass("on");
             // addClass(클래스명) - 클래스넣기
