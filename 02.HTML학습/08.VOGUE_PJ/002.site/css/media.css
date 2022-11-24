@@ -40,6 +40,8 @@
     position: relative;
     /* 모바일버튼의 부모자격! */
     min-height: auto;
+    height: 57px;
+    box-sizing: border-box;
     padding: 10px;
   }
 
