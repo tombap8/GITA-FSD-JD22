@@ -173,69 +173,72 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     color: red;
 }
 
-/************ 슬림 상단 디자인 변경 ************/
-/* #top 최상위 박스에 클래스 "on"을 줘서 적용! */
+/******* 501px 이상에서만 적용하기 *******/
+@media screen and (min-width: 501px) {
+    /************ 슬림 상단 디자인 변경 ************/
+    /* #top 최상위 박스에 클래스 "on"을 줘서 적용! */
 
-/* 1. 상단영역 최상위 고정 */
-#top.on {
-    position: fixed;
-    /* top: -50px; */ /* 기본상단위에 숨김! */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    padding-top: 5px;
-    /* 트랜지션 */
-    transition: 0.4s ease-out;
-}
-/* 스크롤방향에 따라 top값 변경하기! 
+    /* 1. 상단영역 최상위 고정 */
+    #top.on {
+        position: fixed;
+        /* top: -50px; */ /* 기본상단위에 숨김! */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding-top: 5px;
+        /* 트랜지션 */
+        transition: 0.4s ease-out;
+    }
+    /* 스크롤방향에 따라 top값 변경하기! 
 스크롤 올라갈때니까 .up 
 -> JS가 직접 계산해서 top변경 -> 불필요해짐!*/
-/* #top.on.up{
+    /* #top.on.up{
     top: 0; 
 } */
 
-/* 2. 상단영역 속박스(.top) 최소높이 해제 */
-#top.on .top {
-    min-height: auto;
-}
+    /* 2. 상단영역 속박스(.top) 최소높이 해제 */
+    #top.on .top {
+        min-height: auto;
+    }
 
-/* 3. 탑메뉴 없애기 */
-#top.on .tmenu {
-    display: none;
-}
+    /* 3. 탑메뉴 없애기 */
+    #top.on .tmenu {
+        display: none;
+    }
 
-/* 4. 로고박스 */
-#top.on .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* 부모는? #top */
-    padding: 10px;
-    height: auto;
-    margin-top: 0;
-}
-/* 로고이미지 */
-#top.on .logo img {
-    width: 100px;
-}
+    /* 4. 로고박스 */
+    #top.on .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* 부모는? #top */
+        padding: 10px;
+        height: auto;
+        margin-top: 0;
+    }
+    /* 로고이미지 */
+    #top.on .logo img {
+        width: 100px;
+    }
 
-/* 5. GNB메뉴 */
-#top.on .gnb {
-    font-size: 14px;
-    min-height: 45px;
-}
-/* GNB li요소 */
-#top.on .gnb li {
-    padding-right: 35px;
-}
-/* 마지막 li 패딩제외 */
-#top.on .gnb li:last-child {
-    padding-right: 0;
-}
-/* GNB a요소 */
-#top.on .gnb a {
-    color: #333;
-}
+    /* 5. GNB메뉴 */
+    #top.on .gnb {
+        font-size: 14px;
+        min-height: 45px;
+    }
+    /* GNB li요소 */
+    #top.on .gnb li {
+        padding-right: 35px;
+    }
+    /* 마지막 li 패딩제외 */
+    #top.on .gnb li:last-child {
+        padding-right: 0;
+    }
+    /* GNB a요소 */
+    #top.on .gnb a {
+        color: #333;
+    }
+} /* 500이상 미디어쿼리에서만 슬림 디자인 적용! */
 
 /* 미디어쿼리 (GNB마진left 수치적용)
 1300px+120px=1420px부터 적용! */
@@ -253,9 +256,9 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     }
 }
 
-        
 /*********** 모바일 전용버튼 ***********/
-.mobtn{/* 공통 */
+.mobtn {
+    /* 공통 */
     position: absolute;
     /* 부모는? #top(모바일에서 fixed) */
     width: 21px;
@@ -263,28 +266,28 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     top: 50%;
     transform: translateY(-50%);
     /* 세로중앙이동 */
-    display: none;/* 처음에 안보임 */
+    display: none; /* 처음에 안보임 */
 }
 /* 모바일용 햄버거 버튼 */
-.hbtn{
+.hbtn {
     left: 10px;
     font-size: 15px;
 }
 /* 모바일용 검색버튼 */
-.sbtn{
+.sbtn {
     right: 10px;
     font-size: 21px;
     font-weight: bold;
 }
 
 /* 1.4. 모바일 검색박스 */
-.mos{
+.mos {
     padding: 15px 30px;
     background-color: #fff;
-    display: none;/* 처음에 숨기기 */
+    display: none; /* 처음에 숨기기 */
 }
 /* 검색속박스 */
-.mwrap{
+.mwrap {
     position: relative;
     /* 부모자격 */
     width: 100%;
@@ -292,7 +295,7 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     background-color: #000;
 }
 /* 검색입력창 - 부모박스의 크기에 따라 유동적인 박스 */
-#search{
+#search {
     position: absolute;
     top: 3px;
     left: 3px;
@@ -300,7 +303,7 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     bottom: 9px;
 }
 /* 입력양식 */
-#search input{
+#search input {
     width: 100%;
     height: 100%;
     padding-left: 10px;
@@ -309,7 +312,7 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 채우기 형식으로 디자인함! */
 
 /* 검색버튼 */
-.scbtn{
+.scbtn {
     position: absolute;
     top: -3px;
     right: -3px;
@@ -325,18 +328,18 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 }
 
 /* 1.5. 모바일 전체메뉴박스 (#top의 하위자식으로 편성) */
-#mobx{
+#mobx {
     padding-left: 15px;
     padding-top: 6px;
     padding-bottom: 30px;
     background-color: #fff;
-    display: none;/* 처음에 안보임 */
+    display: none; /* 처음에 안보임 */
 }
 /* 1.5-1.모바일 GNb */
-.mognb{
+.mognb {
     padding-left: 15px;
 }
-.mognb a{
+.mognb a {
     font-family: "Roboto";
     font-size: 25px;
     font-weight: 300;
@@ -344,12 +347,12 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     color: #333;
 }
 /* 1.5-2. 모바일 SNS */
-.mosns{
+.mosns {
     margin-top: 24px;
     margin-left: 13px;
 }
 /* sns박스 a */
-.mosns a{
+.mosns a {
     display: inline-block;
     width: 42px;
     height: 42px;
@@ -366,41 +369,41 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     /* 원형디자인 */
     border: 1px solid #d2d2d2;
     border-radius: 50%;
-    box-sizing: border-box;/* 보더포함 */
+    box-sizing: border-box; /* 보더포함 */
 }
 /* 트위터 아이콘 박스 */
-.mosns a.fi-twitter{
+.mosns a.fi-twitter {
     font-size: 16px;
     /* 가로크기가 16px에 맞게 글자크기조정 */
 }
 /* 유튜브 아이콘 박스 */
-.mosns a.fi-youtube-play{
+.mosns a.fi-youtube-play {
     font-size: 15px;
     /* 가로크기가 16px에 맞게 글자크기조정 */
 }
 /* mosns 마지막 a요소에 카스아이콘 넣기 */
-.mosns a:last-child{
+.mosns a:last-child {
     background: url(../images/sns_kakao.png) no-repeat center/auto 50%;
 }
 
 /* 1.5-3.매거진박스 */
-.magbox{    
+.magbox {
     margin: 0;
     padding: 10px 30px 0 15px;
-    font-family: 'NanumBarunGothic', sans-serif;
+    font-family: "NanumBarunGothic", sans-serif;
 }
 /* 잡지커버이미지 */
-.mcover img{
+.mcover img {
     width: 100%;
 }
 /* 잡지설명 */
-.magbox figcaption{
+.magbox figcaption {
     font-size: 13px;
     line-height: 2;
     color: #222;
 }
 /* 정기구독버튼 */
-.magbtn{
+.magbtn {
     font-size: 20px;
     background-color: #000;
     color: #fff;
@@ -410,20 +413,20 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     padding: 5px 0;
 }
 /* 모바일 하단링크 */
-.moblink{
+.moblink {
     display: flex;
     margin-left: 15px;
     line-height: 3.5;
     font-size: 15px;
     letter-spacing: -1px;
 }
-.moblink li+li{/* 2번째 li부터 */
+.moblink li + li {
+    /* 2번째 li부터 */
     padding-left: 7px;
 }
-.moblink a{
+.moblink a {
     color: #222;
 }
-
 
 /*************** 2. 하단영역 ***************/
 .info {
@@ -471,7 +474,7 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
 /* 위로가기 버튼 */
 .tbtn {
     position: fixed;
-    bottom: -35px;/* 아랫쪽에 나가있음 */
+    bottom: -35px; /* 아랫쪽에 나가있음 */
     right: 75px;
     width: 48px;
     height: 35px;
@@ -482,18 +485,18 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     color: #fff;
     z-index: 9999;
     font-size: 12px;
-    opacity: 0;/* 처음에 투명 */
+    opacity: 0; /* 처음에 투명 */
     /* 트랜지션 - bottom엔 적용되면 안되므로 별도지정함 */
     transition: background-color 0.3s, opacity 0.3s;
 }
 
 /* 위로가기 버튼 보이기상태 */
-.tbtn.on{
+.tbtn.on {
     opacity: 1;
     bottom: 0;
 }
 
 /* 위로가기 버튼 오버시 */
-.tbtn:hover{
+.tbtn:hover {
     background-color: red;
 }

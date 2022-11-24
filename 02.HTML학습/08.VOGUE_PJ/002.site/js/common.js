@@ -13,6 +13,9 @@ $(window).resize(() => {
     if ($(window).width() <= 500) mobsts = 1;
     else mobsts = 0;
     console.log("모바일적용여부(resize):", mobsts);
+    
+    // 탑영역 스타일 날리기!
+    $("#top").attr("style","");
 }); /////// resize //////////////
 
 // [현재 페이지명을 알아내어 제어에 활용한다!]
