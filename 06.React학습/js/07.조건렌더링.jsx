@@ -1,6 +1,10 @@
-// 07.조건렌더링 JSX
+// 07. 조건 렌더링 + 리스트 렌더링 JSX
 
-// 리액트에서는 조건부로 구성요소를 랜더링 할 수 있다!
+// 리액트에서는 조건부로 구성요소를 렌더링 할 수 있다!
+
+////////////////////////////////////////
+// 1. if문을 사용하여 조건부 렌더링하기 //
+////////////////////////////////////////
 
 function MakeDev(){
     return <h1>나는 개발자야!</h1>;
@@ -32,7 +36,7 @@ const root2 = ReactDOM.createRoot(document.getElementById("root2"));
 root2.render(<Developer isDev={false} />);
 
 /////////////////////////////////////////////
-// if문이 아닌 조건 표현하기
+// 2. if문이 아닌 조건 표현하기
 // -> (조건식) && JSX표현식
 // 조건이 true일때만 && 뒤의 JSX표현식이 출력됨!
 //////////////////////////////////////////////
@@ -119,3 +123,46 @@ const cars2 = [
 // 출력하기 ///
 const root4 = ReactDOM.createRoot(document.getElementById("root4"));
 root4.render(<WishList2 wlist={cars2} />);
+
+////////////////////////////////////////////////////////
+// 3. 조건연산자(삼항연산자)를 사용하여 조건부 렌더링하기 //
+////////////////////////////////////////////////////////
+
+function MadeGoal() {
+    return <h2>골입니다!골인!골인!!!</h2>;
+}
+
+function MissedGoal(){
+    return <h2>아~~! 아쉽네요! 노골입니다!</h2>
+}
+
+// 골인 여부를 결정하는 메인 컴포넌트
+function Goal(props){
+    const isGoal = props.속성명;
+    return(
+        <React.Fragment>
+            <h1>[ ♣ 카타르 중계석 ♣ ]</h1>
+            {/* 삼항연산자 -> 조건식 ? 출력1 : 출력2 */}
+            { isGoal ? <MadeGoal /> : <MissedGoal /> }
+        </React.Fragment>
+    );
+
+} /////////// Goal 컴포넌트 ////////////
+
+// 출력하기 /////
+const root5 = ReactDOM.createRoot(document.getElementById("root5"));
+root5.render(
+    <React.Fragment>
+        <h2>한국팀 지금 슛~~~!</h2>
+        <Goal isGoal={false} />
+    </React.Fragment>
+);
+
+// 출력하기 /////
+const root6 = ReactDOM.createRoot(document.getElementById("root6"));
+root6.render(
+    <React.Fragment>
+        <h2>한국팀 다시 슛~~~!</h2>
+        <Goal isGoal={true} />
+    </React.Fragment>
+);
