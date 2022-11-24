@@ -141,7 +141,7 @@ function Goal(props){
     const isGoal = props.속성명;
     return(
         <React.Fragment>
-            <h1>[ ♣ 카타르 중계석 ♣ ]</h1>
+            <h2>한국팀 지금 슛~~~!</h2>
             {/* 삼항연산자 -> 조건식 ? 출력1 : 출력2 */}
             { isGoal ? <MadeGoal /> : <MissedGoal /> }
         </React.Fragment>
@@ -153,7 +153,7 @@ function Goal(props){
 const root5 = ReactDOM.createRoot(document.getElementById("root5"));
 root5.render(
     <React.Fragment>
-        <h2>한국팀 지금 슛~~~!</h2>
+        <h1>[ ♣ 카타르 중계석 ♣ ]</h1>
         <Goal isGoal={false} />
     </React.Fragment>
 );
@@ -162,7 +162,7 @@ root5.render(
 const root6 = ReactDOM.createRoot(document.getElementById("root6"));
 root6.render(
     <React.Fragment>
-        <h2>한국팀 다시 슛~~~!</h2>
+    <   h1>[ ♣ 카타르 중계석 ♣ ]</h1>
         <Goal isGoal={true} />
     </React.Fragment>
 );
