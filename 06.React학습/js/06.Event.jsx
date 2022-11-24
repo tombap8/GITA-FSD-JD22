@@ -81,8 +81,6 @@ function move(){
 
 
 
-
-
 /// 최초 출력 호출하기 /////////
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<EventShow />);
