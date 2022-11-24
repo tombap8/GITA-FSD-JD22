@@ -21,7 +21,7 @@
             <div class="mwrap">
                 <!-- 입력창박스 -->
                 <div id="search">
-                    <input type="text">
+                    <input type="text" class="search">
                 </div>
                 <!-- 검색버튼 -->
                 <button class="scbtn fi fi-search">
