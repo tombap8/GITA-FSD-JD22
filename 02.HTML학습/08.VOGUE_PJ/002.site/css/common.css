@@ -333,6 +333,8 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
     padding-top: 6px;
     padding-bottom: 30px;
     background-color: #fff;
+    /* 보이는 화면크기 보다 넘치는 컨텐츠 스크롤로 보기(y축) */
+    overflow-y: auto;/* auto는 자동스크롤 */
     display: none; /* 처음에 안보임 */
 }
 /* 1.5-1.모바일 GNb */

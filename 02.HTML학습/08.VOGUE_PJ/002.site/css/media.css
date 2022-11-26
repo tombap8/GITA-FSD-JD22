@@ -13,6 +13,7 @@
   /* 2. 로고, 로고이미지 */
   .logo {
     margin-bottom: 0;
+    height: auto;/* 기존높이값 해제 */
   }
 
   .logo img {

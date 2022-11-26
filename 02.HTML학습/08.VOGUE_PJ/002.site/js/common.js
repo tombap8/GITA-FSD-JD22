@@ -198,4 +198,62 @@ $(() => {
         // pos 전역변수에 값넣기
         pos = 0; // 최상단 위치인 0을 넣는다!
     }); /////// click ///////////
+
+    /************************************** 
+        모바일 버튼 클릭시 검색 / GNB 보이기
+    **************************************/
+    // 1. 햄버거버튼
+    $('.hbtn').click(() => {
+        // GNB 박스 슬라이딩 보임/숨김
+        // slideToggle() -> slideUp/slideDown
+        // 대상: 모바일 GNB
+        $('#mobx').slideToggle(400, resetH);
+        // 애니후 높이값 재설정 호출!
+    }); ////////// click /////////
+
+    // 2. 검색버튼
+    $('.sbtn').click(() => {
+        // GNB 박스 슬라이딩 보임/숨김
+        // slideToggle() -> slideUp/slideDown
+        // 대상: 모바일 GNB
+        $('.mos').slideToggle(200, resetH);
+        // 애니후 높이값 재설정 호출!
+    }); ////////// click /////////
+
+    /* 모바일 GNB 높이값 재설정 함수 */
+    const resetH = () => {
+        // #mobx의 높이값을 동적으로 생성함
+        console.log(
+            '.top의 높이값:',
+            $('.top').innerHeight(),
+            '\n.mos의 높이값:',
+            $('.mos').css('display')
+        );
+
+        // 검색박스 높이는 block일때 넣어줌!
+        let temp = $('.mos').css('display') === 'none' ?
+            0 : $('.mos').innerHeight();
+
+        // 변경할 높이
+        let Hval =
+            $('.top').innerHeight() + temp;
+        // innerHeight()는 패딩포함높이
+        // height()는 순수높이(컨텐츠만)
+        // 017문서참조
+
+        console.log('.top높이:',
+            $('.top').innerHeight());
+
+        console.log('.mos높이:',
+            $('.mos').css('display') === 'none' ?
+            0 : $('.mos').innerHeight());
+
+        console.log('보정높이:', Hval);
+
+        // 동적으로 변경하기
+        $("#mobx").css({
+            height: `calc(100vh - ${Hval}px)`
+        })
+    }; /////// resetH 함수 ///////////
+
 }); //////////////// jQB ///////////////////
