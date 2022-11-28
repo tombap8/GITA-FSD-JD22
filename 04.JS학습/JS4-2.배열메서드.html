@@ -69,7 +69,284 @@
         }
     </style>
     <script>
-        
+        /////////// 로드구역 ///////////////////////////
+        window.addEventListener("DOMContentLoaded",()=>{
+
+            console.log("로딩완료!");
+
+            // 1. 배열변수 선언과 할당
+            const fruit = ["배","사과","용과","딸기"];
+            // 2. 과일명과 배경이미지명을 매징함->객체
+            const frObj = {
+                "배":"fruits_01",
+                "사과":"fruits_02",
+                "용과":"fruits_14",
+                "딸기":"fruits_09",
+                "두리안":"fruits_17",
+                "바나나":"fruits_15",
+                "수박":"fruits_12",
+                "파인애플":"fruits_13",
+                "망고":"fruits_24",
+                "오렌지":"fruits_03",
+                "체리":"fruits_05"
+            }; /// frObj 객체 ////////
+
+            // 3. 대상요소 ////////////////////////////
+            // (1) 배열정보출력 : .showit
+            let showit = document.querySelector(".showit");
+            // (2) 배열로 이미지 출력 : .cont
+            let cont = document.querySelector(".cont");
+            // (3) 조작버튼 요소들 : .mbtn
+            let mbtn = document.querySelectorAll(".mbtn");
+            // (4) 선택박스 : #sel
+            let sel = document.querySelector("#sel");
+
+            // 4. 처음 배열 출력하기 ///////
+            const arrShow = () =>
+            showit.innerText = fruit.join("*");
+            // join(구분자) 
+            // -> 배열사이에 구분자를 넣고 문자로 변환
+
+            // 처음출력호출!
+            arrShow();
+
+            // 5. 과일 주세요~! 버튼 클릭시 배열정보로 과일
+            // 박스 만들고 이미지 출력하기!
+            // 대상: .mbtn 중 1번째 -> mbtn[0]
+            mbtn[0].onclick = ()=>{
+
+                // 1. 호출확인
+                console.log("과일주세요~!");
+
+                // 2. 변경내용: 배열의 과일만큼 ul>li을
+                // 만들어서 html로 .cont에 출력하기!
+                let temp = "<ul>";
+
+                // forEach() 배열전용 메서드 사용!
+                // forEach((값,순번,객체)=>{})
+                // 대상: fruit 배열변수
+                fruit.forEach((val)=>{
+                    // 배열값 확인
+                    console.log("배열값:",val);
+                    temp += `
+                    <li style="background:url(./addimg/${frObj[val]}.png) no-repeat center/cover">${val}</li>
+                    `;
+                }); ///// forEach /////////
+
+                // temp 변수 마무리
+                temp += "</ul>";
+
+                // 화면출력
+                cont.innerHTML = temp;
+
+            }; ////////// click /////////////
+
+            // 6. 과일이미지명 셋팅의 객체 속성명으로
+            // 과일 선택박스(#sel) 옵션 셋팅하기!
+            // 대상: #sel -> sel변수
+            // 바로실행하는 함수만들기!
+            // (함수)() -> 자기자신이 바로실행됨!
+            // 재귀호출함수라고도 함!
+            // 재귀호출함수는 한번만 생성후에 바로 실행할
+            // 코드를 만들때 이름없이 코드를 묶어서
+            // 구현후 바로 실행할때 많이 사용한다!!!
+            (()=>{ ///// 과일선택박스 바인딩 /////
+
+                console.log("바로실행?");
+                let temp = "";
+
+                // 객체를 위한 for문 -> for in문 사용!
+                // 객체대상: frObj
+                // 변수x는 객체속성명이다!
+                for(let x in frObj)
+                    temp+=`<option>${x}</option>`;
+                    // console.log(x);
+
+                sel.innerHTML = temp;
+            })(); ///// 과일선택박스 바인딩 끝 /////
+
+            // ((참고))
+            // 요소들을 선택하여 변수에 담으면
+            // html 컬렉션이 된다! 
+            // 선택시 배열처럼 순번으로 선택
+            // 주의사항: 절대배열이 아님!!!
+
+            // 7. 뒷배열추가요~! 버튼 클릭시
+            // -> 현재 선택된 #sel과일을 맨뒤에 추가함!
+            // 대상: mbtn[1]
+            mbtn[1].onclick = ()=>{
+
+                // 호출확인!
+                console.log("뒷배열추가!");
+
+                // 선택대상: #sel 인 선택박스의 값
+                // 배열에 맨뒤 값추가는 -> push() 
+                fruit.push(sel.value);
+                // sel.value는 선택된 option값
+                // -> option에 value속성이 있으면 그값
+                // 없으면 데이터값을 가져간다!
+
+                // 배열정보 화면출력하기
+                arrShow();
+
+                // 배열선택번호 업데이트하기
+                makeNum();
+
+            }; //////// click ///////////////
+
+            // 8. 앞배열추가요~! 버튼 클릭시
+            // -> 현재 선택된 #sel과일을 맨앞에 추가함!
+            // 대상: mbtn[2]
+            mbtn[2].onclick = ()=>{
+
+                // 호출확인!
+                console.log("앞배열추가!");
+
+                // 선택대상: #sel 인 선택박스의 값
+                // 배열에 맨앞 값추가는 -> unshift() 
+                fruit.unshift(sel.value);
+                // sel.value는 선택된 option값
+                // -> option에 value속성이 있으면 그값
+                // 없으면 데이터값을 가져간다!
+
+                // 배열정보 화면출력하기
+                arrShow();
+
+                // 배열선택번호 업데이트하기
+                makeNum();
+
+            }; //////// click ///////////////
+
+            // 9. 뒷배열삭제요~! 버튼 클릭시
+            // 대상: mbtn[3]
+            mbtn[3].onclick = ()=>{
+
+                // 호출확인!
+                console.log("뒷배열삭제!");
+
+                // 배열에 맨뒤 값삭제는 -> pop() 
+                fruit.pop();
+
+                // 배열정보 화면출력하기
+                arrShow();
+                
+                // 배열선택번호 업데이트하기
+                makeNum();
+
+            }; //////// click ///////////////
+
+            // 10. 앞배열삭제요~! 버튼 클릭시
+            // 대상: mbtn[4]
+            mbtn[4].onclick = ()=>{
+
+                // 호출확인!
+                console.log("앞배열삭제!");
+
+                // 배열에 맨앞 값삭제는 -> shift() 
+                fruit.shift();
+
+                // 배열정보 화면출력하기
+                arrShow();
+                
+                // 배열선택번호 업데이트하기
+                makeNum();
+
+            }; //////// click ///////////////
+
+            ///////////////////////////////////////////////
+            /// 중간 배열 지우기 또는 넣기를 위해
+            // 현재 배열번호 선택박스와 지울개수를 요소를 셋업
+            ///////////////////////////////////////////////
+
+            // 배열번호 select박스 : #anum
+            let anum = document.querySelector("#anum");
+
+            // 지울개수 input박스 : #delnum
+            let delnum = document.querySelector("#delnum");
+
+            // 현재배열개수만큼 선택순번을 select박스 #anum에
+            // 셋팅하는 함수를 만들자!
+            const makeNum = () => {
+                // 호출확인!
+                console.log("배열순번 선택박스셋팅!");
+
+                // 임시변수
+                let temp = "";//초기화
+
+                // 데이터 대상: fruit배열
+                // 출력 대상: #anum -> anum변수
+                fruit.forEach((val,idx)=>{
+                    // 두번째 전달값 idx -> 배열순번
+                    temp += 
+                    `<option value="${idx}">${val}</option>`;
+                }); ///// forEach ////
+
+                // 값출력
+                anum.innerHTML = temp;
+
+            }; /////// makeNum 함수 ///////////
+
+            // 배열순번 최초호출
+            makeNum();
+
+            // 11. 중간배열 삭제! 버튼 
+            // 대상: mbtn[5]
+            mbtn[5].onclick = () => {
+
+                // 호출확인!
+                console.log("중간배열삭제!");
+
+                // 중간배열 삭제하기 -> splice(순번,지울개수)
+                // splice(순번) -> 순번부터 뒤를 모두지움
+
+                // 순번은 선택과일 : anum 변수
+                // 지울개수는 지울개수입력박스 : delnum 변수
+
+                if(delnum.value!="") // 지울값이 빈값이 아니면
+                    fruit.splice(anum.value,delnum.value);
+                else // 지울값이 빈값이면 순번하나만씀!
+                    fruit.splice(anum.value);
+                    // 순번부터 뒤쪽배열 모두지움!
+
+                // 배열정보 화면출력하기
+                arrShow();
+                
+                // 배열선택번호 업데이트하기
+                makeNum();
+                
+
+            }; ///////// click ///////////////
+
+
+            // 11. 중간배열 삽입! 버튼 
+            // 대상: mbtn[6]
+            mbtn[6].onclick = () => {
+
+                // 호출확인!
+                console.log("중간배열삽입!");
+
+                // 중간배열 삽입하기 
+                // -> splice(순번,0,넣을값,...)
+                // 지울개수를 0으로 하고 뒤에 넣을값을 콤마로
+                // 여러개 넣을 수 있다!
+                // 선택된 순번 앞에 값이 삽입된다!
+
+                // 순번은 선택과일 : anum 변수
+                // 추가할 과일은 #sel에서 선택한다!
+
+                fruit.splice(anum.value,0,sel.value);
+
+                // 배열정보 화면출력하기
+                arrShow();
+                
+                // 배열선택번호 업데이트하기
+                makeNum();
+                
+
+            }; ///////// click ///////////////
+
+
+        }); ////////// 로드구역 ////////////////////////
     </script>
 </head>
 
