@@ -1,0 +1,11 @@
+과제) https://jentestore.notion.site/jente-Interview-assignment-ba308b5c80e9402ea6e0b0326e8e486a
+
+ex) http://prod-env.jentestore.xyz:3000/example
+
+json)
+- http://prod-env.jentestore.xyz:3000/totalPage
+- http://prod-env.jentestore.xyz:3000/list?page=n
+- http://prod-env.jentestore.xyz:3000/brands
+- http://prod-env.jentestore.xyz:3000/categories
+
+최종) http://localhost:3000/result

@@ -1,0 +1,41 @@
+brand_code조건 : {"brand_code":"@"} > 힌트) brand에서 불러오기
+    - brand_code || MARCA_CODICE || BRAND_CODE
+
+category_code조건 : {"category_code":"@"} > 힌트) category에서 불러오기
+    - category_code || CATEGORY_CODE || CATEGORIA_CODICE
+
+color조건 : {"color":"@"} > 힌트) list에서 불러오기
+    - COLORE || color || COLOR
+
+gender조건 : {"gender":"MEN" or "WOMEN" or "UNISEX"}
+    - GENERE || GENDER || gender
+    - 무조건 대문자로 출력
+    - MEN
+        - uomo 
+        - man
+        - men
+
+    - WOMEN
+        - woman
+        - women
+        - donna
+
+    - NUISEX
+        - unisex
+
+season조건 : {"season":"@"} > 힌트) for of 안에 문자열을 넣어 자른다
+    - STAGIONE || season || SEASON
+    - 앞 2개는 결과값 뒷자리 2자리로
+    - 앞 2개를 제외하고 나오는 남는 문자 2개를 대문자로 변형 및 앞 2자리로
+    - /가 있을 경우 앞 2개를 제외하고 나오는 첫 문자 + / 뒤의 문자를 앞 2자리로
+    - 결과값은 총 4자리
+
+brand_name조건 : {"brand_name":"@"} > 힌트) brand에서 불러오기
+    - brand_code || MARCA_CODICE || BRAND_CODE
+    - name 출력
+
+category_name조건 : {"category_name":"@"} > 힌트) category에서 불러오기
+    - category_code || CATEGORY_CODE || CATEGORIA_CODICE
+    - name 출력
+
+name조건 : {"name조건":"brand_name" + "color" + "category_name"}
