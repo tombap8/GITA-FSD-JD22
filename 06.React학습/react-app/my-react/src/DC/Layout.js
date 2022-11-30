@@ -13,22 +13,22 @@ const Layout = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/CHARACTERS">CHARACTERS</Link>
+                        <Link to="/ct">CHARACTERS</Link>
                     </li>
                     <li>
-                        <Link to="/COMICS">COMICS</Link>
+                        <Link to="/co">COMICS</Link>
                     </li>
                     <li>
-                        <Link to="/MOVIES">MOVIES</Link>
+                        <Link to="/mv">MOVIES</Link>
                     </li>
                     <li>
-                        <Link to="/GAMES">GAMES</Link>
+                        <Link to="/gm">GAMES</Link>
                     </li>
                     <li>
-                        <Link to="/VIDEO">VIDEO</Link>
+                        <Link to="/vd">VIDEO</Link>
                     </li>
                     <li>
-                        <Link to="/NEWS">NEWS</Link>
+                        <Link to="/nw">NEWS</Link>
                     </li>
                 </ul>
             </nav>
@@ -37,3 +37,6 @@ const Layout = () => {
         </>
     );
 };
+
+// 내보내기 필수!
+export default Layout;
