@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+.gnb{
+    width: 800px;
+    margin: 0 auto;
+    border: 4px double #000;
+    background-image: linear-gradient(to bottom,#CCC,#111);
+}
+.gnb ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+.gnb li{
+    margin: 0 10px;
+}
+.gnb a{
+    color: #fff;
+    text-decoration: none;
+}
+.gnb a:hover{
+    color: hotpink;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-shadow: 2px 2px 2px #555;
+}
+h1{
+    text-align: center;
+}
