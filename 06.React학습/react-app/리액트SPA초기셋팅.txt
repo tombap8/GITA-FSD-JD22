@@ -31,6 +31,7 @@ npm uninstall -g create-react-app
 
 3. 새로운 리액트 어플리케이션을 만든다
 npx create-react-app my-react-app
+(my-react-app은 내가지은이름)
 
 4. 이미 만들고 깃허브에서 연결하였다면...
 해당 소스까지 들어와서 react와 react-dom을 설치한다!
