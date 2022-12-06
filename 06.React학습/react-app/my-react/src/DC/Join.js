@@ -18,6 +18,10 @@ import React, {useState} from "react";
             - 코드에서 set변수명 에 값을 할당하면
             useState가 이것을 체크하여 다른 변경을 
             하도록 메서드를 실행한다!
+            -> set변수명(값) : 메서드 형태로 값을 셋팅한다!(셋터와 비슷함)
+        4) 사용결과
+            - 별도의 메서드 호출없이 후크 상태변수를 사용한 곳이
+            자동으로 변경될때마다 다시 갱신되는 것을 확인할 수 있다!
 */
 
 function Join(){
@@ -42,11 +46,12 @@ function Join(){
         console.log(e.target.value);
 
         // 에러아님상태 if문 
-        // 조건1: 
-        // !e.target.value 입력값이 없으면 false인데 true로 변경(!연산자)
-        // 조건2: 유효성 검사결과가 true인가?
-        // 
-        if((!e.target.value))
+        // 조건: 유효성 검사결과가 true인가? 에러상태 false
+        // test() 메서드 JS기본 유효성검사 기능
+        // 유효성검사식변수.test(검사할값) -> 통과시 true, 불통과시 false
+        if(valid.test(e.target.value)) setUserIdError(false);
+        // 그밖에 경우 에러상태 true
+        else setUserIdError(true);
 
         // 실제 userId 변수값은 setUserId를 업데이트 해야함!
         setUserId(e.target.value)
@@ -62,6 +67,17 @@ function Join(){
                 <div>
                     <label> 아이디를 입력하세요
                         <input type="text" maxLength="20" placeholder="아이디를 입력" value={userId} onChange={onChangeUserId} />
+                        {
+                        /* 에러일 경우 메시지 보여주기 */
+                        /* 조건 && 요소 -> 조건이 true일때 요소출력 */
+                        userIdError &&
+                        <div>
+                            <small style={{color:"red",fontSize:"10px"}}>
+                            사용자 아이디는 5자이상 문자 또는 숫자를 포함해야합니다!
+                            </small>
+                        </div>
+                        }
+
                     {/* 
                     -> value={userId} 는 setUserId를 통해 셋팅해야만
                     변경된 값이 실제 화면에 반영된다!
