@@ -8,6 +8,7 @@ import GAMES from "./DC/GAMES";
 import MOVIES from "./DC/MOVIES";
 import NEWS from "./DC/NEWS";
 import VIDEO from "./DC/VIDEO";
+import MEMBER from "./DC/MEMBER";
 
 /* 
     [ 리액트 라우터 ]
@@ -42,6 +43,7 @@ export default function App(){
                     <Route path="mv" element={<MOVIES />} />
                     <Route path="nw" element={<NEWS />} />
                     <Route path="vd" element={<VIDEO />} />
+                    <Route path="mem" element={<MEMBER />} />
                 </Route>
             </Routes>
         </BrowserRouter>

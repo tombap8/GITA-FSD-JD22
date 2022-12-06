@@ -37,6 +37,10 @@ h1{
 .cont img{
     max-width: 100%;
 }
+iframe{
+    width: 731px;
+    height: 412px;
+}
 
 /* 하단영역 */
 .info{

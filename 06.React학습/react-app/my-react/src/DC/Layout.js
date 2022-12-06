@@ -1,6 +1,7 @@
 import {Outlet, Link} from "react-router-dom";
 import Logo from "./Logo";
 import "./Layout.css";
+import "https://kit.fontawesome.com/a076d05399.js";
 /* 
     [ 리엑트 스타일링 기법 3가지 ]
     1. 일반 CSS파일을 컴포넌트 JS파일에 import하여 사용
@@ -48,6 +49,11 @@ const Layout = () => {
                     </li>
                     <li>
                         <Link to="/nw">NEWS</Link>
+                    </li>
+                    <li>
+                        <Link to="/mem">
+                            <i className='fas fa-users' style={{fontSize:"36px",color:"lime"}}></i>
+                        </Link>
                     </li>
                 </ul>
             </nav>
