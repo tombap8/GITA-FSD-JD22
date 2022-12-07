@@ -149,7 +149,60 @@ function Join(){
                     사용자 아이디는 5자이상 문자 또는 숫자를 포함해야합니다! */}
                     </label>
                 </div>
+                <div>
+                    <label> 비밀번호를 입력하세요
+                        <input type="pwd" maxLength="20" placeholder="비밀번호" value={pwd} onChange={onChangePwd} />
+                        {pwdError && 
+                        <div className="invalid-input">
+                        <small style={{color:"red"}}>
+                            비밀번호는 8자 이상이어야 하며 문자와 숫자를 
+                            각각 하나 이상 포함해야 합니다.
+                        </small>
+                    </div>}
+                    </label>
+                </div>
+                <div>
+                    <label> 비밀번호 확인을 입력하세요
+                        <input type="pwd" maxLength="20" placeholder="비밀번호확인" value={chkPwd} onChange={onChangeChkPwd} />
+                        {chkPwdError && 
+                        <div className="invalid-input">
+                        <small style={{color:"red"}}>
+                            비밀번호가 일치하지 않았습니다.
+                        </small>
+                    </div>}
+                    </label>
+                </div>
+                <div>
+                    <label> 이름을 입력하세요
+                        <input type="text" maxLength="20" placeholder="이름" value={userName} onChange={onChangeUserName} />
+                        {userNameError && 
+                        <div className="invalid-input">
+                        <small style={{color:"red"}}>
+                            필수입력
+                        </small>
+                    </div>}
+                    </label>
+                </div>
+                <div>
+                    <label> 이메일을 입력하세요
+                        <input type="text" maxLength="50" placeholder="이메일주소" value={email} onChange={onChangeEmail} />
+                        {emailError && 
+                        <div className="invalid-input">
+                        <small style={{color:"red"}}>
+                            유효한 이메일 형식을 입력하십시오.
+                        </small>
+                    </div>}
+                    </label>
+                </div>
+                <br />
+                <div>
+                    <button onClick={onSubmit}>회원가입</button>
+                </div>
             </form>
+            <br />
+            <span className="text">이미 회원이신가요? 
+            <Link to="/login" className="link">로그인</Link></span>
+    
         </>
     );
 
