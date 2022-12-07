@@ -49,7 +49,7 @@ function Join(){
         // 조건: 유효성 검사결과가 true인가? 에러상태 false
         // test() 메서드 JS기본 유효성검사 기능
         // 유효성검사식변수.test(검사할값) -> 통과시 true, 불통과시 false
-        if(valid.test(e.target.value) || !(e.target.value)) setUserIdError(false);
+        if(valid.test(e.target.value)) setUserIdError(false);
         // 그밖에 경우 에러상태 true
         else setUserIdError(true);
 
