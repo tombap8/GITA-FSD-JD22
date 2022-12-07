@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -163,7 +164,7 @@ function Join(){
                 </div>
                 <div>
                     <label> 비밀번호를 입력하세요
-                        <input type="pwd" maxLength="20" placeholder="비밀번호" value={pwd} onChange={onChangePwd} />
+                        <input type="password" maxLength="20" placeholder="비밀번호" value={pwd} onChange={onChangePwd} />
                         {pwdError && 
                         <div className="invalid-input">
                         <small style={{color:"red",fontSize:"10px"}}>
@@ -175,7 +176,7 @@ function Join(){
                 </div>
                 <div>
                     <label> 비밀번호 확인을 입력하세요
-                        <input type="pwd" maxLength="20" placeholder="비밀번호확인" value={chkPwd} onChange={onChangeChkPwd} />
+                        <input type="password" maxLength="20" placeholder="비밀번호확인" value={chkPwd} onChange={onChangeChkPwd} />
                         {chkPwdError && 
                         <div className="invalid-input">
                         <small style={{color:"red",fontSize:"10px"}}>
