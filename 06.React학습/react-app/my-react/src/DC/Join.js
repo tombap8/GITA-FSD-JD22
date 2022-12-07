@@ -30,11 +30,30 @@ function Join(){
     //          실시간으로 체크하여 결과를 화면에 리턴한다!
 
     // [후크 useState 메서드 셋팅하기]
+    // [ 1.입력요소 후크변수 ]
     // 1. 아이디변수
     const [userId,setUserId] = useState("");
+    // 2. 비밀번호변수
+    const [pwd, setPwd] = useState("");
+    // 3. 비밀번호확인변수
+    const [chkPwd, setChkPwd] = useState("");
+    // 4. 사용자이름변수
+    const [userName, setUserName] = useState("");
+    // 5. 이메일변수
+    const [email, setEmail] = useState("");
 
-    // 2. 에러상태값변수 : 초기값은 에러 아님(false)
+    // [ 2.에러상태값 후크변수 ]
+    // -> 에러상태값변수 : 초기값은 에러 아님(false)
+    // 1. 아이디에러변수
     const [userIdError,setUserIdError] = useState(false);
+    // 2. 비밀번호에러변수
+    const [pwdError, setPwdError] = useState(false);
+    // 3. 비밀번호확인에러변수
+    const [chkPwdError, setChkPwdError] = useState(false);
+    // 4. 사용자이름에러변수
+    const [userNameError, setUserNameError] = useState(false);
+    // 5. 이메일에러변수
+    const [emailError, setEmailError] = useState(false);
 
     // [ 유효성 검사 메서드 ]
     // 1. 아이디 유효성 검사
@@ -49,7 +68,9 @@ function Join(){
         // 조건: 유효성 검사결과가 true인가? 에러상태 false
         // test() 메서드 JS기본 유효성검사 기능
         // 유효성검사식변수.test(검사할값) -> 통과시 true, 불통과시 false
-        if(valid.test(e.target.value)) setUserIdError(false);
+        // 추가조건: 내용을 모두 지우면 에러상태가 아님-> !e.target.value
+        if(valid.test(e.target.value) || !(e.target.value))
+         setUserIdError(false);
         // 그밖에 경우 에러상태 true
         else setUserIdError(true);
 
