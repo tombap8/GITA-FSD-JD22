@@ -107,7 +107,19 @@ function Join(){
         setEmail(e.target.value);
     };
 
-    // [ 에러 상태 처리 메서드 ]
+    // 전체 유효성검사 체크
+    const totalValid = () => {
+        // 모든 입력창 검사(에러시 에러후크에 true전달!)
+        if(!userId) setUserIdError(true);
+        if(!pwd) setPwdError(true);
+        if(!chkPwd) setChkPwdError(true);
+        if(!userName) setUserNameError(true);
+        if(!email) setEmailError(true);
+
+        // 모두 true일 경우 true값 리턴
+        if(userId && pwd && chkPwd && userName && email) return true;
+        else return false;
+    }
 
 
     return(
