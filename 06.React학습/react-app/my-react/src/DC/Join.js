@@ -78,6 +78,34 @@ function Join(){
         setUserId(e.target.value)
 
     }; //////////// onChangeUserId //////////
+    // 2. 비밀번호 유효성 검사
+    const onChangePwd = (e) => {
+        const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (valid.test(e.target.value) || !(e.target.value)) setPwdError(false);
+        else setPwdError(true);
+
+        if (!chkPwd || e.target.value === chkPwd) setChkPwdError(false);
+        else setChkPwdError(true);
+        setPwd(e.target.value);
+    };
+    // 3. 비밀번호 유효성 검사
+    const onChangeChkPwd = (e) => {
+        if (pwd === e.target.value) setChkPwdError(false);
+        else setChkPwdError(true);
+        setChkPwd(e.target.value);
+    };
+    // 4. 사용자이름 유효성 검사
+    const onChangeUserName = (e) => {
+        setUserNameError(false);
+        setUserName(e.target.value)
+    };
+    // 5. 이메일 유효성 검사
+    const onChangeEmail = (e) => {
+        const valid = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+        if (valid.test(e.target.value) || !e.target.value) setEmailError(false);
+        else setEmailError(true);
+        setEmail(e.target.value);
+    };
 
     // [ 에러 상태 처리 메서드 ]
 
