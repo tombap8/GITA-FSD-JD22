@@ -121,6 +121,18 @@ function Join(){
         else return false;
     }
 
+    // 회원가입 버튼 클릭시 처리 메서드
+    const onSubmit = (e) => {
+        // 기본이동 서브밋 막기
+        e.preventDefault();
+
+        // 유효성검사 전체 통과시
+        if(totalValid()) alert("처리페이지로 이동!^^");
+        // 유효성검사 불통과시
+        else alert("입력을 수정하세요!");
+        
+    }
+
 
     return(
         <>
@@ -154,7 +166,7 @@ function Join(){
                         <input type="pwd" maxLength="20" placeholder="비밀번호" value={pwd} onChange={onChangePwd} />
                         {pwdError && 
                         <div className="invalid-input">
-                        <small style={{color:"red"}}>
+                        <small style={{color:"red",fontSize:"10px"}}>
                             비밀번호는 8자 이상이어야 하며 문자와 숫자를 
                             각각 하나 이상 포함해야 합니다.
                         </small>
@@ -166,7 +178,7 @@ function Join(){
                         <input type="pwd" maxLength="20" placeholder="비밀번호확인" value={chkPwd} onChange={onChangeChkPwd} />
                         {chkPwdError && 
                         <div className="invalid-input">
-                        <small style={{color:"red"}}>
+                        <small style={{color:"red",fontSize:"10px"}}>
                             비밀번호가 일치하지 않았습니다.
                         </small>
                     </div>}
@@ -177,7 +189,7 @@ function Join(){
                         <input type="text" maxLength="20" placeholder="이름" value={userName} onChange={onChangeUserName} />
                         {userNameError && 
                         <div className="invalid-input">
-                        <small style={{color:"red"}}>
+                        <small style={{color:"red",fontSize:"10px"}}>
                             필수입력
                         </small>
                     </div>}
@@ -188,7 +200,7 @@ function Join(){
                         <input type="text" maxLength="50" placeholder="이메일주소" value={email} onChange={onChangeEmail} />
                         {emailError && 
                         <div className="invalid-input">
-                        <small style={{color:"red"}}>
+                        <small style={{color:"red",fontSize:"10px"}}>
                             유효한 이메일 형식을 입력하십시오.
                         </small>
                     </div>}
