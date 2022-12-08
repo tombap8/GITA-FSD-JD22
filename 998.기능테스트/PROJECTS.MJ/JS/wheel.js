@@ -1,6 +1,6 @@
+import win from "../../../05.jQuery학습/004.플러그인/009.swiper-4.1.0/swiper-4.1.0/src/utils/window.js";
 import { mtc } from "./main.js";
-import albnum from "./module/DBconnect.js";
-import {
+import albnum from "./module/DBconnect.js";import {
   sm,
   slidegnb,
   topA,
@@ -24,16 +24,25 @@ $(() => {
     return Math.floor(ele.offset().top);
   };
 
+  let tempsc=100;
+  let winH = $(window).height()/4;
+
   const clickSetFn = (ele) => {
     let idx = $(ele).index();
-    console.log("클릭위치값:", fval[idx], "/ 순번:", idx);
     $(ele)
       .css({
         height: "50vh",
       })
       .delay(100, () => {
-        BWP.animate({ scrollTop: fval[idx] - gap + "px" });
+        BWP.animate({ scrollTop: "+=100px" });
       });
+    ele.scrollIntoView({
+        behavior: "smooth", // or "auto" or "instant"
+        block: idx<tempsc?"start":"end" // or "end"
+    });
+
+    console.log("dir:",idx<tempsc?"start":"end");
+    tempsc = idx;
 
     $(".ttrack", ele)
       .delay(2000)
@@ -43,6 +52,7 @@ $(() => {
       .css({ height: "0vh" })
       .find(".ttrack")
       .removeClass("on");
+
   }; ////// clickSetFn ///////
 
   // 앨범 클릭시 위치조정 메서드
@@ -58,26 +68,13 @@ $(() => {
 
   let tempSts = 0; // 광스크롤 막기
 
-  let fval = [];
-  $(".mtrack").each((idx, ele) => {
-    fval[idx] = Math.floor($(ele).offset().top);
-  });
-
-  // 화면의 50%크기 계산 보정값
-  let gap = $(window).height() / 2;
-
-  console.log("초깃값:", fval, "\n갭값:", gap);
-
-  BWP.scroll(function () {
-    let scTop = BWP.scrollTop();
-    console.log("스크롤:", scTop);
-  });
+  let scTop;
 
   BWP.on("mousewheel wheel", function (e) {
     e = window.event || e;
     let delta = e.wheelDelta || e.detail;
 
-    let scTop = BWP.scrollTop();
+    scTop = BWP.scrollTop();
 
     // // 1 . 상단 큰 로고 클래스 온 적용 + 줄어들기
     if (scTop >= 100) {

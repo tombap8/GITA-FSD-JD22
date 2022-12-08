@@ -29,7 +29,6 @@ body * {
     /* color: darkgoldenrod; */
     /* font-size: 3vw; */
 }
-
 body {
     height: auto;
     /* perspective: 1300px; */
@@ -709,7 +708,11 @@ body {
     width: 100%;
     overflow: hidden;
 }
-
+html,body{    
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
 /* 앨범 집약 페이지 */
 .bodywrapp {
     top: 0;
