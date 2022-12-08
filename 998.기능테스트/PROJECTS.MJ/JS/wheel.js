@@ -24,23 +24,16 @@ $(() => {
         return Math.floor(ele.offset().top);
     };
 
-    let sec;
-    let asd = 0;
 
     const clickSetFn = (ele) => {
         let idx = $(ele).index();
-        let section = mtc.eq(idx);
-
-        sec = updateOffset(section);
-        asd = Math.floor(BWP.scrollTop() - 200);
-        console.log("offset Top값:", sec);
-        console.log("this:", ele);
+        console.log("클릭위치값:",fval[idx],"/ 순번:",idx);
         $(ele)
             .css({
                 height: "50vh",
             })
             .delay(100, () => {
-                BWP.animate({ scrollTop: asd + sec + "px" });
+                BWP.animate({ scrollTop: fval[idx] + "px" });
             });
 
         $(".ttrack", ele)
@@ -67,14 +60,16 @@ $(() => {
     let tempSts = 0; // 광스크롤 막기
 
 
-    let firstValue = Math.floor($(".mtrack").first().offset().top);
-    // 최초값
-    console.log("최초값:",firstValue);
+    let fval = [];
+    $(".mtrack").each((idx,ele)=>{
+        fval[idx] = Math.floor($(ele).offset().top);
+    });
+    console.log("초깃값:",fval);
 
+    
     BWP.scroll(function(){
         let scTop = BWP.scrollTop();
         console.log("스크롤:",scTop);
-        if(scTop > firstValue) console.log("요기");
     })
 
     BWP.on("mousewheel wheel", function (e) {
@@ -82,11 +77,6 @@ $(() => {
         let delta = e.wheelDelta || e.detail;
 
         let scTop = BWP.scrollTop();
-        // 현제 위치값 소수점 버리고
-        asd = Math.floor($(this).scrollTop() - 200);
-        let aa = $(this).scrollTop();
-
-        $(".qq").text(aa);
 
         // // 1 . 상단 큰 로고 클래스 온 적용 + 줄어들기
         if (scTop >= 100) {
