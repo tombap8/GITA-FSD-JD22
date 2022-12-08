@@ -1,0 +1,642 @@
+@charset "utf-8";
+
+@import url(reset.css);
+@import url(core.css);
+/* 게시판 css */
+
+html {
+  overflow-x: hidden;
+}
+.bodermain {
+  position: relative;
+  width: 1400px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+footer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  text-align: center;
+  top: 0;
+}
+
+/* 웹폰트 */
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet&display=swap");
+/* 
+    font-family: 'Hahmlet', serif;
+*/
+
+/* 초기화 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+/* 테이블 공통 */
+.tbl {
+  /* 글자체 (웹폰트) ff */
+  font-family: "Hahmlet", serif;
+  /* 글자색 c */
+  color: #222;
+  /* 테이블 기본 사이간극 없애기 */
+  border-collapse: collapse;
+}
+
+/* 드라마 리스트 테이블 */
+#drama {
+  /* 글자크기 fz */
+  font-size: 24px;
+  /* 블록or테이블 가로중앙정렬 - 마.영.오! */
+  margin: 0 auto;
+  /* 가로크기 w */
+  width: 1000px;
+  /* 테이블 width지정이 없으면 내용만큼 늘어남!
+    좁으면 아래로 내용이 줄바꿈됨 */
+}
+/* 테이블 제목 */
+#drama caption {
+  /* 글자크기 fz */
+  font-size: 35px;
+  /* 글자두껍게 fwb */
+  font-weight: bold;
+  /* 자간 ls */
+  letter-spacing: 5px;
+  /* 패딩 p */
+  padding: 50px 0 20px;
+  /* 위 양쪽 아래 */
+}
+/* td와 th 패딩 */
+#drama td {
+  padding: 8px 10px;
+  /* 위아래 양쪽 */
+}
+
+#drama td {
+  border-top: 2px double #000;
+  border-bottom: 2px double #000;
+}
+
+/* 본문(tbody)의 짝수번째 tr의 td에 배경색 넣기 */
+/* nth-child(순번) - 순번에 짝/홀수
+-> odd(홀수), even(짝수) */
+#drama tbody tr:nth-child(even) td {
+  /* 배경색 bgc */
+  background-color: #ededed;
+}
+#drama tbody tr:nth-child(odd) td {
+  background-color: gray;
+}
+
+/* 하단부분(tfoot) */
+#drama tfoot td {
+  /* 글자중앙 tac */
+  text-align: center;
+  /* 패딩 p */
+  padding: 40px 0;
+}
+
+/* td 링크 처리 */
+#drama tbody a {
+  /* 글자색 c */
+  color: #222;
+  /* 밑줄없앰 tdn */
+  text-decoration: none;
+}
+/* td 오버시 */
+#drama tbody a:hover {
+  /* 글자색 c */
+  color: blue;
+  /* 글자데코 : 밑줄 tdu */
+  text-decoration: underline;
+}
+
+/* 하단 페이징 링크 처리 */
+#drama tfoot a {
+  /* 글자색 c */
+  color: #222;
+  /* 밑줄없앰 tdn */
+  text-decoration: none;
+}
+/* 하단 페이징 오버시 */
+#drama tfoot a:hover {
+  /* 글자색 c */
+  color: blueviolet;
+}
+
+/* 구분테이블 박스 */
+div.gubun {
+  /* 가로크기 w */
+  width: 1000px;
+  /* 마영오! */
+  margin: 0 auto;
+  /* 마진 아래 */
+  margin-bottom: 100px;
+  /* float으로 망가짐 방지 oh */
+  overflow: hidden;
+}
+/* 구분테이블 */
+table#gubun {
+  /* 글자크기 fz */
+  font-size: 20px;
+  /* 보더 */
+  border: 1px solid #999;
+  /* 오른쪽 끝으로 보냄 flr */
+  float: right;
+}
+/* 구분테이블 td */
+#gubun td {
+  /* 패딩 p */
+  padding: 10px;
+}
+/* 구분테이블 첫번째 tr의 첫번째 td의 오른쪽 점선넣기 */
+#gubun tr:first-child td:first-child {
+  /* 보더 오른쪽 bdr */
+  border-right: 1px dotted #999;
+}
+/* 구분테이블 두번째 tr부터 마지막 tr 까지 즉, 앞에 tr이 있는 tr형제요소만 선택하여 보더 상단 넣기!
+앞에 tr이 있는 tr -> tr+tr */
+#gubun tr + tr td {
+  /* 보더 윗쪽 bdt */
+  border-top: 1px dotted #999;
+}
+
+/* 공사중 표시 */
+body * {
+  /* outline: 3px dotted red; */
+  /*임시!!!!*/
+  /* color: darkgoldenrod; */
+  /* font-size: 3vw; */
+}
+
+body {
+  height: auto;
+}
+
+/* 배경 영상 디자인 잡기 */
+.VID {
+  /* z-index로 간섭 불가하게 만들기 */
+  z-index: -9999999;
+  /* 포지션 픽스드 움지이지 않고 따라다닌다 */
+  position: fixed;
+
+  /* 크기조정값 */
+  width: 100vw;
+  object-fit: cover;
+  height: 100%;
+}
+
+.lm {
+  color: aqua;
+  width: 97%;
+  position: absolute;
+  top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+/* 로그인 */
+.login {
+  padding: 0 7px;
+  color: #fff;
+  font-size: 1vw;
+  font-weight: bold;
+  font-family: "Dancing Script", cursive;
+}
+
+/* 회원가입 */
+.member {
+  padding: 0 7px;
+  color: #fff;
+  font-size: 1vw;
+  font-weight: bold;
+  font-family: "Dancing Script", cursive;
+}
+
+/* 상단 햄버거버튼*/
+.topbtn {
+  /* 위치조정 */
+  transition: all 0.7s ease-out;
+  overflow: hidden;
+  top: 33px;
+  left: 7px;
+
+  position: fixed;
+  width: min(20%, 100px);
+  height: 7%;
+  z-index: 9999999999999999;
+  opacity: 0.5;
+  /* background-color: #fff; */
+}
+.topbtn::before {
+  content: "";
+  position: absolute;
+  padding-top: 100%;
+  display: block;
+}
+.topbtn > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+/* 밑줄 쫙쫙!! */
+.topbtn > div > span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+
+  transition: all 0.6s ease-out;
+}
+
+/* topbtn안에 있는 작대기들 개별 */
+.topbtn > div > span:nth-child(1) {
+  height: 2px;
+  background-color: #fff;
+  top: 1px;
+}
+.topbtn > div > span:nth-child(2) {
+  width: 80%;
+  background-color: aliceblue;
+  top: 10px;
+}
+
+.topbtn > div > span:nth-child(3) {
+  background-color: #fff;
+  top: 20px;
+}
+.topbtn > div > span:nth-child(4) {
+  width: 70%;
+  background-color: aliceblue;
+  top: 30px;
+}
+.topbtn > div > span:nth-child(5) {
+  width: 80%;
+  background-color: #fff;
+  top: 40px;
+}
+.topbtn > div > span:nth-child(6) {
+  background-color: aliceblue;
+  height: 3px;
+  top: 50px;
+}
+/* 점 2 4 5번 점찍기! */
+/* 2번 */
+.topbtn > div > span:nth-child(7) {
+  right: 0;
+  background-color: aliceblue;
+  top: 10px;
+
+  height: 2px;
+  width: 5%;
+}
+/* 4번 */
+.topbtn > div > span:nth-child(8) {
+  right: 0;
+  background-color: aliceblue;
+  top: 30px;
+  width: 15%;
+  height: 2px;
+}
+/* 5번 */
+.topbtn > div > span:nth-child(9) {
+  right: 0;
+  background-color: #fff;
+  top: 40px;
+  width: 5%;
+}
+/* on클래스 적용시 변하는 작대기들! */
+.topbtn.on > div > span:nth-child(1) {
+  transform: rotate(30deg);
+  top: 12px;
+}
+.topbtn.on > div > span:nth-child(2) {
+  transform: rotate(31deg);
+  top: 35px;
+  width: 200%;
+}
+.topbtn.on > div > span:nth-child(3) {
+  transform: rotate(30deg);
+}
+.topbtn.on > div > span:nth-child(4) {
+  transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(5) {
+  transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(6) {
+  transform: rotate(150deg);
+  top: 26px;
+}
+.topbtn.on > div > span:nth-child(7) {
+  top: 4px;
+  left: 63%;
+}
+.topbtn.on > div > span:nth-child(8) {
+  display: none;
+}
+
+/* 마우스 오버시 트랜지션!! */
+.topbtn:hover > div > span:nth-child(2) {
+  width: 100%;
+}
+.topbtn:hover > div > span:nth-child(4) {
+  width: 100%;
+}
+.topbtn:hover > div > span:nth-child(5) {
+  width: 100%;
+}
+
+.topbtn:hover {
+  opacity: 1;
+  border-radius: 20%;
+}
+/* 여기까지가 밑줄 쫙 쫙 */
+/* 상단 GNB 로고 싸는박스 */
+.tbox1 {
+  position: relative;
+  width: 100%;
+  top: 0;
+  z-index: 9999999;
+  /* 배경색 */
+  background: #000;
+}
+/* 클래스 on시 fixed */
+.tbox1.on {
+  position: fixed;
+}
+
+/* 상단 디자인 */
+.top {
+  position: relative;
+  height: 130px;
+  z-index: -1;
+}
+
+/* 싸는 박스 */
+.coverSVG {
+  width: 90vw;
+  margin: 0 auto;
+}
+.coverSVG::before {
+  position: absolute;
+  z-index: -9999;
+  content: "";
+  display: block;
+  padding-top: 30%;
+}
+.coverSVG > div {
+  width: min(max(30vw, 250px), 300px);
+  height: 130px;
+  margin: 0 auto;
+}
+
+.coverSVG > div > div {
+  position: relative;
+  top: 50%;
+  width: 33.33%;
+  overflow: hidden;
+  padding-top: 30%;
+  float: left;
+  transform: translateY(-50%);
+}
+
+/* SVG 공통 */
+.toplogo svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 410%;
+}
+
+/* SVG개별 */
+/* .toplogo svg:nth-child(1) {
+  left: 40.2%;
+}
+.toplogo svg:nth-child(2) {
+  left: 47%;
+}
+.toplogo svg:nth-child(3) {
+  left: 53%;
+} */
+/* SVG PATH 공통 클래스 */
+.path {
+  fill: none;
+  stroke: #fff;
+
+  stroke-dasharray: 300%;
+  stroke-dashoffset: -300%;
+
+  animation: pathstrokeani 3s ease-out 0.2s forwards;
+}
+@keyframes pathstrokeani {
+  80% {
+    stroke: #fff;
+    stroke-dashoffset: 0%;
+  }
+  90% {
+    stroke: rgba(255, 255, 255, 0.214);
+    stroke-dashoffset: -300%;
+  }
+  100% {
+    stroke-dashoffset: 0%;
+    stroke: lightsteelblue;
+  }
+}
+/* SVG  PATH 개별 디자인 */
+/* 상단 ul */
+.gnb > ul {
+  bottom: -3px;
+  position: relative;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+}
+
+.gnb > ul > li:last-child {
+  width: 180px;
+}
+.gnb > ul > li {
+  /* 위치조정 */
+  width: 130px;
+  line-height: 2;
+
+  /* 글씨 조정 */
+  text-align: center;
+  font-size: 30px;
+  margin: 0 25px;
+  font-family: "Single Day", cursive;
+
+  color: #fff;
+}
+
+/* gnb a 요소 */
+.gnb > ul > li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* gnb 통배너 밑에 하위 카테고리 ul */
+/* 공통 */
+.ssm {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  display: none;
+  width: 100vw;
+  background: #000;
+  right: 0;
+  border-radius: 0 0 30% 30%;
+}
+/* 개별 */
+/* gnb 통배너 밑에 하위 카테고리 ll */
+.ssm > li {
+  /* display: none; */
+}
+/* 공통 */
+.ssm > li > a {
+  color: #000;
+  font-size: 2 vw;
+}
+/* 개별 */
+
+/*1. 상단 구성요소 ************************************/
+
+/* 하단 박스 */
+footer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  text-align: center;
+  top: 50vw;
+}
+/* 하단 로고 들어가는 부분 */
+footer .flogo {
+  z-index: 1;
+  top: 0;
+  position: relative;
+
+  width: 99.2%;
+}
+/* 하단 SVG 로고 디자인 잡는 부분 */
+.infologo {
+  width: 100%;
+  position: absolute;
+  height: 100px;
+}
+.infologo::before {
+  position: absolute;
+  /* z-index: -9999; */
+  content: "";
+  display: block;
+  padding-top: 30%;
+}
+.infologo > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.infologo svg {
+  top: 5px;
+  position: absolute;
+  width: 30%;
+}
+/* SVG하단로고 개별! */
+.infologo svg:nth-child(1) {
+  left: 35%;
+}
+.infologo svg:nth-child(2) {
+  left: 45.7%;
+}
+.infologo svg:nth-child(3) {
+  left: 56.8%;
+}
+
+/* SVG하단로고 PATH 공통 */
+.path1 {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2px;
+
+  stroke-dasharray: 350%;
+  stroke-dashoffset: -350%;
+
+  animation: flogoani 5s ease-out 0.2s forwards;
+}
+/* 애니 메이션 하단로고 */
+@keyframes flogoani {
+  80% {
+    stroke: #fff;
+    stroke-dashoffset: 0%;
+  }
+  90% {
+    stroke: gray;
+    stroke-dashoffset: -350%;
+  }
+  100% {
+    stroke: #fff;
+    stroke-dashoffset: 0%;
+  }
+}
+
+/* 하단 아이콘 들어가는 부분  */
+footer .ffll1 {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+}
+/* 하단 별만들기 */
+.fooeterstar {
+  position: absolute;
+  display: flex;
+
+  /* 플렉스 랩핑 박스 */
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transition: all 0.6s;
+
+  overflow: hidden;
+}
+.fooeterstar section {
+  background-color: #000;
+  position: relative;
+  flex-basis: 50%;
+
+  transition: all 0.5s;
+}
+
+.fooeterstar section:nth-child(1) {
+  border-radius: 0 0 50% 0;
+}
+.fooeterstar section:nth-child(2) {
+  border-radius: 0 0 0 50%;
+}
+.fooeterstar section:nth-child(3) {
+  border-radius: 0 50% 0 0;
+}
+.fooeterstar section:nth-child(4) {
+  border-radius: 50% 0 0 0;
+}
+/* 바닥 별모양 호버시 애니 */
+.fooeterstar section:nth-child(1):hover {
+  border-radius: 0 0 70% 0;
+}
+.fooeterstar section:nth-child(2):hover {
+  border-radius: 0 0 0 70%;
+}
+.fooeterstar section:nth-child(3):hover {
+  border-radius: 0 70% 0 0;
+}
+.fooeterstar section:nth-child(4):hover {
+  border-radius: 70% 0 0 0;
+}

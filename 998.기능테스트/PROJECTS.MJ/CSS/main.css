@@ -1,0 +1,1190 @@
+@charset "utf-8";
+/* 음원사이트 메인페이지 CSS - main.css */
+/* 글자폰트 */
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gugi&family=Kolker+Brush&family=Nanum+Brush+Script&family=Single+Day&family=Xanh+Mono&display=swap");
+/* 
+
+font-family: 'Black Han Sans', sans-serif;
+font-family: 'Gugi', cursive; = 인물정보 폰트
+font-family: 'Kolker Brush', cursive;
+
+
+font-family: 'Nanum Brush Script', cursive;
+ = 계시판 폰트
+
+ font-family: 'Xanh Mono', monospace;= MPP 폰트
+font-family: 'Single Day', cursive; = GNB폰트
+*/
+/* 외부 CSS 합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(comon.css);
+@import url(AUDIO.css);
+@import url(track.css);
+
+/* 공사중 표시 */
+body * {
+    /* outline: 3px dotted red; */
+    /*임시!!!!*/
+    /* color: darkgoldenrod; */
+    /* font-size: 3vw; */
+}
+
+body {
+    height: auto;
+    /* perspective: 1300px; */
+}
+.aa{
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}   
+/* 배경 영상 디자인 잡기 */
+.VID {
+    /* z-index로 간섭 불가하게 만들기 */
+    z-index: -9999999;
+    /* 포지션 픽스드 움지이지 않고 따라다닌다 */
+    position: fixed;
+
+    /* 크기조정값 */
+    width: 100vw;
+    object-fit: cover;
+    height: 100%;
+}
+
+.lm {
+    color: aqua;
+    width: 97%;
+    position: absolute;
+    top: 10px;
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+    justify-content: flex-end;
+}
+/* 로그인 */
+.login {
+    padding: 0 7px;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+}
+
+/* 회원가입 */
+.member {
+    padding: 0 7px;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+}
+
+/* 상단 햄버거버튼*/
+.topbtn {
+    /* 위치조정 */
+    transition: all 0.7s ease-out;
+    overflow: hidden;
+    top: 33px;
+    left: 7px;
+
+    position: fixed;
+    width: min(20%, 100px);
+    height: 7%;
+    z-index: 9999999999999999;
+    opacity: 0.5;
+    /* background-color: #fff; */
+}
+.topbtn::before {
+    content: "";
+    position: absolute;
+    padding-top: 100%;
+    display: block;
+}
+.topbtn > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+/* 밑줄 쫙쫙!! */
+.topbtn > div > span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+
+    transition: all 0.6s ease-out;
+}
+
+/* topbtn안에 있는 작대기들 개별 */
+.topbtn > div > span:nth-child(1) {
+    height: 2px;
+    background-color: #fff;
+    top: 1px;
+}
+.topbtn > div > span:nth-child(2) {
+    width: 80%;
+    background-color: aliceblue;
+    top: 10px;
+}
+
+.topbtn > div > span:nth-child(3) {
+    background-color: #fff;
+    top: 20px;
+}
+.topbtn > div > span:nth-child(4) {
+    width: 70%;
+    background-color: aliceblue;
+    top: 30px;
+}
+.topbtn > div > span:nth-child(5) {
+    width: 80%;
+    background-color: #fff;
+    top: 40px;
+}
+.topbtn > div > span:nth-child(6) {
+    background-color: aliceblue;
+    height: 3px;
+    top: 50px;
+}
+/* 점 2 4 5번 점찍기! */
+/* 2번 */
+.topbtn > div > span:nth-child(7) {
+    right: 0;
+    background-color: aliceblue;
+    top: 10px;
+
+    height: 2px;
+    width: 5%;
+}
+/* 4번 */
+.topbtn > div > span:nth-child(8) {
+    right: 0;
+    background-color: aliceblue;
+    top: 30px;
+    width: 15%;
+    height: 2px;
+}
+/* 5번 */
+.topbtn > div > span:nth-child(9) {
+    right: 0;
+    background-color: #fff;
+    top: 40px;
+    width: 5%;
+}
+/* on클래스 적용시 변하는 작대기들! */
+.topbtn.on > div > span:nth-child(1) {
+    transform: rotate(30deg);
+    top: 12px;
+}
+.topbtn.on > div > span:nth-child(2) {
+    transform: rotate(31deg);
+    top: 35px;
+    width: 200%;
+}
+.topbtn.on > div > span:nth-child(3) {
+    transform: rotate(30deg);
+}
+.topbtn.on > div > span:nth-child(4) {
+    transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(5) {
+    transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(6) {
+    transform: rotate(150deg);
+    top: 26px;
+}
+.topbtn.on > div > span:nth-child(7) {
+    top: 4px;
+    left: 63%;
+}
+.topbtn.on > div > span:nth-child(8) {
+    display: none;
+}
+
+/* 마우스 오버시 트랜지션!! */
+.topbtn:hover > div > span:nth-child(2) {
+    width: 100%;
+}
+.topbtn:hover > div > span:nth-child(4) {
+    width: 100%;
+}
+.topbtn:hover > div > span:nth-child(5) {
+    width: 100%;
+}
+
+.topbtn:hover {
+    opacity: 1;
+    border-radius: 20%;
+}
+/* 여기까지가 밑줄 쫙 쫙 */
+/* 상단 GNB 로고 싸는박스 */
+.tbox1 {
+    position: relative;
+    width: 100%;
+    top: 0;
+    z-index: 9999999;
+    /* 배경색 */
+    background: #000;
+}
+/* 상단 디자인 */
+.top {
+    position: relative;
+    height: 130px;
+    z-index: -1;
+}
+/*  */
+/* 싸는 박스 */
+.coverSVG {
+    width: 90vw;
+    margin: 0 auto;
+}
+.coverSVG::before {
+    position: absolute;
+    z-index: -9999;
+    content: "";
+    display: block;
+    padding-top: 30%;
+}
+.coverSVG > div {
+    width: min(max(30vw, 250px), 300px);
+    height: 130px;
+    margin: 0 auto;
+}
+
+.coverSVG > div > div {
+    position: relative;
+    top: 50%;
+    width: 33.33%;
+    overflow: hidden;
+    padding-top: 30%;
+    float: left;
+    transform: translateY(-50%);
+}
+
+/* SVG 공통 */
+.toplogo svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 410%;
+}
+
+/* SVG개별 */
+/* .toplogo svg:nth-child(1) {
+  left: 40.2%;
+}
+.toplogo svg:nth-child(2) {
+  left: 47%;
+}
+.toplogo svg:nth-child(3) {
+  left: 53%;
+} */
+/* SVG PATH 공통 클래스 */
+.path {
+    fill: none;
+    stroke: #fff;
+
+    stroke-dasharray: 300%;
+    stroke-dashoffset: -300%;
+
+    animation: pathstrokeani 3s ease-out 0.2s forwards;
+}
+@keyframes pathstrokeani {
+    80% {
+        stroke: #fff;
+        stroke-dashoffset: 0%;
+    }
+    90% {
+        stroke: rgba(255, 255, 255, 0.214);
+        stroke-dashoffset: -300%;
+    }
+    100% {
+        stroke-dashoffset: 0%;
+        stroke: lightsteelblue;
+    }
+}
+
+/* SVG  PATH 개별 디자인 */
+/* 상단 ul */
+.gnb > ul {
+    transition: all 0.7s ease-out;
+    /* bottom: -3px; */
+    /* position: relative; */
+    height: 47px;
+    display: flex;
+    justify-content: center;
+}
+
+.gnb > ul > li:last-child {
+    width: 180px;
+}
+.gnb > ul > li {
+    /* 위치조정 */
+    width: 130px;
+    line-height: 2;
+
+    /* 글씨 조정 */
+    text-align: center;
+    font-size: 30px;
+    margin: 0 25px;
+    font-family: "Single Day", cursive;
+
+    color: #fff;
+}
+
+/* gnb a 요소 */
+.gnb > ul > li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* gnb 통배너 밑에 하위 카테고리 ul */
+/* 공통 */
+.ssm {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    width: 100vw;
+    background: #000;
+    right: 0;
+    border-radius: 0 0 30% 30%;
+}
+/* 개별 */
+/* gnb 통배너 밑에 하위 카테고리 ll */
+.ssm > li {
+    /* display: none; */
+}
+/* 공통 */
+.ssm > li > a {
+    color: #000;
+    font-size: 2 vw;
+}
+/* 개별 */
+
+/*1 . 상단영역     ******************************************/
+
+/* 상단 글씨로고 */
+.mostpopular {
+    display: flex;
+    justify-content: center;
+    font-family: "Xanh Mono", monospace;
+    font-size: 5vw;
+    font-weight: bold;
+    font-style: italic;
+
+    color: #000;
+}
+/* p태그 */
+.mostpopular > div {
+    transition: all 2s;
+    width: 0;
+    overflow: hidden;
+    color: lightblue;
+}
+/* .mostpopular:hover > div {
+  width: 100px;
+  opacity: 1;
+} */
+.mcpop {
+    transition: all 2s;
+}
+/* 상단 햄버거 버튼 클릭시 나타나는 박스 디자인 */
+
+/* ****************************************** */
+/* GNB싸는 박스 */
+.nav {
+    /* height: 50px; */
+    margin-top: 0;
+}
+
+/* 상단 2개 앨범 디자인 따로잡기 */
+.topalbum {
+    position: absolute;
+    width: min(30vw, 300px);
+    /* height: 300px; */
+
+    /* 정중앙 셋팅 */
+    top: 50%;
+    left: 50%;
+
+    /* 입체 설정 */
+    transform-style: preserve-3d;
+    /* 입체설정 잘보이게 하기 */
+    transform: translate(-50%, -50%) rotateX(10deg) rotateY(30deg);
+
+    z-index: 1;
+}
+.topalbum::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+/* 앨범 하단 스팬 공통 */
+.topalbum span {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 앨범 스팬 각자 위치 */
+.topalbum span:nth-child(1) {
+    background: url(../images/trackalbum/track1-span1.jpg) no-repeat center/100%
+        100%;
+    transform: translateZ(10px);
+}
+
+/* 오른쪽 면 */
+.topalbum span:nth-child(2) {
+    /* z축으로 밀기 */
+    width: 20px;
+    background: url(../images/trackalbum/track1-span2.jpg) no-repeat center/100%
+        100%;
+    right: -10px;
+    transform: rotateY(90deg);
+}
+
+/* 왼쪽 면 */
+.topalbum span:nth-child(3) {
+    /* z축으로 밀기 */
+    width: 20px;
+    transform: rotateY(-90deg);
+    background: url(../images/trackalbum/track1-span3.jpg) no-repeat center/100%
+        100%;
+    left: -10.4px;
+}
+
+/* 아래쪽 면  */
+.topalbum span:nth-child(4) {
+    /* z축으로 밀기 */
+    height: 20px;
+    background: url(../images/trackalbum/track1-span5.jpg) no-repeat center/100%
+        100%; /* z축으로 밀기 */
+    top: auto;
+    bottom: -10px;
+    transform: rotateX(90deg);
+}
+
+/* 윗면 */
+.topalbum span:nth-child(5) {
+    background: url(../images/trackalbum/track1-span4.jpg) no-repeat center/100%
+        100%;
+    /* z축으로 밀기 */
+    height: 20px;
+    top: -10px;
+    transform: rotateX(90deg);
+}
+
+/* 뒷면 */
+.topalbum span:nth-child(6) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track1-span6.jpg) no-repeat center/100%
+        100%;
+    transform: translateZ(-10px);
+}
+
+/*  두번째 앨범 !!   */
+.top2album {
+    position: absolute;
+    width: min(60vw, 600px);
+    /* height: 300px; */
+
+    /* 정중앙 셋팅 */
+    top: 50%;
+    left: 50%;
+
+    /* 입체 설정 */
+    transform-style: preserve-3d;
+    /* 입체설정 잘보이게 하기 */
+    transform: translate(-50%, -50%) rotateX(10deg) rotateY(30deg);
+
+    z-index: 1;
+
+    animation: top2albumani 5s ease infinite alternate;
+}
+/* 2번째 애니 */
+@keyframes top2albumani {
+    to {
+        transform: translate(-50%, -50%) rotateX(10deg) rotateY(-30deg);
+    }
+}
+.top2album::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 앨범 하단 스팬 공통 */
+.top2album span {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 앨범 스팬 각자 위치 */
+.top2album span:nth-child(1) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track2-span1.jpg) no-repeat center/100%
+        100%;
+    transform: translateZ(10px);
+}
+
+/* 오른쪽 면 */
+.top2album span:nth-child(2) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track2-span2.jpg) no-repeat center/100%
+        100%;
+    width: 20px;
+    right: -10px;
+    transform: rotateY(90deg);
+}
+
+/* 왼쪽 면 */
+.top2album span:nth-child(3) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track2-span3.jpg) no-repeat center/100%
+        100%;
+    width: 20px;
+    transform: rotateY(-90deg);
+    left: -10.4px;
+}
+
+/* 아래쪽 면  */
+.top2album span:nth-child(4) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track2-span4.jpg) no-repeat center/100%
+        100%;
+    height: 20px;
+    top: auto;
+    bottom: -10px;
+    transform: rotateX(90deg);
+}
+
+/* 윗면 */
+.top2album span:nth-child(5) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track2-span5.jpg) no-repeat center/100%
+        100%;
+    height: 20px;
+    top: -10px;
+    transform: rotateX(90deg);
+}
+
+/* 뒷면 */
+.top2album span:nth-child(6) {
+    /* z축으로 밀기 */
+    background: url(../images/trackalbum/track2-span6.jpg) no-repeat center/
+        100% 100%;
+    transform: translateZ(-10px);
+}
+
+/* ****************************************** */
+/* 메인박스 */
+.mainbox {
+    position: relative;
+    width: 100%;
+    height: 88vh;
+    overflow: hidden;
+}
+
+.Lcoverbox {
+    z-index: -2;
+    position: absolute;
+    left: 0;
+    width: 16.5%;
+    height: 80vh;
+    padding: 1px;
+    overflow: hidden;
+}
+
+/* L사이드 디자인 잡기 */
+/* 흘러가는 글자 부모박스 */
+.Lside {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 99%;
+    font-size: 5vw;
+    font-family: "Anton", sans-serif;
+    color: gray;
+    transform-origin: top;
+    transform: rotate(90deg);
+}
+
+/* 텍스트박스 글자 자식 박스 */
+.LsideText {
+    position: relative;
+    /* 초기값 */
+    left: 0;
+    width: 200vh;
+    top: 0;
+    bottom: 0;
+
+    /* ul이 흘러가게 하기 위해서 */
+    display: flex;
+    /* transform-origin: top; */
+}
+
+/* 하위 ul */
+.LsideText ul {
+    /* li가 흘러가게 하기위해서 */
+    display: flex;
+    flex: 1;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 하위 li 공통 셋팅 */
+.LsideText ul li {
+    /* 상위 ul의 플렉스 등분할 설정 */
+    flex: 1;
+    text-align: center;
+    font-family: "Tangerine", cursive;
+    color: #fff;
+}
+.tt {
+    color: #fff;
+    font-weight: 1vw;
+}
+@keyframes txtFlow1 {
+    to {
+        left: -100%;
+    }
+}
+
+/* ***************************************** */
+/* 첫페이지 메인 영역 큰박스 */
+/* 1페이지 메인 */
+.tm1 {
+    /* 포지션 줘서 움직이게 하기 */
+    position: absolute;
+    right: 0;
+    width: 90.9%;
+    height: 80vh;
+    background-color: #fff;
+    overflow: hidden;
+    /* border-top: 10px solid #000; */
+}
+
+/*  메인 첫페이지 우측 설명 박스 */
+.mainRside {
+    position: absolute;
+    right: 0;
+    width: 30%;
+
+    border-left: 1px solid #000;
+}
+
+/* 메인 박스 앨범 들어가는 박스 */
+.mainalbum {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+}
+
+.main2 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 앨범 집약 페이지 */
+.bodywrapp {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 1300px;
+    position: fixed;
+}
+.asdasd{
+    perspective: 1300px;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.maintrackcover {
+    height: 7000px;
+    margin-top: 450px;
+    margin-bottom: 950px;
+    transform-style: preserve-3d;
+    width: 100vw;
+}
+
+/* 트랙 공통 */
+.mtt1 {
+    /* perspective: 1000px; */
+    padding: 5vw 0;
+}
+/* 앨범 1~10번 */
+/* 1번 */
+.track1 {
+    position: relative;
+    top: 3%;
+}
+.track2 {
+    position: relative;
+    top: 4%;
+}
+.track3 {
+    position: relative;
+    top: 5%;
+}
+.track4 {
+    position: relative;
+    top: 6%;
+}
+.track5 {
+    position: relative;
+    top: 7%;
+}
+.track6 {
+    position: relative;
+    top: 8%;
+}
+.track7 {
+    position: relative;
+    top: 9%;
+}
+.track8 {
+    position: relative;
+    top: 10%;
+}
+.track9 {
+    position: relative;
+    top: 11%;
+}
+.track10 {
+    position: relative;
+    /* top: 12%; */
+}
+
+/* 메인 트랙 공통 */
+.mtrack {
+    transform: translate(-50%, -50%) rotateX(90deg) rotateY(0deg);
+    /* 메인 트랙은 앨범이 더커야함!! */
+    width: min(66vw, 530px);
+    transition: all 1s ease;
+}
+
+/* 하단 박스 */
+footer {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    text-align: center;
+
+}
+/* 하단 로고 들어가는 부분 */
+footer .flogo {
+    z-index: 1;
+    top: 0;
+    position: relative;
+
+    width: 99.2%;
+}
+/* 하단 SVG 로고 디자인 잡는 부분 */
+.infologo {
+    width: 100%;
+    position: absolute;
+    height: 100px;
+}
+.infologo::before {
+    position: absolute;
+    /* z-index: -9999; */
+    content: "";
+    display: block;
+    padding-top: 30%;
+}
+.infologo > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: hidden;
+
+}
+.infologo svg {
+    top: 5px;
+    position: absolute;
+    width: 30%;
+}
+/* SVG하단로고 개별! */
+.infologo svg:nth-child(1) {
+    left: 35%;
+}
+.infologo svg:nth-child(2) {
+    left: 45.7%;
+}
+.infologo svg:nth-child(3) {
+    left: 56.8%;
+}
+
+/* SVG하단로고 PATH 공통 */
+.path1 {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2px;
+
+    stroke-dasharray: 350%;
+    stroke-dashoffset: -350%;
+
+    animation: flogoani 5s ease-out 0.2s forwards;
+}
+/* 애니 메이션 하단로고 */
+@keyframes flogoani {
+    80% {
+        stroke: #fff;
+        stroke-dashoffset: 0%;
+    }
+    90% {
+        stroke: gray;
+        stroke-dashoffset: -350%;
+    }
+    100% {
+        stroke: #fff;
+        stroke-dashoffset: 0%;
+    }
+}
+
+/* 하단 아이콘 들어가는 부분  */
+footer .ffll1 {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+}
+/* 하단 별만들기 */
+.fooeterstar {
+    position: absolute;
+    display: flex;
+
+    /* 플렉스 랩핑 박스 */
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transition: all 0.6s;
+
+    overflow: hidden;
+}
+.fooeterstar section {
+    background-color: #000;
+    position: relative;
+    flex-basis: 50%;
+
+    transition: all 0.5s;
+}
+
+.fooeterstar section:nth-child(1) {
+    border-radius: 0 0 50% 0;
+}
+.fooeterstar section:nth-child(2) {
+    border-radius: 0 0 0 50%;
+}
+.fooeterstar section:nth-child(3) {
+    border-radius: 0 50% 0 0;
+}
+.fooeterstar section:nth-child(4) {
+    border-radius: 50% 0 0 0;
+}
+/* 바닥 별모양 호버시 애니 */
+.fooeterstar section:nth-child(1):hover {
+    border-radius: 0 0 70% 0;
+}
+.fooeterstar section:nth-child(2):hover {
+    border-radius: 0 0 0 70%;
+}
+.fooeterstar section:nth-child(3):hover {
+    border-radius: 0 70% 0 0;
+}
+.fooeterstar section:nth-child(4):hover {
+    border-radius: 70% 0 0 0;
+}
+
+/* 카테고리(숨김네비) */
+/* 노이즈 */
+.noise {
+    width: 0vw;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    background-color: rgba(128, 128, 128, 0.434);
+    transition: all 0.5s;
+}
+/* 가로 늘어나는 클래스 */
+.noise.on {
+    width: 100vw;
+}
+/* 가로 늘어나는거 코랄 */
+.coralwrapp {
+    width: 0vw;
+
+    height: 99vh;
+    left: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background-color: lightcoral;
+    transition: all 0.55s;
+}
+.coralwrapp.on {
+    border-radius: 0 0 20% 0;
+    width: 96vw;
+    z-index: 99999999;
+}
+/* 두번째  */
+.whitewrapp {
+    width: 0vw;
+    height: 97vh;
+    left: 0;
+    position: fixed;
+    z-index: 100000000;
+    top: 0;
+    transition: all 0.6s;
+}
+.whitewrapp.on {
+    border-radius: 0 0 28% 0;
+    width: 94vw;
+    z-index: 100000000;
+}
+/* 가로늘어나는 클래스 wrapp */
+.wrapp {
+    z-index: 999999999;
+    border-radius: 0 0 30% 0;
+    width: 0vw;
+    height: 95vh;
+    background-color: black;
+    top: 0;
+    position: fixed;
+    transition: all 0.61s;
+    overflow: hidden;
+}
+.wrapp.on {
+    width: 93vw;
+}
+
+/* 햅버거 버튼 안에 버튼들 */
+.ulcoverham {
+    position: absolute;
+    right: 0;
+    width: 70%;
+    top: 50px;
+    height: 100%;
+}
+.hamul {
+    position: absolute;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+/* 햄버튼 밑에 하위 자손 li */
+/* 공통 */
+.hamul > li {
+    position: relative;
+    border-bottom: 2px solid #fff;
+    line-height: 1.5;
+
+    width: 0;
+    overflow: hidden;
+    transition: all 0.7s ease-in;
+}
+.hamul.on > li {
+    width: 100%;
+}
+.hamul > li:first-child {
+    font-family: "Gugi", cursive;
+}
+.hamul > li:nth-child(2) {
+    font-family: "Nanum Brush Script", cursive;
+}
+.hamul > li:nth-child(3) {
+    font-family: "Black Han Sans", sans-serif;
+}
+
+/* 마지막 */
+.hamul.on > li:last-child > a {
+    transform: translateX(0);
+    font-family: "Cinzel", serif;
+    transition-delay: 0.11s;
+}
+.hamul > li > a {
+    color: #fff;
+
+    font-size: 7vw;
+    transition: all 0.2s;
+    transition: transform 0.7s ease-out 0.5s;
+    width: 100%;
+    display: block;
+}
+
+.shamaa:hover,
+.shamaa:hover .hambtnbiga {
+    color: black;
+    background-color: #fff;
+}
+
+/* 햄버거 버튼 하단 상세 카테고리 */
+/* 공통 */
+.sham {
+    color: black;
+    display: none;
+}
+/* 공통 하위 li공통 */
+.hamul .sham > li {
+    font-size: 5vw;
+}
+
+.hamul .sham > li > a {
+    display: block;
+    width: 100%;
+}
+
+/* 상단 로고 싸는박스 */
+.coverlogotop {
+    position: absolute;
+    width: 20%;
+    height: 13%;
+    top: 4px;
+    left: 40%;
+    z-index: 10000000;
+}
+/* 상단로고 싸는박스 하위 a */
+.coverlogotop > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/*     <!-- 위치 잡는 박스 -->
+    <div class="wrap3dplat"> */
+.wrap3dplat {
+    position: relative;
+    width: 99.5vw;
+    height: 100vh;
+}
+.dExplanation:hover {
+    animation-play-state: paused;
+    /* 리니어 그라디언트 */
+    /* background: radial-gradient(
+      circle farthest-corner at 32% 106%,
+      #ffe17d 0%,
+      aqua 10%,
+      #ffcd69 28%,
+      #fa9137 42%,
+      transparent 82%
+    ),
+    linear-gradient(135deg, lightblue 12%, skyblue 58%); */
+}
+/* 하단 설명 박스 만들기 */
+.dExplanation {
+    position: absolute;
+    /* background-color: darkblue; */
+    background-color: navy;
+
+    /* 리니어 그라디언트 */
+    /* background: radial-gradient(
+      circle farthest-corner at 32% 106%,
+      #ffe17d 0%,
+      aqua 10%,
+      #ffcd69 28%,
+      #fa9137 42%,
+      transparent 82%
+    ),
+    linear-gradient(135deg, lightblue 12%, skyblue 58%); */
+    width: 230px;
+    height: 330px;
+
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    margin-top: 20vw;
+
+    transform-style: preserve-3d;
+    animation: bottomplat 5s ease-in-out alternate infinite;
+}
+/* 줄 박스!! 1번 앞면 */
+.firstfront1 {
+    position: absolute;
+    outline: 5px double black;
+
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    transform: translateZ(20px);
+}
+
+/* 플랫카드 움직이는 애니메이션 */
+@keyframes bottomplat {
+    to {
+        transform: translate(-50%, -50%) rotateY(180deg);
+    }
+}
+/* 줄 박스!! 2번 앞면 글자 텍스트 */
+.firstfront2 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+
+    text-align: center;
+    font-size: 27px;
+    transform: translateZ(40px);
+
+    color: #fff;
+    font-weight: bold;
+    /* text-shadow: 5px 5px 10px #fff; */
+}
+/* 플랫 카드 뒷면 */
+.dback1 {
+    position: absolute;
+    transform: translateZ(-20px);
+
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+}
+.dback2 {
+    transform: translateZ(-40px);
+}
+
+/* 햄버거 버튼 하위 li세부 사항 조정 */
+.sham > li > a {
+    width: 100%;
+}
+
+

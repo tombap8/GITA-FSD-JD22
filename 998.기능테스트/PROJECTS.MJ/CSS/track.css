@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+/* 트랙 전용 css */
+/* 트랙 공통 */
+.track {
+  position: relative;
+  transform-style: preserve-3d;
+}
+/* 메인TRACK 1번 앨범 */
+.ttrack {
+  animation: ttrackani ease infinite alternate;
+  animation-timing-function: linear;
+  transform: translate(-50%,-50%) rotateX(90deg) rotateY(0deg) rotate(90deg);
+  transition: 1s ease-out 1s;
+}
+.ttrack.on{
+  animation: none;
+
+  transform: translate(-50%,-50%) rotateX(0deg) rotateY(0deg) rotate(0deg);
+}
+@keyframes ttrackani {
+  to {
+    transform: translate(-50%, -50%) rotateX(90deg) rotateY(0deg) rotate(900deg);
+  }
+}

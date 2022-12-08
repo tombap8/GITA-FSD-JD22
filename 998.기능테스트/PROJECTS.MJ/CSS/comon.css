@@ -1,0 +1,1024 @@
+@charset "utf-8";
+
+/* 음원사이트 공통 클래스 밑 아이디 포지션 정리 */
+
+/* 상단 비디오 */
+
+/* 메인1페이지 */
+.bridg {
+    position: absolute;
+}
+/* 상단 로고 바꾸기 */
+.coverlogotop > a {
+    font-size: 0px;
+}
+/* 레이아웃잡는 박스 */
+/* *********************************** */
+.per3d {
+    transform-style: preserve-3d;
+}
+/* 필수입력 메시지 출력 창 */
+.Requird-input {
+    position: absolute;
+    display: block;
+    width: 223px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 15px;
+    color: red;
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, 4px);
+    font-weight: bold;
+    text-align: center;
+}
+.Requird-input.on{
+  color: green;
+}
+/* 공통 파티션 12그리드 클래스 */
+/* col-숫자 : 숫자는 기둥의 수
+한줄에는 최대한이 12기둥이 되어야함! */
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.cont {
+    top: 0;
+    position: absolute;
+    height: 100%;
+}
+
+/* 속박스 셋팅 */
+.ibx {
+    /* 렐러티브 부모자격 */
+    position: relative;
+
+    /* 플렉스박스 */
+    display: flex;
+    /* 크기가 넘치면 아래로 내려감 */
+    flex-wrap: wrap;
+
+    max-width: 1400px;
+    margin: 0 auto;
+    /* 임시높이 */
+    min-height: 100px;
+}
+
+/* 메인 2박스 */
+.main {
+    position: relative;
+    width: 100%;
+    height: 120vh;
+}
+
+.ibx h2,
+.ibx h1 {
+    position: absolute;
+    width: 100%;
+    /* 부모는? .ibx */
+    font-size: 5vw;
+    text-align: center;
+    z-index: -1;
+}
+/* 박스 공통 */
+.box {
+    margin: 0 auto;
+    max-width: 1400px;
+    /* min-height: 50px; */
+}
+
+.tbox1.on .slidegnb.up .gnb > ul {
+    overflow-y: hidden;
+    height: 0;
+}
+
+/* 컨텐츠 담는 박스 공통 */
+.cbox {
+    position: relative;
+    width: 90vw;
+    height: 90vh;
+    margin: 0 auto;
+}
+
+/* 옆으로 흐르게 하기 */
+.clb {
+    float: left;
+}
+
+/* h1,h2등 제목들 폰트 크게하기 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: center;
+    font-size: 30px;
+    color: #000;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+/* 음소거버튼 */
+.mutedbtn {
+    position: fixed;
+    background-color: gray;
+
+    width: 80px;
+    height: 22px;
+    z-index: 100000000;
+    border-radius: 30px;
+    right: 40px;
+    top: 40px;
+
+    display: flex;
+    align-items: center;
+
+    text-align: right;
+    font-size: 2vw;
+    font-weight: bold;
+    opacity: 0.5;
+    transition: opacity 0.7s ease-in-out;
+}
+.mutedbtn.on {
+    background-color: #fff;
+}
+.mutedbtn.on .mbtmon {
+    left: 58px;
+}
+.mutedbtn.on .muteon {
+    opacity: 1;
+}
+.mutedbtn:hover {
+    opacity: 1;
+}
+.mutedbtn > a {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 1px 5px #000;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    left: 0;
+    transition: all 0.8s linear;
+}
+.muteoff {
+    display: block;
+    color: #fff;
+    right: 3px;
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+.muteon {
+    color: black;
+    opacity: 0;
+    font-size: 22px;
+    transition: all 1s ease-in-out;
+}
+
+/* 흘러가는 글자 부모박스 */
+.fdx {
+    position: absolute;
+    width: 100vw;
+
+    font-size: 4vw;
+    font-family: "Anton", sans-serif;
+    color: gray;
+}
+
+/* 텍스트박스 글자 자식 박스 */
+.tdx {
+    position: absolute;
+    /* 초기값 */
+    left: 0%;
+    width: 200vw;
+
+    /* ul이 흘러가게 하기 위해서 */
+    display: flex;
+}
+
+/* 하위 ul */
+.tdx ul {
+    /* li가 흘러가게 하기위해서 */
+    display: flex;
+    flex: 1;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 하위 li 공통 셋팅 */
+.tdx ul li {
+    /* 상위 ul의 플렉스 등분할 설정 */
+    flex: 1;
+    text-align: center;
+}
+
+/* 텍스트 애니 */
+.txt-ani1 {
+    animation: txtFlow1 10s linear infinite;
+}
+
+@keyframes txtFlow1 {
+    to {
+        left: 100%;
+    }
+}
+.f1 {
+    top: 47%;
+}
+.f2 {
+    bottom: 47%;
+}
+
+.txt-ani2 {
+    left: -100%;
+    animation: txtFlow2 10s linear infinite;
+}
+
+@keyframes txtFlow2 {
+    to {
+        left: 0;
+    }
+}
+
+/* 앨범 들어가는자리 */
+.album {
+    position: absolute;
+    width: min(30vw, 300px);
+    /* height: 300px; */
+
+    /* 정중앙 셋팅 */
+    top: 50%;
+    left: 50%;
+
+    /* 입체 설정 */
+    transform-style: preserve-3d;
+    /* 입체설정 잘보이게 하기 */
+    transform: translate(-50%, -50%) rotateX(10deg) rotateY(30deg);
+
+    z-index: 1;
+    /* transform-style: preserve-3d; */
+}
+
+.album::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+/* 앨범 하단 스팬 공통 */
+.album span {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 앨범 스팬 각자 위치 */
+.album span:nth-child(1) {
+    background-color: red;
+    /* z축으로 밀기 */
+    transform: translateZ(20px);
+}
+
+/* 오른쪽 면 */
+.album span:nth-child(2) {
+    background-color: orange;
+    /* z축으로 밀기 */
+    width: 50px;
+    right: -25px;
+    transform: rotateY(90deg);
+}
+
+/* 왼쪽 면 */
+.album span:nth-child(3) {
+    background-color: yellow;
+    /* z축으로 밀기 */
+    width: 50px;
+    transform: rotateY(-90deg);
+    left: -25px;
+}
+
+/* 아래쪽 면  */
+.album span:nth-child(4) {
+    background-color: green;
+    /* z축으로 밀기 */
+    height: 50px;
+    top: auto;
+    bottom: -25px;
+    transform: rotateX(90deg);
+}
+
+/* 윗면 */
+.album span:nth-child(5) {
+    background-color: blue;
+    /* z축으로 밀기 */
+    height: 50px;
+    top: -25px;
+    transform: rotateX(90deg);
+}
+
+/* 뒷면 */
+.album span:nth-child(6) {
+    background-color: purple;
+    /* z축으로 밀기 */
+    transform: translateZ(-25px);
+}
+
+/* 가르는 박스 */
+.right {
+    right: 0;
+    font-size: 3vw;
+    top: 0;
+}
+
+.left {
+    left: 0;
+    font-size: 3vw;
+}
+
+/* 가르는 박스 공통 */
+.mtt {
+    z-index: -10;
+    height: 100%;
+    width: 50vw;
+    position: absolute;
+    /* background-color: #fff; */
+}
+
+/* 상단 앨범 조준 */
+
+#myvid {
+    position: fixed;
+    z-index: -10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 비누방울!! */
+.buble {
+    /* display: block; */
+    position: absolute;
+    width: 3.5vw;
+    height: 3.5vw;
+    background: url(../images/buble.jpg) no-repeat top/100% 100%;
+    padding: 0;
+    margin: 0;
+}
+/* 비눗방울 안에 아이콘 공통 */
+.buble > a {
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    margin: 0 auto;
+    font-size: 2.3vw;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    opacity: 0.7;
+
+    transition: all 0.5s;
+}
+/* 버블 개인설정 */
+/* 인스타그램 */
+.bb1 {
+    left: 0%;
+    top: 100%;
+    animation: instargrambubleani 30s linear infinite alternate;
+}
+.bb1 > a {
+    background: radial-gradient(
+            circle farthest-corner at 32% 106%,
+            #ffe17d 0%,
+            #ffcd69 10%,
+            #fa9137 28%,
+            #eb4141 42%,
+            transparent 82%
+        ),
+        linear-gradient(135deg, #234bd7 12%, #c33cbe 58%);
+    /* 글자에 적용할떄는 이것을 이용한다! */
+    /* color: transparent;
+    -webkit-background-clip: text; */
+}
+.bb1 > a:hover {
+    background: radial-gradient(
+            circle farthest-corner at 32% 106%,
+            #ffe17d 0%,
+            #ffcd69 10%,
+            #fa9137 28%,
+            #eb4141 42%,
+            transparent 82%
+        ),
+        linear-gradient(135deg, #234bd7 12%, #c33cbe 58%);
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 1;
+}
+.bb1:hover {
+    animation-play-state: paused;
+    transform: scale(1.5);
+}
+/* 페이스북 */
+.bb2 {
+    left: 0;
+    top: 0;
+    /* 위치 */
+    animation: facebookbubleani 40s linear infinite alternate;
+}
+.bb2 > a {
+    /* 파비콘 모양 */
+    background-color: #234bd7;
+}
+.bb2 > a:hover {
+    /* 파비콘 모양 */
+    background-color: #234bd7;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 1;
+}
+.bb2:hover {
+    animation-play-state: paused;
+    transform: scale(1.5);
+}
+/* 트위터 */
+.bb3 {
+    left: 95%;
+    top: 90%;
+    animation: twitterbubleani 45s linear infinite alternate;
+}
+.bb3 > a {
+    background-color: skyblue;
+}
+.bb3 > a:hover {
+    background-color: skyblue;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 1;
+}
+.bb3:hover {
+    animation-play-state: paused;
+    transform: scale(1.5);
+}
+/* 유튜브 */
+.bb4 {
+    left: 95%;
+    top: 10%;
+    animation: youtubebubleani 30s linear infinite alternate;
+}
+.bb4 > a {
+    background-color: red;
+}
+.bb4 > a:hover {
+    background-color: red;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 1;
+}
+.bb4:hover {
+    animation-play-state: paused;
+    transform: scale(1.5);
+}
+/* 틱톡 */
+.bb5 {
+    top: 10%;
+    left: 20%;
+    animation: tiktokbubleani 10s linear infinite alternate;
+}
+.bb5 > a {
+    text-shadow: 4px 7px 10px red, -2px -6px 10px aqua;
+    background-color: black;
+}
+.bb5 > a :hover {
+    text-shadow: 4px 7px 5px red, -2px -6px 5px aqua;
+    background-color: black;
+    opacity: 1;
+}
+.bb5:hover {
+    animation-play-state: paused;
+    transform: scale(1.5);
+}
+/* 프로필(나무위키) */
+.bb6 {
+    left: 80%;
+    top: 50%;
+    animation: profilebubleani 30s linear infinite alternate;
+}
+.bb6 > a {
+    font-size: 3vw;
+    background-color: green;
+    font-weight: bold;
+}
+.bb6 > a:hover {
+    background-color: green;
+    font-weight: bold;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 1;
+}
+.bb6:hover {
+    animation-play-state: paused;
+    transform: scale(1.5);
+}
+/* 비눗방울 움직이는 애니매에션 */
+/* 인스타그램 */
+@keyframes instargrambubleani {
+    0% {
+        left: 0%;
+        top: 80%;
+    }
+    10% {
+        left: 5%;
+        top: 78%;
+    }
+    15% {
+        left: 10%;
+        top: 75%;
+    }
+    20% {
+        left: 15%;
+        top: 72%;
+    }
+    30% {
+        left: 17%;
+        top: 70%;
+    }
+    35% {
+        left: 15%;
+        top: 67%;
+    }
+    40% {
+        left: 10%;
+        top: 65%;
+    }
+    45% {
+        left: 7%;
+        top: 62%;
+    }
+    50% {
+        left: 4%;
+        top: 58%;
+    }
+    55% {
+        left: 6%;
+        top: 54%;
+    }
+    60% {
+        left: 7%;
+        top: 50%;
+    }
+    65% {
+        left: 10%;
+        top: 45%;
+    }
+    70% {
+        left: 15%;
+        top: 40%;
+    }
+    75% {
+        left: 20%;
+        top: 45%;
+    }
+    80% {
+        left: 15%;
+        top: 40%;
+    }
+    85% {
+        left: 20%;
+        top: 35%;
+    }
+    90% {
+        left: 15%;
+        top: 30%;
+    }
+    93% {
+        left: 10%;
+        top: 25%;
+    }
+    95% {
+        left: 5%;
+        top: 20%;
+    }
+    98% {
+        left: 3%;
+        top: 15%;
+    }
+    100% {
+        left: 20%;
+        top: 5%;
+    }
+}
+/* 페이스북 */
+@keyframes facebookbubleani {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    10% {
+        left: 10%;
+        top: 10%;
+    }
+    20% {
+        left: 20%;
+        top: 20%;
+    }
+    30% {
+        left: 30%;
+        top: 30%;
+    }
+    40% {
+        left: 20%;
+        top: 40%;
+    }
+    50% {
+        left: 10%;
+        top: 30%;
+    }
+    60% {
+        left: 30%;
+        top: 20%;
+    }
+    70% {
+        left: 40%;
+        top: 30%;
+    }
+    80% {
+        left: 70%;
+        top: 50%;
+    }
+    90% {
+        left: 80%;
+        top: 20%;
+    }
+    100% {
+        top: -5%;
+        left: 50%;
+    }
+}
+/* 트위터 */
+@keyframes twitterbubleani {
+    0% {
+        left: 95%;
+        top: 90%;
+    }
+    10% {
+        left: 80%;
+        top: 90%;
+    }
+    20% {
+        left: 75%;
+        top: 80%;
+    }
+    30% {
+        left: 95%;
+        top: 70%;
+    }
+    40% {
+        left: 70%;
+        top: 65%;
+    }
+    50% {
+        left: 65%;
+        top: 50%;
+    }
+    60% {
+        left: 30%;
+        top: 80%;
+    }
+    70% {
+        left: 20%;
+        top: 60%;
+    }
+    80% {
+        left: 10%;
+        top: 40%;
+    }
+    90% {
+        left: 30%;
+        top: 20%;
+    }
+    100% {
+        top: 10%;
+        left: 10%;
+    }
+}
+/* 유튜브 */
+@keyframes youtubebubleani {
+    0% {
+        left: 95%;
+        top: 10%;
+    }
+    10% {
+        left: 90%;
+        top: 5%;
+    }
+    20% {
+        left: 85%;
+        top: 15%;
+    }
+    30% {
+        left: 80%;
+        top: 20%;
+    }
+    40% {
+        left: 75%;
+        top: 25%;
+    }
+    50% {
+        left: 70%;
+        top: 10%;
+    }
+    60% {
+        left: 65%;
+        top: 15%;
+    }
+    70% {
+        left: 70%;
+        top: 20%;
+    }
+    80% {
+        left: 75%;
+        top: 30%;
+    }
+    90% {
+        left: 80%;
+        top: 40%;
+    }
+    100% {
+        left: 70%;
+        top: 60%;
+    }
+}
+/* 틱톡 */
+@keyframes tiktokbubleani {
+    0% {
+        top: 10%;
+        left: 20%;
+    }
+    10% {
+        top: 20%;
+        left: 15%;
+    }
+    20% {
+        top: 30%;
+        left: 10%;
+    }
+    30% {
+        top: 40%;
+        left: 15%;
+    }
+    40% {
+        top: 50%;
+        left: 20%;
+    }
+    50% {
+        top: 60%;
+        left: 25%;
+    }
+    60% {
+        top: 70%;
+        left: 30%;
+    }
+    70% {
+        top: 80%;
+        left: 25%;
+    }
+    80% {
+        top: 85%;
+        left: 20%;
+    }
+    90% {
+        top: 90%;
+        left: 15%;
+    }
+    100% {
+        top: 85%;
+        left: 5%;
+    }
+}
+/* 프로필(나무위키) */
+@keyframes profilebubleani {
+    0% {
+        left: 80%;
+        top: 50%;
+    }
+    10% {
+        left: 70%;
+        top: 40%;
+    }
+    20% {
+        left: 60%;
+        top: 30%;
+    }
+    30% {
+        left: 50%;
+        top: 40%;
+    }
+    40% {
+        left: 40%;
+        top: 50%;
+    }
+    50% {
+        left: 30%;
+        top: 60%;
+    }
+    60% {
+        left: 20%;
+        top: 70%;
+    }
+    70% {
+        left: 10%;
+        top: 80%;
+    }
+    80% {
+        left: 5%;
+        top: 70%;
+    }
+    90% {
+        left: 15%;
+        top: 60%;
+    }
+    100% {
+        left: 80%;
+        top: 50%;
+    }
+}
+
+/* 건들면 터지는 비눗방울 (small)*/
+.bubblepop {
+    position: absolute;
+    width: 10em;
+    height: 10em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.4),
+        inset 1em 1em 1em rgba(255, 255, 255, 0.6),
+        0 1em 2em rgba(0, 0, 0, 0.25);
+}
+.bubblepop:hover {
+    display: none;
+}
+
+.b1 {
+    animation: floatup 10s linear infinite,
+        sideways 5s ease-in-out infinite alternate;
+    left: 10%;
+    top: 100%;
+}
+.b2 {
+    animation: floatup 5s linear infinite,
+        sideways 4s ease-in-out 1s infinite alternate;
+    left: 15%;
+    top: 30%;
+    transform: scale(0.7);
+}
+.b3 {
+    animation: floatup 4s linear infinite,
+        sideways 6s ease-in-out 6s infinite alternate;
+    left: 20%;
+    transform: scale(1.2);
+}
+.b4 {
+    animation: floatup 6s linear infinite,
+        sideways 5s ease-in-out 3s infinite alternate;
+    left: 25%;
+    top: 90%;
+    transform: scale(0.5);
+}
+.b5 {
+    animation: floatup 8s linear infinite,
+        sideways 6s ease-in-out 3s infinite alternate;
+    left: 30%;
+    top: 30%;
+    transform: scale(1.1);
+}
+.b6 {
+    animation: floatup 7s linear infinite,
+        sideways 4s ease-in-out 3.5s infinite alternate;
+    left: 40%;
+    top: 50%;
+    transform: scale(0.7);
+}
+.b7 {
+    animation: floatup 6s linear infinite,
+        sideways 5s ease-in-out 4s infinite alternate;
+    left: 90%;
+    top: 90%;
+    transform: scale(0.6);
+}
+@keyframes floatup {
+    0% {
+        margin-top: 50%;
+    }
+    100% {
+        margin-top: -50%;
+    }
+}
+@keyframes sideways {
+    0% {
+        margin-left: 0em;
+    }
+    100% {
+        margin-left: 20em;
+    }
+    100% {
+        margin-left: 0px;
+    }
+}
+
+/* 하단 플랫 카드 css */
+.st0 {
+    fill: url(#SVGID_1_);
+    stroke: #e49349;
+    stroke-miterlimit: 10;
+}
+.st1 {
+    fill: url(#SVGID_00000148662129758361726280000005599812565394111414_);
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+.st2 {
+    fill: url(#SVGID_00000027591974706010869000000008726061269879878332_);
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+.st3 {
+    fill: url(#SVGID_00000032608403888424750060000004864696994191922838_);
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+.st4 {
+    fill: url(#SVGID_00000159458496273813888420000003198037687371970748_);
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+.st5 {
+    fill: url(#SVGID_00000174569469570530559770000018153846528163242931_);
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+.st6 {
+    fill: url(#SVGID_00000178204559155062804510000006350579779871712179_);
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}

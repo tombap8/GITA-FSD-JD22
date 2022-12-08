@@ -1,0 +1,748 @@
+@charset "utf-8";
+/* LAYOUT 전용 CSS */
+/* 글자폰트 */
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gugi&family=Kolker+Brush&family=Nanum+Brush+Script&family=Single+Day&family=Xanh+Mono&display=swap");
+/* 
+
+font-family: 'Black Han Sans', sans-serif;
+font-family: 'Gugi', cursive; = 인물정보 폰트
+font-family: 'Kolker Brush', cursive;
+
+
+font-family: 'Nanum Brush Script', cursive;
+ = 계시판 폰트
+
+ font-family: 'Xanh Mono', monospace;= MPP 폰트
+font-family: 'Single Day', cursive; = GNB폰트
+*/
+/* 외부 CSS 합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(comon.css);
+@import url(AUDIO.css);
+
+/* 공사중 표시 */
+body * {
+    /* outline: 3px dotted red; */
+    /*임시!!!!*/
+    /* color: darkgoldenrod; */
+    /* font-size: 3vw; */
+}
+
+body {
+    height: auto;
+}
+
+/* 배경 영상 디자인 잡기 */
+.VID {
+    /* z-index로 간섭 불가하게 만들기 */
+    z-index: -9999999;
+    /* 포지션 픽스드 움지이지 않고 따라다닌다 */
+    position: fixed;
+
+    /* 크기조정값 */
+    width: 100vw;
+    object-fit: cover;
+    height: 100%;
+}
+
+.lm {
+    color: aqua;
+    width: 97%;
+    position: absolute;
+    top: 10px;
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+    justify-content: flex-end;
+}
+/* 로그인 */
+.login {
+    padding: 0 7px;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+}
+
+/* 회원가입 */
+.member {
+    padding: 0 7px;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+}
+
+/* 상단 햄버거버튼*/
+.topbtn {
+    /* 위치조정 */
+    transition: all 0.7s ease-out;
+    overflow: hidden;
+    top: 33px;
+    left: 7px;
+
+    position: fixed;
+    width: min(20%, 100px);
+    height: 7%;
+    z-index: 9999999999999999;
+    opacity: 0.5;
+    /* background-color: #fff; */
+}
+.topbtn::before {
+    content: "";
+    position: absolute;
+    padding-top: 100%;
+    display: block;
+}
+.topbtn > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+/* 밑줄 쫙쫙!! */
+.topbtn > div > span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+
+    transition: all 0.6s ease-out;
+}
+
+/* topbtn안에 있는 작대기들 개별 */
+.topbtn > div > span:nth-child(1) {
+    height: 2px;
+    background-color: #fff;
+    top: 1px;
+}
+.topbtn > div > span:nth-child(2) {
+    width: 80%;
+    background-color: aliceblue;
+    top: 10px;
+}
+
+.topbtn > div > span:nth-child(3) {
+    background-color: #fff;
+    top: 20px;
+}
+.topbtn > div > span:nth-child(4) {
+    width: 70%;
+    background-color: aliceblue;
+    top: 30px;
+}
+.topbtn > div > span:nth-child(5) {
+    width: 80%;
+    background-color: #fff;
+    top: 40px;
+}
+.topbtn > div > span:nth-child(6) {
+    background-color: aliceblue;
+    height: 3px;
+    top: 50px;
+}
+/* 점 2 4 5번 점찍기! */
+/* 2번 */
+.topbtn > div > span:nth-child(7) {
+    right: 0;
+    background-color: aliceblue;
+    top: 10px;
+
+    height: 2px;
+    width: 5%;
+}
+/* 4번 */
+.topbtn > div > span:nth-child(8) {
+    right: 0;
+    background-color: aliceblue;
+    top: 30px;
+    width: 15%;
+    height: 2px;
+}
+/* 5번 */
+.topbtn > div > span:nth-child(9) {
+    right: 0;
+    background-color: #fff;
+    top: 40px;
+    width: 5%;
+}
+/* on클래스 적용시 변하는 작대기들! */
+.topbtn.on > div > span:nth-child(1) {
+    transform: rotate(30deg);
+    top: 12px;
+}
+.topbtn.on > div > span:nth-child(2) {
+    transform: rotate(31deg);
+    top: 35px;
+    width: 200%;
+}
+.topbtn.on > div > span:nth-child(3) {
+    transform: rotate(30deg);
+}
+.topbtn.on > div > span:nth-child(4) {
+    transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(5) {
+    transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(6) {
+    transform: rotate(150deg);
+    top: 26px;
+}
+.topbtn.on > div > span:nth-child(7) {
+    top: 4px;
+    left: 63%;
+}
+.topbtn.on > div > span:nth-child(8) {
+    display: none;
+}
+
+/* 마우스 오버시 트랜지션!! */
+.topbtn:hover > div > span:nth-child(2) {
+    width: 100%;
+}
+.topbtn:hover > div > span:nth-child(4) {
+    width: 100%;
+}
+.topbtn:hover > div > span:nth-child(5) {
+    width: 100%;
+}
+
+.topbtn:hover {
+    opacity: 1;
+    border-radius: 20%;
+}
+/* 여기까지가 밑줄 쫙 쫙 */
+/* 상단 GNB 로고 싸는박스 */
+.tbox1 {
+    position: relative;
+    width: 100%;
+    top: 0;
+    z-index: 9999999;
+    /* 배경색 */
+    background: #000;
+}
+/* 상단 디자인 */
+.top {
+    position: relative;
+    height: 130px;
+    z-index: -1;
+}
+/*  */
+/* 싸는 박스 */
+.coverSVG {
+    width: 90vw;
+    margin: 0 auto;
+}
+.coverSVG::before {
+    position: absolute;
+    z-index: -9999;
+    content: "";
+    display: block;
+    padding-top: 30%;
+}
+.coverSVG > div {
+    width: min(max(30vw, 250px), 300px);
+    height: 130px;
+    margin: 0 auto;
+}
+
+.coverSVG > div > div {
+    position: relative;
+    top: 50%;
+    width: 33.33%;
+    overflow: hidden;
+    padding-top: 30%;
+    float: left;
+    transform: translateY(-50%);
+}
+
+/* SVG 공통 */
+.toplogo svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 410%;
+}
+
+/* SVG개별 */
+/* .toplogo svg:nth-child(1) {
+  left: 40.2%;
+}
+.toplogo svg:nth-child(2) {
+  left: 47%;
+}
+.toplogo svg:nth-child(3) {
+  left: 53%;
+} */
+/* SVG PATH 공통 클래스 */
+.path {
+    fill: none;
+    stroke: #fff;
+
+    stroke-dasharray: 300%;
+    stroke-dashoffset: -300%;
+
+    animation: pathstrokeani 3s ease-out 0.2s forwards;
+}
+@keyframes pathstrokeani {
+    80% {
+        stroke: #fff;
+        stroke-dashoffset: 0%;
+    }
+    90% {
+        stroke: rgba(255, 255, 255, 0.214);
+        stroke-dashoffset: -300%;
+    }
+    100% {
+        stroke-dashoffset: 0%;
+        stroke: lightsteelblue;
+    }
+}
+
+/* SVG  PATH 개별 디자인 */
+/* 상단 ul */
+.gnb > ul {
+    transition: all 0.7s ease-out;
+    /* bottom: -3px; */
+    /* position: relative; */
+    height: 47px;
+    display: flex;
+    justify-content: center;
+}
+
+.gnb > ul > li:last-child {
+    width: 180px;
+}
+.gnb > ul > li {
+    /* 위치조정 */
+    width: 130px;
+    line-height: 2;
+
+    /* 글씨 조정 */
+    text-align: center;
+    font-size: 30px;
+    margin: 0 25px;
+    font-family: "Single Day", cursive;
+
+    color: #fff;
+}
+
+/* gnb a 요소 */
+.gnb > ul > li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* gnb 통배너 밑에 하위 카테고리 ul */
+/* 공통 */
+.ssm {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    width: 100vw;
+    background: #000;
+    right: 0;
+    border-radius: 0 0 30% 30%;
+}
+/* 개별 */
+/* gnb 통배너 밑에 하위 카테고리 ll */
+.ssm > li {
+    /* display: none; */
+}
+/* 공통 */
+.ssm > li > a {
+    color: #000;
+    font-size: 2 vw;
+}
+/* 개별 */
+/* ****************************************** */
+/* GNB싸는 박스 */
+.nav {
+    /* height: 50px; */
+    margin-top: 0;
+}
+
+.tt {
+    color: #fff;
+    font-weight: 1vw;
+}
+@keyframes txtFlow1 {
+    to {
+        left: -100%;
+    }
+}
+
+/* 카테고리(숨김네비) */
+/* 노이즈 */
+.noise {
+    width: 0vw;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    background-color: rgba(128, 128, 128, 0.434);
+    transition: all 0.5s;
+}
+/* 가로 늘어나는 클래스 */
+.noise.on {
+    width: 100vw;
+}
+/* 가로 늘어나는거 코랄 */
+.coralwrapp {
+    width: 0vw;
+
+    height: 99vh;
+    left: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background-color: lightcoral;
+    transition: all 0.55s;
+}
+.coralwrapp.on {
+    border-radius: 0 0 20% 0;
+    width: 96vw;
+    z-index: 99999999;
+}
+/* 두번째  */
+.whitewrapp {
+    width: 0vw;
+    height: 97vh;
+    left: 0;
+    position: fixed;
+    z-index: 100000000;
+    top: 0;
+    transition: all 0.6s;
+}
+.whitewrapp.on {
+    border-radius: 0 0 28% 0;
+    width: 94vw;
+    z-index: 100000000;
+}
+/* 가로늘어나는 클래스 wrapp */
+.wrapp {
+    z-index: 999999999;
+    border-radius: 0 0 30% 0;
+    width: 0vw;
+    height: 95vh;
+    background-color: black;
+    top: 0;
+    position: fixed;
+    transition: all 0.61s;
+    overflow: hidden;
+}
+.wrapp.on {
+    width: 93vw;
+}
+
+/* 햅버거 버튼 안에 버튼들 */
+.ulcoverham {
+    position: absolute;
+    right: 0;
+    width: 70%;
+    top: 50px;
+    height: 100%;
+}
+.hamul {
+    position: absolute;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+/* 햄버튼 밑에 하위 자손 li */
+/* 공통 */
+.hamul > li {
+    position: relative;
+    border-bottom: 2px solid #fff;
+    line-height: 1.5;
+
+    width: 0;
+    overflow: hidden;
+    transition: all 0.7s ease-in;
+}
+.hamul.on > li {
+    width: 100%;
+}
+.hamul > li:first-child {
+    font-family: "Gugi", cursive;
+}
+.hamul > li:nth-child(2) {
+    font-family: "Nanum Brush Script", cursive;
+}
+.hamul > li:nth-child(3) {
+    font-family: "Black Han Sans", sans-serif;
+}
+
+/* 마지막 */
+.hamul.on > li:last-child > a {
+    transform: translateX(0);
+    font-family: "Cinzel", serif;
+    transition-delay: 0.11s;
+}
+.hamul > li > a {
+    color: #fff;
+
+    font-size: 5vw;
+    transition: all 0.2s;
+    transition: transform 0.7s ease-out 0.5s;
+    width: 100%;
+    display: block;
+}
+
+.shamaa:hover,
+.shamaa:hover .hambtnbiga {
+    color: black;
+    background-color: #fff;
+}
+
+/* 햄버거 버튼 하단 상세 카테고리 */
+/* 공통 */
+.sham {
+    color: black;
+    display: none;
+}
+/* 공통 하위 li공통 */
+.hamul .sham > li {
+    font-size: 5vw;
+}
+
+.hamul .sham > li > a {
+    display: block;
+    width: 100%;
+}
+
+/* 상단 로고 싸는박스 */
+.coverlogotop {
+    position: absolute;
+    width: 20%;
+    height: 13%;
+    top: 4px;
+    left: 40%;
+    z-index: 10000000;
+}
+/* 상단로고 싸는박스 하위 a */
+.coverlogotop > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 햄버거 버튼 하위 li세부 사항 조정 */
+.sham > li > a {
+    width: 100%;
+}
+
+/* 3d요소 갤러리 만들기  */
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: black;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+/* 본격적인 3d 요소만들기 */
+.albumsub span {
+    position: absolute;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
+/* 개별 디자인  */
+.albumsub span:nth-child(2) {
+  background-color: red;
+  /* z축으로 밀기 */
+  transform: translateZ(20px);
+}
+
+/* 오른쪽 면 */
+.albumsub span:nth-child(3) {
+  background-color: orange;
+  /* z축으로 밀기 */
+  width: 50px;
+  right: -25px;
+  transform: rotateY(90deg);
+}
+
+/* 왼쪽 면 */
+.albumsub span:nth-child(4) {
+  background-color: yellow;
+  /* z축으로 밀기 */
+  width: 50px;
+  transform: rotateY(-90deg);
+  left: -25px;
+}
+
+/* 아래쪽 면  */
+.albumsub span:nth-child(5) {
+  background-color: green;
+  /* z축으로 밀기 */
+  height: 50px;
+  top: auto;
+  bottom: -25px;
+  transform: rotateX(90deg);
+}
+
+/* 윗면 */
+.albumsub span:nth-child(6) {
+  background-color: blue;
+  /* z축으로 밀기 */
+  height: 50px;
+  top: -25px;
+  transform: rotateX(90deg);
+}
+
+/* 뒷면 */
+.albumsub span:nth-child(7) {
+  background-color: purple;
+  /* z축으로 밀기 */
+  transform: translateZ(-25px);
+}
+
+/* 음원 사이트 미디어 쿼리 */
+@media screen and (max-width: 2000px){
+  .hamul > li > a {
+    font-size: 3vw;
+  }
+}
+/* 미디어쿼리 1200px */
+@media screen and (max-width: 1200px) {
+  .hamul > li > a {
+    font-size: 4vw;
+  }
+}
+/* 미디어쿼리 1100px */
+@media screen and (max-width: 1100px) {
+  .hamul > li > a {
+    font-size: 4.2vw;
+  }
+}
+/* 미디어쿼리 1000px */
+@media screen and (max-width: 1000px) {
+  .hamul > li > a {
+    font-size: 6vw;
+  }
+}
+
+
+/* 미디어쿼리 900px */
+@media screen and (max-width: 900px) {
+  .hamul > li > a {
+    font-size: 7vw;
+  }
+  ::-webkit-scrollbar{
+    width: 0;
+  }
+  .mtt1{
+    margin-top: 29px;
+  }
+}
+/* 미디어쿼리 800px */
+@media screen and (max-width: 800px) {
+  .hamul > li > a {
+    font-size: 8vw;
+  }
+  .mtt1{
+    margin-top: 32px;
+  }
+}
+/* 미디어쿼리 700 */
+@media screen and (max-width: 700px) {
+  .hamul > li > a {
+    font-size: 9vw;
+  }
+  .nav {
+    position: absolute;
+    height: 0;
+    display: none;
+  }
+  .mtt1{
+    margin-top: 10px;
+  }
+}
+
+/* 미디어쿼리 600px */
+@media screen and (max-width: 600px) {
+  .hamul > li > a {
+    font-size: 11vw;
+  }
+  .ulcoverham{
+    left: 50px;
+    width: 100%;
+  }
+  .hamul{
+    margin-top: 90px;
+  }
+  .mtt1{
+    margin-top: 27px;
+  }
+}
+/* 미디어쿼리 500px */
+@media screen and (max-width: 500px) {
+  .topbtn {
+    width: min(14%, 100px);
+    height: 5%;
+  }
+  .shamaa{
+    font-size: 10vw;
+  }
+  .hamul > li > a {
+    font-size: 12vw;
+  }
+  .ulcoverham{
+    left: 50px;
+    width: 100%;
+  }
+  .hamul{
+    margin-top: 90px;
+  }
+  .mtt1{
+    margin-top: 29px;
+  }
+}
+/* 미디어쿼리 400px */
+@media screen and (max-width: 450px) {
+
+  .shamaa{
+    font-size: 12vw;
+  }
+  .hamul > li > a {
+    font-size: 14vw;
+  }
+  .hamul{
+    margin-top: 90px;
+  }
+  .ulcoverham{
+    left: 20px;
+    width: 100%;
+  }
+  .mtt1{
+    margin-top: 37px;
+  }
+}
+
+

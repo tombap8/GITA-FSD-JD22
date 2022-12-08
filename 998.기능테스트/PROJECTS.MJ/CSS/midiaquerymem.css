@@ -1,0 +1,178 @@
+@charset "utf-8";
+
+/* 음원 사이트 미디어 쿼리 */
+@media screen and (max-width: 2000px){
+  .hamul > li > a {
+    font-size: 3vw;
+  }
+}
+/* 미디어쿼리 1400px */
+@media screen and (max-width: 1400px) {
+  footer{
+    height: 50vh;
+  }
+}
+/* 미디어쿼리 1200px */
+@media screen and (max-width: 1200px) {
+  .hamul > li > a {
+    font-size: 4vw;
+  }
+  body{
+    overflow-x: hidden;
+
+  }
+  footer{
+    height: 40vh;
+  }
+}
+/* 미디어쿼리 1100px */
+@media screen and (max-width: 1100px) {
+  .hamul > li > a {
+    font-size: 4.2vw;
+  }
+}
+/* 미디어쿼리 1000px */
+@media screen and (max-width: 1000px) {
+  .hamul > li > a {
+    font-size: 6vw;
+  }
+}
+
+
+/* 미디어쿼리 900px */
+@media screen and (max-width: 900px) {
+  .hamul > li > a {
+    font-size: 7vw;
+  }
+  ::-webkit-scrollbar{
+    width: 0;
+  }
+  .mtt1{
+    margin-top: 29px;
+  }
+}
+/* 미디어쿼리 800px */
+@media screen and (max-width: 800px) {
+  .hamul > li > a {
+    font-size: 8vw;
+  }
+  .mtt1{
+    margin-top: 32px;
+  }
+}
+/* 미디어쿼리 700 */
+@media screen and (max-width: 700px) {
+  .hamul > li > a {
+    font-size: 9vw;
+  }
+  .nav {
+    position: absolute;
+    height: 0;
+    display: none;
+  }
+  .mtt1{
+    margin-top: 10px;
+  }
+}
+/* 미디어쿼리 750 */
+@media screen and (max-width: 750px){
+      .ALPA_GOL{
+        display: block;
+      }
+}
+/* 미디어쿼리 600px */
+@media screen and (max-width: 600px) {
+  .hamul > li > a {
+    font-size: 11vw;
+  }
+  .ulcoverham{
+    left: 50px;
+    width: 100%;
+  }
+  .hamul{
+    margin-top: 90px;
+  }
+  .mtt1{
+    margin-top: 27px;
+  }
+}
+
+/* 미디어쿼리 550px */
+@media screen and (max-width: 550px) {
+  .loginmain{
+    width: 100vw;
+  }
+  .maintit{
+    display: none;
+  }
+  .wbx{
+    margin-bottom: 0;
+  }
+}
+/* 미디어쿼리 500px */
+@media screen and (max-width: 500px) {
+  .topbtn {
+    width: min(14%, 100px);
+    height: 5%;
+  }
+  .shamaa{
+    font-size: 10vw;
+  }
+  .hamul > li > a {
+    font-size: 12vw;
+  }
+  .ulcoverham{
+    left: 50px;
+    width: 100%;
+  }
+  .hamul{
+    margin-top: 90px;
+  }
+  .mtt1{
+    margin-top: 29px;
+  }
+}
+/* 미디어쿼리 450px */
+@media screen and (max-width: 450px) {
+
+  .shamaa{
+    font-size: 12vw;
+  }
+  .hamul > li > a {
+    font-size: 14vw;
+  }
+  .hamul{
+    margin-top: 90px;
+  }
+  .ulcoverham{
+    left: 20px;
+    width: 100%;
+  }
+  .mtt1{
+    margin-top: 37px;
+  }
+  body{
+    overflow-y: hidden;
+    width: 100vw;
+  }
+  footer{
+    height: 62vh;
+  }
+}
+
+/* 미디어쿼리 400px */
+@media screen and (max-width: 400px){
+
+}
+/* 미디어쿼리 300px */
+@media screen and (max-width: 300px){
+  html{
+    overflow-x: hidden;
+  }
+  footer{
+    height: 50vh;
+  }
+  .loginmain{
+    position: relative;
+  }
+}

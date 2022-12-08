@@ -1,0 +1,7 @@
+[ 제이쿼리 CDN ]
+
+<!-- 제이쿼리 라이브러리 CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- 제이쿼리 UI CDN -->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>

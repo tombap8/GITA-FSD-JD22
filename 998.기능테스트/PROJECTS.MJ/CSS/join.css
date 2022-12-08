@@ -1,0 +1,764 @@
+@charset "utf-8";
+
+@import url(reset.css);
+@import url(core.css);
+@import url(comon.css);
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,600&family=Black+Han+Sans&family=Cairo:wght@600&family=Gugi&family=Klee+One&family=Kolker+Brush&family=Nanum+Brush+Script&family=Single+Day&family=Xanh+Mono&family=Zen+Dots&display=swap");
+/* 회원가입 css */
+
+html {
+    overflow-x: hidden;
+}
+
+/* 공사중 표시 */
+body * {
+    /* outline: 3px dotted red; */
+    /*임시!!!!*/
+    /* color: darkgoldenrod; */
+    /* font-size: 3vw; */
+}
+
+/* 배경 영상 디자인 잡기 */
+.VID {
+    /* z-index로 간섭 불가하게 만들기 */
+    z-index: -9999999;
+    /* 포지션 픽스드 움지이지 않고 따라다닌다 */
+    position: fixed;
+
+    /* 크기조정값 */
+    width: 100vw;
+    object-fit: cover;
+    height: 100%;
+}
+
+.lm {
+    color: aqua;
+    width: 97%;
+    position: absolute;
+    top: 10px;
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+    justify-content: flex-end;
+}
+/* 로그인 */
+.login {
+    padding: 0 7px;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+}
+
+/* 회원가입 */
+.member {
+    padding: 0 7px;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+}
+
+/* 상단 햄버거버튼*/
+.topbtn {
+    /* 위치조정 */
+    transition: all 0.7s ease-out;
+    overflow: hidden;
+    top: 33px;
+    left: 7px;
+
+    position: fixed;
+    width: min(20%, 100px);
+    height: 7%;
+    z-index: 9999999999999999;
+    opacity: 0.5;
+    /* background-color: #fff; */
+}
+.topbtn::before {
+    content: "";
+    position: absolute;
+    padding-top: 100%;
+    display: block;
+}
+.topbtn > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+/* 밑줄 쫙쫙!! */
+.topbtn > div > span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+
+    transition: all 0.6s ease-out;
+}
+
+/* topbtn안에 있는 작대기들 개별 */
+.topbtn > div > span:nth-child(1) {
+    height: 2px;
+    background-color: #fff;
+    top: 1px;
+}
+.topbtn > div > span:nth-child(2) {
+    width: 80%;
+    background-color: aliceblue;
+    top: 10px;
+}
+
+.topbtn > div > span:nth-child(3) {
+    background-color: #fff;
+    top: 20px;
+}
+.topbtn > div > span:nth-child(4) {
+    width: 70%;
+    background-color: aliceblue;
+    top: 30px;
+}
+.topbtn > div > span:nth-child(5) {
+    width: 80%;
+    background-color: #fff;
+    top: 40px;
+}
+.topbtn > div > span:nth-child(6) {
+    background-color: aliceblue;
+    height: 3px;
+    top: 50px;
+}
+/* 점 2 4 5번 점찍기! */
+/* 2번 */
+.topbtn > div > span:nth-child(7) {
+    right: 0;
+    background-color: aliceblue;
+    top: 10px;
+
+    height: 2px;
+    width: 5%;
+}
+/* 4번 */
+.topbtn > div > span:nth-child(8) {
+    right: 0;
+    background-color: aliceblue;
+    top: 30px;
+    width: 15%;
+    height: 2px;
+}
+/* 5번 */
+.topbtn > div > span:nth-child(9) {
+    right: 0;
+    background-color: #fff;
+    top: 40px;
+    width: 5%;
+}
+/* on클래스 적용시 변하는 작대기들! */
+.topbtn.on > div > span:nth-child(1) {
+    transform: rotate(30deg);
+    top: 12px;
+}
+.topbtn.on > div > span:nth-child(2) {
+    transform: rotate(31deg);
+    top: 35px;
+    width: 200%;
+}
+.topbtn.on > div > span:nth-child(3) {
+    transform: rotate(30deg);
+}
+.topbtn.on > div > span:nth-child(4) {
+    transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(5) {
+    transform: rotate(-30deg);
+}
+.topbtn.on > div > span:nth-child(6) {
+    transform: rotate(150deg);
+    top: 26px;
+}
+.topbtn.on > div > span:nth-child(7) {
+    top: 4px;
+    left: 63%;
+}
+.topbtn.on > div > span:nth-child(8) {
+    display: none;
+}
+
+/* 마우스 오버시 트랜지션!! */
+.topbtn:hover > div > span:nth-child(2) {
+    width: 100%;
+}
+.topbtn:hover > div > span:nth-child(4) {
+    width: 100%;
+}
+.topbtn:hover > div > span:nth-child(5) {
+    width: 100%;
+}
+
+.topbtn:hover {
+    opacity: 1;
+    border-radius: 20%;
+}
+/* 여기까지가 밑줄 쫙 쫙 */
+/* 상단 GNB 로고 싸는박스 */
+.tbox1 {
+    position: relative;
+    width: 100%;
+    top: 0;
+    z-index: 9999999;
+    /* 배경색 */
+    background: #000;
+}
+/* 상단 디자인 */
+.top {
+    position: relative;
+    height: 130px;
+    z-index: -1;
+}
+/*  */
+/* 싸는 박스 */
+.coverSVG {
+    width: 90vw;
+    margin: 0 auto;
+}
+.coverSVG::before {
+    position: absolute;
+    z-index: -9999;
+    content: "";
+    display: block;
+    padding-top: 30%;
+}
+.coverSVG > div {
+    width: min(max(30vw, 250px), 300px);
+    height: 130px;
+    margin: 0 auto;
+}
+
+.coverSVG > div > div {
+    position: relative;
+    top: 50%;
+    width: 33.33%;
+    overflow: hidden;
+    padding-top: 30%;
+    float: left;
+    transform: translateY(-50%);
+}
+
+/* SVG 공통 */
+.toplogo svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 410%;
+}
+
+.path {
+    fill: none;
+    stroke: #fff;
+
+    stroke-dasharray: 300%;
+    stroke-dashoffset: -300%;
+
+    animation: pathstrokeani 3s ease-out 0.2s forwards;
+}
+@keyframes pathstrokeani {
+    80% {
+        stroke: #fff;
+        stroke-dashoffset: 0%;
+    }
+    90% {
+        stroke: rgba(255, 255, 255, 0.214);
+        stroke-dashoffset: -300%;
+    }
+    100% {
+        stroke-dashoffset: 0%;
+        stroke: lightsteelblue;
+    }
+}
+
+/* SVG  PATH 개별 디자인 */
+/* 상단 ul */
+.gnb > ul {
+    transition: all 0.7s ease-out;
+    /* bottom: -3px; */
+    /* position: relative; */
+    height: 47px;
+    display: flex;
+    justify-content: center;
+}
+
+.gnb > ul > li:last-child {
+    width: 180px;
+}
+.gnb > ul > li {
+    /* 위치조정 */
+    width: 130px;
+    line-height: 2;
+
+    /* 글씨 조정 */
+    text-align: center;
+    font-size: 30px;
+    margin: 0 25px;
+    font-family: "Single Day", cursive;
+
+    color: #fff;
+}
+
+/* gnb a 요소 */
+.gnb > ul > li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* gnb 통배너 밑에 하위 카테고리 ul */
+/* 공통 */
+.ssm {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    width: 100vw;
+    background: #000;
+    right: 0;
+    border-radius: 0 0 30% 30%;
+}
+/* 개별 */
+/* gnb 통배너 밑에 하위 카테고리 ll */
+/* display: none; */
+/* 공통 */
+.ssm > li > a {
+    color: #000;
+    font-size: 2 vw;
+}
+/* 개별 */
+/* ****************************************** */
+/* GNB싸는 박스 */
+.nav {
+    /* height: 50px; */
+    margin-top: 0;
+}
+
+.tt {
+    color: #fff;
+    font-weight: 1vw;
+}
+@keyframes txtFlow1 {
+    to {
+        left: -100%;
+    }
+}
+
+/* 카테고리(숨김네비) */
+/* 노이즈 */
+.noise {
+    width: 0vw;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    background-color: rgba(128, 128, 128, 0.434);
+    transition: all 0.5s;
+}
+/* 가로 늘어나는 클래스 */
+.noise.on {
+    width: 100vw;
+}
+/* 가로 늘어나는거 코랄 */
+.coralwrapp {
+    width: 0vw;
+
+    height: 99vh;
+    left: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    background-color: lightcoral;
+    transition: all 0.55s;
+}
+.coralwrapp.on {
+    border-radius: 0 0 20% 0;
+    width: 96vw;
+    z-index: 99999999;
+}
+/* 두번째  */
+.whitewrapp {
+    width: 0vw;
+    height: 97vh;
+    left: 0;
+    position: fixed;
+    z-index: 100000000;
+    top: 0;
+    transition: all 0.6s;
+}
+.whitewrapp.on {
+    border-radius: 0 0 28% 0;
+    width: 94vw;
+    z-index: 100000000;
+}
+/* 가로늘어나는 클래스 wrapp */
+.wrapp {
+    z-index: 999999999;
+    border-radius: 0 0 30% 0;
+    width: 0vw;
+    height: 95vh;
+    background-color: black;
+    top: 0;
+    position: fixed;
+    transition: all 0.61s;
+    overflow: hidden;
+}
+.wrapp.on {
+    width: 93vw;
+}
+
+/* 햅버거 버튼 안에 버튼들 */
+.ulcoverham {
+    position: absolute;
+    right: 0;
+    width: 70%;
+    top: 50px;
+    height: 100%;
+}
+.hamul {
+    position: absolute;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+/* 햄버튼 밑에 하위 자손 li */
+/* 공통 */
+.hamul > li {
+    position: relative;
+    border-bottom: 2px solid #fff;
+    line-height: 1.5;
+
+    width: 0;
+    overflow: hidden;
+    transition: all 0.7s ease-in;
+}
+.hamul.on > li {
+    width: 100%;
+}
+.hamul > li:first-child {
+    font-family: "Gugi", cursive;
+}
+.hamul > li:nth-child(2) {
+    font-family: "Nanum Brush Script", cursive;
+}
+.hamul > li:nth-child(3) {
+    font-family: "Black Han Sans", sans-serif;
+}
+
+/* 마지막 */
+.hamul.on > li:last-child > a {
+    transform: translateX(0);
+    font-family: "Cinzel", serif;
+    transition-delay: 0.11s;
+}
+.hamul > li > a {
+    color: #fff;
+
+    font-size: 5vw;
+    transition: all 0.2s;
+    transition: transform 0.7s ease-out 0.5s;
+    width: 100%;
+    display: block;
+}
+/* 햄버거 버튼 하단 상세 카테고리 */
+/* 공통 */
+.sham {
+    color: black;
+    display: none;
+}
+/* 공통 하위 li공통 */
+.hamul .sham > li {
+    font-size: 5vw;
+}
+
+.hamul .sham > li > a {
+    display: block;
+    width: 100%;
+}
+
+/* 상단 로고 싸는박스 */
+.coverlogotop {
+    position: absolute;
+    width: 20%;
+    height: 13%;
+    top: 4px;
+    left: 40%;
+    z-index: 10000000;
+}
+/* 상단로고 싸는박스 하위 a */
+.coverlogotop > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 햄버거 버튼 하위 li세부 사항 조정 */
+.sham > li > a {
+    width: 100%;
+}
+/* 하단 아이콘 들어가는 부분  */
+footer .ffll1 {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+}
+/* 하단 별만들기 */
+.fooeterstar {
+    position: absolute;
+    display: flex;
+
+    /* 플렉스 랩핑 박스 */
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transition: all 0.6s;
+
+    overflow: hidden;
+}
+.fooeterstar section {
+    background-color: #000;
+    position: relative;
+    flex-basis: 50%;
+
+    transition: all 0.5s;
+}
+
+.fooeterstar section:nth-child(1) {
+    border-radius: 0 0 50% 0;
+}
+.fooeterstar section:nth-child(2) {
+    border-radius: 0 0 0 50%;
+}
+.fooeterstar section:nth-child(3) {
+    border-radius: 0 50% 0 0;
+}
+.fooeterstar section:nth-child(4) {
+    border-radius: 50% 0 0 0;
+}
+/********* 메인 영역 CSS *********/
+.maintit {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: black;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+/* 로그인 글자 요소 들어가는 부분  */
+.wbx {
+    position: relative;
+    width: max(270px, 100%);
+    padding-bottom: 100px;
+    background-color: #fff;
+    animation: bgcslide 20s linear alternate infinite;
+    margin-bottom: 30px;
+}
+/* 배경색 바뀌는 애니 */
+@keyframes bgcslide {
+    0% {
+        background-color: #fff;
+    }
+    100% {
+        background-color: gray;
+    }
+}
+.loginmain {
+    width: 70vw;
+    margin: 0 auto;
+}
+/* 로그인 현수막 */
+.logtit {
+    font-family: "Barlow Condensed", sans-serif;
+    text-align: center;
+    font-size: 50px;
+    color: #000;
+}
+/* 로그인 박스 안쪽 부분 싸는 박스  */
+.Formlogin {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/* 아이디 패스워드 위치 공통 */
+.joinPUT {
+    position: relative;
+    text-align: center;
+}
+/* 아이디 패스워드 글자 공통 */
+.JTXT {
+    font-size: 20px;
+    font-family: "Zen Dots", cursive;
+}
+/* 아이디 패스워드 글자개별 */
+.IDtxt {
+    display: block;
+    position: relative;
+    width: 50px;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-size: 40px;
+}
+.passtxt {
+    font-size: 30px;
+    width: 230px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.NAME {
+    display: block;
+    position: relative;
+    width: 160px;
+    margin: 0 auto;
+    margin-top: 15px;
+    font-size: 40px;
+}
+.EMAIL1 {
+    display: block;
+    position: relative;
+    width: 160px;
+    margin: 0 auto;
+    margin-top: 15px;
+    font-size: 40px;
+}
+.ALPA_GOL {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Cairo", sans-serif;
+    font-weight: bold;
+    margin: 0 10px;
+}
+/* 로그인 클릭 버튼  */
+#logbtn {
+    position: relative;
+
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    width: max(250px, 60%);
+    height: 40px;
+    font-family: "Zen Dots", cursive;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    transition: all 0.3s ease-out;
+}
+/* 로그인 클릭 버튼 호버시  */
+#logbtn:hover {
+    cursor: pointer;
+    text-shadow: 5px 5px 20px #000;
+    box-shadow: inset 5px 5px 20px white;
+}
+
+/* input요소 공통 */
+.INPUTCOMMON {
+    text-align: center;
+    width: 220px;
+    height: 30px;
+    outline: 2px solid #000;
+    font-size: 20px;
+}
+/* 로그인 아이디 input 요소 */
+#IDTEXT {
+    text-align: center;
+    width: 220px;
+    height: 30px;
+    outline: 2px solid #000;
+    font-size: 20px;
+}
+/* 로그인 비밀번호 input 요소 */
+#PWDTEXT {
+    text-align: center;
+    width: 220px;
+    height: 30px;
+    outline: 2px solid #000;
+    font-size: 20px;
+    margin-top: 10px;
+}
+/* 로그인 비밀번호 input 요소 */
+#PWDTEXT2 {
+    text-align: center;
+    width: 220px;
+    height: 30px;
+    outline: 2px solid #000;
+    font-size: 20px;
+    margin-top: 10px;
+}
+/* 이메일 input요소 */
+#email1 {
+    text-align: center;
+    width: 220px;
+    height: 30px;
+    outline: 2px solid #000;
+    font-size: 20px;
+}
+/* 이메일 select요소 */
+#selmail {
+    text-align: center;
+    width: 220px;
+    height: 35px;
+    outline: 2px solid #000;
+    font-size: 20px;
+}
+/* 이메일 2번째거  */
+#email2{
+  position: absolute;
+  width: 220px;
+  height: 35px;
+    bottom: 36px;
+    left: 376px;
+    outline: 2px solid black;
+
+    display: none;
+    text-align: center;
+    font-size: 20px;
+}
+.gender {
+    display: block;
+    width: 100%;
+    height: 34px;
+    top: 20px;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-family: "Zen Dots", cursive;
+}
+.WM {
+    margin-left: 15px;
+}
+
+/* 이메일 하단 부분 개별정리  */
+.EINput {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 클래스 on시 배경색 주는것  */
+.input_color{
+  background-color: #fff;
+}
+/*****  하단 부분 css  *******/
+footer {
+    position: relative;
+    width: 100vw;
+    height: 30vh;
+    background-color: black;
+    bottom: 0;
+}
