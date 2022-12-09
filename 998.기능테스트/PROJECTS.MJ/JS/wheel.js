@@ -47,6 +47,7 @@ $(() => {
                 behavior: "smooth", // or "auto" or "instant"
                 // 화면 상단/하단 위치이동옵션
                 block: "start", // or "end"
+                // inline 옵션 -> 가로스크롤 옵션
             });
         });
 
