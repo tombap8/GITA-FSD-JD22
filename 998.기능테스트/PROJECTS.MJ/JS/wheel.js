@@ -28,7 +28,6 @@ $(() => {
     let tempsc = 100;
 
     const clickSetFn = (ele) => {
-        // let idx = $(ele).index();
 
         // 1. 대상의 높이값을 화면의 절반크기만큼 키움
         $(ele).css({
