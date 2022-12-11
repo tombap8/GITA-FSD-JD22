@@ -1,6 +1,5 @@
 // 보그 PJ 카테고리 페이지 JS - category.js
 import data from "cat";
-import { event, isWindow } from "jquery";
 
 ///////////////////////////////////////////////////////
 // 컴포넌트간 변수 전달을 위해 컨텍스트 사용! //////////
