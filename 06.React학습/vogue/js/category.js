@@ -1,5 +1,6 @@
 // 보그 PJ 카테고리 페이지 JS - category.js
 import data from "cat";
+import { event, isWindow } from "jquery";
 
 ///////////////////////////////////////////////////////
 // 컴포넌트간 변수 전달을 위해 컨텍스트 사용! //////////
@@ -36,104 +37,125 @@ function Render(props) {
   // 메뉴 데이터인 배열을 이용하여 메뉴를 만들어준다!
   const makeMenu = () => {
     const menuList = seldata["메뉴"];
-        // 메뉴가 있을경우 메뉴 코드를 생성해서 리턴!
-        if (menuList != "없음") {
-            const hcode = menuList.map((item) => (
-            <li>
-                <a href="#">{item}</a>
-            </li>
-            ));
-            return <ul>{hcode}</ul>;
-        }
-        else{
-            return "";
-        }
+    // 메뉴가 있을경우 메뉴 코드를 생성해서 리턴!
+    if (menuList != "없음") {
+      const hcode = menuList.map((item) => (
+        <li>
+          <a href="#">{item}</a>
+        </li>
+      ));
+      return <ul>{hcode}</ul>;
+    } else {
+      return "";
+    }
   };
 
   // 선택 타이틀 찍어봄!!
   console.log(seldata["타이틀"]);
 
-
-  
+  ////////////////////////////////////
+  //// 카테고리 이름 업데이트 함수 ////
+  ////////////////////////////////////
   const updatePage = (cat) => {
+    // console.log("와우!", cat);
+    // console.log(catName);
 
-    console.log("와우!", cat);
-    console.log(catName);
-        setCatName(cat);
+    // 카테고리 이름 업데이트하기!
+    setCatName(cat);
+    //-> useState 특성으로 전체갱신함!
+
+    // a요소 기본이동막기
+    window.event.preventDefault();
   }; //////////// updatePage ////////////
 
   const gnbStyle = {
-    marginTop:"-46px",
-    backgroundColor: "#fff"
-  }
+    marginTop: "-46px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 2px rgb(0 0 0 / 15%)"
+  };
 
   // 구조변경상 메인 영역을 위로 올리기!
   let contEle = document.querySelector("#cont");
   contEle.style.position = "relative";
   contEle.style.zIndex = "99999";
-  contEle.style.boxShadow = "0 2px 2px rgb(0 0 0 / 15%)"
+  contEle.style.boxShadow = "0 2px 2px rgb(0 0 0 / 15%)";
 
   // Render() 컴포넌트 리턴 코드 ////////////////
   const renderResults = () => {
-      return (
-        <React.Fragment>
-            {/* GNB메뉴를 같은 컴포넌트에 넣어야 useState적용됨! */}
-             <nav className="gnb" style={gnbStyle}>
-            <ul>
-                <li>
-                <a href="#" onClick={() => updatePage("fashion")}>FASHION</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("beauty")}>BEAUTY</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("living")}>LIVING</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("people")}>PEOPLE</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("video")}>VIDEO</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("runway")}>RUNWAY</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("time & gem")}>TIME &amp; GEM</a>
-                </li>
-                <li>
-                <a href="#" onClick={() => updatePage("shopping")}>SHOPPING</a>
-                </li>
-                <li>
-                {/* <!-- 돋보기 검색버튼 --> */}
-                <a href="#" class="fi fi-search">
-                    <span class="ir">search</span>
-                </a>
-                </li>
-            </ul>
+    return (
+      <React.Fragment>
+        {/* GNB메뉴를 같은 컴포넌트에 넣어야 useState적용됨! */}
+        <nav className="gnb" style={gnbStyle}>
+          <ul>
+            <li>
+              <a href="#" onClick={() => updatePage("fashion")}>
+                FASHION
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("beauty")}>
+                BEAUTY
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("living")}>
+                LIVING
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("people")}>
+                PEOPLE
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("video")}>
+                VIDEO
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("runway")}>
+                RUNWAY
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("time & gem")}>
+                TIME &amp; GEM
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => updatePage("shopping")}>
+                SHOPPING
+              </a>
+            </li>
+            <li>
+              {/* <!-- 돋보기 검색버튼 --> */}
+              <a href="#" class="fi fi-search">
+                <span class="ir">search</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <main className={"cont ibx " + seldata["경로"]}>
+          {/* <!-- 2-1.카테고리 페이지 탑영역 --> */}
+          <header className="ctop">
+            {/* <!-- 2-1-1.서브타이틀 --> */}
+            <h2 className="stit">
+              {seldata["제목"]}
+            </h2>
+            {/* <!-- 2-1-2.서브메뉴(LNB:Local Navigation Bar) --> */}
+            <nav className="lnb" style={showNav}>
+              {makeMenu()}
             </nav>
-            <main className={"cont ibx " + seldata["경로"]}>
-                {/* <!-- 2-1.카테고리 페이지 탑영역 --> */}
-                <header className="ctop">
-                {/* <!-- 2-1-1.서브타이틀 --> */}
-                <h2 className="stit" onClick={() => setCatName("shopping")}>
-                    {seldata["제목"]}
-                </h2>
-                {/* <!-- 2-1-2.서브메뉴(LNB:Local Navigation Bar) --> */}
-                <nav className="lnb" style={showNav}>
-                    {makeMenu()}
-                </nav>
-                </header>
-                {/* <!-- 2-2.카테고리 컨텐츠박스 --> */}
-                {/* 하단 컨텐츠 타이틀 출력은 별도의 컴포넌트 구성해서 출력함! */}
-                <MakeTitle tit={seldata["타이틀"]} />
-            </main>
-            </React.Fragment>
-      );
-};
+          </header>
+          {/* <!-- 2-2.카테고리 컨텐츠박스 --> */}
+          {/* 하단 컨텐츠 타이틀 출력은 별도의 컴포넌트 구성해서 출력함! */}
+          <MakeTitle tit={seldata["타이틀"]} />
+        </main>
+      </React.Fragment>
+    );
+  };
 
-return <React.Fragment>{ renderResults() }</React.Fragment>;
-
+  return <React.Fragment>{renderResults()}</React.Fragment>;
 } //////////////// Render 컴포넌트 ////////////////
 
 /********************************************************************* 
@@ -190,4 +212,3 @@ const root2 = ReactDOM.createRoot(document.querySelector(".gnb"));
 root2.render(<div></div>);
 
 //===============================================================
-
