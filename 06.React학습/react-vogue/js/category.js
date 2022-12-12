@@ -4,7 +4,8 @@ import data from "cat";
 /************************************************ 
     [1] 메인 카테고리 렌더링 컴포넌트 : Render
 ************************************************/
-function Render(props) {
+function Render() {
+    // 네비게이션 상태훅
     const [showNav, setShowNav] = React.useState(null);
 
     // 파리미터 전달값 받기
@@ -19,6 +20,8 @@ function Render(props) {
 
     // 객체 데이터 중 카테고리에 해당하는 데이터만 저장하기
     let seldata;
+    // data 변수 -> cat.js의 데이터를 담은 변수임!
+    // 내용이 객체니까 for in문 사용!
     for (const key in data) {
         if (key == catName) {
             seldata = data[key];
@@ -31,6 +34,7 @@ function Render(props) {
         const menuList = seldata["메뉴"];
         // 메뉴가 있을경우 메뉴 코드를 생성해서 리턴!
         if (menuList != "없음") {
+            // 배열데이터의 값이 있는 동안 map()으로 돌아줌! 
             const hcode = menuList.map((item) => (
                 <li>
                     <a href="#">{item}</a>
