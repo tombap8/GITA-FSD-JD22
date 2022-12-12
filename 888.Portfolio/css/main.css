@@ -560,7 +560,7 @@ a {
 
     .sbox {
         position: absolute;
-        margin-top: 15vh;
+        margin-top: 5vh;
         left: 150%;
         /* transform: translate(-50%, -50%); */
         width: max(100vw,370px);
