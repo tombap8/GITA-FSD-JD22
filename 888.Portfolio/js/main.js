@@ -29,7 +29,7 @@ $(function () {
         $("#dpbox").fadeOut(300);
     }); //// click ///////
 
-    $("body").append('<button class="back">메인페이지</button>');
+    $("body").append('<button class="back">처음으로</button>');
     $(".back")
         .css({
             position: "fixed",
@@ -42,7 +42,7 @@ $(function () {
             borderRadius: "5px",
         })
         .click(function () {
-            location.href = "../../index.html";
+            location.href = "index.html";
         });
 }); ///////// jQB /////////////////////
 /////////////////////////////////////

@@ -1,91 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio Management</title>
+        <link rel="stylesheet" href="./css/main.css" />
+        <script src="./js/jquery-3.5.0.min.js"></script>
+        <script src="./js/jquery-ui.min.js"></script>
+        <script src="./js/main.js"></script>
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Management</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <script src="./js/jquery-3.5.0.min.js"></script>
-    <script src="./js/jquery-ui.min.js"></script>
-    <script src="./js/main.js"></script>
-</head>
+    <body>
+        <!--제목-->
+        <h1 class="mainTit">
+            그린IT아카데미학원<br />
+            자바 기반 풀스택 개발자 과정<br />
+            <span>2022.09.01~2022.12.12</span>
+        </h1>
 
-<body>
-
-    <!--제목-->
-    <h1 class="mainTit">
-        자바 기반 풀스택 개발자 과정<br>
-        <span>2022.09.01~2022.12.12</span>
-    </h1>
-
-
-    <ul class="sbox s1">
-        <li>
-            <a href="#" class="kw">김규민</a>
-            <div class="cbox">
-                <div></div>
-                <div>
-                    <h2 class="tit">BIFF2021</h2>
-                    <img src="images/pf1.png" alt="김규민포폴">
-                    <p class="desc">
-                        <a href="../김규민/포폴소스/index.html">1. 포트폴리오 사이트</a>
-                        <a href="">2. 가이드 문서</a>
-                    </p>
+        <ul class="sbox s1">
+            <li>
+                <a href="#" class="kw">김규민</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">BIFF2021</h2>
+                        <img src="images/pf1.png" alt="김규민포폴" />
+                        <p class="desc">
+                            <a href="../김규민/포폴소스/index.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="">2. 가이드 문서</a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <a href="#" class="kw">LJW</a>
-            <div class="cbox">
-                <div></div>
-                <div>
-                    <h2 class="tit">Artist</h2>
-                    <img src="images/pf2.png" alt="이정우포폴">
-                    <p class="desc">
-                        <a href="../이정우/포폴소스/pp.html">1. 포트폴리오 사이트</a>
-                        <a href="../이정우/이정우.pdf">2. 가이드 문서</a>
-                    </p>
+            </li>
+            <li>
+                <!-- 완료 -->
+                <a href="#" class="kw">김영채</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">DUDCO</h2>
+                        <img src="./images/김영채.png" alt="김영채포폴" />
+                        <p class="desc">
+                            <a href="https://kyc11.github.io/Portfolio/pp/"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="./pdf/김영채.pdf">2. 가이드 문서</a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <a href="#" class="kw">JMH</a>
-            <div class="cbox">
-                <div></div>
-                <div>
-                    <h2 class="tit">KIA 자동차</h2>
-                    <img src="images/pf3.png" alt="제민호포폴">
-                    <p class="desc">
-                        <a href="../제민호/포폴소스/index.html">1. 포트폴리오 사이트</a>
-                        <a href="../제민호/KIA가이드문서.pptx">2. 가이드 문서</a>
-                    </p>
+            </li>
+            <li>
+                <a href="#" class="kw">김태현</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">KIA 자동차</h2>
+                        <img src="images/pf3.png" alt="김태현포폴" />
+                        <p class="desc">
+                            <a href="../김태현/포폴소스/index.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../김태현/KIA가이드문서.pptx"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <a href="#" class="kw">CJY</a>
-            <div class="cbox">
-                <div></div>
-                <div>
-                    <h2 class="tit">Gogh Works</h2>
-                    <img src="images/pf4.png" alt="최재용포폴">
-                    <p class="desc">
-                        <a href="../최재용/포폴소스/intro.html">1. 포트폴리오 사이트</a>
-                        <a href="../최재용/화면구현-최재용.pdf">2. 가이드 문서</a>
-                    </p>
+            </li>
+            <li>
+                <a href="#" class="kw">배민주</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">Gogh Works</h2>
+                        <img src="images/pf4.png" alt="배민주포폴" />
+                        <p class="desc">
+                            <a href="../배민주/포폴소스/intro.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../배민주/화면구현-배민주.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </li>
-    </ul>
-    <h2 class="mtit rot"><span>포트폴리오</span></h2>
+            </li>
+            <li>
+                <a href="#" class="kw">백형주</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">Gogh Works</h2>
+                        <img src="images/pf4.png" alt="백형주포폴" />
+                        <p class="desc">
+                            <a href="../백형주/포폴소스/intro.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../백형주/화면구현-백형주.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">양호성</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">Gogh Works</h2>
+                        <img src="images/pf4.png" alt="양호성포폴" />
+                        <p class="desc">
+                            <a href="../양호성/포폴소스/intro.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../양호성/화면구현-양호성.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">이수현</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">한국여행지소개</h2>
+                        <img src="./images/이수현.png" alt="이수현포폴" />
+                        <p class="desc">
+                            <a
+                                href="https://suhyeon912.github.io/PortFolio/source/html/main.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../이수현/화면구현-이수현.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <!-- 완료 -->
+                <a href="#" class="kw">이승현</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">스타벅스코리아</h2>
+                        <img src="./images/이승현.png" alt="이승현포폴" />
+                        <p class="desc">
+                            <a href="https://lesehy.github.io/myPJ/"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="./pdf/이승현.pdf">2. 가이드 문서</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">이진우</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">Gogh Works</h2>
+                        <img src="images/pf4.png" alt="이진우포폴" />
+                        <p class="desc">
+                            <a href="../이진우/포폴소스/intro.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../이진우/화면구현-이진우.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">전찬빈</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">떠그클럽</h2>
+                        <img src="./images/전찬빈.png" alt="전찬빈포폴" />
+                        <p class="desc">
+                            <a href="https://jeonchanbin.github.io/MN/1%EC%B0%A8%ED%8F%AC%ED%8F%B4/index.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../전찬빈/화면구현-전찬빈.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">정환주</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">Gogh Works</h2>
+                        <img src="images/pf4.png" alt="정환주포폴" />
+                        <p class="desc">
+                            <a href="../정환주/포폴소스/intro.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../정환주/화면구현-정환주.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">주찬우</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">음반소개사이트</h2>
+                        <img src="./images/주찬우.png" alt="주찬우포폴" />
+                        <p class="desc">
+                            <a href="http://ec2-3-38-92-2.ap-northeast-2.compute.amazonaws.com/ProjectS-JSP/PROJECTS.MJ/main.jsp"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../주찬우/화면구현-주찬우.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="kw">지상근</a>
+                <div class="cbox">
+                    <div></div>
+                    <div>
+                        <h2 class="tit">Gogh Works</h2>
+                        <img src="images/pf4.png" alt="지상근포폴" />
+                        <p class="desc">
+                            <a href="../지상근/포폴소스/intro.html"
+                                >1. 포트폴리오 사이트</a
+                            >
+                            <a href="../지상근/화면구현-지상근.pdf"
+                                >2. 가이드 문서</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h2 class="mtit rot"><span>포트폴리오</span></h2>
 
-    <!--전체중앙디피박스-->
-    <div id="dpbox">
-        <div></div>
-        <span>×</span>
-    </div>
-
-</body>
-
+        <!--전체중앙디피박스-->
+        <div id="dpbox">
+            <div></div>
+            <span>×</span>
+        </div>
+    </body>
 </html>
