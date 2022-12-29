@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+	<title>Discovery Expedition - Men Detail</title>
+	<link rel="stylesheet" type="text/css" href="css/men_detail.css">
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery-touch-punch.min.js"></script>
+	<!-- <script src="js/jquery.rotate.js"></script> -->
+	<script src="js/multizoom.js"></script>
+	<script src="js/men_detail.js"></script>
+</head>
+
+<body>
+	<header id="top">
+		<div class="obg"></div>
+		<img src="images/main_logo.png" alt="logo">
+		<ul>
+			<li><a href="#">MEN</a></li>
+			<li><a href="#">WOMEN</a></li>
+			<li><a href="#">STYLE</a></li>
+		</ul>
+		<!--햄버거버튼-->
+		<aside id="ham">
+			<div></div>
+			<div></div>
+			<div></div>
+		</aside>
+	</header>
+	<!--모바일용 메뉴-->
+	<nav id="menu">
+		<div class="obg"></div>
+		<ul>
+			<li><a href="#">MEN</a></li>
+			<li><a href="#">WOMEN</a></li>
+			<li><a href="#">STYLE</a></li>
+		</ul>
+	</nav>
+	<section id="cont1">
+		<ul>
+			<li>
+				<!--상품 이미지 영역-->
+				<a href="#" class="back">← BACK</a>
+				<h1>
+					신상품<span>(160)</span>
+				</h1>
+				<div id="#bbox">
+					<img src="images/m1-1.jpg" alt="선택이미지" id="bigimg">
+				</div>
+				<div class="thumbs">
+					<a href="images/m1-1.jpg" data-large="images/m1-big.jpg"><img src="images/m1-1.jpg" alt="썸네일" /></a>
+					<a href="images/m1-2.jpg" data-large="images/m1-2.jpg"><img src="images/m1-2.jpg" alt="썸네일" /></a>
+					<a href="images/m1-3.jpg" data-large="images/m1-3.jpg"><img src="images/m1-3.jpg" alt="썸네일" /></a>
+					<a href="images/m1-4.jpg" data-large="images/m1-4.jpg"><img src="images/m1-4.jpg" alt="썸네일" /></a>
+					<a href="images/m1-5.jpg" data-large="images/m1-5.jpg"><img src="images/m1-5.jpg" alt="썸네일" /></a>
+					<a href="images/m1-6.jpg" data-large="images/m1-6.jpg"><img src="images/m1-6.jpg" alt="썸네일" /></a>
+				</div>
+				<!--멀티줌 플러그인용
+					링크옵션
+					href : 스테이지에 보여줄 이미지경로
+					data-large : 큰이미지경로
+				-->
+			</li>
+			<li>
+				<!--상품 정보 영역-->
+				<h1>HOME &gt; MEN &gt; 티셔츠/셔츠</h1>
+				<div>
+					<ol>
+						<li>
+							<img src="images/dx_ico_new-28143800.gif" alt="new버튼">
+						</li>
+						<li id="gtit">상품명</li>
+						<li>
+							<img src="images/icon_type02_social01.gif" alt="페이스북"><img
+								src="images/icon_type02_social02.gif" alt="트위터"><img src="images/icon_mail02.gif"
+								alt="이메일"><img src="images/btn_source_copy.gif" alt="URL복사">
+						</li>
+						<li>
+							<span>판매가</span>
+							<span id="gprice">99,000</span>
+						</li>
+						<li>
+							<span>적립금</span>
+							<span><img src="images/icon_my_m02.gif" alt="적립금">4,950(5%적립)</span>
+						</li>
+						<li>
+							<span>무이자할부</span>
+							<span>부분 무이자 할부 혜택 <img src="images/view_btn_nointerest_card.gif" alt="무이자카드보기"></span>
+						</li>
+						<li>
+							<span>상품코드</span>
+							<span id="gcode">23fdfsdfsfsd</span>
+						</li>
+						<li>
+							<span>사이즈</span>
+							<span>95 100 105 110</span>
+						</li>
+						<li>
+							<span>구매수량</span>
+							<span>
+								<input type="text" id="sum" value="1" readonly />
+								<!--
+								readonly 속성은 직접입력을 막음
+								disable 속성은 입력창의 비활성화
+								-->
+								<b class="chg_num">
+									<img src="images/cnt_up.png" alt="증가">
+									<img src="images/cnt_down.png" alt="감소">
+								</b>
+							</span>
+						</li>
+						<li>
+							<span>컬러</span>
+							<span></span>
+						</li>
+						<li>
+							<span>권장계절</span>
+							<span>여름</span>
+						</li>
+						<li class="tot">
+							<span>총합계</span>
+							<span id="total">13,000</span>원
+						</li>
+					</ol>
+
+				</div>
+				<div>
+					<!--버튼영역-->
+					<button class="btn btn1">BUY NOW</button>
+					<button class="btn">SHOPPING CART</button>
+					<button class="btn">WISH LIST</button>
+
+				</div>
+			</li>
+		</ul>
+		<aside class="dimgs">
+			<!--상품 상세 이미지-->
+
+		</aside>
+	</section>
+
+	<section id="info">
+
+		<p>서울특별시 강남구 언주로 541 에프앤에프빌딩<br>
+			사업자 등록번호 : 214-86-09977 통신판매업 신고번호 : 제2011-서울강남-00086호 (주)에프앤에프 대표 : 김창수<br>
+			교환/반품 반송처 : (17384) 경기도 이천시 마장면 프리미엄아울렛로 113-37 F&amp;F 물류센터 디스커버리 물류부<br><br>
+			<strong>고객센터 080-820-8802</strong> A/S : 02-3474-8914 대리점개설 : 02-520-0130<br>
+			평일 오전 10시~오후 5시, 토.일.공휴일 휴무, E-MAIL : <span class="footer_email"><a
+					href="mailto:discovery@fnf.co.kr">discovery@fnf.co.kr</a></span>, FAX : 02-520-0991<br><br>
+			COPYRIGHT F&amp;F CO.,LTD.ALL RIGHTS RESERVED</p>
+
+	</section>
+	<!--위로가기버튼-->
+	<aside id="tbtn">
+		<div class="obg"></div><span>TOP</span>
+	</aside>
+
+</body>
+
+</html>
