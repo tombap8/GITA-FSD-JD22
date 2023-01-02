@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* 어벤저스 소개 페이지 CSS - avengers.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
+
+/* 
+    font-family: 'Monoton', cursive;
+    font-family: 'Single Day', cursive;
+*/
+
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    /* 보이는 화면 채우기! */
+    overflow: hidden;
+}
+/* 전체 배경 */
+body{
+    background: url(../ab_img/space.jpg) no-repeat center/cover;
+}
+
+/* 전체 제목 */
+.tit{
+    font-family: 'Monoton', cursive;
+    font-size: 70px;
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+    /* h1요소의 bold해제 */
+}
+
+/* 메인 캐릭터 박스 */
+.abg{
+    /* 왜 포지션이 필요한가? */
+    /* 자유롭게 항상 정중앙에 위치시키고 싶다!!! */
+    /* 다른요소의 영향없이 기준요소에서 위치를 잡는다! */
+    position: absolute;
+    top: calc(50% - 200px);
+    /* height가 400px이므로 절반인 200px을 빼서 이동 */
+    left: calc(50% - 150px);
+    /* width가 300px이므로 절반인 150px을 빼서 이동 */
+    /* 
+        정중앙 이동원리: 위치값을 top, left 각각 50%를 이동후
+        자신의 가로크기의 절반을 left값에서 빼고
+        자신의 세로크기의 절반을 top값에서 빼면 정중앙이동한다!
+
+        값의 계산을 해주는 CSS 함수는? calc()
+        -> 사칙연산이 모두 가능함!
+        calc(%수치 - px수치)
+        주의! 빼기 기호 앞뒤에 반드시 띄어쓰기를 할것!
+    */
+
+    width: 300px;
+    height: 400px;
+    border: 3px solid cyan;
+    border-radius: 50%;
+    /* 원형 */
+
+    box-shadow: 0px 0px 50px 5px cyan;
+    /* 
+    box-shadow: inset hoff voff blur spread color;
+    박스그림자: inset(내부그림자) - 안쓰면 바깥그림자
+                hoff(x축이동값)
+                voff(y축이동값)
+                blur(경계선흐림)
+                spread(그림자크기) - 안쓰면 같은크기
+                color(그림자색)
+ */
+
+    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
+}
+
+/* 캐릭터 각 박스 공통 */
+.abg>div{
+    position: absolute;
+    /* 자식요소 .cat에 대한 부모자격도 있음! */
+    top: 128px;
+    left: 105px;
+    /* 부모는? .abg */
+    opacity: 0;/* 투명 */
+
+    /* 트랜지션: 속시이지 */
+    transition: all 2s ease-in-out;
+    /* 
+        트랜지션 애니메이션은 top,left,opacity 세가지를 적용함!
+    */
+}
+/* 캐릭터 이미지 공통 */
+.abg>div>img{
+    border-radius: 50%;
+    box-shadow: 0 0 20px 1px yellow;
+    /* box-shadow: x y blur spread color */
+    /* 박스그림자를 밝은 색으로 주면 글로우효과를 줄 수 있음! */
+}
+
+/* 공통 설명박스 */
+.cat{
+    position: absolute;
+    top: 70px;
+    /* 부모는? .abg>div */
+    opacity: 0;
+    /* 투명하게 숨김! */
+
+    width: 300px;
+
+    font-family: 'Single Day', cursive;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    
+    /* 트랜지션: 속시이지 */
+    transition: all .6s ease-in-out;
+}
+
+/* 캐릭터박스에 오버시 설명보이기 */
+.abg>div:hover .cat{
+    top: 0;
+    opacity: 1;
+}
+
+/* 설명박스 오른쪽 클래스 */
+.rtxt{
+    left: 120%;
+}
+/* 설명박스 왼쪽 클래스 */
+.ltxt{
+    right: 120%;
+}
+.ltxt h2{
+    text-align: right;
+    /* 설명제목 오른쪽 정렬 */
+}
+
+/* body에 오버시 캐릭터박스 opacity */
+body:hover .abg>div{
+    opacity: 1;
+}
+
+/* body에 오버시 캐릭터별 위치값 */
+/* 1.아이언맨 */
+body:hover .abg>div:first-child{    
+    top: -78px;
+    left: -109px;
+}
+/* 2.타노스 */
+body:hover .abg>div:nth-child(2){  
+    top: 264px;
+    left: -145px;
+}
+/* 3.토르 */
+body:hover .abg>div:nth-child(3){  
+    top: 460px;
+    left: 106px;
+}
+/* 4.닥터스트레인져 */
+body:hover .abg>div:nth-child(4){  
+    top: 263px;
+    left: 365px;
+}
+/* 5.스타로드 */
+body:hover .abg>div:last-child{  
+    top: -76px;
+    left: 320px;
+}
