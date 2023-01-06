@@ -6,6 +6,9 @@
 [ 키프레임이란? ]
 - 애니메이션 변화를 지정하는 코딩영역
 
+-> 디즈니 애니 오프닝 예시
+https://www.youtube.com/watch?v=oTPsefZYgGc
+
 [ 2장면 코딩법 ]
 
 @keyframes 키프레임명{
@@ -28,6 +31,7 @@
 
 [ 설정된 키프레임 호출하는 방법 ]
 
+animation: 二時二知半方馬
 animation: 이시이지반방마
 (이름 시간 이징 지연 반복 방향 마지막상태)
 
