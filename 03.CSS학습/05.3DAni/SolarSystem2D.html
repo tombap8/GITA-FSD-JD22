@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System 2D</title>
+    <style>
+        /* 웹폰트 */
+        @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@900&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        body {
+            background: url(./images/space.jpg) no-repeat center/cover;
+            overflow: hidden;
+            /* 스크롤바없앰 */
+        }
+
+        /* 공통 class */
+        .ir {
+            /* 배경이미지 설명숨기기 */
+            display: block;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        /* 타이틀 */
+        .tit {
+            position: relative;
+            z-index: 1;
+            /* 행성들보다 위 */
+
+            margin: 0;
+            padding: 0;
+            /* h1의 기본마진,패딩 없앰 */
+            font-family: 'Big Shoulders Stencil Text', cursive;
+            color: #fff;
+            font-size: 80px;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        /* 축소확대 버튼 */
+        .tit2 {
+            font-size: 20px;
+        }
+
+        .tit2 a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 20px;
+        }
+
+        /* 마우스 오버시 또는 class="on"인 경우 */
+        .tit2 a:hover,
+        .tit2 a.on {
+            color: aqua;
+        }
+
+        /* 태양계박스 */
+        #solar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* 부모는? 보이는화면! */
+            transform: translate(-50%, -50%);
+            /* 정중앙이동 */
+            width: 250px;
+            height: 250px;
+
+            /* 트랜지션: 속시이지 */
+            transition: transform 2s ease-in-out;
+        }
+
+        /* 태양박스 */
+        #sun {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            /* 원형 */
+            overflow: hidden;
+            /* 원형바깥쪽 숨기기 */
+            box-shadow: 0 0 60px 10px orange;
+            /* box-shadow: 
+            x축 y축 blur(경계선흐림) spread(그림자크기) 색 */
+            /* outline: 3px dotted lime; */
+        }
+
+        /* 태양이미지 */
+        #sun img {
+            width: 100%;
+            height: 100%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: flame 40s linear infinite alternate;
+        }
+
+        /* 태양이 이글거리는 키프레임 */
+        @keyframes flame {
+            to {
+                transform: scale(1.5);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 지구 */
+        #earth {
+            position: absolute;
+            top: calc(50% - 40px);
+            left: calc(50% - 40px);
+            /* calc(값 - 값) 마이너스기호 앞뒤공백 중요!!! */
+            /* 부모는? #solar */
+            width: 80px;
+            height: 80px;
+            background: url(./images/earth.png) no-repeat 0/100% 100%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: earth 20s linear infinite;
+        }
+
+        /* 지구회전 키프레임 */
+        @keyframes earth {
+            from {
+                transform: rotate(0deg) translateX(-250px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateX(-250px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 달 */
+        #moon {
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            /* calc(값 - 값) 마이너스기호 앞뒤공백 중요!!! */
+            /* 부모는? #solar */
+            width: 40px;
+            height: 40px;
+            background: url(./images/moon.png) no-repeat 0/100% 100%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: moon 6s linear infinite;
+        }
+
+        /* 달회전 키프레임 */
+        @keyframes moon {
+            from {
+                transform: rotate(0deg) translateX(80px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateX(80px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 목성 */
+        #jupiter {
+            position: absolute;
+            top: calc(50% - 75px);
+            left: calc(50% - 75px);
+            /* calc(값 - 값) 마이너스기호 앞뒤공백 중요!!! */
+            /* 부모는? #solar */
+            width: 150px;
+            height: 150px;
+            background: url(./images/jupiter.png) no-repeat 0/100% 100%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: jupiter 35s linear infinite;
+        }
+
+        /* 목성회전 키프레임 */
+        @keyframes jupiter {
+            from {
+                transform: rotate(0deg) translateY(400px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateY(400px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 토성 */
+        #saturn {
+            position: absolute;
+            top: calc(50% - 75px);
+            left: calc(50% - 75px);
+            /* calc(값 - 값) 마이너스기호 앞뒤공백 중요!!! */
+            /* 부모는? #solar */
+            width: 150px;
+            height: 150px;
+            background: url(./images/saturn.png) no-repeat 0/100% 60%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: saturn 40s linear infinite;
+        }
+
+        /* 토성회전 키프레임 */
+        @keyframes saturn {
+            from {
+                transform: rotate(0deg) translateY(-450px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateY(-450px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+
+        /* 명왕성 */
+        #pluto {
+            position: absolute;
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+            /* calc(값 - 값) 마이너스기호 앞뒤공백 중요!!! */
+            /* 부모는? #solar */
+            width: 50px;
+            height: 50px;
+            background: url(./images/pluto.png) no-repeat 0/100% 100%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: pluto 40s linear infinite;
+        }
+
+        /* 명왕성회전 키프레임 */
+        @keyframes pluto {
+            from {
+                transform: rotate(0deg) translateX(650px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateX(650px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 
+            [ 원궤도 회전의 원리 ]
+            - 중앙에서 rotate하는 요소에 translate로 위치이동을
+            하면 중앙에서 회전하던 요소가 옆으로 이동하여 중앙중심의
+            원궤도 회전을 하게된다!
+
+            [ 원궤도 회전시 정립상 회전의 원리 ]
+            - rotate와 translate로 원궤도 회전을 하는 요소에
+            rotate를 뒤에 한번 더 사용해서 기존 회전방향과 반대방향을
+            설정하면 정립상 회전이 가능하다!
+
+         */
+    </style>
+
+    <script>
+        /*/////////////////////////////////////////////////
+            함수명: sView
+            기능: Solar System 부모박스의 축소/확대를 
+                transform으로 변경한다
+        */ /////////////////////////////////////////////////
+        function sView(val, obj) {
+            // val - 축소확대값 받는 전달변수
+            // obj - 클릭된 a요소 자신을 받는 전달변수
+
+            // 1. 함수호출 확인
+            console.log("축소확대!" + val);
+
+            // 2. 변경대상선정: #solar
+            var tg = document.getElementById("solar");
+
+            // 3. 변경내용 적용하기
+
+            // 3-1. css 트랜스폼 변경하기: 
+            //      scale()값으로 val변수 셋팅
+            tg.style.transform =
+                "translate(-50%, -50%) scale(" + val + ")";
+
+            // 3-2. a요소 클래스 모두 지우기
+            // haha변수는 a요소를 담는 저장소
+            var haha = // 1.변수에 할당한다
+                document // 2.전체문서를 불러온다
+                .getElementsByClassName("tit2") // 3. 클래스tit2를 불러온다
+                .item(0) // 4.클래스 tit2중 첫번째(0)를 불러온다
+                .getElementsByTagName("a"); // 5. 클래스tit2하위 a요소를 불러온다
+            // 1~5까지 진행하여 a요소들을 컬렉션 집합에 담는다!
+            // 이때 그 컬렉션 집합 주소는 haha변수명이다!!!
+
+            // a요소 개수변수
+            var getsu = haha.length;
+            // length는 다수의 집합의 개수를 구해올때 사용함
+
+            console.log("a요소개수:" + getsu);
+
+            // a의 개수만큼 돌면서 해당순서의 
+            // a요소의 class="on"을 지운다!
+            // haha변수에 담긴 a요소의 순번은 0부터이므로
+            // for문의 시작값은 var i=0 으로 설정한다!
+            // for문의 한계값은 변수i가 
+            //      a의 개수인 getsu변수의 값보다 작을때까지임 i<getsu
+            //      0부터 시작하므로 getsu값은 포함되지 않는다!
+            // for문의 증감은 1씩증가해야 하므로 i++
+            for (var i = 0; i < getsu; i++) {
+                haha.item(i)//a요소 중 해당순번의 a요소
+                // for문을 순서대로 돌면서
+                // haha.item(0)->haha.item(1)
+                // ->haha.item(2)->haha.item(3) 이렇게 선택함!
+                .classList.remove("on");
+                // 클래스 중 "on"이 있으면 지워라!
+            } ////// for문 ///////////////////
+
+            // 3-3. 클릭된 a요소로 전달된 obj변수에 클래스"on"넣기
+            obj.classList.add("on");
+            // classList는 선택요소의 클래스를 변경하는 객체
+            // add(클래스명) 메서드는 선택요소에 클래스를 넣는 메서드
+
+        } /////////// sView함수 ////////////////////////////
+        ////////////////////////////////////////////////////
+    </script>
+
+</head>
+
+<body>
+    <!-- 타이틀 -->
+    <h1 class="tit">Solar System</h1>
+    <!-- 배율버튼 -->
+    <h2 class="tit tit2">
+        <a href="#" onclick="sView(0.3,this)">X 0.3</a> |
+        <a href="#" onclick="sView(0.5,this)">X 0.5</a> |
+        <a href="#" class="on" onclick="sView(1,this)">X 1</a> |
+        <a href="#" onclick="sView(1.5,this)">X 1.5</a>
+    </h2>
+
+    <!-- 태양계박스 -->
+    <div id="solar">
+        <!-- 태양 -->
+        <div id="sun">
+            <img src="images/sun.png" alt="태양">
+        </div>
+        <!-- 지구 -->
+        <div id="earth">
+            <span class="ir">지구</span>
+            <!-- 달 -->
+            <div id="moon">
+                <span class="ir">달</span>
+            </div>
+        </div>
+        <!-- 목성 -->
+        <div id="jupiter">
+            <span class="ir">목성</span>
+        </div>
+        <!-- 토성 -->
+        <div id="saturn">
+            <span class="ir">토성</span>
+        </div>
+        <!-- 명왕성 -->
+        <div id="pluto">
+            <span class="ir">명왕성</span>
+        </div>
+
+    </div><!-- #solar -->
+
+</body>
+
+</html>

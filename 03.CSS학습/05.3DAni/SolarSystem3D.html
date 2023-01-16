@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System 3D</title>
+    <style>
+        /* 웹폰트 */
+        @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@900&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* 스크롤바없앰 */
+        }
+
+        body {
+            background: url(./images/space.jpg) no-repeat center/cover;
+        }
+
+        /* 공통 class */
+        .ir {
+            /* 배경이미지 설명숨기기 */
+            display: block;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        /* 타이틀 */
+        .tit {
+            position: relative;
+            z-index: 1;
+            /* 행성들보다 위 */
+
+            margin: 0;
+            padding: 0;
+            /* h1의 기본마진,패딩 없앰 */
+            font-family: 'Big Shoulders Stencil Text', cursive;
+            color: #fff;
+            font-size: 80px;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        /* 축소확대 버튼 */
+        .tit2 {
+            font-size: 20px;
+        }
+
+        .tit2 a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 20px;
+        }
+
+        /* 마우스 오버시 또는 class="on"인 경우 */
+        .tit2 a:hover,
+        .tit2 a.on {
+            color: aqua;
+        }
+
+        /* 태양계박스 축소확대용 부모박스 */
+        .ssbx{
+            position: relative;
+            top: 34%;
+            /* 트랜지션: 속시이지 */
+            transition: transform 2s ease-in-out;
+        
+        }
+
+        /* 태양계박스(전체부모) */
+        /* 태양계 전체박스를 3D변형으로 기울임! */
+        #solar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            /* 화면채움 */
+
+            /* 3D 변형을 위한 셋팅은 부모박스에서 설정한다! */
+            transform-style: preserve-3d;
+            /* 기본값은 flat(2D) */
+
+            /* x축 기준으로 기울임 */
+            transform: rotateX(75deg);
+            /* 전체가 화면 뒤쪽으로 기울어짐
+            중앙선 기준으로 상단은 화면뒤, 하단은 화면앞으로 나옴! */
+        }
+
+        /* 태양박스 */
+        #sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            /* 태양이 태양계박스(#solar)와 함께 75도 누워있으므로
+            x축으로 75도 반대방향으로 세워줘야 태양이 똑바로 보임! */
+            transform: translate(-50%, -50%) rotateX(-75deg);
+            /* 정중앙이동 */
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            /* 원형 */
+            overflow: hidden;
+            /* 원형바깥쪽 숨기기 */
+            box-shadow: 0 0 60px 10px orange;
+            /* box-shadow: 
+            x축 y축 blur(경계선흐림) spread(그림자크기) 색 */
+            /* outline: 3px dotted lime; */
+        }
+
+        /* 태양이미지 */
+        #sun img {
+            width: 100%;
+            height: 100%;
+
+            /* 애니메이션: 이시이지반방마 */
+            animation: flame 40s linear infinite alternate;
+        }
+
+        /* 태양이 이글거리는 키프레임 */
+        @keyframes flame {
+            to {
+                transform: scale(1.5);
+            }
+        }
+
+        /* 키프레임 */
+
+        /********** 행성 공통 class ************/
+        /* 궤도 class */
+        .orbit {
+            position: absolute;
+            /* 부모는 #solar */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* 정중앙이동 */
+            border: 5px solid rgba(255, 255, 255, .5);
+            border-radius: 50%;
+            /* 원 */
+
+        }
+
+        /* 행성 class */
+        .planet {
+            position: absolute;
+            /* 부모는? .pos */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 행성크기에 맞춤! */
+            border-radius: 50%;
+            /* 원 */
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+
+            /*  행성의 부모가 기울었으므로 반대로 세워줌 */
+            transform: rotateY(-75deg);
+            /* 이미 행성이 회전하고 있는데 2가지 회전으로
+            축반전(x,y축이 바뀐효과)이 생겨서 x축이 아니라
+            y축을 세워야함! */
+        }
+
+
+        /*********** 지구행성 셋팅 ***************/
+
+        #earth.orbit {
+            width: 600px;
+            height: 600px;
+        }
+
+        /* 지구행성 포지션 - 중앙중심회전 */
+        #earth .pos {
+            position: absolute;
+            top: calc(50% - 40px);
+            left: calc(50% - 40px);
+            /* 정중앙 위치 calc(%수치 - px수치) 셋팅! */
+
+            width: 80px;
+            height: 80px;
+
+            /* 회전애니메이션 */
+            animation: earth 10s linear infinite;
+        }
+
+        /* 태양중심 지구회전애니 */
+        @keyframes earth {
+            from {
+                transform:
+                    rotate(0deg) translateX(-300px) rotate(0deg);
+            }
+
+            to {
+                transform:
+                    rotate(360deg) translateX(-300px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 지구행성 셋팅 */
+        #earth .planet {
+            background-image: url(images/earth.png);
+
+            /* 스케일 애니메이션 + 그림자 애니메이션 */
+            animation: pScale 10s linear infinite,
+                shdowAni 10s linear infinite;
+        }
+
+
+        /*********** 목성행성 셋팅 ***************/
+
+        #jupiter.orbit {
+            width: 1000px;
+            height: 1000px;
+        }
+
+        /* 목성행성 포지션 - 중앙중심회전 */
+        #jupiter .pos {
+            position: absolute;
+            top: calc(50% - 70px);
+            left: calc(50% - 70px);
+            /* 정중앙 위치 calc(%수치 - px수치) 셋팅! */
+
+            width: 140px;
+            height: 140px;
+
+            /* 회전애니메이션 */
+            animation: jupiter 30s linear infinite;
+        }
+
+        /* 태양중심 목성회전애니 */
+        @keyframes jupiter {
+            from {
+                transform:
+                    rotate(0deg) translateX(-500px) rotate(0deg);
+            }
+
+            to {
+                transform:
+                    rotate(360deg) translateX(-500px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 목성행성 셋팅 */
+        #jupiter .planet {
+            background-image: url(images/jupiter.png);
+            background-size: 155px 158px;
+            background-position: -10px -10px;
+            /* border: 4px solid red; */
+
+            /* 스케일 애니메이션 + 그림자 애니메이션 */
+            animation: pScale 30s linear infinite,
+                       shadowAni2 30s linear infinite;
+        }
+
+         /*그림자 키프레임 - 목성용*/
+         @keyframes shadowAni2 {
+            0% {
+                /* 왼쪽 */
+                box-shadow: inset 39px 0px 22px rgba(0, 0, 0, 0.7);
+            }
+
+            25% {
+                /* 뒷쪽 */
+                box-shadow: inset 0px -5px 22px rgba(0, 0, 0, 0.7);
+            }
+
+            50% {
+                /* 오른쪽 */
+                box-shadow: inset -72px 0px 22px rgba(0, 0, 0, 0.7);
+            }
+
+            75% {
+                /* 앞쪽 */
+                box-shadow: inset -8px -150px 22px rgba(0, 0, 0, 0.7);
+            }
+
+            100% {
+                /* 왼쪽 */
+                box-shadow: inset 39px 0px 22px rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        /*키프레임*/
+
+
+        /*********** 토성행성 셋팅 ***************/
+
+        #saturn.orbit {
+            width: 1400px;
+            height: 1400px;
+        }
+
+        /* 토성행성 포지션 - 중앙중심회전 */
+        #saturn .pos {
+            position: absolute;
+            top: calc(50% - 75px);
+            left: calc(50% - 75px);
+            /* 정중앙 위치 calc(%수치 - px수치) 셋팅! */
+
+            width: 150px;
+            height: 150px;
+
+            /* 회전애니메이션 */
+            animation: saturn 40s linear infinite;
+        }
+
+        /* 태양중심 토성회전애니 */
+        @keyframes saturn {
+            from {
+                transform:
+                    rotate(0deg) translateX(-700px) rotate(0deg);
+            }
+
+            to {
+                transform:
+                    rotate(360deg) translateX(-700px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 토성행성 셋팅 */
+        #saturn .planet {
+            background-image: url(images/saturn.png);
+            background-size: 100% 60%;
+            background-position: center;
+
+            /* 스케일 애니메이션 */
+            animation: pScale 40s linear infinite;
+        }
+
+        /* 토성 그림자 애니를 위한 박스 */
+        #saturn .planet div {
+            width: 43%;
+            height: 43%;
+            border-radius: 50%;
+            margin-top: 28%;
+            margin-left: 28%;
+            /* border: 3px solid red; */
+            
+            /* 그림자 애니메이션 */
+            animation: shdowAni 40s linear infinite;
+        }
+
+
+
+
+
+        /*********** 명왕성행성 셋팅 ***************/
+
+        #pluto.orbit {
+            width: 1600px;
+            height: 1600px;
+        }
+
+        /* 명왕성행성 포지션 - 중앙중심회전 */
+        #pluto .pos {
+            position: absolute;
+            top: calc(50% - 30px);
+            left: calc(50% - 30px);
+            /* 정중앙 위치 calc(%수치 - px수치) 셋팅! */
+
+            width: 60px;
+            height: 60px;
+
+            /* 회전애니메이션 */
+            animation: pluto 50s linear infinite;
+        }
+
+        /* 태양중심 명왕성회전애니 */
+        @keyframes pluto {
+            from {
+                transform:
+                    rotate(0deg) translateX(-800px) rotate(0deg);
+            }
+
+            to {
+                transform:
+                    rotate(360deg) translateX(-800px) rotate(-360deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 명왕성행성 셋팅 */
+        #pluto .planet {
+            background-image: url(images/pluto.png);
+
+            /* 스케일 애니메이션 + 그림자 애니메이션 */
+            animation: pScale 50s linear infinite,
+                shdowAni 50s linear infinite;
+        }
+
+
+
+
+
+
+        /******** 행성 공통 키프레임 : 그림자 + 스케일 ********/
+
+        /* 크기변경 애니 키프레임 */
+        @keyframes pScale {
+            0% {
+                /* 왼쪽 */
+                transform: scale(3) rotateY(-75deg);
+            }
+
+            25% {
+                /* 뒷쪽(가장작음) */
+                transform: scale(1) rotateY(-75deg);
+            }
+
+            50% {
+                /* 오른쪽 */
+                transform: scale(3) rotateY(-75deg);
+            }
+
+            75% {
+                /* 앞쪽(가장큼) */
+                transform: scale(5) rotateY(-75deg);
+            }
+
+            100% {
+                /* 왼쪽 */
+                transform: scale(3) rotateY(-75deg);
+            }
+        }
+
+        /* 키프레임 */
+
+        /* 그림자 키프레임 */
+        @keyframes shdowAni {
+            0% {
+                /* 왼쪽 */
+                box-shadow: inset 20px 0px 6px rgba(0, 0, 0, .7);
+            }
+
+            25% {
+                /* 뒷쪽 */
+                box-shadow: inset 0px 0px 6px rgba(0, 0, 0, .7);
+            }
+
+            50% {
+                /* 오른쪽 */
+                box-shadow: inset -24px 0px 6px rgba(0, 0, 0, .7);
+            }
+
+            75% {
+                /* 앞쪽 */
+                box-shadow: inset 4px -62px 19px rgba(0, 0, 0, .7);
+            }
+
+            100% {
+                /* 왼쪽 */
+                box-shadow: inset 20px 0px 6px rgba(0, 0, 0, .7);
+            }
+        }
+
+        /* 키프레임 */
+
+        /************* 슈퍼맨 **************/
+        #superman{
+            position: absolute;
+            top: 40%;
+            left: -50%;/* 왼쪽에 나가있음! */
+            width: 50%;
+
+            /* 애니메이션 */
+            animation: superman 10s linear 5s infinite;
+        }
+
+        /* 슈퍼맨 키프레임 */
+        @keyframes superman {
+            0%{
+                /* 왼쪽바깥출발! */
+                left: -50%;
+                width: 50%;
+            }
+            10%{
+                /* 드루와~~~~! */
+                left: -20%;
+                width: 50%;
+            }
+            50%{
+                /* 쭉욱~~~가! */
+                left: 50%;
+                width: 20%;
+                transform: rotate(0deg);
+            }
+            75%{
+                /* 계속~~~가! */
+                left: 70%;
+                width: 10%;
+                transform: rotate(-10deg);
+            }
+            100%{
+                /* 나가~~! */
+                left: 150%;
+                width: 2%;
+                transform: rotate(-20deg);
+            }
+        } /* 키프레임 */
+
+        /* 캡틴마블 */
+        #capma {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            /* 정중앙이동 */
+            width: 5%;
+            z-index: -1;
+            /* 태양뒤로! */
+            opacity: 0;/* 처음에 안보임 */
+
+            /* 애니메이션 */
+            animation: capma 20s ease-out 5s infinite;
+        }
+
+        /* 캡틴마블 키프레임 */
+        @keyframes capma {
+            0%{
+                top: 50%;
+                width: 5%;
+                z-index: -1;
+                opacity: 0;
+            }
+            50%{/* 위로 올라가기 */
+                top: 10%;
+                width: 5%;
+                z-index: -1;
+                opacity: 1;
+            }
+            51%{/* 내려올준비 */
+                top: 10%;
+                width: 5%;
+                z-index: 1;/* 행성보다위 */
+                opacity: 1;
+            }
+            75%{/* 커지면서 내려옴 */
+                top: 100%;
+                width: 50%;
+                z-index: 1;/* 행성보다위 */
+                opacity: 1;
+            }
+            100%{/* 아래로 사라짐 */
+                top: 200%;
+                width: 50%;
+                z-index: 1;/* 행성보다위 */
+                opacity: 1;
+            }
+        }/* 키프레임 */
+
+        /* 오디오 */
+        audio{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 9999;/* 맨위 */
+        }
+
+        /* 태블릿+모바일 미디어쿼리 */
+        @media only screen and (max-width:1024px) {
+            .tit{
+                font-size: 8vw;
+            }
+            .tit2{
+                font-size: 3vw;
+            }
+        }/* 미디어쿼리 */
+
+    </style>
+
+    <script>
+        /*/////////////////////////////////////////////////
+        함수명: sView
+        기능: Solar System 부모박스의 축소/확대를 
+            transform으로 변경한다
+    */ /////////////////////////////////////////////////
+        function sView(val, obj) {
+            // val - 축소확대값 받는 전달변수
+            // obj - 클릭된 a요소 자신을 받는 전달변수
+
+            // 1. 함수호출 확인
+            console.log("축소확대!" + val);
+
+            // 2. 변경대상선정: .ssbx
+            var tg = document.querySelector(".ssbx");
+
+            // 3. 변경내용 적용하기
+
+            // 3-1. css 트랜스폼 변경하기: 
+            //      scale()값으로 val변수 셋팅
+            tg.style.transform = "scale(" + val + ")";
+
+            // 3-2. a요소 클래스 모두 지우기
+            // haha변수는 a요소를 담는 저장소
+            var haha = // 1.변수에 할당한다
+                document // 2.전체문서를 불러온다
+                .getElementsByClassName("tit2") // 3. 클래스tit2를 불러온다
+                .item(0) // 4.클래스 tit2중 첫번째(0)를 불러온다
+                .getElementsByTagName("a"); // 5. 클래스tit2하위 a요소를 불러온다
+            // 1~5까지 진행하여 a요소들을 컬렉션 집합에 담는다!
+            // 이때 그 컬렉션 집합 주소는 haha변수명이다!!!
+
+            // a요소 개수변수
+            var getsu = haha.length;
+            // length는 다수의 집합의 개수를 구해올때 사용함
+
+            console.log("a요소개수:" + getsu);
+
+            // a의 개수만큼 돌면서 해당순서의 
+            // a요소의 class="on"을 지운다!
+            // haha변수에 담긴 a요소의 순번은 0부터이므로
+            // for문의 시작값은 var i=0 으로 설정한다!
+            // for문의 한계값은 변수i가 
+            //      a의 개수인 getsu변수의 값보다 작을때까지임 i<getsu
+            //      0부터 시작하므로 getsu값은 포함되지 않는다!
+            // for문의 증감은 1씩증가해야 하므로 i++
+            for (var i = 0; i < getsu; i++) {
+                haha.item(i) //a요소 중 해당순번의 a요소
+                    // for문을 순서대로 돌면서
+                    // haha.item(0)->haha.item(1)
+                    // ->haha.item(2)->haha.item(3) 이렇게 선택함!
+                    .classList.remove("on");
+                // 클래스 중 "on"이 있으면 지워라!
+            } ////// for문 ///////////////////
+
+            // 3-3. 클릭된 a요소로 전달된 obj변수에 클래스"on"넣기
+            obj.classList.add("on");
+            // classList는 선택요소의 클래스를 변경하는 객체
+            // add(클래스명) 메서드는 선택요소에 클래스를 넣는 메서드
+
+        } /////////// sView함수 ////////////////////////////
+        ////////////////////////////////////////////////////
+    </script>
+
+</head>
+
+<body>
+    <!-- 타이틀 -->
+    <h1 class="tit">Solar System</h1>
+    <!-- 배율버튼 -->
+    <h2 class="tit tit2">
+        <a href="#" onclick="sView(0.3,this)">X 0.3</a> |
+        <a href="#" onclick="sView(0.5,this)">X 0.5</a> |
+        <a href="#" onclick="sView(0.7,this)">X 0.7</a> |
+        <a href="#" class="on" onclick="sView(1,this)">X 1</a> |
+        <a href="#" onclick="sView(1.5,this)">X 1.5</a>
+    </h2>
+
+    <!-- 태양계박스 축소확대용 부모박스 -->
+    <div class="ssbx">
+
+        <!-- 태양계박스 -->
+        <div id="solar">
+            <!-- 태양 -->
+            <div id="sun">
+                <img src="images/sun.png" alt="태양">
+            </div>
+            <!-- 지구 -->
+            <div id="earth" class="orbit">
+                <!-- .pos 행성의 위치이동박스 -->
+                <div class="pos">
+                    <!-- 지구이미지박스 -->
+                    <div class="planet">
+                        <span class="ir">지구</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 목성 -->
+            <div id="jupiter" class="orbit">
+                <!-- .pos 행성의 위치이동박스 -->
+                <div class="pos">
+                    <!-- 목성이미지박스 -->
+                    <div class="planet">
+                        <span class="ir">목성</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 토성 -->
+            <div id="saturn" class="orbit">
+                <!-- .pos 행성의 위치이동박스 -->
+                <div class="pos">
+                    <!-- 토성이미지박스 -->
+                    <div class="planet">
+                        <!-- 토성그림자처리를 위한 div박스 -->
+                        <div></div>
+                        <span class="ir">토성</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 명왕성 -->
+            <div id="pluto" class="orbit">
+                <!-- .pos 행성의 위치이동박스 -->
+                <div class="pos">
+                    <!-- 명왕성이미지박스 -->
+                    <div class="planet">
+                        <span class="ir">명왕성</span>
+                    </div>
+                </div>
+            </div>
+        </div><!-- #solar -->
+    </div><!-- .ssbx -->
+
+    <!-- 슈퍼맨 -->
+    <img src="./images/superman.png" alt="superman" id="superman">
+    
+    <!-- 캡틴마블 -->
+    <img src="./images/capma.png" alt="captin marvel" id="capma">
+
+
+    <!-- 오디오넣기 -->
+    <audio src="./images/Williams_Superman_Theme.mp3" controls></audio>
+
+</body>
+
+</html>
