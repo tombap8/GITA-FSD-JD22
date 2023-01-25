@@ -98,15 +98,66 @@
         /************** 1024px 이하 **************/
         @media screen and (max-width:1024px) {
 
+            /* 상단영역변경  - 2개(50%) + 1개(100%) */
+            .top>.pbx {
+                width: 50%;
+                height: 180px;
+            }
+
+            /* 마지막박스 */
+            .top>.pbx:last-child {
+                width: 100%;
+                height: 300px;
+            }
+
+            /* 메인영역변경  - 3개(33.33%) + 1개(100%) */
+            .cont>.pbx {
+                width: 33.33%;
+            }
+
+            /* 마지막 박스 */
+            .cont>.pbx:last-child {
+                width: 100%;
+                height: 600px;
+            }
+
+            /* 하단영역변경 - 높이값 변경(400px) */
+            .info>.pbx {
+                height: 400px;
+            }
+        }
+
         /* 1024px 이하 */
 
         /*************** 800px 이하 ***************/
         @media screen and (max-width:800px) {
 
+            /* 메인영역변경  - 2개(50%) */
+            .cont>.pbx {
+                width: 50%;
+            }
+
+            /* 마지막 박스 */
+            .cont>.pbx:last-child {
+                width: 50%;
+                height: 300px;
+            }
+
+        }
+
         /* 800px 이하 */
 
 
         /**************** 500px 이하 ****************/
+        @media screen and (max-width:500px) {
+            /* 마지막엔 모두 width: 100%, height:400px */
+            /* 더 이하는 없으므로 강제적용 !important 사용 */
+            .pbx{
+                width: 100% !important;
+                height: 400px !important;
+            }
+
+        }
         /* 500px 이하 */
     </style>
 </head>
