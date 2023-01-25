@@ -1,130 +1,150 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>017.비율유지박스(Ratio Box)</title>
-    <style>
-        html,body{
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            /* 보이는 화면기준! */
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>017.비율유지박스(Ratio Box)</title>
+        <style>
+                    html,body{
+                        margin: 0;
+                        padding: 0;
+                        height: 100%;
+                        /* 보이는 화면기준! */
+                    }
 
-        /********************************************* 
-            [ 비율유지 박스를 만드는 원리 ]
+                    /*********************************************
+                        [ 비율유지 박스를 만드는 원리 ]
 
-            1. 가로크기는 %에 준하는 유동적 셋팅
-            2. 세로크기는 셋팅하지 않는다!(auto)
-            3. 가상요소 before 자식요소로 패딩탑 %설정
-            4. 앱솔루트 속박스를 만들어 컨텐츠공간 확보
-            (비율유지박스에 부모자격필수!)
-        *********************************************/
+                        1. 가로크기는 %에 준하는 유동적 셋팅
+                        2. 세로크기는 셋팅하지 않는다!(auto)
+                        3. 가상요소 before 자식요소로 패딩탑 %설정
+                        4. 앱솔루트 속박스를 만들어 컨텐츠공간 확보
+                        (비율유지박스에 부모자격필수!)
+                    *********************************************/
 
-        /* 비율유지박스 */
-        .rbx{
-            /* 렐러티브 부모자격 - .rbxIn */
-            position: relative;
-            width: 60%;
-            /* height: 45%; */
-            /* 결론: 높이값으로는 비율유지 안됨! */
-            margin: 0 auto;
+                    /* 비율유지박스 */
+                    .rbx{
+                        /* 렐러티브 부모자격 - .rbxIn */
+                        position: relative;
+                        width: 60%;
+                        /* height: 45%; */
+                        /* 결론: 높이값으로는 비율유지 안됨! */
+                        margin: 0 auto;
 
-            /* height값 없이 강제로 높이값을
-            어떻게 만들까? -> 패딩으로 만들자!
-            padding-top만 사용해서 높이를 만든다! 
-            단위를 %를 쓰면?
-            자기자신에게 준 패딩탑값에 %를 쓰면
-            비율유지박스가 되지만 정확한 비를
-            계산하기 어렵다!
-            -> 이 패딩탑값을 자식 블록요소에게 줘본다! */
-            /* padding-top: 50%; */
+                        /* height값 없이 강제로 높이값을
+                        어떻게 만들까? -> 패딩으로 만들자!
+                        padding-top만 사용해서 높이를 만든다!
+                        단위를 %를 쓰면?
+                        자기자신에게 준 패딩탑값에 %를 쓰면
+                        비율유지박스가 되지만 정확한 비를
+                        계산하기 어렵다!
+                        -> 이 패딩탑값을 자식 블록요소에게 줘본다! */
+                        /* padding-top: 50%; */
 
-            background: url(./images/mobum.jpg) no-repeat center/cover;
-        }
-        /* 비율유지박스 가상요소로 비율만들기!!! */
-        .rbx::before{
-            content: '';
-            /* div와 같은 블록으로 설정! */
-            display: block;
-            /* 비율을 만드는 패딩탑 %로주기! */
-            padding-top: 52.47%;
-            /* 
-                배경이미지의 비율로 계산해 보기!
-                가로 : 세로 = 1170 : 614 = 100% : x%
-                x% = 614 * 100 / 1170
-                   = 52.47%
-            */
-        }
-
-        /* 가상요소 패딩때문에 내용이 밀리므로
-        내부에 컨텐츠 박스를 앱솔루트로 만든다! */
-        .rbxIn{
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            /* 이때 반드시 .rbx가 부모자격이 있어야함!!! */
-        }
+                        background: url(./images/mobum.jpg) no-repeat center/cover;
+                    }
+                    /* 비율유지박스 가상요소로 비율만들기!!! */
+                    .rbx::before{
+                        content: '';
+                        /* div와 같은 블록으로 설정! */
+                        display: block;
+                        /* 비율을 만드는 패딩탑 %로주기! */
+                        padding-top: 52.47%;
+                        /*
+                            배경이미지의 비율로 계산해 보기!
+                            가로 : 세로 = 1170 : 614 = 100% : x%
+                            x% = 614 * 100 / 1170
+                               = 52.47%
 
 
-        /* 내용셋팅 */
-        .cat{
-            position: absolute;
-            bottom: 2%;
-            left: 5%;
-            /* 부모는? .rbxIn */
-            margin: 0;
-            padding: 0;
-            color: #fff;
-            font-size: 1.5vw;
-            font-weight: bold;
-            line-height: 2;
-            text-shadow: 2px 2px 2px #000;
-        }
 
-        /* 
-            [ aspect-ratio 속성 사용하기 ]
-            aspect-ratio : 가로비 / 세로비;
-            -> width값은 셋팅하고 height값은 auto
+                            padding-top을 이용하는 방식으로 calc()값을 이용하여 비율대로 지정을 할 수 있다.
+                            이 경우 calc()의 기준이 되는 값은 부모 요소의 width값이 된다.
 
-            예) 1 : 1 비율
-                aspect-ratio : 1 / 1;
-                aspect-ratio : 1; -> 위와 같음!
+                            <div class="box">
+                                <div class="in_box">
+                                </div>
+                            </div>
+                            .box{
+                                display: block;
+                                width: 300px;
+                            }
+                            .box .in_box{
+                                padding-top: calc(100% * 0.3);
+                            }
+                            .box .in_box{
+                                padding-top: calc(100% / 16 * 9); /* 16:9 적용 */
+                            }
+                        */
+                    }
 
-            예) 16 : 9 비율
-                aspect-ratio : 16 / 9;
-
-            예) 세로에 대한 가로 80%비율
-                aspect-ratio : .8;
-
-            -> 값을 하나만쓰면 가로값이며
-            세로값은 기본값이 1로 셋팅된다!
-            
-            
+                    /* 가상요소 패딩때문에 내용이 밀리므로
+                    내부에 컨텐츠 박스를 앱솔루트로 만든다! */
+                    .rbxIn{
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        right: 0;
+                        left: 0;
+                        /* 이때 반드시 .rbx가 부모자격이 있어야함!!! */
+                    }
 
 
-        */
+                    /* 내용셋팅 */
+                    .cat{
+                        position: absolute;
+                        bottom: 2%;
+                        left: 5%;
+                        /* 부모는? .rbxIn */
+                        margin: 0;
+                        padding: 0;
+                        color: #fff;
+                        font-size: 1.5vw;
+                        font-weight: bold;
+                        line-height: 2;
+                        text-shadow: 2px 2px 2px #000;
+                    }
 
-        .arbx{
-            width: 50%;
-            aspect-ratio: 19 / 10;
-            margin: 100px auto;
-            border: 10px ridge goldenrod;
-            
+                    /*
+                        [ aspect-ratio 속성 사용하기 ]
+                        aspect-ratio : 가로비 / 세로비;
+                        -> width값은 셋팅하고 height값은 auto
 
-            background: url(./images/mobum.jpg) no-repeat center/cover;
-        }
-    </style>
-</head>
-<body>
-    <!-- 비율유지박스 -->
-    <div class="rbx">
-        <!-- <div style="padding-top: 56.25%;"></div> -->
+                        예) 1 : 1 비율
+                            aspect-ratio : 1 / 1;
+                            aspect-ratio : 1; -> 위와 같음!
 
-        <!-- 직계자식 블록요소에게 패딩탑값을
+                        예) 16 : 9 비율
+                            aspect-ratio : 16 / 9;
+
+                        예) 세로에 대한 가로 80%비율
+                            aspect-ratio : .8;
+
+                        -> 값을 하나만쓰면 가로값이며
+                        세로값은 기본값이 1로 셋팅된다!
+
+
+
+
+                    */
+
+                    .arbx{
+                        width: 50%;
+                        aspect-ratio: 19 / 10;
+                        margin: 100px auto;
+                        border: 10px ridge goldenrod;
+
+
+                        background: url(./images/mobum.jpg) no-repeat center/cover;
+                    }
+        </style>
+    </head>
+    <body>
+        <!-- 비율유지박스 -->
+        <div class="rbx">
+            <!-- <div style="padding-top: 56.25%;"></div> -->
+
+            <!-- 직계자식 블록요소에게 패딩탑값을
         %단위로 주면 정확한 비가 성립한다!
         100%를 주면 1:1 비율임!
         
@@ -138,26 +158,18 @@
     
         -->
 
-        <!-- 비율유지 속박스 -->
-        <div class="rbxIn">
-            
-            <!-- 컨텐츠 넣기 -->
-            <dl class="cat">
-                <dt>출연진</dt>
-                <dd>이제훈(김도기역)</dd>
-                <dd>이솜(강하나역)</dd>
-                <dd>김의성(장성철역)</dd>
-            </dl>
-
+            <!-- 비율유지 속박스 -->
+            <div class="rbxIn">
+                <!-- 컨텐츠 넣기 -->
+                <dl class="cat">
+                    <dt>출연진</dt>
+                    <dd>이제훈(김도기역)</dd>
+                    <dd>이솜(강하나역)</dd>
+                    <dd>김의성(장성철역)</dd>
+                </dl>
+            </div>
         </div>
 
-
-    </div>
-    
-        <div class="arbx">
-
-        </div>
-
-
-</body>
+        <div class="arbx"></div>
+    </body>
 </html>
