@@ -87,9 +87,22 @@
 
         /* 
             [ aspect-ratio 속성 사용하기 ]
-            aspect-ratio : 가로비 / 세로비
-            예) aspect-ratio : 1 / 1
-            예) aspect-ratio : 1
+            aspect-ratio : 가로비 / 세로비;
+            -> width값은 셋팅하고 height값은 auto
+
+            예) 1 : 1 비율
+                aspect-ratio : 1 / 1;
+                aspect-ratio : 1; -> 위와 같음!
+
+            예) 16 : 9 비율
+                aspect-ratio : 16 / 9;
+
+            예) 세로에 대한 가로 80%비율
+                aspect-ratio : .8;
+
+            -> 값을 하나만쓰면 가로값이며
+            세로값은 기본값이 1로 셋팅된다!
+            
             
 
 
