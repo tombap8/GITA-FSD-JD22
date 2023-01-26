@@ -50,6 +50,20 @@
                  
             }
 
+            /* 동적인 높이 박스안의 글자가 박스의 정중앙에 오기 */
+            .bx7{
+                display: table;
+                width: 50%;
+                aspect-ratio: 4 / 3;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .bx7 span{
+                display: table-cell;
+                vertical-align: middle;
+            }
+
             /* 5번박스 - 이미지 정중앙 */
             .bx5{
                 width: 300px;
@@ -97,6 +111,13 @@
         <h2>박스안의 글자가 박스의 정중앙에 오기</h2>
         <div class="bx bx4">
             나는 김수현이 좋다! 
+        </div>
+
+        <h2>동적인 높이 박스안의 글자가 박스의 정중앙에 오기</h2>
+        <div class="bx bx7">
+            <span>
+                나는 공유가 더 좋다! 
+            </span>
         </div>
 
         <h2>박스안의 이미지가 박스의 정중앙에 오기</h2>
