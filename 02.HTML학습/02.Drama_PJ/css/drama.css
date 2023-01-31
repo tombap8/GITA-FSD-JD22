@@ -140,6 +140,9 @@ table#gubun{
     border: 1px solid #999;
     /* 오른쪽 끝으로 보냄 flr */
     float: right;
+    /* td사이간격주기 */
+    border-collapse: separate;
+    border-spacing: 10px;
 }
 /* 구분테이블 td */
 #gubun td{
