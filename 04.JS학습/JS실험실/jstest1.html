@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+        }
+        .mover{
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 0, 0, 0.541);
+            transition: .3s ease-out;
+        }
+    </style>
+    <script>
+        window.addEventListener("load",()=>{
+            let mover = document.querySelector(".mover");
+            document.body.onmousemove=()=>{
+                console.log("x:",event.pageX,"\ny:",event.pageY);
+                mover.style.top = event.pageY+"px";
+                mover.style.left = event.pageX+"px";
+            };/////// mousemove ////////
+        })
+
+    </script>
+</head>
+<body>
+    <div class="mover"></div>
+    
+</body>
+</html>

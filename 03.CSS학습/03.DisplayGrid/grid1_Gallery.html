@@ -127,6 +127,8 @@
         .grid>div {
             /* 렐러티브 부모자격 -> ::before */
             position: relative;
+            
+            overflow: hidden;
         }
 
         /* 갤러리 이미지 - 비율패딩때문에 앱솔루트로 변경! */
@@ -141,6 +143,11 @@
             박스에 채움! 박스 바깥으로
             나간이미지부분은 자동숨김 */
 
+            transition: .3s;
+
+        }
+        .grid>div:hover img{
+            transform: scale(1.1);
         }
 
         /* 상품설명박스 */
