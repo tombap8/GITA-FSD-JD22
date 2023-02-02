@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>배열변수와 객체</title>
+    <style>
+        div {
+            width: 1000px;
+            height: 80px;
+            border: 2px solid #000;
+            text-align: center;
+            white-space: nowrap;
+            /* 줄바꿈방지 */
+            line-height: 84px;
+            margin: 5px auto;
+            /* 가로중앙 */
+            font-size: 24px;
+        }
+    </style>
+    <!-- 오브젝트설정 JS외부파일 불러오기 -->
+    <script src="JS004_object.js"></script>
+    <script>
+        // JS는 코드를 만나는 순간 바로 실행한다!
+        // html요소를 선택한 경우 아직 코드를 읽지 않았기때문에
+        // 에러가 발생한다. 이것에 대한 해결책은 2가지다!
+        // 1. JS코드를 body요소 최하단에 위치한다
+        //      (html요소를 모두 로딩후 실행)
+        // 2. JS코드가 상단에 있을때 실행을 html 요소로딩시까지
+        // 지연시켜주는 JS내장함수를 사용한다
+
+        //////// html요소 로딩관련 이벤트 ///////////////
+        // 1. load 이벤트 : 이미지나 동영상까지 모두 로딩된 후 실행
+        // 2. DOMContentLoaded : html 태그만 로딩되면 바로 실행
+        // - 일반적으로 실행속도가 빠른것은 2번이 훨씬 빠르다!
+        // - 1번은 이미지같은 미디어요소가 모두 로딩된 후 
+        //      실행이 필요할때 사용한다
+        ////////////////////////////////////////////////////
+        //////// JS 이벤트와 함수 연결 메서드 ///////////////
+        //// addEventListener 메서드 
+        // 사용법: 선택요소.addEventListener(이벤트명,함수)
+        // add 추가해라
+        // Event 이벤트
+        // Listener 리스너를 
+        //(리스너는 일반적으로 이벤트를 캣치하는 모듈이나 기능을 지칭한다!)
+
+        ////////////////////////////////////////////////////
+        /////////////////// html 로딩구역 ///////////////////
+        // window 객체 - 브라우저 전체 창을 관리하는 객체
+        // function(){} - 이름없는함수(코드를 바로실행안하고 보관!)
+        // DOMContentLoaded 이벤트는 
+        //      DOM(돔은 Document Object Model)내용 
+        //      즉 html태그 로딩후 발생하는 이벤트임!!!
+        /////////////////////////////////////////////////////
+        window.addEventListener("DOMContentLoaded", function () {
+            // 이벤트가 발행한 후 이 구역의 코드를 실행한다!
+            //document.getElementById("txt1").innerText = "나야나!";
+
+            /* 
+                [ 배열(Array) 변수란? ]
+                - 여러개의 데이터를 묶음으로 변수하나에 저장함
+                - 각 데이터를 하나의 이름으로 호출할 수 있는 메모리공간
+                (예컨데 묶음은 계란한판, 아파트 각 호수 등)
+                
+                - 배열의 선언
+                1. new Array()
+                - new 키워드 : 객체를 실제로 메모리안에 생성하는 방법
+                - 객체란 속성과 메서드를 가지고 있는 프로그램 단위체
+
+                -> 객체는 독립된 특성을 가지고 있어야한다!
+                    예컨데 자동차, 볼펜, 물통, 가방 등 
+                    독립된 별도의 기능이 있어야하고 명사적 특징과
+                    동사적 특징이 모두 있어야한다
+
+                    자동차의 특징
+                    1) 명사적 특징: 핸들, 트렁크, 백미러, 바퀴 등
+                    2) 동사적 특징: 운전하다, 정지하다, 주차하다 등
+            */
+
+            var arr1 = new Array("1993년 10월 12일", "183cm", "65kg", "너도 인간이니?", 4568, "서강준");
+            // 선언된 배열변수에 할당은 배역객체의 소괄호 안에
+            // (값1,값2,값3,...) 콤마로 구분하여 넣는다!
+
+            // 배열변수에 할당한 데이터 불러오기
+            // 호출방법: 배열변수명[순번] -> 순번은 0부터!
+
+            // 출력대상: #txt1
+            var txt1 = document.getElementById("txt1");
+            // 글자넣기 메서드는 innerText
+            // 배열의 순번은 실제순번보다 1작다!(왜? 0부터세니까!)
+            txt1.innerText = "이름:" + arr1[5];
+            txt1.innerText += " / 키:" + arr1[1];
+            txt1.innerText += " / 몸무게:" + arr1[2];
+            txt1.innerText += " / 최근작:" + arr1[3];
+            // +=은 기존값에 더하는 대입연산자
+
+            // 2. 배열의 선언과 할당의 다른방식
+            // 배열변수명 = [값1,값2,값3,...]
+            // 이 방식이 많이 사용되는 방식임!
+            // new Array()라고 객체 생성을 할 필요가 없다!(자동생성)
+            var arr2 = ["삼일절", "태극기", 1919];
+
+            // 배열개수 찍기(배열변수명.length)
+            console.log("arr2 배열변수의 개수:" + arr2.length);
+
+            // 출력대상: #txt2
+            var txt2 = document.getElementById("txt2");
+            // 출력하고자 하는 문장: "삼일절은 1919년에 일제에 항거하여 태극기를 들고 일어난 민중봉기를 기념하는 날이다"
+            txt2.innerHTML = arr2[0] + "은 ";
+            txt2.innerHTML += arr2[2] + "년에 일제에 항거하여 ";
+            txt2.innerHTML += arr2[1] + "를 들고 일어난 민중봉기를 기념하는 날이다";
+            // innerText는 앞뒤공백이 반영되지 않는다
+            // innerHTML을 사용하면 공백이 처리된다(태그도 처리됨)
+
+            // 3. 배열을 미리 생성하여 각각 할당하는 방법
+            // 배열변수명 = [] -> 이 변수가 배열변수로 설정됨!
+            // 배열변수명.length = 숫자 -> 숫자만큼 배열이 생성됨!
+            // 배열변수명.length 는 배열의 개수도 읽어오고 설정도함
+
+            var arr3 = []; // arr3가 배열변수로 설정됨!
+            arr3.length = 8; // arr3가 8개의 공간을 설정함!
+            // 각 배열주소에 값을 할당한다!
+            arr3[0] = "산";
+            arr3[1] = "할아버지";
+            arr3[2] = "구름모자";
+            arr3[3] = "썻네~!";
+            arr3[4] = "나비같이";
+            arr3[5] = "훨훨";
+            arr3[6] = "훠얼훨";
+            arr3[7] = "날아서~!";
+
+            // 배열값 전체찍기 : valueOf() -> 콤마로 구분되어 찍힘
+            console.log("arr3 배열 전체값: " + arr3.valueOf());
+            // 참고로 변수만 찍어도 valueOf()를 브라우저가 해줌!^^
+
+            // 미션: arr3의 각 배열변수 사이에 별(★) 넣고 출력하기
+            // 단, 마지막 별은 안찍히게 할것!
+
+            // 결과값 저장변수
+            var show = "";
+
+            // 배열 개수만큼 for문을 돌려서 show변수에 저장한다!
+            for (var i = 0; i < arr3.length; i++) {
+
+                show += arr3[i];
+
+                if (i === 7) break;
+                // 7일때 아래 코드를 실행안하고 빠져나감!
+                // break 키워드는 만나는 순간 제어문을 나감!
+
+                show += "★";
+            } /////// for문 ////////////////////
+
+            // 화면출력
+            document.getElementById("txt3").innerHTML = show;
+
+            /* 
+                [ 객체(Object) 란? ]
+
+                - 독립된 속성과 메서드를 가지는 프로그램 단위체
+
+                - 속성은 명사적 특징(예: 자동차-핸들,바퀴,백미러...)
+
+                - 메서드는 동사적 특징(예: 자동차-운전하다,주차하다...)
+                (메서드는 객체에 만들진 함수를 특징하여 부르는 이름이다)
+                -> 객체소속함수가 메서드!!!
+
+                - 브라우저에 이미 만들어져 있는 객체를 내장객체라고 한다
+                -> 브라우저 내장객체들:
+                    window, document, Array, Object, Date, Math 등
+                
+                ※ Object 객체는 객체를 만들수 있는 객체다!
+
+                [ 객체의 선언 ]
+                - new Object()
+
+                [ 객체의 할당 ]
+                - 중괄호를 사용하여 할당코딩을 함
+                - {속성명:값, 속성명:값,...}
+                - 여러값을 셋팅할때 콤마로 구분한다
+                - 배열과 비교하여 이해하기가 쉽고 호출하기 쉽다!
+
+                [ 객체의 호출 ]
+                - 객체명[속성명]
+
+            */
+
+            var SHK = new Object({
+                "너의 이름은?": "김수현",
+                "생일": "1988년 2월 16일",
+                "키": "180cm",
+                "몸무게": "65kg",
+                "성별": "남자",
+                "비밀번호": 7777,
+                "팬레터": function () {
+                    // 1. 메시지띄우기
+                    alert("오빠, 지금뭐해?");
+                    // 2. 배경이미지 출력박스에 넣기
+                    txt4.style.background =
+                        "url(./images/shk.jpg) repeat-x top/auto 100%";
+                    // 3. 글자색 흰색
+                    txt4.style.color = "#00f";
+                    // 4. 글자그림자
+                    txt4.style.textShadow = "0 0 5px #000";
+                    // 5. 글자크게하기
+                    txt4.style.transform = "scale(1.2)";
+                    // 6. 트랜지션
+                    txt4.style.transition = "1s 1s";
+                    // 7. 글자내용변경
+                    txt4.innerHTML = "김수현 최고 멋쟁이! 승승장구! 화이팅!";
+                } /// 팬레터 메서드 ///
+
+            }); ///// SHK객체 ////////
+
+            // 객체출력하기
+            // 대상: #txt4
+            var txt4 = document.getElementById("txt4");
+
+            txt4.innerHTML =
+                "당신이 좋아하는 남자배우는? " + SHK["너의 이름은?"];
+
+            txt4.innerHTML +=
+                " / 몸무게를 아세요? " + SHK["몸무게"];
+
+            // 객체에 셋팅된 함수(메서드) 호출하기!
+            txt4.onclick = function () {
+                SHK["팬레터"]();
+                // 함수호출시 반드시 소괄호필수!!!
+            }; ////// click이벤트함수 /////
+            // 이벤트속성에 이름없는 함수를 할당하면
+            // 해당이벤트 발생시 함수내부의 코드가 실행된다!!!
+
+            // title속성 넣기(툴팁 나오게~)
+            txt4.title = "여기를 클릭하여 김수현 팬레터를 확인하세요!";
+            // 손가락표시 넣기
+            txt4.style.cursor = "pointer";
+
+            // [ new 키워드 없이 바로 객체 생성하기!!! ]
+            // 방법: 변수 선언 후 이퀄뒤에 중괄호로 객체를 셋팅한다!
+
+            // [ 객체의 속성 셋팅시 문자형 또는 변수형으로 할 수 있다 ]
+            // -> 문자형은 따옴표로 싼것!, 변수형은 안싼것!
+
+            // [ 객체의 속성명을 변수형으로 쓰면 호출시 편리함! ]
+            // 호출방법: 객체명.속성명
+
+            var GU = {
+                name: "공유",
+                tall: "184cm",
+                weight: "74kg",
+                com: "매니지먼트 숲",
+                work: "도깨비,부산행",
+                msg: function (txt) { // txt는 전달변수
+                    // 1. 메시지 띄우기
+                    alert("팬레터: " + txt);
+                    // 2. 공유이미지 배경넣기
+                    txt5.style.background =
+                        "url(./images/gu.png) repeat-x top/auto 100%";
+                    // 3. 글자색 변경하기
+                    txt5.style.color = "#fff";
+                    // 4. 글자테두리
+                    txt5.style.textShadow =
+                        "2px 0 #000,-2px 0 #000,0 2px #000,0 -2px #000";
+                    // 5. 높이값 변경
+                    txt5.style.height = "100px";
+                    // 6. 트랜지션
+                    txt5.style.transition = "2s ease-in-out .5s";
+                    // 7. 줄간격
+                    txt5.style.lineHeight = "30px";
+                    // 8. 상단패딩
+                    txt5.style.paddingTop = "100px";
+                } ///// msg 메서드 ////
+            }; ////////// GU 객체 //////////
+
+            // GU객체 출력하기
+            // 출력대상: #txt5
+            var txt5 = document.getElementById("txt5");
+
+            // 줄간격변경
+            txt5.style.lineHeight = "24px";
+
+            // 내용 출력 /////
+            txt5.innerHTML =
+                "저는 " + GU.name + "입니다.";
+
+            txt5.innerHTML +=
+                "몸무게는 비밀인데요 그래도 말씀드리자면 " +
+                GU.weight + "입니다. ㅎㅎㅎ <br>";
+
+            txt5.innerHTML +=
+                "제 대표작은 " + GU.work + "입니다.<br>";
+
+            txt5.innerHTML +=
+                "제 소속사는 잘 모르시는 분들이 많은데 " +
+                GU.com + "입니다. 빠이빠이~!";
+
+            // 공유박스 마우스 올라가면 툴팁보이기!
+            txt5.title = "공유의 펜레터를 확인하세요! 바로클릭!";
+            txt5.style.cursor = "pointer"; //손가락모양
+
+            // 공유박스 클릭시 GU객체의 메서드 호출하기!
+            txt5.onclick = function () {
+                GU.msg("\n공유오빠, 서복에서도 멋쪘어요! \n차기작도 기대해요! 화이팅!!!");
+                // alert창은 html태그를 사용할 수 없고 줄바꿈은 \n 줄바꿈표시문자를 사용한다!
+            }; ///// click이벤트 함수 ///////////////
+
+            // 미션: #txt6는 객체를 만들어서 자유출력하시오!
+            // 자신이 영화를 선정하여 아래와 같은 항목으로
+            // 영화정보를 셋팅하시오.
+            // 셋팅된 영화정보가 잘 출력되면 탐쌤에게 소스를 전송하시오
+            // 객체소스만 전송!
+            // 객체명은 MV_자기이름이니셜
+            // 예) MV_PSH
+
+            // 함수 바깥에서 전역변수화 하였음!!!
+            MV_PSH = {
+                // 1. 영화제목
+                title: "노매드랜드",
+                // 2. 감독
+                director: "클로이 자오",
+                // 3. 배우
+                actors: "프란시스 맥도맨드",
+                // 4. 장르
+                genre: "드라마",
+                // 5. 관람가
+                ratings: "12세관람가",
+                // 6. 예고편
+                trailer: function () {
+                    // 영화박스에 iframe넣기
+                    // body끝에 div넣기!
+                    document.body.innerHTML +=
+                        '<div id="mv">' +
+                        '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/tfmRVC_GADw?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
+                        '<span class="cbtn">×</span>' +
+                        '</div>';
+
+                    // 삽입된 동영상 박스 CSS설정하기!
+                    var mv = document.getElementById("mv");
+                    mv.style.position = "fixed";
+                    mv.style.top = "50%";
+                    mv.style.left = "50%";
+                    mv.style.transform = "translate(-50%,-50%)";
+                    mv.style.width = "700px";
+                    mv.style.height = "450px";
+
+                    // 닫기버튼 셋팅
+                    var cbtn = document
+                        .getElementsByClassName("cbtn")[0];
+                    // 클래스요소를 선택할때 순번선택필수!
+                    // (컬렉션순번 첫번째0)
+                    cbtn.style.position = "absolute";
+                    cbtn.style.top = "0";
+                    cbtn.style.right = "-70px";
+                    cbtn.style.width = "50px";
+                    cbtn.style.height = "50px";
+                    cbtn.style.background = "blue";
+                    cbtn.style.textAlign = "center";
+                    cbtn.style.fontSize = "40px";
+                    cbtn.style.fontWeight = "bold";
+                    cbtn.style.color = "white";
+                    cbtn.style.borderRadius = "50%";
+                    cbtn.style.cursor = "pointer";
+                    cbtn.style.lineHeight = "40px";
+
+                    // 닫기버튼 클릭시 리로드!
+                    cbtn.onclick = function () {
+                        window.location.reload();
+                        // 페이지 새로고침!
+                    }; ////// click이벤트 함수 /////
+
+
+
+                } //// trailer 함수 ///////
+
+            }; ///// MV_PSH객체 /////////////
+
+
+            // 화면출력
+            // 대상: #txt6 -> 함수바깥에 선언하여 전역변수화!
+            txt6 = document.getElementById("txt6");
+            txt6.style.lineHeight = "34px"; //줄간격조정
+
+            txt6.innerHTML =
+                "▣영화명: " + MV_PSH.title +
+                " ▣감독: " + MV_PSH.director +
+                " ▣배우: " + MV_PSH.actors +
+                "<br>▣장르: " + MV_PSH.genre +
+                " ▣등급: " + MV_PSH.ratings;
+
+            // 마우스 오버시 툴팁과 손가락모양 셋팅
+            txt6.title = "클릭하시면 " + MV_PSH.title +
+                "예고편을 보실 수 있습니다!";
+            txt6.style.cursor = "pointer"; /* 손가락모양 */
+
+            // 트레일러 함수 호출하기
+            // #txt6를 클릭시
+            txt6.onclick = function () {
+                MV_PSH.trailer();
+            }; ////// click이벤트 함수 /////////
+
+        }); ////////// 로딩구역 ///////////////////////////////
+        //////////////////////////////////////////////////////
+
+        /* 
+            [ 변수는 전역변수와 지역변수가 있다! ]
+            -> 함수내부에 있으면 지역변수
+            -> 함수 바깥에 있으면 전역변수
+            -> 함수내부에서 다른변수(함수외부변수)를 참조할 수 있는 것은 
+                전역변수뿐이다!!!
+            [ 지역변수를 전역변수화 하는 방법은? ]
+            -> var 선언을 함수 바깥에서 해준다!!!
+            주의사항: 단, var선언을 바깥에서 단 한번만 해줘야한다!
+            -> 지역에서 같은 이름의 변수를 사용하면 에러가 난다!
+            (전역변수화시 지역변수의 var는 지워야한다!!!)
+        */
+
+        // 지역변수를 전역변수화 한다!
+        var MV_PSH, txt6;
+
+
+
+        /*/////////////////////////////////////////////
+            함수명: chgMV
+            기능: 영화를 변경한다
+            -> 선언적함수(이름있는함수)는 로딩구역
+               바깥에 만들어 줘야만 외부호출시 인식된다!
+        */ ////////////////////////////////////////////
+        function chgMV(gubun) { // gubun-전달변수
+            // gubun에 버튼자신이 전달되므로 
+            // 내부 텍스트를 읽어서사용
+            gubun = gubun.innerText;
+
+            // 1. 함수호출여부확인
+            console.log("영화바꿔!"+gubun+
+            "\n영화명: "+MV_PSH.title);
+
+            // 2. 적용된 영화변수 변경하기
+            // - 기존 할당된 변수의 객체를 다른 객체로 변경하기!
+            switch(gubun){
+                case "서진초이스": MV_PSH = MY_SJ; break;
+                case "지선초이스": MV_PSH = MV_KJS; break;
+                case "주열초이스": MV_PSH = MV_LJY; break;
+                case "련정초이스": MV_PSH = MV_CRJ; break;
+                case "소현초이스": MV_PSH = MV_ASH; break;
+            } //// switch case문 //////////
+
+            // 3. 영화내용 출력 변경하기
+            txt6.innerHTML =
+                "▣영화명: " + MV_PSH.title +
+                " ▣감독: " + MV_PSH.director +
+                " ▣배우: " + MV_PSH.actors +
+                "<br>▣장르: " + MV_PSH.genre +
+                " ▣등급: " + MV_PSH.ratings;
+
+                // 4. 툴팁변경하기
+                txt6.title = "클릭하시면 " + MV_PSH.title +
+                "예고편을 보실 수 있습니다!";
+            
+
+        } ////////// chgMV 함수 //////////////////
+        //////////////////////////////////////////
+
+        /* 
+            [ 객체에 대한 단상 ]
+
+            - 객체는 배열처럼 데이터를 묶어서 저장하는 메모리공간
+            역할을 한다. 그런데 호출시 번호로 호출하는 배열처럼
+            기계적이지 않고 사람이 잘 이해할 수 있는 문자로 호출
+            값을 사용하는 아주 편리한 것이다!
+
+            두루 널리 쓰도록 하여라~~~~!
+
+            ※ 정리!
+
+            배열값 설정
+            var 변수명 = [값1,값2,값3,....];
+
+            배열값 호출
+            변수명[순번] -> 순번은 0부터!
+
+            객체값 설정
+            var 변수명 = {속성명1:값1, 속성명2:값2,...};
+
+            객체값 호출
+            변수명[속성명]
+            또는
+            변수명.속성명 -> 속성명이 반드시 변수형이어야함!
+            
+        */
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <div id="txt1"></div>
+    <div id="txt2"></div>
+    <div id="txt3"></div>
+    <div id="txt4"></div>
+    <div id="txt5"></div>
+    <div id="txt6"></div>
+
+    <!-- 영화변경버튼박스 -->
+    <div>
+        <button onclick="chgMV(this)">서진초이스</button>
+        <button onclick="chgMV(this)">지선초이스</button>
+        <button onclick="chgMV(this)">주열초이스</button>
+        <button onclick="chgMV(this)">련정초이스</button>
+        <button onclick="chgMV(this)">소현초이스</button>
+    </div>
+
+</body>
+
+</html>
