@@ -113,6 +113,7 @@ body{
     width: 100vw;
     text-align: center;
     padding: 50px;
+    z-index: 999;
 }
 /* 버튼 */
 .btns button{
