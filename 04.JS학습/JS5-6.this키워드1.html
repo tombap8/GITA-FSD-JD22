@@ -27,6 +27,7 @@
         // "use strict";
         // (참고) https://www.w3schools.com/js/js_strict.asp
 
+
         // 1. 객체 메서드에서 객체자신을 의미 확인!
         const obj = {
             name: "김종서",
@@ -72,11 +73,31 @@
             // 엄격모드에서도 화살표함수는 this가 window객체임!
         })();
 
+        window.addEventListener("DOMContentLoaded",()=>{
+
+            document.querySelector("div").onmouseover = function(){
+
+                document.querySelector(".hh").onclick = ()=>{
+
+                    console.log("화살",this)
+                }
+                document.querySelector(".kk").onclick = function(){
+
+                    console.log("익명",this)
+                }
+            }
+        })
+
 
     </script>
 </head>
 
 <body>
+    <div>
+
+        <button class="hh">ㅎㅎ</button>
+        <button class="kk">ㅋㅋ</button>
+    </div>
 
 </body>
 
