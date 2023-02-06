@@ -4,6 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>JS5-6.this 키워드</title>
+    <style>
+        .pic{
+            position: relative;
+            width: 400px;
+            height: 600px;
+            border: 10px ridge goldenrod;
+            margin: 0 auto;
+            background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT30TCdesyQRqVZ9wRz3ULYWUO5EI3QChYX4w&usqp=CAU) no-repeat center/cover;
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+        }
+        .pic h2{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        .pic b{
+            line-height: 600px;
+
+        }
+        #exp{
+            color: red;
+            font-weight: bold;
+        }
+        .hh{
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+        .kk{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+    </style>
     <script>
         /******************************************** 
             [ this 키워드란 무엇인가? ]
@@ -26,6 +63,9 @@
         // 엄격모드
         // "use strict";
         // (참고) https://www.w3schools.com/js/js_strict.asp
+
+        const qs = x => document.querySelector(x);
+        const qsa = x => document.querySelectorAll(x);
 
 
         // 1. 객체 메서드에서 객체자신을 의미 확인!
@@ -75,15 +115,17 @@
 
         window.addEventListener("DOMContentLoaded",()=>{
 
-            document.querySelector("div").onmouseover = function(){
+            qs("div").onmouseover = function(){
 
-                document.querySelector(".hh").onclick = ()=>{
+                qs(".hh").onclick = ()=>{
 
-                    console.log("화살",this)
+                    console.log("화살",this);
+                    qs("#exp").innerText = this.getAttribute("data-nm");
                 }
-                document.querySelector(".kk").onclick = function(){
+                qs(".kk").onclick = function(){
 
-                    console.log("익명",this)
+                    console.log("익명",this);                    
+                    qs("#exp").innerText = this.getAttribute("data-nm");
                 }
             }
         })
@@ -93,10 +135,11 @@
 </head>
 
 <body>
-    <div>
-
-        <button class="hh">ㅎㅎ</button>
-        <button class="kk">ㅋㅋ</button>
+    <div class="pic" data-nm="차무식이야!">
+        <h2>내가 누구지?</h2>
+        <b>this is <span id="exp"></span></b>
+        <button class="hh" data-nm="양정팔이야!">ㅎㅎ</button>
+        <button class="kk" data-nm="오승훈이야!">ㅋㅋ</button>
     </div>
 
 </body>
