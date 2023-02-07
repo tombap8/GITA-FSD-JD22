@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>forEach() 메서드</title>
+        <script>
+            // 배열 만들기
+            const mvinfo = [
+                ["원스 어폰 어 타임... 인 할리우드", "https://s.pstatic.net/movie.phinf/20191126_77/1574730867371pYEWz_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["퓨리", "https://s.pstatic.net/movie.phinf/20141105_67/1415155139518WWeIr_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["라라랜드", "https://s.pstatic.net/movie.phinf/20201229_146/1609226288425JgdsP_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["위플래쉬", "https://s.pstatic.net/movie.phinf/20201014_280/16026390107613Rrc8_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["빅쇼트", "https://s.pstatic.net/movie.phinf/20160121_2/14533409853749GqxA_JPEG/movie_image.jpg?type=m133_190_2"],
+            ];
+
+            /////////// 로드구역 /////////////////////////////////////
+            // DOMContentLoaded -> html태그를 모두 그리면 발생이벤트
+            window.addEventListener("DOMContentLoaded", () => {
+                // 1. 로딩구역 확인
+                console.log("로딩완료!");
+
+                // 2. 배열대상: .btngo
+                const mvinfo = document.querySelectorAll(".mvinfo");
+                // console.log(btngo);
+
+                // 3. 출력대상 : .minfo
+                const minfo = document.querySelectorAll(".minfo");
+                // console.log(minfo);
+
+                // 4. 버튼에 클릭이벤트 설정하기
+                // 버튼 요소 만큼 돌아줌! : btngo변수
+                btngo.forEach((ele) => {
+                    // ele는 버튼 요소 자신
+
+                    // 요소에 클릭설정하기
+                    ele.onclick = () => {
+                        // 1. 버튼 텍스트
+                        let btxt = ele.innerText;
+                        console.log(btxt);
+
+                        // 2. 버튼에 따른 배열변수 할당!
+                        let data;
+
+                        // 버튼별 배열할당 분기
+                        switch (btxt) {
+                            case "조제":
+                                data = mv1;
+                                break;
+                            case "원더 우먼 1984":
+                                data = mv2;
+                                break;
+                            case "도굴":
+                                data = mv3;
+                                break;
+                            case "공조2: 인터내셔날":
+                                data = mv4;
+                                break;
+                            case "육사오(6/45)":
+                                data = mv5;
+                                break;
+                        } ////////// switch ///////
+
+                        // data변수에 담긴 배열값은?
+                        console.log("data변수:", data);
+
+                        // 3. 배열값 화면출력하기
+                        // 출력대상: .minfo요소
+                        // -> 배열순서와 출력순서가 일치함!
+                        // 배열값을 forEach()메서드로 돌아주기!
+                        // 대상변수: data -> 해당배열
+
+                        // data.forEach((val,idx)=>{
+                        //     // val-배열값, idx-배열순번
+                        //     // 배열순번===출력요소순번
+                        //     // 출력대상: minfo
+                        //     minfo[idx].innerText = val;
+                        // }); ////////// data forEach ////////
+
+                        // 줄여서 쓰기!
+                        data.forEach((val, idx) => (minfo[idx].innerText = val));
+                    }; /////////// click ////////
+                }); ////////// btngo forEach /////////
+
+                // forEach() 메서드 테스트!
+                // 컬렉션인 경우 -> minfo변수 : .minfo요소들
+                // minfo.forEach(function(나,순,객){
+                //     console.log(
+                //         `나자신:${나}/순서:${순}/객체:${객}`);
+                // });
+
+                // 배열인 경우 -> mv5변수 : 특정배열
+                // mv5.forEach(function(값,순,객){
+                //     console.log(
+                //         `배열값:${값}/순서:${순}/객체:${객}`);
+                // });
+
+                /************************************ 
+                [ 배열과 컬렉션을 위한 forEach() ]
+                forEach()는 
+                배열과 컬렉션을 위한 JS메서드임!
+                -> ES5에서 새롭게 등장!(배열메서드!)
+
+                1. 컬렉션에 사용시
+
+                컬렉션.forEach(
+                    function(ele,idx,obj){코드})
+                ________________________________
+
+                컬렉션.forEach(
+                    (ele,idx,obj) => {코드})
+
+                _______
+                전달변수
+                1) ele -> 첫번째 전달변수 : 요소자신
+                2) idx -> 두번째 전달변수 : 순번
+                3) obj -> 세번째 전달변수 : 전체컬렉션
+
+                *****************************
+
+                
+                2. 배열에 사용시
+
+                배열.forEach(
+                    function(val,idx,obj){코드})
+                ________________________________
+
+                배열.forEach(
+                    (val,idx,obj) => {코드})
+
+                _______
+                전달변수
+                1) val -> 첫번째 전달변수 : 배열값
+                2) idx -> 두번째 전달변수 : 순번
+                3) obj -> 세번째 전달변수 : 전체배열
+
+                ========================
+
+                공통사항)
+                - 전달변수의 순서와 개수가 중요함
+                - 전달변수명은 어떻게 지어도 무관
+                - 값이나 요소만 쓰려면 변수를 하나만씀
+                - 순번까지 쓰려면 변수를 두개씀
+                -> 보통 변수를 2개까지 많이 씀
+                - 명령어를 사용하여 로직을 수행하는 것은
+                함수 중괄호안에 코딩하면 된다!
+
+
+            ************************************/
+            }); //////////////// 로드구역 /////////////////////////////
+            //////////////////////////////////////////////////////////
+        </script>
+        <style>
+            .btns {
+                text-align: center;
+                padding: 20px;
+            }
+
+            .btns > button {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .wrap {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 10px;
+                border: 4px double #555;
+                border-radius: 10px;
+                font-size: 24px;
+                line-height: 2;
+            }
+
+            .wrap > div {
+                color: #444;
+            }
+
+            h1,
+            h2,
+            h3 {
+                text-align: center;
+                border-top: 2px dashed #ccc;
+                border-bottom: 2px dashed #ccc;
+                font-size: 35px;
+            }
+
+            h1 + div {
+                /* +형제선택자
+            h1+div 앞에 형제로 h1 다음에 오는 div */
+                font-size: 33px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            h2 + div {
+                /* +형제선택자
+            h2+div 앞에 형제로 h2 다음에 오는 div */
+                font-size: 28px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            /* 정보출력박스 */
+            .minfo {
+                background-color: #d0ffd3;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 버튼그룹 -->
+        <div class="btns">
+            <button class="btngo">공조2: 인터내셔날</button>
+            <button class="btngo">육사오(6/45)</button>
+            <button class="btngo">조제</button>
+            <button class="btngo">원더 우먼 1984</button>
+            <button class="btngo">도굴</button>
+        </div>
+        <!-- 내용박스 -->
+        <div class="wrap">
+            <h1>★관련추천영화★</h1>
+            <!--출력박스-->
+            <div class="minfo"></div>
+
+        </div>
+    </body>
+</html>
