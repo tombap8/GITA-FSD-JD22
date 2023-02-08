@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS2-3.빈값</title>
+    <script>
+        // console.log("선언한적없는 변수"+aaa);
+        // 에러남!
+        let bbb;
+        console.log("선언만한 변수 : "+bbb);
+        let ccc=[];
+        console.log("선언만한 배열변수 : "+ccc[5]);
+        ccc[5] = 84;
+        console.log("선언만한 배열변수 : "+ccc[5]);
+        let ddd={};
+        console.log("선언만한 배열변수 : "+ddd["name"]);
+        ddd.name = "호박죽";
+        console.log("선언만한 배열변수 : "+ddd["name"]);
+        console.log(ddd);
+        delete ddd.name;
+        console.log("선언만한 배열변수 : "+ddd["name"]);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

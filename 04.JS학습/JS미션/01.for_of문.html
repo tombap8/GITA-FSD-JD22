@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS미션:01.for of미션</title>
+        <script>
+            /* 
+            for of 문 미션:
+
+            [미션문:] 아래 주소의 모양으로 배열변수에 셋팅된
+            값을 분석하여 for of(혹은 forEach메서드)를 사용하여
+            해당 타겟요소에 html과 데이터를 구성하시오.
+            (로딩후 바로 출력한다!)
+
+            .minfo 하위 구조는 아래와 같다
+            <div>
+                <img src="배열[0]">
+                <h2>배열[1]</h2>
+            </div>
+
+            => 셈플주소
+            https://movie.naver.com/movie/bi/mi/basic.naver?code=187311
+            하단"관련 영화 추천"
+            */
+            // 배열 만들기 : 다중배열 [][]
+            const mvinfo = [
+                ["원스 어폰 어 타임... 인 할리우드", "https://s.pstatic.net/movie.phinf/20191126_77/1574730867371pYEWz_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["퓨리", "https://s.pstatic.net/movie.phinf/20141105_67/1415155139518WWeIr_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["라라랜드", "https://s.pstatic.net/movie.phinf/20201229_146/1609226288425JgdsP_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["위플래쉬", "https://s.pstatic.net/movie.phinf/20201014_280/16026390107613Rrc8_JPEG/movie_image.jpg?type=m133_190_2"],
+                ["빅쇼트", "https://s.pstatic.net/movie.phinf/20160121_2/14533409853749GqxA_JPEG/movie_image.jpg?type=m133_190_2"],
+            ];
+
+            /////////// 로드구역 /////////////////////////////////////
+            // DOMContentLoaded -> html태그를 모두 그리면 발생이벤트
+            window.addEventListener("DOMContentLoaded", () => {
+                // 로딩구역 확인
+                console.log("로딩완료!");
+
+                // 1. 배열변수 : mvinfo
+
+                // 2. 출력대상 : .minfo
+                const minfo = document.querySelector(".minfo");
+
+                // 3. 배열데이터만큼 태그만들기 : for of 사용!
+                // 힌트: 태그를 담을 변수를 만들고 for 문을 돌아서
+                // += 대입연산자로 태그를 모두 저장한다!
+                let hcode="";
+
+                for(let x of mvinfo){
+
+                    hcode += `
+                        <div>
+                            <img src="${x[1]}" alt="포스터">
+                            <h2>${x[0]}</h2>
+                        </div>
+                    `;
+                   
+
+                } ////// for of ///////////
+
+                // 4. 출력하기 : innerHTML 사용!
+                minfo.innerHTML = hcode;
+                
+            }); ////////// 로드구역 ////////////////////////
+            ///////////////////////////////////////////////
+        </script>
+        <style>
+
+            .wrap {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 10px;
+                border: 4px double #555;
+                border-radius: 10px;
+                font-size: 24px;
+                line-height: 2;
+            }
+
+            .wrap > div {
+                color: #444;
+            }
+
+            h1,
+            h2,
+            h3 {
+                text-align: center;
+                border-top: 2px dashed #ccc;
+                border-bottom: 2px dashed #ccc;
+                font-size: 35px;
+            }
+
+            
+
+            /* 정보출력박스 */
+            .minfo {
+                /* 플렉스박스 */
+                display: flex;
+                outline: 2px dashed darkcyan;
+            }
+            .minfo > div{
+                flex: 1;
+            }
+            
+            /* 추가CSS */
+            .minfo img{
+                width: 100%;
+                aspect-ratio: 1/1.5;
+            }
+            h2{
+                font-size: 12px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 내용박스 -->
+        <div class="wrap">
+            <h1>★관련추천영화★</h1>
+            <!--출력박스-->
+            <div class="minfo"></div>
+
+        </div>
+    </body>
+</html>
