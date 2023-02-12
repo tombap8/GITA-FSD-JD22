@@ -10,11 +10,13 @@
                 padding: 0;
             }
             body{
+                height: 300vh;
+                overflow-x: hidden;
                 background-image: linear-gradient(to bottom, #6af3f8, #eaf755, #a3b5ff, #ffb0fc);
             }
 
             :root{
-                --iw:0.1vw;
+                --iw:2vw;
             }
 
             /*전체페이지*/
@@ -30,12 +32,12 @@
                 position: fixed;
                 top: var(--iw);
                 left: var(--iw);
-                width: 25vw;
-                padding: 10px;
+                padding: 1vw;
                 border-radius: 10px;
                 background-color: rgba(255, 255, 255, 0.7);
                 z-index: 9999;
                 font-size: 0.8vw;
+                white-space: nowrap;
             }
             .info2{
                 left: auto;
@@ -46,7 +48,13 @@
                 bottom: var(--iw);
                 left: auto;
                 right: var(--iw);
+            }
 
+            .info>section{
+                display: flex;
+            }
+            .info>section>div{
+                flex: 1;
             }
 
             /*벌새*/
@@ -68,6 +76,8 @@
                 outline: 2px dotted red;
                 z-index: 10;
                 cursor: wait;
+                overflow: hidden;
+                background-color: #00000043;
             }
             .wrap{
                 position: absolute;
@@ -104,9 +114,22 @@
                 position: absolute;
                 width: 100%;
                 height: 0;
-                text-indent: 20px;
                 border-top: 1px dashed gray;
                 z-index: -1;
+                text-indent: 5px;
+            }
+            .ln2{
+                position: absolute;
+                width: 0;
+                height: 300vh;
+                border-left: 1px dashed gray;
+                z-index: -1;
+                text-indent: 5px;
+            }
+
+            .inbox .ln, .inbox .ln2{
+                border-color: red;
+                color: red;
             }
 
             .point{
@@ -138,9 +161,17 @@
                     // console.log(i);
                     ibxWrap.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
                 }
+                for(let i=0;i<9;i++){
+                    // console.log(i);
+                    ibxWrap.innerHTML += `<div class="ln2" style="left:${100*(i+1)}px">${100*(i+1)}px</div>`;
+                }
                 for(let i=0;i<25;i++){
                     // console.log(i);
                     bd.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
+                }
+                for(let i=0;i<25;i++){
+                    // console.log(i);
+                    bd.innerHTML += `<div class="ln2" style="left:${100*(i+1)}px">${100*(i+1)}px</div>`;
                 }
                 for(let i=0;i<5;i++){
                     // console.log(i);
@@ -198,6 +229,8 @@
                     qs(".i6").innerText = e.pageY;
                     qs(".i7").innerText = e.screenX;
                     qs(".i8").innerText = e.screenY;
+                    qs(".i71").innerText = e.offsetX;
+                    qs(".i82").innerText = e.offsetY;
                     qs(".i9").innerText = e.clientX;
                     qs(".i10").innerText = e.clientY;
                 };
@@ -241,15 +274,27 @@
             <!--위치정보표시-->
             <div class="info info2">
                 <h2>[ 마우스포인터 위치정보값 ]</h2>
-                <h2>[ page ]
-                    <br> X : <span class="i5"></span>px
-                    <br> Y : <span class="i6"></span>px</h2>
-                <h2>[ client ]
-                    <br> X : <span class="i9"></span>px
-                    <br> Y : <span class="i10"></span>px</h2>
-                <h2>[ screen ]
-                    <br> X : <span class="i7"></span>px
-                    <br> Y : <span class="i8"></span>px</h2>
+                <section>
+                    <div>
+                        <h2>[ page ]
+                            <br> X : <span class="i5"></span>px
+                            <br> Y : <span class="i6"></span>px</h2>
+                        <h2>[ client ]
+                            <br> X : <span class="i9"></span>px
+                            <br> Y : <span class="i10"></span>px</h2>
+    
+                    </div>
+                    <div>
+                        <h2>[ screen ]
+                            <br> X : <span class="i7"></span>px
+                            <br> Y : <span class="i8"></span>px</h2>
+                        <h2>[ offset ]
+                            <br> X : <span class="i71"></span>px
+                            <br> Y : <span class="i82"></span>px</h2>
+    
+                    </div>
+
+                </section>
             </div>
             <!--박스정보표시-->
             <div class="info info3">
