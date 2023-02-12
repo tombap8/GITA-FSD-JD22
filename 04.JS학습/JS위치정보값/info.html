@@ -157,7 +157,7 @@
                 const ibxWrap = qs(".inbox .wrap");
                 const bd = qs("body>.wrap");
                 
-                for(let i=0;i<9;i++){
+                for(let i=0;i<20;i++){
                     // console.log(i);
                     ibxWrap.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
                 }
@@ -227,10 +227,13 @@
                     /// 화면표시 ////
                     qs(".i5").innerText = e.pageX;
                     qs(".i6").innerText = e.pageY;
+
                     qs(".i7").innerText = e.screenX;
                     qs(".i8").innerText = e.screenY;
+
                     qs(".i71").innerText = e.offsetX;
                     qs(".i82").innerText = e.offsetY;
+                    
                     qs(".i9").innerText = e.clientX;
                     qs(".i10").innerText = e.clientY;
                 };
@@ -241,10 +244,13 @@
                         /// 화면표시 ////
                         qs(".i11").innerText = x.clientWidth;
                         qs(".i12").innerText = x.clientHeight;
+
                         qs(".i13").innerText = x.scrollWidth;
                         qs(".i14").innerText = x.scrollHeight;
+
                         qs(".i15").innerText = x.offsetWidth;
                         qs(".i16").innerText = x.offsetHeight;
+
                         qs(".i17").innerText = x.offsetTop;
                         qs(".i18").innerText = x.offsetLeft;
                     };
