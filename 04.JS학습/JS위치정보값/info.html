@@ -9,25 +9,44 @@
                 margin: 0;
                 padding: 0;
             }
+            body{
+                background-image: linear-gradient(to bottom, #6af3f8, #eaf755, #a3b5ff, #ffb0fc);
+            }
+
+            :root{
+                --iw:0.1vw;
+            }
 
             /*전체페이지*/
             .page {
                 position: relative;
                 /*부모*/
                 width: 100%;
-                height: 3000px;
-                background-image: linear-gradient(to bottom, #6af3f8, #eaf755, #a3b5ff, #ffb0fc);
+                height: 300vh;
             }
 
             /*정보표시박스*/
-            #info {
+            .info {
                 position: fixed;
-                top: 50px;
-                left: 50px;
-                width: 350px;
+                top: var(--iw);
+                left: var(--iw);
+                width: 25vw;
                 padding: 10px;
                 border-radius: 10px;
                 background-color: rgba(255, 255, 255, 0.7);
+                z-index: 9999;
+                font-size: 0.8vw;
+            }
+            .info2{
+                left: auto;
+                right: var(--iw);
+            }
+            .info3{
+                top: auto;
+                bottom: var(--iw);
+                left: auto;
+                right: var(--iw);
+
             }
 
             /*벌새*/
@@ -35,17 +54,27 @@
                 position: absolute;
                 top: 10%;
                 left: 40%;
-                animation: bird 20s ease-in-out infinite alternate;
+                z-index: 999;
+                animation: bird 80s ease-in-out infinite alternate;
             }
 
             /*내부박스*/
             .inbox {
                 position: relative; /*부모자*/
-                top: 500px;
-                width: 800px;
-                height: 1000px;
+                top: 30vh;
+                width: 60vw;
+                height: 200vh;
                 margin: 0 auto;
                 outline: 2px dotted red;
+                z-index: 10;
+                cursor: wait;
+            }
+            .wrap{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
 
             /*벌새위치변경 애니메이션*/
@@ -71,6 +100,25 @@
                 }
             }
 
+            .ln{
+                position: absolute;
+                width: 100%;
+                height: 0;
+                text-indent: 20px;
+                border-top: 1px dashed gray;
+                z-index: -1;
+            }
+
+            .point{
+                position: absolute;
+                width: 20%;
+                height: 5%;
+                text-align: center;
+                border: 4px dotted blueviolet;
+                background-color: rgba(255, 140, 0, 0.661);
+                overflow: auto;
+            }
+
             /*키프레임*/
         </style>
         <script>
@@ -79,14 +127,50 @@
             const qsa = (x) => document.querySelectorAll(x);
 
             window.addEventListener("DOMContentLoaded", () => {
-                var offtop, offleft, postop, posleft, js1, js2, js3, js4;
-                setInterval(function () {
-                    let bird = qs("#bird");
 
-                    js1 = bird.offsetTop;
-                    js2 = bird.offsetLeft;
-                    js3 = bird.getBoundingClientRect().top;
-                    js4 = bird.getBoundingClientRect().left;
+
+                const bird = qs("#bird");
+                const ibx = qs(".inbox");
+                const ibxWrap = qs(".inbox .wrap");
+                const bd = qs("body>.wrap");
+                
+                for(let i=0;i<9;i++){
+                    // console.log(i);
+                    ibxWrap.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
+                }
+                for(let i=0;i<25;i++){
+                    // console.log(i);
+                    bd.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
+                }
+                for(let i=0;i<5;i++){
+                    // console.log(i);
+                    if(i%2)
+                    ibxWrap.innerHTML += `<div class="point" style="top:${120*(i+1)}px;left:${10*(i+1)}px">${i+1}번째박스</div>`;
+                    else
+                    ibxWrap.innerHTML += `<div class="point" style="top:${130*(i+1)}px;right:${10*(i+1)}px">${i+1}번째박스</div>`;
+
+                }
+
+                const pnt = qsa(".inbox .point");
+
+                pnt.forEach((ele,idx)=>{
+                    if(idx===2||idx===4){
+                        ele.innerHTML += `<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                         in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
+                         sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
+                         laborum.`
+                    }
+                    if(idx===1||idx===4){
+                        ele.style.padding = "2vw";
+                    }
+                }); /////////// forEach ///////////
+
+
+
+
+                setInterval(function () {
 
                     /* 
                     
@@ -102,38 +186,97 @@
                 */
 
                     /// 화면표시 ////
-                    qs(".i5").innerText = js1;
-                    qs(".i6").innerText = js2;
-                    qs(".i7").innerText = js3;
-                    qs(".i8").innerText = js4;
+                    qs(".i1").innerText = bird.offsetTop;
+                    qs(".i2").innerText = bird.offsetLeft;
+                    qs(".i3").innerText = bird.getBoundingClientRect().top.toFixed(0);
+                    qs(".i4").innerText = bird.getBoundingClientRect().left.toFixed(0);
                 }, 100); ///// setInterval //////
 
-                qs(".page").onmousemove = (e) => {
-                    console.log(e.screenX);
-                    console.log(e.clientX);
-                    console.log(e.pageX);
+                ibx.onmousemove = (e) => {
+                    /// 화면표시 ////
+                    qs(".i5").innerText = e.pageX;
+                    qs(".i6").innerText = e.pageY;
+                    qs(".i7").innerText = e.screenX;
+                    qs(".i8").innerText = e.screenY;
+                    qs(".i9").innerText = e.clientX;
+                    qs(".i10").innerText = e.clientY;
                 };
-            }); //////// jQB ////////////////////////////////
-            /////////////////////////////////////////////////
+
+                for(let x of pnt){
+                    x.onclick = ()=>{
+                        console.log("여기요!");
+                        /// 화면표시 ////
+                        qs(".i11").innerText = x.clientWidth;
+                        qs(".i12").innerText = x.clientHeight;
+                        qs(".i13").innerText = x.scrollWidth;
+                        qs(".i14").innerText = x.scrollHeight;
+                        qs(".i15").innerText = x.offsetWidth;
+                        qs(".i16").innerText = x.offsetHeight;
+                        qs(".i17").innerText = x.offsetTop;
+                        qs(".i18").innerText = x.offsetLeft;
+                    };
+
+                } ////////// for of //////////////
+
+                
+
+
+
+            }); //////// load  ///////////////////////
             /////////////////////////////////////////////////
         </script>
     </head>
 
     <body>
+
+            <!--위치정보표시-->
+            <div class="info">
+                <h2>[ 벌새 위치정보값 ]</h2>
+                <h2>[ offset ] <br>top : <span class="i1"></span>px
+                    <br>left : <span class="i2"></span>px</h2>
+                <h2>[ getBoundingClientRect() ]
+                    <br>top : <span class="i3"></span>px
+                    <br>left : <span class="i4"></span>px</h2>
+            </div>
+            <!--위치정보표시-->
+            <div class="info info2">
+                <h2>[ 마우스포인터 위치정보값 ]</h2>
+                <h2>[ page ]
+                    <br> X : <span class="i5"></span>px
+                    <br> Y : <span class="i6"></span>px</h2>
+                <h2>[ client ]
+                    <br> X : <span class="i9"></span>px
+                    <br> Y : <span class="i10"></span>px</h2>
+                <h2>[ screen ]
+                    <br> X : <span class="i7"></span>px
+                    <br> Y : <span class="i8"></span>px</h2>
+            </div>
+            <!--박스정보표시-->
+            <div class="info info3">
+                <h2>[ 클릭한 박스정보값 ]</h2>
+                <h2>[ 크기 : 패딩만포함]
+                    <br> width : <span class="i11"></span>px
+                    <br> height : <span class="i12"></span>px</h2>
+                <h2>[ 크기 : 패딩+스크롤바내용포함]
+                    <br> width : <span class="i13"></span>px
+                    <br> height : <span class="i14"></span>px</h2>
+                <h2>[ 크기 :보더+패딩+스크롤바내용포함]
+                    <br> width : <span class="i15"></span>px
+                    <br> height : <span class="i16"></span>px</h2>
+                <h2>[ 위치 ]
+                    <br>top : <span class="i17"></span>px
+                    <br>left : <span class="i18"></span>px</h2>
+            </div>
+
+
         <div class="page">
             <div class="inbox">
                 <!--날아다니는 새-->
                 <img id="bird" src="bird.gif" alt="벌새" />
-            </div>
-
-            <!--위치정보표시-->
-            <div id="info">
-                <h2>[ JS 위치정보값 ]</h2>
-                <h2>offsetTop 값 : <span class="i5"></span>px</h2>
-                <h2>offsetLeft 값 : <span class="i6"></span>px</h2>
-                <h2>getBoundingClientRect().top 값 : <span class="i7"></span>px</h2>
-                <h2>getBoundingClientRect().left 값 : <span class="i8"></span>px</h2>
+                <div class="wrap"></div>
             </div>
         </div>
+
+        <div class="wrap"></div>
     </body>
 </html>
