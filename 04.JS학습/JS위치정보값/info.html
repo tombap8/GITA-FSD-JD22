@@ -9,14 +9,14 @@
                 margin: 0;
                 padding: 0;
             }
-            body{
+            body {
                 height: 300vh;
                 overflow-x: hidden;
                 background-image: linear-gradient(to bottom, #6af3f8, #eaf755, #a3b5ff, #ffb0fc);
             }
 
-            :root{
-                --iw:2vw;
+            :root {
+                --iw: 2vw;
             }
 
             /*전체페이지*/
@@ -39,21 +39,21 @@
                 font-size: 0.8vw;
                 white-space: nowrap;
             }
-            .info2{
+            .info2 {
                 left: auto;
                 right: var(--iw);
             }
-            .info3{
+            .info3 {
                 top: auto;
                 bottom: var(--iw);
                 left: auto;
                 right: var(--iw);
             }
 
-            .info>section{
+            .info > section {
                 display: flex;
             }
-            .info>section>div{
+            .info > section > div {
                 flex: 1;
             }
 
@@ -79,7 +79,7 @@
                 overflow: hidden;
                 background-color: #00000043;
             }
-            .wrap{
+            .wrap {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -110,7 +110,7 @@
                 }
             }
 
-            .ln{
+            .ln {
                 position: absolute;
                 width: 100%;
                 height: 0;
@@ -118,7 +118,7 @@
                 z-index: -1;
                 text-indent: 5px;
             }
-            .ln2{
+            .ln2 {
                 position: absolute;
                 width: 0;
                 height: 300vh;
@@ -127,12 +127,13 @@
                 text-indent: 5px;
             }
 
-            .inbox .ln, .inbox .ln2{
+            .inbox .ln,
+            .inbox .ln2 {
                 border-color: red;
                 color: red;
             }
 
-            .point{
+            .point {
                 position: absolute;
                 width: 20%;
                 height: 5%;
@@ -145,82 +146,134 @@
             /*키프레임*/
         </style>
         <script>
+            /************************************************************** 
+                    
+                ★[[ JavaScript에서 요소의 위치 구하기]]★
+
+                [ offsetTop / offsetLeft] 
+                -> 부모자격요소를 기준한 위치값
+                -> 제이쿼리 position()과 같음
+
+                [ getBoundingClientRect() > top / left ] 
+                -> 스크롤위치를 뺀 화면 기준
+                -> 제이쿼리의 offset() 과 같은 절대값을 구하려면
+                스크롤위치값을 본 값에 더해야함!
+                -> 주로 세로 스크롤을 사용하므로 top값에 스크롤값을 더함
+                예) 요소.getBoundingClientRect().top + window.scrollY
+                ___________________________________________________________
+
+                ★[[ JavaScript에서 요소의 크기 구하기 ]]★
+                
+                [ 가로크기 ]
+                - clientWidth : 패딩점퍼를 입고 있는 클라이언트님!
+                padding을 포함한 폭
+                - scrollWidth :  스크롤이 들어가니까 scroll!
+                padding을 포함한 화면 상에 표시되지 않은 콘텐츠를 포함한 폭
+                - offsetWidth : 보더,패딩,스크롤 다 들어가니 옵셋!
+                border, padding, 스크롤 바를 포함한 폭
+                
+                [ 세로크기 ]
+                - clientHeight : 
+                padding을 포함한 높이
+                - scrollHeight : 
+                padding을 포함한 화면 상에 표시되지 않은 콘텐츠를 포함한 높이
+                - offsetHeight : 
+                border, padding, 스크롤 바를 포함한 높이
+                _____________________________________________________________
+
+                ★[[ 윈도우 사이즈 가져오기 ]]★
+                window.innerWidth :  스크롤 바를 포함하지 않는 창 너비
+                window.innerHeight : 스크롤 바를 포함하지 않은 창 높이
+                window.outerWidth : 스크롤 바를 포함, 창의 너비
+                window.outerHeight :  스크롤 바를 포함한  창의 높이
+                _____________________________________________________________
+
+                ★[[ 현재 스크롤바 위치값 가져오기 ]]★
+                1. window.scrollY (IE6~11지원안함)
+                2. document.scrollingElement.scrollTop
+                3. document.documentElement.scrollTop
+                4. document.querySelector('html').scrollTop
+
+                _____________________________________________________________
+
+                ★[[ 이벤트발생시 위치값 ]]★
+                1. clientX, clientY
+                    -> 현재 보이는 브라우저 화면이 기준
+
+                2. offsetX, offsetY
+                    -> 이벤트 대상이 기준
+
+                3. pageX, pageY
+                    -> 전체 문서를 기준(스크롤 화면을 포함)
+
+                4. screenX, screenY
+                    -> 모니터 화면을 기준
+
+            **************************************************************/
             ////////// 로드구역 ////////////////////////////
             const qs = (x) => document.querySelector(x);
             const qsa = (x) => document.querySelectorAll(x);
 
             window.addEventListener("DOMContentLoaded", () => {
-
-
                 const bird = qs("#bird");
                 const ibx = qs(".inbox");
                 const ibxWrap = qs(".inbox .wrap");
                 const bd = qs("body>.wrap");
-                
-                for(let i=0;i<20;i++){
-                    // console.log(i);
-                    ibxWrap.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
-                }
-                for(let i=0;i<9;i++){
-                    // console.log(i);
-                    ibxWrap.innerHTML += `<div class="ln2" style="left:${100*(i+1)}px">${100*(i+1)}px</div>`;
-                }
-                for(let i=0;i<25;i++){
-                    // console.log(i);
-                    bd.innerHTML += `<div class="ln" style="top:${100*(i+1)}px">${100*(i+1)}px</div>`;
-                }
-                for(let i=0;i<25;i++){
-                    // console.log(i);
-                    bd.innerHTML += `<div class="ln2" style="left:${100*(i+1)}px">${100*(i+1)}px</div>`;
-                }
-                for(let i=0;i<5;i++){
-                    // console.log(i);
-                    if(i%2)
-                    ibxWrap.innerHTML += `<div class="point" style="top:${120*(i+1)}px;left:${10*(i+1)}px">${i+1}번째박스</div>`;
-                    else
-                    ibxWrap.innerHTML += `<div class="point" style="top:${130*(i+1)}px;right:${10*(i+1)}px">${i+1}번째박스</div>`;
 
+                for (let i = 0; i < 20; i++) {
+                    // console.log(i);
+                    ibxWrap.innerHTML += `<div class="ln" style="top:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
+                }
+                for (let i = 0; i < 9; i++) {
+                    // console.log(i);
+                    ibxWrap.innerHTML += `<div class="ln2" style="left:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
+                }
+                for (let i = 0; i < 25; i++) {
+                    // console.log(i);
+                    bd.innerHTML += `<div class="ln" style="top:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
+                }
+                for (let i = 0; i < 25; i++) {
+                    // console.log(i);
+                    bd.innerHTML += `<div class="ln2" style="left:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
+                }
+                for (let i = 0; i < 5; i++) {
+                    // console.log(i);
+                    if (i % 2)
+                        ibxWrap.innerHTML += `<div class="point" style="
+                        top:${120 * (i + 1)}px;
+                        left:${10 * (i + 1)}px">
+                        ${i + 1}번째박스</div>`;
+                    else
+                        ibxWrap.innerHTML += `<div class="point" style="
+                        top:${130 * (i + 1)}px;
+                        right:${10 * (i + 1)}px">
+                        ${i + 1}번째박스</div>`;
                 }
 
                 const pnt = qsa(".inbox .point");
 
-                pnt.forEach((ele,idx)=>{
-                    if(idx===2||idx===4){
+                pnt.forEach((ele, idx) => {
+                    if (idx === 2 || idx === 4) {
                         ele.innerHTML += `<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
                          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
                          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
-                         laborum.`
+                         laborum.`;
                     }
-                    if(idx===1||idx===4){
+                    if (idx === 1 || idx === 4) {
                         ele.style.padding = "2vw";
                     }
                 }); /////////// forEach ///////////
 
-
-
-
                 setInterval(function () {
-
-                    /* 
-                    
-                    [자바스크립트:]
-
-                    1) offsetTop, offsetLeft 
-                    -> 제이쿼리 position()과 같음
-
-                    2) getBoundingClientRect() 
-                    -> 스크롤위치를 뺀 화면 기준
-                    -> 제이쿼리의 offset() 과 같은 절대값을 구하려면
-                    스크롤위치값을 본 값에 더해야함!
-                */
-
                     /// 화면표시 ////
                     qs(".i1").innerText = bird.offsetTop;
                     qs(".i2").innerText = bird.offsetLeft;
                     qs(".i3").innerText = bird.getBoundingClientRect().top.toFixed(0);
                     qs(".i4").innerText = bird.getBoundingClientRect().left.toFixed(0);
+                    qs(".i31").innerText = (bird.getBoundingClientRect().top + window.scrollY).toFixed(0);
+                    qs(".i42").innerText = window.scrollY.toFixed(0);
                 }, 100); ///// setInterval //////
 
                 ibx.onmousemove = (e) => {
@@ -233,13 +286,13 @@
 
                     qs(".i71").innerText = e.offsetX;
                     qs(".i82").innerText = e.offsetY;
-                    
+
                     qs(".i9").innerText = e.clientX;
                     qs(".i10").innerText = e.clientY;
                 };
 
-                for(let x of pnt){
-                    x.onclick = ()=>{
+                for (let x of pnt) {
+                    x.onclick = () => {
                         console.log("여기요!");
                         /// 화면표시 ////
                         qs(".i11").innerText = x.clientWidth;
@@ -254,80 +307,103 @@
                         qs(".i17").innerText = x.offsetTop;
                         qs(".i18").innerText = x.offsetLeft;
                     };
-
                 } ////////// for of //////////////
-
-                
-
-
-
             }); //////// load  ///////////////////////
             /////////////////////////////////////////////////
         </script>
     </head>
 
     <body>
-
-            <!--위치정보표시-->
-            <div class="info">
-                <h2>[ 벌새 위치정보값 ]</h2>
-                <h2>[ offset ] <br>top : <span class="i1"></span>px
-                    <br>left : <span class="i2"></span>px</h2>
-                <h2>[ getBoundingClientRect() ]
-                    <br>top : <span class="i3"></span>px
-                    <br>left : <span class="i4"></span>px</h2>
-            </div>
-            <!--위치정보표시-->
-            <div class="info info2">
-                <h2>[ 마우스포인터 위치정보값 ]</h2>
-                <section>
-                    <div>
-                        <h2>[ page ]
-                            <br> X : <span class="i5"></span>px
-                            <br> Y : <span class="i6"></span>px</h2>
-                        <h2>[ client ]
-                            <br> X : <span class="i9"></span>px
-                            <br> Y : <span class="i10"></span>px</h2>
-    
-                    </div>
-                    <div>
-                        <h2>[ screen ]
-                            <br> X : <span class="i7"></span>px
-                            <br> Y : <span class="i8"></span>px</h2>
-                        <h2>[ offset ]
-                            <br> X : <span class="i71"></span>px
-                            <br> Y : <span class="i82"></span>px</h2>
-    
-                    </div>
-
-                </section>
-            </div>
-            <!--박스정보표시-->
-            <div class="info info3">
-                <h2>[ 클릭한 박스정보값 ]</h2>
-                <h2>[ 크기 : 패딩만포함]
-                    <br> width : <span class="i11"></span>px
-                    <br> height : <span class="i12"></span>px</h2>
-                <h2>[ 크기 : 패딩+스크롤바내용포함]
-                    <br> width : <span class="i13"></span>px
-                    <br> height : <span class="i14"></span>px</h2>
-                <h2>[ 크기 :보더+패딩+스크롤바내용포함]
-                    <br> width : <span class="i15"></span>px
-                    <br> height : <span class="i16"></span>px</h2>
-                <h2>[ 위치 ]
-                    <br>top : <span class="i17"></span>px
-                    <br>left : <span class="i18"></span>px</h2>
-            </div>
-
+        <!--위치정보표시-->
+        <div class="info">
+            <h2>[ 벌새 위치정보값 ]</h2>
+            <h2>
+                [ offset ] <br />
+                top : <span class="i1"></span>px <br />
+                left : <span class="i2"></span>px
+            </h2>
+            <h2>
+                [ getBoundingClientRect() ] <br />
+                top : <span class="i3"></span>px <br />
+                left : <span class="i4"></span>px
+            </h2>
+            <h2>
+                [ 바운딩값에 스크롤값 더함(top값) ] <br />
+                top : <span class="i31"></span>px <br />
+                현재스크롤위치 : <span class="i42"></span>px
+            </h2>
+        </div>
+        <!--위치정보표시-->
+        <div class="info info2">
+            <h2>[ 마우스포인터 위치정보값 ]</h2>
+            <section>
+                <div>
+                    <h2>
+                        [ page ] <br />
+                        X : <span class="i5"></span>px <br />
+                        Y : <span class="i6"></span>px
+                    </h2>
+                    <h2>
+                        [ client ] <br />
+                        X : <span class="i9"></span>px <br />
+                        Y : <span class="i10"></span>px
+                    </h2>
+                </div>
+                <div>
+                    <h2>
+                        [ screen ] <br />
+                        X : <span class="i7"></span>px <br />
+                        Y : <span class="i8"></span>px
+                    </h2>
+                    <h2>
+                        [ offset ] <br />
+                        X : <span class="i71"></span>px <br />
+                        Y : <span class="i82"></span>px
+                    </h2>
+                </div>
+            </section>
+        </div>
+        <!--박스정보표시-->
+        <div class="info info3">
+            <h2>[ 클릭한 박스정보값 ]</h2>
+            <section>
+                <div>
+                    <h2>
+                        [패딩만포함] <br />
+                        width : <span class="i11"></span>px <br />
+                        height : <span class="i12"></span>px
+                    </h2>
+                    <h2>
+                        [패딩+스크롤바] <br />
+                        width : <span class="i13"></span>px <br />
+                        height : <span class="i14"></span>px
+                    </h2>
+                </div>
+                <div>
+                    <h2>
+                        [보더+패딩+스크롤바] <br />
+                        width : <span class="i15"></span>px <br />
+                        height : <span class="i16"></span>px
+                    </h2>
+                    <h2>
+                        [ 위치 ] <br />
+                        top : <span class="i17"></span>px <br />
+                        left : <span class="i18"></span>px
+                    </h2>
+                </div>
+            </section>
+        </div>
 
         <div class="page">
             <div class="inbox">
                 <!--날아다니는 새-->
                 <img id="bird" src="bird.gif" alt="벌새" />
+                <!-- 내부박스에 선넣기 박스 -->
                 <div class="wrap"></div>
             </div>
         </div>
 
+        <!-- body에 선넣기 박스 -->
         <div class="wrap"></div>
     </body>
 </html>
