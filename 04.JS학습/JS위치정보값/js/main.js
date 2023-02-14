@@ -12,6 +12,10 @@
     스크롤위치값을 본 값에 더해야함!
     -> 주로 세로 스크롤을 사용하므로 top값에 스크롤값을 더함
     예) 요소.getBoundingClientRect().top + window.scrollY
+
+    ※ 참고: 바운딩 값은 소수점 아래 많은 자릿수까지 표시하므로
+        이것을 소수점자리 제한하여 사용할 수 있다!
+        -> toFiexd(자릿수) : 자릿수에 0을 넣으면 소수점 아래버림
     ___________________________________________________________
 
     ★[[ JavaScript에서 요소의 크기 구하기 ]]★
@@ -67,34 +71,53 @@ const qs = (x) => document.querySelector(x);
 const qsa = (x) => document.querySelectorAll(x);
 
 window.addEventListener("DOMContentLoaded", () => {
+    console.log("로딩완료!");
+
+    // 1. 벌새
     const bird = qs("#bird");
+    // 2. 내부박스
     const ibx = qs(".inbox");
+    // 3. 내부박스 위치표시박스
     const ibxWrap = qs(".inbox .wrap");
+    // 4. 전체 위치표시박스
     const bd = qs("body>.wrap");
 
+    // 위치표시하기 for문 /////////
+
+    // 1. 내부박스 가로기준선넣기
     for (let i = 0; i < 20; i++) {
         // console.log(i);
         ibxWrap.innerHTML += `<div class="ln" style="top:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
     }
+    
+    // 2. 내부박스 세로기준선넣기
     for (let i = 0; i < 9; i++) {
         // console.log(i);
         ibxWrap.innerHTML += `<div class="ln2" style="left:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
     }
+
+    // 3. 전체 가로기준선넣기
     for (let i = 0; i < 25; i++) {
         // console.log(i);
         bd.innerHTML += `<div class="ln" style="top:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
     }
+    
+    // 4. 전체 세로기준선넣기
     for (let i = 0; i < 25; i++) {
         // console.log(i);
         bd.innerHTML += `<div class="ln2" style="left:${100 * (i + 1)}px">${100 * (i + 1)}px</div>`;
     }
+
+    // 5. 내부박스에 임의의 박스 넣기
     for (let i = 0; i < 5; i++) {
         // console.log(i);
+        // 짝수일때
         if (i % 2)
             ibxWrap.innerHTML += `<div class="point" style="
                         top:${120 * (i + 1)}px;
                         left:${10 * (i + 1)}px">
                         ${i + 1}번째박스</div>`;
+        // 홀수일때
         else
             ibxWrap.innerHTML += `<div class="point" style="
                         top:${130 * (i + 1)}px;
@@ -102,6 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         ${i + 1}번째박스</div>`;
     }
 
+    // 6. 내부 생성박스에 일부 패딩, 내용 넣기
     const pnt = qsa(".inbox .point");
 
     pnt.forEach((ele, idx) => {
@@ -118,6 +142,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }); /////////// forEach ///////////
 
+
+    // [ 1. 벌새 위치 찍기 ]
     setInterval(function () {
         /// 화면표시 ////
         qs(".i1").innerText = bird.offsetTop;
@@ -128,6 +154,8 @@ window.addEventListener("DOMContentLoaded", () => {
         qs(".i42").innerText = window.scrollY.toFixed(0);
     }, 100); ///// setInterval //////
 
+
+    // [ 2. 마우스 커서 이벤트 발생시 위치값 찍기 ]
     ibx.onmousemove = (e) => {
         /// 화면표시 ////
         qs(".i5").innerText = e.pageX;
@@ -143,6 +171,7 @@ window.addEventListener("DOMContentLoaded", () => {
         qs(".i10").innerText = e.clientY;
     };
 
+    // [3. 클릭된 박스요소의 크기,위치 찍어보기]
     for (let x of pnt) {
         x.onclick = () => {
             console.log("여기요!");
@@ -160,5 +189,7 @@ window.addEventListener("DOMContentLoaded", () => {
             qs(".i18").innerText = x.offsetLeft;
         };
     } ////////// for of //////////////
-}); //////// load  ///////////////////////
+
+
+}); //////////// 로드구역  ///////////////////////
 /////////////////////////////////////////////////
