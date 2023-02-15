@@ -20,52 +20,107 @@
                     "\n type:",event.type,
                     "\n view:",event.view,
                     "\n eventPhase:",event.eventPhase,
-                    "\n trusted:",event.isTrusted,
+                    "\n isTrusted:",event.isTrusted,
                     );
 
-                // 대한민국전체 ///////////////////////
-                qs("body").onclick = () => {
-                    event.currentTarget.style.backgroundColor = "blue";
-                    // event.target.style.backgroundColor = "blue";
-                    showLog("대한민국전체");
-                    
-                }; /////// click /////////////////
+                    // 대한민국전체 ////////////////////
+                    qs("body").onclick = (e) => {
+                        // currentTarget 이벤트를 받고 있는 요소자신
+                        event.currentTarget.style.backgroundColor = "blue";
+                        // event.target.style.backgroundColor = "blue";
 
-                // 친척네집 ///////////////////////
-                qs("div").onclick = (e) => {
-                    event.currentTarget.style.backgroundColor = "green";
-                    // event.target.style.backgroundColor = "green";
-                    showLog("친척네집");
-                }; /////// click /////////////////
+                        // 이벤트속성값 찍기
+                        showLog("대한민국전체");
 
-                // 엄마집 ///////////////////////
-                qs("p").onclick = () => {
-                    event.stopImmediatePropagation();
-                    // event.stopPropagation();
-                    event.currentTarget.style.backgroundColor = "yellow";
-                    // event.target.style.backgroundColor = "yellow";
-                    showLog("엄마집");
-                }; /////// click /////////////////
-                qs("p").addEventListener("click",() => {
-                    // event.stopImmediatePropagation();
-                    event.currentTarget.style.border = "10px dotted red";
-                    // event.target.style.backgroundColor = "yellow";
-                    showLog("엄마집");
-                }); /////// click /////////////////
+                    }; //////////// click //////////////
 
-                // 아들방 ///////////////////////
-                const myFn=(e)=>{
-                    // event.stopPropagation();
-                    // event.preventDefault();
-                    e.currentTarget.style.backgroundColor = "red";
-                    // event.target.style.backgroundColor = "red";
-                    showLog("아들방");
-                    return false;
-                }; /////// click /////////////////
+                    // 친척네집 ////////////////////
+                    qs("div").onclick = (e) => {
+                        // currentTarget 이벤트를 받고 있는 요소자신
+                        event.currentTarget.style.backgroundColor = "green";
+                        // event.target.style.backgroundColor = "green";
 
-                qs("a").addEventListener("click",myFn);
-                
-                // qs("a").removeEventListener("click",myFn);
+                        
+                        // 이벤트 버블링 막기
+                        // event.stopPropagation();
+
+                        // 이벤트속성값 찍기
+                        showLog("친척네집");
+                    }; //////////// click //////////////
+
+                    // 엄마집 ////////////////////
+                    qs("p").onclick = (e) => {
+                        // currentTarget 이벤트를 받고 있는 요소자신
+                        event.currentTarget.style.backgroundColor = "yellow";
+                        // event.target.style.backgroundColor = "yellow";
+
+                        // 이벤트 버블링만 막기
+                        // event.stopPropagation();
+
+                        // 이벤트 버블링과 같은 이벤트에 기능 설정된 것까지 
+                        // 모두 막기 -> stopImmediatePropagation()
+                        event.stopImmediatePropagation();
+                        // 이것이 설정된 함수의 기능은 실행되지만
+                        // 다른 곳에 설정된 동일 이벤트기능은 실행을 막아준다!
+
+                        // 이벤트속성값 찍기
+                        showLog("엄마집");
+                    }; //////////// click //////////////
+
+
+                    ///////////////////////////////////////////
+                    // 엄마집 추가 기능 동일이벤트 등록하기 //////
+                    ///////////////////////////////////////////
+                    //-> 이벤트 리스너 사용해야 동일요소, 동일이벤트 등록가능!
+
+                    qs("p").addEventListener("click",(e) => {
+                        // currentTarget 이벤트를 받고 있는 요소자신
+                        event.currentTarget.style.border = "10px dotted red";
+
+                        // 이벤트속성값 찍기
+                        showLog("엄마집");
+                    }); //////////// click //////////////
+
+                    // 아들방 ////////////////////
+                    // -> 함수화한다!
+                    const sonFn = (e) => {
+                        // currentTarget 이벤트를 받고 있는 요소자신
+                        event.currentTarget.style.backgroundColor = "red";
+
+                        // event.target.style.backgroundColor = "red";
+                        // [ target으로 배경색 변경할 경우 결과는? ]
+                        // -> 부모요소중 버블링막기가 된 요소에
+                        // 배경색 변경이 target으로 되어 있다면
+                        // 그것이 최종 변경색으로 반영된다!
+                        // 왜? target은 이벤트가 발생한 요소이므로!!!
+
+
+                        // a요소 기본 이동기능 막기!
+                        event.preventDefault();
+
+
+                        // 이벤트속성값 찍기
+                        showLog("아들방");
+                    }; //////////// click //////////////
+
+                    // addEventListener() 로 이벤트 등록하기
+                    qs("a").addEventListener("click",sonFn);
+
+
+                    // 아들방 클릭이벤트 지우기 버튼 클릭시 설정 ///
+                    qs(".clear").onclick = ()=>{
+
+                        // 1. 방법1 : 이벤트 속성값 지우기
+                        // qs("a").onclick = "";
+
+                        // 2. 방법2 : 이벤트 리스너로 등록한 경우!
+                        // -> removeEventListener() 메서드로 삭제한다!
+                        qs("a").removeEventListener("click",sonFn);
+
+
+                    }; ////////// click ///////////////
+
+
 
             }); //////////// 로드구역  ///////////////////////
             /////////////////////////////////////////////////
@@ -153,7 +208,9 @@
 
             1. 이벤트 설정
             (1) addEventListener(이벤트명,함수)
+                -> 같은요소에 같은 이벤트로 다중설정가능!
             (2) 이벤트속성 = 함수
+                -> 같은요소에 같은 이벤트로 단일설정만 가능!
 
             2. 이벤트 해제
             (1) removeEventListener(이벤트명,함수)
@@ -203,7 +260,9 @@
             </p>
         </div>
 
-        <!-- jQuery code Start-->
-        <script></script>
+        <!-- 아들방 클릭이벤트 지우기버튼 -->
+        <button class="clear" style="font-size: 5vw;">
+            아들방 이벤트 지워!</button>
+
     </body>
 </html>
