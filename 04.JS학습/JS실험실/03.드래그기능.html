@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tg{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #f00;
+        }
+    </style>
+    <script>
+        const qs = x => document.querySelector(x);
+        const qsa = x => document.querySelectorAll(x);
+        const cg = x => console.log(x);
+
+
+        window.addEventListener("DOMContentLoaded",()=>{
+            const tg = qs(".tg");
+            let drag = false;
+            let vx,vy;
+
+            const dTrue = () => drag = true;
+            const dFalse = () => drag = false;
+            const mMove = (e) => {
+                if(drag){ 
+                    vx = e.pageX;
+                    vx = vx - e.pageX;
+                    cg(`드래그중-x:${vx}/y:${e.pageY}`);
+                }
+
+            }; //////// mMove 함수 ////////
+
+            tg.addEventListener("mousedown",dTrue);
+            tg.addEventListener("mouseup",dFalse);
+            tg.addEventListener("mouseleave",dFalse);
+
+            tg.addEventListener("mousemove",mMove);
+        })
+    </script>
+</head>
+<body>
+    <div class="tg"></div>
+    
+</body>
+</html>
