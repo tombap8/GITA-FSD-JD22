@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         .tg{
-            position: absolute;
+            position: relative;
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -23,21 +23,33 @@
         window.addEventListener("DOMContentLoaded",()=>{
             const tg = qs(".tg");
             let drag = false;
-            let vx,vy;
+            let fx,vx,fy,vy,lastXVal=0,resX,lastYVal=0,resY;
 
             const dTrue = () => drag = true;
             const dFalse = () => drag = false;
+            const test = () => {fx = event.pageX;fy = event.pageY;}
+            const test2 = () => {lastXVal += resX;lastYVal += resY;}
             const mMove = (e) => {
                 if(drag){ 
                     vx = e.pageX;
-                    vx = vx - e.pageX;
-                    cg(`드래그중-x:${vx}/y:${e.pageY}`);
+                    resX = vx - fx;
+                    cg(`드래그중-x:${resX}/${lastXVal}`);
+
+                    tg.style.left=(resX+lastXVal)+"px";
+
+                    vy = e.pageY;
+                    resY = vy - fy;
+                    cg(`드래그중-x:${resY}/${lastYVal}`);
+
+                    tg.style.top=(resY+lastYVal)+"px";
+
+
                 }
 
             }; //////// mMove 함수 ////////
 
-            tg.addEventListener("mousedown",dTrue);
-            tg.addEventListener("mouseup",dFalse);
+            tg.addEventListener("mousedown",()=>{dTrue();test();});
+            tg.addEventListener("mouseup",()=>{dFalse();test2();});
             tg.addEventListener("mouseleave",dFalse);
 
             tg.addEventListener("mousemove",mMove);
