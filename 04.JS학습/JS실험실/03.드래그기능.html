@@ -50,7 +50,7 @@
 
             tg.addEventListener("mousedown",()=>{dTrue();test();});
             tg.addEventListener("mouseup",()=>{dFalse();test2();});
-            tg.addEventListener("mouseleave",dFalse);
+            tg.addEventListener("mouseleave",()=>{dFalse();});
 
             tg.addEventListener("mousemove",mMove);
         })
