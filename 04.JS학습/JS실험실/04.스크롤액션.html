@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 300vh;
+        }
+        .scact{
+            position: absolute;
+            top: 80vh;
+            left: 40vw;
+            width: 30vw;
+            height: 30vw;
+            border: 1px solid #000;
+            background-color: lightblue;
+        }
+        .sa2{
+            top: 150vh;
+        }
+        .sa3{
+            top: 220vh;
+        }
+        .setit{
+            transform: translateY(50%);
+            opacity: 0;
+            transition: all .8s ease-in-out;
+        }
+        .setit.on{
+            
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded",()=>{
+            const tg = document.querySelectorAll(".scact");
+            const cg = x => console.log(x);
+            const hv = window.innerHeight/2;
+            cg("반높이:"+hv);
+
+            const retVal = ele => ele.getBoundingClientRect().top;
+            const showIt = x => {
+                if(retVal(x) < hv && retVal(x) > 0){
+                    x.classList.add("on");
+                }
+            };
+
+            window.addEventListener("scroll",()=>{
+                let scTop = window.scrollY;
+                // console.log(scTop);
+                for(let x of tg) showIt(x);
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="scact sa1 setit"></div>
+    <div class="scact sa2 setit"></div>
+    <div class="scact sa3 setit"></div>
+</body>
+</html>
