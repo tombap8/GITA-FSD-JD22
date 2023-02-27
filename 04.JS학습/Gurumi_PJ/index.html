@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Gurumi Gallery</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: url(images/bg-main.jpg) no-repeat top/cover;
+            overflow: hidden;
+            /*스크롤바안생김*/
+        }
+
+        /*공통class*/
+        /*IR(Image Replacement) class*/
+        .bld {
+            display: none;
+        }
+
+        /*비율유지class-정사각형(1:1비율)*/
+        .rbx::before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+        }
+
+        /*1.타이틀*/
+        .tit {
+            width: 15%;
+            margin: 50px auto;
+            padding: 0;
+            background: url(images/img-pd.jpg) no-repeat 0/100% 100%;
+            border-radius: 50%;
+            /*원*/
+            box-shadow: -15px 0 30px #555 inset;
+            /*inset은 내부그림자*/
+        }
+
+        /*갤러리박스*/
+        .gbox {
+            position: relative;
+            /*부모자격*/
+            width: 20%;
+            margin: 0 auto;
+            /*outline: 2px solid red;*/
+        }
+
+        /*갤러리 이미지*/
+        .gbox img {
+            position: absolute;
+            /*나의부모? .gbox*/
+            top: 0;
+            width: 100%;
+            box-shadow: 6px 6px 5px #333;
+            border-radius: 15px;
+            transition: all .4s ease-in-out;
+        }
+
+        /*개별이미지 설정*/
+
+        /*왼쪽 끝*/
+        .gbox img:nth-child(1) {
+            top: -40%;
+            left: -210%;
+            transform: scale(.7);
+            opacity: 0;
+            /*안보임*/
+        }
+
+        /*왼쪽 바로옆*/
+        .gbox img:nth-child(2) {
+            top: -20%;
+            left: -110%;
+            transform: scale(.9);
+            filter: grayscale(50%) blur(1px);
+        }
+
+        /*중앙이미지*/
+        .gbox img:nth-child(3) {
+            top: 0;
+            left: 0;
+            transform: scale(1);
+        }
+
+        /*오른쪽 바로옆*/
+        .gbox img:nth-child(4) {
+            top: -20%;
+            left: 110%;
+            transform: scale(.9);
+            filter: grayscale(50%) blur(1px);
+        }
+
+        /*오른쪽 끝*/
+        .gbox img:nth-child(5) {
+            top: -40%;
+            left: 210%;
+            transform: scale(.7);
+            opacity: 0;
+            /*안보임*/
+        }
+
+        /*이동버튼 셋팅*/
+        .abtn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            /*세로중앙이동*/
+            width: 4%;
+        }
+
+        /*왼쪽버튼*/
+        .lb {
+            left: 10%;
+        }
+
+        /*오른쪽버튼*/
+        .rb {
+            right: 10%;
+        }
+
+        .abtn img {
+            width: 100%;
+            /*높이값은 자동조절*/
+        }
+    </style>
+    <script>
+        ///// 로드구역 ///////////////////////////////
+        window.addEventListener("DOMContentLoaded",
+            function() {
+                console.log("로딩완료!");
+                ///// 구현내용: 이동버튼 클릭시 이미지 이동하기 ///
+                // 이벤트종류: click
+                // 이벤트대상: .abtn
+                // 변경대상: .gbox, .gbox img
+                var abtn = document.querySelectorAll(".abtn");
+                var gbox = document.querySelector(".gbox");
+
+                /*////////////////////////////////////////
+                    함수명: chgImg
+                    기능: 이미지의 순서를 변경하여 이동함
+                */ ////////////////////////////////////////
+                var cprot = 0;//광클금지변수(0-허용,1-불허용)
+                var chgImg = function(dir) { // dir(0-왼쪽,1-오른쪽)
+                    //console.log("이동:"+dir);
+                    
+                    ///// 광클금지설정 ///////////////////
+                    if(cprot===1) return false;
+                    // return false 아무것도 하지말고 돌아가!
+                    cprot = 1;//잠금
+                    setTimeout(function(){
+                        cprot = 0;//해제
+                    },400);//// 타임아웃 //////
+                    //////////////////////////////////////
+
+                    // 1. 매번 변경된 새로운 이미지 컬렉션을 읽어옴!
+                    var glist = document
+                        .querySelectorAll(".gbox img");
+
+                    // 왼쪽 오른쪽 이동 분기
+                    if (dir === 1) { /// 오른쪽버튼
+
+                        // 2. 갤러리박스의 맨앞요소를 맨뒤로 이동하기
+                        // appendChild(이동요소)
+                        // - 선택된 이동요소를 맨뒤로 이동함
+                        gbox.appendChild(glist[0]);
+
+                    } //// if문 ////////////////////////
+                    else if (dir === 0) { /// 왼쪽버튼
+
+                        // 2. 갤러리박스의 맨뒤요소를 맨앞으로 이동하기
+                        // insertBefore(넣을놈,넣을놈전놈)
+                        // insertBefore(맨뒤요소,맨앞요소)
+                        // 맨뒤요소 = 전체리스트개수 - 1
+                        gbox.insertBefore(
+                            glist[glist.length - 1],
+                            glist[0]
+                        ); // insertBefore //////
+
+                    } //// else if문 ////////////////
+
+                } ///////////// chgImg 함수 //////////////
+                //////////////////////////////////////////
+                //////////////////////////////////////////
+                
+                /*////////////////////////////////////////
+                    함수명: autoCall
+                    기능: 자동넘김호출설정
+                */////////////////////////////////////////
+                var autoI;//인터발용함수
+                var autoCall = function(){
+                    autoI = setInterval(function(){
+                        chgImg(1);
+                    },3000); //// 인터발함수 ////////
+                    
+                } ///////////// autoCall 함수 //////////////
+                //////////////////////////////////////////
+                //////////////////////////////////////////
+                
+                //// 자동넘김 최초호출! ///
+                autoCall();
+            
+            /*////////////////////////////////////////
+                함수명: clearAuto
+                기능: 인터발함수를 지우고, 다시자동호출
+            */////////////////////////////////////////
+            var autoT;//타임아웃용변수
+            var clearAuto = function(){
+                // 인터발,타임아웃 모두 지우기
+                clearInterval(autoI);
+                clearTimeout(autoT);//쓰나미방지!
+                // 타임아웃으로 자동호출셋팅!
+                autoT = setTimeout(autoCall,3000);
+            } ///////////// clearAuto 함수 //////////////
+            //////////////////////////////////////////
+            //////////////////////////////////////////
+
+
+
+                /// 왼쪽버튼 클릭시 //////////
+                abtn[0].onclick = function() {
+                    //console.log("왼쪽!");
+                    // 이동함수호출
+                    chgImg(0); // 0은 왼쪽
+                    // 자동지우기호출
+                    clearAuto();
+
+                }; /////// click함수 /////////////
+
+                /// 오른쪽버튼 클릭시 //////////
+                abtn[1].onclick = function() {
+                    //console.log("오른쪽!");                    
+                    // 이동함수호출
+                    chgImg(1); // 1은 오른쪽
+                    // 자동지우기호출
+                    clearAuto();
+                    
+                }; /////// click함수 /////////////
+
+
+
+
+            }); //////////// 로드구역 //////////////////
+        //////////////////////////////////////////////
+        //////////////////////////////////////////////
+    </script>
+</head>
+
+<body>
+    <!--1.상단부분-->
+    <header>
+        <!--타이틀로고-->
+        <h1 class="tit rbx">
+            <span class="bld">구르미그린달빛로고</span>
+        </h1>
+    </header>
+    <!--2.메인부분-->
+    <main>
+        <!--갤러리박스-->
+        <div class="gbox rbx">
+            <img src="images/cast01.jpg" alt="구르미">
+            <img src="images/cast02.jpg" alt="구르미">
+            <img src="images/cast03.jpg" alt="구르미">
+            <img src="images/cast04.jpg" alt="구르미">
+            <img src="images/cast05.jpg" alt="구르미">
+        </div>
+        <!--   이동버튼   -->
+        <!--왼쪽버튼-->
+        <a href="#" class="abtn lb">
+            <img src="images/left_btn.png" alt="왼쪽버튼">
+        </a>
+        <!--오른쪽버튼-->
+        <a href="#" class="abtn rb">
+            <img src="images/right_btn.png" alt="오른쪽버튼">
+        </a>
+    </main>
+    <!--3.하단부분-->
+    <footer></footer>
+
+
+
+
+
+
+
+
+</body></html>

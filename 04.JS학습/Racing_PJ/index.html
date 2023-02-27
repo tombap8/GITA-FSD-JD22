@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Racing PJ</title>
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <style>
+        html,body,ul{
+            margin: 0;
+            padding: 0;
+        }
+        #mtit{
+            font-family: 'ZCOOL KuaiLe', cursive;
+            font-size: 60px;
+            color: #206bd1;
+            text-align: center;
+            text-shadow: 2px 2px 3px #777;
+        }
+        /*전체부모*/
+        #bgi{
+            position: relative;
+            /*부모역할*/
+            width: 800px;
+            height: 600px;
+            background: url(images/bg.jpg) no-repeat;
+        }
+        /*공통*/
+        #bgi>div{
+            position: absolute;
+        }
+        /*출발선*/
+        #f1{
+            top: 243px;
+        }
+        /*도착선*/
+        #f2{
+            top: 243px;
+            left: 650px;
+        }
+        /*토끼*/
+        #r1{
+            top: 400px;
+            left: 0;
+            /*JS에서 사용할 기준속성*/
+        }
+        /*거북*/
+        #t1{
+            top: 600px;
+            left: 0;
+        }
+        
+        /*조작버튼*/
+        #btns{
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 150px;
+            height: 480px;
+            list-style: none;
+        }
+        #btns li{
+            width: 150px;
+            height: 150px;
+            border: 5px solid #ccc;
+            border-radius: 50%;
+            text-align: center;
+            font: bold 30px/150px "맑은 고딕", Verdana;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        #btns a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: #333;
+        }
+        /*버튼에 마우스 오버시*/
+        #btns li:hover{
+            background-color: lime;
+            transform: scale(1.1);
+        }
+        /*버튼 a링크 누르고 있을때(:active)*/
+        #btns a:active{
+            color: red;
+        }
+        
+        /*게임레벨*/
+        .levbox{
+            position: absolute;
+            top: 3%;
+            right: 5%;
+        }
+        #level{
+            width: 150px;
+            height: 40px;
+            font: 24px "맑은 고딕","굴림";
+        }
+        
+        /*결과 메시지*/
+        #msg{
+            position: fixed;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            top: 40%;
+            font-size: 52px;
+            text-align: center;
+            color: red;
+            text-shadow: 0 0 10px #000;
+            display: none;/*처음에 안보임*/
+        }
+        
+    </style>
+</head>
+<body>
+  <h1 id="mtit">Racing Game</h1>
+   <!--1.메인스테이지-->
+    <div id="bgi">
+        <!--출발선-->
+        <div id="f1">
+            <img src="images/flag_03.jpg" alt="출발선">
+        </div>
+        <!--도착선-->
+        <div id="f2">
+            <img src="images/flag_07.jpg" alt="도착선">
+        </div>
+        <!--토끼-->
+        <div id="r1">
+            <img src="images/racer_03.jpg" alt="토끼">
+        </div>
+        <!--거북-->
+        <div id="t1">
+            <img src="images/racer_06.png" alt="거북">
+        </div>
+    </div>
+    
+    <!--게임조작버튼-->
+    <ul id="btns">
+        <li><a href="#">토끼출발</a></li>
+        <li><a href="#">거북출발</a></li>
+        <li><a href="#">처음으로</a></li>
+    </ul>
+    
+    <!--게임레벨-->
+    <div class="levbox">
+        <select id="level">
+            <option value="10">레벨1</option>
+            <option value="9">레벨2</option>
+            <option value="8">레벨3</option>
+            <option value="7">레벨4</option>
+            <option value="6">레벨5</option>
+            <option value="5">레벨6</option>
+            <option value="4">레벨7</option>
+        </select>
+    </div>
+    
+    <!--결과 메시지창-->
+    <h2 id="msg">테스트 테스트 테스트!!! ㅎㅎㅎㅎㅎ</h2>
+    
+    
+    
+    
+   
+    
+</body>
+</html>
