@@ -9,63 +9,188 @@
             ////// 로드구역 //////////
             window.addEventListener("DOMContentLoaded", () => {
 
-                // 새로고침시 항상 최상단으로 이동하기
+                // 새로고침시 맨위로 보내기 ///////
+                // scrollTo(가로,세로) -> 스크롤위치이동 내장함수
+                // 브라우저가 스크롤 위치 캐싱을 적용한 후 위로 이동
                 setTimeout(() => {
-                    window.scrollTo(0,0);         
-                }, 100);
+                    window.scrollTo(0,0);
+                }, 100); // 0.1초정도는 줘야효과있음!
 
-                /********************************** 
-                        리턴함수 셋팅구역
-                **********************************/
-               // 1.단일요소리턴함수
-               const qs = x => document.querySelector(x);
-               // 2.컬렉션리턴함수
-               const qsa = x => document.querySelectorAll(x);
-               // 3.콘솔로그실행함수
-               const cg = x => console.log(x);
-               // 4.등장액션 대상 위치값 리턴함수/////
-               const retVal = x => x.getBoundingClientRect().top;
 
-                /********************************** 
-                        변수값 셋팅구역
-                **********************************/
-                // 1. 등장액션 대상: .setit
-                const setit = qsa(".setit");
-                cg(setit);
+
+                // 등장액션 대상: .setit
+                const setit = document.querySelectorAll(".setit");
+                // console.log(setit);
 
                 // 화면높이값의 2/3구하기
                 const hv = window.innerHeight/3*2;
-                cg("2/3높이:"+hv);
+                // console.log("2/3높이:",hv);
+
+                // 윈도우 높이값
+                const winH = window.innerHeight;
+
+                // 전체문서 높이값
+                const docH = document.body.clientHeight;
+                console.log("문서전체높이:",docH);
+
+                // 스크롤한계값
+                const scLimit = docH - winH;
+                console.log("스크롤한계값:",scLimit);
+                // 스크롤한계값은 전체문서길이 - 윈도우높이
+                // 단, body에 기본마진 8px을 초기화해야 정확히 일치함!
+
+
+                
+
+                // 등장액션 대상 위치값 리턴함수/////
+                const retVal = 
+                ele => ele.getBoundingClientRect().top;
+
+                // const retVal = 
+                // ele => {return ele.getBoundingClientRect().top;}
 
                 // [ 보이는화면을 기준한 위치값리턴 : 
                 // getBoundingClientRect() ]
                 // top속성값은 Y축위치값을 나타냄
                 // 보이는 화면 상단에 닿을 경우 0
                 // 통과하여 위로 올라가면 마이너스값이다!
+                // [ 메서드명 구성 ]
+                // get 값을 가져와
+                // Bounding 한계에서
+                // ClientRect 사용자브라우저 화면으로 부터
 
                 ////////////////////////////////
                 // 클래스 넣기 함수 만들기 ///////
                 ////////////////////////////////
                 const showIt = x => { // x - 등장요소
-                    if(retVal(x) < hv && retVal(x) > 0){
-                        cg("작동!~~~~");
+                    // 대상요소의 현재스크롤 위치
+                    let xval = retVal(x);
+
+                    // 구간적용여부 검사하기
+                    // 0보다 크고 화면의 2/3보다 작은 구간!
+                    if(xval < hv && xval > 0){
+                        // console.log("작동!~~~~");
+                        // 해당요소에 클래스 넣기!
                         x.classList.add("on");
                     }
                 }; //////////// showIt //////////
 
+                // 스크롤시 이동할 타이틀 대상 //////
+                // .tit
+                const tit = document.querySelector(".tit");
+                // 트랜지션설정
+                tit.style.transition = ".8s ease-in-out";
 
+                // 떨어지는 여자 대상선정 ///////////////////
+                const woman = document.querySelector("#woman");
+
+                /////////////////////////////////////////////
                 // 스크롤 이동시 윈도우에 세로스크롤 위치값 찍기
                 // 대상: window
                 // 이벤트: scroll
                 window.addEventListener("scroll",()=>{
+                    // 스크롤 이벤트 확인!
+                    // console.log("스크롤중~~!");
 
                     // 스크롤등장 요소 개수만큼 for문으로 돌리기
                     for(let x of setit) showIt(x);
+                    // 순서:
+                    // 1. 스크롤 이벤트시 setit에 담긴 요소를 수집
+                    // 2. 요소만큼 x에 하나씩 순서대로 담는다
+                    // 3. showIt(x) 호출시 x, 즉 요소자신을 보낸다!
+                    // 4. showIt() 함수는 그 x의 위치값을 조사해서
+                    // if문 구간에 해당하는지 검사후 해당요소에
+                    // 클래스 "on"을 넣어준다!
+
+
+
 
                     // 스크롤시 스크롤 위치값  찍기
                     // => window.scrollY
-                    // let scTop = window.scrollY;
+                    let scTop = window.scrollY;
+
+                    // 다른방법으로 스크롤위치값 구하기
+                    // scTop = document.scrollingElement.scrollTop;
+                    // scTop = document.documentElement.scrollTop;
+                    // scTop = document.querySelector('html').scrollTop;
+
                     // console.log(scTop);
+
+                    /* ★[[ 현재 스크롤바 위치값 가져오기 ]]★
+                    1. window.scrollY (IE6~11지원안함)
+                    2. document.scrollingElement.scrollTop
+                    3. document.documentElement.scrollTop
+                    4. document.querySelector('html').scrollTop */
+
+                    /********************************************* 
+                        스크롤위치에 따른 타이틀 위치이동 애니하기!
+                    *********************************************/
+
+                    // 1. 스크롤바 위치 0이상 300미만일때 원위치
+                    if(scTop < 300) tit.style.top = "0";
+                    // 2. 스크롤바 위치 300이상 500미만일때 첫번째 위치변경
+                    if(scTop >= 300 && scTop < 500) tit.style.top = "45vh";
+                    
+                    // retVal() 함수를 이용하여 해당요소의 위치를 구함!
+                    // 첫번째 포스터요소 위치
+                    let obj1 = retVal(setit[0]);
+                    // 두번째 포스터요소 위치
+                    let obj2 = retVal(setit[1]);
+                    // 세번째 포스터요소 위치
+                    let obj3 = retVal(setit[2]);
+                    // console.log(obj1,"/",obj2,"/",obj3);
+
+                    // 1. 첫번째/세번째 포스터구간일때
+                    if((obj1 < winH/2 && obj1 > 0) || 
+                    (obj3 < winH/2 && obj3 > 0)){
+                        tit.style.left = "5%";
+                        tit.style.transform = "translateX(0)";                  
+                    }
+                    // 2. 두번째 포스터구간일때
+                    else if(obj2 < winH/2 && obj2 > 0){
+                        tit.style.left = "45%";
+                        tit.style.transform = "translateX(0)";                  
+                    }
+                    else{ // 원래값으로 돌아감!                      
+                        tit.style.left = "50%";
+                        tit.style.transform = "translateX(-50%)";     
+                    }
+
+                    /****************************************** 
+                        떨어지는 여자 스크롤 시작부터 끝까지 애니
+                    ******************************************/
+                   // 구현내용: 여자이미지가 맨위에서부터 보이는화면에서
+                   // 스크롤 맨 아래까지 동일한 비율로 떨어지게 한다!
+
+                   // 비례식으로 비율을 계산한다!
+                   // 페이지전체길이 : 윈도우높이 = 스크롤이동값 : 이미지이동값
+                   // 이미지이동값 = 윈도우높이 * 스크롤이동값 / 페이지전체길이
+
+                   // x = winH * scTop / docH
+                   // x = winH * scTop / scLimit
+                   // docH(페이지전체길이) 대신 scLimit(스크롤한계값) 사용!
+
+                   // -> 페이지전체길이는 사실 스크롤 한계값으로 해야함!
+
+                   // 떨어지는 여자 top위치값 계산하기 : wtop
+                   let wtop = winH * scTop / scLimit;
+                   console.log("w위치:",wtop);
+
+                   // 떨어지는 여자의 top값에 적용하기
+                   woman.style.top = wtop + "px";
+
+                   // 맨위일때 위쪽으로 숨기기 
+                   if(scTop === 0) woman.style.top = "-20%";
+
+
+
+
+
+
+
+
+
+
 
                     // 현재 첫번째 박스 위치값
                     // let bxpos = retVal(setit[0]);
@@ -128,8 +253,9 @@
 
                 for (let x of mytxt) {
                     // 띄어쓰기일 경우 특수문자처리!
-                    if (x === " ") x = "&nbsp;&nbsp;&nbsp";
+                    if (x === " ") hcode +=  "&nbsp";
                     // 코드만들어 변수에 대입연산자로 넣기!
+                    else
                     hcode += `<span style="transition-delay: ${idx * 0.1}s">
                     ${x}</span>`;
 
@@ -157,10 +283,14 @@
                 height: 350vh;
                 background-image: linear-gradient(to bottom, lightcoral, lightgreen, lightblue);
             }
+            /* 타이틀 */
             .tit {
                 position: fixed;
                 top: 0;
-                width: 100%;
+                /* width: 100%; */
+                left: 50%;
+                transform: translateX(-50%);
+                /* 중앙이동하기 */
                 font-family: "Nanum Brush Script", cursive;
                 margin: 0;
                 padding: 3vh;
@@ -168,6 +298,14 @@
                 font-size: 10vh;
                 z-index: 1;
                 text-shadow: 0 0 20px #ff0;
+            }
+            /* 떨어지는 여자 */
+            #woman{
+                position: fixed;
+                top: -20%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 10vw;
             }
             /* 스크롤액션박스 */
             .scact {
@@ -214,11 +352,15 @@
                 opacity: 1;
             }
 
+            .stage{
+                display: flex;
+            }
 
             /* 글자개별박스 셋팅 */
             .stage span {
+                font-size: 10vw;
                 /* 트랜스폼 적용위해 */
-                display: inline-block;
+                display: block;
                 /* 현재위치로 부터 이동 */
                 transform: translate(500%, -300%);
                 /* 투명도 0 */
@@ -239,9 +381,13 @@
         </style>
     </head>
     <body>
+        <!-- 타이틀 -->
         <h1 class="tit stage"></h1>
+        <!-- 포스터박스들 -->
         <div class="scact sa1 setit"></div>
         <div class="scact sa2 setit"></div>
         <div class="scact sa3 setit"></div>
+        <!-- 떨어지는여자 -->
+        <img src="./images/woman.png" alt="떨녀" id="woman">
     </body>
 </html>
