@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 직접 만들어 보는 이미지 hover 효과 </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+
+    <script>
+        $(function(){ // jQB /////////////////
+            
+            // 기능: div에 마우스 오버시 - 칼라이미지가 커진 상태에서
+            // 원래 크기로 작아지면서 나타나기, 아웃시엔 사라지기
+            $("div").hover(
+                function(){ // over
+                    $("img",this).css({
+                        width: "700px",
+                        top: "-50px",
+                        left: "-50px"
+                    })/// css /////
+                    .stop().animate({
+                        width: "600px",
+                        top: "0px",
+                        left: "0px",
+                        opacity: "1"
+                    },400);
+                },
+                function(){ // out
+                    $("img",this)
+                        .stop().fadeTo(400,0);
+                    // fadeTo는 display:none하지 않는다!
+            });/////// hover ////////////////
+            
+            
+            
+            
+            
+        });///////// jQB /////////////////////
+        /////////////////////////////////////
+    </script>
+
+
+
+    <style>
+        body {
+            margin: 20px auto;
+            padding: 0;
+            width: 600px;
+            background: #192839;
+        }
+
+        div {
+            background-image: url(img/pic_bg.jpg);
+            width: 600px;
+            height: 379px;
+            border: 5px #EF4018 solid;
+            overflow: hidden;
+        }
+
+        div img {
+            position: relative;
+/*            display: none;*/
+            opacity: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div><img src="img/pic.jpg" /></div>
+
+
+    <!------------------------ jQuery 코드 ----------------------->
+    <script>
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>슬라이더바를 사용한 컨텐츠 보기</title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+    $(function(){ // jQB /////////////////
+        /// 스크롤바 드래그 설정하여 움직이기
+        $("#bar").draggable({
+            axis: "x", //x축고정
+            containment: "parent" //작동범위부모고정
+        });
+        
+        /*
+            바가 이동할때 큰 이미지를 이동시키려면
+            비례식을 세워서 큰 이미지의 이동값을 구한다!
+            
+            식=> 
+            바의 최대이동값 : 바 이동값 = 
+            이미지 최대이동값: 이미지 이동값
+            
+            바최 : 바이 = 이최 : 이이
+            바최*이이 = 바이*이최
+            이이 = 바이*이최/바최        
+        */
+        // 위치값 설정변수
+        var barmax = 570;//바의 최대이동값(바최)
+        var barpos;//바의 이동값(바이)
+        var imgmax = 400;//이미지의 최대이동값(이최)
+        var imgpos;//이미지 이동값(이이)
+        // 바를 드래그 할때 이벤트와 함수를 연결함(on메서드사용!)
+        $("#bar").on("drag",function(){
+            // 현재바의 이동값
+            barpos = $(this).position().left;
+            // offset() 메서드는 보이는 화면기준 위치값
+            // position() 메서드는 부모박스(static아닌박스)기준 위치값을 구할 수 있다!
+            // 따라서 위치이동을 한 박스에서는 position()을 씀!
+            // 부모요소인 #scrollBar에 relative를 설정함!
+            
+            
+            console.log("barpos:"+barpos);
+            
+            // 비례식 계산에 의해서 이미지박스의 left값을 변경
+            // 이이 = 바이*이최/바최 
+            imgpos = barpos*imgmax/barmax;
+            $("#content").css({
+                left: -imgpos+"px"
+            });///// css /////////
+            
+            
+        });/////////// drag ///////////////
+        
+        
+        
+        
+        
+        
+        
+    });///////// jQB /////////////////////
+    /////////////////////////////////////
+    
+    
+    
+    
+    
+    
+    </script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #wrap {
+            width: 600px;
+            overflow: hidden;
+            background: #CF0;
+            margin: 0 auto;/*가로중앙*/
+            margin-top: 50px;
+        }
+
+        #content {
+            height: 300px;
+        }
+
+        #scrollBar {
+            position: relative;
+            /*position()메서드 위치값을 위해 설정!*/
+            width: 600px;
+            height: 30px;
+            background: #06C;
+        }
+
+        #bar {
+            width: 30px;
+            height: 30px;
+            background: #FF0;
+        }
+
+        #content {
+            position: relative;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <!--배경박스-->
+        <div id="content">
+            <img src="pg.jpg" alt="배경이미지">
+        </div>
+        <!--스크롤바박스-->
+        <div id="scrollBar">
+            <div id="bar"></div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

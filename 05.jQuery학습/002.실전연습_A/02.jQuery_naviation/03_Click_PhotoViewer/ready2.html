@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 슬라이딩 내비게이션(무한슬라이드) </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+        $(function() { /// jQB ///////////////////////////
+
+            //// 오른쪽 이동버튼 클릭시 슬라이드 이동 ////
+            // 대상: .rb
+            // 이동방법: #viewer의 left값을 -100%로 이동후
+            //          맨앞 li요소를 맨뒤로 이동함(이때left:0)
+
+            var prot = 0; //광클금지
+
+            $(".rb").click(function(e) {
+                e.preventDefault(); //기본이동막기
+
+                //// 광클막기 //////////////
+                if (prot === 1) return false;
+                prot = 1; //잠금
+                setTimeout(function() {
+                    prot = 0; //해제
+                }, 600); /// setTimeout //
+                ///////////////////////////
+
+
+                $("#viewer").animate({
+                    left: "-100%"
+                }, 600, "easeOutCirc", function() {
+                    // 1. 맨앞 li 맨뒤로 이동
+                    $("#viewer>ul")
+                        .append($("#viewer>ul>li").first());
+                    // 2. #viewer박스 left:0
+                    $("#viewer").css({
+                        left: "0"
+                    });
+                }); ///// animate /////////////
+
+                // 블릿변경하기 //
+                // 1. 들어올 순번의 슬라이드 data-seq읽어오기
+                // 두번째 슬라이드임 -> eq(1)
+                var bseq =
+                    $("#viewer>ul>li").eq(1)
+                    .attr("data-seq");
+                console.log("슬라이드순번:" + bseq);
+                // 2. 해당순번 블릿에 class="on"넣기(나머진지우기)
+                $("#btnGroup li")
+                    .eq(Number(bseq)) //해당순번           
+                    .addClass("on")
+                    .siblings() //다른블릿
+                    .removeClass("on");
+
+
+
+            }); //////// click //////////////
+
+
+            ////// 왼쪽버튼 클릭시 슬라이드 이동 ////
+            // 대상: .lb
+            // 이동방법: 맨뒤 슬라이드를 맨앞으로 이동
+            //(left:-100%) 후 left값을 0으로 변경하여 들어옴
+            $(".lb").click(function(e) {
+                e.preventDefault();
+
+                //// 광클막기 //////////////
+                if (prot === 1) return false;
+                prot = 1; //잠금
+                setTimeout(function() {
+                    prot = 0; //해제
+                }, 600); /// setTimeout //
+                ///////////////////////////
+
+
+                // 1. 맨뒤li를 맨앞으로 이동!
+                $("#viewer>ul").prepend(
+                    $("#viewer>ul>li").last());
+                // 2. #viewer의 left값 -100%로 변경
+                $("#viewer").css({
+                    left: "-100%"
+                });
+                // 3. #viewer의 left값 0으로 애니메이션
+                $("#viewer").animate({
+                    left: "0"
+                }, 600, "easeOutCirc");
+
+                // 블릿변경하기 //
+                // 1. 들어올 순번의 슬라이드 data-seq읽어오기
+                // 첫번째 슬라이드임 -> eq(0)
+                var bseq =
+                    $("#viewer>ul>li").eq(0)
+                    .attr("data-seq");
+                console.log("슬라이드순번:" + bseq);
+                // 2. 해당순번 블릿에 class="on"넣기(나머진지우기)
+                $("#btnGroup li")
+                    .eq(Number(bseq)) //해당순번           
+                    .addClass("on")
+                    .siblings() //다른블릿
+                    .removeClass("on");
+
+            }); ////////// click //////////////
+
+
+            //// 블릿버튼 클릭하여 슬라이드 이동하기 ////
+            // 대상: #btnGroup li a
+            // 이동방법: 클릭된 블릿의 순번을 알아내고
+            //          현재 슬라이드 순번을 알아내어
+            //          두 순번의 차를 구한다!
+            $("#btnGroup li a").click(function(e) {
+                e.preventDefault(); //기본이동막기
+                
+                //// 광클막기 //////////////
+                if (prot === 1) return false;
+                prot = 1; //잠금
+                setTimeout(function() {
+                    prot = 0; //해제
+                }, 600); /// setTimeout //
+                ///////////////////////////
+                
+
+                // 클릭된 블릿 a요소의 부모li순번
+                var idx = $(this).parent().index();
+                console.log("블릿순번:" + idx);
+
+                // 현재 보이는 슬라이드(0번째)의 data-seq값읽기
+                var snum = $("#viewer>ul>li").eq(0)
+                    .attr("data-seq");
+                console.log("슬라이드순번:" + snum);
+
+                // 클릭된 블릿과 현재 슬라이드 순번의 차 구하기
+                var diff = idx - Number(snum);
+                console.log("두수차:" + diff);
+                // 두 수의 차를 절대값으로 셋팅!
+                var absd = Math.abs(diff);
+
+                // 두수의 차가 양수이면 오른쪽 이동버튼원리
+                if (diff > 0) {
+
+                    // 순수 차이만큼 우선이동한다(-100*차이수)
+                    $("#viewer").animate({
+                        left: (-100 * absd) + "%"
+                    }, 600, "easeOutCirc", function() {
+
+                        // 이동후 차이수 만큼 for문으로 반복작업
+                        var temp = absd; //임시변수에 차이수넣기
+                        for (var i = 0; i < absd; i++) {
+
+                            // left위치를 위해 차이수 1씩감소
+                            temp--;
+
+                            // 1. 맨앞 li 맨뒤로 이동
+                            $("#viewer>ul")
+                                .append(
+                                    $("#viewer>ul>li").first());
+
+                            // 2. #viewer박스 
+                            //    left값 순서대로 변경
+                            $("#viewer").css({
+                                left: (-100 * temp) + "%"
+                            });
+
+                        } ///// for문 //////////////////
+
+
+                    }); ///// animate /////////////
+
+
+
+                } //// if ////////////////////////////
+
+                // 두수의 차가 음수이면 왼쪽 이동버튼원리
+                else if (diff < 0) {
+
+                    // 차이만큼 for문으로 반복작업하기
+                    var temp = 0; //반복작업임시값
+                    for (var i = 0; i < absd; i++) {
+
+                        // 1. 맨뒤li를 맨앞으로 이동!
+                        $("#viewer>ul").prepend(
+                            $("#viewer>ul>li").last());
+
+                        // 2. #viewer의 left값 -100%로 변경
+
+                        // 임시값 temp 1씩증가
+                        temp++;
+
+                        $("#viewer").css({
+                            left: (-100 * temp) + "%"
+                        });
+
+
+                    } ///// for문 /////////////
+
+                    // 3. #viewer의 left값 0으로 애니메이션
+                    $("#viewer").animate({
+                        left: "0"
+                    }, 600, "easeOutCirc");
+
+                } //// else if //////////////////////
+
+
+                // 블릿변경하기(공통) //
+                $("#btnGroup li")
+                    .eq(idx) //해당순번           
+                    .addClass("on")
+                    .siblings() //다른블릿
+                    .removeClass("on");
+
+
+            }); ////////// click /////////////////
+            //////////////////////////////////////
+
+
+
+
+
+
+
+
+
+        }); //////// jQB /////////////////////////////////
+        /////////////////////////////////////////////////
+        /////////////////////////////////////////////////
+    </script>
+
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #05184D;
+        }
+
+        div#slider {
+            position: relative;
+            width: 600px;
+            max-width: 100%;
+            /*설정된 크기보다 화면이 작아지면 100%*/
+            margin: 0 auto;
+            background: #FFF;
+            border: #FDF6DD 2px solid;
+            margin-top: 100px;
+            overflow: hidden;
+        }
+
+        div#viewer {
+            position: relative;
+            left: 0;
+            /*초기값*/
+            width: 400%;
+            /*부모박스의 4배(슬라이드4장)*/
+        }
+
+        #viewer ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        #viewer ul::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #viewer ul li {
+            float: left;
+            /*옆으로흐르게*/
+            width: 25%;
+            /*부모를 4등분*/
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /*--------   ul li CSS ------------ */
+        #btnGroup {
+            position: absolute;
+            bottom: 2%;
+            right: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #btnGroup li {
+            float: left;
+            width: 16px;
+            height: 16px;
+            list-style: none;
+            margin-right: 6px;
+            /*            background-color: #60F;*/
+            /*            cursor: pointer;*/
+        }
+
+        ul#btnGroup li a {
+            text-decoration: none;
+            text-align: center;
+            background: #FDF6DD;
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: #000;
+            background: url(image/btn.png) no-repeat;
+        }
+
+        ul#btnGroup li a:hover {
+            background-position: 0 -16px;
+        }
+
+        /*선택된 블릿 class*/
+        ul#btnGroup li.on a {
+            background-position: 0 -16px;
+        }
+
+        .bld {
+            /*IR*/
+            display: none;
+        }
+
+        /*이동버튼*/
+        .abtn {
+            position: absolute;
+            /*부모? #slider */
+            width: 25px;
+            height: 49px;
+            top: 50%;
+            transform: translateY(-50%);
+            /*세로중앙이동*/
+        }
+
+        /*마우스 오버시 배경위치변경*/
+        .abtn:hover {
+            background-position: 0 -49px;
+        }
+
+        /*왼쪽버튼*/
+        .lb {
+            left: 5px;
+            background: url(image/btn_shop_bn_left.png) no-repeat;
+        }
+
+        /*오른쪽버튼*/
+        .rb {
+            right: 5px;
+            background: url(image/btn_shop_bn_right.png) no-repeat;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="slider">
+        <!--
+           #viewer의 자손 li는 그 순서가 바뀌므로 이를 정해주는
+           data-seq 속성을 만들어서 순번을 부여한다!
+       -->
+        <div id="viewer">
+            <ul>
+                <li data-seq="0">
+                    <a href="#"><img id="image1" src="image/slide1.jpg" alt=""></a>
+                </li>
+                <li data-seq="1">
+                    <a href="#"><img id="image2" src="image/slide2.jpg" alt=""></a>
+                </li>
+                <li data-seq="2">
+                    <a href="#"><img id="image3" src="image/slide3.jpg" alt=""></a>
+                </li>
+                <li data-seq="3">
+                    <a href="#"><img id="image4" src="image/slide4.jpg" alt=""></a>
+                </li>
+            </ul>
+        </div>
+
+        <ul id="btnGroup">
+            <li class="on">
+                <a href="#">
+                    <span class="bld">블릿</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="bld">블릿</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="bld">블릿</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="bld">블릿</span>
+                </a>
+            </li>
+        </ul>
+
+        <!--양쪽이동버튼-->
+        <a href="#" class="abtn lb">
+            <span class="bld">왼쪽이동버튼</span>
+        </a>
+        <a href="#" class="abtn rb">
+            <span class="bld">오른쪽이동버튼</span>
+        </a>
+
+
+    </div>
+
+    <!---------- jQuery code Start ---------->
+    <script>
+
+
+    </script>
+</body></html>

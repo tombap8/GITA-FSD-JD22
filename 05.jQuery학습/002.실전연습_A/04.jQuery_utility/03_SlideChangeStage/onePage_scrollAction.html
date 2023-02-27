@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>One Page - Scroll Action </title>
+    <style>
+        html,
+        body,
+        .wrap {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+        }
+
+        /*공통셋팅*/
+        a {
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 0 0 2px #777;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul::after {
+            content: "";
+            display: block;
+            clear: both;
+            /*float해제*/
+        }
+
+        li {
+            float: left;
+            /*옆으로 흐르게*/
+        }
+
+        img {
+            border: none;
+            /*이미지 링크시 테두리없앰*/
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            /*16px기준*/
+        }
+
+
+        /*공통 class*/
+        .page {
+            position: relative;
+            /*부모자격*/
+            width: 100%;
+            height: 100%;
+        }
+
+        /*IR 등*/
+        .bld {
+            display: none;
+        }
+
+        /*상단영역*/
+        .top {
+            position: fixed;
+            /*상단고정*/
+            width: 100%;
+            z-index: 9999;
+            /*맨위로!*/
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .inbox {
+            position: relative;
+            /*부모자격*/
+            width: 1920px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        #top {
+            height: 80px;
+        }
+
+        /*로고*/
+        #logo {
+            width: 250px;
+            height: 100%;
+            text-align: center;
+            overflow: hidden;
+            /*넘치는자식숨김*/
+        }
+
+        #logo img {
+            width: 100%;
+            margin-top: -24px;
+        }
+
+        /*GNB메뉴*/
+        .gnb {
+            position: absolute;
+            /*부모? #top*/
+            top: 40px;
+            right: 2%;
+        }
+
+        .gnb li {
+            margin: 0 7px;
+        }
+
+        /*메뉴에 마우스 오버시*/
+        .gnb a:hover {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li:hover {
+            transform: scale(1.1);
+        }
+
+        /*선택된 메뉴 class*/
+        .gnb li.on a {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li.on {
+            transform: scale(1.1);
+        }
+
+
+        /*개별페이지셋팅*/
+        #pg1 {
+            background: url(images/pic1.png) no-repeat top/cover;
+        }
+
+        #pg2 {
+            background: url(images/pic2.png) no-repeat top/cover;
+        }
+
+        #pg3 {
+            background: url(images/pic3.png) no-repeat top/cover;
+        }
+
+        #pg4 {
+            background: url(images/pic4.png) no-repeat top/cover;
+        }
+
+        #pg5 {
+            background: url(images/pic5.png) no-repeat top/cover;
+        }
+
+        #pg6 {
+            background: url(images/pic6.png) no-repeat top/cover;
+        }
+
+        #pg7 {
+            background: url(images/pic7.png) no-repeat top/cover;
+        }
+
+        /*각 페이지 공통 등장이미지*/
+        .pic {
+            position: absolute;
+            /*부모? .page*/
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px #fff;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script>
+        //////////////// 전역변수구역 ///////////////////////////
+        /// 1. 각 스크롤 액션 실행여부(0-실행전,1-실행후)
+        var pa1 = 0,
+            pa2 = 0,
+            pa3 = 0,
+            pa4 = 0,
+            pa5 = 0,
+            pa6 = 0,
+            pa7 = 0;
+        /// 2. 스크롤액션 대상요소의 top 위치값 셋팅변수
+        var p1pos, p2pos, p3pos, p4pos, p5pos, p6pos, p7pos;
+        /// 3. 스크롤 액션 기준선차이수
+        var gap = 300;
+        ///////////////////////////////////////////////////////
+
+        ///// 각 이미지가 모두 로딩된 후 위치값을 셋팅함 ///////
+        $(window).load(function() {
+            /// 스크롤 액션 기준요소 top값 셋팅!
+            // offset().top 각 요소의 top값 구하는 메서드
+            p1pos = $("#pg1 .pic").offset().top;
+            p2pos = $("#pg2 .pic").offset().top;
+            p3pos = $("#pg3 .pic").offset().top;
+            p4pos = $("#pg4 .pic").offset().top;
+            p5pos = $("#pg5 .pic").offset().top;
+            p6pos = $("#pg6 .pic").offset().top;
+            p7pos = $("#pg7 .pic").offset().top;
+
+            console.log("각요소top값:" + p1pos + "/" + p2pos + "/" + p3pos + "/" + p4pos + "/" + p5pos + "/" + p6pos + "/" + p7pos);
+
+
+        }); ///////// load ////////////////////////////////
+        //////////////////////////////////////////////////
+
+
+        /*/////////////////////////////////////////////////////
+            [ 스크롤 이벤트 처리 구역 설정하기 ]
+            1. 스크롤이벤트는 scroll() 메서드를 사용하여 처리함
+            2. 제이쿼리 구역과 별도로 있어도 됨(바로실행되지 않음)
+            3. 각 페이지 실행상태를 전역변수로 관리해야함
+            (이유: 스크롤 액션시 중복실행 방지)
+            4. 마우스휠 이벤트와는 다름. 스크롤바가 움직이면 발생함!
+            (마우스 포인터로 직접 클릭하여 움직여도 발생함)
+            5. 페이지 전체의 스크롤 이벤트를 사용할 경우 window객체를 사용
+            하여 코딩함(특정박스에만 스크롤 이벤트 적용시 그 박스를 선택!)
+        */ ///////////////////////////////////////////////////////
+
+        ////////// 스크롤 이벤트 설정하기 ////////////////
+        $(window).scroll(function() {
+            // 1. 전체 window  스크롤 위치 알아내기
+            // scrollTop() 메서드는 세로스크롤 위치값 리턴(단위없는px)
+            // 참고) scrollLeft() 메서드는 가로스크롤 위치값
+            var scTop = $(this).scrollTop();
+            console.log("위치값:" + scTop);
+
+            /// 액션구간설정 /////
+            // 조건3가지: 위치1보다 크고 위치2보다 작고 상태값 0인 경우
+            
+            if (scTop > 0 && scTop < p1pos && pa1 === 0) {
+                pa1 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg1 .pic");
+            } ////// if //////////////////////
+            
+            else if (scTop > p2pos-gap && scTop < p2pos && pa2 === 0) {
+                pa2 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg2 .pic");
+            } ////// else if //////////////////////
+            
+            else if (scTop > p3pos-gap && scTop < p3pos && pa3 === 0) {
+                pa3 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg3 .pic");
+            } ////// else if //////////////////////
+
+            else if (scTop > p4pos-gap && scTop < p4pos && pa4 === 0) {
+                pa4 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg4 .pic");
+            } ////// else if //////////////////////
+
+            else if (scTop > p5pos-gap && scTop < p5pos && pa5 === 0) {
+                pa5 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg5 .pic");
+            } ////// else if //////////////////////
+
+            else if (scTop > p6pos-gap && scTop < p6pos && pa6 === 0) {
+                pa6 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg6 .pic");
+            } ////// else if //////////////////////
+
+            else if (scTop > p7pos-gap && scTop < p7pos && pa7 === 0) {
+                pa7 = 1; //상태변경(1회만 실행)
+                scrollAction("#pg7 .pic");
+            } ////// else if //////////////////////
+
+
+        }); //////////// scroll ////////////////////////
+        ///////////////////////////////////////////////
+
+        /*////////////////////////////////////////
+            함수명:initSet
+            기능: 스크롤 액션을 위한 등장요소 초기화
+        */ ////////////////////////////////////////
+        function initSet() {
+            // 모든 등장요소 (.pic)를 일괄 셋팅함
+            // 변경내용: 각 요소의 현재위치로 부터 100px아래로 이동
+            //          투명도 0
+            $(".pic").css({
+                top: "+=100px",
+                opacity: "0"
+            }); /// css /////////
+
+        } ///////////// initSet 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+
+        /*////////////////////////////////////////
+            함수명:scrollAction
+            기능: 스크롤시 해당요소의 등장액션 주기
+        */ ////////////////////////////////////////
+        function scrollAction(ele) { //ele - 변경할요소명
+            console.log("요소명:" + ele);
+            $(ele).animate({
+                top: "-=100px",
+                opacity: "1"
+            }, 1000, "easeInOutQuad");
+        } ///////////// scrollAction 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+
+
+
+
+
+
+        ////// jQB /////////////////////////
+        $(function() {
+
+            ////// 등장요소 초기화함수 호출 //////
+            initSet();
+
+
+
+
+
+
+
+
+            /// 페이지 새로 고칠때 맨위로 가게하기(브라우저 캐쉬가 잘 안지워져서 쓰는 것임!) 
+            setTimeout(function() {
+                $("html,body").animate({
+                    scrollTop: "0px"
+                }, 10); /// animate ////
+            }, 500); //// 타임아웃 ////////
+
+
+            // GNB a링크를 클릭하면 해당 페이지위치로 이동 애니메이션
+            // 이벤트 대상 : .gnb a
+            $(".gnb a").click(function(e) {
+                // 전달변수 e는 이벤트관련 값을 내부로 전달함!
+                e.preventDefault();
+                // preventDefault()는 기본 기능을 막아줌
+                // a 링크에 사용하면 이동기능이 발생하지 않음!        
+
+                // 1. a의 href 값 가져오기
+                // this 는 클릭된 a요소 자신
+                // attr(속성명) - 속성의 값을 가져옴
+                // JS의 getAttribute(속성명) 과 같은 기능의 메서드
+                var pid = $(this).attr("href");
+                console.log("이동id:" + pid);
+
+                // 2. 이동할 위치의 아이디 top값을 구함
+                var pgpos = $(pid).offset().top;
+                // offset() 메서드는 요소의 기본셋팅 정보를 리턴함
+                // - top,left,width, height 등의 값을 알 수 있음
+
+                console.log("위치값:" + pgpos);
+
+                // 3. 스크롤에 애니메이션을 설정하여 해당위치로 이동
+                // scrollTop 속성은 세로스크롤 위치값
+                // stop()은 애니메이션 큐를 지움!
+                $("html,body").stop().animate({
+                    scrollTop: pgpos + "px"
+                }, 800, "easeInOutQuint"); /// animate //////
+
+                // 이징을 설정하여 자연스런운 이동 애니메이션 연출!
+                // 구글에 "easing"을 검색하여 
+                //"Easing Functions Cheat Sheet"를 클릭
+                // 해당 이징이름을 복사하여 animate 이징순서에 넣는다!
+                // 중요: 이징을 사용하려면 jQuery UI를 불어와야함!
+
+            }); //////// click /////////////
+            ////////////////////////////////
+
+
+
+
+
+        }); /////////// jQB ///////////////////
+        //////////////////////////////////////
+        //////////////////////////////////////
+    </script>
+
+
+</head>
+
+<body>
+    <!--상단영역-->
+    <div class="top">
+        <header class="inbox" id="top">
+            <!--로고-->
+            <h1 id="logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="메가박스로고">
+                </a>
+            </h1>
+            <!--GNB메뉴-->
+            <nav class="gnb">
+                <ul>
+                    <li class="on">
+                        <a href="#pg1">아수라</a>
+                    </li>
+                    <li>
+                        <a href="#pg2">고산자</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">인천상륙작전</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">봉이김선달</a>
+                    </li>
+                    <li>
+                        <a href="#pg5">비밀은없다</a>
+                    </li>
+                    <li>
+                        <a href="#pg6">아가씨</a>
+                    </li>
+                    <li>
+                        <a href="#pg7">탐정홍길동</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!--페이지 섹션-->
+    <div class="wrap">
+        <section id="pg1" class="page">
+            <img src="images/m1.jpg" alt="장면" class="pic">
+        </section>
+        <section id="pg2" class="page">
+            <img src="images/m2.jpg" alt="장면" class="pic">
+        </section>
+        <section id="pg3" class="page">
+            <img src="images/m3.jpg" alt="장면" class="pic">
+        </section>
+        <section id="pg4" class="page">
+            <img src="images/m4.jpg" alt="장면" class="pic">
+        </section>
+        <section id="pg5" class="page">
+            <img src="images/m5.jpg" alt="장면" class="pic">
+        </section>
+        <section id="pg6" class="page">
+            <img src="images/m6.jpg" alt="장면" class="pic">
+        </section>
+        <section id="pg7" class="page">
+            <img src="images/m7.jpg" alt="장면" class="pic">
+        </section>
+    </div>
+
+
+
+
+</body></html>

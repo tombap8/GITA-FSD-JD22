@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!--뷰포트필수!-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>One Page Scroll - Auto Scroll Mobile</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+            overflow: hidden;
+        }
+
+        /*전체 페이지부모(스크롤박스역할)*/
+        .wrap {
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+            /*
+            overflow-x: hidden;
+            overflow-y: scroll;
+*/
+        }
+
+        /*공통셋팅*/
+        a {
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 0 0 2px #777;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul::after {
+            content: "";
+            display: block;
+            clear: both;
+            /*float해제*/
+        }
+
+        li {
+            float: left;
+            /*옆으로 흐르게*/
+        }
+
+        img {
+            border: none;
+            /*이미지 링크시 테두리없앰*/
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            /*16px기준*/
+        }
+
+
+        /*공통 class*/
+        .page {
+            width: 100%;
+            height: 100%;
+        }
+
+        /*IR 등*/
+        .bld {
+            display: none;
+        }
+
+        /*상단영역*/
+        .top {
+            position: fixed;
+            /*상단고정*/
+            width: 100%;
+            z-index: 9999;
+            /*맨위로!*/
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .inbox {
+            position: relative;
+            /*부모자격*/
+            width: 1920px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        #top {
+            height: 80px;
+        }
+
+        /*로고*/
+        #logo {
+            width: 250px;
+            height: 100%;
+            text-align: center;
+            overflow: hidden;
+            /*넘치는자식숨김*/
+        }
+
+        #logo img {
+            width: 100%;
+            margin-top: -24px;
+        }
+
+        /*GNB메뉴*/
+        .gnb {
+            position: absolute;
+            /*부모? #top*/
+            top: 40px;
+            right: 2%;
+        }
+
+        .gnb li {
+            margin: 0 7px;
+        }
+
+        /*메뉴에 마우스 오버시*/
+        .gnb a:hover {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li:hover {
+            transform: scale(1.1);
+        }
+
+        /*선택된 메뉴 class*/
+        .gnb li.on a {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li.on {
+            transform: scale(1.1);
+        }
+
+
+        /*개별페이지셋팅*/
+        #pg1 {
+            background: url(images/pic1.png) no-repeat top/cover;
+        }
+
+        #pg2 {
+            background: url(images/pic2.png) no-repeat top/cover;
+        }
+
+        #pg3 {
+            background: url(images/pic3.png) no-repeat top/cover;
+        }
+
+        #pg4 {
+            background: url(images/pic4.png) no-repeat top/cover;
+        }
+
+        #pg5 {
+            background: url(images/pic5.png) no-repeat top/cover;
+        }
+
+        #pg6 {
+            background: url(images/pic6.png) no-repeat top/cover;
+        }
+
+        #pg7 {
+            background: url(images/pic7.png) no-repeat top/cover;
+        }
+
+        /*블릿 네비게이션*/
+        .bnav {
+            position: fixed;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            /*세로중앙이동*/
+            width: 15px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .bnav li {
+            position: relative;
+            /*부모자격(span)*/
+            width: 100%;
+            height: 15px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            margin: 6px 0;
+        }
+
+        /*선택네비 class*/
+        .bnav li.on {
+            background-color: #EC686A;
+            transform: scale(1.15);
+        }
+
+        /*블릿a링크*/
+        .bnav a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*블릿글자*/
+        .bnav span {
+            position: absolute;
+            top: -50%;
+            right: 200%;
+            white-space: nowrap;
+            font: bold .9rem "맑은 고딕", Verdana;
+            text-shadow: 1px 0 #000, -1px 0 #000,
+                0 1px #000, 0 -1px #000;
+            display: none;
+            /*글자숨기기*/
+        }
+
+        /*마우스 오버시 글자보이기*/
+        .bnav li:hover span {
+            display: block;
+        }
+
+        /*선택메뉴 글자보이기*/
+        .bnav li.on span {
+            display: block;
+        }
+
+
+        /*미디어쿼리*/
+        @media only screen and (max-width:500px) {
+
+            html,
+            body {
+                overflow: visible;
+                height: 100vh;
+                /*
+                    vh, vw 단위:
+                    view port height
+                    view port width
+                    뷰포트에서 높이값,가로값을 % 로 줄때
+                    모바일 뷰포트에 맞도록 최적화하는 상대단위
+                    - 모바일 브라우저의 컨트롤이 생겼다 사라졌다 하는
+                    경우 이것을 감지 하여 %를 설정한다!
+                    (100vh일경우 보이는 전체화면을 전부잡는다.)
+                */
+            }
+
+            /*상단영역*/
+            #top {
+                height: 120px;
+            }
+
+            /*로고-가로중앙*/
+            #logo {
+                margin: 0 auto;
+            }
+
+            /*GNB변경*/
+            .gnb {
+                top: 68px;
+                left: 50%;
+                right: auto;/*기존값풀기!*/ 
+                transform: translateX(-50%);
+                width: 330px;
+            }
+
+
+        }
+
+        /*미디어쿼리*/
+    </style>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <!--
+    모바일이벤트(터치, 스와이프 등)를 인식시키기 위해 
+    추가 플러그인을 넣어준다!
+    jquery-touch-punch.min.js
+    -->
+    <script src="js/jquery-touch-punch.min.js"></script>
+    <script src="js/autoScroll_mobile.js"></script>
+
+</head>
+
+<body>
+    <!--상단영역-->
+    <div class="top">
+        <header class="inbox" id="top">
+            <!--로고-->
+            <h1 id="logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="메가박스로고">
+                </a>
+            </h1>
+            <!--GNB메뉴-->
+            <nav class="gnb">
+                <ul>
+                    <li class="on">
+                        <a href="#pg1">아수라</a>
+                    </li>
+                    <li>
+                        <a href="#pg2">고산자</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">인천상륙작전</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">봉이김선달</a>
+                    </li>
+                    <li>
+                        <a href="#pg5">비밀은없다</a>
+                    </li>
+                    <li>
+                        <a href="#pg6">아가씨</a>
+                    </li>
+                    <li>
+                        <a href="#pg7">탐정홍길동</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!--페이지 섹션-->
+    <div class="wrap">
+        <section id="pg1" class="page"></section>
+        <section id="pg2" class="page"></section>
+        <section id="pg3" class="page"></section>
+        <section id="pg4" class="page"></section>
+        <section id="pg5" class="page"></section>
+        <section id="pg6" class="page"></section>
+        <section id="pg7" class="page"></section>
+    </div>
+
+
+    <!--블릿네비게이션-->
+    <ol class="bnav">
+        <li class="on">
+            <a href="#pg1"><span>아수라</span></a>
+        </li>
+        <li>
+            <a href="#pg2"><span>고산자</span></a>
+        </li>
+        <li>
+            <a href="#pg3"><span>인천상륙작전</span></a>
+        </li>
+        <li>
+            <a href="#pg4"><span>봉이김선달</span></a>
+        </li>
+        <li>
+            <a href="#pg5"><span>비밀은없다</span></a>
+        </li>
+        <li>
+            <a href="#pg6"><span>아가씨</span></a>
+        </li>
+        <li>
+            <a href="#pg7"><span>탐정홍길동</span></a>
+        </li>
+    </ol>
+
+
+
+
+
+
+
+</body></html>

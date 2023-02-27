@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 이미지 이동을 사용한 pan 효과 </title>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+
+<script>
+    $(function(){ // jQB /////////////////
+        
+        // 큰 이미지가 움직일 범위는 top, left별 다름
+        // top값 범위: 이미지 height - 박스 height
+        // left값 범위: 이미지 width - 박스 width
+        
+        // 최대이동top값
+        var maxT = 950 - 300;//650
+        
+        // 최대이동left값
+        var maxL = 1400 - 800;//600
+        
+        // 랜덤하게 발생한 이동값으로 애니메이션 이동하기
+        var movImg = function(){
+            // 랜덤top값, left값 만들기
+            // Math.ceil(Math.random()*최대값)
+            // -> 1~최대값 범위의 랜덤수
+            var setT = Math.ceil(Math.random()*maxT);
+            var setL = Math.ceil(Math.random()*maxL);
+            console.log("top:"+setT+"/left:"+setL);
+            
+            // 이동할 대상: #background img
+            $("#background img")
+            .animate({
+                top: -setT + "px",
+                left: -setL + "px"
+            }, 2000);
+            
+            // 호출시간 랜덤하게 생성(움직일 시간 2초확보!)
+            // 1~5 사이 랜덤수 곱하기 1000 은 1000~5000사이랜덤
+            // 여기에 더하기 2000
+            var setD = Math.ceil(Math.random()*5)*1000+2000;
+            console.log("랜덤시간:"+setD);
+            
+            
+            // 일정시간뒤에 함수자신을 호출(재귀호출)
+            setTimeout(movImg,setD);
+            
+        }; //////// movImg 함수 ////////////////
+        ////////////////////////////////////////
+        
+        // 테스트
+        //$("#background").click(movImg);
+        
+        // 최초호출
+        setTimeout(movImg, 2000);
+        
+        
+        
+        
+        
+        
+    });///////// jQB /////////////////////
+    /////////////////////////////////////
+    
+    
+    </script>
+
+<style>
+body {
+	margin:20px auto;
+	padding:0;	
+	width:800px;
+	background:#192839;
+} 
+div{ 
+	padding:0px; 
+	overflow:hidden; 
+	width:800px;
+	height:300px;
+	border:#999 thin solid;}
+	  
+img{	position:relative;	}
+</style>
+</head>
+
+<body>
+
+<div id="background">
+	<img src="img/bg2.jpg" />
+</div>
+
+<!---------- jQuery code Start ---------->
+<script>
+
+
+</script>
+</body>
+</html>
+

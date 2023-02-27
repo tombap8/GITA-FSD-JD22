@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 배경색 애니메이션 변경 </title>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+    $(function(){ // jQB /////////////////
+        // 색상변경버튼 셋팅하기
+        // for문을 쓰지 않고 each()메서드로 셋팅
+        $("#colorPicker div").each(function(idx,ele){
+            // idx-순번, ele-요소자신
+            
+            // 색상명읽어오기
+            var color = $(ele).text();
+            console.log("색상명:"+color);
+            
+            // 읽어온 색상명으로 div박스 배경색넣기
+            $(ele).css({
+                backgroundColor: color
+            });/// css //////
+            
+        });//////// each ////////////////
+        
+        /// 색상버튼 클릭시 같은 색으로 배경색 변경 애니메이션하기
+        $("#colorPicker div").click(function(){
+            $("body").animate({
+                backgroundColor: $(this).text()
+            },600);
+        });///////// click ///////////////////
+        
+        
+        
+        
+        
+        
+    });///////// jQB /////////////////////
+    /////////////////////////////////////
+    
+    
+    </script>
+
+<style>
+body {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:13px;
+}
+#colorPicker div{
+	float:left;
+	width:70px;
+	height:70px;
+	text-align:center;
+	color:#000;
+	border:#000 thin solid;
+	margin-right:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div id = "colorPicker">
+    <div>red</div>
+    <div>maroon</div>
+    <div>brown</div>
+    <div>orange</div>
+    <div>yellow</div>
+    <div>navy</div>
+    <div>purple</div>
+</div>
+      
+<!------------------------ jQuery 코드 ----------------------->
+<script>
+
+ 
+</script>
+</body>
+</html>
+

@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--뷰포트필수-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag and drop 응용</title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script type="text/javascript" src="jquery-touch-punch.min.js"></script>
+    <!--
+         jQuery UI의 드래그 기능은 일반적으로 모바일에서 적용되지 않는다.
+         이유는 이벤트가 mouse 관련 이벤트이기 때문이다. 이를 터치관련 이벤트
+         로 변환해 주는 플러그인이 필요한데 바로
+         jquery-touch-punch.min.js  이다!
+    -->
+
+    <script>
+        //// 모바일용 변수셋팅 /////
+        /// 브라우저 윈도우 가로크기
+        var win = $(window).width();
+        // 이징시간 기본값 셋팅
+        var et = 0.8;
+        // 모바일일때 이징기본시간 변경
+        if (win < 500) et = 0.4;
+
+        console.log("이징:" + et);
+
+
+
+
+        $(document).ready(function(e) { /// jQB 
+            // 드래그 대상: #move
+            $("#move").draggable({
+                axis: "x" //x축고정("y"는 y축고정)
+            }); //// draggable ////////
+
+            // 드래그 대상에 transition을 적용하여 드래그시
+            // 약간 더 가는 효과 애니메이션을 준다.
+            $("#move").css({
+                transition: "all "+et+"s ease-out"      
+            }); ///// css ////////////
+
+            //// 위치이동 한계설정 ///////
+            /// 요구사항: 첫번째와 마지막 이미지가 화면
+            //           1/3까지만 오도록 제한 설정함
+            // 1.mousedown - 마우스 왼쪽버튼을 누르는 시점에 발생
+            // 2.mouseup - 마우스 왼쪽버튼을 누르다가 놓을때 발생
+            // 3.mousemove - 마우스 포인터가 설정영역에서 움직일때 계속발생
+            ///////////////////////////////////////////////////////
+            // 1. 화면의 1/3 크기 계산하기(첫번째 한계값)
+            var fpt = $(window).width() / 3;
+            console.log("첫째한계:" + fpt);
+            // 2. 마지막 이미지 한계값 계산하기(리스트박스width+화면2/3)
+            var lpt = $("#move").width() - (fpt * 2);
+            console.log("마지막한계:" + lpt);
+
+            $("html,body").on("mousemove mouseup touchstart touchend touchmove", function() {
+                //console.log("마우스가 움직인다~!");
+
+                // 1. 움직이는 박스(#move)의 left값 구하기
+                var mpos = $("#move").offset().left;
+                //console.log("현재left:"+mpos);
+                
+                // 2. 처음과 마지막 한계값에서 위치 고정하기
+                if (mpos > fpt) { //첫번째 한계값 고정!
+                    $("#move").css({
+                        left: fpt + "px"
+                    }); ///// css ///////
+                } //// if /////////////////////
+                else if (mpos < -lpt) { //마지막 한계값 고정!
+                    $("#move").css({
+                        left: -lpt + "px"
+                    }); /////// css //////
+                } //// else if /////////////////
+
+
+
+            }); ///////// mosemove mouseup //////////////////
+            ////////////////////////////////////////////////
+
+
+
+
+
+
+        }); //jQB////////////////////////////////
+        //////////////////////////////////////////
+    </script>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        li {
+            float: left;
+        }
+
+
+        /*움직일 갤러리 화면크기의 부모박스*/
+        #handle {
+            position: relative;
+            height: 70%;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        /*갤러리 내용만큼 가로로큰 내부박스-움직일박스*/
+        #move {
+            position: absolute;
+            width: 7200px;
+            height: 100%;
+        }
+
+        #move img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        #move>ul li {
+            position: relative;
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /*모바일용*/
+        @media only screen and (max-width:600px) {
+            #move {
+                left: 14%;
+            }
+        }
+
+        /*미디어쿼리*/
+    </style>
+
+</head>
+
+<body>
+
+    <h1>ICE CREAM GALLERY</h1>
+    <div id="handle">
+        <div id="move">
+            <ul>
+                <li><img src="images/1.jpg" alt="items"></li>
+                <li><img src="images/2.jpg" alt="items"></li>
+                <li><img src="images/3.jpg" alt="items"></li>
+                <li><img src="images/4.jpg" alt="items"></li>
+                <li><img src="images/5.jpg" alt="items"></li>
+                <li><img src="images/6.jpg" alt="items"></li>
+                <li><img src="images/7.jpg" alt="items"></li>
+                <li><img src="images/8.jpg" alt="items"></li>
+                <li><img src="images/9.jpg" alt="items"></li>
+                <li><img src="images/10.jpg" alt="items"></li>
+                <li><img src="images/11.jpg" alt="items"></li>
+                <li><img src="images/12.jpg" alt="items"></li>
+                <li><img src="images/13.jpg" alt="items"></li>
+                <li><img src="images/14.jpg" alt="items"></li>
+                <li><img src="images/15.png" alt="items"></li>
+                <li><img src="images/16.png" alt="items"></li>
+                <li><img src="images/17.png" alt="items"></li>
+                <li><img src="images/18.jpg" alt="items"></li>
+                <li><img src="images/19.jpg" alt="items"></li>
+                <li><img src="images/20.png" alt="items"></li>
+                <li><img src="images/21.png" alt="items"></li>
+                <li><img src="images/22.png" alt="items"></li>
+                <li><img src="images/23.jpg" alt="items"></li>
+                <li><img src="images/24.jpg" alt="items"></li>
+            </ul>
+        </div>
+    </div>
+
+</body></html>

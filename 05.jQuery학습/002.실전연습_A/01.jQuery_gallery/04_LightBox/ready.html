@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> jQuery </title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+    <link rel="stylesheet" href="css/jquery.lightbox-0.5.css">
+    <script src="js/jquery-1.7.2.js"></script>
+    <script src="js/jquery.lightbox-0.5.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script>
+        $(function() { // jQB /////////////////
+            // 라잇박스 플러그인 호출!
+            $(".view").lightBox({
+                overlayBgColor: "navy", // 배경색변
+                overlayOpacity: 0.8, // 배경투명도
+                containerResizeSpeed: 500 // 이미지 리사이즈 속도(1/1000초)
+            }); //// lightBox /////
+
+            //// 백스트레치 플러그인 적용하기 ////
+            // - 배경을 비율의 외곡없이 선택한 요소에 채워주는 플러그인
+            // - 사용법:
+            // $.backstretch(이미지경로) -> 페이지 전체 배경적용!
+            // $(선택자).backstretch(이미지경로) -> 특정박스에 적용
+            // 여러이미지 전환
+            /*
+                $(선택자).backstretch([
+                    이미지1,이미지2,이미지3,....
+                ],{duration:시간, fade:시간});
+                
+                - 옵션: duration - 이미지간 전환시간간격(1/1000초)
+                       fade - 이미지변경시 fade전환시간(1/1000초)
+            
+            */
+
+            $.backstretch([
+                "images/mainbg.png",
+                "images/about.png",
+                "images/worksbg.jpg"
+            ], {
+                duration: 4000,
+                fade: 2000
+            }); /// backstretch ////
+
+
+
+
+
+
+
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+    </script>
+
+    <!------------------------------ jQuery lightBox plugin ----------------------------------->
+
+
+    <!----------------------------------------------------------------------------------------->
+
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div id="head">
+
+            <h1><a href="#">jQuery</a></h1>
+
+        </div>
+        <div id="navigation">
+            <ul>
+                <li id="lhome"><a href="#00">Home</a></li>
+                <li id="labout"><a href="#03">About Us</a></li>
+                <li id="lmission"><a href="#04">Mission</a></li>
+                <li id="lsupport"><a href="#05">Support</a></li>
+                <li id="lcontact"><a href="#06">Contact Us</a></li>
+            </ul>
+        </div>
+
+
+
+        <div id="main">
+
+            <div id="content_left">
+                <div class="article">
+                    <h3>Welcome Lorem ipsum dolor</h3>
+                    <!--
+                        라잇박스 플러그인 셋팅법
+                        - 썸네일 이미지를 a태그로 감싸준다.
+                        - href속성은 큰 이미지 경로를 써준다.
+                        - title 속성값은 이미지설명으로 나옴
+                        - class는 jQuery에서 선택할 이름
+                    -->
+                    <p> <a href="images/robot.jpg" title="첫번째 이미지양!~" class="view"><img src="images/img1.jpg" width="110" height="74" border="0" alt="" class="pic_right" /></a> "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                </div>
+
+                <div class="article">
+                    <h3>Lorem ipsum dolor</h3>
+                    <a href="images/seashore.jpg" title="두번째 이미지용~!" class="view"><img src="images/img2.jpg" width="110" height="74" border="0" alt="" class="pic_left" /></a>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                </div>
+
+            </div>
+
+
+            <div id="content_right">
+                <h4>Lorem ipsum dolor</h4>
+                <div class="item">
+                    <p><a href="images/nature.jpg" title="자연은 정말 좋은거야~!" class="view"><img class="th_thum" src="images/th1.jpg" width="50" height="50" border="0" alt="" /></a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. <a href="#">view</a><br style="clear:both" /></p>
+                </div>
+
+                <div class="item">
+                    <p><a href="images/street.jpg" title="도시 거리의 풍경" class="view"><img class="th_thum" src="images/th2.jpg" width="50" height="50" border="0" alt="" /></a>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested <a href="#">view</a><br style="clear:both" /></p>
+
+                </div>
+                <div class="item">
+                    <p><a href="images/lamp.jpg" title="옛날 램프의 운치" class="view"><img class="th_thum" src="images/th3.jpg" width="50" height="50" border="0" alt="" /></a>quis nostrud exercitation ullamco laboris <a href="#">view</a><br style="clear:both" /> </p>
+
+                </div>
+
+
+            </div>
+            <div id="footer">
+                <p>(c) 2012 All Rights Reserved</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- jQuery , javaScript Code ----->
+    <script>
+
+
+    </script>
+
+</body></html>

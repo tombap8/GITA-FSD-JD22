@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>One Page Scroll</title>
+    <style>
+        html,
+        body,
+        .wrap {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+        }
+        /*공통셋팅*/
+        a{
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 0 0 2px #777;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul::after{
+            content: "";
+            display: block;
+            clear: both;/*float해제*/
+        }
+        li{
+            float: left;
+            /*옆으로 흐르게*/
+        }
+        img{
+            border: none;
+            /*이미지 링크시 테두리없앰*/
+        }
+        h1,h2,h3{
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            /*16px기준*/
+        }
+        
+
+        /*공통 class*/
+        .page {
+            width: 100%;
+            height: 100%;
+        }
+        /*IR 등*/
+        .bld{
+            display: none;
+        }
+        
+        /*상단영역*/
+        .top{
+            position: fixed;
+            /*상단고정*/
+            width: 100%;
+            z-index: 9999;
+            /*맨위로!*/
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .inbox{
+            position: relative;
+            /*부모자격*/
+            width: 1920px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        #top{
+            height: 80px;
+        }
+        /*로고*/
+        #logo{
+            width: 250px;
+            height: 100%;
+            text-align: center;
+            overflow: hidden;
+            /*넘치는자식숨김*/
+        }
+        #logo img{
+            width: 100%;
+            margin-top: -24px;
+        }
+        
+        /*GNB메뉴*/
+        .gnb{
+            position: absolute;
+            /*부모? #top*/
+            top: 40px;
+            right: 2%;
+        }
+        .gnb li{
+            margin: 0 7px;
+        }
+        /*메뉴에 마우스 오버시*/
+        .gnb a:hover{
+            color: lime;
+            text-decoration: overline;
+        }
+        .gnb li:hover{
+            transform: scale(1.1);
+        }
+        /*선택된 메뉴 class*/
+        .gnb li.on a{
+            color: lime;
+            text-decoration: overline;
+        }
+        .gnb li.on{
+            transform: scale(1.1);
+        }
+        
+
+        /*개별페이지셋팅*/
+        #pg1 {
+            background: url(images/pic1.png) no-repeat top/cover;
+        }
+
+        #pg2 {
+            background: url(images/pic2.png) no-repeat top/cover;
+        }
+
+        #pg3 {
+            background: url(images/pic3.png) no-repeat top/cover;
+        }
+
+        #pg4 {
+            background: url(images/pic4.png) no-repeat top/cover;
+        }
+
+        #pg5 {
+            background: url(images/pic5.png) no-repeat top/cover;
+        }
+
+        #pg6 {
+            background: url(images/pic6.png) no-repeat top/cover;
+        }
+
+        #pg7 {
+            background: url(images/pic7.png) no-repeat top/cover;
+        }
+    </style>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script>
+    ////// jQB /////////////////////////
+    $(function(){
+       /// 페이지 새로 고칠때 맨위로 가게하기(브라우저 캐쉬가 잘 안지워져서 쓰는 것임!) 
+        setTimeout(function(){
+            $("html,body").animate({
+                scrollTop:"0px"
+            },10); /// animate ////
+        },500); //// 타임아웃 ////////
+        
+        
+        
+        
+        // GNB a링크를 클릭하면 해당 페이지위치로 이동 애니메이션
+        // 이벤트 대상 : .gnb a
+        $(".gnb a").click(function(e){
+            // 전달변수 e는 이벤트관련 값을 내부로 전달함!
+            e.preventDefault();
+            // preventDefault()는 기본 기능을 막아줌
+            // a 링크에 사용하면 이동기능이 발생하지 않음!        
+            
+            // 1. a의 href 값 가져오기
+            // this 는 클릭된 a요소 자신
+            // attr(속성명) - 속성의 값을 가져옴
+            // JS의 getAttribute(속성명) 과 같은 기능의 메서드
+            var pid = $(this).attr("href");
+            console.log("이동id:"+pid);
+            
+            // 2. 이동할 위치의 아이디 top값을 구함
+            var pgpos = $(pid).offset().top;
+            // offset() 메서드는 요소의 기본셋팅 정보를 리턴함
+            // - top,left,width, height 등의 값을 알 수 있음
+            
+            console.log("위치값:"+pgpos);
+            
+            // 3. 스크롤에 애니메이션을 설정하여 해당위치로 이동
+            // scrollTop 속성은 세로스크롤 위치값
+            // stop()은 애니메이션 큐를 지움!
+            $("html,body").stop().animate({
+                scrollTop: pgpos+"px"
+            },800,"easeInOutQuint"); /// animate //////
+            
+            // 이징을 설정하여 자연스런운 이동 애니메이션 연출!
+            // 구글에 "easing"을 검색하여 
+            //"Easing Functions Cheat Sheet"를 클릭
+            // 해당 이징이름을 복사하여 animate 이징순서에 넣는다!
+            // 중요: 이징을 사용하려면 jQuery UI를 불어와야함!
+            
+        }); //////// click /////////////
+        ////////////////////////////////
+        
+        
+        
+        
+        
+    });/////////// jQB ///////////////////
+    //////////////////////////////////////
+    //////////////////////////////////////
+    </script>
+    
+    
+</head>
+
+<body>
+    <!--상단영역-->
+    <div class="top">
+        <header class="inbox" id="top">
+            <!--로고-->
+            <h1 id="logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="메가박스로고">
+                </a>
+            </h1>
+            <!--GNB메뉴-->
+            <nav class="gnb">
+                <ul>
+                    <li class="on">
+                        <a href="#pg1">아수라</a>
+                    </li>
+                    <li>
+                        <a href="#pg2">고산자</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">인천상륙작전</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">봉이김선달</a>
+                    </li>
+                    <li>
+                        <a href="#pg5">비밀은없다</a>
+                    </li>
+                    <li>
+                        <a href="#pg6">아가씨</a>
+                    </li>
+                    <li>
+                        <a href="#pg7">탐정홍길동</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!--페이지 섹션-->
+    <div class="wrap">
+        <section id="pg1" class="page"></section>
+        <section id="pg2" class="page"></section>
+        <section id="pg3" class="page"></section>
+        <section id="pg4" class="page"></section>
+        <section id="pg5" class="page"></section>
+        <section id="pg6" class="page"></section>
+        <section id="pg7" class="page"></section>
+    </div>
+
+
+
+
+</body></html>

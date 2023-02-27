@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 슬라이딩 내비게이션(바네이 메뉴) </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+        $(function() { /// jQB ///////////////////////////
+            
+            /// 버튼 클릭시 해당 위치로 슬라이드 이동하기
+            // 대상: 버튼(#btnGroup a)
+            $("#btnGroup a").click(function(e){
+                e.preventDefault();//기본이동막기
+                // 클릭된 a요소의 부모 li순번
+                var idx = $(this).parent().index();
+                console.log("순번:"+idx);
+                // 이동할 대상: 슬라이드(#viewer)
+                $("#viewer").animate({
+                    left: (-100*idx)+"%"
+                },600,"easeOutCirc");
+                
+            });////////// click ///////////////
+            
+
+        }); //////// jQB /////////////////////////////////
+        /////////////////////////////////////////////////
+        /////////////////////////////////////////////////
+
+    </script>
+
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #05184D;
+        }
+
+        div#slider {
+            position: relative;
+            width: 600px;
+            max-width: 100%;
+            /*설정된 크기보다 화면이 작아지면 100%*/
+            margin: 0 auto;
+            background: #FFF;
+            border: #FDF6DD 2px solid;
+            margin-top: 100px;
+            overflow: hidden;
+        }
+
+        div#viewer {
+            position: relative;
+            left: 0;
+            /*초기값*/
+            width: 400%;
+            /*부모박스의 4배(슬라이드4장)*/
+        }
+
+        #viewer ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        #viewer ul::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #viewer ul li {
+            float: left;
+            /*옆으로흐르게*/
+            width: 25%;
+            /*부모를 4등분*/
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /*--------   ul li CSS ------------ */
+        #btnGroup {
+            position: absolute;
+            bottom: 2%;
+            right: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #btnGroup li {
+            float: left;
+            width: 16px;
+            height: 16px;
+            list-style: none;
+            margin-right: 6px;
+            background-color: #60F;
+            cursor: pointer;
+        }
+
+        ul#btnGroup li a {
+            text-decoration: none;
+            text-align: center;
+            background: #FDF6DD;
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: #000;
+        }
+
+        ul#btnGroup li a:hover {
+            background: #CCFF00;
+        }
+        
+        
+        
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="slider">
+
+        <div id="viewer">
+            <ul>
+                <li>
+                    <a href="#"><img id="image1" src="image/slide1.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img id="image2" src="image/slide2.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img id="image3" src="image/slide3.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img id="image4" src="image/slide4.jpg" alt=""></a>
+                </li>
+            </ul>
+        </div>
+
+        <ul id="btnGroup">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+        </ul>
+
+    </div>
+
+    <!---------- jQuery code Start ---------->
+    <script>
+
+
+    </script>
+</body>
+
+</html>

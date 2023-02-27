@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>역동적 오버효과</title>
+<!-- jQuery library -->
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+    $(function(){ // jQB /////////////////
+        // 각 메뉴박스에 배경이미지를 셋팅한다.
+        // for문을 사용하지 않고 each() 메서드사용
+        /* 
+            idx 는 요소의 순번(0부터) 
+            ele 는 요소자신(this와동일)
+            
+            $(선택자).each(function(idx,ele){
+                구현코드...
+            });
+        */
+        $("#navigation a").each(function(idx,ele){
+            // 해당요소의 속성값 읽어오기
+            var bgi = $(ele).attr("data-img");
+            console.log("배경이미지:"+bgi);
+            
+            // 배경셋팅
+            $(ele).css({
+                background:"url("+bgi+") no-repeat"
+            }); //// css //////
+            
+        });/////// each ////////////////////
+        
+        // 메뉴에 마우스 오버시 height: 120px, margin-left: 15px
+        // 메뉴에 마우스 아웃시 height: 30px, margin-left: 0px
+        // hover(함수1,함수2)
+        $("#navigation a").hover(
+            function(){ // over
+                $(this).stop().animate({
+                    height: "120px",
+                    marginLeft:"15px"
+                },200);
+            },
+            function(){ // out
+                $(this).stop().animate({
+                    height: "30px",
+                    marginLeft:"0px"
+                },200);
+            });///// hover ////////
+        
+        
+        
+        
+        
+        
+    });///////// jQB /////////////////////
+    /////////////////////////////////////
+    
+    
+    </script>
+<style>
+
+body {
+	margin:20px auto;
+	padding:0;	
+	width:620px;
+	background:#192839;
+} 
+  
+ul#navigation {	list-style: none;	}  
+  
+ul#navigation li a  
+{  
+	display:block;  
+	width:150px; 
+	height:30px; 
+	margin-bottom: 5px;  
+	color:#000;     
+	border:1px solid #FC0;  
+	text-decoration: none;	
+}  
+    
+ul#navigation li a:hover {	color: #ffff66;	} 
+
+</style>
+</head>
+
+<body>
+
+<ul id="navigation">         
+    <li><a href="#" data-img="bg1.jpg">Menu 1</a></li>  
+    <li><a href="#" data-img="bg2.jpg">Menu 2</a></li>  
+    <li><a href="#" data-img="bg3.jpg">Menu 3</a></li>  
+    <li><a href="#" data-img="bg4.jpg">Menu 4</a></li>   
+</ul>  
+    
+
+<!---------- jQuery code Start ---------->
+
+<script>
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> fadeInOut 갤러리 </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script>
+        var autoI;//인터발변수
+        $(function() { // jQB /////////////////
+            //$(".fadeShow").click(fadeImg);
+            
+            // 인터발함수로 자동실행하기!(3초간격)
+            autoI = setInterval(fadeImg, 3000);
+            
+            // 마우스 오버시 인터발멈춤/ 아웃시 인터발작동
+            // hover(함수1,함수2)
+            $(".fadeShow").hover(
+                function(){ // over
+                    console.log("멈춤");
+                    clearInterval(autoI);
+                },function(){ // out
+                    console.log("작동");
+                    autoI = setInterval(fadeImg, 3000);
+            }); ///// hover함수 //////////////
+            
+            
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+
+        /*////////////////////////////////////////
+            함수명:fadeImg
+            기능: 이미지를 순서대로 넘겨서 fade효과를 준다
+        */ //////////////////////////////////////////
+        function fadeImg() {
+            //console.log("나호출?");
+            // 1. 구현대상: 이미지 중 첫번째, 두번째 이미지
+            // 첫번째 이미지
+            var fimg = $(".fadeShow img").first();
+            // 두번째 이미지
+            var nimg = fimg.next();
+
+            // 2. 구현내용: 두번째 이미지를 숨기고(hide)
+            // z-index를 위로 올리기(class="active"주기)
+            // 그 후 fadeIn으로 서서히 나타나게하기
+            nimg.hide().addClass("active")
+                .fadeIn(600, function() { // 애니후
+                    //처음과 같은 상태 만들기
+                    // 첫번째 이미지 맨뒤로 이동(active제거)
+                    $(".fadeShow").append(fimg);
+                    fimg.removeClass("active");
+                }); ///// fadeIn ///////////
+
+
+        } ///////////// fadeImg 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////   
+    </script>
+    <style>
+        body {
+            margin: 20px auto;
+            padding: 0;
+            width: 620px;
+            background: #192839;
+        }
+
+        .fadeShow {
+            background: #666;
+            width: 600px;
+            height: 350px;
+            border: 2px solid #FDF6DD;
+        }
+
+        .fadeShow img {
+            position: absolute;
+            /*이미지 겹치게*/
+        }
+
+        .fadeShow .active {
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="fadeShow">
+        <img class="active" src="slide1.jpg" alt="image1" />
+        <img src="slide2.jpg" alt="image2" />
+        <img src="slide3.jpg" alt="image3" />
+    </div>
+
+
+    <!---------- jQuery code Start ---------->
+    <script>
+
+    </script>
+</body></html>

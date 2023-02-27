@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> png 애니메이션 </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script>
+        var icall;// 인터발변수
+        $(function() { // jQB /////////////////
+            // 이미지셋팅함수 호출
+            arrImg();
+            
+            // 장면개수 셋팅
+            fcnt = $("#ani img").length;
+            console.log("장면개수:"+fcnt);
+            
+            ///  마우스 오버시 장면 넘기고 아웃시 멈추기
+            $("#ani").hover(
+                function(){ // over
+                    // 변수에 할당하여 장면전환함수 호출
+                    icall = setInterval(nextFrame, 50);
+                },function(){ // out
+                    // 변수에 담긴 인터발함수 지우기
+                    clearInterval(icall);
+            }); ////////// hover ///////////////
+            
+            
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+
+        /*////////////////////////////////////////////////
+            함수명:arrImg
+            기능: 연속장면 이미지를 순서대로 선택요소 내부에 추가함
+        */ /////////////////////////////////////////////////
+        function arrImg() {
+            console.log("이미지셋팅함수!");
+            // 1. 애니메이션할 이미지 셋팅
+            for (var i = 0; i < 21; i++) {
+                $("#ani").append('<img src="seq/seq'+i+'.png" alt="장면">');
+            } ////////// for /////////////
+            
+            // 2. 첫장면만 보이고 나머지 숨기기
+            $("#ani img").hide().first().show();
+
+        } ///////////// arrImg 함수 //////////////////
+        ////////////////////////////////////////////////
+        ////////////////////////////////////////////////
+        
+        /*////////////////////////////////////////
+            함수명:nextFrame
+            기능: 순서대로 다음 이미지를 한장씩 보이게함
+        */////////////////////////////////////////
+        var fnum = 0;//장면이미지번호
+        var fcnt;//장면개수(초기셋팅필요!)
+        function nextFrame(){
+            //console.log("장면넘기기!");
+            // 1. 장면번호 증가
+            fnum++;
+            if(fnum > fcnt-1) fnum = 0;
+            //console.log("장면번호"+fnum);
+            
+            //2. 보이는 장면은 숨기고
+            $("#ani img:visible").hide();
+            //3. 순번에 해당하는 이미지는 보이게한다.
+            $("#ani img").eq(fnum).show();
+            
+        } ///////////// nextFrame 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        
+        
+        
+        
+        
+    </script>
+
+
+    <style>
+        div#ani {
+            width: 320px;
+            height: 240px;
+            position: relative;
+            background: url(img/bg.jpg);
+        }
+
+        div#ani img {
+            position: absolute;
+            /*	display:none; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="ani"></div>
+    
+    
+
+
+
+    <!------------------------ jQuery 코드 ----------------------->
+    <script>
+
+    </script>
+</body></html>

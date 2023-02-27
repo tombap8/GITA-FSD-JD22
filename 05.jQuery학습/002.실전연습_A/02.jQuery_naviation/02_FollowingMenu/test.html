@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>커서테스트</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /*마우스포인터 이미지*/
+        #myc {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #222;
+            z-index: 99999;
+            /*맨위!*/
+/*            transition: all .9s cubic-bezier(0.6, 0.71, 0.46, 1.29);*/
+        }
+    </style>
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script>
+        $(function() { // jQB /////////////////
+            // 포인터가 움직일 영역: window
+            $(window).mousemove(function(e) { //e-이벤트전달변수
+                var posx = e.pageX - 3; //중앙보정
+                var posy = e.pageY - 3; //중앙보정
+                //console.log("x:y="+posx+":"+posy);
+
+                // 마우스 포인터 위치에 따라 이미지를 이동하여 따라다님
+                $("#myc").animate({
+                    top: posy + "px",
+                    left: posx + "px"
+                },10); /////// css /////////
+
+            }); ////////// mousemove /////////////
+            
+            // 커서이미지 숨기기
+            $("#myc").hide();
+
+            // window에 마우스가 들어오면 커서보이고 나가면 숨기기
+            $(window).hover(
+                function() { // hover
+                    $("#myc").show();
+                },
+                function() { // out
+                    $("#myc").hide();
+            }); //// hover ////////////////
+
+
+
+
+
+
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+    </script>
+
+</head>
+
+<body>
+    <!--커서-->
+    <div id="myc"></div>
+
+
+
+</body></html>

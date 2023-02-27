@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Skitter plugIn 갤러리 </title>
+    <link href="css/skitter.styles.css" type="text/css" media="all" rel="stylesheet" />
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.skitter.min.js"></script>
+    <script>
+        $(function() { // jQB /////////////////
+            /// 스키터(Skitter) 플러그인
+            // - 이미지 갤러리 전환효과 기능의 플러그인
+            $(".box_skitter").skitter({
+                dots: true, //블릿메뉴(false기본값)
+                preview: true, //블릿에 마우스오버시 미리보기
+                label: false, //설명글보기(false-숨기기)
+                controls: true, //진행,멈춤버튼 보이기
+                animation: "blindWidth" //특정전환효과 지정하기(없으면랜덤!)
+            });
+
+            /*
+            스키터 애니메이션 효과명:			
+			cube 
+            cubeRandom block cubeStop 
+            cubeStopRandom cubeHide cubeSize 
+            horizontal showBars showBarsRandom 
+            tube fade fadeFour paralell blind 
+            blindHeight blindWidth directionTop 
+            directionBottom directionRight 
+            directionLeft cubeSpread glassCube 
+            glassBlock circles circlesInside 
+            circlesRotate cubeShow upBars 
+            downBars hideBars swapBars 
+            swapBarsBack swapBlocks cut            
+            */
+
+
+
+
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+    </script>
+
+    <style>
+        * {
+            padding: 0;
+        }
+
+        body {
+            margin: 20px auto;
+            padding: 0;
+            width: 620px;
+            background: #192839;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="box_skitter box_skitter_large">
+
+        <ul>
+            <li>
+                <a href="http://thiagosf.net"><img src="img/pic1.jpg" class="random" /></a>
+
+                <div class="label_text">
+                    <p> 설명 </p>
+                </div>
+            </li>
+            <li>
+                <a href="http://thiagosf.net"><img src="img/pic2.jpg" class="random" /></a>
+
+                <div class="label_text">
+                    <p> 설명 </p>
+                </div>
+            </li>
+            <li>
+                <a href="http://thiagosf.net"><img src="img/pic3.jpg" class="random" /></a>
+
+                <div class="label_text">
+                    <p> 설명 </p>
+                </div>
+            </li>
+            <li>
+                <a href="http://thiagosf.net"><img src="img/pic4.jpg" class="random" /></a>
+
+                <div class="label_text">
+                    <p> 설명 </p>
+                </div>
+            </li>
+            <li>
+                <a href="http://thiagosf.net"><img src="img/pic5.jpg" class="random" /></a>
+
+                <div class="label_text">
+                    <p> 설명 </p>
+                </div>
+            </li>
+            <li>
+                <a href="http://thiagosf.net"><img src="img/pic6.jpg" class="random" /></a>
+
+                <div class="label_text">
+                    <p> 설명 </p>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</body></html>

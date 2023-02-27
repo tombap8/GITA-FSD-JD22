@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>어디서나 펼쳐지는 내비게이션</title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+        $(function() { // jQB /////////////////
+            /*
+                mousemove 이벤트
+                - 선택요소 내부에 마우스 포인터가 움직일때 마다 발생하는 이벤트
+                - mousemove() 메서드 사용
+            */
+
+            // 이벤트 대상: #home
+            $("#home").mousemove(function(e) { //e-이벤트전달변수
+                /// 마우스 포인터 위치값 알아내기
+                // e.pageX -> x축 좌표값(단위없는px값)
+                // e.pageY -> y축 좌표값(단위없는px값)
+                // \n은 엔터표시
+                //console.log("x좌표:"+e.pageX+"\ny좌표:"+e.pageY);
+                var posy = e.pageY - ($(this).height() / 2);
+                // 박스 중간위치를 잡기위해 높이값의 절반을 위치값에서 뺌
+                //console.log("y축위치:" + posy);
+
+                /// 컨테이너 박스 움직이기
+                $("#container").css({
+                    top: posy + "px"
+                }); //// css //////////
+            }); /////////////// mousemove /////////////////////
+
+            ///// #home을 클릭하면 #menu의 left값을 변경하여 나타나기
+            var val = 50; //left값
+            $("#home").click(function() {
+                $("#menu").stop()
+                    .animate({
+                        left: val + "px"
+                    }, 500, "easeOutCirc");
+
+                // 값 변경하기!(조건연산자로 값을 한번씩 교차)
+                val === 50 ? val = -600 : val = 50;
+
+            }); ///////////// click ////////////
+            
+            /// #menu의 li에 마우스 오버시 opacity값 1로 진하게
+            /// 아웃시는 원상복귀
+            /// hover(함수1,함수2)
+            /// fadeTo(시간,오파,이징,함수)
+            $("#menu li").hover(
+                function(){ // over
+                    $(this).stop().fadeTo(300,1);
+                },function(){ // out
+                    $(this).stop().fadeTo(300,0.7);
+            }); //////// hover //////////////
+            
+            /// 메뉴클릭시 페이지 이동하기 (새창열기) ///
+            $("#menu li").click(function(){
+                var idx = $(this).index();//li순번
+                console.log("순번:"+idx);
+                
+                var url;//이동주소변수
+                switch(idx){
+                    case 0: url="http://www.naver.com";break; 
+                    case 1: url="http://www.google.com";break;
+                    case 2: url="http://www.daum.net";break;    
+                }/////// switch case ///////
+                
+                /// 페이지 새창열기 ///
+                // window.open() 새창열기
+                // location.href = 주소 는 페이지 이동
+                window.open().location.href = url;
+                
+            });//////////// click /////////////
+
+
+
+
+
+
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div#container {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            width: 600px;
+            height: 200px;
+        }
+
+        div#home {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 50px;
+            height: 200px;
+            background: #FF9999;
+            z-index: 2;
+        }
+
+        ul#menu {
+            position: absolute;
+            top: 0px;
+            left: -600px;
+            width: 600px;
+            height: 200px;
+            list-style: none;
+            z-index: 1;
+        }
+
+        ul li {
+            width: 200px;
+            height: 200px;
+            float: left;
+            opacity: 0.7;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div id="container">
+        <div id="home">HOME </div>
+
+        <ul id="menu">
+            <li><img src="th_bg1.jpg" /></li>
+            <li><img src="th_bg2.jpg" /></li>
+            <li><img src="th_bg3.jpg" /></li>
+        </ul>
+    </div>
+
+
+</body></html>

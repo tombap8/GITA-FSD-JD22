@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>One Page Scroll - Auto Scroll Page Action</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+    <style>
+        /*        font-family: 'Cute Font', cursive;*/
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+            overflow: hidden;
+        }
+
+        /*전체 페이지부모(스크롤박스역할)*/
+        .wrap {
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+            /*
+            overflow-x: hidden;
+            overflow-y: scroll;
+*/
+        }
+
+        /*공통셋팅*/
+        a {
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 0 0 2px #777;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul::after {
+            content: "";
+            display: block;
+            clear: both;
+            /*float해제*/
+        }
+
+        li {
+            float: left;
+            /*옆으로 흐르게*/
+        }
+
+        img {
+            border: none;
+            /*이미지 링크시 테두리없앰*/
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            /*16px기준*/
+        }
+
+
+        /*공통 class*/
+        .page {
+            position: relative;
+            /*부모자격*/
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /*넘치는자식요소숨기기*/
+        }
+
+        /*IR 등*/
+        .bld {
+            display: none;
+        }
+
+        /*상단영역*/
+        .top {
+            position: fixed;
+            /*상단고정*/
+            width: 100%;
+            z-index: 9999;
+            /*맨위로!*/
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .inbox {
+            position: relative;
+            /*부모자격*/
+            width: 1920px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        #top {
+            height: 80px;
+        }
+
+        /*로고*/
+        #logo {
+            width: 250px;
+            height: 100%;
+            text-align: center;
+            overflow: hidden;
+            /*넘치는자식숨김*/
+        }
+
+        #logo img {
+            width: 100%;
+            margin-top: -24px;
+        }
+
+        /*GNB메뉴*/
+        .gnb {
+            position: absolute;
+            /*부모? #top*/
+            top: 40px;
+            right: 2%;
+        }
+
+        .gnb li {
+            margin: 0 7px;
+        }
+
+        /*메뉴에 마우스 오버시*/
+        .gnb a:hover {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li:hover {
+            transform: scale(1.1);
+        }
+
+        /*선택된 메뉴 class*/
+        .gnb li.on a {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li.on {
+            transform: scale(1.1);
+        }
+
+
+        /*개별페이지셋팅*/
+        #pg1 {
+            background: url(images/pic1.png) no-repeat top/cover;
+        }
+
+        #pg2 {
+            background: url(images/pic2.png) no-repeat top/cover;
+        }
+
+        #pg3 {
+            background: url(images/pic3.png) no-repeat top/cover;
+        }
+
+        #pg4 {
+            background: url(images/pic4.png) no-repeat top/cover;
+        }
+
+        #pg5 {
+            background: url(images/pic5.png) no-repeat top/cover;
+        }
+
+        #pg6 {
+            background: url(images/pic6.png) no-repeat top/cover;
+        }
+
+        #pg7 {
+            background: url(images/pic7.png) no-repeat top/cover;
+        }
+
+        /*블릿 네비게이션*/
+        .bnav {
+            position: fixed;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            /*세로중앙이동*/
+            width: 15px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .bnav li {
+            position: relative;
+            /*부모자격(span)*/
+            width: 100%;
+            height: 15px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            margin: 6px 0;
+        }
+
+        /*선택네비 class*/
+        .bnav li.on {
+            background-color: #EC686A;
+            transform: scale(1.15);
+        }
+
+        /*블릿a링크*/
+        .bnav a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*블릿글자*/
+        .bnav span {
+            position: absolute;
+            top: -50%;
+            right: 200%;
+            white-space: nowrap;
+            font: bold .9rem "맑은 고딕", Verdana;
+            text-shadow: 1px 0 #000, -1px 0 #000,
+                0 1px #000, 0 -1px #000;
+            display: none;
+            /*글자숨기기*/
+        }
+
+        /*마우스 오버시 글자보이기*/
+        .bnav li:hover span {
+            display: block;
+        }
+
+        /*선택메뉴 글자보이기*/
+        .bnav li.on span {
+            display: block;
+        }
+
+        /*각 페이지 영화소개 박스*/
+        .minfo {
+            position: absolute;
+            /*나의부모? .page*/
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*정중앙이동*/
+            width: 380px;
+            color: #fff;
+            padding: 15px;
+            white-space: nowrap;
+            /*줄바꿈방지*/
+            background-color: rgba(0, 0, 0, 0.7);
+            font-family: 'Cute Font', cursive;
+            /*웹폰트*/
+        }
+
+        /*영화제목*/
+        .minfo>h1 {
+            font-size: 44px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        /*아수라한자*/
+        .minfo>h1>span {
+            font-size: 28px;
+        }
+
+        /*영화정보*/
+        .minfo>h3 {
+            font-size: 28px;
+            padding: 3px;
+        }
+    </style>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/autoScroll_pgAct.js"></script>
+    <script>
+        $(function() { /// jQB ///////////////////////
+
+            /// 페이지 등장요소 초기화함수 호출
+            initSet();
+
+            /// 페이지 액션 함수 최초호출
+            pageAction();
+
+        }); ////////// jQB ///////////////////////////
+        /////////////////////////////////////////////
+
+
+        /*////////////////////////////////////////
+            함수명:initSet
+            기능: 각 페이지 등장요소 초기 CSS셋팅
+        */ ////////////////////////////////////////
+        function initSet() {
+            // 1. 아수라
+            $("#pg1 .minfo").css({
+                left: "150%"
+            });
+
+            // 2. 고산자
+            $("#pg2 .minfo").hide(); //숨기기
+
+            // 3. 인천상륙작전
+            $("#pg3 .minfo").css({
+                top: "-50%"
+            });
+
+            // 4. 봉이김선달
+            //주의: transform 셋팅시 기존 translate 설정을 살려라!
+            $("#pg4 .minfo").css({
+                transform: "translate(-50%, -50%) scale(0)"
+            });
+
+            // 5. 비밀은없다
+            $("#pg5 .minfo").css({
+                transform: "translate(-50%, -50%) rotateY(180deg)",
+                opacity: "0"
+            });
+
+            // 6. 아가씨
+            $("#pg6 .minfo").css({
+                transform: "translate(-50%, -50%) rotate(1000deg) scale(0)"
+            });
+
+            // 7. 탐정홍길동
+            $("#pg7 .minfo").css({
+                transform: "translate(-50%, -50%) scaleX(10)",
+                opacity: 0
+            });
+
+        } ///////////// initSet 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+
+
+        /*////////////////////////////////////////
+            함수명:pageAction
+            기능:각 페이지 요소 별 등장액션 실행
+        */ ////////////////////////////////////////
+        function pageAction() {
+
+            /// 1. 아수라
+            if (pno === 0) {
+
+                //오른쪽에서 중앙으로 날아오기
+                $("#pg1 .minfo").delay(1000)
+                    .animate({
+                        left: "50%"
+                    }, 1000, "easeOutElastic");
+
+            } //// if ///////////////////
+
+            /// 2. 고산자
+            else if (pno === 1) {
+                // 페이드 효과로 나타남
+                $("#pg2 .minfo").fadeIn(800, "easeInQuad");
+            } //// else if ////////////////////
+
+            // 3. 인천상륙작전
+            else if (pno === 2) {
+                // 위에서 아래로 중앙에 내려오기
+                $("#pg3 .minfo").animate({
+                    top: "50%"
+                }, 500, "easeOutBack");
+            } //// else if ////////////////////            
+
+            // 4. 봉이김선달
+            // 주의사항!! (중요!) - transform 속성은 animate로 변경불가!
+            // -> transition을 사용하여 애니메이션 할것!
+            else if (pno === 3) {
+                // 정중앙에서 서서히 커지면서 등장
+                $("#pg4 .minfo").css({
+                    transform: "translate(-50%, -50%) scale(1)",
+                    transition: "all 2s ease-out"
+                });
+            } //// else if ////////////////////   
+
+            // 5. 비밀은없다
+            else if (pno === 4) {
+                // 투명도가 1되면서 동시에 Y축회전
+                $("#pg5 .minfo").css({
+                    transform: "translate(-50%, -50%) rotateY(0deg)",
+                    opacity: "1",
+                    transition: "all 1s ease-out"
+                });
+            } //// else if ////////////////////  
+
+
+            // 6. 아가씨
+            else if (pno === 5) {
+                // 중앙에서 커지는 동시에 회전하며 등장
+                $("#pg6 .minfo").css({
+                    transform: "translate(-50%, -50%) rotate(0deg) scale(1)",
+                    transition: "all 1s cubic-bezier(0.45, 0.05, 0.55, 0.95)"
+                });
+            } //// else if ////////////////////  
+
+            // 7. 탐정홍길동
+            else if (pno === 6) {
+                $("#pg7 .minfo").css({
+                    transform: "translate(-50%, -50%) scaleX(1)",
+                    opacity: 1,
+                    transition: "all 2s cubic-bezier(0.29, 0.7, 0.33, 1.01)"
+                });
+            } //// else if ////////////////////  
+
+
+
+
+        } ///////////// pageAction 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+    </script>
+
+
+</head>
+
+<body>
+    <!--상단영역-->
+    <div class="top">
+        <header class="inbox" id="top">
+            <!--로고-->
+            <h1 id="logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="메가박스로고">
+                </a>
+            </h1>
+            <!--GNB메뉴-->
+            <nav class="gnb">
+                <ul>
+                    <li class="on">
+                        <a href="#pg1">아수라</a>
+                    </li>
+                    <li>
+                        <a href="#pg2">고산자</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">인천상륙작전</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">봉이김선달</a>
+                    </li>
+                    <li>
+                        <a href="#pg5">비밀은없다</a>
+                    </li>
+                    <li>
+                        <a href="#pg6">아가씨</a>
+                    </li>
+                    <li>
+                        <a href="#pg7">탐정홍길동</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!--페이지 섹션-->
+    <div class="wrap">
+        <section id="pg1" class="page">
+            <article class="minfo">
+                <h1>아수라(<span>阿修羅</span>)</h1>
+                <h3>감독:김성수</h3>
+                <h3>배우:정우성, 황정민</h3>
+                <h3>개봉일: 2016년 9월 28일</h3>
+            </article>
+        </section>
+        <section id="pg2" class="page">
+            <article class="minfo">
+                <h1>고산자, 대동여지도</h1>
+                <h3>감독:강우석</h3>
+                <h3>배우:차승원, 유준상</h3>
+                <h3>개봉일: 2016년 9월 7일</h3>
+            </article>
+        </section>
+        <section id="pg3" class="page">
+            <article class="minfo">
+                <h1>인천상륙작전</h1>
+                <h3>감독:이재한</h3>
+                <h3>배우:이정재, 이범수, 리암니슨</h3>
+                <h3>개봉일: 2016년 7월 27일</h3>
+            </article>
+        </section>
+        <section id="pg4" class="page">
+            <article class="minfo">
+                <h1>봉이 김선달</h1>
+                <h3>감독:박대민</h3>
+                <h3>배우:유승호</h3>
+                <h3>개봉일: 2016년 7월 6일</h3>
+            </article>
+        </section>
+        <section id="pg5" class="page">
+            <article class="minfo">
+                <h1>비밀은 없다</h1>
+                <h3>감독:이경미</h3>
+                <h3>배우:손예진, 김주혁</h3>
+                <h3>개봉일: 2016년 6월 23일</h3>
+            </article>
+        </section>
+        <section id="pg6" class="page">
+            <article class="minfo">
+                <h1>아가씨</h1>
+                <h3>감독:박찬욱</h3>
+                <h3>배우:김민희, 하정우</h3>
+                <h3>개봉일: 2016년 6월 1일</h3>
+            </article>
+        </section>
+        <section id="pg7" class="page">
+            <article class="minfo">
+                <h1>홍길동</h1>
+                <h3>감독:조성희</h3>
+                <h3>배우:이제훈, 김성균</h3>
+                <h3>개봉일: 2016년 5월 4일</h3>
+            </article>
+        </section>
+    </div>
+
+
+    <!--블릿네비게이션-->
+    <ol class="bnav">
+        <li class="on">
+            <a href="#pg1"><span>아수라</span></a>
+        </li>
+        <li>
+            <a href="#pg2"><span>고산자</span></a>
+        </li>
+        <li>
+            <a href="#pg3"><span>인천상륙작전</span></a>
+        </li>
+        <li>
+            <a href="#pg4"><span>봉이김선달</span></a>
+        </li>
+        <li>
+            <a href="#pg5"><span>비밀은없다</span></a>
+        </li>
+        <li>
+            <a href="#pg6"><span>아가씨</span></a>
+        </li>
+        <li>
+            <a href="#pg7"><span>탐정홍길동</span></a>
+        </li>
+    </ol>
+
+
+
+
+
+
+
+</body></html>

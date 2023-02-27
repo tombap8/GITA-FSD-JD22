@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flying Eagle Animation</title>
+     <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background: url(img/Ideal-landscape.jpg) no-repeat left bottom/cover;
+            overflow: hidden;
+        }
+        /*독수리*/
+        #eagle{
+            position: absolute;
+            top: 60%;
+            left: 0;
+            width: 2%;
+            cursor: pointer;
+            z-index: 1;/*쥐보다위*/
+        }
+        #eagle img{
+            width: 100%;
+        }
+        
+        /*쥐*/
+        #rat{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 5%;
+            height: 10%;
+            background: url(img/m1.png) no-repeat 0/100%;
+        }
+        
+        /*클릭안내*/
+        #desc{
+            position: absolute;
+            bottom: 35%;
+            left: 8%;
+            width: 25%;
+            height: 40%;
+            white-space: nowrap;
+            font: bold 64px 'Lacquer', sans-serif;
+            color: #fff;
+            text-shadow: 1px 0 #000, -1px 0 #000,
+                0 1px #000, 0 -1px #000;
+            /*outline: 1px solid red;*/
+            animation: arrow .5s linear infinite alternate;
+        }
+        /*키프레임*/
+        @keyframes arrow{
+            to{
+                bottom: 33%;
+            }
+        }
+        /*화살표이미지*/
+        #desc img{
+            position: absolute;
+            width: 50%;
+            top: 20%;
+            left: -20%;
+            transform: rotate(40deg);
+        }
+        
+        /*리플레이버튼*/
+        #replay{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 20%;
+            cursor: pointer;
+            display: none;/*처음에 안보임*/
+        }
+        
+        
+    </style>
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="jquery.rotate.js"></script>
+    <!--
+        jquery.rotate.js 는
+        jQuery animate메서드에 transform rotate를 사용할 수 있도록 
+        해주는 플러그인임!
+        [ 사용법(animate css설정에 씀)-> rotate:"각도deg" ]
+    -->
+    <script>
+        $(function() { // jQB /////////////////
+            // 이미지셋업
+            arrImg();
+            
+            // 이미지개수 셋업
+            fcnt = $("#eagle img").length;
+            
+            // 독수리날기 호출
+            setInterval(nextFrame,70);
+            
+            // 독수리를 클릭하면 독수리가 날아서 쥐를 잡아 사라진다! //
+            $("#eagle").click(function(){
+                
+                // 클릭안내버튼 사라짐
+                $("#desc").fadeOut(500);
+                
+                
+                $(this) //독수리
+                // 1. 독수리 날아오기(6초)
+                .animate({
+                    left: "50%",
+                    top: "0%",
+                    width: "20%",
+                    rotate: "-15deg" //플러그인 회전속성사용!
+                },6000,"easeInExpo")
+                // 2. 독수리 돌리기(0.3초)
+                .animate({
+                    top:"20%",
+                    left:"55%",
+                    rotate:"60deg" // 시계방향회전
+                },300,"linear")
+                // 3. 독수리 내려앉기(0.6초)
+                .animate({
+                    top:"68%",
+                    left:"67%",
+                    rotate:"-5deg"
+                },600,"easeOutExpo")
+                // 4. 독수리 날아오르기(0.5초)
+                .animate({
+                    top:"0%",
+                    left:"110%",
+                    rotate:"-30deg"
+                },500,"easeInCubic",function(){
+                    // 애니후 리플레이버튼 나타남
+                    $("#replay").fadeIn(500);
+                }); //// animate /////////////
+                
+                
+            
+                /// 독수리 클릭시 쥐도 같이 이동 ////
+                $("#rat") //쥐
+                // 1. 쥐이동(2초)
+                .animate({
+                    bottom:"10%",
+                    left:"20%"
+                },2000,"easeInQuart")
+                // 2. 멈춤(2초)
+                .delay(2000)
+                // 3. 쥐이동(2초)
+                .animate({
+                    bottom:"0%",
+                    left:"70%"
+                },2000,"easeOutQuart")
+                // 4. 독수리가 내려올때까지 멈춤
+                .delay(900)
+                // 5. 독수리와 함께 사라짐
+                .animate({
+                    bottom:"50%",
+                    left:"110%"
+                },500,"easeInCubic");
+                
+                
+                
+                
+            });/////// click //////////////
+            
+            /////// 리플레이버튼 클릭시 새로고침 ////
+            $("#replay").click(function(){
+                location.reload();
+            });////// click ///////////////////
+            
+            
+            
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+        
+        /*////////////////////////////////////////////////
+            함수명:arrImg
+            기능: 연속장면 이미지를 순서대로 선택요소 내부에 추가함
+        */ /////////////////////////////////////////////////
+        function arrImg() {
+            console.log("이미지셋팅함수!");
+            // 1. 애니메이션할 이미지 셋팅
+            for (var i = 0; i < 9; i++) {
+                $("#eagle").append(
+                    '<img src="seq2/seq'+i+'.png" alt="장면">');
+            } ////////// for /////////////
+            
+            // 2. 첫장면만 보이고 나머지 숨기기
+            $("#eagle img").hide().first().show();
+
+        } ///////////// arrImg 함수 //////////////////
+        ////////////////////////////////////////////////
+        ////////////////////////////////////////////////
+        
+        /*////////////////////////////////////////
+            함수명:nextFrame
+            기능: 순서대로 다음 이미지를 한장씩 보이게함
+        */////////////////////////////////////////
+        var fnum = 0;//장면이미지번호
+        var fcnt;//장면개수(초기셋팅필요!)
+        function nextFrame(){
+            //console.log("장면넘기기!");
+            // 1. 장면번호 증가
+            fnum++;
+            if(fnum > fcnt-1) fnum = 0;
+            //console.log("장면번호"+fnum);
+            
+            //2. 보이는 장면은 숨기고
+            $("#eagle img:visible").hide();
+            //3. 순번에 해당하는 이미지는 보이게한다.
+            $("#eagle img").eq(fnum).show();
+            
+        } ///////////// nextFrame 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        
+
+    </script>
+</head>
+
+<body>
+
+    <!--독수리-->
+    <div id="eagle"></div>
+
+    <!--쥐-->
+    <div id="rat"></div>
+    
+    <!--클릭안내-->
+    <div id="desc">
+        <img src="img/arrow.png" alt="화살표">
+        Click Here!
+    </div>
+    
+    <!--리플레이 버튼-->
+    <img src="img/replayBtn.png" alt="리플레이버튼" id="replay">
+
+
+
+
+
+</body>
+
+</html>

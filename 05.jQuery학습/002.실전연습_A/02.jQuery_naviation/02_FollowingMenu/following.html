@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>따라다니는 애니메이션 마우스 포인터</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: none;
+            /*커서숨기기*/
+        }
+
+        #screen {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            /*3無*/
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        #screen li {
+            float: left;
+            width: 50%;
+            height: 50%;
+        }
+
+        /*각 영역 배경넣기*/
+        #screen li:nth-child(1) {
+            background: url(bg1.JPG) no-repeat 0/cover;
+        }
+
+        #screen li:nth-child(2) {
+            background: url(bg2.JPG) no-repeat 0/cover;
+        }
+
+        #screen li:nth-child(3) {
+            background: url(bg3.JPG) no-repeat 0/cover;
+        }
+
+        #screen li:nth-child(4) {
+            background: url(bg1.JPG) no-repeat 0/cover;
+        }
+
+        /*마우스포인터 이미지*/
+        #myc {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            z-index: 99999;
+            /*맨위!*/
+
+        }
+    </style>
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script>
+        $(function() { // jQB /////////////////
+            // 포인터가 움직일 영역: window
+            $(window).mousemove(function(e) { //e-이벤트전달변수
+                var posx = e.pageX + 5; //아래를 클릭하도록 5px보정
+                var posy = e.pageY;
+                //console.log("x:y="+posx+":"+posy);
+
+                // 마우스 포인터 위치에 따라 이미지를 이동하여 따라다님
+                $("#myc").css({
+                    top: posy + "px",
+                    left: posx + "px"
+                }); /////// css /////////
+
+            }); ////////// mousemove /////////////
+
+            // 커서이미지 숨기기
+            $("#myc").hide();
+
+            // window에 마우스가 들어오면 커서보이고 나가면 숨기기
+            $(window).hover(
+                function() { // hover
+                    $("#myc").show();
+                },
+                function() { // out
+                    $("#myc").hide();
+                }); //// hover ////////////////
+
+            //// li각 영역에 마우스 이미지 변경하기 ////
+            /// mouseenter 이벤트: mouseover와 유사하나 선택요소의
+            ///         경계선을 기준으로 들어갈때 발생하는 이벤트
+            // 비교: mouseleave 이벤트는 경계선을 벗어날때 발생
+            $("#screen li").mouseenter(function() {
+                var idx = $(this).index(); //li순번
+                //console.log("순번:"+idx);
+                var isrc; //이미지경로
+                switch (idx) {
+                    case 0:
+                        isrc = "images/13148a1.gif";
+                        break;
+                    case 1:
+                        isrc = "images/strtail.gif";
+                        break;
+                    case 2:
+                        isrc = "images/Tail2.gif-c200.gif";
+                        break;
+                    case 3:
+                        isrc = "images/yoshi-cursor.gif";
+                        break;
+                } //// switch case //////////
+                
+                /// 커서이미지 변경하기 ///
+                $("#myc").attr("src",isrc);
+
+            }); ///////////// mouseenter ////////////
+
+
+
+
+
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+    </script>
+</head>
+
+<body>
+    <!--4영역-->
+    <ul id="screen">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!--따라다닐 커서 이미지-->
+    <img src="images/13148a1.gif" alt="마우스포인터" id="myc">
+
+
+
+
+
+</body></html>

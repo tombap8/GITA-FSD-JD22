@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title> one page scroll </title>
+
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.scrollTo-min.js"></script>
+
+<style>
+/********************** navi**********************/
+*{margin:0px; padding:0px;}
+
+#navigation{
+	position:fixed; 
+	top:0px;
+	left:0px;
+	height:80px;
+	width:100%; 
+	background:#000;	  
+	text-align:center;
+	font-size:14px;
+}
+#navigation ul {list-style:none; margin-top:50px; margin-left:400px;}		   		
+#navigation li {display:inline; margin-right:10px;}
+#navigation li a { text-decoration:none; color:#FFF;}
+#navigation li a:hover {color:#0F0;}
+
+#wrap {width:800px;margin:0 auto;margin-top:80px;   }
+#red{background:red; height:700px;}
+#blue{background:blue; height:700px;}
+#yellow{background:yellow; height:700px;}
+#black{background:black; height:700px;}
+
+
+</style>
+</head>
+
+<body>
+
+<div id="navigation">
+    <ul>
+        <li><a href="#red"> RED </a> </li>
+        <li><a href="#blue"> BLUE </a> </li>
+        <li><a href="#yellow"> YELLOW </a> </li>
+        <li><a href="#black"> BLACK </a> </li>
+    </ul>
+</div>
+
+<div id="wrap">
+    <div id="red"></div>
+    <div id="blue"></div>
+    <div id="yellow"></div>
+    <div id="black"></div>
+</div>
+<script>
+
+</script>
+
+</body>
+</html>

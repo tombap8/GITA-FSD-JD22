@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>One Page Scroll - Top Menu</title>
+    <style>
+        html,
+        body,
+        .wrap {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            /*높이값 보이는 화면기준*/
+        }
+
+        /*공통셋팅*/
+        a {
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 0 0 2px #777;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul::after {
+            content: "";
+            display: block;
+            clear: both;
+            /*float해제*/
+        }
+
+        li {
+            float: left;
+            /*옆으로 흐르게*/
+        }
+
+        img {
+            border: none;
+            /*이미지 링크시 테두리없앰*/
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            /*16px기준*/
+        }
+
+
+        /*공통 class*/
+        .page {
+            width: 100%;
+            height: 100%;
+        }
+
+        /*IR 등*/
+        .bld {
+            display: none;
+        }
+
+        /*상단영역*/
+        .top {
+            position: absolute;
+            /*상단고정-스크롤시 이동됨*/
+            width: 100%;
+            z-index: 9999;
+            /*맨위로!*/
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        /*상단영역 디자인 변경 class*/
+        .newTop{
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .newTop #logo{/*로고*/
+            width: 150px;
+            height: 40%;
+            margin-top: 4px;
+            background-color: #000;
+        }
+        .newTop .gnb{/*GNB*/
+            top: 6px;
+        }
+        .newTop .gnb a{/*GNB a링크*/
+            color: #000;
+            text-shadow: none;
+            font-weight: bold;
+        }
+        .newTop .gnb a:hover,
+        .newTop .gnb li.on a{/*마우스오버시,선택class*/
+            text-shadow: 1px 0 #000, -1px 0 #000,
+                0 1px #000, 0 -1px #000;
+        }
+        
+        
+
+        .inbox {
+            position: relative;
+            /*부모자격*/
+            width: 1920px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        #top {
+            height: 80px;
+        }
+
+        /*로고*/
+        #logo {
+            width: 250px;
+            height: 100%;
+            text-align: center;
+            overflow: hidden;
+            /*넘치는자식숨김*/
+        }
+
+        #logo img {
+            width: 100%;
+            margin-top: -24px;
+        }
+
+        /*GNB메뉴*/
+        .gnb {
+            position: absolute;
+            /*부모? #top*/
+            top: 40px;
+            right: 2%;
+        }
+
+        .gnb li {
+            margin: 0 7px;
+        }
+
+        /*메뉴에 마우스 오버시*/
+        .gnb a:hover {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li:hover {
+            transform: scale(1.1);
+        }
+
+        /*선택된 메뉴 class*/
+        .gnb li.on a {
+            color: lime;
+            text-decoration: overline;
+        }
+
+        .gnb li.on {
+            transform: scale(1.1);
+        }
+
+
+        /*개별페이지셋팅*/
+        #pg1 {
+            background: url(images/pic1.png) no-repeat top/cover;
+        }
+
+        #pg2 {
+            background: url(images/pic2.png) no-repeat top/cover;
+        }
+
+        #pg3 {
+            background: url(images/pic3.png) no-repeat top/cover;
+        }
+
+        #pg4 {
+            background: url(images/pic4.png) no-repeat top/cover;
+        }
+
+        #pg5 {
+            background: url(images/pic5.png) no-repeat top/cover;
+        }
+
+        #pg6 {
+            background: url(images/pic6.png) no-repeat top/cover;
+        }
+
+        #pg7 {
+            background: url(images/pic7.png) no-repeat top/cover;
+        }
+
+        /*블릿 네비게이션*/
+        .bnav {
+            position: fixed;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            /*세로중앙이동*/
+            width: 15px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .bnav li {
+            position: relative;
+            /*부모자격(span)*/
+            width: 100%;
+            height: 15px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            margin: 6px 0;
+        }
+
+        /*선택네비 class*/
+        .bnav li.on {
+            background-color: #EC686A;
+            transform: scale(1.15);
+        }
+
+        /*블릿a링크*/
+        .bnav a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*블릿글자*/
+        .bnav span {
+            position: absolute;
+            top: -50%;
+            right: 200%;
+            white-space: nowrap;
+            font: bold .9rem "맑은 고딕", Verdana;
+            text-shadow: 1px 0 #000, -1px 0 #000,
+                0 1px #000, 0 -1px #000;
+            display: none;
+            /*글자숨기기*/
+        }
+
+        /*마우스 오버시 글자보이기*/
+        .bnav li:hover span {
+            display: block;
+        }
+
+        /*선택메뉴 글자보이기*/
+        .bnav li.on span {
+            display: block;
+        }
+
+        /*위로이동버튼*/
+        #tbtn {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            top: 70%;
+            right: 100px;
+            font: bold 20px Verdana;
+            color: #f00;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, .5);
+            cursor: pointer;
+            /*손가락*/
+            display: none;
+            /*처음에 안보임*/
+        }
+        
+        /*크롬 포커스 아웃라인 없애기*/
+        #tbtn:focus{
+            outline: none;
+        }
+        
+    </style>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script>
+        /// 전역변수구역 //////////////
+        
+        // 1.현재 페이지번호
+        var pno = 0;
+        // 2.스크롤액션 실행여부(메뉴변경)
+        var pm1=0,pm2=0,pm3=0,pm4=0,pm5=0,pm6=0,pm7=0;
+        // 3.스크롤액션 기준위치
+        var p1pos,p2pos,p3pos,p4pos,p5pos,p6pos,p7pos;
+        // 4.기준선 범위 갭
+        var gap = 200;
+        // 5.메뉴를 클릭할 경우 상태변수
+        var click_sts = 0;//0-클릭안함,1-클릭함
+        // 6.탑메뉴 변경 실행여부 체크 상태변수
+        var tmsts = 0;//0-실행전, 1-실행후
+        
+
+        // 탑버튼위치값(top:70%)
+        var tbpos = $(window).height() * 0.7;
+        //console.log("70%값:" + tbpos);
+        // 창 세로크기의 70%값을 px수치로 계산
+
+        ///// 스크롤 이벤트 함수 ////////
+        /// scroll() /////////////////
+        $(window).scroll(function(e) {
+            
+            // 현재 스크롤 위치값(세로스크롤)
+            var scTop = $(this).scrollTop();
+            ////console.log("위치:"+scTop);
+            
+            ///// 탑메뉴 상단에 고정하기 ////////
+            // 위치: 스크롤이 2페이지 위치를 통과할때
+            if(scTop>p2pos && tmsts===0){
+                tmsts = 1;//잠금!
+                // .top 요소가 absolute에서 fixed로 포지션변경
+                // 그리고 처음에 안보여야 하므로 높이값 만큼 
+                // 화면위로 올려서 숨김!
+                // top값을 변경하면서 애니메이션 등장!
+                // 이때 새로운 디자인 적용 class="newTop"넣기
+                $(".top")
+                .addClass("newTop")
+                .css({
+                    position: "fixed",
+                    top: "-40px"//새로운 디자인 높이값만큼 위로
+                })
+                .animate({
+                    top: "0px"
+                },600,"easeOutQuint");
+                
+                
+            } //// if ///////////////////
+            // 원위치로 복귀!!
+            else if(scTop<p2pos && tmsts===1){
+                tmsts=0;//잠금(반대로!)
+                // 먼저 위로 올라가서 숨기기 애니메이션
+                $(".top")
+                .animate({
+                    top: "-40px"
+                },200,"easeOutQuint",function(){
+                    // 애니메이션 후
+                    $(this).css({ //원래포지션,위치
+                        position: "absolute",
+                        top:"0px"
+                    }).removeClass("newTop");//class제거
+                    
+                }); /// animate /////
+            } ///// else if /////////////////
+            
+            
+            
+
+            // 탑이동버튼 위치 이동하기(애니메이션)
+            // 현재 탑메뉴버튼위치값(top) + 스크롤위치값
+            // 대상: #tbtn
+
+            // 1.스크롤위치가 200px 미만일때
+            if (scTop < 200) {
+
+                // 버튼숨기고 처음위치로
+                $("#tbtn").hide().css({
+                    top: tbpos + "px"
+                }); /// css ///////
+
+            } //// if ////////////////////
+            // 2.스크롤위치가 200px 이상일때
+            else {
+
+                // 버튼보이고 위치이동하기
+                $("#tbtn").show().stop()
+                    .animate({
+                        top: (tbpos + scTop) + "px"
+                    }, 400, "easeOutCirc");
+
+            } //// else //////////////////
+            
+            
+            // 클릭으로 메뉴 이동시 스크롤작동 막기
+            // 탑버튼 제외(이 코드 위에 위치)
+            if(click_sts===1) return false;
+            //////////////////////////////////
+            
+            
+            //// 스크롤 이동시 해당페이지 메뉴 변경하기 ///
+            // 논리조건: 위치값이 기준값 보다 크고 기준값에 더한값보다 작고 실행된 적이 없을때
+            //// 1번 페이지 ////
+            if(scTop > p1pos && scTop<p1pos+gap && pm1===0){
+                pm1=1;//잠금(한번만 실행)
+                pm2=0;//해제(다음페이지)
+                pno=0;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 1번 페이지 /////
+            //// 2번 페이지 ////
+            else if(scTop > p2pos-gap && scTop<p2pos+gap && pm2===0){
+                pm2=1;//잠금(한번만 실행)
+                pm1=0,pm3=0;//해제(앞뒤페이지)
+                pno=1;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 2번 페이지 /////
+            //// 3번 페이지 ////
+            else if(scTop > p3pos-gap && scTop < p3pos+gap && pm3===0){
+                pm3=1;//잠금(한번만 실행)
+                pm2=0,pm4=0;//해제(앞뒤페이지)
+                pno=2;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 3번 페이지 /////
+            //// 4번 페이지 ////
+            else if(scTop > p4pos-gap && scTop < p4pos+gap && pm4===0){
+                pm4=1;//잠금(한번만 실행)
+                pm3=0,pm5=0;//해제(앞뒤페이지)
+                pno=3;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 4번 페이지 /////
+            //// 5번 페이지 ////
+            else if(scTop > p5pos-gap && scTop < p5pos+gap && pm5===0){
+                pm5=1;//잠금(한번만 실행)
+                pm4=0,pm6=0;//해제(앞뒤페이지)
+                pno=4;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 5번 페이지 /////
+            //// 6번 페이지 ////
+            else if(scTop > p6pos-gap && scTop < p6pos+gap && pm6===0){
+                pm6=1;//잠금(한번만 실행)
+                pm5=0,pm7=0;//해제(앞뒤페이지)
+                pno=5;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 6번 페이지 /////
+            //// 7번 페이지 ////
+            else if(scTop > p7pos-gap && scTop < p7pos+gap && pm7===0){
+                pm7=1;//잠금(한번만 실행)
+                pm6=0;//해제(앞페이지)
+                pno=6;//페이지번호 설정
+                chgMenu();//메뉴변경
+                
+            }///// 7번 페이지 /////
+            
+
+
+        }); /////// scroll ///////////////////
+        //////////////////////////////////////
+
+
+
+
+
+        ////// jQB /////////////////////////
+        $(function() {
+            
+            /// 스크롤액션 기준요소 top값 셋팅
+            // offset().top 으로 각 요소의 top값 읽어오기
+            p1pos = $("#pg1").offset().top;
+            p2pos = $("#pg2").offset().top;
+            p3pos = $("#pg3").offset().top;
+            p4pos = $("#pg4").offset().top;
+            p5pos = $("#pg5").offset().top;
+            p6pos = $("#pg6").offset().top;
+            p7pos = $("#pg7").offset().top;
+            //console.log("위치:"+p1pos+"/"+p2pos+"/"+p3pos+"/"+p4pos+"/"+p5pos+"/"+p6pos+"/"+p7pos);
+            
+            
+            
+            
+            
+            /// 페이지 새로 고칠때 맨위로 가게하기(브라우저 캐쉬가 잘 안지워져서 쓰는 것임!) 
+            setTimeout(function() {
+                $("html,body").animate({
+                    scrollTop: "0px"
+                }, 10); /// animate ////
+            }, 500); //// 타임아웃 ////////
+
+
+
+
+            // GNB a링크를 클릭하면 해당 페이지위치로 이동 애니메이션
+            // 이벤트 대상 : .gnb a
+            $(".gnb a,.bnav a").click(function(e) {
+                // 전달변수 e는 이벤트관련 값을 내부로 전달함!
+                e.preventDefault();
+                // preventDefault()는 기본 기능을 막아줌
+                // a 링크에 사용하면 이동기능이 발생하지 않음!  
+                
+                // 스크롤 이벤트막기 상태값 변경!
+                click_sts = 1;
+                
+                // 클릭된 a요소의 부모li순번을 pno에 넣기!
+                var idx = $(this).parent().index();
+                pno = idx;
+                //console.log("메뉴순번:"+idx);
+
+                // 1. a의 href 값 가져오기
+                // this 는 클릭된 a요소 자신
+                // attr(속성명) - 속성의 값을 가져옴
+                // JS의 getAttribute(속성명) 과 같은 기능의 메서드
+                var pid = $(this).attr("href");
+                //console.log("이동id:" + pid);
+
+                // 2. 이동할 위치의 아이디 top값을 구함
+                var pgpos = $(pid).offset().top;
+                // offset() 메서드는 요소의 기본셋팅 정보를 리턴함
+                // - top,left,width, height 등의 값을 알 수 있음
+
+                //console.log("위치값:" + pgpos);
+
+                // 3. 스크롤에 애니메이션을 설정하여 해당위치로 이동
+                // scrollTop 속성은 세로스크롤 위치값
+                // stop()은 애니메이션 큐를 지움!
+                $("html,body").stop().animate({
+                    scrollTop: pgpos + "px"
+                }, 800, "easeInOutQuint",function(){
+                    //이동후 클릭상태값 해제하기
+                    click_sts = 0;
+                }); /// animate //////
+
+                // 이징을 설정하여 자연스런운 이동 애니메이션 연출!
+                // 구글에 "easing"을 검색하여 
+                //"Easing Functions Cheat Sheet"를 클릭
+                // 해당 이징이름을 복사하여 animate 이징순서에 넣는다!
+                // 중요: 이징을 사용하려면 jQuery UI를 불어와야함!
+                
+                /// 메뉴변경함수 호출!
+                chgMenu();
+
+            }); //////// click /////////////
+            ////////////////////////////////
+
+            /// 탑버튼 클릭시 맨위로 이동하기 ////
+            $("#tbtn").click(function(){
+                click_sts = 1;//스크롤잠금
+                $("html,body").animate({
+                    scrollTop: "0px"
+                },800,"easeInOutQuint",function(){
+                    click_sts = 0;//해제   
+                });/// animate /////
+                
+                // 메뉴변경하기 //
+                pno = 0;
+                chgMenu();
+                
+            });////////// click ///////////
+
+
+
+
+        }); /////////// jQB ///////////////////
+        //////////////////////////////////////
+        //////////////////////////////////////
+
+        /*////////////////////////////////////////
+    함수명: chgMenu
+    기능:메뉴 선택 변경하기
+*/ ////////////////////////////////////////
+        function chgMenu() {
+            
+            // GNB 메뉴 선택 li에 class="on"넣기
+            $(".gnb li").eq(pno).addClass("on")
+                .siblings().removeClass("on");
+            // 블릿 메뉴 선택 li에 class="on"넣기
+            $(".bnav li").eq(pno).addClass("on")
+                .siblings().removeClass("on");
+            
+        } ///////////// chgMenu 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+    </script>
+
+
+</head>
+
+<body>
+    <!--상단영역-->
+    <div class="top">
+        <header class="inbox" id="top">
+            <!--로고-->
+            <h1 id="logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="메가박스로고">
+                </a>
+            </h1>
+            <!--GNB메뉴-->
+            <nav class="gnb">
+                <ul>
+                    <li class="on">
+                        <a href="#pg1">아수라</a>
+                    </li>
+                    <li>
+                        <a href="#pg2">고산자</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">인천상륙작전</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">봉이김선달</a>
+                    </li>
+                    <li>
+                        <a href="#pg5">비밀은없다</a>
+                    </li>
+                    <li>
+                        <a href="#pg6">아가씨</a>
+                    </li>
+                    <li>
+                        <a href="#pg7">탐정홍길동</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!--페이지 섹션-->
+    <div class="wrap">
+        <section id="pg1" class="page"></section>
+        <section id="pg2" class="page"></section>
+        <section id="pg3" class="page"></section>
+        <section id="pg4" class="page"></section>
+        <section id="pg5" class="page"></section>
+        <section id="pg6" class="page"></section>
+        <section id="pg7" class="page"></section>
+    </div>
+
+    <!--블릿네비게이션-->
+    <ol class="bnav">
+        <li class="on">
+            <a href="#pg1"><span>아수라</span></a>
+        </li>
+        <li>
+            <a href="#pg2"><span>고산자</span></a>
+        </li>
+        <li>
+            <a href="#pg3"><span>인천상륙작전</span></a>
+        </li>
+        <li>
+            <a href="#pg4"><span>봉이김선달</span></a>
+        </li>
+        <li>
+            <a href="#pg5"><span>비밀은없다</span></a>
+        </li>
+        <li>
+            <a href="#pg6"><span>아가씨</span></a>
+        </li>
+        <li>
+            <a href="#pg7"><span>탐정홍길동</span></a>
+        </li>
+    </ol>
+
+
+
+
+
+
+    <!--따라오는 TOP메뉴-->
+    <button id="tbtn">TOP</button>
+
+
+
+
+</body></html>

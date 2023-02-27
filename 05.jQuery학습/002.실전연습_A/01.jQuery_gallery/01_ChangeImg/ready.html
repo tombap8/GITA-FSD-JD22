@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 썸네일 포토 갤러리 </title>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script>
+    $(function(){
+        // 썸네일을 클릭하면 큰 이미지를 href속성값으로 변경함!
+        // 대상: .thumbs a
+        $(".thumbs a").click(function(e){
+            e.preventDefault();//기본이동막기
+            
+            // 1.클릭된 a요소의 href값 읽어오기
+            var isrc = $(this).attr("href");
+            //console.log("경로:"+isrc);
+            
+            // 2.큰이미지의 src 속성을 isrc값으로 변경
+            $("#largeImg img").attr("src",isrc);
+            
+        });//////// click /////////////////
+        
+        
+        
+        
+    });//////// jQB /////////////////////////
+    </script>
+<style type="text/css">
+
+
+body {
+	margin:20px auto;
+	padding:0;	
+	width:620px;
+	background:#192839;
+}
+.thumbs {
+   width:100px;	
+   float:left;
+}
+.thumbs img {
+	border:solid 1px #ccc;
+	padding:5px;
+	margin-bottom:3px;
+}
+.thumbs img:hover {
+	border-color: #EF4018;
+}
+
+#largeImg {
+	border:solid 1px #ccc;
+	width:500px;
+	height:280px;
+	padding:5px;
+    margin-left:110px;
+}
+</style>
+</head>
+
+<body>
+
+    <div class="thumbs">
+        <a href="images/pic1.jpg" title="image1"><img src="images/th_pic1.jpg" /></a>
+        <a href="images/pic2.jpg" title="image2"><img src="images/th_pic2.jpg" /></a>
+        <a href="images/pic3.jpg" title="image3"><img src="images/th_pic3.jpg" /></a>
+    </div>
+    <div id="largeImg"><img src="images/pic1.jpg" alt="image1" /></div>
+
+<!---------- jQuery code Start ---------->
+<script>
+	
+
+</script>
+</body>
+</html>

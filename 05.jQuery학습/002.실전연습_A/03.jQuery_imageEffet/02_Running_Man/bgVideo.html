@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> BG Video </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script>
+        var icall;// 인터발변수
+        $(function() { // jQB /////////////////
+            // 이미지셋팅함수 호출
+            arrImg();
+            
+            // 장면개수 셋팅
+            fcnt = $("#ani img").length;
+            console.log("장면개수:"+fcnt);
+            
+            //장면 넘기기 셋팅!!!
+            setInterval(nextFrame, 50);
+            
+            // 글씨체 전환하기
+            var ff = ["Dancing Script","Pangolin","Permanent Marker"];
+            var fc = ["#ff00eb","#5e2dff","#22b100"];
+            var fno = 0;//글씨체순번
+            
+            /// 타이틀 글자체를 3초간격으로 변경한다 ///
+            setInterval(function(){
+                fno++;
+                if(fno===3) fno=0;//한계수
+                
+                $(".tit").css({
+                    fontFamily:ff[fno],
+                    color:fc[fno]
+                }); //// css ///////
+                
+            },3000); ///// 인터발 /////
+            
+            
+        }); ///////// jQB /////////////////////
+        /////////////////////////////////////
+
+        /*////////////////////////////////////////////////
+            함수명:arrImg
+            기능: 연속장면 이미지를 순서대로 선택요소 내부에 추가함
+        */ /////////////////////////////////////////////////
+        function arrImg() {
+            console.log("이미지셋팅함수!");
+            // 1. 애니메이션할 이미지 셋팅
+            for (var i = 0; i < 40; i++) {
+                $("#ani").append('<img src="new_seq/seq'+i+'.jpg" alt="장면">');
+            } ////////// for /////////////
+            
+            // 2. 첫장면만 보이고 나머지 숨기기
+            $("#ani img").hide().first().show();
+
+        } ///////////// arrImg 함수 //////////////////
+        ////////////////////////////////////////////////
+        ////////////////////////////////////////////////
+        
+        /*////////////////////////////////////////
+            함수명:nextFrame
+            기능: 순서대로 다음 이미지를 한장씩 보이게함
+        */////////////////////////////////////////
+        var fnum = 0;//장면이미지번호
+        var fcnt;//장면개수(초기셋팅필요!)
+        function nextFrame(){
+            //console.log("장면넘기기!");
+            // 1. 장면번호 증가
+            fnum++;
+            if(fnum > fcnt-1) fnum = 0;
+            //console.log("장면번호"+fnum);
+            
+            //2. 보이는 장면은 숨기고
+            $("#ani img:visible").hide();
+            //3. 순번에 해당하는 이미지는 보이게한다.
+            $("#ani img").eq(fnum).show();
+            
+        } ///////////// nextFrame 함수 //////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        
+        
+        
+        
+        
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pangolin&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <style>
+        /*
+        font-family: 'Dancing Script', cursive;
+        font-family: 'Pangolin', cursive;
+        font-family: 'Permanent Marker', cursive;
+        */
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        div#ani {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        /*반투명가림막(가상요소)*/
+        #ani::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ff00ff;
+            opacity: .3;
+        }
+
+        div#ani img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        /*타이틀*/
+        .tit{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: #ff00eb;
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            font-size: 108px;
+            text-shadow: 4px 4px 5px #777;
+            white-space: nowrap;/*줄바꿈방지*/
+            font-family: 'Dancing Script', cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <!--애니메이션 박스-->
+    <div id="ani"></div>
+    
+    <!--타이틀글자-->
+    <h1 class="tit">It's My Style!</h1>
+    
+    
+    
+
+
+
+    <!------------------------ jQuery 코드 ----------------------->
+    <script>
+
+    </script>
+</body></html>

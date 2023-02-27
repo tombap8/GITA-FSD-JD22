@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>drag and drop 기능</title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+        $(function() { /// jQB /////////////////////////////
+
+            /// 드래그 기능 적용하기 ///
+            // jQuery UI를 jQuery 라이브러리 아래에 불러온다!
+            // 드래그 & 드롭 기능은 jQuery UI에 포함된 기능임
+            // 사용법: $(선택자).draggable()
+            $(".draggable").draggable({
+                cursor: "move", // 커서모양을 "이동중"표시로 변경
+                stack: ".draggable", // 드래그 대상 상위처리
+                opacity: 0.7 // 이동 중 투명도설정
+            }); ///// draggable /////////
+
+            /// 1. 드래그가 시작되면 배경이미지 class로 변경하기
+            /// dragstart 이벤트: 드래그가 시작되면 발생하는 이벤트
+            /// on(이벤트명,함수) 메서드 사용!
+            $(".draggable").on("dragstart", function() {
+                // 클래스넣기
+                $(this).addClass("invert");
+            }); ///////// dragstart //////////////////
+
+            /// 2. 드래그가 끝나면 배경이미지 원상복귀(클래스제거)
+            /// dragstop 이벤트 :  드래그가 끝나면 발생하는 이벤트
+            $(".draggable").on("dragstop", function() {
+                $(this).removeClass("invert");
+            }); ///////// dragstop ///////////////////
+
+            ///////// 드롭할때 발생하는 이벤트 처리 ////////
+            //// droppable() 메서드 : 드롭되는 요소처리
+            /// 이벤트 대상: #dropshow
+            $("#dropshow").droppable({
+                drop: function(event, ui) {
+                    //event-이벤트전달값, ui-드롭관련객체
+                    //console.log("나,빠졌다~~~!");
+
+                    // 1. 드롭된 요소의 이미지 src를 읽어옴
+                    // 드롭된 요소 -> ui.draggable
+                    var isrc = ui.draggable
+                        .find("img").attr("src");
+                    //console.log("이미지경로:"+isrc);
+
+                    // 2. 드롭영역의 배경이미지 변경하기
+                    // $(this) ->  $("#dropshow")
+                    $(this).css({
+                        backgroundImage: "url(" + isrc + ")"
+                    }); //// css ////////////
+
+                    // 3. 드롭된요소의 자식 p태그의 글자 읽어오기
+                    var dtxt = ui.draggable.find("p").text();
+                    //console.log("글자:"+dtxt);
+
+                    // 4. 드롭영역에 글자넣기
+                    $(this).text(dtxt + " 당첨~!!!");
+
+                    // 5. 드롭된요소 사라지게 하기
+                    ui.draggable.hide();
+
+                    // 6. 유튜브 동영상 박스 넣기
+                    $("body")
+                        .append(
+                            '<div id="mbox"><a href="#">×</a></div>');
+
+                    // 7. 동영상박스 css셋팅하기
+                    $("#mbox").css({
+                        position: "fixed",
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                        height: "100%",
+                        zIndex: "999",
+                        backgroundColor: "#000"
+                    }); /// css ///////////
+
+                    // 8. 동영상 박스에 유튜브 iframe 넣기
+                    // 동영상 코드 읽어오기
+                    var mv = ui.draggable.attr("data-mv");
+                    //console.log("동영상코드:"+mv);
+                    // 동영상 코드를 iframe에 넣어줌!
+                    $("#mbox").append('<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + mv + '?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+                        // 9. 동영상박스 숨긴후 0.5초 기다렸다가 보이기!
+                        .hide().delay(500).slideDown(2000);
+
+                    // 10. 닫기버튼 셋팅 및 클릭시 동영상닫기
+                    $("#mbox>a").css({
+                            position: "absolute",
+                            width: "50px",
+                            height: "50px",
+                            top: "50px",
+                            right: "50px",
+                            textDecoration: "none",
+                            font: "bold 48px Verdana",
+                            color: "#fff",
+                            textShadow: "0 0 5px #777"
+                        }) /// css /////////
+                        .click(function() {
+                            //#mbox닫기
+                            $("#mbox").slideUp(1000, function() {
+                                // 닫은 후 액션들
+
+                                //1. 자기자신없애기
+                                $(this).remove();
+
+                                //2. 드롭된요소 다시 보이기
+                                ui.draggable.show();
+
+                                //3. 드롭된요소 원위치로 돌아가기
+                                // 드롭된요소의 포지션은 relative임.
+                                // 따라서 top:0, left:0 하면 원위치임
+                                ui.draggable.css({
+                                    top: "0",
+                                    left: "0"
+                                }); /// css /////////
+
+                                //4. 드롭박스 화면 초기화
+                                $("#dropshow").empty() //내용지우기
+                                    .css({ //처음배경이미지로변경
+                                        backgroundImage: "url(addimg/effect2.jpg)"
+                                    }); //// css //////
+
+                            }); ///// slideUp //////////
+                        }); /////////// click ////////////
+
+
+
+
+
+                }
+            }); ////// droppable /////////////////////////
+
+
+
+
+
+
+
+
+        }); //////////// jQB //////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+    </script>
+
+
+    <style>
+        div.draggable {
+            float: left;
+            width: 160px;
+            height: 160px;
+            padding: 10px 0px 0px 20px;
+            background: url(post.png) no-repeat;
+        }
+
+        .draggable img {
+            width: 130px;
+            height: 80px;
+        }
+
+        div.invert {
+            background: url(post2.png) no-repeat;
+        }
+
+        /*드롭박스*/
+        #dropshow {
+            width: 500px;
+            height: 400px;
+            text-align: center;
+            background: url(addimg/effect2.jpg) no-repeat center/cover;
+            font: bold 36px/400px "맑은 고딕", "굴림";
+            color: #f00;
+            text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff;
+            /*글자 흰색 테두리*/
+            margin: 50px auto;
+        }
+        .dbox{
+            width: 720px;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--드롭할 박스-->
+    <div id="dropshow"></div>
+
+    <!--드래그할 포스트잍 박스들-->
+    <div class="dbox">
+        <div class="draggable" data-mv="6o9Hv5nFL-s">
+            <p>쇼핑몰 자유이용권</p>
+            <img src="addimg/gm.jpg" alt="쥐마켓">
+        </div>
+
+        <div class="draggable" data-mv="JDKhD-QNcvM">
+            <p>롯떼월드 자유이용권</p>
+            <img src="addimg/lottee.jpg" alt="롯떼월드">
+        </div>
+
+        <div class="draggable" data-mv="miSL86dtqis">
+            <p>큐챠 자유이용권</p>
+            <img src="addimg/coocha.jpg" alt="큐챠">
+        </div>
+
+        <div class="draggable" data-mv="BiOH_s5kIQ8">
+            <p>해외여행자유이용권</p>
+            <img src="addimg/effect1.jpg" alt="쥐마켓">
+        </div>
+    </div>
+
+    <script>
+
+
+
+    </script>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
