@@ -18,7 +18,7 @@
             outline: 1px solid blue;
         }
         .tpg{
-            height: 500vh;
+            height: calc(100vh + 3000px);
             background-color: orange;
         }
         .slidePg{
@@ -33,6 +33,7 @@
             position: relative;
             left: 0;
             display: flex;
+            width: calc(100vw + 3000px);
             gap: 0 30vw;
             margin: 0;
             padding: 0;
@@ -78,7 +79,7 @@
                 let tgpos = retVal(tgbx);
                 console.log(tgpos);
                 if(tgpos<0 && tgpos > -limitH){
-                    mvtg.style.left = (tgpos*winW) + "px";
+                    mvtg.style.left = (tgpos) + "px";
                 }
                 else if(tgpos > 0){
                     mvtg.style.left = "0";
