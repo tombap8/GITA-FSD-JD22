@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS실험실: 스크롤가로이동</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            overflow-x: hidden;
+        }
+        
+        .pg{
+            height: 100vh;
+            outline: 1px solid blue;
+        }
+        .tpg{
+            height: 500vh;
+            background-color: orange;
+        }
+        .slidePg{
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            
+            background-color: orange;
+        }
+        .slidePg ul{
+            position: relative;
+            left: 0;
+            display: flex;
+            gap: 0 30vw;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            
+        }
+
+        .slidePg ul li img{
+            width: 30vw;
+            border-radius: 10vw;
+        }
+        
+
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded",()=>{
+            console.log("loaded");
+
+            let hcode = "<ul>";
+            const tg = document.querySelector(".slidePg");
+            const tpg = document.querySelector(".tpg");
+
+            for(let x = 1; x<8 ; x++){
+                hcode += `<li><img src="images/dance/${x}.jpg" alt="dance"></li>`;
+            }
+            hcode += "</ul>";
+            tg.innerHTML += hcode;
+
+            const tgbx = document.querySelector(".tpg");
+
+            const retVal = x => x.getBoundingClientRect().top;
+
+            
+            const mvtg = document.querySelector(".slidePg ul");
+            const limitH = tpg.clientHeight-window.innerHeight;
+            const winW = limitH/window.innerWidth*0.75;
+            console.log("윈도우비:",winW);
+            console.log("타겟박스높이:",limitH);
+
+            window.addEventListener("scroll",()=>{
+                let scTop = window.scrollY;
+
+                let tgpos = retVal(tgbx);
+                console.log(tgpos);
+                if(tgpos<0 && tgpos > -limitH){
+                    mvtg.style.left = (tgpos*winW) + "px";
+                }
+                else if(tgpos > 0){
+                    mvtg.style.left = "0";
+                }
+            })
+        }); ////////// load /////////////////
+    </script>
+</head>
+<body>
+    <div class="pg"></div>
+    <div class="pg"></div>
+    <div class="pg tpg">
+        <div class="slidePg">
+
+        </div>
+    </div>
+    <div class="pg"></div>
+    <div class="pg"></div>
+    
+</body>
+</html>
