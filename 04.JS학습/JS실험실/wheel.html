@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        html,body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .pg{
+            height: 100vh;
+            outline: 1px dashed gray;
+        }
+    </style>
+    <script>
+        setTimeout(() => {
+            window.scrollTo(0,0);
+        }, 100);
+
+        window.addEventListener("DOMContentLoaded",loadFn);
+
+        function loadFn(){
+            let scN = 0;
+            let prot_Wheel = 0;
+    
+            let pgLimit = document.body.clientHeight - window.innerHeight;
+            console.log("한계값:",pgLimit);
+    
+    
+            window.addEventListener("wheel",()=>{
+                event.preventDefault();
+                if(prot_Wheel) return;
+                prot_Wheel = 1;
+                setTimeout(() => {
+                    prot_Wheel = 0;
+                }, 100);
+    
+                let dir = event.wheelDelta;
+    
+                if(dir<0){
+                scN += 120;
+                if(scN > pgLimit) scN = pgLimit;
+            }
+                else{
+                scN -= 120;
+            if(scN<0) scN=0;}
+    
+                console.log("휠",scN);
+                window.scrollTo(0,scN)
+            },{passive:false})
+
+        } ///////////// loadFn /////////////////////
+
+        /* 
+        기존 addEventListener의 3번째 파라미터로 캡쳐링/버블링 여부를 
+        제어할 수 있는 부분이 EventListenerOptions이라는 객체형태의 
+        추가 옵션을 받을수 있게 되었다.
+
+        EventListenerOptions 사용 전
+        document.addEventListener('touchstart', handler, false);
+
+        EventListenerOptions 사용 후
+        document.addEventListener("touchstart", handler, {
+        capture: false,
+        once: false,
+        passive: false
+        });
+
+        현재 크롬에서 지원하는 EventListenerOptions 옵션은 다음과 같다.
+
+        capture: 이벤트 캡쳐링 적용 여부. 크롬 49부터 지원
+        once: 이벤트를 한번만 호출하고 해제되는 옵션. 크롬 55부터 지원
+        passive: 스크롤 성능 향상을 위한 옵션으로 true일 경우, 
+        스크롤을 위해 블록되는 것을 방지한다. 이 경우, 
+        preventDefault를 사용할 수 없다. 크롬 51부터 지원
+        이 중, passive 속성은 성능향상을 위해, 
+        브라우저의 기능을 프로그래밍으로 제어할수 있다.
+         */
+    </script>
+</head>
+<body>
+    <div class="pg"></div>
+    <div class="pg"></div>
+    <div class="pg"></div>
+    <div class="pg"></div>
+</body>
+</html>
