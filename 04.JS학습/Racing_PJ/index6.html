@@ -13,7 +13,7 @@
         }
 
         body {
-            overflow-x: hidden;
+            overflow: hidden;
             /*가로스크롤없앰*/
         }
 
@@ -75,6 +75,19 @@
         #t1 {
             top: 600px;
             left: 0;
+        }
+
+        /* 레이서 공통 */
+        .racer{
+            animation: racer .4s infinite alternate ;
+        }
+        @keyframes racer {
+            from{
+                transform: rotate(-10deg);
+            }
+            to{
+                transform: rotate(10deg);
+            }
         }
 
         /*조작버튼*/
@@ -187,6 +200,7 @@
                     //console.log("나,거북!");
                     //거북함수 호출
                     goT1();
+                    this.blur();
                 }; ////// 클릭함수 ////////////
 
                 // 3. 처음으로 //
@@ -337,11 +351,11 @@
             <img src="images/flag_07.jpg" alt="도착선">
         </div>
         <!--토끼-->
-        <div id="r1">
+        <div id="r1" class="racer">
             <img src="images/racer_03.jpg" alt="토끼">
         </div>
         <!--거북-->
-        <div id="t1">
+        <div id="t1" class="racer">
             <img src="images/racer_06.png" alt="거북">
         </div>
     </div>
