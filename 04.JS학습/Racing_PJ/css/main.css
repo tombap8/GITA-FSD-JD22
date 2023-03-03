@@ -14,6 +14,9 @@ body {
     overflow: hidden;
     /*가로스크롤없앰*/
 }
+body *{
+    user-select: none;
+}
 
 #mtit {
     position: fixed;
@@ -64,14 +67,14 @@ body {
 #f2 {
     position: relative;
     top: 243px;
-    left: 650px;
+    left: 730px;
     perspective: 50vw;
 }
 #f2::after{
     content: '';
     position: absolute;
     top: 100%;
-    left: 50%;
+    left: 48.6%;
     transform-origin: top;
     transform: rotateX(90deg);
     width: 5px;
@@ -90,6 +93,9 @@ body {
 #t1 {
     top: 600px;
     left: 0;
+}
+.racer{
+    transform-origin: right;
 }
 .racer::after{
     content: '';
@@ -181,8 +187,12 @@ body {
     top: 40%;
     font-size: 52px;
     text-align: center;
-    color: red;
-    text-shadow: 0 0 10px #000;
+    color: lime;
+    text-shadow: 
+    0 -2px #000,
+    0 2px #000,
+    -2px 0 #000,
+    2px 0 #000;
     display: none;
     /*처음에 안보임*/
 }
