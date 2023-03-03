@@ -45,9 +45,9 @@ body {
 #bgi {
     position: relative;
     /*부모역할*/
-    width: 800px;
+    width: 100vw;
     height: 600px;
-    background: url(../images/bg.jpg) no-repeat;
+    background: url(../images/bg.jpg) repeat-x center top;
 }
 
 /*공통*/
@@ -91,8 +91,16 @@ body {
     top: 600px;
     left: 0;
 }
-.racer{
-    border-right: 1px solid #000;
+.racer::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    top: calc(50% - 2.5px);
+    left: 100%;
+    background-color: red;
 }
 
 /* 레이서 공통 */
