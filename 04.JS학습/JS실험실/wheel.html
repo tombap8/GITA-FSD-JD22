@@ -61,27 +61,27 @@
         /* 
         기존 addEventListener의 3번째 파라미터로 캡쳐링/버블링 여부를 
         제어할 수 있는 부분이 EventListenerOptions이라는 객체형태의 
-        추가 옵션을 받을수 있게 되었다.
+        추가 옵션을 받을수 있음
 
         EventListenerOptions 사용 전
         document.addEventListener('touchstart', handler, false);
 
         EventListenerOptions 사용 후
         document.addEventListener("touchstart", handler, {
-        capture: false,
-        once: false,
-        passive: false
+            capture: false,
+            once: false,
+            passive: false
         });
 
-        현재 크롬에서 지원하는 EventListenerOptions 옵션은 다음과 같다.
+        ※ 현재 크롬에서 지원하는 EventListenerOptions 옵션은 다음과 같다.
 
-        capture: 이벤트 캡쳐링 적용 여부. 크롬 49부터 지원
-        once: 이벤트를 한번만 호출하고 해제되는 옵션. 크롬 55부터 지원
-        passive: 스크롤 성능 향상을 위한 옵션으로 true일 경우, 
-        스크롤을 위해 블록되는 것을 방지한다. 이 경우, 
-        preventDefault를 사용할 수 없다. 크롬 51부터 지원
-        이 중, passive 속성은 성능향상을 위해, 
-        브라우저의 기능을 프로그래밍으로 제어할수 있다.
+        (1) capture: 이벤트 캡쳐링 적용 여부. 크롬 49부터 지원
+        (2) once: 이벤트를 한번만 호출하고 해제되는 옵션. 크롬 55부터 지원
+        (3) passive: 스크롤 성능 향상을 위한 옵션으로 true일 경우, 
+                스크롤을 위해 블록되는 것을 방지함. 이 경우, 
+                preventDefault를 사용할 수 없음. 크롬 51부터 지원
+                이 중, passive 속성은 성능향상을 위해, 
+                브라우저의 기능을 프로그래밍으로 제어할수 있음
          */
     </script>
 </head>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("DOMContentLoaded",()=>{
+            const dv = document.querySelector("div");
+            const pp = document.querySelector("p");
+
+            dv.addEventListener("click",myFn,{capture:true});
+            pp.addEventListener("click",myFn2,{capture:true});
+
+            function myFn() {
+                dv.style.backgroundColor = "red";
+            }
+            function myFn2() {
+                pp.style.backgroundColor = "blue";
+            }
+
+        });
+    </script>
+    <style>
+        div,p{
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p></p>
+    </div>
+    
+</body>
+</html>
