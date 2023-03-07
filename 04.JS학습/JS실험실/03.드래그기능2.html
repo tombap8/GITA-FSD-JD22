@@ -38,6 +38,13 @@
             const dropbx = qs(".dropbx");
             const part = qsa(".dropbx div");
 
+            let x1 = dropbx.offsetLeft;
+            let x2 = x1+dropbx.clientWidth;
+            let y1 = dropbx.offsetTop;
+            let y2 = y1+dropbx.clientHeight;
+
+            cg("x1:"+x1+"/x2:"+x2+"/y1:"+y1+"/y2:"+y2);
+
             tg.forEach(ele=>setDrag(ele));
 
             function setDrag(tg){
@@ -76,9 +83,16 @@
                     }
     
                 }; //////// mMove 함수 ////////
+
+                const checkArea = () => {
+                    if((event.pageX > x1 && event.pageX < x2)&&
+                    (event.pageY > y1 && event.pageY < y2)){
+                        cg("여기"+event.pageY);
+                    }
+                }; 
     
                 tg.addEventListener("mousedown",()=>{dTrue();firstPoint();});
-                tg.addEventListener("mouseup",()=>{dFalse();lastPoint();});
+                tg.addEventListener("mouseup",()=>{dFalse();lastPoint();checkArea();});
                 tg.addEventListener("mouseleave",()=>{dFalse();});
     
                 tg.addEventListener("mousemove",mMove);
