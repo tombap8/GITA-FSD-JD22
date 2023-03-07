@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tg{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #f00;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        const qs = x => document.querySelector(x);
+        const qsa = x => document.querySelectorAll(x);
+        const cg = x => console.log(x);
+
+
+        window.addEventListener("DOMContentLoaded",()=>{
+            const tg = qsa(".tg");
+
+            tg.forEach(ele=>setDrag(ele));
+
+            function setDrag(tg){
+                let drag = false;
+                let fx,mvx,fy,mvy,lx=0,rx,ly=0,ry;
+                /* 
+                    fx : first x
+                    fy : first y
+                    mvx : moving x
+                    mvy : moving y
+                    lx : last x
+                    ly : last y
+                    rx : result x
+                    ry : result y
+                */
+    
+                const dTrue = () => drag = true;
+                const dFalse = () => drag = false;
+                const firstPoint = () => {fx = event.pageX;fy = event.pageY;}
+                const lastPoint = () => {lx += rx;ly += ry;}
+                const mMove = (e) => {
+                    if(drag){ 
+                        mvx = e.pageX;
+                        rx = mvx - fx;
+                        cg(`드래그중-x:${rx}/${lx}`);
+    
+                        tg.style.left=(rx+lx)+"px";
+    
+                        mvy = e.pageY;
+                        ry = mvy - fy;
+                        cg(`드래그중-x:${ry}/${ly}`);
+    
+                        tg.style.top=(ry+ly)+"px";
+    
+    
+                    }
+    
+                }; //////// mMove 함수 ////////
+    
+                tg.addEventListener("mousedown",()=>{dTrue();firstPoint();});
+                tg.addEventListener("mouseup",()=>{dFalse();lastPoint();});
+                tg.addEventListener("mouseleave",()=>{dFalse();});
+    
+                tg.addEventListener("mousemove",mMove);
+
+            } ////////// setDrag 함수 ////////////////
+        }); ///////////////// 로드구역 ////////////////
+    </script>
+</head>
+<body>
+    <div class="tg"></div>
+    <div class="tg"></div>
+    <div class="tg"></div>
+    <div class="tg"></div>
+    <div class="tg"></div>
+    <div class="tg"></div>
+    
+</body>
+</html>
