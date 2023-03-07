@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .wrap{
+            display: flex;
+            justify-content: center;
+        }
         .tg{
             position: relative;
             width: 100px;
@@ -13,6 +17,14 @@
             border-radius: 50%;
             background-color: #f00;
             margin: 20px;
+        }
+        .dropbx{
+            display: flex;
+            height: 50vh;
+            border: 10px dotted orange;
+        }
+        .dropbx div{
+            flex: 1;
         }
     </style>
     <script>
@@ -23,6 +35,8 @@
 
         window.addEventListener("DOMContentLoaded",()=>{
             const tg = qsa(".tg");
+            const dropbx = qs(".dropbx");
+            const part = qsa(".dropbx div");
 
             tg.forEach(ele=>setDrag(ele));
 
@@ -48,13 +62,13 @@
                     if(drag){ 
                         mvx = e.pageX;
                         rx = mvx - fx;
-                        cg(`드래그중-x:${rx}/${lx}`);
+                        // cg(`드래그중-x:${rx}/${lx}`);
     
                         tg.style.left=(rx+lx)+"px";
     
                         mvy = e.pageY;
                         ry = mvy - fy;
-                        cg(`드래그중-x:${ry}/${ly}`);
+                        // cg(`드래그중-x:${ry}/${ly}`);
     
                         tg.style.top=(ry+ly)+"px";
     
@@ -69,17 +83,62 @@
     
                 tg.addEventListener("mousemove",mMove);
 
+
             } ////////// setDrag 함수 ////////////////
+
+
+            const imgset = [
+                "https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202212/22/munhwa/20221222103011835bggm.jpg",
+                "https://image.cine21.com/resize/cine21/person/2019/1030/11_35_56__5db8f70c422b9[X252,310].jpg",
+                "https://newsimg.hankookilbo.com/cms/articlerelease/2021/03/22/cdf0fd2f-64a6-4e22-b8e6-865da21c7ba8.jpg",
+                "https://image.cine21.com/resize/cine21/person/2019/0816/18_21_55__5d5675b3bdc5c[X252,310].jpg",
+                "https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202107/08/JTBC/20210708153002482ktbd.jpg",
+                "https://newsimg.sedaily.com/2022/10/19/26CESYFZ0R_1.jpg",
+            ];
+
+            const dramaImg = [
+                "https://upload.wikimedia.org/wikipedia/ko/6/63/%EB%93%9C%EB%9D%BC%EB%A7%88_%EB%8F%84%EA%B9%A8%EB%B9%84_%ED%8F%AC%EC%8A%A4%ED%84%B02.jpg",
+                "https://newsimg.sedaily.com/2016/08/17/1L06D7UIZ7_1.jpg",
+                "http://www.kukinews.com/data/kuk/image/2022/08/29/kuk202208290038.jpg"
+            ]
+
+            tg.forEach((ele,idx)=>{
+                ele.style.background = `url(${imgset[idx]}) no-repeat center/cover`;
+            })
+            part.forEach((ele,idx)=>{
+                ele.style.background = `url(${dramaImg[idx]}) no-repeat center/cover`;
+            })
+
+                dropbx.addEventListener("dragover",(e)=>{
+                    e.preventDefault();
+                    });
+                dropbx.addEventListener("drop",(e)=>{
+                    e.preventDefault();
+                    
+                    cg("드롭!");
+                });
+
         }); ///////////////// 로드구역 ////////////////
     </script>
 </head>
 <body>
-    <div class="tg"></div>
-    <div class="tg"></div>
-    <div class="tg"></div>
-    <div class="tg"></div>
-    <div class="tg"></div>
-    <div class="tg"></div>
+    <div class="wrap">
+        <div class="tg"></div>
+        <div class="tg"></div>
+        <div class="tg"></div>
+        <div class="tg"></div>
+        <div class="tg"></div>
+        <div class="tg"></div>
+
+    </div>
+
+    <div class="dropbx">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+
     
 </body>
 </html>
