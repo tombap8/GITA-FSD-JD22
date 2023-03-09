@@ -84,10 +84,14 @@
     
                 }; //////// mMove 함수 ////////
 
+                const saveit = [];
+
                 const checkArea = () => {
                     if((event.pageX > x1 && event.pageX < x2)&&
                     (event.pageY > y1 && event.pageY < y2)){
                         cg("여기"+event.pageY);
+                        let obj = event.currentTarget.getAttribute("alt");
+                        cg(obj);
                     }
                 }; 
     
@@ -109,6 +113,7 @@
                 "https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202107/08/JTBC/20210708153002482ktbd.jpg",
                 "https://newsimg.sedaily.com/2022/10/19/26CESYFZ0R_1.jpg",
             ];
+            const alttxt = ["박보검","공유","이재욱","여자1","여자2","여자3"];
 
             const dramaImg = [
                 "https://upload.wikimedia.org/wikipedia/ko/6/63/%EB%93%9C%EB%9D%BC%EB%A7%88_%EB%8F%84%EA%B9%A8%EB%B9%84_%ED%8F%AC%EC%8A%A4%ED%84%B02.jpg",
@@ -118,6 +123,7 @@
 
             tg.forEach((ele,idx)=>{
                 ele.style.background = `url(${imgset[idx]}) no-repeat center/cover`;
+                ele.setAttribute("alt",alttxt[idx]);
             })
             part.forEach((ele,idx)=>{
                 ele.style.background = `url(${dramaImg[idx]}) no-repeat center/cover`;
