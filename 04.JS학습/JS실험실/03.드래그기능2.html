@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+        .tit{
+            font-family: 'Dongle', sans-serif;
+            font-size: 5vh;
+            text-align: center;
+            color: purple;
+        }
         .wrap{
             display: flex;
             justify-content: center;
         }
-        .tg{
+        .dtg{
             position: relative;
             width: 100px;
             height: 100px;
@@ -19,12 +26,15 @@
             margin: 20px;
         }
         .dropbx{
-            display: flex;
             height: 50vh;
             border: 10px dotted orange;
-        }
-        .dropbx div{
-            flex: 1;
+
+            font-family: 'Dongle', sans-serif;
+            font-size: 10vh;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 50vh;
+            color: darkorange;
         }
     </style>
     <script>
@@ -34,7 +44,7 @@
 
 
         window.addEventListener("DOMContentLoaded",()=>{
-            const tg = qsa(".tg");
+            const dtg = qsa(".dtg");
             const dropbx = qs(".dropbx");
             const part = qsa(".dropbx div");
 
@@ -45,9 +55,9 @@
 
             cg("x1:"+x1+"/x2:"+x2+"/y1:"+y1+"/y2:"+y2);
 
-            tg.forEach(ele=>setDrag(ele));
+            dtg.forEach(ele=>setDrag(ele));
 
-            function setDrag(tg){
+            function setDrag(dtg){
                 let drag = false;
                 let fx,mvx,fy,mvy,lx=0,rx,ly=0,ry;
                 /* 
@@ -71,13 +81,13 @@
                         rx = mvx - fx;
                         // cg(`드래그중-x:${rx}/${lx}`);
     
-                        tg.style.left=(rx+lx)+"px";
+                        dtg.style.left=(rx+lx)+"px";
     
                         mvy = e.pageY;
                         ry = mvy - fy;
                         // cg(`드래그중-x:${ry}/${ly}`);
     
-                        tg.style.top=(ry+ly)+"px";
+                        dtg.style.top=(ry+ly)+"px";
     
     
                     }
@@ -92,14 +102,23 @@
                         cg("여기"+event.pageY);
                         let obj = event.currentTarget.getAttribute("alt");
                         cg(obj);
+
+                        let num=0;
+
+                        if(obj==="박보검" || obj === "김유정") num = 1;
+                        else if(obj==="이재욱" || obj === "정소민") num = 2;
+                        else if(obj==="공유" || obj === "김고은") num = 0;
+
+
+                        dropbx.style.background = `url(${dramaImg[num]}) repeat-x center/auto 100%`;
                     }
                 }; 
     
-                tg.addEventListener("mousedown",()=>{dTrue();firstPoint();});
-                tg.addEventListener("mouseup",()=>{dFalse();lastPoint();checkArea();});
-                tg.addEventListener("mouseleave",()=>{dFalse();});
+                dtg.addEventListener("mousedown",()=>{dTrue();firstPoint();});
+                dtg.addEventListener("mouseup",()=>{dFalse();lastPoint();checkArea();});
+                dtg.addEventListener("mouseleave",()=>{dFalse();});
     
-                tg.addEventListener("mousemove",mMove);
+                dtg.addEventListener("mousemove",mMove);
 
 
             } ////////// setDrag 함수 ////////////////
@@ -113,7 +132,7 @@
                 "https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202107/08/JTBC/20210708153002482ktbd.jpg",
                 "https://newsimg.sedaily.com/2022/10/19/26CESYFZ0R_1.jpg",
             ];
-            const alttxt = ["박보검","공유","이재욱","여자1","여자2","여자3"];
+            const alttxt = ["박보검","공유","이재욱","김고은","정소민","김유정"];
 
             const dramaImg = [
                 "https://upload.wikimedia.org/wikipedia/ko/6/63/%EB%93%9C%EB%9D%BC%EB%A7%88_%EB%8F%84%EA%B9%A8%EB%B9%84_%ED%8F%AC%EC%8A%A4%ED%84%B02.jpg",
@@ -121,13 +140,13 @@
                 "http://www.kukinews.com/data/kuk/image/2022/08/29/kuk202208290038.jpg"
             ]
 
-            tg.forEach((ele,idx)=>{
+            dtg.forEach((ele,idx)=>{
                 ele.style.background = `url(${imgset[idx]}) no-repeat center/cover`;
                 ele.setAttribute("alt",alttxt[idx]);
             })
-            part.forEach((ele,idx)=>{
-                ele.style.background = `url(${dramaImg[idx]}) no-repeat center/cover`;
-            })
+            // part.forEach((ele,idx)=>{
+            //     ele.style.background = `url(${dramaImg[idx]}) no-repeat center/cover`;
+            // })
 
                 dropbx.addEventListener("dragover",(e)=>{
                     e.preventDefault();
@@ -142,20 +161,19 @@
     </script>
 </head>
 <body>
+    <h1 class="tit">★아래 드라마 주인공들을 드래그하여 드롭하세요~!★</h1>
     <div class="wrap">
-        <div class="tg"></div>
-        <div class="tg"></div>
-        <div class="tg"></div>
-        <div class="tg"></div>
-        <div class="tg"></div>
-        <div class="tg"></div>
+        <div class="dtg"></div>
+        <div class="dtg"></div>
+        <div class="dtg"></div>
+        <div class="dtg"></div>
+        <div class="dtg"></div>
+        <div class="dtg"></div>
 
     </div>
 
     <div class="dropbx">
-        <div></div>
-        <div></div>
-        <div></div>
+        여기에 드롭하세요~!
     </div>
 
 

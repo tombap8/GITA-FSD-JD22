@@ -4,65 +4,151 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>07.드래그기본</title>
     <style>
         body{
             height: 100vh;
             background: url(http://www.kukinews.com/data/kuk/image/2022/08/29/kuk202208290038.jpg) center top/auto 100%;
         }
-        .tg{
+        .dtg{
             position: relative;
             width: 300px;
             height: 300px;
             border-radius: 50%;
             background-color: #f00;
+        }
+        .dtg1{
             background: url(https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202107/08/JTBC/20210708153002482ktbd.jpg) no-repeat center top/cover;
+        }
+        .dtg2{
+            background: url(https://newsimg.hankookilbo.com/cms/articlerelease/2021/03/22/cdf0fd2f-64a6-4e22-b8e6-865da21c7ba8.jpg) no-repeat center center/cover;
         }
     </style>
     <script>
-        const qs = x => document.querySelector(x);
-        const qsa = x => document.querySelectorAll(x);
-        const cg = x => console.log(x);
-
-
+        // 로드구역 ///////////////////
         window.addEventListener("DOMContentLoaded",()=>{
-            const tg = qs(".tg");
-            let drag = false;
-            let fx,vx,fy,vy,lastXVal=0,resX,lastYVal=0,resY;
+            // 1. 드래그 대상선정 : .dtg
+            const dtg = document.querySelectorAll(".dtg");
+            // console.log(dtg);
 
+            // 2. 드래그 설정하기
+            dtg.forEach(ele=>goDrag(ele));
+
+        }); /////////////// 로드구역 ///////////////////
+
+            /*************************************** 
+                [ 드래그 기능 구현을 위한 이벤트 ]
+                1. 딸 -> 마우스 포인터 누름 -> mousedown
+
+                2. 각 -> 마우스 포인터 올라옴 -> mouseup
+
+                3. 질질 -> 마우스 움직일때 -> mousemove
+                -> 드래그 상태는 "딸"상태에서 "질질"하는것!
+                
+                mousedown 할때 드래그 상태변수값을 1로 변경
+                mouseup 할때 드래그 상태변수값을 0으로 변경
+                _______________________________________
+
+                [ 드래그 기능구현 원리 ]
+
+                1. 마우스 포인터 위치에 따른 변화 수치를
+                계산하여 요소의 top,left 위치값으로 반영한다!
+
+                2. 프로세스
+                (1) mousedown 이벤트에서는 시작위치값 저장
+                (2) mousemove 이벤트에서는 움직인위치와 시작위치 차이저장
+                (3) mousemove에서 차이값을 타겟요소의 left,top값에 반영
+                (4) mouseup 이벤트에서는 다음 이동을 위한 마지막위치 저장
+                (5) mousemove 이벤트에서 마지막위치로 부터의 이동을 계산함
+
+
+            ***************************************/
+
+            /********************************************* 
+                [ 드래그 다중적용 함수 만들기 ]
+                함수명: goDrag
+                기능: 다중 드래그 기능 적용
+            *********************************************/
+           function goDrag(obj){ // obj - 드래그 대상
+            
+
+            // 변수만들기 /////////////
+            // (1) 드래그 상태변수 : true-드래그중, false-드래그아님
+            let drag = false; 
+            // (2) 첫번째 위치포인트 first x, first y
+            let fx,fy;
+            // (3) 마지막 위치포인트 last x, last y
+            let lx=0,ly=0; // 마지막위치는 처음에 0할당!
+            // (4) 움직일때 위치포인트 move x, move y
+            let mvx, mvy;
+            // (5) 위치이동 차이 결과변수 result x, result y
+            let rx, ry;
+
+            // 함수만들기 //////////////
+            // (1) 드래그상태 true
             const dTrue = () => drag = true;
+
+            // (2) 드래그상태 false
             const dFalse = () => drag = false;
-            const test = () => {fx = event.pageX;fy = event.pageY;}
-            const test2 = () => {lastXVal += resX;lastYVal += resY;}
-            const mMove = (e) => {
-                if(drag){ 
-                    vx = e.pageX;
-                    resX = vx - fx;
-                    cg(`드래그중-x:${resX}/${lastXVal}`);
 
-                    tg.style.left=(resX+lastXVal)+"px";
+            // (3) 드래그 움질일때 작동함수
+            const dMove = () => {
+                // console.log("드래그상태:",drag);
 
-                    vy = e.pageY;
-                    resY = vy - fy;
-                    cg(`드래그중-x:${resY}/${lastYVal}`);
+                // 드래그 상태일때만 실행
+                if(drag){
 
-                    tg.style.top=(resY+lastYVal)+"px";
+                    // 1. 드래그 상태에서 움직일때 위치값 : mvx,mvy
+                    mvx = event.pageX;
+                    mvy = event.pageY;
+
+                    // 2. 움직일때 위치값 - 처음 위치값 : rx, ry
+                    // x축값은 left값, y축값은 top값 이동이다!
+                    rx = mvx - fx;
+                    ry = mvy -fy;
+
+                    // 3. x,y 움직인 위치값을 타겟요소에 적용!
+                    obj.style.left = (rx+lx)+"px";
+                    obj.style.top = (ry+ly)+"px";
+                    // 한번드래그 후 다시 드래그시 움직인위치값이 필요함!
+                    // -> 마지막 위치값 저장필요 -> lx,ly
+                    // -> 항상 최종위치에서 움직인 위치를 더한다!
+
+                    console.log(`fx:${fx} | fy:${fy}`);
+                    console.log(`mvx:${mvx} | mvy:${mvy}`);
+                    console.log(`rx:${rx} | ry:${ry}`);
+                    console.log(`lx:${lx} | ly:${ly}`);
+                } /////////// if : 드래그일때 ///////
 
 
-                }
+            }; ///////// dMove //////////////
 
-            }; //////// mMove 함수 ////////
+            // (4) 첫번째 위치포인트 셋팅함수
+            const firstPoint = () => {fx=event.pageX; fy=event.pageY};
 
-            tg.addEventListener("mousedown",()=>{dTrue();test();});
-            tg.addEventListener("mouseup",()=>{dFalse();test2();});
-            tg.addEventListener("mouseleave",()=>{dFalse();});
+            // (5) 마지막 위치포인트 셋팅함수
+            const lastPoint = () => {lx+=rx; ly+=ry};
+            // 최종 이동결과 값인 rx,ry를 항상 대입연산하여 값을 업데이트한다!
 
-            tg.addEventListener("mousemove",mMove);
-        })
+
+            // 이벤트 등록하기 ////////////
+            // (1) 마우스 내려갈때 : 드래그true + 첫번째 위치값 업데이트
+            obj.addEventListener("mousedown",()=>{dTrue();firstPoint();});
+            // (2) 마우스 올라올때 : 드래그false + 마지막 위치값 업데이트
+            obj.addEventListener("mouseup",()=>{dFalse();lastPoint();});
+            // (3) 마우스 움직일때
+            obj.addEventListener("mousemove",dMove);
+            // (4) 마우스 벗어날때
+            obj.addEventListener("mouseleave",dFalse);
+            // (4) 마우스 들어올때
+            obj.addEventListener("mouseenter",dFalse);
+
+           } //////////// goDrag함수 ///////////////////////
     </script>
 </head>
 <body>
-    <div class="tg"></div>
+    <div class="dtg dtg1"></div>
+    <div class="dtg dtg2"></div>
     
 </body>
 </html>
