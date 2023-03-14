@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar & DatePicker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=block" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <script type="module" src="calendar.js"></script>
+  </head>
+  <body>
+    <h1 class="title">Date Picker</h1>
+
+    <input type="text" id="datepicker" placeholder="Select date" readonly="true">
+
+    <div class="calendar_bg"></div>
+    <div class="calendar">
+      <div class="calendar-nav">
+        <div class="contents_con">
+          <div class="btn arrow left">
+            <i class="bx bxs-left-arrow"></i>
+          </div>
+
+          <div class="date">
+            <span class="month"></span>
+            <span class="year"></span>
+          </div>
+
+          <div class="btn arrow right">
+            <i class="bx bxs-right-arrow"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-grid"></div>
+    </div>
+  </body>
+</html>

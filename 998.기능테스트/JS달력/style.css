@@ -1,0 +1,146 @@
+@import url(https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css);
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  width: 100%;
+}
+
+.title {
+  color: #db5b33;
+  font-weight: 300;
+}
+
+.calendar_bg {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.calendar {
+  display: none;
+  width: min(400px, 35vw);
+  margin-top: 10px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px 4px #C5C5C5;
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.calendar-nav {
+  background-color: #44c379;
+}
+
+.calendar-nav .contents_con {
+  display: flex;
+  padding: min(10px, 1vw) min(20px,2vw);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-nav .contents_con .btn.arrow {
+  font-size: min(20px ,1.5vw);
+  color: #ffffff;
+}
+
+.calendar-nav .contents_con .date {
+  text-align: center;
+}
+
+.calendar-nav .contents_con .date span {
+  display: block;
+  color: #ffffff;
+}
+
+.calendar-nav .contents_con .date .month {
+  font-size: min(24px, 2.5vw);
+}
+
+.calendar-nav .contents_con .date .year {
+  font-size: min(13px, 1.2vw);
+}
+
+.calendar-grid {
+  display: grid;
+  padding: min(10px ,1vw);;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-grid .grid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: min(55px, 4.7vw);
+}
+
+.calendar-grid .grid-cell span {
+  font-size: min(16px, 1.5vw);
+  z-index: 100;
+}
+
+.calendar-grid .grid-cell:nth-child(7n+1){
+  color: #ff5450;
+}
+
+.calendar-grid .grid-cell {
+  position: relative;
+}
+
+.calendar-grid .grid-cell.today::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #7ed3a0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.calendar-grid .grid-cell:hover::after,
+.calendar-grid .grid-cell.on::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #7ed3a0;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.calendar-grid .grid-cell.week:hover::after {
+  display: none;
+}
+
+.calendar-grid .grid-cell.week span {
+  color: #bbbbbb;
+}
+
+.calendar-grid .grid-cell.blur span {
+  color: #c7c7c7;
+}
+
+.calendar-grid .grid-cell:hover span,
+.calendar-grid .grid-cell.on span {
+  color: #ffffff;
+}
+
+.calendar-grid .grid-cell.week:hover span {
+  color: #bbbbbb;
+}
+
+.block {
+  display: block;
+}
