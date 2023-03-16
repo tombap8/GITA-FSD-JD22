@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", loadFn);
             li에 클래스 "on"주기(나머진 빼기->초기화!)
 
 *****************************************************/
-
+let goSlide;
 /****************************************** 
     함수명: loadFn
     기능: 로딩 후 버튼 이벤트 및 기능구현
@@ -54,6 +54,7 @@ function loadFn() {
     // 1. 대상선정 //////////////////////////
     // 1-1. 이벤트 대상: .abtn
     const abtn = document.querySelectorAll(".abtn");
+    const banbx = document.querySelector(".banbx");
 
     // 1-2. 변경 대상: #slide
     const slide = document.querySelector("#slide");
@@ -97,7 +98,7 @@ function loadFn() {
 
     // 2. 슬라이드 변경함수 만들기
     // 호출시 seq에 들어오는 값중 1은 오른쪽, 0은 왼쪽
-    const goSlide = (seq) => {
+    goSlide = (seq) => {
         //  console.log("슬고우!", seq);
 
         //  console.log("못들어갔어!!!!");
@@ -301,14 +302,15 @@ function goDrag(obj) {
 
         // 드래그 상태일때만 실행
         if (drag) {
+            obj.style.transition = "none";
             // 1. 드래그 상태에서 움직일때 위치값 : mvx,mvy
             mvx = event.pageX;
-            mvy = event.pageY;
+            // mvy = event.pageY;
 
             // 2. 움직일때 위치값 - 처음 위치값 : rx, ry
             // x축값은 left값, y축값은 top값 이동이다!
             rx = mvx - fx;
-            ry = mvy - fy;
+            // ry = mvy - fy;
 
             // 3. x,y 움직인 위치값을 타겟요소에 적용!
             obj.style.left = rx + lx + "px";
@@ -317,23 +319,23 @@ function goDrag(obj) {
             // -> 마지막 위치값 저장필요 -> lx,ly
             // -> 항상 최종위치에서 움직인 위치를 더한다!
 
-            console.log(`fx:${fx} | fy:${fy}`);
-            console.log(`mvx:${mvx} | mvy:${mvy}`);
-            console.log(`rx:${rx} | ry:${ry}`);
-            console.log(`lx:${lx} | ly:${ly}`);
+            // console.log(`fx:${fx} | fy:${fy}`);
+            // console.log(`mvx:${mvx} | mvy:${mvy}`);
+            // console.log(`rx:${rx} | ry:${ry}`);
+            // console.log(`lx:${lx} | ly:${ly}`);
         } /////////// if : 드래그일때 ///////
     }; ///////// dMove //////////////
 
     // (4) 첫번째 위치포인트 셋팅함수
     const firstPoint = () => {
         fx = event.pageX;
-        fy = event.pageY;
+        // fy = event.pageY;
     };
 
     // (5) 마지막 위치포인트 셋팅함수
     const lastPoint = () => {
         lx += rx;
-        ly += ry;
+        // ly += ry;
     };
     // 최종 이동결과 값인 rx,ry를 항상 대입연산하여 값을 업데이트한다!
 
@@ -346,7 +348,8 @@ function goDrag(obj) {
     // (2) 마우스 올라올때 : 드래그false + 마지막 위치값 업데이트
     obj.addEventListener("mouseup", () => {
         dFalse();
-        lastPoint();
+        // lastPoint();
+        goWhere(obj);  
     });
     // (3) 마우스 움직일때
     obj.addEventListener("mousemove", dMove);
@@ -355,3 +358,30 @@ function goDrag(obj) {
     // (4) 마우스 들어올때
     obj.addEventListener("mouseenter", dFalse);
 } //////////// goDrag함수 ///////////////////////
+
+/************************************************* 
+    이동판별함수
+    함수명: goWhere
+*************************************************/
+function goWhere(obj){
+    let tgLeft = obj.offsetLeft;
+    let tgPoint = obj.parentElement.clientWidth*2.2;
+    console.log(tgLeft);
+    console.log(tgPoint);
+
+    if(tgLeft < -tgPoint-20){
+        console.log("왼쪽!");
+        goSlide(1);
+    }
+    else if(tgLeft > -tgPoint+20){
+        console.log("오른쪽!");
+        goSlide(0);
+    }
+    else{
+        console.log("제자리!");
+        obj.style.left = -tgPoint+"px";
+        obj.style.transition = "left .2s ease-in-out";
+    }
+
+
+} ////////////// goWhere //////////////////

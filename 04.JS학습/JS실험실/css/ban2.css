@@ -92,7 +92,11 @@ ol {
     width: 100%;
     height: 100%;
 }
-
+/* 슬라이드 하위요소 드래그/선택막기 */
+#slide *{
+    user-select: none;
+    -webkit-user-drag: none;
+}
 #slide li {
     flex-shrink: 0;
     /* 부모박스크기만큼 줄어들지 않음 -> 0 */
