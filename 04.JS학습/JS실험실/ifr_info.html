@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <iframe class="ifr" src="https://www.donga.com/" frameborder="0"></iframe>
+    <script>
+
+        const ifr = document.querySelector(".ifr");
+        ifr.onload = () =>{
+
+            let temp = ifr.contentWindow.document.body;
+            console.log(temp);
+        }
+    </script>
+</body>
+</html>
