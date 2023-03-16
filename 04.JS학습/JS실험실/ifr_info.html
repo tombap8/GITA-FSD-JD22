@@ -10,6 +10,13 @@
     <iframe class="ifr" src="https://www.donga.com/" frameborder="0"></iframe>
     <script>
 
+window.addEventListener('message', function(e) {
+  console.log(e.data); // { hello: 'parent' }
+  var item = localStorage.getItem('dummy');
+  console.log(item); // zerocho
+  document.getElementById('iframe').contentWindow.postMessage(item, '*');
+});
+
         const ifr = document.querySelector(".ifr");
         ifr.onload = () =>{
 
