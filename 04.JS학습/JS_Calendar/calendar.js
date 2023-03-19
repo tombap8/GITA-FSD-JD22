@@ -1,95 +1,95 @@
-/******************** ´Ş·ÂJS ********************/
+/******************** ë‹¬ë ¥JS ********************/
 
 
-/* 		1. ±âº»¿É¼Ç     */
+/* 		1. ê¸°ë³¸ì˜µì…˜     */
 
-	// Æ÷¸ä
-	var d_format = new Array('yyyy.mm.dd','yy.mm.dd','yyyy-mm-dd','yy-mm-dd','yyyy/mm/dd','yy/mm/dd','yyyymmdd','yymmdd');
-	// ¿äÀÏ »ö±ò
-	var day_color = new Array('red', 'black', 'black', 'black', 'black', 'black', 'blue');
-	// ¿äÀÏ, ¿ù Ç¥½Ã
-	var num_dayName = new Array(0,1,2,3,4,5,6); 
-	var han_dayName = new Array('ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'); 
-	var eng_dayName = new Array('SUN','MON','TUE','WED','THU','FRI','SAT'); 
-	var chi_dayName = new Array('ìí','êÅ','ûı','â©','ÙÊ','Ğİ','÷Ï'); 
-	var num_months = new Array('1','2','3','4','5','6','7','8','9','10','11','12');
-	var han_months = new Array('1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'); 
-	var eng_months = new Array('Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
-	var chi_months = new Array('1êÅ', '2êÅ', '3êÅ', '4êÅ', '5êÅ', '6êÅ', '7êÅ', '8êÅ', '9êÅ', '10êÅ', '11êÅ', '12êÅ'); 
-	var dayNameType = new Array('num_dayName','han_dayName','eng_dayName','chi_dayName');
-	var monthsType = new Array('num_months','han_months','eng_months','chi_months');
-	// ½ºÅ¸ÀÏ
-	var d_bgcolor = '#FAD9B7';
-	var d_bgcolor2 = 'white';
-	var d_linecolor = 'silver';
-	var d_lineheight = '23px';
-	var d_width = '180';
-	var d_tfDateLineCol = 'black';
-	var d_tfCol = '#FFFFFF';
-	var d_focusCol = '#F0EDF0';
+	// í¬ë©§
+	let d_format = new Array('yyyy.mm.dd','yy.mm.dd','yyyy-mm-dd','yy-mm-dd','yyyy/mm/dd','yy/mm/dd','yyyymmdd','yymmdd');
+	// ìš”ì¼ ìƒ‰ê¹”
+	let day_color = new Array('red', 'black', 'black', 'black', 'black', 'black', 'blue');
+	// ìš”ì¼, ì›” í‘œì‹œ
+	let num_dayName = new Array(0,1,2,3,4,5,6); 
+	let han_dayName = new Array('ì¼','ì›”','í™”','ìˆ˜','ëª©','ê¸ˆ','í† '); 
+	let eng_dayName = new Array('SUN','MON','TUE','WED','THU','FRI','SAT'); 
+	let chi_dayName = new Array('æ—¥','æœˆ','ç«','æ°´','æœ¨','ï¤Š','åœŸ'); 
+	let num_months = new Array('1','2','3','4','5','6','7','8','9','10','11','12');
+	let han_months = new Array('1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'); 
+	let eng_months = new Array('Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+	let chi_months = new Array('1æœˆ', '2æœˆ', '3æœˆ', '4æœˆ', '5æœˆ', '6æœˆ', '7æœˆ', '8æœˆ', '9æœˆ', '10æœˆ', '11æœˆ', '12æœˆ'); 
+	let dayNameType = new Array('num_dayName','han_dayName','eng_dayName','chi_dayName');
+	let monthsType = new Array('num_months','han_months','eng_months','chi_months');
+	// ìŠ¤íƒ€ì¼
+	let d_bgcolor = '#FAD9B7';
+	let d_bgcolor2 = 'white';
+	let d_linecolor = 'silver';
+	let d_lineheight = '23px';
+	let d_width = '180';
+	let d_tfDateLineCol = 'black';
+	let d_tfCol = '#FFFFFF';
+	let d_focusCol = '#F0EDF0';
 
-/* 2. ±âÅ¸ */
+/* 2. ê¸°íƒ€ */
 
-	var currentDate = new Date();
-	var DOMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];		// Non-Leap year Month days.. 
-	var lDOMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];	// Leap year Month days.. 
-	var d_formName = "form1";
-	var d_name = "cal";
-	var d_tfDate = "tfDate";
+	let currentDate = new Date();
+	let DOMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];		// Non-Leap year Month days.. 
+	let lDOMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];	// Leap year Month days.. 
+	let d_formName = "form1";
+	let d_name = "cal";
+	let d_tfDate = "tfDate";
 
-/* 3. Calendar °´Ã¼ »ı¼º  */
+/* 3. Calendar ê°ì²´ ìƒì„±  */
 
-	// Calendar °´Ã¼
+	// Calendar ê°ì²´
 	function Calendar(newName, newFormName, newYear, newMonth, newDate, newFormat, newDayName) {
         "use strict";
-		// Calendar °´Ã¼¿¡ ¼ÓÇÑ ÇÔ¼ö µî·Ï
-		this.setDates = setDates;		// ÇØ´ç¿ùÀÇ µ¥ÀÌÅÍ ¹è¿­ »ı¼º
-		this.prev = prev;				// ÀÌÀü ³â¿ù·Î ¼¼ÆÃ	
-		this.next = next;				// ´ÙÀ½ ³â¿ù·Î ¼¼ÆÃ
-		this.reload = reload;			// ÁöÁ¤ÇÑ ³â¿ù·Î ¼¼ÆÃ
-		this.show = show;				// html »ı¼º
-		this.setContent = setContent;	// htmlÀÇ ÇÊµå°ª ¼¼ÆÃ
-		this.clearContent = clearContent;// htmlÀÇ ÇÊµå°ª Áö¿ì±â
-		this.getYear = getYear;		// Á¶È¸µÈ ³â
-		this.getMonth = getMonth;		// Á¶È¸µÈ ¿ù
+		// Calendar ê°ì²´ì— ì†í•œ í•¨ìˆ˜ ë“±ë¡
+		this.setDates = setDates;		// í•´ë‹¹ì›”ì˜ ë°ì´í„° ë°°ì—´ ìƒì„±
+		this.prev = prev;				// ì´ì „ ë…„ì›”ë¡œ ì„¸íŒ…	
+		this.next = next;				// ë‹¤ìŒ ë…„ì›”ë¡œ ì„¸íŒ…
+		this.reload = reload;			// ì§€ì •í•œ ë…„ì›”ë¡œ ì„¸íŒ…
+		this.show = show;				// html ìƒì„±
+		this.setContent = setContent;	// htmlì˜ í•„ë“œê°’ ì„¸íŒ…
+		this.clearContent = clearContent;// htmlì˜ í•„ë“œê°’ ì§€ìš°ê¸°
+		this.getYear = getYear;		// ì¡°íšŒëœ ë…„
+		this.getMonth = getMonth;		// ì¡°íšŒëœ ì›”
 
-		// Calendar °´Ã¼ÀÇ ¼Ó¼º ¼±¾ğ
-		this.name;						// Calendar °´Ã¼ÀÇ ÀÌ¸§
-		this.myYear;					// Á¶È¸ÇÒ ³â
-		this.myMonth;					// Á¶È¸ÇÒ ¿ù(month:0~11)
-		this.myDate;					// Á¶È¸ÇÒ ÀÏ
-		this.format;					// ³â¿ùÀÏ format
-		this.dayName;					// ¿äÀÏ format
+		// Calendar ê°ì²´ì˜ ì†ì„± ì„ ì–¸
+		this.name;						// Calendar ê°ì²´ì˜ ì´ë¦„
+		this.myYear;					// ì¡°íšŒí•  ë…„
+		this.myMonth;					// ì¡°íšŒí•  ì›”(month:0~11)
+		this.myDate;					// ì¡°íšŒí•  ì¼
+		this.format;					// ë…„ì›”ì¼ format
+		this.dayName;					// ìš”ì¼ format
 		this.formName;					// form name
 		this.method;					// form method
 		this.action;					// form action
-		this.tfDate;					// ³¯Â¥ ÇÊµå¸í
-		this.bgcolor;					// ¿äÀÏÀÇ ¹è°æ Ä®¶ó
-		this.bgcolor2;					// ³»¿ëÀÇ ¹è°æ Ä®¶ó
-		this.linecolor;					// ´Ş·Â ¶óÀÎ Ä®¶ó
-		this.lineheight;				// ÇÑÄ­ÀÇ ³ôÀÌ
-		this.width;						// ´Ş·Â ³Êºñ
-		this.tfDateLineCol;				// ³¯Â¥ ÇÊµå ¶óÀÎ »ö
-		this.tfCol;						// ³»¿ë ÇÊµå »ö
-		this.focusCol;					// Æ÷Ä¿½º ÇÊµå »ö
+		this.tfDate;					// ë‚ ì§œ í•„ë“œëª…
+		this.bgcolor;					// ìš”ì¼ì˜ ë°°ê²½ ì¹¼ë¼
+		this.bgcolor2;					// ë‚´ìš©ì˜ ë°°ê²½ ì¹¼ë¼
+		this.linecolor;					// ë‹¬ë ¥ ë¼ì¸ ì¹¼ë¼
+		this.lineheight;				// í•œì¹¸ì˜ ë†’ì´
+		this.width;						// ë‹¬ë ¥ ë„ˆë¹„
+		this.tfDateLineCol;				// ë‚ ì§œ í•„ë“œ ë¼ì¸ ìƒ‰
+		this.tfCol;						// ë‚´ìš© í•„ë“œ ìƒ‰
+		this.focusCol;					// í¬ì»¤ìŠ¤ í•„ë“œ ìƒ‰
 
-		// argument ¼¼ÆÃ
-		if (newName != null) {this.name = newName;}				// Calendar °´Ã¼ ÀÌ¸§ ¼¼ÆÃ
+		// argument ì„¸íŒ…
+		if (newName != null) {this.name = newName;}				// Calendar ê°ì²´ ì´ë¦„ ì„¸íŒ…
 			else {this.name = d_name;}
-		if (newFormName != null) {this.formName = newFormName;	}		// form ÀÌ¸§ ¼¼ÆÃ
+		if (newFormName != null) {this.formName = newFormName;	}		// form ì´ë¦„ ì„¸íŒ…
 			else {this.formName = d_formName;}
-		if (newYear != null && newYear.length != 0)	{this.myYear = newYear;}	// Á¶È¸ÇÒ ³â ¼¼ÆÃ
+		if (newYear != null && newYear.length != 0)	{this.myYear = newYear;}	// ì¡°íšŒí•  ë…„ ì„¸íŒ…
 			else {this.myYear = currentDate.getFullYear();}
-		if (newMonth != null && newMonth.length != 0)	{this.myMonth = newMonth - 1 ;}	// Á¶È¸ÇÒ ¿ù ¼¼ÆÃ
+		if (newMonth != null && newMonth.length != 0)	{this.myMonth = newMonth - 1 ;}	// ì¡°íšŒí•  ì›” ì„¸íŒ…
 			else {this.myMonth = currentDate.getMonth();}
-		if (newDate != null && newDate.length != 0)	{this.myDate = newDate;}	// Á¶È¸ÇÒ ÀÏ ¼¼ÆÃ
+		if (newDate != null && newDate.length != 0)	{this.myDate = newDate;}	// ì¡°íšŒí•  ì¼ ì„¸íŒ…
 			else {this.myDate = currentDate.getDate();}
-		if (newFormat != null && newFormat.length != 0)	{this.format = newFormat;}// ³¯Â¥ ÇÊµå format ¼¼ÆÃ
+		if (newFormat != null && newFormat.length != 0)	{this.format = newFormat;}// ë‚ ì§œ í•„ë“œ format ì„¸íŒ…
 			else {this.format = d_format[0];}
-		if (newDayName != null)	{this.dayName = eval(dayNameType[newDayName]);}	// ¿äÀÏ format ¼¼ÆÃ
+		if (newDayName != null)	{this.dayName = eval(dayNameType[newDayName]);}	// ìš”ì¼ format ì„¸íŒ…
 			else {this.dayName = eval(dayNameType[1]);}
 
-		// ±âº»°ª ¼¼ÆÃ
+		// ê¸°ë³¸ê°’ ì„¸íŒ…
 		this.tfDate = d_tfDate;	
 		this.bgcolor = d_bgcolor;
 		this.bgcolor2 = d_bgcolor2;
@@ -100,12 +100,12 @@
 		this.tfCol = d_tfCol;
 		this.focusCol = d_focusCol;
         
-	}//////////CalendarÇÔ¼ö /////////////////
+	}//////////Calendarí•¨ìˆ˜ /////////////////
 
 
-/* 4. ³¯Â¥ °ü·ÃµÈ ÇÔ¼ö ±¸Çö  */
+/* 4. ë‚ ì§œ ê´€ë ¨ëœ í•¨ìˆ˜ êµ¬í˜„  */
 
-	// Á¶È¸ ³â¿ùÀÇ ÀÏ¼ö ±¸ÇÔ
+	// ì¡°íšŒ ë…„ì›”ì˜ ì¼ìˆ˜ êµ¬í•¨
 	function getDaysOfMonth(year, month) { 
         "use strict";
 			/* 
@@ -119,12 +119,12 @@
                         {return DOMonth[month]; }			 
                 return lDOMonth[month]; 
 			} else {return DOMonth[month]; }
-	} /////// getDaysOfMonthÇÔ¼ö ///////////////////////
+	} /////// getDaysOfMonthí•¨ìˆ˜ ///////////////////////
 /////////////////////////////////////////////////////
 	
-	// Ã¹¹øÂ° ¿äÀÏ ±¸ÇÏ±â
+	// ì²«ë²ˆì§¸ ìš”ì¼ êµ¬í•˜ê¸°
 	function getFirstDay(year, month) {
-		var tmpDate = new Date(); 
+		let tmpDate = new Date(); 
         tmpDate.setDate(1); 
         tmpDate.setMonth(month); 
         tmpDate.setFullYear(year); 
@@ -132,9 +132,9 @@
         return tmpDate.getDay(); 
 	}
 
-	// ¸¶Áö¸· ¿äÀÏ ±¸ÇÏ±â
+	// ë§ˆì§€ë§‰ ìš”ì¼ êµ¬í•˜ê¸°
 	function getLastDay(year, month) {
-		var tmpDate = new Date(); 
+		let tmpDate = new Date(); 
         tmpDate.setDate( getDaysOfMonth(year, month) ); 
         tmpDate.setMonth(month); 
         tmpDate.setFullYear(year); 
@@ -142,7 +142,7 @@
         return tmpDate.getDay(); 
 	}
 
-	// ³¯Â¥ °¨¼Ò(incr:-1), Áõ°¡(incr:1)
+	// ë‚ ì§œ ê°ì†Œ(incr:-1), ì¦ê°€(incr:1)
 	function calcMonthYear(p_Year, p_Month, incr) { 
 			/* 
 			Will return an 1-D array with 1st element being the calculated month 
@@ -150,7 +150,7 @@
 			after applying the month increment/decrement as specified by 'incr' parameter. 
 			'incr' will normally have 1/-1 to navigate thru the months. 
 			*/ 
-			var ret_arr = new Array(); 
+			let ret_arr = new Array(); 
 			 
 			if (incr == -1) { 
 					// B A C K W A R D 
@@ -183,49 +183,49 @@
 
 
 
-/* 5. Calendar °´Ã¼ÀÇ ÇÔ¼ö ±¸Çö */
+/* 5. Calendar ê°ì²´ì˜ í•¨ìˆ˜ êµ¬í˜„ */
 
-	// ÇØ´ç¿ùÀÇ µ¥ÀÌÅÍ ¹è¿­ »ı¼º
+	// í•´ë‹¹ì›”ì˜ ë°ì´í„° ë°°ì—´ ìƒì„±
 	function setDates() {
-		var dates = new Array();										// dates = { '&npsp;', '', 1, 2, 3, 4, ...27,.. '&npsp;' };
-		var firstDay = getFirstDay(this.myYear, this.myMonth);			// Ã¹¹øÂ° ¿äÀÏÀÇ ¼ıÀÚ°ª
-		var lastDay = getLastDay(this.myYear, this.myMonth);			// ¸¶Áö¸· ¿äÀÏÀÇ ¼ıÀÚ°ª
-		var daysOfMonth = getDaysOfMonth(this.myYear, this.myMonth);	// 28, 29, 30, 31 Áß ÇÏ³ª
-		var firstDate = 1;
+		let dates = new Array();										// dates = { '&npsp;', '', 1, 2, 3, 4, ...27,.. '&npsp;' };
+		let firstDay = getFirstDay(this.myYear, this.myMonth);			// ì²«ë²ˆì§¸ ìš”ì¼ì˜ ìˆ«ìê°’
+		let lastDay = getLastDay(this.myYear, this.myMonth);			// ë§ˆì§€ë§‰ ìš”ì¼ì˜ ìˆ«ìê°’
+		let daysOfMonth = getDaysOfMonth(this.myYear, this.myMonth);	// 28, 29, 30, 31 ì¤‘ í•˜ë‚˜
+		let firstDate = 1;
 
-		for (var i = 0; i < firstDay; i++) dates[i] = '';
-		for (var i = firstDay; i < daysOfMonth + firstDay ; i++) {
+		for (let i = 0; i < firstDay; i++) dates[i] = '';
+		for (let i = firstDay; i < daysOfMonth + firstDay ; i++) {
 			dates[i] = firstDate;
 			firstDate ++;
 		}
 
-		var len = dates.length;
-		for (var i = 0; i < (6-lastDay); i++) {	dates[ len + i] = '';	}
+		let len = dates.length;
+		for (let i = 0; i < (6-lastDay); i++) {	dates[ len + i] = '';	}
 		return dates;
 	}
 
-	// ÀÌÀü ³â¿ù·Î ¼¼ÆÃ	
+	// ì´ì „ ë…„ì›”ë¡œ ì„¸íŒ…	
 	function prev() {
-		var tmp = calcMonthYear(this.myYear, this.myMonth, -1);
+		let tmp = calcMonthYear(this.myYear, this.myMonth, -1);
 		this.myYear = tmp[0];
 		this.myMonth = tmp[1];
 		this.setContent();
 	}
 
-	// ´ÙÀ½ ³â¿ù·Î ¼¼ÆÃ	
+	// ë‹¤ìŒ ë…„ì›”ë¡œ ì„¸íŒ…	
 	function next() {
-		var tmp = calcMonthYear(this.myYear, this.myMonth, 1);
+		let tmp = calcMonthYear(this.myYear, this.myMonth, 1);
 		this.myYear = tmp[0];
 		this.myMonth = tmp[1];
 		this.setContent();
 	}
 
-	// ÁöÁ¤ÇÑ ³â¿ù·Î ¼¼ÆÃ
+	// ì§€ì •í•œ ë…„ì›”ë¡œ ì„¸íŒ…
 	function reload() {
-		var obj = eval("document." + this.formName + "." + this.tfDate);
+		let obj = eval("document." + this.formName + "." + this.tfDate);
 
 		if ( obj.value.length < 6) { return; }
-		for (var i=0; i < d_format.length; i++) {
+		for (let i=0; i < d_format.length; i++) {
 			if (d_format[i] == this.format) {
 				if ( i == 0 || i == 2 || i == 4 ) {
 					this.myYear = obj.value.substring(0,4);
@@ -249,16 +249,16 @@
 		this.setContent();
 	}
 
-	// htmlÀÇ ÇÊµå°ª ¼¼ÆÃ
+	// htmlì˜ í•„ë“œê°’ ì„¸íŒ…
 	function setContent() {
 		this.clearContent();
 		
-		var tmp = getFormatDate(this.format, this.myYear, (this.myMonth + 1), this.myDate);
+		let tmp = getFormatDate(this.format, this.myYear, (this.myMonth + 1), this.myDate);
 		setTextField(this.formName, this.tfDate, tmp);
 
-		var dates = this.setDates();
-		for ( var i = 0; i < dates.length; i++) {
-			for ( var j = 0; j < 7; j++) {
+		let dates = this.setDates();
+		for ( let i = 0; i < dates.length; i++) {
+			for ( let j = 0; j < 7; j++) {
 				setTextField(this.formName, "tf" + i, dates[i] );
 				if (dates[i] == currentDate.getDate() && this.myYear == currentDate.getFullYear() && this.myMonth == currentDate.getMonth() ) setTodayStyle(this.formName, i);
 				i++;
@@ -268,19 +268,19 @@
 		}
 	}
 
-	// htmlÀÇ ÇÊµå°ª Áö¿ì±â
+	// htmlì˜ í•„ë“œê°’ ì§€ìš°ê¸°
 	function clearContent() {
 		eval( "document."+ this.formName + ".reset();");
-		var frm = eval( "document."+ this.formName);
-		for (var i = 0; i < frm.elements.length ; i++) {
+		let frm = eval( "document."+ this.formName);
+		for (let i = 0; i < frm.elements.length ; i++) {
 			frm.elements[i].style.fontWeight = 'normal';
 		}
 	}
 
-	// ³â¿ùÀÏÀ» ÁöÁ¤µÈ format ÇüÅÂ·Î ¹Ù²Ù¾î ¸®ÅÏ
+	// ë…„ì›”ì¼ì„ ì§€ì •ëœ format í˜•íƒœë¡œ ë°”ê¾¸ì–´ ë¦¬í„´
 	function getFormatDate(format, year, month, date) {
-		var gubunja = '';
-		for (var i=0; i < d_format.length; i++) {
+		let gubunja = '';
+		for (let i=0; i < d_format.length; i++) {
 			if (d_format[i] == format) {
 				if ( i == 0 || i == 2 || i == 4 ) {
 					gubunja = d_format[i].substring(4,5)
@@ -298,7 +298,7 @@
 		return 'no format';
 	}
 	
-	// year ÀÚ¸®¼ö ¸ÂÃß±â
+	// year ìë¦¬ìˆ˜ ë§ì¶”ê¸°
 	function setYearLength(data, length) {
 		data = data + '';
 		if (length == data.length) {
@@ -311,25 +311,25 @@
 		return data;
 	}
 
-	// month ÀÚ¸®¼ö ¸ÂÃß±â
+	// month ìë¦¬ìˆ˜ ë§ì¶”ê¸°
 	function setLength(data, length) {
-		for (var i = new String(data).length; i < length; i++) {
+		for (let i = new String(data).length; i < length; i++) {
 			data = '0' + data;
 		}
 		return data;
 	}
 
-	// ÀÏÀÚ ¼¼ÆÃ
+	// ì¼ì ì„¸íŒ…
 	function setTextField(formName, name, value) {
 		eval( formName + "." + name + ".value = '" + value + "';" );
 	}
 
-	// ¿À´Ã ³¯Â¥ ½ºÅ¸ÀÏ
+	// ì˜¤ëŠ˜ ë‚ ì§œ ìŠ¤íƒ€ì¼
 	function setTodayStyle(formName, gb) {
 		eval( formName + ".tf" + gb + ".style.fontWeight = 'bold';" );
 	}
 
-	// Á¶È¸µÈ ³â
+	// ì¡°íšŒëœ ë…„
 	function getYear() {
 		return this.myYear;
 	}
@@ -338,11 +338,11 @@
 		return (this.myMonth + 1);
 	}
 
-	// html »ı¼º
+	// html ìƒì„±
 	function show() {
 		printForm(0,this.formName, this.method, this.action);
 		
-		// Á¶È¸ ³¯Â¥ Ãâ·Â
+		// ì¡°íšŒ ë‚ ì§œ ì¶œë ¥
 		printTable(0, this.width, '30', 0, 0, 0, '');
 		printTr(0, "center");
 			printTd(0, '', '', 7);
@@ -357,10 +357,10 @@
 		printTable();
 
 
-		// ¿äÀÏ Ãâ·Â
+		// ìš”ì¼ ì¶œë ¥
 		printTable(0, this.width, '', 0, 1, 0, 'background-color:'+ this.linecolor +'; line-height:' + this.lineheight);
 		printTr(0, 'center', 'background-color:'+ this.bgcolor);
-		for (var i=0; i < 7; i++) {
+		for (let i=0; i < 7; i++) {
 			printTd(0);
 			printDay(this.dayName, i);
 			printTd();
@@ -368,11 +368,11 @@
 		printTr();
 		printTable();
 
-		// ´Ş·Â textfield Ãâ·Â
+		// ë‹¬ë ¥ textfield ì¶œë ¥
 		printTable(0, this.width, '', 0, 1, 0, 'background-color:'+ this.bgcolor2 +'; line-height:' + this.lineheight);
-		for (var i = 0; i < 42; i++) {
+		for (let i = 0; i < 42; i++) {
 			printTr(0, 'center', 'background-color:'+ this.bgcolor2);
-			for (var j=0; j < 7; j++) {
+			for (let j=0; j < 7; j++) {
 				printTd(0);
 				printTextField( i, 2, 2, 'color:'+day_color[j] + '; cursor:hand; border-width:1px; border-color:'+this.tfCol+'; border-style:solid; background-color:'+this.tfCol+'; text-align:center', "alert(" + this.name + ".getYear() + '.' + "+ this.name+".getMonth() + '.' + this.value);", this.tfCol, this.focusCol);
 				printTd();
@@ -385,14 +385,14 @@
 		printTable();
 		printForm();
 
-		// ³»¿ë ³Ö±â
+		// ë‚´ìš© ë„£ê¸°
 		this.setContent();
 
 	}
 
 
-/* 6. HTML »ı¼º ÇÔ¼ö ±¸Çö  */
-	// ½ÇÁ¦ HTML »ı¼º
+/* 6. HTML ìƒì„± í•¨ìˆ˜ êµ¬í˜„  */
+	// ì‹¤ì œ HTML ìƒì„±
 	function print(str) {
 		document.writeln( str );
 	}
@@ -433,32 +433,32 @@
 		} 
 	}
 	
-	// ³¯Â¥ ÇÊµå
+	// ë‚ ì§œ í•„ë“œ
 	function printDateTF(calObj, name, size, maxlength, style) {
 		print("<input type='text' name='" + name + "' size='"+ size +"' maxlength='"+ maxlength +"' style='"+ style +"' onFocus='this.select()' onKeyUp='if (event.keyCode == 13) { "+ calObj +".reload(this);this.select(); }'>");
 	}
 
-	// ³¯Â¥ Á¶È¸ ¹öÆ°
+	// ë‚ ì§œ ì¡°íšŒ ë²„íŠ¼
 	function printSearch(calObj) {
 		print("<a href=\"javascript:" + calObj + ".reload();\"><img src='search_01.gif' border='0' align='absmiddle'></a>");
 	}
 
-	// ÀÌÀü´Ş ¸µÅ©
+	// ì´ì „ë‹¬ ë§í¬
 	function printPrev(calObj) {
-		print("<a href=\"javascript:" + calObj + ".prev();\"><font color='#000000'>¢¸</font></a>");
+		print("<a href=\"javascript:" + calObj + ".prev();\"><font color='#000000'>â—€</font></a>");
 	}		
 
-	// ´ÙÀ½´Ş ¸µÅ©
+	// ë‹¤ìŒë‹¬ ë§í¬
 	function printNext(calObj) {
-		print("<a href=\"javascript:" + calObj + ".next();\"><font color='#000000'>¢º</font></a>");
+		print("<a href=\"javascript:" + calObj + ".next();\"><font color='#000000'>â–¶</font></a>");
 	}
 	
-	// ¿äÀÏ (gb: 0 ~ 6) ===> ÀÏ ~ Åä
+	// ìš”ì¼ (gb: 0 ~ 6) ===> ì¼ ~ í† 
 	function printDay(dayName, gb) {
 		print( dayName[gb] );
 	}
 
-	// ÀÏÀÚ ÇÊµå(gb: 0 ~ 41)
+	// ì¼ì í•„ë“œ(gb: 0 ~ 41)
 	function printTextField(gb, size, maxlength, style, event, tfCol, focusCol) {
 		print ("<input type='text' name='tf" + gb + "' size='"+ size +"' maxlength='"+ maxlength + "' style='" + style + "' readonly tabindex=-1 onClick=\""+ event +"\" onMouseOver=\"this.style.backgroundColor = '"+ focusCol+"';this.style.borderColor='"+ focusCol+"';\" onMouseOut=\"this.style.backgroundColor = '"+ tfCol+"';this.style.borderColor='"+ tfCol+"'\">");
 	}
