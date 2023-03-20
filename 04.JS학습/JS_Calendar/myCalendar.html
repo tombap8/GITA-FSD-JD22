@@ -1,39 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-<title>Calendar</title>
-<meta charset="utf-8">
-<style>
-    html { 
-        font-size:10pt;
-    }
-    a{
-        text-decoration: none;
-    }
-    
-</style>
+    <head>
+        <title>Calendar</title>
+        <meta charset="utf-8" />
+        <style>
+            html {
+                font-size: 10pt;
+            }
+            a {
+                text-decoration: none;
+            }
 
-<script src="calendar.js" charset="euc-kr"></script>
-<!--charset="euc-kr" 는 자바스크립트로 html을 그릴때 한글이 깨지는 것을 방지함!-->
-</head>
-<body>
-<script>
-// 달력에 옵션 주기
-var cal1 = new Calendar("cal1", "frm1");
-cal1.tfDate = 'dateField';
-cal1.bgcolor = '#D1EBF3'; // 요일 배경색
-cal1.bgcolor2 = '#E9F8FC'; // 내용 배경색
-cal1.linecolor = '#D1EBF3'; // 라인 배경색
-cal1.lineheight = '20px'; // 라인 높이
-cal1.width = '300'; // 달력 너비
-cal1.tfDateLineCol = 'green'; // 텍스트필드 라인색
-cal1.tfCol = '#E9F8FC'; // 내용 텍스트필드 배경색
-cal1.focusCol = 'yellow'; // 포커스 색
-    
-</script>
-    
-    <div class="calbox">
-        <script>cal1.show()</script>
-    </div>
-</body>
+            .datebx{
+                position: relative;
+            }
+            #mydt {
+                width: 120px;
+            }
+
+            .calbx {
+                position: absolute;
+                left: 40px;
+                display: none;
+            }
+        </style>
+
+        <!-- <script src="calendar.js" charset="euc-kr"></script> -->
+        <script src="calendar.js"></script>
+        <!--charset="euc-kr" 는 자바스크립트로 html을 그릴때 한글이 깨지는 것을 방지함!-->
+        <script>
+            const qs = x => document.querySelector(x);
+             // 달력에 옵션 주기
+            const cal1 = new Calendar("cal1", "frm1");
+            cal1.tfDate = "dateField";
+            cal1.bgcolor = "#D1EBF3"; // 요일 배경색
+            cal1.bgcolor2 = "#E9F8FC"; // 내용 배경색
+            cal1.linecolor = "#D1EBF3"; // 라인 배경색
+            cal1.lineheight = "20px"; // 라인 높이
+            cal1.width = "400"; // 달력 너비
+            cal1.tfDateLineCol = "green"; // 텍스트필드 라인색
+            cal1.tfCol = "#E9F8FC"; // 내용 텍스트필드 배경색
+            cal1.focusCol = "yellow"; // 포커스 색
+
+            window.addEventListener("DOMContentLoaded",()=>{
+                qs(".calbx").innerHTML = cal1.show();
+            })
+        </script>
+    </head>
+    <body>
+        <input type="date" />
+        <br />
+
+        <div class="datebx">
+            <input type="text" id="mydt" />
+            <div class="calbx"></div>
+        </div>
+    </body>
 </html>
