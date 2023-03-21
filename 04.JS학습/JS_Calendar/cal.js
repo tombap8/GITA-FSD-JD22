@@ -5,11 +5,12 @@ let han_dayName = new Array("일", "월", "화", "수", "목", "금", "토");
 function MyCal(yy, mm) {
     // Calendar 객체에 속한 함수 등록
 		this.setDates = setDates;		// 해당월의 데이터 배열 생성
-        this.myYear;					// 조회할 년
-		this.myMonth;					// 조회할 월(month:0~11)
+        this.myYear=yy;					// 조회할 년
+		this.myMonth=mm;					// 조회할 월(month:0~11)
 		this.myDate;					// 조회할 일
     console.log(this.myYear, this.myMonth);
     console.log(han_dayName[getFirstDay(yy, mm)]);
+    console.log(setDates);
 }
 
 /* 4. 날짜 관련된 함수 구현  */
