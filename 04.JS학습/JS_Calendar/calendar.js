@@ -4,20 +4,20 @@
 /* 		1. 기본옵션     */
 
 	// 포멧
-	let d_format = new Array('yyyy.mm.dd','yy.mm.dd','yyyy-mm-dd','yy-mm-dd','yyyy/mm/dd','yy/mm/dd','yyyymmdd','yymmdd');
+	let d_format = ['yyyy.mm.dd','yy.mm.dd','yyyy-mm-dd','yy-mm-dd','yyyy/mm/dd','yy/mm/dd','yyyymmdd','yymmdd'];
 	// 요일 색깔
-	let day_color = new Array('red', 'black', 'black', 'black', 'black', 'black', 'blue');
+	let day_color = ['red', 'black', 'black', 'black', 'black', 'black', 'blue'];
 	// 요일, 월 표시
-	let num_dayName = new Array(0,1,2,3,4,5,6); 
-	let han_dayName = new Array('일','월','화','수','목','금','토'); 
-	let eng_dayName = new Array('SUN','MON','TUE','WED','THU','FRI','SAT'); 
-	let chi_dayName = new Array('日','月','火','水','木','金','土'); 
-	let num_months = new Array('1','2','3','4','5','6','7','8','9','10','11','12');
-	let han_months = new Array('1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'); 
-	let eng_months = new Array('Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
-	let chi_months = new Array('1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'); 
-	let dayNameType = new Array('num_dayName','han_dayName','eng_dayName','chi_dayName');
-	let monthsType = new Array('num_months','han_months','eng_months','chi_months');
+	let num_dayName = [0,1,2,3,4,5,6] 
+	let han_dayName = ['일','월','화','수','목','금','토'] 
+	let eng_dayName = ['SUN','MON','TUE','WED','THU','FRI','SAT'] 
+	let chi_dayName = ['日','月','火','水','木','金','土'] 
+	let num_months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+	let han_months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']; 
+	let eng_months = ['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	let chi_months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', ']2月']; 
+	let dayNameType = ['num_dayName','han_dayName','eng_dayName','chi_dayName'];
+	let monthsType = ['num_months','han_months','eng_months','chi_months'];
 	// 스타일
 	let d_bgcolor = '#FAD9B7';
 	let d_bgcolor2 = 'white';
