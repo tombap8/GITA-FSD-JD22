@@ -297,15 +297,16 @@ function goDrag(obj) {
     const dFalse = () => (drag = false);
 
     // (3) 드래그 움질일때 작동함수
-    const dMove = () => {
-        // console.log("드래그상태:",drag);
-
+    const dMove = (e) => {
+        
         // 드래그 상태일때만 실행
         if (drag) {
             obj.style.transition = "none";
             // 1. 드래그 상태에서 움직일때 위치값 : mvx,mvy
-            mvx = event.pageX;
+            
+            mvx = event.pageX || event.changedTouches[0].pageX;
             // mvy = event.pageY;
+            console.log("드래그상태-터치무브:",drag,event.changedTouches);
 
             // 2. 움직일때 위치값 - 처음 위치값 : rx, ry
             // x축값은 left값, y축값은 top값 이동이다!
@@ -328,7 +329,8 @@ function goDrag(obj) {
 
     // (4) 첫번째 위치포인트 셋팅함수
     const firstPoint = () => {
-        fx = event.pageX;
+        fx = event.pageX || event.changedTouches[0].pageX;
+        
         // fy = event.pageY;
     };
 
@@ -360,15 +362,17 @@ function goDrag(obj) {
 
     // 이벤트 등록하기 ////////////
     // (1) 마우스 내려갈때 : 드래그true + 첫번째 위치값 업데이트
-    obj.addEventListener("touchs", () => {
+    obj.addEventListener("touchstart", () => {
         dTrue();
         firstPoint();
+        console.log("터치스타트");
     },false);
     // (2) 마우스 올라올때 : 드래그false + 마지막 위치값 업데이트
     obj.addEventListener("touchend", () => {
         dFalse();
         // lastPoint();
         goWhere(obj);  
+        console.log("터치엔드");
     },false);
     // (3) 마우스 움직일때
     obj.addEventListener("touchmove", dMove,false);
