@@ -67,7 +67,7 @@ body {
     flex-direction: column;
     margin: 12px 24px 0px 24px;
 }
-.daies {
+.week {
     display: flex;
     flex-wrap: wrap;
     width: var(--cwidth);
