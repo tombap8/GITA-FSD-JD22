@@ -357,6 +357,22 @@ function goDrag(obj) {
     obj.addEventListener("mouseleave", dFalse);
     // (4) 마우스 들어올때
     obj.addEventListener("mouseenter", dFalse);
+
+    // 이벤트 등록하기 ////////////
+    // (1) 마우스 내려갈때 : 드래그true + 첫번째 위치값 업데이트
+    obj.addEventListener("touchs", () => {
+        dTrue();
+        firstPoint();
+    },false);
+    // (2) 마우스 올라올때 : 드래그false + 마지막 위치값 업데이트
+    obj.addEventListener("touchend", () => {
+        dFalse();
+        // lastPoint();
+        goWhere(obj);  
+    },false);
+    // (3) 마우스 움직일때
+    obj.addEventListener("touchmove", dMove,false);
+
 } //////////// goDrag함수 ///////////////////////
 
 /************************************************* 
