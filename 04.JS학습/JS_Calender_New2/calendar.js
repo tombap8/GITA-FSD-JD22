@@ -1,4 +1,4 @@
-function MakeDalleok() {
+function MakeDallyeog() {
     this.curr_date = new Date();
     this.today = new Date();
     this.yearTit = document.querySelector(".yearTit");
@@ -23,7 +23,7 @@ function MakeDalleok() {
             dates.push(i);
         }
         // 다음달 나머지 칸 삽입하기
-        for (let i = 1; i <= 13 - thisLast.getDay(); i++) {
+        for (let i = 1; i <= 14; i++) {
             dates.push(`<span style="color:#ccc" class="am">${i}</span>`);
         }
         let htmlDates = "";
@@ -105,6 +105,6 @@ function MakeDalleok() {
         this.curr_date.setMonth(this.curr_date.getMonth() + 1);
         this.initDalleok();
     };
-} /////////////// MakeDalleok //////////////////
+} /////////////// MakeDallyeog //////////////////
 
-export default MakeDalleok;
+export default MakeDallyeog;

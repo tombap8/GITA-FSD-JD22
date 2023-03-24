@@ -1,8 +1,8 @@
 // 2023캘린더
-import MakeDalleok from "./calendar.js";
+import MakeDallyeog from "./calendar.js";
 
 const mbtn = document.querySelectorAll(".mbtn");
-const mDal = new MakeDalleok();
+const mDal = new MakeDallyeog();
 mDal.initDalleok();
 
 mbtn[0].addEventListener("click",mDal.prevCal);
