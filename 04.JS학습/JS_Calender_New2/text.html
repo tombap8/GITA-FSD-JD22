@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const cg = x=>console.log(x);
+
+        let myd = new Date();
+        let newd = new Date();
+
+        cg("1:"+myd)
+        myd = myd.toISOString();
+        cg("2:"+myd)
+        // 전달끝날짜
+        myd = new Date(newd.getFullYear(),newd.getMonth(),0);
+        myd = new Date(2023,5,0); // new Date(년도,월,0-끌날짜/1-첫날짜)
+        cg("전달 끝날짜:"+myd)
+        // 전달끝날짜 요일(0- 일요일)
+        myd = myd.getDay();
+        cg("전달 끝날짜 요일:"+myd)
+        // 현재달날짜
+        myd = new Date(newd.getFullYear(),newd.getMonth(),1);
+        cg("현재달 첫날짜:"+myd)
+        // 현재달 끝날짜
+        myd = new Date(newd.getFullYear(),newd.getMonth()+1,0);
+        cg("현재달 끝날짜:"+myd)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
