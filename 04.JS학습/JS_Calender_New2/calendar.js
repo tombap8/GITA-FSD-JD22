@@ -6,11 +6,19 @@ function MakeDallyeog() {
     this.dates = document.querySelector(".dates");
 
     this.initDalleok = () => {
+        // getMonth() 정보는 항상 현재달 숫자보다 1작음(배열순번으로 리턴함!)
+        // 1. 전달 마지막날짜(옵션:0)
         const prevLast = new Date(this.curr_date.getFullYear(), this.curr_date.getMonth(), 0);
+        // 2. 현재달 첫째날짜(옵션:1->전달로해야 이번달첫날짜 나옴!)
         const thisFirst = new Date(this.curr_date.getFullYear(), this.curr_date.getMonth(), 1);
+        // 3. 현재달 마지막날짜(옵션:0)
         const thisLast = new Date(this.curr_date.getFullYear(), this.curr_date.getMonth() + 1, 0);
+
+        // 4. 년도표시하기
         this.yearTit.innerHTML = this.curr_date.getFullYear();
+        // 5. 월표시하기
         this.monthTit.innerHTML = this.curr_date.getMonth() + 1;
+        // 6. 날짜넣을 배열 셋팅하기
         const dates = [];
         // 전달 나머지 칸 삽입하기
         if (thisFirst.getDay() != 0) {
