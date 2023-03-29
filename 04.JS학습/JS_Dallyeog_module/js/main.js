@@ -31,7 +31,11 @@ $(".myipt").click(function(){
     $(this).next().find(".calender").show();
 }); /////// click /////////////
 
-$(".calender").click(function(){
-    $(this).parent().prev().val($(this).find(".dinfo").val());
-    $(this).hide();
+$(".calender").on("click mouseenter",function(){
+    console.log("이벤트!!!");
+    $(this).find(".date").click(()=>{
+        console.log(this);
+        $(this).parent().prev().val($(this).find(".dinfo").val());
+        $(this).hide();
+    })
 });
