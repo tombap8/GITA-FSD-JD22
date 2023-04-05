@@ -78,10 +78,10 @@ $(() => {
     // 2. 버튼 셋팅하기
     // 모든 버튼은 숨기고 첫번재 버튼만 보여!
     // 버튼.숨겨().첫번째().보여()
-    // btns.hide().first().show();
+    btns.hide().first().show();
 
     //테스트시 중간버튼부터
-    btns.hide().eq(4).show();
+    // btns.hide().eq(4).show();
 
     // 3. 공통함수 : actMini() ///////////////////////
     const actMini = (ele, seq, fn) => {
