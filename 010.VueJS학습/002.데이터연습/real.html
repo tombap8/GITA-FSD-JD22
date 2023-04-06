@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS 데이터 바인딩 연습2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- 뷰JS 프레임워크 스텐드얼론 버전 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+    <!-- 엑시오스 라이브러리 스텐드얼론 버전 가져오기(제이슨불러오기) -->
+
+    <script>
+        window.addEventListener("DOMContentLoaded",
+            () => {
+
+                console.log("로딩완료!");
+
+                new Vue({
+                    el: "#app",
+                    data: {
+                        items: {}, // json데이터 종류(빈객체형 셋팅),
+                        catName: "fashion"
+                    },
+                    mounted: function () {
+                        axios.get("real.json")
+                            .then(response => (this.items = response))
+                    }
+                    // mounted 속성은 "읽어들여진"의 뜻으로
+                    // 외부파일을 가져와서 셋팅하는 기능!
+
+
+                }); //////// Vue /////////
+
+
+
+            }); ////////////// 로딩구역 //////////////////////
+    </script>
+
+
+</head>
+
+<body>
+    <h1>Vue JS 데이터 바인딩 연습</h1>
+    <ul id="app">
+        <li v-for="(v,i) in items.data" v-if="v.경로===catName">
+            <!-- 
+                v-if="v.경로===catName"
+                v.경로의 값이 catName에 설정된 값과 같은 경우에만
+                li를 만들어라!
+             -->
+            {{v.제목}}
+            <ol v-if="v.메뉴!=='없음'">
+                <!-- 
+                    v-if="v.메뉴!=='없음'"
+                    만약에 v.메뉴의 값이 '없음'이 아니면 true
+                    이때 for문이 실행됨! false이면 실행안됨!
+                -->
+                <li v-for="(m,i) in v.메뉴">
+                    {{m}}
+                </li>
+            </ol>
+
+        </li>
+    </ul>
+</body>
+
+</html>

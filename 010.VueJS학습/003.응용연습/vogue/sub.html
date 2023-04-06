@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion | 보그 코리아 (Vogue Korea)</title>
+    <!-- 탭메뉴 아이콘 넣기 -->
+    <link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto@v3.0.4/css/fontisto/fontisto.min.css">
+    <link rel="stylesheet" href="css/sub.css">
+    <link rel="stylesheet" href="css/media.css">
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/linksys.js"></script>
+    <script src="js/common.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- 뷰JS 프레임워크 스텐드얼론 버전 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+    <!-- 엑시오스 라이브러리 스텐드얼론 버전 가져오기(제이슨불러오기) -->
+    <script src="js/sub.js"></script>
+</head>
+<body>
+    <!-- 1. 상단영역 -->
+    <div id="top">
+        <header class="top ibx">
+            <!-- 1-1.상단메뉴 -->
+            <div class="tmenu">
+                <!-- 1-1-1.sns박스 -->
+                <div class="sns">
+                    <a href="#" class="fi fi-instagram">
+                        <span class="ir">
+                            인스타그램
+                        </span>
+                    </a>
+                    <a href="#" class="fi fi-facebook">
+                        <span class="ir">
+                            페이스북
+                        </span>
+                    </a>
+                    <a href="#" class="fi fi-twitter">
+                        <span class="ir">
+                            트위터
+                        </span>
+                    </a>
+                    <a href="#" class="fi fi-youtube-play">
+                        <span class="ir">
+                            유튜브
+                        </span>
+                    </a>
+                    <a href="#">
+                        <span class="ir">
+                            카카오스토리
+                        </span>
+                    </a>
+                </div>
+                <!-- 1-1-2.사이드메뉴 -->
+                <div class="sideMenu">
+                    <ul class="smbx">
+                        <li>
+                            <a href="#">SIDE MENU</a>
+                            <!-- 서브메뉴 -->
+                            <ol class="smsub">
+                                <li>
+                                    <a href="#">회사 소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">광고 및 제휴</a>
+                                </li>
+                                <li>
+                                    <a href="#">개인정보 처리방침</a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>
+                            <a href="#">SUBSCRIBE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 1-2.로고박스 -->
+            <h1 class="logo">
+                <a href="#">
+                    <img src="images/mlogo.png" alt="메인로고">
+                </a>
+            </h1>
+            <!-- 1-3.GNB박스 -->
+            <nav class="gnb">
+                <ul>
+                    <li>
+                        <a href="#">FASHION</a>
+                    </li>
+                    <li>
+                        <a href="#">BEAUTY</a>
+                    </li>
+                    <li>
+                        <a href="#">LIVING</a>
+                    </li>
+                    <li>
+                        <a href="#">PEOPLE</a>
+                    </li>
+                    <li>
+                        <a href="#">VIDEO</a>
+                    </li>
+                    <li>
+                        <a href="#">RUNWAY</a>
+                    </li>
+                    <li>
+                        <a href="#">SHOPPING</a>
+                    </li>
+                    <li>
+                        <a href="#" class="fi fi-search">
+                            <span class="ir">search</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- 모바일용 햄버거버튼 -->
+            <a href="#" class="mobtn hbtn fi fi-nav-icon">
+                <span class="ir">GNB button</span>
+            </a>
+            <!-- 모바일용 검색버튼 -->
+            <a href="#" class="mobtn sbtn fi fi-search">
+                <span class="ir">search</span>
+            </a>
+
+        </header>
+        <!-- 1.4.모바일 검색박스 -->
+        <div class="mos">
+            <div class="mwrap">
+                <!-- 입력창박스 -->
+                <div id="search">
+                    <input type="text">
+                </div>
+                <!-- 검색버튼 -->
+                <button class="scbtn fi fi-search">
+                    <span class="ir">돋보기검색아이콘</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 1.5.모바일 전체메뉴 -->
+        <div id="mobx">
+            <!-- 1.5-1.모바일 GNB 메뉴 -->
+            <nav class="mognb">
+                <ul>
+                    <li>
+                        <a href="#">FASHION</a>
+                    </li>
+                    <li>
+                        <a href="#">BEAUTY</a>
+                    </li>
+                    <li>
+                        <a href="#">LIVING</a>
+                    </li>
+                    <li>
+                        <a href="#">PEOPLE</a>
+                    </li>
+                    <li>
+                        <a href="#">VIDEO</a>
+                    </li>
+                    <li>
+                        <a href="#">RUNWAY</a>
+                    </li>
+                    <li>
+                        <a href="#">SHOPPING</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- 1.5-2.모바일 sns 메뉴 -->
+            <div class="mosns">
+                <a href="#" class="fi fi-instagram">
+                    <span class="ir">인스타그램</span>
+                </a>
+                <a href="#" class="fi fi-facebook">
+                    <span class="ir">페이스북</span>
+                </a>
+                <a href="#" class="fi fi-twitter">
+                    <span class="ir">트위터</span>
+                </a>
+                <a href="#" class="fi fi-youtube-play">
+                    <span class="ir">유튜브</span>
+                </a>
+                <a href="#">
+                    <span class="ir">카카오스토리</span>
+                </a>
+
+            </div>
+            <!-- 1.5-3.매거진박스 -->
+            <figure class="magbox">
+                <!-- 잡지커버이미지 -->
+                <a class="mcover" href="#">
+                    <img src="./images/cover.jpg" alt="보그표지">
+                </a>
+                <!-- 잡지설명 -->
+                <figcaption>
+                    정기구독을 신청하면 최대 30% 할인혜택을 드립니다!
+                </figcaption>
+                <!-- 정기구독버튼 -->
+                <button class="magbtn">정기구독 신청</button>
+            </figure>
+
+            <!-- 하단링크박스 -->
+            <ul class="moblink">
+                <li>
+                    <a href="#">회사소개 /</a>
+                </li>
+                <li>
+                    <a href="#">광고 및 제휴 /</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <strong>개인정보 처리방침</strong>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- 모바일용 메뉴 끝 -->
+
+    </div><!-- #top -->
+    
+    <!-- 2. 메인영역 -->
+    <div class="bgc" id="cont">
+        <main class="cont ibx" v-for="(v,i) in items.data" v-if="v.경로===catName" v-bind:class="catName">
+            <!-- 
+                v-bind:class="catName"
+                클래스명 만들어주기 -> 경로명과 같은 이름으로 설정
+             -->
+
+             <!-- 탭 타이틀 변경하기 함수호출! -->
+             {{chgTit(v.제목)}}
+
+            <!-- 1. 타이틀 -->
+            <h2 class="stit">
+                {{v.제목}}
+            </h2>
+
+            <!-- 2. 서브메뉴(LNB-Local Navigation Bar) -->
+            <nav class="lnb">
+                <ul v-if="v.메뉴!=='없음'">
+                    <li v-for="(m,i) in v.메뉴">
+                        <a href="#">
+                            {{m}}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- 
+                v-if="v.메뉴!=='없음'"
+                만약에 v.메뉴의 값이 '없음'이 아니면 true
+                이때 for문이 실행됨! false이면 실행안됨!
+            -->
+
+            <!-- 3. 서브컨텐츠박스 -->
+            <section class="pt2 rbx">
+                <div class="rbxIn">
+                    <div class="cbx bgi bg1-1">
+                        <h2 v-html="v.타이틀[0]"></h2>
+                        <!-- 
+                            v-html="값" 
+                            해당값을 요소의 데이타로
+                            html 태그로 적용하기
+                            주의) {{}} 콧수염은 text만 넣어줌
+                                (html태그 처리 불가!)
+                         -->
+                    </div>
+                    <div class="cbx bgi bg1-2">
+                        <h2 v-html="v.타이틀[1]"></h2>
+                    </div>
+                    <div class="cbx bgi bg1-3">
+                        <h2 v-html="v.타이틀[2]"></h2>
+                    </div>
+                </div>
+            </section>
+            <section class="pt2 rbx">
+                <div class="rbxIn">
+                    <div class="cbx bgi bg2-1">
+                        <h2 v-html="v.타이틀[3]"></h2>
+                    </div>
+                    <div class="cbx bgi bg2-2">
+                        <h2 v-html="v.타이틀[4]"></h2>
+                    </div>
+                    <div class="cbx bgi bg2-3">
+                        <h2 v-html="v.타이틀[5]"></h2>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- 3. 하단영역 -->
+    <div class="bgc">
+        <footer class="info ibx">
+            <!-- 3-1. 하단로고 -->
+            <div class="blogo">
+                <img src="images/footer_logo.png" alt="하단로고">
+            </div>
+            <!-- 3-2. 회사주소 -->
+            <address class="addr">
+                WWW.VOGUE.COM Ⓒ CONDÉNAST ASIA PACIFIC. INC. ALL RIGHTS RESERVED. VOGUE.COM KOREA IS OPERATED BY DOOSAN MAGAZINE.
+            </address>
+            <!-- 3-3. 하단링크 -->
+            <ul class="blink">
+                <li>
+                    <a href="#">정기구독</a>
+                </li>
+                <li>
+                    <a href="#">회사소개</a>
+                </li>
+                <li>
+                    <a href="#">광고 및 제휴</a>
+                </li>
+                <li>
+                    <a href="#">개인정보 처리방침</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    
+    <!-- 위로가기 버튼 -->
+    <a href="#" class="tbtn fi fi-angle-up">
+        <span class="ir">위로가기버튼</span>
+    </a>
+    
+</body>
+</html>

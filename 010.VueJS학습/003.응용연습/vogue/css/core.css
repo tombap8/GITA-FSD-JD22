@@ -1,0 +1,188 @@
+@charset "utf-8";
+/* VOGUE PJ 공통 클래스, 웹폰트 - core.css */
+
+/* 웹폰트 */
+
+/* Roboto체 + Roboto Condensed체 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@300&display=swap');
+
+
+/* 나눔바른고딕 */
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 300;
+    src: url(../fonts/NanumBarunGothicLightSubset.woff) format('woff');
+}
+
+
+/* Pistilli체 */
+@font-face {
+    font-family: 'Pistilli';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/Pistilli-Roman.woff) format('woff');
+}
+
+
+
+
+/* 
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-family: 'Pistilli', sans-serif;
+*/
+
+
+/* 공통 class */
+
+/* 배경이미지 설명(또는 숨길글자) 클래스 */
+.ir {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+/* 속박스 */
+.ibx {
+    max-width: 1300px;
+    margin: 0 auto;
+    /* 1300px보다 크면 중앙정렬
+    작으면 auto로 width를 유지함! */
+    /* outline: 3px dotted blue; */
+}
+
+/* 비율유지박스 */
+.rbx {
+    position: relative;
+    /* 부모자격 - .rbxIn */
+    /* outline: 2px dotted orange; */
+}
+
+/* 비율밀기 가상요소 */
+.rbx::before {
+    content: '';
+    display: block;
+    /* padding-top비율은 각 클래스와 연결한다! */
+}
+
+/* 스타일별 비율밀기 */
+/* 이미지 하나짜리 */
+.pt1.rbx::before {
+    padding-top: 55.69%;
+    /* 
+        비율계산
+        1300px : 724px = 100% : ?%
+        ?% = 724px * 100% / 1300px
+        ?% = 55.69%
+    */
+}
+
+/* 이미지 세개짜리 */
+.pt2.rbx::before {
+    padding-top: 50%;
+    /* 
+        비율계산
+        1300px : 650px = 100% : ?%
+        ?% = 650px * 100% / 1300px
+        ?% = 50%
+    */
+}
+
+/* 비율박스 속박스 */
+.rbxIn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+/* 컨텐츠 박스 - 실제 내용이 들어가는 박스 */
+.cbx {
+    position: relative;
+    /* 부모자격 */
+    height: 100%;
+    /* 부모박스를 채움 */
+}
+
+/* 컨텐츠 박스 가상요소로 보더애니구현 */
+.cbx::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 나의 부모는? .cbx */
+    box-sizing: border-box;
+    /* 보더가 생겨도 커지지 않도록 설정! */
+    border: 0px solid transparent;
+
+    /* 트랜지션: 속시이지 */
+    transition: all .2s ease-in;
+}
+
+/* .pbx에 마우스 오버시 보더 생기기 */
+.cbx:hover::after {
+    border: 20px solid #f00;
+}
+
+/* 컨텐츠 타이틀 박스 */
+.cbx h2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    font-family: 'Pistilli', 'NanumBarunGothic';
+    /* 웹폰튼 영문체(Pistilli), 한글체(NanumBarunGothic) */
+    font-size: 33px;
+    color: #fff;
+    text-align: center;
+    font-weight: lighter;
+    /* 가는 글씨두께 */
+
+    box-sizing: border-box;
+    /* 크기유지 */
+    padding: 50px;
+
+    /* 그라데이션 배경넣기(글자잘보이게!) */
+    background-image:
+        linear-gradient(to top, #000, transparent);
+    /* 
+        [ 선형 그라데이션 속성 ]
+        linear-gradient(방향, 색1, 색2, 색3,...);
+        - 방향: 그라데이션 진행방향
+            (to top, to bottom, to left, to right)
+        - 색상은 지정한 개수만큼 등분되어 그라데이션 표현된다!
+        - 색상 비율을 바꿀수 있다
+        linear-gradient(방향, 색1 몇%, 색2 몇%, 색3 몇%,...);
+    */
+}
+
+/* .pt2 아래 .cbx만 플로팅과 3등분적용! */
+.pt2 .rbxIn {
+    /* 3등분박스의 직계부모 */
+    display: flex;
+    /* flex는 직계부모에게 준다! */
+}
+
+.pt2 .cbx {
+    /* flex자식요소로 등분할 할 경우 flex:1만 설정! */
+    flex: 1;
+
+    /* float으로 설정할 경우
+    가로크기를 %로 계산하여 등분해야함
+    float: left;
+    width: 33.33%; */
+}
+
+/* 배경이미지 공통 */
+.bgi {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

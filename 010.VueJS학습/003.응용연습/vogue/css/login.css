@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* VOGUE PJ 로그인 페이지 CSS - login.css */
+
+/* 외부CSS 합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+/* 서브 전체박스 */
+.scont{
+    margin-bottom: 100px;
+}
+
+/* 1. 서브타이틀 */
+.stit{
+    font-family: 'Pistilli', sans-serif;
+    font-size: 50px;
+    padding: 40px 0 20px;
+    /* 위40px 양쪽0 아래20px */
+    text-align: center;
+    font-weight: normal;
+}
+
+/* 로그인 박스 */
+#login{
+    position: relative;
+    /* 부모자격 */
+    width: 700px;
+    height: 275px;
+    margin: 0 auto;/* 마영오 */
+    margin-top: 20px;
+    border: 2px solid #737373;
+    border-radius: 10px;
+
+    box-sizing: border-box;/* 크기유지 */
+    padding: 60px 15px;
+}
+/* 입력창 라벨 공통 */
+.minput label{
+    display: inline-block;
+    /* 디자인적용과 한줄에 오게함! */
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #737373;
+    text-align: center;
+    line-height: 36px;
+    /* outline: 2px solid red; */
+}
+/* 입력양식 공통 */
+.minput input{
+    width: 320px;
+    height: 36px;
+    border: 1px solid #737373;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding-left: 5px;
+    color: #666;
+}
+
+/* 비밀번호박스 */
+.mi2{
+    margin-top: 20px;
+}
+
+/* 크롬브라우저 포커스 아웃라인 제거 */
+input:focus{
+    outline: none;
+}
+
+/* 버튼영역 */
+.btnbx{
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    /* 부모는? .login */
+}
+/* 서브밋 버튼 */
+#sbtn{
+    width: 113px;
+    height: 92px;
+    border: 1px solid #737373;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #ddd, #555);
+    font-size: 15px;
+    color: #fff;
+    text-shadow: 1px 1px 0 #666;
+}
+
+/* 기타체크링크 박스 */
+.addbx{
+    margin-top: 50px;
+    text-align: center;
+}
+/* 체크박스영역 */
+.addbx span{
+    margin: 0 15px;
+    color: #666;
+}
+/* 체크박스 라벨과 세로정렬 */
+.addbx input{
+    vertical-align: -2px;
+}
+/* 기타링크 */
+.addbx a{
+    margin: 0 15px;
+}
+
