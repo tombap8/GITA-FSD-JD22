@@ -42,7 +42,7 @@ this.wheelFn = () => {
     if (prot[0]) return;
     this.chkCrazy(0);
 
-    console.log("휠~~~~~~!");
+    console.log("휠~~~~~~!",this);
 
     // 1.휠방향 알아내기
     let delta = event.wheelDelta;
