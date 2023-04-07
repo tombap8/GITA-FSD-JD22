@@ -18,9 +18,9 @@ class AutoScroll {
         // 광실행금지변수
         this.prot = [0,0];
         // 광스크롤금지
-        // this.prot[0] = 0;
+        this.prot[0] = 0;
         // 광클 초기값
-        // this.prot[1] = 0;
+        this.prot[1] = 0;
         // GNB 메뉴 li
         this.gnb = $(".gnb li");
         // indic 메뉴 li
@@ -67,8 +67,7 @@ class AutoScroll {
         ****************************************/
         wheelFn () {
             // 광휠금지
-            if (prot[0]===1)
-                return;
+            if (this.prot[0]===1) return;
             this.chkCrazy(0);
 
             console.log("휠~~~~~~!");
@@ -80,21 +79,21 @@ class AutoScroll {
             // 2. 방향에 따른 페이지번호 증감
             if (delta < 0) {
                 pno++;
-                if (pno === pgcnt)
-                    pno = pgcnt - 1;
+                if (this.pno === pgcnt)
+                    this.pno = this.pgcnt - 1;
                 // 마지막 페이지번호에 고정!
             } //// if /////
             else {
-                pno--;
-                if (pno === -1)
-                    pno = 0;
+                this.pno--;
+                if (this.pno === -1)
+                    this.pno = 0;
                 // 첫페이지번호에 고정!
             } //// else ////
 
-            console.log(pno);
+            console.log(this.pno);
 
             // 3. 스크롤 이동하기 + 메뉴에 클래스"on"넣기
-            movePg();
+            this.movePg();
         } /////////////// wheelFn 메서드 ///////////////
 
         /********************************************
@@ -103,9 +102,8 @@ class AutoScroll {
         ********************************************/
         chgMenu () {
             // 0. 광클금지
-            if (prot[1])
-                return;
-            chkCrazy(1);
+            if (this.prot[1]) return;
+            this.chkCrazy(1);
 
             // 1. 클릭된 a요소의 부모 li 순번을 구함 === pno
             let idx = $(event.currentTarget).parent().index();
@@ -113,10 +111,10 @@ class AutoScroll {
             console.log("나,클릭?", this, idx);
 
             // 2. 전역페이지번호에 순번 업데이트
-            pno = idx;
+            this.pno = idx;
 
             // 3. 페이지이동 + 메뉴에 클래스"on"넣기
-            movePg();
+            this.movePg();
         } ////////// chgMenu 메서드 ///////////////////
 
 
@@ -153,8 +151,8 @@ class AutoScroll {
             );
 
             // 대상: GNB메뉴 , 인디케이터 메뉴
-            gnb.eq(pno).addClass("on").siblings().removeClass("on");
-            indic.eq(pno).addClass("on").siblings().removeClass("on");
+            gnb.eq(this.pno).addClass("on").siblings().removeClass("on");
+            indic.eq(this.pno).addClass("on").siblings().removeClass("on");
         } ///////////////// movePg ////////////////
 
 
