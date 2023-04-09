@@ -1,0 +1,437 @@
+@charset "utf-8";
+/* My Item PJ 공통 CSS - common.css */
+
+/************ 전체부모박스 *************/
+.wrap {
+    width: 1000px;
+    margin: 0 auto;
+    /*가로중앙정렬-마영오*/
+    background-color: #fff;
+    /*배경흰색*/
+    /*box-shadow: x축 y축 spread blur 색;*/
+    box-shadow: 0 0 5px #ccc;
+    /*값을 4개만쓰면 세번째요소를 blur로 인식함*/
+    /*spread는 박스가 그림자와 떨어진 정도임*/
+    
+}
+/*가상요소로 GNB메뉴 100% 배경바 만들기*/
+.wrap::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    /*부모? 보이는 화면*/
+    width: 100%;
+    height: 40px;
+    
+    /*배경 그라데이션*/
+    background-image: linear-gradient(to bottom, #cecece 0%, #bababa 20%, #8a8a8a 80%, #5c5c5c 100%);
+}
+
+/*표시*/
+.wrap > * {
+    /*outline: 2px dashed blue;*/
+}
+
+/*************** 1.상단영역 ********************/
+#top {
+    position: relative;
+    /*부모자격*/
+    height: 130px;
+    z-index: 9999;
+    /*
+        보통 하위 형제요소가 포지션이 static이 아닌경우
+        먼저 그려진 요소는 아래쪽에 깔리게 된다.
+        따라서 일반적으로 최상위 메뉴박스를 z-index로
+        상위를 주기위해 높은 숫자로 셋팅한다!
+    */
+    
+}
+
+/*1-1.로고*/
+#logo{
+    position: relative;
+    /*부모자격!*/
+    top: 10px;
+    left: 10px;
+    /*
+        왜 relative를 사용해서 top이동을 하였는가?
+        (block요소에 대한 margin-top만 그렇다!!!)
+        - margin-top은 부모요소에 포함되지 않아서
+        부모 바깥쪽을 밀기때문에 이를 포함하려면 
+        부모가 overflow: hidden을 주면되는데 자식요소중
+        부모 바깥으로 나가야하는 것이 있을때는 줄 수 없다!
+        이때 relative 위치이동을 사용하자!!!
+    */
+    width: 150px;
+    height: 64px;
+    /*outline: 2px dotted blue;*/
+}
+/*카멜레온 로고 구성하기*/
+/*로고타이틀*/
+#mtit{
+    position: absolute;
+    bottom: 0;
+}
+/*빨간공*/
+#rb{
+    position: absolute;
+    top: 16px;
+    left: 55px;
+    
+    /*애니메이션:이시이지반방마*/
+    animation: rbAni 1s ease-in-out 2s;
+}
+/*빨간공 애니 키프레임*/
+/*1.빨간공 위아래 이동*/
+@keyframes rbAni{
+    0%{
+        top: 16px;
+    }
+    49%{
+        top: 5px;
+    }
+    51%{
+        top: 5px;
+    }
+    100%{
+        top: 16px;
+    }
+    
+}/*키프레임*/
+
+
+/*카멜레온 박스*/
+#cb{
+    position: absolute;
+    top: 5px;
+    left: 77px;
+    /*outline: 2px dotted red;*/
+    
+    /*애니메이션:이시이지반방마*/
+    animation: cbAni 1.5s ease-in-out 3.5s,
+        rotAni .6s ease-in-out 5s;
+}
+/*카멜레온 박스 애니 키프레임*/
+/*3.카멜레온박스 왼쪽,오른쪽(원위치)이동*/
+@keyframes cbAni{
+    0%{
+        left: 77px;
+    }
+    50%{
+        left: 10px;
+    }
+    100%{
+        left: 77px;
+    }
+}/*키프레임*/
+/*4.카멜레온박스 반시계방향 360도 회전하기*/
+@keyframes rotAni{
+    to{
+        transform: rotate(-360deg);
+    }
+}/*키프레임*/
+
+
+
+
+/*카멜레온혀*/
+#tung{
+    position: absolute;
+    width: 48px;
+    height: 8px;
+    top: 6px;
+    left: -21px;
+    /*부모? #cb*/
+    background: url(../images/mlogo_01.png) no-repeat;
+    
+    /*애니메이션:이시이지반방마*/
+    animation: tungAni .5s linear 3s;
+}
+
+/*혀바닥 애니 키프레임*/
+/*2.혓바닥 날름(left값이동+이미지변경)*/
+@keyframes tungAni{
+    0%{
+        left: -21px;
+        background-image: url(../images/mlogo_01.png);
+    }
+    10%{
+        background-image: url(../images/mlogo_02.png);
+    }
+    20%{
+        background-image: url(../images/mlogo_03.png);
+    }
+    40%{/*가장긴혀 유지(40%~60%)*/
+        left: -40px;
+        background-image: url(../images/mlogo_04.png);
+    }
+    60%{/*가장긴혀 유지(40%~60%)*/
+        left: -40px;
+        background-image: url(../images/mlogo_04.png);
+    }
+    80%{
+        background-image: url(../images/mlogo_03.png);
+    }
+    90%{
+        background-image: url(../images/mlogo_02.png);
+    }
+    100%{
+        left: -21px;
+        background-image: url(../images/mlogo_01.png);
+    }
+}/*키프레임*/
+
+/*카멜레온 이미지*/
+#cam{
+    position: relative;
+    /*
+    겹쳐질 수 있는 포지션만 나중에 오는경우위에 오거나 z-index를 사용할 수 있다!
+    
+    겹쳐질 수 있는 포지션이란 static이 아닌 포지션이다(relative,absolute,fixed)
+    */
+}
+
+
+/*1-2.공통메뉴*/
+.tmenu{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    /*부모는? #top*/
+}
+/*공통메뉴 리스트*/
+.tmenu li{
+    padding: 0 3px;
+    line-height: 40px;
+    font-size: 12px;
+}
+/*공통메뉴 사이점 가상요소로 만들기*/
+.tmenu li+li::before{
+    content: "·";
+    margin-right: 3px;
+}
+
+/*1-3.SNS메뉴*/
+.sns{
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    /*부모는? #top*/
+}
+/*SNS메뉴 li*/
+.sns li{
+    width: 30px;
+    height: 30px;
+    background: url(../images/icons.png) no-repeat;
+    /*outline: 2px solid red;*/
+}
+/*개별 배경이미지 Sprites기법으로 이동하기*/
+.sns li:first-child{/*트위터*/
+    background-position: 0 0;
+}
+.sns li:first-child:hover{/*트위터오버시*/
+    background-position: 0 -30px;
+}
+.sns li:nth-child(2){/*인스타그램*/
+    background-position: -30px 0;
+}
+.sns li:nth-child(2):hover{/*인스타그램오버시*/
+    background-position: -30px -30px;
+}
+.sns li:last-child{/*페이스북*/
+    background-position: -60px 0;
+}
+.sns li:last-child:hover{/*페이스북오버시*/
+    background-position: -60px -30px;
+}
+
+/*링크확장*/
+.sns a{
+    display: block;
+    /*디자인적용위해*/
+    width: 100%;
+    height: 100%;
+}
+
+/*1-4.GNB메뉴*/
+
+/*GNB 디자인*/
+.gnb {
+    position: absolute;
+    bottom: 0;
+    /*부모는? #top*/
+    width: 100%;
+    
+    /*배경 그라데이션*/
+    background-image: linear-gradient(to bottom, #cecece 0%, #bababa 20%, #8a8a8a 80%, #5c5c5c 100%);
+}
+
+.gnb > ul {
+    width: 600px;
+    margin: 0 auto;
+    /*마영오-블록가로중앙
+            (가로크기가 화면보다 작아야함!)*/
+    /*outline: 2px solid red;*/
+}
+
+.gnb > ul > li {
+    width: 150px;
+    text-align: center;
+}
+
+/*
+        .gnb>ul>li>a
+        -> 상위메뉴 li의 직계자식 a요소
+        .gnb>ul>li a
+        -> 상위메뉴 li의 자손 a요소 전부
+            (서브메뉴의 a요소가 포함됨!)
+        */
+.gnb > ul > li a {
+    display: block;
+    /*디자인적용위해*/
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+    
+    /*글자설정*/
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 40px;
+
+    /*트랜지션: 속시이지*/
+    transition: all .4s;
+
+}
+
+/*상위메뉴 li에 마우스 오버시 a요소의 배경색, 글자색변경*/
+.gnb > ul > li:hover > a {
+    color: #777;
+    text-shadow: 0 1px 0 #fff;
+    /*배경 그라데이션*/
+    background-image: linear-gradient(to top, #cecece 0%, #bababa 20%, #8a8a8a 80%, #5c5c5c 100%);
+}
+
+/*서브메뉴 디자인*/
+.smenu {
+    position: absolute;
+    /*겹쳐지고 위치부모기준*/
+    width: 150px;
+    /*
+            float을 해제 안하고
+            아래로 내려가는 방법:
+            
+            하위의 li가 float되어
+            옆으로 흐르지만 가로크기를
+            지정하여 li가 그 크기와 
+            같으면 아래로 자동으로 내려감
+            
+            참고)
+            float 없애는 셋팅 -> float: none;
+            */
+    background-color: #cecece;
+    /*추가*/
+    text-shadow: 1px 1px 0 #777;
+    /*글자그림자*/
+    border-radius: 0 0 4px 4px;
+    /*왼쪽위부터 시계방향*/
+    
+
+    /*서브메뉴 숨기기*/
+    /*1.높이값 0*/
+    height: 0;
+    /*2.넘치는 요소 숨기기*/
+    overflow: hidden;
+
+    /*트랜지션*/
+    transition: height .4s ease-out;
+
+}
+
+/*상위메뉴에 마우스 오버시 하위메뉴 보이기*/
+.gnb > ul > li:hover .smenu {
+    height: 120px;
+}
+
+/*
+    원래 css의 transition은 두가지 크기에 변화 과정이다.
+    따라서 높이값을 각각 설정해 주는 것이 기본이다.
+    여러개일 경우 셋팅의 편의성을 위해 max-height를 사용하는
+    방법이 있다
+*/
+
+
+.smenu li {
+    width: 100%;
+    /*부모박스의 가로크기를 채운다
+            -옆으로 흐르지 못한다!*/
+}
+
+/*하위 메뉴의 li에 마우스 오버시 
+        a요소의 글자색, 배경색 변경*/
+.smenu li:hover a {
+    color: #777;
+    background-color: #bababa;
+    text-shadow: 0 1px 0 #fff;
+}
+
+
+
+/*************** 2.컨텐츠영역 ********************/
+#cont {
+    min-height: 500px;
+    /*
+        min-height는 최소 설정된 높이를 유지하다가
+        내용이 넘칠경우 높이값이 늘어나는 설정이다!
+    */
+}
+
+/*************** 3.하단영역 ********************/
+#info {
+    height: 90px;
+    border-top: 1px solid #ccc;
+}
+
+/*3-1.하단로고*/
+#info>img{
+    margin-top: 5px;
+    margin-left: 5px;
+    vertical-align: middle;
+    
+    /*vertical-align은 이 속성을
+    셋팅한 요소가 기준이되어
+    인라인요소의 진행방향인 왼쪽에서
+    오른쪽이므로 오른쪽 인라인요소의
+    세로 정렬을 정의 하는데 사용됨!*/
+    
+}
+/*3-2.회사주소*/
+#info address{
+    display: inline-block;
+    /*
+        inline-block 이란?
+        디자인적용도 block처럼되면서 
+        inline처럼 한줄에 오는 display
+    */
+    width: calc(100% - 185px);
+    /*가로 전체 100% - 이미지크기+마진+엔터간극*/
+    /*
+        calc(값1 - 값2)
+        값1과 값2 사이에 마이너스
+        앞뒤공백 필수!!!
+    */
+    
+    text-align: center;
+    /*가로크기의 텍스트 중간정렬*/
+    
+    font-style: normal;
+    /*address 기본 이탤릭 해제!*/
+}
+
+
+
+
+
+

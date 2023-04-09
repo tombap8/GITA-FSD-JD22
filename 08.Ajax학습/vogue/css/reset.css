@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* 보그 리셋 CSS - reset.css */
+
+
+/* 공통 초기화 */
+html,body,ol,ul,h1,h2,h3,h4,p{
+    margin: 0;
+    padding: 0;
+}
+
+/* 가로스크롤 숨기기 
+- 옆에 공간이 나오는 경우 막기 */
+html, body{
+    overflow-x: hidden;
+}
+
+
+ol,ul{
+    list-style: none;
+}
+a{
+    color: #000;
+    text-decoration: none;
+}
+img{
+    border: none;
+    /* 이미지 링크시 서버에서 볼때 파란색 자동보더 없앰 */
+    vertical-align: bottom;
+    /* 박스 이미지 하단간극 없애기(약4px) */
+}
+

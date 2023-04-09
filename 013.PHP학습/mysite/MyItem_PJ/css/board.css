@@ -1,0 +1,22 @@
+@charset "utf-8";
+/*My Item PJ 게시판 페이지 CSS - board.css*/
+
+/*외부css파일 합치기*/
+@import url(core.css);
+@import url(reset.css);
+@import url(common.css);
+
+/* 게시판 박스 */
+#bbox{
+    width: 750px;
+    min-height: 300px;
+    /* iframe높이값 크기에 맞춰서 변해야 하므로 height는 설정안함! */
+    margin: 0 auto;
+    padding: 70px 0;
+}
+/* 아이프레임 */
+#bbox iframe{
+    width: 100%;
+    border: none;
+}
+

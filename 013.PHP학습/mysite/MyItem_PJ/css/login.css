@@ -1,0 +1,122 @@
+@charset "utf-8";
+/*My Item PJ 로그인 페이지 CSS - login.css*/
+
+/*외부css파일 합치기*/
+@import url(core.css);
+@import url(reset.css);
+@import url(common.css);
+
+/*부모박스 상단패딩*/
+#cont{
+    padding-top: 80px;
+}
+
+/*타이틀*/
+.tit{
+    width: 700px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 45px;
+    color: #777;
+    /*outline: 1px solid red;*/
+}
+/*가상요소로 타이틀 아이콘 넣기*/
+.tit::before{
+    content: url(../images/login_icon.png);
+    vertical-align: -15px;
+    margin-left: 5px;
+    margin-right: 13px;
+}
+
+/*로그인박스*/
+#login{
+    position: relative;
+    /*부모자격*/
+    width: 700px;
+    height: 275px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 2px solid #737373;
+    border-radius: 10px;
+    
+    box-sizing: border-box;
+    /*보더,패딩포함 크기유지*/
+    padding-top: 60px;
+    padding-left: 15px;
+}
+/*입력창 공통*/
+.minput label{
+    display: inline-block;
+    /*inline인 label요소 디자인적용*/
+    width: 150px;
+    padding-top: 9px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #737373;
+    text-align: center;
+}
+.minput input{
+   width: 320px;
+    height: 36px;
+    border: 1px solid #737373;
+    border-radius: 5px;
+    font-size: 18px;
+    padding-left: 5px;
+    color: #666;
+}
+/*두번째 비번박스 마진탑밀기*/
+.logF div:nth-child(2){
+    margin-top: 20px;
+}
+
+/*크롬브라우저 포커스 아웃라인제거*/
+input:focus{
+    outline: none;
+}
+
+/*로그인버튼*/
+.btnBox{
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    /*부모는? #login*/
+}
+/*서브밋 버튼*/
+#sbtn{
+    width: 113px;
+    height: 98px;
+    border: 1px solid #737373;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #ddd, #555);
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 0 #666;
+}
+
+/*기타체크링크박스*/
+.addBox{
+    margin-top: 50px;
+    text-align: center;
+}
+/*체크박스영역*/
+.addBox>span{
+    margin: 0 15px;
+    color: #666;
+}
+/*체크박스 옆 세로정렬 맞추기*/
+.addBox>span>input{
+    vertical-align: -2px;
+}
+/*기타링크*/
+.addBox>a{
+    margin: 0 15px;
+    /*마진: 위아래 양쪽*/
+}
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+@charset "utf-8";
+/*My Item PJ 메인 CSS - main.css*/
+
+/*외부css파일 합치기*/
+@import url(core.css);
+@import url(reset.css);
+@import url(common.css);
+
+/*메인이미지박스*/
+.mimg{
+    text-align: center;
+    /*outline: 1px solid red;*/
+}
+/*메인이미지*/
+.mimg img{
+    width: 340px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+/*썸네일박스*/
+.thumbs{
+    position: relative;
+    left: -25%;
+    /*width가 50%늘어난 만큼 왼쪽으로 50%의 절반인 25%를 이동함*/
+    /*부모자격*/
+    width: 150%;
+    /*왜 가로크기를 키웠는가?
+    이유는 자식요소 absolute를 left:50%로 밀었을때 기존 부모크기가 좁아서 하나의 아이템이 아래로 떨어지기 때문*/
+    height: 100px;
+    padding-bottom: 20px;
+    /*outline: 5px dotted red;*/
+}
+.thumbs ol{
+    position: absolute;
+    /*부모는? .thumbs*/
+    left: 50%;
+    transform: translateX(-50%);
+    /*가로중앙이동*/
+    /*width는 설정안하면 자동임!(내용만큼)*/
+}
+/*썸네일 이미지 기본높이변경*/
+.thumbs img{
+    height: 100px;
+    /*트랜지션:속시이지*/
+    transition: all .4s;
+}
+/*썸네일 이미지에 마우스 오버시 이미지 높이값 변경하기*/
+.thumbs img:hover{
+    height: 150px;
+    margin-top: -50px;
+    /*높이값이 늘어난만큼 마진탑을 마이너스로 준다!-이미지가 윗쪽으로 커짐!*/
+}
+
+
+
+
+
+
+
