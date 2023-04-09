@@ -49,11 +49,11 @@ class AutoScroll {
                 이벤트 등록하기
             ******************************************/
             // 윈도우 휠이벤트 발생시
-            $(window).on("wheel", this.wheelFn);
+            $(window).on("wheel", ()=>this.wheelFn());
             // GNB메뉴 클릭시 : 대상 - .gnb a
-            $(".gnb a").click(this.chgMenu);
+            $(".gnb a").click(()=>this.chgMenu());
             // 인디케이터 클릭시 : 대상 - .indic a
-            $(".indic a").click(this.chgMenu);
+            $(".indic a").click(()=>this.chgMenu());
 
             // 새로고침시 스크롤위치 캐싱 변경하기(맨위로!)
             $("html,body").animate({ scrollTop: "0px" });
@@ -78,8 +78,8 @@ class AutoScroll {
 
             // 2. 방향에 따른 페이지번호 증감
             if (delta < 0) {
-                pno++;
-                if (this.pno === pgcnt)
+                this.pno++;
+                if (this.pno === this.pgcnt)
                     this.pno = this.pgcnt - 1;
                 // 마지막 페이지번호에 고정!
             } //// if /////
@@ -143,7 +143,7 @@ class AutoScroll {
             // 대상: html,body -> 두개를 모두 잡아야 공통적으로 적용됨!
             $("html,body").animate(
                 {
-                    scrollTop: $(window).height() * pno + "px",
+                    scrollTop: $(window).height() * this.pno + "px",
                 },
                 this.sc_speed,
                 this.easing,
@@ -151,8 +151,8 @@ class AutoScroll {
             );
 
             // 대상: GNB메뉴 , 인디케이터 메뉴
-            gnb.eq(this.pno).addClass("on").siblings().removeClass("on");
-            indic.eq(this.pno).addClass("on").siblings().removeClass("on");
+            this.gnb.eq(this.pno).addClass("on").siblings().removeClass("on");
+            this.indic.eq(this.pno).addClass("on").siblings().removeClass("on");
         } ///////////////// movePg ////////////////
 
 
