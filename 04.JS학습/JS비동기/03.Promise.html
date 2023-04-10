@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS비동기 : 2. 비동기호출</title>
+        <script>
+            /******************************************************************* 
+              [프라미스란? "원하는 결과를 보장해! 약속해!"]
+
+                "생성코드"는 시간이 걸릴 수 있는 코드이다.
+                "사용코드"는 결과를 기다려야 하는 코드이다.
+                Promise는 생성 코드와 소비 코드를 연결하는 JavaScript 객체다!
+                __________________________________________________________
+
+                ((구문))
+                let 약속변수 = new Promise(function(성공함수, 실패함수) {
+                // 생성코드 : 시간이 걸리는 코드
+
+                성공함수(); // 성공시호출
+                실패함수();  // 에러시 호출
+                });
+
+                // 사용코드 : 약속객체가 완료될때까지 기다림!!!
+                약속변수.then(
+                function(변수) { 성공시코드 },
+                function(변수) { 실패시코드 }
+                );
+
+
+
+         *******************************************************************/
+            function 화면뿌려(이거) {
+                document.getElementById("show").innerHTML += 이거 + "<br>";
+            }
+
+            window.addEventListener("load", () => {
+                let myPromise = new Promise(function (성공함수, 실패함수) {
+                    let x = 0;
+
+                    // The producing code (this may take some time)
+
+                    if (x == 0) {
+                        성공함수("OK");
+                    } else {
+                        실패함수("Error");
+                    }
+                });
+
+                myPromise.then(
+                    function (value) {
+                        화면뿌려(value);
+                    },
+                    function (error) {
+                        화면뿌려(error);
+                    }
+                );
+
+                //////////////////////////
+
+                let 약속기다림 = new Promise(function (성공함수, myReject) {
+                    setTimeout(function () {
+                        성공함수("I love You !!");
+                    }, 3000);
+                });
+
+                약속기다림.then(function (value) {
+                    화면뿌려(value);
+                });
+            });
+        </script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+            body {
+                background-image: linear-gradient(to bottom, #494949, gray);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                text-align: center;
+            }
+            #show {
+                font-family: "Gamja Flower", cursive;
+                font-size: 5vw;
+                background-image: linear-gradient(to bottom, lightgreen, pink, orangered, aquamarine);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-repeat: no-repeat;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show"></div>
+    </body>
+</html>
