@@ -4,10 +4,10 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JS비동기 : 2. 비동기호출</title>
+        <title>JS비동기 : 3. Promise 사용법</title>
         <script>
             /******************************************************************* 
-              [프라미스란? "원하는 결과를 보장해! 약속해!"]
+              [프라미스(Promise)란? "원하는 결과를 보장해! 약속해!"]
 
                 "생성코드"는 시간이 걸릴 수 있는 코드이다.
                 "사용코드"는 결과를 기다려야 하는 코드이다.
@@ -29,14 +29,13 @@
                 );
 
 
-
          *******************************************************************/
             function 화면뿌려(이거) {
                 document.getElementById("show").innerHTML += 이거 + "<br>";
             }
 
             window.addEventListener("load", () => {
-                let myPromise = new Promise(function (성공함수, 실패함수) {
+                let 처음약속 = new Promise(function (성공함수, 실패함수) {
                     let x = 0;
 
                     // 이 자리에 시간이 걸리는 실행코드가 위치함!
@@ -48,7 +47,7 @@
                     }
                 });
 
-                myPromise.then(
+                처음약속.then(
                     function (value) {
                         화면뿌려(value);
                     },
@@ -61,37 +60,39 @@
 
                 let 약속기다림 = new Promise(function (성공함수, myReject) {
                     setTimeout(function () {
-                        성공함수();
-                        // 성공함수("오마이갓김치!!");
+                        // 성공함수();
+                        성공함수("오마이갓김치!!");
                     }, 3000);
                 });
 
                 약속기다림.then(function (value) {
-                    화면뿌려("와~~~우!");
+                    화면뿌려("와~~~우!"+value);
                     화면뿌려(`<img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2014/0103/IE001663873_STD.jpg" style="height:70vh" alt="약속">`);
                 });
 
                 // 파일 받기
-                let 파일약속 = new Promise(function (성공함수, 실패함수) {
+                let 파일약속 = new Promise(function (성공함수) {
                     let req = new XMLHttpRequest();
                     req.open("GET", "https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf");
                     req.onload = function () {
                         if (req.status == 200) {
-                            성공함수(req.response);
+                            성공함수(req.responseURL);
+                            // console.log(req.responseURL);
                         } else {
-                            실패함수("File not Found");
+                            실패함수("파일이 존재하지 않습니다~!");
                         }
                     };
                     req.send();
                 });
 
                 파일약속.then(
-                    function (value) {
-                        화면뿌려("파일로딩완료!");
-                        document.getElementById("doc").innerHTML = `https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf`;
+                    function (성공메시지) {
+                        화면뿌려("파일로딩완료!",성공메시지);
+                        document.getElementById("doc").innerHTML = 
+                        `<iframe src="${성공메시지}" style="width:100%;height:100%"></iframe>`;
                     },
-                    function (error) {
-                        화면뿌려("파일실패");
+                    function (실패메시지) {
+                        화면뿌려(실패메시지);
                     }
                 );
             }); ////////// load ////////////
@@ -106,7 +107,7 @@
             }
             #show {
                 font-family: "Gamja Flower", cursive;
-                font-size: 2vw;
+                font-size: 4vw;
                 background-image: linear-gradient(to bottom, lightgreen, pink, orangered, aquamarine);
                 background-clip: text;
                 -webkit-background-clip: text;
