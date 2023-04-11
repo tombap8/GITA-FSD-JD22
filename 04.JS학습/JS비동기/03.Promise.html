@@ -71,7 +71,7 @@
                 });
 
                 // 파일 받기
-                let 파일약속 = new Promise(function (성공함수) {
+                let 파일약속 = new Promise(function (성공함수,실패함수) {
                     let req = new XMLHttpRequest();
                     req.open("GET", "https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf");
                     req.onload = function () {
