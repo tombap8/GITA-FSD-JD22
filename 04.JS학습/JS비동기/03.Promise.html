@@ -61,18 +61,39 @@
 
                 let 약속기다림 = new Promise(function (성공함수, myReject) {
                     setTimeout(function () {
-                        성공함수();                       
+                        성공함수();
                         // 성공함수("오마이갓김치!!");
                     }, 3000);
                 });
 
                 약속기다림.then(function (value) {
                     화면뿌려("와~~~우!");
-                    화면뿌려(`<img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2014/0103/IE001663873_STD.jpg" style="height:70vh" alt="약속">`)
+                    화면뿌려(`<img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2014/0103/IE001663873_STD.jpg" style="height:70vh" alt="약속">`);
                 });
 
+                // 파일 받기
+                let 파일약속 = new Promise(function (성공함수, 실패함수) {
+                    let req = new XMLHttpRequest();
+                    req.open("GET", "https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf");
+                    req.onload = function () {
+                        if (req.status == 200) {
+                            성공함수(req.response);
+                        } else {
+                            실패함수("File not Found");
+                        }
+                    };
+                    req.send();
+                });
 
-
+                파일약속.then(
+                    function (value) {
+                        화면뿌려("파일로딩완료!");
+                        document.getElementById("doc").innerHTML = `https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf`;
+                    },
+                    function (error) {
+                        화면뿌려("파일실패");
+                    }
+                );
             }); ////////// load ////////////
         </script>
         <style>
@@ -85,7 +106,7 @@
             }
             #show {
                 font-family: "Gamja Flower", cursive;
-                font-size: 5vw;
+                font-size: 2vw;
                 background-image: linear-gradient(to bottom, lightgreen, pink, orangered, aquamarine);
                 background-clip: text;
                 -webkit-background-clip: text;
@@ -93,9 +114,15 @@
                 background-repeat: no-repeat;
                 font-weight: bold;
             }
+            #doc{
+                width: 50%;
+                height: 50vh;
+                margin: 0 auto;
+            }
         </style>
     </head>
     <body>
         <div id="show"></div>
+        <div id="doc"></div>
     </body>
 </html>
