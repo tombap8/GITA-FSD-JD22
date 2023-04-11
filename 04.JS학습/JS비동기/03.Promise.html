@@ -18,8 +18,8 @@
                 let 약속변수 = new Promise(function(성공함수, 실패함수) {
                 // 생성코드 : 시간이 걸리는 코드
 
-                성공함수(); // 성공시호출
-                실패함수();  // 에러시 호출
+                성공함수(리턴값사용가능); // 성공시호출
+                실패함수(리턴값사용가능);  // 에러시 호출
                 });
 
                 // 사용코드 : 약속객체가 완료될때까지 기다림!!!
@@ -39,12 +39,12 @@
                 let myPromise = new Promise(function (성공함수, 실패함수) {
                     let x = 0;
 
-                    // The producing code (this may take some time)
+                    // 이 자리에 시간이 걸리는 실행코드가 위치함!
 
                     if (x == 0) {
-                        성공함수("OK");
+                        성공함수("성공!!!");
                     } else {
-                        실패함수("Error");
+                        실패함수("에러남!!!");
                     }
                 });
 
@@ -61,14 +61,19 @@
 
                 let 약속기다림 = new Promise(function (성공함수, myReject) {
                     setTimeout(function () {
-                        성공함수("I love You !!");
+                        성공함수();                       
+                        // 성공함수("오마이갓김치!!");
                     }, 3000);
                 });
 
                 약속기다림.then(function (value) {
-                    화면뿌려(value);
+                    화면뿌려("와~~~우!");
+                    화면뿌려(`<img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2014/0103/IE001663873_STD.jpg" style="height:70vh" alt="약속">`)
                 });
-            });
+
+
+
+            }); ////////// load ////////////
         </script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
