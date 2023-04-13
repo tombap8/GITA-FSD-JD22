@@ -23,63 +23,79 @@
             function 화면뿌려(이거) {
                 document.getElementById("show").innerHTML += 이거 + "<br>";
             }
-            function 먼저해() {
-                화면뿌려("공유의 최신작은... ");
-            }
 
             function 다음이야() {
                 화면뿌려("고요의 바다다!");
             }
-            // function myCalculator(수1, 수2) {
-            //     let sum = 수1 + 수2;
-            //     return sum;
-            // }
 
-            function 발표년도계산해(수1, 수2) {
+            function 먼저해() {
+                화면뿌려("공유의 최신작은...");
+            }
+
+            function 발표년도계산해(수1,수2){
+                // 함수내부에 코드 순서에 따라 실행순서가 정해짐!
                 let 합 = 수1 + 수2;
                 화면뿌려(합);
             }
 
-            function 포스터보기(경로, 크기, 함수전달) {
+            function 포스터보기(경로,크기,함수전달){
                 let 태그 = `<img src="${경로}" style="width:${크기}px" alt="포스터">`;
+                // 전달받은 함수를 실행한다!
                 함수전달(태그);
             }
 
-            // Create an Array
+            // 배열변수
             const 지역관객수 = [78,134,245,789,990,287,790,887,45,231];
 
-            // Call removeNeg with a callback
-            const 출력넘버 = 오백이하제거(지역관객수, (숫자) => 숫자 >= 500);
+            // 조건분기를 위한 콜백함수 전달 호출
+            const 출력넘버 = 오백이하제거(지역관객수,(숫자)=>숫자>=500);
+            // 변수 = function(){} 
+            // (숫자)=>숫자>=500 
+            // 전달된 숫자가 500이상이면 true 아니면 false 리턴
+            /* 
+                ((함수원형))
 
-
-            // Keep only positive numbers
-            function 오백이하제거(배열받아, 처리콜백) {
-                const 내배열 = [];
-                for (const x of 배열받아) {
-                    if (처리콜백(x)) {
-                        내배열.push(x);
-                    }
+                function(숫자){
+                    return 숫자 >= 500;
                 }
-                return 내배열;
-            }
 
-            window.addEventListener("load", () => {
+                -> 비교연산자는 항상 true/false
+            
+            */
+
+            console.log(출력넘버);
+
+            // 콜백조건분기 함수
+            function 오백이하제거(배열받아,처리콜백){
+                const 내배열 = [];
+                for(const x of 배열받아){
+                    if(처리콜백(x)){
+                        내배열.push(x)
+                    } /// if ///
+                } /// for ///
+                return 내배열;
+                // 배열값을 리턴함!
+            } ///// function ////
+            
+
+
+            //// 로딩구역 //////////
+            window.addEventListener("load",()=>{
                 // 1. 순서대로 호출하기
                 먼저해();
                 다음이야();
 
-                // let result = 계산해(5, 5);
-                // 화면뿌려(result);
+                // 2. 순서제어(시퀀스제어) - 계산후 출력
+                발표년도계산해(2000,21);
 
-                // 2. 시퀀스제어 - 계산후 출력
-                발표년도계산해(2000, 21);
+                // 3. 함수를 2개호출할 경우 콜백함수로 함수에 전달!
+                포스터보기("https://image.ytn.co.kr/general/jpg/2021/1129/202111290942307028_d.jpg",500,화면뿌려);
+                // ※ 주의 : 함수를 파라미터로 전달할 경우 소괄호를 쓰지 않는다!
 
-                // 3. 함수를 2개호출할경우 콜백함수로 함수에 전달!
-                포스터보기("https://image.ytn.co.kr/general/jpg/2021/1129/202111290942307028_d.jpg", 500, 화면뿌려);
-                // ※주의: 함수를 파라미터로 전달할 경우 소괄호를 쓰지 않음!
-
+                // 4. 콜백함수를 통한 조건분기하기 결과출력
                 화면뿌려(출력넘버);
-            });
+
+            }); ///////////// load //////////////////
         </script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
