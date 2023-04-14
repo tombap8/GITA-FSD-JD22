@@ -17,11 +17,14 @@
         // 4. 배열 메서드 : map()
         // -> 배열을 자동으로 돌면서 목록을 만들어준다!
         const arr1 = ["수박","사과","단감"];
+        console.log(arr1);
+        // document.write(arr1);
         // 원래는 for of 또는 forEach() 메서드로
         // 순회하면서 코드를 생성하였음!
         // 다른 쉬운 방법이 있으니.... map()!
-        const list = arr1.map(val => `<div>${val}</div>`);
+        const list = arr1.map(val => `<h1>${val}</h1>`);
         console.log(list);
+        // document.write(list);
         // 기존 배열을 중간에 변경하여 태그를 씌워줄 수 있다!
         // for of / forEach() 의 순회와 다른점은?
         // 다시 배열에 담아준다!!!
