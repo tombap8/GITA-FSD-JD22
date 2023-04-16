@@ -4,44 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue JS 데이터 바인딩 연습</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <!-- 뷰JS 프레임워크 스텐드얼론 버전 가져오기 -->
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <!-- 엑시오스 라이브러리 스텐드얼론 버전 가져오기(제이슨불러오기) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
 
     <script>
-        window.addEventListener("DOMContentLoaded",
-        ()=>{
+       /************************************************************ 
+            [ 데이터 바인딩이란? ]
+            DB나 데이터 셋업 파일에서 데이터를 읽어온 후
+            웹 페이지에 데이터를 원하는 형태로 만들어서
+            화면을 구성하는 것!
+
+            [ 제이슨이란? ]
+            - Jason (JavaScript Object Notation) : 확장자는 .json
+            -> 텍스트형태로 된 JS 오브젝트를 사용한 데이터 포멧팅 파일
+            -> 구조화된 데이터를 담는데 탁월하다!
+            -> 기존에는 즉, 예전에는 XML문서를 주로 사용함!
+            그런데 XML이 가독성도 떨어지고 작성하기가 불편함
+            -> 그래서 요즘 대부분 데이터 셋업 파일로 제이슨사용!!!
+            -> 형식: 배열안에 객체 / 객체안에 객체 로 구성함
+            예) [{},{},...] / {속성:{},속성:{},...}
+
+            [ 뷰JS에서 제이슨 파일을 이용한 데이터 바인딩하기!!! ]
+            -> JS순수문법으로 바인딩하는 것보다 훨씬 수월하고
+            간단하게 코딩할 수 있다!
+       ************************************************************/
+
+       //// 로딩구역 /////////////////////////////////
+       window.addEventListener("DOMContentLoaded", ()=>{
 
             console.log("로딩완료!");
 
+            /// 데이터 바인딩을 위한 Vue인스턴스 생성하기 ///
             new Vue({
                 el: "#app",
-                data:{
-                    items:[] // json데이터 종류(빈배열형 셋팅)
-                },
+                data: {
+
+                    vals: [] // json 데이터를 담을 변수
+                    // 왜 배열이지? 가져올 json이 배열이면 배열로!
+                    // 만약 객체로 되어 있으면 객체형식으로 지정함
+                    // vals: {}
+
+                }, //// data ////
+                // mounted 속성: Vue 인스턴스가 메모리에 읽혀지면
+                // 실행하는 함수구역 (mousted는 '읽어들여진'의 뜻)
                 mounted: function(){
-                    axios.get("test.json")
-                    .then(response => (this.items = response))
-                    //axios는 외부파일을 읽어올 수 있는 라이브러리
-                    //get() 메서드는 가져올 파일 경로를 셋팅함
-                    //then() 메서드는 가져온 후 셋팅내용을 코딩함
-                    // response => (this.items = response)
-                    // 해석: 가져온 파일 내용을 response변수로
-                    // 함수 내부에 전달하여 이 값을 Vue JS에
-                    // 셋팅된 this.items 즉, 현재 변수 items에
-                    // 집어넣어라!
-                    //()=>{} 화살표함수를 줄여쓴것!
+                    // 외부파일을 가져오기 위해 axios 라이브러리를 사용함!
+                    // 당연히 상단에 라이브러리가 있어야함!!!
+                    axios // 엑시오스 객체
+                    .get("test.json")
+                    .then(response => this.vals = response)
+                    // 위와 같음
+                    // .then((response) => {this.vals = response})
+
+                    /* 
+                        axios.get(제이슨파일).then(내부로값전달)
+
+                        response => this.vals = response
+                        해석: 제이슨에서 가져온 파일내용을
+                        response 변수로 함수 내부에 전달하여
+                        이 값을 Vue JS에 셋팅된 데이터변수 vals에
+                        집어 넣어라!
+                        this.vals는 Vue 인스턴스 내부의 데이터 변수임!
+
+
+                    */
                 }
-                // mounted 속성은 "읽어들여진"의 뜻으로
-                // 외부파일을 가져와서 셋팅하는 기능!
 
+            }); ///////////// Vue /////////////////
 
-            }); //////// Vue /////////
-
-
-
-        }); ////////////// 로딩구역 //////////////////////
+       }); //////////////// 로딩구역 /////////////////////////
+       //////////////////////////////////////////////////////
 
     </script>
 
@@ -50,17 +84,22 @@
 <body>
     <h1>Vue JS 데이터 바인딩 연습</h1>
     <div id="app">
-        <h2 v-for="(v,i) in items.data">
-            <span>{{v.no}}</span>. <span>{{v.title}}</span>
-            <!-- {{}}안에는 json에서 셋팅된 속성명을 사용함 -->
-            <!-- 
-                v-for 데이터 개수 만큼 반복함
-                값 -> (v,i) in items.data
-                v는 실제값, i는 순번
-                in items.data 는 넘어온 실제 데이터 전체
-                               안에서 돈다!
-             -->
-        </h2>
+        <ul>
+            <li v-for="(v,i) in vals.data">
+                순번 : {{i}}<br>
+                no 데이터 : {{v.no}}<br>
+                title 데이터 : {{v.title}}
+            </li>
+        </ul>
+        <!-- 
+            v-for 디렉티브로 데이터 만큼 반복시킨다!
+            - 값 : (v,i) in vals.data
+            (해석) vals.data 는 위에서 셋팅된 제이슨 데이터
+                    (v,i) 변수명은 자기마음대로~~~~!
+                    첫번째 전달변수는 데이터값
+                    두번째 전달변수는 순번(0부터!)
+
+         -->
     </div>
 </body>
 </html>
