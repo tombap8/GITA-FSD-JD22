@@ -146,8 +146,8 @@
                         // let temp = 성공메시지;
                         let json = 성공메시지;
                         console.log(json);
-                        // document.getElementById("doc").innerHTML=
-                        // json.terminal.integrated.confirmOnExit;
+                        document.getElementById("doc").innerHTML=
+                        json["gutterpreview.imagePreviewMaxHeight"];
                         // for(let x in json)console.log(json[x]);
                        
                     },
@@ -172,7 +172,7 @@
                 background-attachment: fixed;
                 text-align: center;
             }
-            #show {
+            #show, #doc {
                 font-family: "Gamja Flower", cursive;
                 font-size: 4vw;
                 background-image: linear-gradient(to bottom, lightgreen, pink, orangered, aquamarine);
@@ -181,11 +181,6 @@
                 -webkit-text-fill-color: transparent;
                 background-repeat: no-repeat;
                 font-weight: bold;
-            }
-            #doc{
-                width: 50%;
-                height: 50vh;
-                margin: 0 auto;
             }
         </style>
     </head>

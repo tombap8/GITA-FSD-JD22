@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue JS 기초</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
     <script>
         window.addEventListener("DOMContentLoaded",
@@ -13,7 +14,7 @@
             console.log("로딩완료!");
 
             // 1. 텍스트 바인딩 ////////////////////////////////
-            new Vue({
+            const vm1 = new Vue({
                 el: "#app1",
                 // el은 적용할 요소(element)를 담는 속성
                 data: {
@@ -27,6 +28,24 @@
             }); /// Vue ///
             // new 키워드는 객체를 생성하는 역할을 함
             // -> 이렇게 생성된 것을 객체 인스턴스라고 함!
+
+            let ac = 0;
+            $(".tb1").click(()=>{
+                if(ac===3){
+                    alert("끝났소!");
+                    return;
+                }
+
+                if(ac===0)
+                vm1.message = "그래, 이제됐냐?";
+                else if(ac===1)
+                vm1.yo = "헐";
+                else if(ac===2)
+                vm1.message = "그만해라! 마이묵었따아이가!!!";
+
+                ac++;
+            })
+
 
             // 2. 반복 렌더링 //////////////////////////////
             new Vue({
@@ -94,7 +113,7 @@
 
     <hr>
 
-    <h2>1. 텍스트 바인딩(binding->데이터넣기!)</h2>
+    <h2 class="tb1">1. 텍스트 바인딩(binding->데이터넣기!)</h2>
     <div id="app1">
         <p>{{message}}</p>
         <p>세상은{{yo}} 너희가{{yo}} 아는바{{yo}} 그 세상이{{yo}} 아니란다!{{yo}}</p>
