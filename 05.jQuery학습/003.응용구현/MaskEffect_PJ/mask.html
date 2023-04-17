@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mask Effect</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 전체부모박스 */
+        .wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1007px;
+            height: 455px;
+            outline: 1px solid red;
+        }
+
+        /* 1. 배경고정이미지박스 */
+        #bg {
+            position: absolute;
+            width: 1007px;
+            height: 455px;
+            background: url(./images/main2.jpg) no-repeat fixed;
+        }
+
+        /* 2. 마스크효과이동박스 */
+        #mask {
+            position: absolute;
+            left: -546px;
+            /* 얼굴중앙위치조정 */
+            width: 1007px;
+            height: 455px;
+            background: url(./images/main1.jpg) no-repeat fixed;
+
+            /* 트랜지션 */
+            transition: left .4s ease-out;
+        }
+
+        /* 3. 이벤트대상박스 */
+        #cover {
+            position: absolute;
+            width: 1007px;
+            height: 455px;
+        }
+    </style>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script>
+        $(function () { ////// jQB /////////////////////
+
+            // 전체박스
+            let wrap = $(".wrap");
+
+            // 고정된 배경이미지 위치보정함수
+            let fixedPos = () => {
+                // 배경이미지를 고정할 경우 보이는 화면에
+                // 위치가 고정되므로 유동적인 박스위치에 배경
+                // 이미지 위치를 재설정해야함!
+
+                // 1. 배경이미지 top위치값 보정
+                // 박스 top위치값 +  박스height값의 절반
+                // transform으로 자기크기의 절반을 이동했으므로
+                // 박스의 height값의 절반을 더해야한다!!!
+                let bgtop =
+                    wrap.offset().top +
+                    wrap.height() / 2;
+                // console.log("보정top:" + bgtop);
+
+                // 2. 배경이미지 left위치값 보정
+                // 박스 left위치값 +  박스width값의 절반
+                // transform으로 자기크기의 절반을 이동했으므로
+                // 박스의 width값의 절반을 더해야한다!!!
+                let bgleft =
+                    wrap.offset().left +
+                    wrap.width() / 2;
+                // console.log("보정left:" + bgleft);
+
+                // 3. 배경 fixed이미지 위치값 보정 적용하기
+                $("#bg, #mask").css({
+                    backgroundPositionX: bgleft + "px",
+                    backgroundPositionY: bgtop + "px"
+                }); ///////////// css /////////////
+
+
+            }; /////////// fixedPos 함수 //////////
+
+            // 위치 보정함수 최초호출!!!
+            fixedPos();
+            // 윈도우 크기 변경시 위치보정함수 호출!!!
+            $(window).resize(fixedPos);
+
+
+            //////////////////////////////////////////////////////
+            /// 커버박스에 마우스무브 이벤트로 마스크박스 이동하기 ///
+            //////////////////////////////////////////////////////
+            // 이벤트 대상: #cover
+            // 이벤트 종류: mousemove
+            $("#cover").mousemove(function (e) {
+
+                // 1. 마우스 커서 이동시 x축값 구하기
+                let posx = e.offsetX;
+                // e.pageX 는 화면왼쪽끝에서 부터의 위치
+                // e.offsetX 는 선택요소 내부에서의 위치
+                // Y축도 동일함!
+                // console.log("x위치:" + posx);
+
+                // 2. 마스크 left위치값 변경하기!
+                // 주의사항: left가 마우스와 반대방향이므로 -부호!
+                // 마우스 포인터가 코있는 곳이 중앙되게 수치보정함!
+                $("#mask").css({
+                    left: -posx*1.2 + "px"
+                }); ///////////// css ////////////
+
+            }) /////////// mousemove 함수 ////////
+            .mouseout(function(){ // 나가면 원위치!
+                $("#mask").css({
+                    left: "-546px"
+                }); ///////////// css ////////////
+            }); /////////// mouseout 함수 //////////
+
+        }); /////////////// jQB //////////////////////
+    </script>
+</head>
+
+<body>
+    <!-- 마스크 효과박스 -->
+    <div class="wrap">
+        <!-- 1. 배경고정이미지박스 -->
+        <div id="bg"></div>
+        <!-- 2. 마스크효과이동박스 -->
+        <div id="mask"></div>
+        <!-- 3. 이벤트대상박스 -->
+        <div id="cover"></div>
+    </div>
+
+</body>
+
+</html>
