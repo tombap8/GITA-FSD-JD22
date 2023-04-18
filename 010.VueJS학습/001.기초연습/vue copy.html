@@ -80,18 +80,21 @@
                     methods: {
                         myClick: function(e){
                             // alert(event.target);// 버튼자신!
-                            e.target.innerText = "놀랐지?";
+                            // e.target.innerText = "놀랐지?";
+                            $(e.target).text("놀랐지????");
                             // console.log(el);
-                            setTimeout(()=>this.$el.innerHTML += "<div>하하하</div>",2000);
+                            setTimeout(()=>$(this.$el).append("<div>하하하</div>"),2000);
 
                         }, ////// myClick함수 ////
                         myOver: function(){
-                            event.target.innerText = "오버하지마!";
+                            $(event.target).text("오버하지마!");
                             let tg = event.target;
-                            setTimeout(()=>tg.innerText = "클릭해봐!",3000);
+                            setTimeout(()=>{
+                                $(tg).text("클릭해봐!");
+                            },3000);
                         },
                         myClick2: function(txt){
-                            this.$el.innerHTML += `내가 ${txt}야!`;
+                            $(this.$el).append(`<div>내가 ${txt}야!</div>`);
                         }
 
                     }
@@ -113,7 +116,7 @@
 
                 // 5. 조건분기 ///////////////////////////
                 new Vue({
-                    el:"#app5",
+                    el:".app5",
                     data: {
                         show: true
                         // show 속성은 디스플레이를 보이고 숨길때
@@ -154,7 +157,7 @@
              -->
             </ol>
             <ul v-for="(item,i) in goods">{{i+1}}
-                <li v-for="(val,attr) in item">{attr + ":" + val}}</li>
+                <li v-for="(val,attr) in item">{{attr + ":" + val}}</li>
             </ul>
         </div>
 
@@ -187,7 +190,7 @@
         <hr />
 
         <h2>5. 조건분기</h2>
-        <div id="app5">
+        <div class="app5">
             <button v-on:click="show=!show">변경하기</button>
             <!-- 
             v-on:click 요소 클릭시
@@ -202,5 +205,23 @@
             false이면 요소자체를 없앰!(가상돔에서 태그를 지워줌!)
          -->
         </div>
+        <h2>5. 조건분기</h2>
+        <div class="app5">
+            <button v-on:click="show=!show">변경하기</button>
+            <!-- 
+            v-on:click 요소 클릭시
+            값 show=!show 
+            해석: true면 false, false면 true로 값변경!
+         -->
+            <p v-if="show">나는 프론트엔드 개발자다!</p>
+            <!-- 
+            v-if 속성은 조건에 따라 결과를 다르게 해주는 기능
+            값에 show를 쓴 것은 기본값 true가 셋팅됨
+            이때 뷰JS에서는 해당요소를 보이게하고
+            false이면 요소자체를 없앰!(가상돔에서 태그를 지워줌!)
+         -->
+        </div>
+
+
     </body>
 </html>
