@@ -34,11 +34,14 @@
                     `;
                 }
             },
-            mounted:function(){
-
+            created:function(){
                 for(let i=1; i<6;i++) {
                     this.she_data.push(new GetList(i,"반신상품"+i,"vans_"+i+".jpg"));
                 }
+            },
+            mounted:function(){
+
+                
                 console.log(this.she_data);
                 $(".liwrap").hide().delay(2000).fadeIn(400);
                 
