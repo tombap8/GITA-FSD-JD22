@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Parallax PJ</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                background-image: linear-gradient(to bottom,#CCC,#888);
+            }
+            .page {
+                position: relative;
+                height: 100vh;
+            }
+            .imbx{
+                position: absolute;
+                width: 45vw;
+            }
+            .icon{
+                position: absolute;
+                width: 150px;
+                bottom: -50px;
+            }
+            .txt{
+                position: absolute;
+                font-family: 'Poppins', sans-serif;
+                font-size: 4vh;
+                color: #fff;
+                text-shadow: 0 0 5px #000;
+            }
+            .page .mimg {
+                width: 100%;
+                border-radius: 20px;
+            }
+            .page:nth-child(odd) .imbx {
+                top: 10vh;
+                left: 10vw;
+            }
+            .page:nth-child(odd) .txt {
+                bottom: 10%;
+                right: 10%;
+            }
+            .page:nth-child(odd) .icon {
+                right: -50px;
+            }
+            .page:nth-child(even) .imbx {
+                top: 10vh;
+                right: 10vw;
+            }
+            .page:nth-child(even) .txt {
+                bottom: 10%;
+                left: 10%;
+            }
+            .page:nth-child(even) .icon {
+                left: -50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <div class="imbx">
+                <img src="images/1.jpg" alt="photo" class="mimg" />
+                <img src="images/11.png" alt="icon" class="icon" />
+                <span class="txt">The Wild North of South Africa</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/2.jpg" alt="photo" class="mimg" />
+                <img src="images/22.png" alt="icon" class="icon" />
+                <span class="txt">Captivating Cape Town</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/3.jpg" alt="photo" class="mimg" />
+                <img src="images/33.png" alt="icon" class="icon" />
+                <span class="txt">Picture Perfect Portugal</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/4.jpg" alt="photo" class="mimg" />
+                <img src="images/44.png" alt="icon" class="icon" />
+                <span class="txt">The Sultry South of Sri Lanka</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/5.jpg" alt="photo" class="mimg" />
+                <img src="images/55.png" alt="icon" class="icon" />
+                <span class="txt">Mungo & Menindee</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/6.jpg" alt="photo" class="mimg" />
+                <img src="images/66.png" alt="icon" class="icon" />
+                <span class="txt">India 2020</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/7.jpg" alt="photo" class="mimg" />
+                <img src="images/77.png" alt="icon" class="icon" />
+                <span class="txt">China 2018</span></div>
+        </div>
+        <div class="page">
+            <div class="imbx"><img src="images/8.jpg" alt="photo" class="mimg" />
+                <img src="images/88.png" alt="icon" class="icon" />
+                <span class="txt">South East Asia 2016</span></div>
+        </div>
+    </body>
+</html>
