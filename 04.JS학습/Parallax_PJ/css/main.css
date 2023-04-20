@@ -9,6 +9,7 @@ body {
 }
 body{
     background-image: linear-gradient(to bottom,#CCC,#888);
+    padding-bottom: 300px;
 }
 .page {
     position: relative;
@@ -26,7 +27,7 @@ body{
 .txt{
     position: absolute;
     font-family: 'Poppins', sans-serif;
-    font-size: 4vh;
+    font-size: 5vh;
     color: #fff;
     text-shadow: 0 0 5px #000;
 }
@@ -39,8 +40,8 @@ body{
     left: 10vw;
 }
 .page:nth-child(odd) .txt {
-    bottom: 10%;
-    right: 10%;
+    bottom: 0;
+    right: -20%;
 }
 .page:nth-child(odd) .icon {
     right: -50px;
@@ -50,8 +51,8 @@ body{
     right: 10vw;
 }
 .page:nth-child(even) .txt {
-    bottom: 10%;
-    left: 10%;
+    bottom: 0;
+    left: -20%;
 }
 .page:nth-child(even) .icon {
     left: -50px;

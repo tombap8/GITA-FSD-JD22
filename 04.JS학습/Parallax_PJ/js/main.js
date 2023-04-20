@@ -6,8 +6,8 @@
     const qsa = (x) => document.querySelectorAll(x);
     const retVal = (x) => x.getBoundingClientRect().top;
     const winH = window.innerHeight;
-    const setH1 = 200;
-    const setH2 = 100;
+    const setH1 = 100;
+    const setH2 = 200;
     console.log("winH:", winH);
 
     const tg = qsa(".imbx");
