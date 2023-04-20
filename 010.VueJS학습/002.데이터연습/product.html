@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS 데이터 바인딩 연습2</title>
+    <!-- 뷰JS 프레임워크 스텐드얼론 버전 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- 엑시오스 라이브러리 스텐드얼론 버전 가져오기(제이슨불러오기) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+    <script>
+
+        //////////// 로딩구역 /////////////////////
+        window.addEventListener("DOMContentLoaded",()=>{
+
+            console.log("로딩완료");
+
+            /// 데이터 바인딩을 위한 Vue 인스턴스 생성하기 ///
+            new Vue({
+                el: "#app",
+                data: {
+                    vals: {} // json 데이터가 객체임!
+                }, //// data ////
+                mounted: function(){
+                    axios // 엑시오스 객체
+                    .get("product.json")
+                    .then(x => this.vals = x);
+                } /// mounted /////
+            }); ///////////// Vue /////////////////
+
+        }); ///////////// 로딩구역 ////////////////////////
+        //////////////////////////////////////////////////
+        
+    </script>
+
+
+</head>
+
+<body>
+    <h1>Vue JS 데이터 바인딩 연습</h1>
+    <ul id="app">
+        
+        <li v-for="(value,name) in vals.data">
+            <h2>{{value.data.items}}</h2>
+            <!-- 
+                속성명은 문자형이지만 아래 두가지로 사용가능 
+                value.제목 or value["제목"]
+            -->
+<!-- 
+            <ol v-if="value.메뉴!=='없음'">
+                <li v-for="(v,i) in value.메뉴">{{v}}</li>
+            </ol> -->
+        </li>
+    </ul>
+</body>
+
+</html>
