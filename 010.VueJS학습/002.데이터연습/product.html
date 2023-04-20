@@ -24,7 +24,7 @@
                 }, //// data ////
                 mounted: function(){
                     axios // 엑시오스 객체
-                    .get("product.json")
+                    .get("./product.json")
                     .then(x => this.vals = x);
                 } /// mounted /////
             }); ///////////// Vue /////////////////
@@ -33,26 +33,54 @@
         //////////////////////////////////////////////////
         
     </script>
-
+<style>
+    #main{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #main>ul{
+        width: 20%;
+        text-align: center;
+    }
+</style>
 
 </head>
 
 <body>
     <h1>Vue JS 데이터 바인딩 연습</h1>
-    <ul id="app">
-        
-        <li v-for="(value,name) in vals.data">
-            <h2>{{value.data.items}}</h2>
-            <!-- 
-                속성명은 문자형이지만 아래 두가지로 사용가능 
-                value.제목 or value["제목"]
-            -->
-<!-- 
-            <ol v-if="value.메뉴!=='없음'">
-                <li v-for="(v,i) in value.메뉴">{{v}}</li>
-            </ol> -->
-        </li>
-    </ul>
+    <div id="app">
+        <!-- 원본데이터는 바로 하위로 못들어감! -->
+        <section id="main" v-for="(value,name) in vals.data">
+            <!-- 여기서부터 하위로 바로 접근가능함!!! -->
+            <ul v-for="(c,b) in value.data.items">
+                
+                    <li>
+                        <h2>아이디 : {{c.id}}</h2>
+                        </li>
+                        <li>
+                             <h3>이름 : {{c.name}}</h3>
+                        </li>
+                       <li>
+                           <textarea name="ta" id="ta" cols="30" rows="10">
+                               설명 : {{c.description}}
+                           </textarea>
+
+                       </li>
+                       <li>
+                           <div v-html="'특징:'+c.features"></div>
+                       </li>
+                       <li>
+                            가격: {{c.price}} $
+                       </li>
+                        
+                    </li>
+
+             
+    
+            </ul>
+
+        </section>
+    </div>
 </body>
 
 </html>
