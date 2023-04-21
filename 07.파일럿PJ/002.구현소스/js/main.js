@@ -91,7 +91,7 @@ $(function () { /// jQB ////////////////////////
     ///////////////////////////////////////
     let bantxt = {
         "ban1": "Men's Season<br>Collection",
-        "ban2": "2021 Special<br>Collection",
+        "ban2": "2023 Special<br>Collection",
         "ban3": "GongYoo<br>Collection",
         "ban4": "T-Shirt<br>Collection",
         "ban5": "Shoes<br>Collection",

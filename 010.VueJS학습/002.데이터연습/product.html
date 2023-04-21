@@ -52,17 +52,17 @@
         <!-- 원본데이터는 바로 하위로 못들어감! -->
         <section id="main" v-for="(value,name) in vals.data">
             <!-- 여기서부터 하위로 바로 접근가능함!!! -->
-            <ul v-for="(c,b) in value.data.items">
+            <ul v-for="(a,b) in value.data.items">
                 
                     <li>
-                        <h2>아이디 : {{c.id}}</h2>
+                        <h2>아이디 : {{a.id}}</h2>
                         </li>
                         <li>
-                             <h3>이름 : {{c.name}}</h3>
+                             <h3>이름 : {{a.name}}</h3>
                         </li>
                        <li>
                            <textarea name="ta" id="ta" cols="30" rows="10">
-                               설명 : {{c.description}}
+                               설명 : {{a.description}}
                            </textarea>
 
                        </li>
@@ -70,7 +70,7 @@
                            <div v-html="'특징:'+c.features"></div>
                        </li>
                        <li>
-                            가격: {{c.price}} $
+                            가격: {{a.price}} $
                        </li>
                         
                     </li>
