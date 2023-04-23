@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            /* 타이틀 */
+            .tit {
+                text-align: center;
+                /* 글자 최소크기 지정 */
+                font-size: max(3vw, 25px);
+            }
+
+            /* 그리드 박스 */
+            .grid {
+                /* 그리드 박스 */
+                display: grid;
+
+                /* 1200px최대크기, 마영오! */
+                max-width: 1200px;
+                margin: 0 auto;
+
+                grid-template-columns: repeat(5, 1fr);
+
+                grid-column-gap: min(1vw, 10px);
+                grid-row-gap: min(1.5vw, 15px);
+            }
+
+            /* 갤러리 박스 */
+            .grid > div {
+                position: relative;
+                /* 부모자격 */
+
+                /* 비율박스 셋팅 : 
+            이미지 가로/세로 크기비율임! */
+                aspect-ratio: 280 / 400;
+
+                /* 이미지 확대시 넘치는 이미지 숨기기 */
+                overflow: hidden;
+            }
+
+            /* 그리드 갤러리 이미지 */
+            .grid img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                /* 트랜지션: 속시이지 */
+                transition: 0.3s;
+            }
+            /* 오버시 이미지확대 */
+            .grid > div:hover img {
+                /* transform: scale(1.1); */
+                animation: magAni 10s linear infinite alternate;
+            }
+
+            /* 계속 확대/축소 애니 키프레임 */
+            @keyframes magAni {
+                to {
+                    transform: scale(1.5);
+                }
+            } /* 키프레임 */
+
+            /* 상품설명박스 */
+            .grid aside {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                color: #fff;
+                background-color: rgba(0, 0, 0, 0.422);
+            }
+            /* 상품명 글자박스(h2) */
+            .grid aside h2 {
+                font-size: min(1.8vw, 24px);
+                font-weight: normal;
+                margin: min(1.2vw, 14px) 0 0;
+                /* 마진: 위 양쪽 아래 */
+            }
+            /* 상품가격 글자박스(h3) */
+            .grid aside h3 {
+                font-size: min(1.4vw, 18px);
+                font-weight: normal;
+                margin: min(0.8vw, 10px) 0;
+                /* 마진: 위아래 양쪽 */
+            }
+
+            /* 1100px이하 미디어쿼리 시작 */
+            @media screen and (max-width: 1100px) {
+                .grid {
+                    /* 가로방향 4개 */
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+
+            /* 1100px이하 미디어쿼리 끝 */
+
+            /* 1000px이하 미디어쿼리 시작 */
+            @media screen and (max-width: 1000px) {
+                .grid {
+                    /* 가로방향 3개 */
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            /* 1000px이하 미디어쿼리 끝 */
+
+            /* 800px이하 미디어쿼리 시작 */
+            @media screen and (max-width: 800px) {
+                .grid {
+                    /* 가로방향 2개 */
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                /* 상품명 글자박스 */
+                .grid aside h2 {
+                    font-size: 3vw;
+                    margin: 2vw 0 0;
+                }
+                /* 상품가격 글자박스 */
+                .grid aside h3 {
+                    font-size: 2vw;
+                    margin: 2vw 0;
+                }
+            }
+
+            /* 800px이하 미디어쿼리 끝 */
+
+            /* 600px이하 미디어쿼리 시작 */
+            @media screen and (max-width: 600px) {
+                body {
+                    margin: 0;
+                }
+                .grid {
+                    /* 가로방향 1개 */
+                    grid-template-columns: repeat(1, 1fr);
+
+                    /* 수직간격 */
+                    grid-row-gap: 0;
+                }
+
+                /* 상품명 글자박스 */
+                .grid aside h2 {
+                    font-size: 5.5vw;
+                    margin: 4vw 0 0;
+                }
+                /* 상품가격 글자박스 */
+                .grid aside h3 {
+                    font-size: 4vw;
+                    margin: 4vw 0;
+                }
+            }
+
+            /* 600px이하 미디어쿼리 끝 */
+        </style>
+        
+
+        <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+        <!-- 제이쿼리 라이브러리 CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <!-- 제이쿼리 UI CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+        <script>
+            $(()=>{
+                // [뷰JS 컴포넌트란?]
+                // 기능을 가진 UI부품별로 템플릿과 JS를 하나로 묶어서
+                // 다른 UI부품과 분리하여 개발하거나 관리할 수 있게하는 방법
+
+                // [컴포넌트는 설계도] : 
+                // html요소의 설계도이며
+                // 이를 기반으로 실체로 생성한 것을 인스턴스라고 부른다.
+
+                // [컴포넌트의 재사용] : 
+                // 하나를 수정하면 모든 부분이 수정되며
+                // 부분적으로 조금 다른 컴포넌트도 제작할 수 있다
+
+                // [1] 전역 컴포넌트 등록하기
+                // Vue.component 메서드 : 
+                // 1. 사용자 정의 태그로 사용하는 이름
+                // -> 템플릿 태그명은 반드시 캐밥케이스 사용!(규칙임)
+                // 2. 컴포넌트 옵션객체
+                Vue.component("titcomp",{
+                    template:`<span>😘그리드1 - 이미지 갤러리🐱</span>`
+                })
+
+                // new Vue({
+                //     el:".tit"
+                // })
+
+                const makeVue = x => new Vue({el:x});
+                let num = 0;
+
+                Vue.component("my-comp",{
+                    template:`
+                    <div>
+                        <img v-bind:src="gsrc" alt="dress">
+                        <aside>
+                            <h2>{{gname}}</h2>
+                            <h3>{{gprice}}</h3>
+                        </aside>
+                    </div>`
+                   ,
+                    data:function(){
+                        return{
+                        gsrc : `img_gallery/${this.setNum()}.jpg`,
+                        gname : "여성드래스2030",
+                        gprice : "230,000원"}
+                    },
+                    methods:{
+                        setNum(){
+                            num+=1;
+                            console.log('ㅎㅎ',num);
+                            return num;
+                        }
+                    }
+                });
+            
+                makeVue(".tit");
+                makeVue("#vapp");
+
+            });
+
+
+            /* 
+            mustache : {{ expression }}문법을 사용해서 특정 변수를 그대로 렌더링한다.
+
+            v-text : 특정 태그내에서 사용할 수 있으며 v-text속성을 사용해서 "텍스트"로 렌더링한다. 이 때 렌더링된 텍스트는 해당 태그의 자식 노드로 들어간다.
+
+            v-html : 특정 태그내에서 사용할 수 있으며 v-html속성을 사용해서 "html"로 렌더링한다. 이 때 렌더링된 텍스트는 해당 태그의 자식 노드로 들어간다.
+
+            v-bind : 특정 태그내에서 사용할 수 있으며 v-bind문법을 사용해서 vue내부의 값(data, props, computed, methods)들의 값을 해당 속성의 값으로 렌더링한다.
+            */
+
+
+        </script>
+    </head>
+    <body>
+        <!-- 타이틀 -->
+        <h1 class="tit"><titcomp></titcomp></h1>
+        <!-- 그리드 레이아웃 박스 -->
+        <div class="grid" id="vapp">
+            <my-comp v-for="n in 50" v-bind:key="n"></my-comp>
+        </div>
+    </body>
+</html>
