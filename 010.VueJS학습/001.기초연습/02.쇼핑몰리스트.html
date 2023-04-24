@@ -185,7 +185,7 @@
                 // -> 템플릿 태그명은 반드시 캐밥케이스 사용!(규칙임)
                 // 2. 컴포넌트 옵션객체
                 Vue.component("titcomp",{
-                    template:`<span>😘그리드1 - 이미지 갤러리🐱</span>`
+                    template:`<strong>😘<b>Vue JS 컴포넌트</b> - 이미지 갤러리🐱</strong>`
                 })
 
                 // new Vue({
@@ -207,6 +207,7 @@
                    ,
                     data:function(){
                         return{
+                            no:"1",
                         gsrc : `img_gallery/${this.setNum()}.jpg`,
                         gname : "여성드래스2030",
                         gprice : "230,000원"}
@@ -216,6 +217,9 @@
                             num+=1;
                             console.log('ㅎㅎ',num);
                             return num;
+                        },
+                        setName(){
+
                         }
                     }
                 });
@@ -227,13 +231,21 @@
 
 
             /* 
-            mustache : {{ expression }}문법을 사용해서 특정 변수를 그대로 렌더링한다.
+            [ 뷰JS 출력 ]
+            mustache : 
+            {{ expression }}문법을 사용해서 특정 변수를 그대로 렌더링한다.
 
-            v-text : 특정 태그내에서 사용할 수 있으며 v-text속성을 사용해서 "텍스트"로 렌더링한다. 이 때 렌더링된 텍스트는 해당 태그의 자식 노드로 들어간다.
+            v-text : 
+            특정 태그내에서 사용할 수 있으며 v-text속성을 사용해서 "텍스트"로 렌더링한다. 
+            이 때 렌더링된 텍스트는 해당 태그의 자식 노드로 들어간다.
 
-            v-html : 특정 태그내에서 사용할 수 있으며 v-html속성을 사용해서 "html"로 렌더링한다. 이 때 렌더링된 텍스트는 해당 태그의 자식 노드로 들어간다.
+            v-html : 
+            특정 태그내에서 사용할 수 있으며 v-html속성을 사용해서 "html"로 렌더링한다. 
+            이 때 렌더링된 텍스트는 해당 태그의 자식 노드로 들어간다.
 
-            v-bind : 특정 태그내에서 사용할 수 있으며 v-bind문법을 사용해서 vue내부의 값(data, props, computed, methods)들의 값을 해당 속성의 값으로 렌더링한다.
+            v-bind : 
+            특정 태그내에서 사용할 수 있으며 v-bind문법을 사용해서 vue내부의 값
+            (data, props, computed, methods)들의 값을 해당 속성의 값으로 렌더링한다.
             */
 
 

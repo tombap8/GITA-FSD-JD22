@@ -64,17 +64,23 @@
                             break;
                         case "뒤로":
                             tgs.forEach(
-                                (ele) => {
+                                (ele,idx) => {
                                     if (ele.classList.contains("on")) {
                                         isNow = ele.isSameNode(tgs.item(tgs.length - 1))
-                                        console.log(isNow);
+                                        console.log(isNow,idx);
                                         if (isNow) return;
-                                        cele = ele;
+                                        // cele = ele;
                                         ele.classList.remove("on");
+                                        // 바로 다음것을 on변경하면 forEach문에서 다음요소 돌때
+                                        // 또다시 on에 걸러서 다시 여기 들어옴!
+                                        // 해결책: on을 조금만 있다가 주면된다!(setTimeout)
+                                        setTimeout(()=>
+                                            ele.nextElementSibling.classList.add("on")
+                                        ,10);
                                     }
                                 }); //// forEach //////
-                            if (!isNow)
-                                cele.nextElementSibling.classList.add("on");
+                            // if (!isNow)
+                                // cele.nextElementSibling.classList.add("on");
                             break;
                         case "앞으로":
                             tgs.forEach(
@@ -83,8 +89,10 @@
                                         isNow = ele.isSameNode(tgs.item(0));
                                         console.log(isNow);
                                         if (isNow) return;
-                                        cele = ele;
+                                        // cele = ele;
                                         ele.classList.remove("on");
+                                        // 여기서는 이전것을 on주었으므로
+                                        // 바로 다음요소를 돌때 걸릴 on이 없어서 괜찮음!
                                         ele.previousElementSibling.classList.add("on");
                                     }
                                 }); //// forEach //////
