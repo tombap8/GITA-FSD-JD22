@@ -196,23 +196,30 @@
                 let num = 0;
 
 
-                /// 여기가 자식입니다!!!
-                Vue.component("my-comp",{
+                let myComp = {
                     template:`
                     <div>
-                        <img v-bind:src="gsrc" alt="dress" v-on:click="getPapa">
+                        <img v-bind:src="gsrc" alt="dress">
                         <aside>
                             <h2>{{gname}}</h2>
                             <h3>{{gprice}}</h3>
                         </aside>
-                    </div>`
-                   ,
-                   props:["val"],
+                    </div>
+                    `
+                }
+
+                new Vue({
+                    el:"#vapp",
+                    components:{
+                        "my-comp":myComp
+                    },
+                    props:['val'],
                     data:function(){
                         return{
-                        gsrc : `img_gallery/${this.val}.jpg`,
-                        gname : "여성드래스2030"+this.val,
-                        gprice : 123000*this.val/2+"원"}
+                            gsrc : `img_gallery/${this.val}.jpg`,
+                            gname : "여성드래스2030"+this.val,
+                            gprice : 123000*this.val/2+"원"
+                        }
                     },
                     methods:{
                         setNum(){
@@ -220,30 +227,15 @@
                             console.log('ㅎㅎ',num);
                             return num;
                         },
-                        getPapa(){
-                            this.$emit("chil-evt")
+                        setName(){
+
                         }
                     }
+
                 });
+                
             
                 makeVue(".tit");
-                // makeVue("#vapp");
-
-
-                // 여기가 부모입니다!!!
-                new Vue({
-                    el:"#vapp",
-                    methods:{
-                        ptMtds(){
-                            alert("이벤트성공~!");
-                        }
-                    },
-                    mounted:function(){
-                        $(".grid img").click(function(){
-                            console.log($(this).attr("src"));
-                        })
-                    }
-                });
 
             });
 
@@ -274,7 +266,7 @@
         <h1 class="tit"><titcomp></titcomp></h1>
         <!-- 그리드 레이아웃 박스 -->
         <div class="grid" id="vapp">
-            <my-comp v-for="n in 50" v-bind:key="n" v-bind:val="n" v-on:chil-evt="ptMtds"></my-comp>
+            <my-comp v-for="n in 50" v-bind:key="n" v-bind:val="n"></my-comp>
         </div>
     </body>
 </html>
