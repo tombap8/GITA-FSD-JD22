@@ -1,0 +1,208 @@
+@charset "utf-8";
+
+/* 도깨비PJ 공통 미디어쿼리 - media.css */
+
+/* 1200px 사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1200px) {
+    /* 하단 - 브랜드바로가기 */
+    .brand {
+        top: 159px;
+        right: 10px;
+    }
+}
+/* 1200px 사이즈 이하 미디어쿼리 끝 */
+
+/* 1024px 사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1024px) {
+    /* 전체 글자크기 변경 */
+    html {
+        /* rem단위 글자 모두 변경 */
+        font-size: 8.235px;
+        /* 
+            [ 기준 글자계산 : GNB메뉴 ]
+            처음 -> 1.7rem * 10px = 17px
+            변경 -> 1.7rem * 몇px = 14px
+            => 계산 : 몇px = 14px / 1.7rem
+            => 결과 : 8.235
+        */
+    }
+    /* 메인속박스 */
+    .cont {
+        /* 가로크기에 대한 비율을 만들어준다! */
+        min-height: 100vw;
+    }
+    /* 전체 캐릭터 박스 */
+    .cbx {
+        margin-top: 10vw;
+    }
+    /* 캐릭터 각 박스 공통 */
+    .cat {
+        position: relative;
+        /* 부모자격 - .cd */
+        width: 49%;
+        margin-bottom: 20px;
+    }
+    /* .cat에 오버시 .ci박스 마진탑 제자리 */
+    .cat:hover .ci {
+        margin-top: 0;
+    }
+    /* 캐릭터 설명박스 */
+    .cd {
+        position: absolute;
+        z-index: 1;
+    }
+
+    /* 등장글자 없앰 */
+    #mvtxt {
+        display: none;
+    }
+}
+/* 1024px 사이즈 이하 미디어쿼리 끝 */
+
+/* 780px 사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 780px) {
+    /* 가로스크롤 없애기 */
+    html,
+    body {
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    /* 디스플레이 없애기 */
+    .tmenu,
+    .smbx,
+    .gnb > ul > li > a::after,
+    .gnb {
+        display: none;
+    }
+    
+    /* 탑메뉴도 .top.on일때 나타남! */
+    .top.on .tmenu{
+        display: block;
+    }
+    /* GNB메뉴 변경하기 
+    -> .top에 .on을 준 경우 적용됨!
+    -> 메뉴를 fixed로 고정 */
+    .top.on .gnb {
+        display: block;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+    /* 플렉스박스 방향을 세로로변경! */
+    nav.gnb ul {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 20vh;
+    }
+    /* li셋팅 */
+    .gnb > ul > li {
+        margin: 0;
+        height: 10vh;
+        /* li가 6개이므로 보이는 높이의 60%차지함 */
+    }
+    /* GNB상위메뉴 a변경 */
+    .gnb > ul > li > a {
+        font-size: 5vh;
+        line-height: 10vh;
+        color: #fff;
+    }
+
+    /* 로고 */
+    h1.logo {
+        position: relative;
+        z-index: 99999;
+    }
+
+    /* 햄버거 버튼 보이기 */
+    .ham {
+        display: block;
+    }
+    /* 햄버거 버튼 상위.top에 클래스on 
+    줄경우 x버튼으로 변경 */
+    .top.on .ham {
+        z-index: 9999;
+        color: #fff;
+        transform: scale(1.5);
+    }
+    .top.on .ham::before {
+        content: '×';
+    }
+
+    /* 탑메뉴 */
+    aside.tmenu {
+        position: fixed;
+        z-index: 99999;
+        width: 100vw;
+        top: 85vh;
+    }
+    .tmenu ul {
+        /* 플렉스 진행방향 중앙 */
+        justify-content: center;
+        /* 플렉스 랩핑설정 */
+        flex-wrap: wrap;
+    }
+    .tmenu > ul > li:last-child{
+        /* 마지막 li 100% - 한줄차지! */
+       width: 100%;
+    }
+    /* sns메뉴 */
+    .tmenu ol {
+        display: flex;
+        justify-content: center;
+        margin-top: 2vh;
+        transform: scale(1.5);
+    }
+    
+    .tmenu > ul > li > a {
+        /* 글자크기,색 */
+        color: #fff;
+        font-size: 6vw;
+    }
+
+
+    /* 상단영역 */
+    .top {
+        position: relative;
+        /* 부모자격 - 햄버거 버튼(.ham)
+        -> 가로스크롤문제를 발생하므로
+        부모자격을 준다! */
+        height: 80px;
+    }
+    /* 캐릭터박스 한줄에 하나 */
+    .cat {
+        width: 99%;
+    }
+    /* 캐릭터 설명박스 */
+    .cd {
+        /* 자리차지 포지션으로 전환! */
+        position: static;
+    }
+    /* 설명박스 제목 */
+    .cd h3 {
+        font-size: 4.5vw;
+    }
+    /* 설명박스 문단 */
+    .cd p {
+        font-size: 4vw;
+        padding: 3vw;
+    }
+    /* 문단 첫글자 */
+    .cd p:first-child::first-letter {
+        font-size: 8vw;
+    }
+
+    /* 하단영역 */
+    /* 브랜드 바로가기 */
+    .brand {
+        bottom: 10px;
+        top: auto;
+    }
+    /* 하단링크 일부 숨기기(li:1~3) */
+    .blink li:nth-child(-n + 3) {
+        display: none;
+    }
+}
+/* 780px 사이즈 이하 미디어쿼리 끝 */

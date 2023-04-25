@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+/* 도깨비 PJ 메인 페이지 애니메이션 CSS - ani.css */
+
+/* 전제조건:
+모든 애니메이션은 body.on 인 경우에 적용됨! */
+
+/*********** 1. 드라마 문구 등장애니 ***********/
+/* 초기화 */
+body.on #mvtxt{
+    /* 자신의 위치에서 오른쪽 아래로 이동 */
+    transform: translate(100%,100%);
+    /* 투명 */
+    opacity: 0;
+    /* 애니메이션: 이시이지(반방)마 */
+    animation: mvtxt 2s ease-out 1s forwards;
+}
+/* 키프레임 */
+@keyframes mvtxt {
+    to{
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}/* 키프레임 */
+
+/********* 2. 캐릭터박스 순서대로 등장하기 *********/
+/* 초기화 */
+body.on .cat{
+    transform: translateY(-500%);
+
+    /* 애니메이션: 이시이지(반방)마 */
+    animation: cat 2s ease-out 2s forwards;
+}
+/* 애니메이션 지연시간 셋팅 */
+body.on .cat:nth-child(2){
+    animation-delay: 2.5s;
+}
+body.on .cat:nth-child(3){
+    animation-delay: 3s;
+}
+body.on .cat:nth-child(4){
+    animation-delay: 3.5s;
+}
+/* 키프레임 */
+@keyframes cat {
+    to{
+        transform: translateY(0);
+    }
+}
+/* 키프레임 */
+
+/*********** 3. 상단영역 등장 애니메이션 ***********/
+/* 초기화 */
+body.on #top{
+    transform: translateY(-100%);
+
+    /* 애니메이션: 이시이지(반방)마 */
+    animation: topAni 1.5s ease-out 5s forwards;
+}
+/* 키프레임 */
+@keyframes topAni {
+    to{
+        transform: translateY(0);
+    }
+}
+/* 키프레임 */
+
+/* 4. 애니메이션 진행중 오버시 이벤트 막아주는 가림막애니 */
+body.on::after{
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: blue;
+    opacity: 0.5; */
+
+    /* 애니메이션: 이시지이반방마 */
+    animation: cover .1s 6.5s forwards;
+}
+/* 가림막 키프레임 */
+@keyframes cover {
+    to{
+        height: 0;
+    }
+}
+/* 가림막 키프레임 */
