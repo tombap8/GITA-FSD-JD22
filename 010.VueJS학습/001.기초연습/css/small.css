@@ -153,7 +153,6 @@
 /* 큰 이미지박스 */
 #imbx {
     position: fixed;
-    display: flex;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -167,6 +166,7 @@
 }
 .inx{
     display: flex;
+    height: 100%;
 }
 .inx>section{
     flex: 1;
@@ -203,7 +203,7 @@
 	width: 100%;
 	font-family: 'NGothic';
 	font-size:12px;
-	line-height: 27px;
+	line-height: 3.5vh;
 }
 .gdesc ol>li>span:first-child{/*각항목 타이틀*/
 	display: inline-block;
