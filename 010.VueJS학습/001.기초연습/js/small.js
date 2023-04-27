@@ -58,6 +58,10 @@ Vue.component("list-comp", {
         insComma(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
+
+        condiVal(){
+            return this.haha == 3 || this.haha == 5 || this.haha == 6;
+        }
     },
 }); ///////////// 뷰JS 컴포넌트 ////////
 

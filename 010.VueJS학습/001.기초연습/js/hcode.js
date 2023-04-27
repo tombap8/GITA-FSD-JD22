@@ -10,8 +10,8 @@ const hcode = {
         <img v-bind:src="gsrc" v-on:click="goPapa" v-on:mouseover="goPapa2" alt="dress" />
         <aside>
             <h2>{{gname}}</h2>
-            <h3 v-bind:class="{del:haha==3||haha==7}">{{gprice}}</h3>
-            <h3 v-if="haha==3||haha==7">30%세일가:{{gprice2}}</h3>
+            <h3 v-bind:class="{del:condiVal()}">{{gprice}}</h3>
+            <h3 v-if="condiVal()">30%세일가:{{gprice2}}</h3>
         </aside>
     </div>
     `,
