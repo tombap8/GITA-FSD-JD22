@@ -1,5 +1,8 @@
 @charset "utf-8";
-
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu&display=swap');
+body{
+    font-family: 'Nanum Gothic','Ubuntu', sans-serif;
+}
 /* 타이틀 */
 .tit {
     text-align: center;
@@ -201,7 +204,7 @@
 }
 .gdesc ol>li{
 	width: 100%;
-	font-family: 'NGothic';
+	font-family: 'Nanum Gothic';
 	font-size:12px;
 	line-height: 3.5vh;
 }
@@ -237,11 +240,13 @@
 /****버튼 구역*****/
 .btn{
 	width: 30%;
-	height: 35px;
+    aspect-ratio: 3/1.2;
 	font: 1vw 'Ubuntu';
 	color: #fff;
 	background-color: #666;
     vertical-align: top;
+    cursor: pointer;
+    border-radius: 15px;
 }
 .btn1{/*구매버튼*/
 	background-color: #ff4e08;
@@ -271,7 +276,6 @@
 	height: 20px;
 	margin: 0;
 	padding: 0;
-/*	outline: 1px solid red;*/
 	line-height: 0;
 	vertical-align: -4px;
 }
@@ -287,8 +291,6 @@
 }
 
 /* 스크롤바 디자인 클래스 */
-/* -webkit- 밴더사명(크롬,사파리) 접두어 
-( 참고: -ms-(ie), -o-(오페라), -moz-(파이어폭스) */
 .scbar::-webkit-scrollbar{
     /* 전체 스크롤바 크기변경 */
     width: 7px;
