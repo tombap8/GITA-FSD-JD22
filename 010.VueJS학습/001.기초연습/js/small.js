@@ -127,5 +127,7 @@ new Vue({
             console.log(nowEle.find("h2").text());
             console.log(nowEle.find("h3").text());
         });
+
+
     },
 });
