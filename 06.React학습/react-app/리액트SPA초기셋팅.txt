@@ -13,6 +13,7 @@ C:\Program Files\nodejs
 
 ->>> 시스템 환경변수에 등록해준다!
 PATH에 추가등록!
+(노드설치시 자동등록된다! 그러나 확인필요!`)
 예) C:\Program Files\nodejs 
 -> 설치된 노드js위치를 등록후 재부팅필요!!!
 
