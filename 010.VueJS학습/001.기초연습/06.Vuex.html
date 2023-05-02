@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+     <!-- 뷰JS vuex CDN -->
+    <script src="https://unpkg.com/vuex@2.0.0"></script>  
+    
+    <!-- 제이쿼리 라이브러리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- 제이쿼리 UI CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+       $(()=>{
+            const store = new Vuex.Store({
+                state:{
+                    isrc:[
+                        "https://www.shutterstock.com/image-photo/songpagu-seoul-south-korea-september-260nw-2094838786.jpg",
+                        "https://imagescdn.gettyimagesbank.com/500/201901/jv11336724.jpg"
+                    ],
+                    imgsrc : "https://www.shutterstock.com/image-photo/songpagu-seoul-south-korea-september-260nw-2094838786.jpg"
+                }
+            })
+
+            Vue.component("top-area",{
+                template:`
+                <header>
+                    <ul class="gnb">
+                        <li v-on:click="chgImg(0)">
+                            <a href="#">서울</a>
+                        </li>
+                        <li v-on:click="chgImg(1)">
+                            <a href="#">부산</a>
+                        </li>
+                    </ul>
+                </header>
+                    
+                `,
+                data(){
+                    return {
+
+                    }
+                },
+                methods:{
+                    chgImg(n){
+                        console.log(n,store.state.isrc[n]);
+                        store.state.imgsrc = store.state.isrc[n];
+
+                    }
+                }
+            })
+            Vue.component("main-area",{
+                template:`
+                    <main>
+                        <img v-bind:src="$store.state.imgsrc" alt="이미지">
+                    </main>
+                `,
+                data(){
+                    return{
+                        imgsrc:store.state.isrc[0]
+                    }
+                }
+            })
+            Vue.component("info-area",{
+                template:`
+                    <footer>
+                        <address>
+                            서울시 강남구 역삼동 119     
+                        </address>
+                    </footer>
+                `
+            })
+
+            new Vue({
+                el:"#app",
+                store,
+            })
+
+        })  
+    </script>
+    <style>
+        #app{
+            width: 500px;
+            margin: 0 auto;
+
+        }
+        header{
+            padding: 15px;
+            border: 2px solid #ccc;
+        }
+        header ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 0 15px;
+        }
+        header a{
+            font-size: 30px;
+            color: #222;
+            text-decoration: none;
+        }
+        header a:hover{
+            color: orangered;
+            text-decoration: overline;
+            text-decoration-style: wavy;
+        }
+
+        main{
+            padding: 10px;
+        }
+        main img{
+            width: 100%;
+        }
+        footer{
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <top-area></top-area>
+        <main-area></main-area>
+        <info-area></info-area>
+    </div>
+    
+</body>
+</html>
