@@ -79,3 +79,14 @@ _______________________________________________________
     디렉티브 라고 하며
     v- 로 시작한다!
 예) v-for, v-bind, v-if 등
+
+  설치  
+npm install --save jquery
+ 
+
+ 
+
+  사용  
+jquery를 사용하는 파일에 import 후 사용
+
+import $ from 'jquery';
