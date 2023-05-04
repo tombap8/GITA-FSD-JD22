@@ -5,7 +5,7 @@ Vue.component("top-area", {
                 <header>
                     <ul class="gnb">
                         <li v-on:click="chgImg('서울')">
-                            <a href="#">서울</a>
+                            <a href="#" class="on">서울</a>
                         </li>
                         <li v-on:click="chgImg('부산')">
                             <a href="#">부산</a>
@@ -21,7 +21,7 @@ Vue.component("top-area", {
         return {};
     },
     methods: {
-        chgImg(n) {
+        chgImg(n) { 
             console.log(n, store.state.cityData[n].이미지);
             store.state.imgsrc = store.state.cityData[n].이미지;
             store.state.desc = store.state.cityData[n].설명;
@@ -48,6 +48,11 @@ Vue.component("main-area", {
         {name:store.state.cityData["서울"]["이미지"],age:store.state.cityData["서울"]["설명"]})
         // imgsrc = store.state.cityData["서울"]["이미지"];
         // desc = store.state.cityData["서울"]["설명"];
+
+        $("a").click(function(e){
+            e.preventDefault();
+            $(this).addClass("on").parent().siblings().find("a").removeClass("on");
+        })
     },
 });
 Vue.component("info-area", {
