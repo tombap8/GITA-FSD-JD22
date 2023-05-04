@@ -41,7 +41,11 @@ Vue.component("main-area", {
         };
     },
     mounted() {
-        store.commit('initSet')
+        // commiit('메서드명',파라미터값)
+        // 1. 메서드명은 반드시 문자형으로 입력
+        // 2. 파라미터는 단일값을 보내거나 객체형식사용가능
+        store.commit('initSet',
+        {name:store.state.cityData["서울"]["이미지"],age:store.state.cityData["서울"]["설명"]})
         // imgsrc = store.state.cityData["서울"]["이미지"];
         // desc = store.state.cityData["서울"]["설명"];
     },

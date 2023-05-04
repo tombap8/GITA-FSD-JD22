@@ -1,5 +1,20 @@
 
  // 뷰엑스 스토어 - 전역뷰데이터 저장소!
+ /* 
+    [ Vuex Store - 뷰엑스 스토어란? ]
+    1. 데이터와 데이터 상태를 한번에 관리하는 확장라이브러리다!
+    2. 스토어에서 관리되는 데이터는 리액티브데이터(양방향동기화데이터)이다!
+    3. 컴포넌트 구조상태와 상관없이 사용하는 곳에서 변경한 내용이 동기화된다!
+    
+    [ 뷰엑스 스토어 기본구조 ]
+    1. state : 변수선언 및 할당구역(인스턴스 data와 유사)
+    2. mutations : 일반 메서드 구역(인스턴스 methods와 유사)
+    3. actions : 비동기 처리메서드 구역
+
+    [ 뷰엑스 스토어 처리순서 ]
+    1. actions -> 2. mutations -> 3.state
+
+ */
  const store = new Vuex.Store({
     state:{
         // 데이터
@@ -22,10 +37,10 @@
         desc : "",
     },
     mutations:{
-        initSet(state){
-            console.log(333);
-            state.imgsrc = state.cityData.서울.이미지;
-            state.desc = state.cityData.서울.설명;
+        initSet(state,param){
+            console.log(333,param.name,param.age);
+            state.imgsrc = param.name;
+            state.desc = param.age;
         }
     }
 })
