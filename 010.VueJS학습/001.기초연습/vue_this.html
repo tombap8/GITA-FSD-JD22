@@ -4,42 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue JS의 this키워드와 Arrow Function</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
         ///////// 로딩구역 /////////////////////
         window.addEventListener("load", () => {
 
             console.log("로딩완료!");
 
-            new Vue({
-                el: "#app",
-                data: {
-                    originalNumber: 0,
-                    arrowNumber: 0,
-                    oneMore: 0,
-                },
-                methods: {
-                    originalFunction: function () {
-                        setTimeout(function () { // 기존함수 선언법
-                            console.log('original timeout',this)
-                            this.originalNumber = 3
-                        }, 3000)
-                    },
-                    arrowFunction: function () {
-                        setTimeout(() => { // arrow Function
-                            console.log('arrow timeout',this)
-                            this.arrowNumber = 3
-                        }, 3000)
-                    },
-                    oneMoreFunction() {
-                        setTimeout(() => { // ES2015 Function
-                            console.log('arrow timeout',this)
-                            this.oneMore = 1000;
-                        }, 3000)
-                    }
-                }
-            })
-
+          
             /****************************************************** 
 
             원래 Vue Instance내에서 this는 Vue Instance를 가리키고 
@@ -81,10 +52,8 @@
     <div id="app">
         <p>originalNumber: {{ originalNumber }}</p>
         <p>arrowNumber: {{ arrowNumber }}</p>
-        <p>oneMore: {{ oneMore }}</p>
-        <button @click="originalFunction">기존 방식</button>
-        <button @click="arrowFunction">arrow function</button>
-        <button @click="oneMoreFunction">ES2015 function</button>
+        <button @click="originalFunction()">기존 방식</button>
+        <button @click="arrowFunction()">arrow function</button>
     </div>
 
 </body>

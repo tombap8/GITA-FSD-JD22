@@ -1,3 +1,4 @@
+/* 뷰엑스 스토어 CSS - vuexStore.css */
 #app {
     width: 500px;
     margin: 0 auto;
@@ -19,7 +20,8 @@ header a {
     color: #222;
     text-decoration: none;
 }
-header a:hover,header a.on {
+header a:hover,
+header a.on {
     color: orangered;
     text-decoration: overline;
     text-decoration-style: wavy;

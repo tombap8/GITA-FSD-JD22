@@ -1,8 +1,14 @@
 @charset "utf-8";
+
+/* 쇼핑몰 갤러리 CSS - small.css */
+
+/* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu&display=swap');
+
 body{
     font-family: 'Nanum Gothic','Ubuntu', sans-serif;
 }
+
 /* 타이틀 */
 .tit {
     text-align: center;
@@ -35,6 +41,7 @@ body{
 
     /* 이미지 확대시 넘치는 이미지 숨기기 */
     overflow: hidden;
+    cursor: pointer;
 }
 
 /* 그리드 갤러리 이미지 */
@@ -51,6 +58,7 @@ body{
     /* transform: scale(1.1); */
     animation: magAni 10s linear infinite alternate;
 }
+
 
 /* 계속 확대/축소 애니 키프레임 */
 @keyframes magAni {
@@ -167,10 +175,12 @@ body{
 #imbx h1{
     font-size: 20px;
 }
+/* 속박스 : 플렉스박스 */
 .inx{
     display: flex;
     height: 100%;
 }
+/* 하위 2개 section박스 등분할 */
 .inx>section{
     flex: 1;
     border: 4px double gray;
@@ -183,11 +193,21 @@ body{
     object-fit: cover;
 }
 
+/* 할인인 경우 원래가격 지움표시 클래스 */
 .del {
     text-decoration: line-through;
-    color: green;
+    color: orange;
 }
-
+/* 세일상품 표시 가상요소 */
+.sale::after{
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    margin-top: -57px;
+    margin-left: -31px;
+    background: url(../img_gallery/sale.png) no-repeat 0/100% 100%;
+}
 
 /*신상품 상세정보 영역*/
 .gdesc {
@@ -305,6 +325,7 @@ body{
     background-color: #ddd;
     border-radius: 5px;
 }
+
 
 
 /* 1100px이하 미디어쿼리 시작 */
