@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>파일럿 PJ - 카테고리 서브페이지</title>
+        <!-- 스와이퍼 CSS -->
+        <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
+        <!-- 메인 CSS -->
+        <link rel="stylesheet" href="./css/sub.css" />
+        <!-- 미디어쿼리 CSS -->
+        <link rel="stylesheet" href="./css/media.css" />
+
+        <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+        <!-- 제이쿼리 라이브러리 -->
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./js/jquery-ui.min.js"></script>
+        <!-- 모바일 이벤트 처리 터치펀치 -->
+        <script src="./js/jquery-touch-punch.min.js"></script>
+
+        <!-- Swiper 플러그인 JS -->
+        <script src="./js/swiper-bundle.min.js"></script>
+
+        <!-- 부드러운 스크롤 -->
+        <script src="./js/smoothScroll20.js"></script>
+
+        <!-- 패럴렉스 플러그인 JS -->
+        <script src="./js/jquery.parallax-1.1.3.js"></script>
+
+        <!-- 스크롤리빌 플러그인 JS -->
+        <script src="./js/jquery.scroll-reveal.js"></script>
+
+        <!-- 메인페이지 JS -->
+        <script src="./js/sub.js" type="module"></script>
+    </head>
+
+    <body>
+        <!-- 1. 상단영역 -->
+        <div id="top">
+            <!-- 부모 컴포넌트 요소 -->
+            <top-comp></top-comp>
+        </div>
+
+        <!-- 2. 컨텐츠영역 -->
+        <main id="cont">
+            <!-- 2-1. 배너영역 -->
+            <section id="ban" class="page">
+                <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./images/sub/men/banner/ban1.png" alt="서브배너이미지" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/sub/men/banner/ban2.png" alt="서브배너이미지" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/sub/men/banner/ban3.png" alt="서브배너이미지" />
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+            <!-- 2-2. 컨텐츠1 : New Approval -->
+            <section class="cont c1">
+                <!-- 2-1-1.신상품 타이틀 -->
+                <h2 class="c1tit js-reveal">New Approval</h2>
+                <!-- 2-1-2.신상품 박스 -->
+                <div class="flowbx js-reveal">
+                    <!-- 리스트박스 -->
+                    <ul class="flist">
+                        <li class="m1">
+                            <a href="#"><img src="./images/m1.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m2">
+                            <a href="#"><img src="./images/m2.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m3">
+                            <a href="#"><img src="./images/m3.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m4">
+                            <a href="#"><img src="./images/m4.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m5">
+                            <a href="#"><img src="./images/m5.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m6">
+                            <a href="#"><img src="./images/m6.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m7">
+                            <a href="#"><img src="./images/m7.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m8">
+                            <a href="#"><img src="./images/m8.png" alt="신상품" /></a>
+                        </li>
+                        <li class="m9">
+                            <a href="#"><img src="./images/m9.png" alt="신상품" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- 2-3. 컨텐츠2 : 2023 BEACH SPECIAL WINDBREAKER -->
+            <section class="cont c2">
+                <h2 class="c2tit js-reveal">2023 BEACH SPECIAL WINDBREAKER</h2>
+            </section>
+            <!-- 2-4. 컨텐츠3 -->
+            <section class="cont c3">
+                <ul class="pgc">
+                    <li class="txtc">
+                        <h2 class="js-reveal">
+                            <a href="#"> MEN'S <br />BEACH STYLE </a>
+                        </h2>
+                    </li>
+                    <li class="imgc jr1 js-reveal">
+                        <img src="./images/sub/men/03.disc.png" alt="해변공유" />
+                    </li>
+                </ul>
+            </section>
+            <!-- 2-5. 컨텐츠4 -->
+            <section class="cont c4">
+                <ul class="pgc">
+                    <li class="imgc jr2 js-reveal">
+                        <img src="./images/sub/men/04.disc.png" alt="가방공유" />
+                    </li>
+                    <li class="txtc">
+                        <h2 class="tm">
+                            <a href="#" class="js-reveal"> MEN'S<br />SPORT STYLE </a>
+                        </h2>
+                        <h2 class="tw">
+                            <a href="#" class="js-reveal"> MEN'S<br />LIFE STYLE </a>
+                        </h2>
+                    </li>
+                    <li class="imgc jr2 js-reveal">
+                        <img src="./images/sub/men/05.disc.png" alt="의자공유" class="js-reveal" />
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- 3. 하단영역 -->
+        <footer id="info" class="page">
+            <foot-comp></foot-comp>
+        </footer>
+
+        <!-- Initialize Swiper -->
+    </body>
+</html>
