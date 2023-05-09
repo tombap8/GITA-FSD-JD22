@@ -94,11 +94,6 @@ const comData = {
                 <li>
                     <a href="#style">SPORT STYLE</a>
                 </li>
-                
-
-
-
-
             </ul>
         </nav>
 
@@ -120,21 +115,21 @@ const comData = {
             <!-- 전체메뉴 -->
             <nav class="mlist">
                 <dl>
-                    <dt><a href="#">MEN</a></dt>
+                    <dt><a href="#" v-on:click.prevent="$store.commit('chgData','남성')">MEN</a></dt>
                     <dd><a href="#">T-SHIRT</a></dd>
                     <dd><a href="#">JACKET</a></dd>
                     <dd><a href="#">TRAINING WARE</a></dd>
                     <dd><a href="#">BEACH WARE</a></dd>
                 </dl>
                 <dl>
-                    <dt><a href="#">WOMEN</a></dt>
+                    <dt><a href="#" v-on:click.prevent="$store.commit('chgData','여성')">WOMEN</a></dt>
                     <dd><a href="#">T-SHIRT</a></dd>
                     <dd><a href="#">JACKET</a></dd>
                     <dd><a href="#">TRAINING WARE</a></dd>
                     <dd><a href="#">BEACH WARE</a></dd>
                 </dl>
                 <dl>
-                    <dt><a href="#">STYLE</a></dt>
+                    <dt><a href="#" v-on:click.prevent="$store.commit('chgData','스타일')">STYLE</a></dt>
                     <dd><a href="#">COLLECTION</a></dd>
                     <dd><a href="#">SEASON AD</a></dd>
                     <dd><a href="#">STAR &amp; NEWS</a></dd>
