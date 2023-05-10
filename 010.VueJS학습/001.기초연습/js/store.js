@@ -104,6 +104,8 @@ const store = new Vuex.Store({
     }
 }); /////////// 뷰엑스 인스턴스 ////////
 
+// json 사용하기
+// https://jordino.tistory.com/23
 
 // 내보내기 
 export default store;

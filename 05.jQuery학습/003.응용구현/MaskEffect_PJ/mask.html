@@ -17,12 +17,13 @@
         /* 전체부모박스 */
         .wrap {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0%;
+            left: 0%;
+            /* transform: translate(-50%, -50%); */
             width: 1007px;
             height: 455px;
             outline: 1px solid red;
+            margin: 0 auto;
         }
 
         /* 1. 배경고정이미지박스 */
@@ -72,8 +73,7 @@
                 // transform으로 자기크기의 절반을 이동했으므로
                 // 박스의 height값의 절반을 더해야한다!!!
                 let bgtop =
-                    wrap.offset().top +
-                    wrap.height() / 2;
+                    0;
                 // console.log("보정top:" + bgtop);
 
                 // 2. 배경이미지 left위치값 보정
@@ -81,8 +81,7 @@
                 // transform으로 자기크기의 절반을 이동했으므로
                 // 박스의 width값의 절반을 더해야한다!!!
                 let bgleft =
-                    wrap.offset().left +
-                    wrap.width() / 2;
+                    0;
                 // console.log("보정left:" + bgleft);
 
                 // 3. 배경 fixed이미지 위치값 보정 적용하기
