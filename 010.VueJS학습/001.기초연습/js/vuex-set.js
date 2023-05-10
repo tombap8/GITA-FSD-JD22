@@ -3,6 +3,27 @@
 // 스토어 JS 불러오기
 import store from "./store.js";
 
+
+var Trip = {
+    template: '<div class="trip router"> World Trip </div>'
+};
+var Foods = {
+    template: '<div class="foods router"> World Foods </div>'
+};
+
+var routes = [{
+    path: '/trip',
+    component: Trip
+}, {
+    path: '/foods',
+    component: Foods
+}];
+
+var router = new VueRouter({
+    routes
+});
+
+
 // [중요!!!!!!!!!!!]
 // 뷰인스턴스에 스토어를 사용할 수 있게 등록해줘야함!!!
 // 등록방법: new Vue({el:"",store,methods:{}})
@@ -84,6 +105,7 @@ Vue.component("info-area",{
 new Vue({
     el:"#app",
     store, // 중요!!! 뷰엑스 스토어 등록!
+    router,
     data:{
         // 변수:값
     },
