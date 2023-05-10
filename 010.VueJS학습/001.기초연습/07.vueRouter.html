@@ -24,12 +24,24 @@
 <body>
     <div id="app">
         <!-- 4.라우터 파트 -->
-        <p class="asso">
-            <router-link to="/trip"> 세계여행사 </router-link> |
-            <router-link to="/foods"> 세계먹거리 </router-link>
+        <header class="top">
+            <div class="gnb">
+                <ul>
+                    <li><router-link to="/trip"> 세계여행사 </router-link> </li>
+                    <li><router-link v-bind:to="{name:'foods',params:{item:'피자',cls:'pizza'}}"> 세계먹거리:피자 </router-link></li>
+                    <li><router-link v-bind:to="{name:'foods',params:{item:'파스타',cls:'pasta'}}"> 세계먹거리:파스타 </router-link></li>
+                    <li><router-link v-bind:to="{name:'foods',params:{item:'똠양꿍',cls:'ddom'}}"> 세계먹거리:똠양꿍 </router-link></li>
+                </ul>
+            </div>
+            |
+            
+        </header>
+        <main class="cont">
             <router-view></router-view>
-        </p>
+        </main>
+        <footer class="info">
 
+        </footer>
     </div>
     
 </body>
