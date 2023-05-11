@@ -10,6 +10,8 @@
     padding: 15px;
 }
 #app>.top{
+    position: relative;
+    z-index: 100;
     height: 100px;
 }
 #app>.cont{
@@ -77,4 +79,32 @@
 .asso{
     text-align: center;
     border-top: 4px double darkgreen;
+}
+
+.gnb>ul>li:hover>a+.smenu{
+    display: flex;
+}
+
+/* 서브메뉴 */
+#app .smenu{
+    position: absolute;
+    top: 90px;
+    width: 100px;
+    /* display: flex; */
+    flex-direction: column;
+    gap: 10px 0px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.474);
+    z-index: 10;
+    line-height: 1;
+    text-align: center;
+
+    margin: 0;
+    list-style: none;
+
+    display: none;
+}
+.smenu a{
+    color: lawngreen;
 }
