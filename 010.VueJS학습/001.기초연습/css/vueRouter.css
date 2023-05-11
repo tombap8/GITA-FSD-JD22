@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+body{
+    font-family: 'Dongle', sans-serif;
+}
 #app {
     max-width: 1000px;
     margin: 0 auto;
@@ -13,7 +18,10 @@
     position: relative;
     z-index: 100;
     height: 100px;
-    background: url(https://img.freepik.com/free-vector/world-concept-illustration_114360-1391.jpg) no-repeat 0/auto 150%;
+    background: 
+    url(https://img.freepik.com/free-vector/world-concept-illustration_114360-1391.jpg) no-repeat 0/auto 150%,
+    url(https://img.freepik.com/free-vector/hand-drawn-world-food-day-theme_23-2148640040.jpg) no-repeat right/auto 100%,
+    url(https://mma.prnewswire.com/media/1724189/World_Trips_Logo.jpg) no-repeat center top/auto 70%;
 }
 #app>.cont{
     height: 700px;
@@ -23,8 +31,10 @@
     height: 80px;
     border-top: none;
     text-align: center;
-    font-size: 14px;
-    color: #222;
+    font-size: 24px;
+    text-shadow: 1px 1px 1px #000;
+    color: #fff;
+    background-image: linear-gradient(to bottom,#eeeeee,#c0c0c0);
 }
 
 .gnb ul{
@@ -44,7 +54,9 @@
     display: inline-block;
     padding: 10px;
     text-decoration: none;
+    font-size: 4vh;
     transition: .2s;
+    white-space: nowrap;
 }
 .gnb a:hover{
     color: hotpink;
@@ -55,17 +67,24 @@
 /* 라우터 */
 .router{
     text-align: center;
-    color: #fff;
+    color: #00ff95;
     background: #fff no-repeat center/cover;
     height: 100%;
-    line-height: 30vh;
-    font-size: 24px;
-    text-shadow: 2px 2px 2px #000;
+    line-height: 400px;
+    font-size: 10vh;
+    text-shadow: 0 0 10px #000;
     border-radius: 20px;
     box-shadow: 2px 2px 2px #0000008b;
 }
 .trip{
     background-image: url(https://as2.ftcdn.net/v2/jpg/03/73/40/29/1000_F_373402961_zHwVILZu4UNblYegPKkKTsyiuHdtRscG.jpg);
+}
+
+.trip.hana{
+    background-image: url(https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/event-news/event/event_3933.jpg);
+}
+.trip.modoo{
+    background-image: url(https://img.modetour.com/promotion20/11930/221107/event_visual1.jpg);
 }
 .foods{
     background-image: url(https://cdn.georgeinstitute.org/sites/default/files/styles/width1920_fallback/public/2020-10/world-food-day-2020.png);

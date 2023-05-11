@@ -2,7 +2,10 @@
 
 
 const Trip = {
-    template: '<div class="trip router"> World Trip </div>',
+    template: `
+    <div v-bind:class="'trip router '+this.$route.params.cls"> 
+        World Trips {{ this.$route.params.item }}
+    </div>`,
 };
 const Foods = {
     template: `
@@ -15,6 +18,11 @@ const router = new VueRouter({
     routes: [
         {
             path: "/trip",
+            component: Trip,
+        },
+        {
+            name: "goW",
+            path: "/trip:item",
             component: Trip,
         },
         {

@@ -7,7 +7,13 @@ const linkData = {
     "세계먹거리:똠양꿍": { name: "foods", params: { item: "똠양꿍", cls: "ddom" } },
 };
 const linkData2 = {
-    세계여행사: { link: { path: "/trip" }, menu: [] },
+    세계여행사: { 
+        link: { path: "/trip" }, 
+        menu: {
+            "하나투어":{name:"goW",params:{item:"하나투어",cls:"hana"}},
+            "모두투어":{name:"goW",params:{item:"모두투어",cls:"modoo"}},
+        } 
+    },
     세계먹거리: {
         link: { path: "/foods" },
         menu: {
