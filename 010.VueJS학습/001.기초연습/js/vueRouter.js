@@ -25,6 +25,6 @@ new Vue({
         linkData: linkData2,
     },
     mounted() {
-        $("")
+        this.$router.push('/trip')
     },
 });
