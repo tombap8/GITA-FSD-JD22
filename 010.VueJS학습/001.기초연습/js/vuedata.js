@@ -17,9 +17,10 @@ new Vue({
     el: "#app",
     store,
     data: {
-        items: [], // json데이터 종류(빈객체형 셋팅),
+        items: {}, // json데이터 종류(빈객체형 셋팅),
+        myt:"ㅎㅎ"
     },
-    mounted() {
+    created() {
 
         // store.dispatch('initData');
         // this.items = store.state.items;
@@ -28,6 +29,6 @@ new Vue({
         axios.get("./js/goods.json").then((x) => {
             store.state.items = x;
         });
-        // console.log(this.items);
+        console.log(this.items);
     },
 });

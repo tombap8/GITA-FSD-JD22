@@ -44,7 +44,7 @@ const store = new Vuex.Store({
             }));
 
             commit('setData',res);
-            // console.log("원본:",res);
+            console.log("원본:",res);
         }
     }
 }); /////////// 뷰엑스 인스턴스 ////////
