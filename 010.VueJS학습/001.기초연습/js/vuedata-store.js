@@ -1,3 +1,5 @@
+import jsnData from "./goods.json" assert{ type: "json"} ;
+
 const store = new Vuex.Store({
     // (1) 데이터 셋팅구역 :
     state:{
@@ -24,6 +26,26 @@ const store = new Vuex.Store({
             state.desc = param.txt;
 
         }, ////// initSet 메서드 /////
+
+        setData(st,pm){
+            st.items = pm;
+            console.log("전달:",pm);
+        }
+    },
+    actions:{
+        initData({commit}){
+            const res = jsnData;
+            // const data = res.data && res.data.map(x=>({
+            const data = res.data?.map(x=>({
+                idx:x.idx,
+                gname:x.gname,
+                category:x.category,
+                gprice:x.gprice
+            }));
+
+            commit('setData',res);
+            // console.log("원본:",res);
+        }
     }
 }); /////////// 뷰엑스 인스턴스 ////////
 

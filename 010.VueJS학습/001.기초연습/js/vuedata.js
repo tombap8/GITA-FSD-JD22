@@ -19,7 +19,12 @@ new Vue({
     data: {
         items: [], // json데이터 종류(빈객체형 셋팅),
     },
-    created() {
+    mounted() {
+
+        // store.dispatch('initData');
+        // this.items = store.state.items;
+        // console.log("최종:",this.items);
+
         axios.get("./js/goods.json").then((x) => {
             store.state.items = x;
         });
