@@ -7,7 +7,10 @@ CREATE PROCEDURE insertLoop()
 BEGIN
     DECLARE i INT DEFAULT 1;
     WHILE i <= 50000 DO
-    INSERT INTO `goods`(`gname`, `category`, `gprice`) VALUES (concat('product_name',i),'여성드레스','330000');
+    INSERT INTO `goods`
+    (`gname`, `category`, `gprice`) 
+    VALUES 
+    (concat('product_name',i),'여성드레스','330000');
         SET i = i + 1;
     END WHILE;
 END$$
