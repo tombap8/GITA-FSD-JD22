@@ -1,4 +1,5 @@
 // 카테고리 서브페이지 JS - sub.js
+
 // 메뉴기능함수 가져오기
 import menuFn from "./mainjs/menu.js";
 // 공통 데이터 가져오기
@@ -7,39 +8,52 @@ import comData from "./tempData/data-common.js";
 import subData from "./tempData/data-sub.js";
 // 신상정보
 import sinsang from "./gdsData/sinsang.js";
+
+// 뷰엑스 스토어 JS 가져오기
+// 중요! 반드시 메인JS파일 한군데서 불러와 써야 상태관리됨!
+// -> 이 JS파일에 Vue 인스턴스 생성코드가 같이 있어야한다!
 import store from "./store.js";
 
 // 스와이퍼 변수
 let swiper;
 
-//###### 배너영역 메뉴 뷰 템플릿 셋팅하기 #######
-// Vue.component(내가지은요소명,{옵션})
+//###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
+// 1. 배너파트 컴포넌트
 Vue.component("ban-comp", {
     template: subData.banner,
-    data() {
-        return {
+}); ////////// 상단영역 Vue component //////////
 
-        };
-    },
-}); ////////// 배너영역 Vue component //////////
-//###### 메인영역 뷰 인스턴스 생성하기 ##########
-// new Vue({옵션})
+// 2. 컨텐츠1 영역 컴포넌트
+Vue.component("cont1-comp", {
+    template: subData.cont1,
+}); ////////// 상단영역 Vue component //////////
+
+// 3. 컨텐츠2 영역 컴포넌트
+Vue.component("cont2-comp", {
+    template: subData.cont2,
+}); ////////// 상단영역 Vue component //////////
+
+// 4. 컨텐츠3 영역 컴포넌트
+Vue.component("cont3-comp", {
+    template: subData.cont3,
+}); ////////// 상단영역 Vue component //////////
+
+// 5. 컨텐츠4 영역 컴포넌트
+Vue.component("cont4-comp", {
+    template: subData.cont4,
+}); ////////// 상단영역 Vue component //////////
+
+//###### 서브영역 뷰 인스턴스 셋팅하기 #######
 new Vue({
     el: "#cont",
-    store,
-    data: {},
-}); //////// 메인영역 뷰 인스턴스 ////////
-
+    store, // 뷰엑스 스토어 등록필수!!!
+}); ////////// 상단영역 Vue component //////////
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
 Vue.component("top-comp", {
     template: comData.tareaSub,
-    methods: {
-        chgData(cat) {
-            store.commit("chgData", cat);
-        },
-    },
+    methods: {},
 }); ////////// 상단영역 Vue component //////////
 
 //###### 하단영역 메뉴 뷰 템플릿 셋팅하기 #######
@@ -51,7 +65,7 @@ Vue.component("foot-comp", {
 // new Vue({옵션})
 new Vue({
     el: "#top",
-    store,
+    store, // 뷰엑스 스토어 사용하려면 등록필수!
     data: {},
     // mounted 실행구역: DOM연결후
     mounted: function () {
@@ -78,15 +92,47 @@ new Vue({
         // 스크롤리빌 플러그인 적용호출!
         $.fn.scrollReveal();
 
-        // 메뉴 클릭시
-        $(".mlist dt a").click(()=>{
-            $(".ham").trigger("click")
-        })
+        // 전체메뉴클릭시 전체메뉴창 닫기
+        $(".mlist a").click((e) => {
+            $(".ham").trigger("click");
+            // 부드러운 스크롤 씽크맞춤(0)
+            sc_pos = 0;
+            // 스와이퍼 첫 슬라이드로 이동
+            swiper.slideTo(0);
+            // 스크롤리빌 다시 호출!
+            $.fn.scrollReveal();
+        });
+        // $(선택요소).trigger(이벤트명)
+        // -> 선택요소의 이벤트 강제발생함!
+        // 참고) JS 클릭이벤트 강제발생
+        // document.querySelector(요소).click();
+
+        $(".gnb a").click(function () {
+            let newpos = $($(this).attr("href")).offset().top;
+            $("html,body").animate(
+                {
+                    scrollTop: newpos + "px",
+                },
+                600,
+                "easeOutQuint"
+            );
+
+            sc_pos = newpos;
+        }); ////////// click ////////////
+
+        $("#logo").click(() => (location.href = "index.html"));
     },
     // created 실행구역 : DOM연결전
     created: function () {
         // DOM연결전 데이터 가공작업
         console.log("created구역");
+
+        let pm;
+        if (location.href.indexOf("?") !== -1) 
+            pm = location.href.split("?")[1].split("=")[1];
+
+        if (pm) 
+            store.commit("chgData", decodeURI(pm));
     },
 }); //////// 상단영역 뷰 인스턴스 ////////
 
@@ -94,8 +140,6 @@ new Vue({
 new Vue({
     el: "#info",
 }); //////// 하단영역 뷰 인스턴스 ////////
-
-
 
 // 스와이퍼 플러그인 인스턴스 생성하기 ///
 // 스와이퍼 생성함수
@@ -199,7 +243,7 @@ function sinsangFn() {
             let clsnm = $(this).attr("class");
 
             // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
-            let gd_info = sinsang[clsnm];
+            let gd_info = sinsang[$(this).parents("#c1").attr("data-cat")][clsnm];
 
             // console.log(clsnm,gd_info);
 

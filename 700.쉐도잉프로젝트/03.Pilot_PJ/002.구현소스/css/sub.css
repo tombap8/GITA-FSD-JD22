@@ -54,6 +54,19 @@ body{
     /* 비율설정 */
     aspect-ratio: 5/2.2;
 }
+/* 신상품 배경이미지 카테고리 클래스추가 */
+.c1.men{
+    background-image: url(../images/sub/men/01.new-arrival.png);
+}
+.c1.women{
+    background-image: url(../images/sub/women/01.new-arrival.png);
+}
+.c1.style{
+    background-image: url(../images/sub/style/01.new-arrival.png);
+}
+
+
+
 /* 신상품 타이틀 */
 .c1tit{
     padding: 6% 15%;
@@ -139,6 +152,16 @@ body{
     background: url(../images/sub/men/02.special.png) no-repeat fixed center top/cover;
     text-align: center;
   }
+  /* 신상품 배경이미지 카테고리 클래스추가 */
+  .c2.men{
+      background-image: url(../images/sub/men/02.special.png);
+  }
+  .c2.women{
+      background-image: url(../images/sub/women/02.special.png);
+  }
+  .c2.style{
+      background-image: url(../images/sub/style/02.special.png);
+  }
   /* 타이틀 */
   .c2tit{
     font: bold 5rem/50vh UB;
@@ -162,16 +185,16 @@ body{
 /********** 컨텐츠영역 4 - 비치스타일 ***********/
 
 /* 컨텐츠영역4 이미지영역 */
-.c4 .imgc{
+/* .c4 .imgc{ */
     /* flex-basis: 15%; */
     /* 등분할 영역까지가 0%이고 양수는 영역침범 */
-}
+/* } */
 /* 컨텐츠영역4 이미지 */
-.c4 img{
-    object-fit: fill;
+/* .c4 img{
+    object-fit: fill; */
     /* width: auto; */
     /* right: -26%; */
-}
+/* } */
 
 /* 컨텐츠영역4 글자 */
 .c4 .txtc .tm{/* 오른쪽글자 */
