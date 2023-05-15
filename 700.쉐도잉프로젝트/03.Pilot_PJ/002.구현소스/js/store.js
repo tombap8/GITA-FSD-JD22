@@ -26,6 +26,8 @@ const store = new Vuex.Store({
                 cnt: 5,
                 // 카테고리명
                 cat: "style",
+                // 상태코드
+                scode: 0,
             },
         },
         // 공통처리 메뉴 변수
@@ -37,11 +39,17 @@ const store = new Vuex.Store({
         // 4. 해당 객체속성명
         // 공통처리 분류명
         name: "",
+        // 
+        cls:"m1",
+        gname:"",
+        gcode:"",
+        gprice:"",
     },
     // state 데이터 변경 메서드구역!
     mutations: {
         // 데이터 변경 셋업 메서드
         chgData(dt,pm){ // dt-state데이터, pm-전달값
+            pm = pm.replace("#/","");
             console.log("데이터변경:",pm);
             // pm에 객체데이터 속성명이 전달됨(남성/여성/스타일)
             // 1. 해당 카테고리 개수 업데이트

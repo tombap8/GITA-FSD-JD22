@@ -39,7 +39,9 @@ const subData = {
                 <!-- 리스트박스 -->
                 <ul class="flist">
                     <li v-for="v in 9" :class="'m'+v">
-                        <a href="#"><img :src="'./images/goods/'+$store.state.cat+'/m'+v+'.png'" alt="신상품" /></a>
+                        <a href="#">
+                            <img :src="'./images/goods/'+$store.state.cat+'/m'+v+'.png'" alt="신상품" />
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -89,6 +91,110 @@ const subData = {
                 </li>
             </ul>
         </section>
+    `,
+    // 상세보기 박스
+    detail:`
+            
+        <!-- 큰이미지 배경박스 -->
+        <div id="bgbx">
+            <!-- 닫기버튼 -->
+            <a href="#" class="cbtn">
+                <span class="ir">닫기버튼</span>
+            </a>
+            
+            <!-- 큰이미지 박스 -->
+            <div id="imbx">
+                <div class="inx">
+                    <!-- 큰 이미지 -->
+                    <section class="gimg">
+                        <img class="magnify" :src="
+                        'images/goods/'+$store.state.cat+'/'+$store.state.cls+'.png'
+                        " alt="큰 이미지">
+                        <div class="small">
+                            <a href="#">
+                            <img v-for="v in 6" :src="
+                            'images/goods/'+$store.state.cat+'/m'+v+'.png'
+                            " alt="작은 이미지"></a>
+                        </div>
+                    </section>
+                    <!-- 이미지 설명 -->
+                    <section class="gdesc scbar">
+                        
+                        <!--상품 정보 영역-->
+                        <h1>HOME &gt; WOMEN &gt; DRESS</h1>
+                        <div>
+                            <ol>
+                                <li>
+                                    <img src="images/dx_ico_new-28143800.gif" alt="new버튼">
+                                </li>
+                                <li id="gtit">상품명 : {{$store.state.gname}}</li>
+                                <li>
+                                    <img src="images/icon_type02_social01.gif" alt="페이스북"><img
+                                        src="images/icon_type02_social02.gif" alt="트위터"><img src="images/icon_mail02.gif"
+                                        alt="이메일"><img src="images/btn_source_copy.gif" alt="URL복사">
+                                </li>
+                                <li>
+                                    <span>판매가</span>
+                                    <span id="gprice">{{$store.state.gprice}}</span>
+                                </li>
+                                <li>
+                                    <span>적립금</span>
+                                    <span><img src="images/icon_my_m02.gif" alt="적립금">4,950(5%적립)</span>
+                                </li>
+                                <li>
+                                    <span>무이자할부</span>
+                                    <span>부분 무이자 할부 혜택 <img src="images/view_btn_nointerest_card.gif" alt="무이자카드보기"></span>
+                                </li>
+                                <li>
+                                    <span>상품코드</span>
+                                    <span id="gcode">{{$store.state.gcode}}</span>
+                                </li>
+                                <li>
+                                    <span>사이즈</span>
+                                    <span>95 100 105 110</span>
+                                </li>
+                                <li>
+                                    <span>구매수량</span>
+                                    <span>
+                                        <input type="text" id="sum" value="1">
+                                        <!--
+                                        readonly 속성은 직접입력을 막음
+                                        disable 속성은 입력창의 비활성화
+                                        -->
+                                        <b class="chg_num">
+                                            <img src="images/cnt_up.png" alt="증가">
+                                            <img src="images/cnt_down.png" alt="감소">
+                                        </b>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>컬러</span>
+                                    <span></span>
+                                </li>
+                                <li>
+                                    <span>권장계절</span>
+                                    <span>여름</span>
+                                </li>
+                                <li class="tot">
+                                    <span>총합계</span>
+                                    <span id="total">니가계산해!</span>
+                                </li>
+                            </ol>
+
+                        </div>
+                        <div>
+                            <!--버튼영역-->
+                            <button class="btn btn1">BUY NOW</button>
+                            <button class="btn">SHOPPING CART</button>
+                            <button class="btn">WISH LIST</button>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        
     `,
 
 }; //////////// subData ////////////////

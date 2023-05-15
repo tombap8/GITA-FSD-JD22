@@ -18,7 +18,7 @@ import store from "./store.js";
 let swiper;
 
 // 바로실행구역 함수구역 ///
-// 바로실행구역을 쓰는이유: 
+// 바로실행구역을 쓰는이유:
 // 변수나 명령어를 다른 영역과 구분하여
 // 코딩할때 주로 사용됨!
 // GET방식 데이터를 store에서 초기값으로 셋팅하는 것을
@@ -32,8 +32,7 @@ let swiper;
     // 분류별 서브 페이지 구성하기!
     // location.href -> 상단 url읽어옴!
     // indexOf("?")!==-1 -> 물음표가 있으면!
-    if (location.href.indexOf("?") !== -1) 
-        pm = location.href.split("?")[1].split("=")[1];
+    if (location.href.indexOf("?") !== -1) pm = location.href.split("?")[1].split("=")[1];
     // 물음표(?)로 잘라서 뒤엣것,이퀄(=)로 잘라서 뒤엣것
     // 파라미터 값만 추출함!
     // pm에 할당이 되었다면 undefined가 아니므로 true
@@ -43,7 +42,6 @@ let swiper;
 
     // decodeURI() - 변경할 문자열만 있어야 변환됨
     // decodeURIComponent() - url전체에 섞여 있어도 모두 변환
-
 })(); ////////////// 바로실행함수구역 ///////////////////
 
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
@@ -70,6 +68,11 @@ Vue.component("cont3-comp", {
 // 5. 컨텐츠4 영역 컴포넌트
 Vue.component("cont4-comp", {
     template: subData.cont4,
+}); ////////// 상단영역 Vue component //////////
+
+// 6. 상세보기 영역 컴포넌트
+Vue.component("detail-comp", {
+    template: subData.detail,
 }); ////////// 상단영역 Vue component //////////
 
 //###### 서브영역 뷰 인스턴스 셋팅하기 #######
@@ -130,11 +133,12 @@ new Vue({
             sc_pos = 0;
             // 3. 스와이퍼 첫 슬라이드로 이동
             swiper.slideTo(0);
+            $("html,body").animate({ scrollTop: "0" }, 1);
             // 4. 스크롤리빌 다시 호출!
             $.fn.scrollReveal();
             // 5. URL 강제변경하기
             // 변경이유: SPA변경시 전달변수내용일치 -> 새로고침시 현재변경로딩!
-            history.pushState(null, null, "sub.html?cat="+store.state.name);
+            history.pushState(null, null, "sub.html?cat=" + store.state.name);
 
             /***************************************************** 
             [ history.phshState() 메서드 ]
@@ -173,6 +177,32 @@ new Vue({
         }); ////////// click ////////////
 
         $("#logo").click(() => (location.href = "index.html"));
+
+        $(".flist a").click(function (e) {
+            e.preventDefault();
+
+            $("#bgbx").slideDown(400);
+
+            let cls = $(this).parent().attr("class");
+            let ginfo = $(this).next(".ibox").html().split("<br>");
+            console.log(cls, ginfo);
+            store.state.cls = cls;
+            store.state.gname = ginfo[0];
+            store.state.gcode = ginfo[1];
+            store.state.gprice = ginfo[2];
+        });
+
+        $(".cbtn").click((e) => {
+            e.preventDefault();
+            $("#bgbx").slideUp(400);
+        });
+
+        $(".small a").click(function(e){
+            e.preventDefault();
+            // $(".gimg img").attr("src",$(this).find("img").attr("src"));
+        });
+
+
     },
     // created 실행구역 : DOM연결전
     created: function () {
