@@ -17,6 +17,35 @@ import store from "./store.js";
 // 스와이퍼 변수
 let swiper;
 
+// 바로실행구역 함수구역 ///
+// 바로실행구역을 쓰는이유: 
+// 변수나 명령어를 다른 영역과 구분하여
+// 코딩할때 주로 사용됨!
+// GET방식 데이터를 store에서 초기값으로 셋팅하는 것을
+// 인스턴스 생성전에 해야 아래쪽에 빈값으로 셋팅된값이
+// 들어가서 에러나는 것을 막을 수 있다!
+(() => {
+    // 파라미터 변수
+    let pm;
+
+    // GET 방식으로 넘어온 데이터 처리하여
+    // 분류별 서브 페이지 구성하기!
+    // location.href -> 상단 url읽어옴!
+    // indexOf("?")!==-1 -> 물음표가 있으면!
+    if (location.href.indexOf("?") !== -1) 
+        pm = location.href.split("?")[1].split("=")[1];
+    // 물음표(?)로 잘라서 뒤엣것,이퀄(=)로 잘라서 뒤엣것
+    // 파라미터 값만 추출함!
+    // pm에 할당이 되었다면 undefined가 아니므로 true
+    if (pm) store.commit("chgData", decodeURI(pm));
+    // 메뉴를 선택해서 파라미터로 들어오지 않으면 "남성"
+    else store.commit("chgData", "남성");
+
+    // decodeURI() - 변경할 문자열만 있어야 변환됨
+    // decodeURIComponent() - url전체에 섞여 있어도 모두 변환
+
+})(); ////////////// 바로실행함수구역 ///////////////////
+
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
 // 1. 배너파트 컴포넌트
 Vue.component("ban-comp", {
@@ -92,15 +121,38 @@ new Vue({
         // 스크롤리빌 플러그인 적용호출!
         $.fn.scrollReveal();
 
-        // 전체메뉴클릭시 전체메뉴창 닫기
+        // 전체메뉴클릭시 ////////////
         $(".mlist a").click((e) => {
+            e.preventDefault();
+            // 1. 전체메뉴창 닫기
             $(".ham").trigger("click");
-            // 부드러운 스크롤 씽크맞춤(0)
+            // 2. 부드러운 스크롤 씽크맞춤(0)
             sc_pos = 0;
-            // 스와이퍼 첫 슬라이드로 이동
+            // 3. 스와이퍼 첫 슬라이드로 이동
             swiper.slideTo(0);
-            // 스크롤리빌 다시 호출!
+            // 4. 스크롤리빌 다시 호출!
             $.fn.scrollReveal();
+            // 5. URL 강제변경하기
+            // 변경이유: SPA변경시 전달변수내용일치 -> 새로고침시 현재변경로딩!
+            history.pushState(null, null, "sub.html?cat="+store.state.name);
+
+            /***************************************************** 
+            [ history.phshState() 메서드 ]
+
+            1. 브라우저 세션 기록 스택항목 추가메서드
+            2. 비동기식으로 작동함(주소이동없이 주소만 업데이트됨!)
+            3. 전달값 :
+                history.phshState(상태,사용안됨,URL)
+
+                (1) 상태 : 새로운 페이지 이동시 popstate가 됨
+                (2) 사용안됨 : 전부터 사용되던 전달값.지금사용안됨
+                    보통 (1),(2)는 null로 셋팅함
+                (3) URL : 이 주소는 현재 페이지가 포함된
+                    주소 카테고리(폴더)를 기준으로 작성됨
+
+            4. 사용기본폼 : 
+                history.phshState(null,null,"my.html?hi=bye") 
+            *****************************************************/
         });
         // $(선택요소).trigger(이벤트명)
         // -> 선택요소의 이벤트 강제발생함!
@@ -126,13 +178,6 @@ new Vue({
     created: function () {
         // DOM연결전 데이터 가공작업
         console.log("created구역");
-
-        let pm;
-        if (location.href.indexOf("?") !== -1) 
-            pm = location.href.split("?")[1].split("=")[1];
-
-        if (pm) 
-            store.commit("chgData", decodeURI(pm));
     },
 }); //////// 상단영역 뷰 인스턴스 ////////
 

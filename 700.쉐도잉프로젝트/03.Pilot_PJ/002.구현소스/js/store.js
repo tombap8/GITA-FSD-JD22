@@ -34,6 +34,9 @@ const store = new Vuex.Store({
         cnt: 3,
         // 공통처리 카테고리명 변수
         cat: "men",
+        // 4. 해당 객체속성명
+        // 공통처리 분류명
+        name: "",
     },
     // state 데이터 변경 메서드구역!
     mutations: {
@@ -47,6 +50,8 @@ const store = new Vuex.Store({
             dt.cat = dt.subData[pm].cat;
             // 3. 해당 카테고리 메뉴 업데이트
             dt.menu = dt.subData[pm].menu;
+            // 4. 해당 객체속성명 업데이트
+            dt.name = pm;
         }, ///////// chgData메서드 ///////
     },
 });
