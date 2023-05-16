@@ -129,11 +129,11 @@ new Vue({
             e.preventDefault();
             // 1. 전체메뉴창 닫기
             $(".ham").trigger("click");
-            // 2. 부드러운 스크롤 씽크맞춤(0)
+            // 2. 부드러운 스크롤 씽크맞춤(0) + 맨위이동
             sc_pos = 0;
-            // 3. 스와이퍼 첫 슬라이드로 이동
-            swiper.slideTo(0);
             $("html,body").animate({ scrollTop: "0" }, 1);
+            // 3. 스와이퍼 첫 슬라이드로 이동 
+            swiper.slideTo(0);
             // 4. 스크롤리빌 다시 호출!
             $.fn.scrollReveal();
             // 5. URL 강제변경하기
@@ -157,6 +157,9 @@ new Vue({
             4. 사용기본폼 : 
                 history.phshState(null,null,"my.html?hi=bye") 
             *****************************************************/
+
+            // 6. 열려있을수 있는 상세보기 닫기
+            $("#bgbx").hide();
         });
         // $(선택요소).trigger(이벤트명)
         // -> 선택요소의 이벤트 강제발생함!

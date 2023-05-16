@@ -257,7 +257,7 @@ body{
 }
 /* 큰 이미지 */
 .gimg img {
-    width: 100%;
+    width: 60%;
     height: 80%;
     object-fit: cover;
 }
