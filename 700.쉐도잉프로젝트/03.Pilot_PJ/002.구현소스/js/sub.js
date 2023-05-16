@@ -141,12 +141,12 @@ new Vue({
             history.pushState(null, null, "sub.html?cat=" + store.state.name);
 
             /***************************************************** 
-            [ history.phshState() 메서드 ]
+            [ history.pushState() 메서드 ]
 
             1. 브라우저 세션 기록 스택항목 추가메서드
             2. 비동기식으로 작동함(주소이동없이 주소만 업데이트됨!)
             3. 전달값 :
-                history.phshState(상태,사용안됨,URL)
+                history.pushState(상태,사용안됨,URL)
 
                 (1) 상태 : 새로운 페이지 이동시 popstate가 됨
                 (2) 사용안됨 : 전부터 사용되던 전달값.지금사용안됨
@@ -155,7 +155,7 @@ new Vue({
                     주소 카테고리(폴더)를 기준으로 작성됨
 
             4. 사용기본폼 : 
-                history.phshState(null,null,"my.html?hi=bye") 
+                history.pushState(null,null,"my.html?hi=bye") 
             *****************************************************/
 
             // 6. 열려있을수 있는 상세보기 닫기
