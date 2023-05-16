@@ -17,6 +17,10 @@ body{
 #info{
     height: 50vh;
 }
+#logo{
+    position: relative;
+    z-index: 10;
+}
 .gnb{
     position: absolute;
     left: 0;
@@ -24,7 +28,17 @@ body{
     margin: 0 auto;
     font-size: 5vh;
     text-align: center;
-    z-index: -1;
+}
+.gnb ul{
+    position: absolute;
+    width: 100%;
+    line-height: 10px;
+    justify-content: center;
+}
+.gnb li a{
+    background-color: darkcyan;
+    padding: 5px;
+    border-radius: 4px;
 }
 
 /* 타이틀 */
@@ -39,13 +53,33 @@ body{
 /* 옵션박스 */
 #optbx{
     position: relative;
-    top: 90px;
+    top: 120px;
     max-width: 800px;
     margin: 0 auto;
     border: 1px solid #000;
     box-sizing: border-box;
     padding: 10px;
-
+    text-align: center;
+}
+/* 페이징박스 */
+#paging{
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+/* 더보기박스 */
+#more{
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
 }
 /* 그리드 박스 */
 .grid {
@@ -58,7 +92,7 @@ body{
     /* 1200px최대크기, 마영오! */
     max-width: 800px;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top: 120px;
     /* 3. repeat(수치의 반복수, 반복수치) */
     grid-template-columns: repeat(5, 1fr);
     grid-column-gap: min(1vw, 10px);

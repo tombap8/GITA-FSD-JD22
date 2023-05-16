@@ -45,7 +45,10 @@ new Vue({
     // mounted 실행구역: DOM연결후
     mounted: function () {
        
+        // 첫리스트 페이지 보이기
         this.$router.push('/glist');
+        // 체크박스 체크메서드 실행
+        store.commit('resCheck');
 
         
         $(".flist a").click(function (e) {

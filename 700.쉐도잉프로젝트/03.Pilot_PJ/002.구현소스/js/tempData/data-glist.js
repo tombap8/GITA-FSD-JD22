@@ -13,6 +13,23 @@ const comData = {
             <!-- 1-2.GNB메뉴 : 3개(배너,하단제외) -->
             <nav class="gnb">
                 ALL ITEMS LIST
+                <ul>
+                    <li>
+                        <router-link to="/glist">
+                            Filter List
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/paging">
+                            Paging List
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/more">
+                            More List
+                        </router-link>
+                    </li>
+                </ul>
             </nav>
 
             <!-- 햄버거버튼 -->
