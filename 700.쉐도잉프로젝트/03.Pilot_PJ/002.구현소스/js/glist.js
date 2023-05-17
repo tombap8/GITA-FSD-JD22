@@ -32,15 +32,18 @@ Vue.component("list-comp", {
 
 //###### 상단영역 뷰 인스턴스 생성하기 ##########
 // new Vue({옵션})
-new Vue({
+const myvue = new Vue({
     el: ".wrap",
     store, // 뷰엑스 스토어 사용하려면 등록필수!
     router, // 뷰 라이터 등록!
     data: {
-        
+        gdata: store.state.gdata
     },
     methods:{
         
+        // comp(val1, val2){
+        //     return val1.idx < val2.idx;
+        // }
     },
     // mounted 실행구역: DOM연결후
     mounted: function () {
@@ -66,7 +69,10 @@ new Vue({
         });
         
         menuFn();
+
+        $("#logo").click(() => (location.href = "index.html"));
         
+        // store.state.gdata.sort(this.comp);
     },
     // created 실행구역 : DOM연결전
     created: function () {
@@ -74,4 +80,6 @@ new Vue({
         console.log("created구역");
     },
 }); //////// 전체영역 뷰 인스턴스 ////////
+
+
 

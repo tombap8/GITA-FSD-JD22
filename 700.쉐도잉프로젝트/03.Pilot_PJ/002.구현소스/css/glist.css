@@ -13,6 +13,7 @@ html,body{
 }
 body{
     font-family: 'Nanum Gothic','Ubuntu', sans-serif;
+    background-color: rgb(235, 235, 235);
 }
 #info{
     height: 50vh;
@@ -53,13 +54,14 @@ body{
 /* 옵션박스 */
 #optbx{
     position: relative;
-    top: 120px;
+    top: 9vw;
     max-width: 800px;
     margin: 0 auto;
     border: 1px solid #000;
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
+    background-color: #fff;
 }
 /* 페이징박스 */
 #paging{
@@ -70,6 +72,8 @@ body{
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
+    font-size: 20px;
+    background-color: #fff;
 }
 /* 더보기박스 */
 #more{
@@ -80,7 +84,14 @@ body{
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
+    background-color: #fff;
 }
+#more button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 /* 그리드 박스 */
 .grid {
     /* 그리드 박스 */
@@ -88,11 +99,12 @@ body{
     font-size: 14px;
     padding: 15px;
     box-sizing: border-box;
+    background-color: #fff;
 
     /* 1200px최대크기, 마영오! */
     max-width: 800px;
     margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 9vw;
     /* 3. repeat(수치의 반복수, 반복수치) */
     grid-template-columns: repeat(5, 1fr);
     grid-column-gap: min(1vw, 10px);

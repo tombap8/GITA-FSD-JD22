@@ -9,13 +9,10 @@ const Glist = {
             <input type="checkbox" id="women" v-model="$store.state.chkarr[1]" @change="$store.commit('resCheck')">
             <label for="style">스타일</label>
             <input type="checkbox" id="style" v-model="$store.state.chkarr[2]" @change="$store.commit('resCheck')">
-
-
-            <button @click="$store.commit('sorting')">적용</button>
         </div>
         <div class="grid">
             <div 
-            v-for="(v,i) in $store.state.gdata" 
+            v-for="(v,i) in $store.state.gdata" :key="v.idx"
             v-if="v.cat==$store.state.selnm[0]||
             v.cat==$store.state.selnm[1]||
             v.cat==$store.state.selnm[2]">    
