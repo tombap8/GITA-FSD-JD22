@@ -17,7 +17,9 @@ const Glist = {
             v.cat==$store.state.selnm[1]||
             v.cat==$store.state.selnm[2]">    
                [{{v.idx}}] 
+
                <router-link v-bind:to="{ name: 'det', params:{ id:v.idx} }">
+               
                <img 
                 v-bind:src="
                     './images/goods/'+
@@ -31,6 +33,8 @@ const Glist = {
                     <h3>{{v.ginfo[3]}}</h3>
                 </aside>
                 </router-link>
+
+
             </div>
         </div>
     </section>
