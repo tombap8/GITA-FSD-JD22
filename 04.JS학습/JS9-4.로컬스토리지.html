@@ -48,39 +48,101 @@
 
         window.addEventListener("DOMContentLoaded",()=>{
 
-            // localStorage.setItem('name',"이정재");
-            qs(".local .nm").innerText = localStorage.getItem("name");
-
-            // sessionStorage.setItem('name',"정우성");
-            qs(".session .nm").innerText = sessionStorage.getItem("name");
+            qs(".sbtn").onclick = e=>{
+                
+            }
+            
+            
         })
+        
+        function process(){
+            let obj = [{id:"100",cont:"나는나야!"}];
+            localStorage.setItem('minfo',JSON.stringify(obj));
+    
+            console.log(localStorage.length);
+        }
+        
+        function show(ele){
+            let newobj = localStorage.getItem("minfo");
+            // let newobj = localStorage.key(1);
+            newobj = JSON.parse(newobj);
+            
+            console.log(newobj);
+
+            qs(ele+" .nm").innerText = newobj[0].id;
+            qs(ele+" .role").innerText = newobj[0].cont;
+        }
+        function add(){
+            
+            let obj = [{id:"400",cont:"호구!호구!"}];
+            let temp = localStorage.getItem("minfo");
+
+            // let temp = localStorage.key(1);
+            // 객체로 전환!
+            temp = JSON.parse(temp);
+
+            // 배열객체로 추가!
+            temp.push(obj);
+
+
+            // 문자로 변환후 다시 같은 로컬스토리지에 저장함!!
+            localStorage.setItem('minfo',JSON.stringify(temp));
+    
+            
+            console.log(temp);
+
+        }
     </script>
 </head>
 <body>
     <div class="tit"></div>
     <div class="wrap">
         <div class="local">
-            <h2>로칼스님</h2>
+            <h2>로칼쓰님</h2>
             <div class="imgbx">
                 <img src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg" alt="이정재">
             </div>
-            <ul>
+            <ol>
                 <li>
                     당신의 이름은? : <span class="nm"></span>
                 </li>
-            </ul>
+                <li>
+                    영화속 역할은? : <span class="role"></span>
+                </li>
+            </ol>
+
+            <button onclick="process()">처리</button>
+            <button onclick="show('.local')">보여</button>
+            <button onclick="add()">추가</button>
+
+            <div class="inbx">
+                <form action="" method="post">
+                <ul>
+                    <li>
+                        <label for="idx">일련번호</label>
+                        <input type="text" id="idx">
+                    </li>
+                    <li>
+                        <label for="cont">내용</label>
+                        <input type="text" id="cont">
+                    </li>
+                    <li>
+                        <input type="submit" value="처리" id="sbtn">
+                    </li>
+                </ul></form>
+            </div>
 
         </div>
         <div class="session">
-            <h2>세션스님</h2>
+            <h2>세션쓰님</h2>
             <div class="imgbx ib2">
                 <img src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg" alt="정우성">
             </div>
-            <ul>
+            <ol>
                 <li>
                     당신의 이름은? : <span class="nm"></span>
                 </li>
-            </ul>
+            </ol>
 
         </div>
     </div>
