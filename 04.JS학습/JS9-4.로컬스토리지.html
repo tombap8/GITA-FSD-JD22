@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS9-4.로컬 스토리지</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .tit{
+            max-width: 1000px;
+            height: 25vh;
+            margin: 0 auto;
+            background: url(https://www.crowdnet.or.kr/files/recu/06/20220720153040030_06_47087_20220725_1869.PNG) center 25%/50%;
+        }
+        .wrap{
+            max-width: 1000px;
+            min-height: 100vh;
+            display: flex;
+            margin: 0 auto;
+        }
+        .wrap>div{
+            flex: 1;
+            box-sizing: border-box;
+            border: 4px double darkblue;
+            text-align: center;
+        }
+        .imgbx{
+            max-width: 235px;
+            aspect-ratio: 235/381;
+            margin: 0 auto;
+        }
+        .imgbx img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-position: left;
+        }
+        .imgbx.ib2 img{
+            object-position: right;
+        }
+    </style>
+    <script>
+        const qs = x => document.querySelector(x);
+
+        window.addEventListener("DOMContentLoaded",()=>{
+
+            localStorage.setItem('name',"이정재");
+            qs(".local .nm").innerText = localStorage.getItem("name");
+
+            sessionStorage.setItem('name',"정우성");
+            qs(".session .nm").innerText = sessionStorage.getItem("name");
+        })
+    </script>
+</head>
+<body>
+    <div class="tit"></div>
+    <div class="wrap">
+        <div class="local">
+            <h2>로칼스님</h2>
+            <div class="imgbx">
+                <img src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg" alt="이정재">
+            </div>
+            <ul>
+                <li>
+                    당신의 이름은? : <span class="nm"></span>
+                </li>
+            </ul>
+
+        </div>
+        <div class="session">
+            <h2>세션스님</h2>
+            <div class="imgbx ib2">
+                <img src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg" alt="정우성">
+            </div>
+            <ul>
+                <li>
+                    당신의 이름은? : <span class="nm"></span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+</html>
