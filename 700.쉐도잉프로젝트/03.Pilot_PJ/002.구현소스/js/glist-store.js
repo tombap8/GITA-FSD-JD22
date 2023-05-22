@@ -45,6 +45,25 @@ const store = new Vuex.Store({
             dt.mnum = pm;
             $("#more").hide();
         }, ///////// chgData메서드 ///////
+        setClick(dt,pm){
+            
+            // alert(333);
+            $(".gdesc").append('<img id="mycart" src="./images/mycart.gif" alt="">')
+            $("#mycart").css({
+                position:"fixed",
+                top:"50%",
+                left:"50%",
+                transform:"translate(-50%,-50%)",
+                cursor:"pointer",
+                zIndex:"999",
+            })
+            .delay(4000)
+            .animate({                
+                top:"5%",
+                left:"80%",
+                width: "50px",
+            },1000)
+        }
     },
 });
 

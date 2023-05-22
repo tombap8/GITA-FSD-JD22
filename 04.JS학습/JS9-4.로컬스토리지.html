@@ -98,6 +98,11 @@
             let com_role;
             let com_cat;
 
+            window.addEventListener("DOMContentLoaded",()=>{
+                console.log("처음확인:",localStorage.getItem("minfo"));
+                if(localStorage.getItem("minfo")!="") bindData();
+            })
+
             // 초기셋팅 함수
             function startFn(pm) {
                 if (pm === "로칼쓰") {
@@ -177,34 +182,98 @@
                             <th>번호</th>
                             <th>제목</th>
                             <th>내용</th>
+                            <th>삭제</th>
                         </tr>
                     `;
                 // 로컬스토리지 객체데이터 가져오기
                 // 입력된 데이터는 문자형 객체이므로 
                 // 다시 파싱하여 원래 객체로 복원한다!
                 let org = localStorage.getItem("minfo");
+                if(!org) return;
                 org = JSON.parse(org);
                 console.log("변환객체:",org);
 
-                hcode += "<tr>"
-
-                org.forEach(val=>{
+                org.forEach((val,i)=>{
                     hcode +=`
-                        <td>${val.idx}</td>
-                        <td>${val.tit}</td>
-                        <td>${val.cont}</td>
+                        <tr>
+                            <td>${val.idx}</td>
+                            <td>${val.tit}</td>
+                            <td>${val.cont}</td>
+                            <td>
+                                <a href="#" onclick="delRec(${i})">×</a>
+                            </td>
+                        </tr>
                     `;
                 });
                 
-                hcode += "</tr></table>";
+                hcode += "</table>";
 
                 // html에 넣기
                 document.querySelector(".board")
                 .innerHTML=hcode;
-                
-
+            
 
             } /////////// bindData ////////////////
+
+            function delRec(i){
+                event.preventDefault();
+                
+                let org = localStorage.getItem("minfo");
+                org = JSON.parse(org);
+                console.log("변환객체:",org);
+
+                // splice(순번,지울개수)
+                org.splice(i,1);
+
+                console.log("제거후:",org);
+
+                // 객체 변환후 로컬스토리지에 입력
+                localStorage
+                .setItem("minfo",JSON.stringify(org)); 
+                console.log(localStorage.getItem("minfo"));
+
+                // 리스트 업데이트
+                bindData();
+
+
+            }
+
+
+            function insData(){
+                let tit = document.querySelector("#tit").value;
+                let cont = document.querySelector("#cont").value;
+                if(tit.trim()=="" || cont.trim()==""){
+                    alert("입력데이터가 없습니다!");
+                    return;
+                }
+
+                let org = localStorage.getItem("minfo");
+                org = JSON.parse(org);
+                console.log("변환객체:",org);
+                
+                // 숫자1증가
+                // 마지막 배열번호 객체의 idx값에 +1하기
+                let last_idx = org[org.length-1].idx;
+                console.log("마지막배열idx:",last_idx);
+
+                org.push({
+                    idx:Number(last_idx)+1,
+                    tit:tit,
+                    cont:cont,
+                })
+                
+                console.log("추가후:",org);
+
+                // 객체 변환후 로컬스토리지에 입력
+                localStorage
+                 .setItem("minfo",JSON.stringify(org)); 
+                 console.log(localStorage.getItem("minfo"));
+
+                // 리스트 업데이트
+                bindData();
+
+
+            } ///////////// insData ///////////////
         </script>
     </head>
     <body>
@@ -234,21 +303,21 @@
                 </div>
 
                 <div class="inbx">
-                    <form action="" method="post">
+                    <!-- <form action="" method="post"> -->
                         <ul>
                             <li>
-                                <label for="idx">제목</label>
-                                <input type="text" id="idx" />
+                                <label for="tit">제목</label>
+                                <input type="text" id="tit" />
                             </li>
                             <li>
                                 <label for="cont">내용</label>
                                 <input type="text" id="cont" />
                             </li>
                             <li>
-                                <input type="submit" value="입력" id="sbtn" />
+                                <input type="submit" value="입력" onclick="insData()" id="sbtn" />
                             </li>
                         </ul>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>
             <div class="session">

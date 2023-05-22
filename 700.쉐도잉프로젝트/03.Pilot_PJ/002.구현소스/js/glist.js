@@ -12,7 +12,6 @@ import store from "./glist-store.js";
 import router from "./glist-router.js";
 
 
-
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
 Vue.component("top-comp", {
@@ -71,6 +70,7 @@ const myvue = new Vue({
         menuFn();
 
         $("#logo").click(() => (location.href = "index.html"));
+
         
         // store.state.gdata.sort(this.comp);
     },
