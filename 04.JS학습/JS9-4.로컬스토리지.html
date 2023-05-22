@@ -1,150 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS9-4.로컬 스토리지</title>
-    <style>
-        html,body{
-            margin: 0;
-            padding: 0;
-        }
-        .tit{
-            max-width: 1000px;
-            height: 25vh;
-            margin: 0 auto;
-            background: url(https://www.crowdnet.or.kr/files/recu/06/20220720153040030_06_47087_20220725_1869.PNG) center 25%/50%;
-        }
-        .wrap{
-            max-width: 1000px;
-            min-height: 100vh;
-            display: flex;
-            margin: 0 auto;
-        }
-        .wrap>div{
-            flex: 1;
-            box-sizing: border-box;
-            border: 4px double darkblue;
-            text-align: center;
-        }
-        .imgbx{
-            max-width: 235px;
-            aspect-ratio: 235/381;
-            margin: 0 auto;
-        }
-        .imgbx img{
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            object-position: left;
-        }
-        .imgbx.ib2 img{
-            object-position: right;
-        }
-    </style>
-    <script>
-        const qs = x => document.querySelector(x);
-
-        window.addEventListener("DOMContentLoaded",()=>{
-
-            qs(".sbtn").onclick = e=>{
-                
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS9-4.로컬 스토리지</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
             }
-            
-            
-        })
-        
-        function process(){
-            let obj = [{id:"100",cont:"나는나야!"}];
-            localStorage.setItem('minfo',JSON.stringify(obj));
-    
-            console.log(localStorage.length);
-        }
-        
-        function show(ele){
-            let newobj = localStorage.getItem("minfo");
-            // let newobj = localStorage.key(1);
-            newobj = JSON.parse(newobj);
-            
-            console.log(newobj);
+            .tit {
+                max-width: 1000px;
+                height: 25vh;
+                margin: 0 auto;
+                background: url(https://www.crowdnet.or.kr/files/recu/06/20220720153040030_06_47087_20220725_1869.PNG)
+                    center 25%/50%;
+            }
+            .wrap {
+                max-width: 1000px;
+                min-height: 100vh;
+                display: flex;
+                margin: 0 auto;
+            }
+            .wrap > div {
+                flex: 1;
+                box-sizing: border-box;
+                border: 4px double darkblue;
+                text-align: center;
+            }
+            .imgbx {
+                max-width: 235px;
+                aspect-ratio: 235/381;
+                margin: 0 auto;
+            }
+            .imgbx img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                object-position: left;
+            }
+            .imgbx.ib2 img {
+                object-position: right;
+            }
+        </style>
+        <script>
+            /* 
+            [ JS 로컬스토리지 : localStorage ]
+            - window하위객체 window.localStorage
+            -> window는 주로 생략함!
 
-            qs(ele+" .nm").innerText = newobj[0].id;
-            qs(ele+" .role").innerText = newobj[0].cont;
-        }
-        function add(){
-            
-            let obj = [{id:"400",cont:"호구!호구!"}];
-            let temp = localStorage.getItem("minfo");
+            1. 정의 : 
+                브라우저별 로컬 어플리케이션 영역에 저장되는 
+                스트링데이터 저장소(JS API)
+            2. 유지 : 같은 PC, 같은 브라우저(재설치없이사용) 일 경우 계속유지됨
+                (단, 같은파일일 지라도 여는 경로에 따라 같은 변수도
+                따로 관리된다! - 기준이 도메인경로/주소)
+            3. 특징 : 모드 데이터는 키,값 쌍으로 구성되며 
+                데이터값은 반드시 문자형으로 사용됨
+            4. 응용 : 데이터로 배열/객체를 사용할 경우 문자형 변환하여 넣고
+                        다시 객체형으로 파싱하여 사용한다!
+                    (1) 입력시 : JSON.stringify(배열/객체)
+                    (2) 사용시 : JSON.parse(문자형배열/객체)
+                    -> JS의 제이슨 데이터 파싱 메서드 : 
+                        JSON.parse()
+                    -> JS의 제이슨 형식 데이터를 문자열로 변환하는 메서드:   
+                        JSON.stringify()
+            5. 사용메서드 : 
+                (1) 값설정 : setItem(키명,값)
+                (2) 값읽기 : getItem(키명)
+                (3) 전체지우기 : clear()
+                (4) 키번호읽기 : key(순번) -> 0부터 (키이름리턴)
+                (5) 개별항목삭제 : removeItem(키명)
+                (6) 개수 : length
 
-            // let temp = localStorage.key(1);
-            // 객체로 전환!
-            temp = JSON.parse(temp);
+            [ JS 세션 스토리지 : sessionStorage ]
+            -> 로컬스토리지와 차이점은?
+            -> 브라우저가 닫히면 데이터가 사라진다!
+            (로컬세션의 개념은 서버세션과 달리 하나의 브라우저탭을
+            단위로 한다!)
+            -> 서버세션은 접속된 로그인정보세션을 서버에서 관리하는 단위임
 
-            // 배열객체로 추가!
-            temp.push(obj);
+            [ JS 로컬 스토리지 / 세션 스토리지 장단점 ]
+            (1) 장점: 간단한 프론트엔드 데이터를 DB없이 테스트해보는데 탁월함
+            (2) 단점: 데이터의 지속 보장이 없다!
+                (그나마 로컬 스토리지는 브라우저 경로가 같고 PC가 같고
+                브라우저종류가 같다면 지우기 전까지는 데이터를 유지한다!)
 
 
-            // 문자로 변환후 다시 같은 로컬스토리지에 저장함!!
-            localStorage.setItem('minfo',JSON.stringify(temp));
-    
-            
-            console.log(temp);
+            -> w3 schools 참고
+            https://www.w3schools.com/js/js_api_web_storage.asp
+        */
 
-        }
-    </script>
-</head>
-<body>
-    <div class="tit"></div>
-    <div class="wrap">
-        <div class="local">
-            <h2>로칼쓰님</h2>
-            <div class="imgbx">
-                <img src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg" alt="이정재">
+            // 전역변수
+            let com_name;
+            let com_role;
+            let com_cat;
+
+            // 초기셋팅 함수
+            function startFn(pm) {
+                if (pm === "로칼쓰") {
+                    localStorage.setItem("lname", "이정재");
+                    localStorage.setItem("lrole", "박평호역");
+                    localStorage.setItem("lcat", "조직내 스파이를 색출하는 해외팀 안기부팀장");
+                    // 확인
+                    console.log("로칼:", localStorage.length);
+                } else if (pm === "세션쓰") {
+                    sessionStorage.setItem("sname", "정우성");
+                    sessionStorage.setItem("srole", "김정도역");
+                    sessionStorage.setItem("scat", "국내팀 안기부팀장,박평호랑 사이나쁨");
+                    // 확인
+                    console.log("세션:", sessionStorage.length);
+                }
+            } ///////////// startFn //////////////
+            // 전체지우기 함수
+            function delFn(pm) {
+                if (pm === "로칼쓰") {
+                    localStorage.clear();
+                    // 확인
+                    console.log("로칼:", localStorage.length);
+                } else if (pm === "세션쓰") {
+                    sessionStorage.clear();
+                    // 확인
+                    console.log("세션:", sessionStorage.length);
+                }
+            } ///////////// startFn //////////////
+
+            // 보여줘 함수
+            function showFn(pm) {
+                //pm - 선택부모요소
+
+                // 로컬스토리지/세션스토리지 분기
+                if (pm === ".local") {
+                    com_name = localStorage.getItem("lname");
+                    com_role = localStorage.getItem("lrole");
+                    com_cat = localStorage.getItem("lcat");
+                } else if (pm === ".session") {
+                    com_name = sessionStorage.getItem("sname");
+                    com_role = sessionStorage.getItem("srole");
+                    com_cat = sessionStorage.getItem("scat");
+                }
+
+                // 출력하기
+                document.querySelector(pm + " .nm").innerText = com_name;
+                document.querySelector(pm + " .role").innerText = com_role;
+                document.querySelector(pm + " .cat").innerText = com_cat;
+            } ////////////// showFn ////////////////////
+
+            //// 객체 생성하여 로컬스토리지에 넣기 /////
+            function makeObj() {
+                // 게시판 형식의 객체를 생성함!
+                let obj = [{ 
+                    idx: "1", 
+                    tit: "내가 왕이될 상인가?",
+                    cont: "이정재형은 진정 왕이십니다!"
+                 }];
+
+                 // 로컬스토리지에 넣기
+                 // 배열/객체를 직접 넣으면 데이터형 표시문자값만
+                 // 입력이 되고 실제 객체는 입력되지 않는다!
+                 // 왜????? 로컬스토리지는 문자형만 받으니까!!!
+                 // 그래서 배열/객체를 문자데이터 화해서 넣는다!
+                 // JSON.stringify(배열/객체)                 
+                 localStorage
+                 .setItem("minfo",JSON.stringify(obj)); 
+                 console.log(localStorage.getItem("minfo"));
+            } /////////// makeObj ///////////////////////
+
+
+            // 화면 데이터 바인딩 함수 //////////
+            function bindData(){
+                let hcode = `
+                    <table>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>내용</th>
+                        </tr>
+                    `;
+                // 로컬스토리지 객체데이터 가져오기
+                // 입력된 데이터는 문자형 객체이므로 
+                // 다시 파싱하여 원래 객체로 복원한다!
+                let org = localStorage.getItem("minfo");
+                org = JSON.parse(org);
+                console.log("변환객체:",org);
+
+                hcode += "<tr>"
+
+                org.forEach(val=>{
+                    hcode +=`
+                        <td>${val.idx}</td>
+                        <td>${val.tit}</td>
+                        <td>${val.cont}</td>
+                    `;
+                });
+                
+                hcode += "</tr></table>";
+
+                // html에 넣기
+                document.querySelector(".board")
+                .innerHTML=hcode;
+                
+
+
+            } /////////// bindData ////////////////
+        </script>
+    </head>
+    <body>
+        <div class="tit"></div>
+        <div class="wrap">
+            <div class="local">
+                <h2>로칼쓰님</h2>
+                <div class="imgbx">
+                    <img
+                        src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg"
+                        alt="이정재" />
+                </div>
+                <ol>
+                    <li>당신의 이름은? : <span class="nm"></span></li>
+                    <li>영화속 역할은? : <span class="role"></span></li>
+                    <li>캐릭터는? : <span class="cat"></span></li>
+                </ol>
+
+                <button onclick="startFn('로칼쓰')">처음</button>
+                <button onclick="showFn('.local')">보여줘</button>
+                <button onclick="delFn('로칼쓰')">전체삭제</button>
+                <button onclick="makeObj()">처리</button>
+                <button onclick="bindData()">업데이트</button>
+
+                <div class="board">
+
+                </div>
+
+                <div class="inbx">
+                    <form action="" method="post">
+                        <ul>
+                            <li>
+                                <label for="idx">제목</label>
+                                <input type="text" id="idx" />
+                            </li>
+                            <li>
+                                <label for="cont">내용</label>
+                                <input type="text" id="cont" />
+                            </li>
+                            <li>
+                                <input type="submit" value="입력" id="sbtn" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
             </div>
-            <ol>
-                <li>
-                    당신의 이름은? : <span class="nm"></span>
-                </li>
-                <li>
-                    영화속 역할은? : <span class="role"></span>
-                </li>
-            </ol>
+            <div class="session">
+                <h2>세션쓰님</h2>
+                <div class="imgbx ib2">
+                    <img
+                        src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg"
+                        alt="정우성" />
+                </div>
+                <ol>
+                    <li>당신의 이름은? : <span class="nm"></span></li>
+                    <li>영화속 역할은? : <span class="role"></span></li>
+                    <li>캐릭터는? : <span class="cat"></span></li>
+                </ol>
 
-            <button onclick="process()">처리</button>
-            <button onclick="show('.local')">보여</button>
-            <button onclick="add()">추가</button>
-
-            <div class="inbx">
-                <form action="" method="post">
-                <ul>
-                    <li>
-                        <label for="idx">일련번호</label>
-                        <input type="text" id="idx">
-                    </li>
-                    <li>
-                        <label for="cont">내용</label>
-                        <input type="text" id="cont">
-                    </li>
-                    <li>
-                        <input type="submit" value="처리" id="sbtn">
-                    </li>
-                </ul></form>
+                <button onclick="startFn('세션쓰')">처음</button>
+                <button onclick="showFn('.session')">보여줘</button>
+                <button onclick="delFn('세션쓰')">전체삭제</button>
+                <button onclick="">처리</button>
+                <button onclick="">추가</button>
             </div>
-
         </div>
-        <div class="session">
-            <h2>세션쓰님</h2>
-            <div class="imgbx ib2">
-                <img src="https://img.marieclairekorea.com/2022/08/mck_62e9fd08ca1bd.jpg" alt="정우성">
-            </div>
-            <ol>
-                <li>
-                    당신의 이름은? : <span class="nm"></span>
-                </li>
-            </ol>
-
-        </div>
-    </div>
-</body>
+    </body>
 </html>
