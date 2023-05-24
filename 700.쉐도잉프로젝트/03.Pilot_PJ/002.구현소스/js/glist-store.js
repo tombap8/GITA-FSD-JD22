@@ -76,6 +76,8 @@ const store = new Vuex.Store({
                 <img id="mycart" src="./images/mycart.gif" 
                 title="${org.length}개의 상품이 카트에 있습니다">`);
 
+                
+
                 const list = org.map((v,i)=>`
                     <tr>
                         <td>${i+1}</td>
@@ -85,7 +87,7 @@ const store = new Vuex.Store({
                         <td>${1}</td>
                         <td>${v.ginfo[3]}</td>
                         <td>
-                            <button onclick="this.commit('delRec',${v.idx})">×</botton>
+                            <button @click="console.log(33)">×</botton>
                         </td>
                     </tr>
                 `);
@@ -185,6 +187,7 @@ const store = new Vuex.Store({
         // 특정항목 데이터 삭제 함수 ///////
         delRec(di) {
             // di는 배열데이터 idx값
+            console.log("삭제호출:",di);
 
             // 1. 로컬스토리지 데이터 가져오기 : minfo
             // 가져온 후 객체형으로 사용하도록 파싱한다!!!
@@ -209,12 +212,22 @@ const store = new Vuex.Store({
             localStorage.setItem("minfo", JSON.stringify(org));
             console.log("반영후 로칼쓰:", localStorage.getItem("minfo"));
 
-            // 4. 입력후 화면에 표시하기 위해 바인딩함수호출!   
-        }, /////////////// delRec ////////////
+            // 4. 입력후 화면에 표시하기 위해 바인딩함수호출! 
+            const list = org.map((v,i)=>`
+                    <tr>
+                        <td>${i+1}</td>
+                        <td>${v.ginfo[1]}</td>
+                        <td>${v.ginfo[2]}</td>
+                        <td>${v.ginfo[3]}</td>
+                        <td>${1}</td>
+                        <td>${v.ginfo[3]}</td>
+                        <td>
+                            <button onclick="$store.commit('delRec',${v.idx})">×</botton>
+                        </td>
+                    </tr>
+                `);  
 
-        makeList(){
-            $("body").append(`<section id="cartlist"></section>`);
-            $("#cartlist").html(`
+                $("#cartlist").html(`
                 <a href="#" class="cbtn cbtn2">×</a>
                 <table>
                     <caption>
@@ -232,48 +245,10 @@ const store = new Vuex.Store({
                     ${list}
                 </table>
             `)
-            .css({
-                position:"fixed",
-                top:"0",
-                right:"-60vw",
-                width:"60vw",
-                height:"100vh",
-                backgroundColor:"rgba(255,255,255,.8)",
-                zIndex:"9999999",
-            })
-            .animate({
-                right:"0"
-            },600,"easeInOutQuint")
-            .find("table").css({
-                width:"90%",
-                margin:"50px auto",
-                fontSize:"14px",
-                borderTop:"2px solid #222",
-                borderBottom:"2px solid #222",
-            })
-            .find("td").css({
-                padding:"10px 0",
-                borderTop:"1px solid #555",
-                textAlign: "center",
-            })
-            .parents("table").find("th").css({
-                padding:"15px 0",
-                backgroundColor:"#ccc",
-                fontSize:"16px",
-            })
-            .parents("table").find("caption").css({
-                padding: "20px 0",
-                textDecoration:"underline",
-                textDecorationStyle:"wavy",
-            })
 
-            $(".cbtn2").click(()=>{
-                $("#cartlist").animate({
-                    right:"-60vw"
-                },600,"easeInOutQuint")
-            })
+        }, /////////////// delRec ////////////
 
-        },
+        
     },
 });
 
