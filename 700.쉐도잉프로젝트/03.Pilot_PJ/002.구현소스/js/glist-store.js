@@ -84,6 +84,9 @@ const store = new Vuex.Store({
                         <td>${v.ginfo[3]}</td>
                         <td>${1}</td>
                         <td>${v.ginfo[3]}</td>
+                        <td>
+                            <button onclick="this.commit('delRec',${v.idx})">×</botton>
+                        </td>
                     </tr>
                 `);
     
@@ -106,48 +109,65 @@ const store = new Vuex.Store({
                         1000
                     )
                     .click(function(){
-                        $("body").append(`<section id="cartlist"></section>`);
-                        $("#cartlist").html(`
-                            <a href="#" class="cbtn cbtn2">×</a>
-                            <table>
-                                <caption>
-                                    <h1 style="font-size:40px">카트 리스트</h1>
-                                </caption>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>상품명</th>
-                                    <th>상품코드</th>
-                                    <th>단가</th>
-                                    <th>수량</th>
-                                    <th>합계</th>
-                                </tr>
-                                ${list}
-                            </table>
-                        `)
-                        .css({
-                            position:"fixed",
-                            top:"0",
-                            right:"-60vw",
-                            width:"60vw",
-                            height:"100vh",
-                            backgroundColor:"rgba(255,255,255,.7)",
-                            zIndex:"9999999",
-                        })
-                        .animate({
-                            right:"0"
-                        },600,"easeInOutQuint")
-                        .find("table")
-                        .css({
-                            width:"90%",
-                            margin:"50px auto",
-                            fontSize:"14px",
-                        });
-
-                        $(".cbtn2").click(()=>{
-                            $("#cartlist").animate({
-                                right:"-60vw"
+                            $("body").append(`<section id="cartlist"></section>`);
+                            $("#cartlist").html(`
+                                <a href="#" class="cbtn cbtn2">×</a>
+                                <table>
+                                    <caption>
+                                        <h1 style="font-size:40px">카트 리스트</h1>
+                                    </caption>
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>상품명</th>
+                                        <th>상품코드</th>
+                                        <th>단가</th>
+                                        <th>수량</th>
+                                        <th>합계</th>
+                                        <th>삭제</th>
+                                    </tr>
+                                    ${list}
+                                </table>
+                            `)
+                            .css({
+                                position:"fixed",
+                                top:"0",
+                                right:"-60vw",
+                                width:"60vw",
+                                height:"100vh",
+                                backgroundColor:"rgba(255,255,255,.8)",
+                                zIndex:"9999999",
+                            })
+                            .animate({
+                                right:"0"
                             },600,"easeInOutQuint")
-                        })
+                            .find("table").css({
+                                width:"90%",
+                                margin:"50px auto",
+                                fontSize:"14px",
+                                borderTop:"2px solid #222",
+                                borderBottom:"2px solid #222",
+                            })
+                            .find("td").css({
+                                padding:"10px 0",
+                                borderTop:"1px solid #555",
+                                textAlign: "center",
+                            })
+                            .parents("table").find("th").css({
+                                padding:"15px 0",
+                                backgroundColor:"#ccc",
+                                fontSize:"16px",
+                            })
+                            .parents("table").find("caption").css({
+                                padding: "20px 0",
+                                textDecoration:"underline",
+                                textDecorationStyle:"wavy",
+                            })
+                
+                            $(".cbtn2").click(()=>{
+                                $("#cartlist").animate({
+                                    right:"-60vw"
+                                },600,"easeInOutQuint")
+                            })
                     })
 
                 
@@ -161,6 +181,99 @@ const store = new Vuex.Store({
 
             //  localStorage.clear()
         }, ////////// setLS /////////////
+
+        // 특정항목 데이터 삭제 함수 ///////
+        delRec(di) {
+            // di는 배열데이터 idx값
+
+            // 1. 로컬스토리지 데이터 가져오기 : minfo
+            // 가져온 후 객체형으로 사용하도록 파싱한다!!!
+            let org = localStorage.getItem("minfo");
+            org = JSON.parse(org);
+            console.log("제거전객체:", org);
+
+            // 2. 특정데이터 배열항목 삭제
+            // splice(순번,개수) -> 순번부터 몇개 지움
+            // confirm(메시지) 
+            // -> 확인,취소 중 확인일 경우 true (취소는 false)
+            if(confirm("정말정말정말로 지우시게요?")){
+                org.forEach((v,i)=>{
+                    if(v.idx==di)
+                        org.splice(i,1);
+                })
+                console.log("제거후객체:", org);
+            }
+
+
+            // 3. 객체를 문자형으로 변환후 로컬스토리지에 반영
+            localStorage.setItem("minfo", JSON.stringify(org));
+            console.log("반영후 로칼쓰:", localStorage.getItem("minfo"));
+
+            // 4. 입력후 화면에 표시하기 위해 바인딩함수호출!   
+        }, /////////////// delRec ////////////
+
+        makeList(){
+            $("body").append(`<section id="cartlist"></section>`);
+            $("#cartlist").html(`
+                <a href="#" class="cbtn cbtn2">×</a>
+                <table>
+                    <caption>
+                        <h1 style="font-size:40px">카트 리스트</h1>
+                    </caption>
+                    <tr>
+                        <th>번호</th>
+                        <th>상품명</th>
+                        <th>상품코드</th>
+                        <th>단가</th>
+                        <th>수량</th>
+                        <th>합계</th>
+                        <th>삭제</th>
+                    </tr>
+                    ${list}
+                </table>
+            `)
+            .css({
+                position:"fixed",
+                top:"0",
+                right:"-60vw",
+                width:"60vw",
+                height:"100vh",
+                backgroundColor:"rgba(255,255,255,.8)",
+                zIndex:"9999999",
+            })
+            .animate({
+                right:"0"
+            },600,"easeInOutQuint")
+            .find("table").css({
+                width:"90%",
+                margin:"50px auto",
+                fontSize:"14px",
+                borderTop:"2px solid #222",
+                borderBottom:"2px solid #222",
+            })
+            .find("td").css({
+                padding:"10px 0",
+                borderTop:"1px solid #555",
+                textAlign: "center",
+            })
+            .parents("table").find("th").css({
+                padding:"15px 0",
+                backgroundColor:"#ccc",
+                fontSize:"16px",
+            })
+            .parents("table").find("caption").css({
+                padding: "20px 0",
+                textDecoration:"underline",
+                textDecorationStyle:"wavy",
+            })
+
+            $(".cbtn2").click(()=>{
+                $("#cartlist").animate({
+                    right:"-60vw"
+                },600,"easeInOutQuint")
+            })
+
+        },
     },
 });
 
