@@ -68,6 +68,10 @@ const store = new Vuex.Store({
                 }
             });
 
+            function myFn(aa) {
+                console.log(aa);
+            }
+
             if (save) {
                 org.push(pm);
 
@@ -76,22 +80,29 @@ const store = new Vuex.Store({
                 <img id="mycart" src="./images/mycart.gif" 
                 title="${org.length}개의 상품이 카트에 있습니다">`);
 
-                
+                const myFn = (x) => {
+                    console.log(x);
+                };
 
-                const list = org.map((v,i)=>`
+                const list = org.map(
+                    (v, i) => `
                     <tr>
-                        <td>${i+1}</td>
+                        <td>
+                            <img src="${"images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"}" alt="item" style="width:50px">
+                        </td>
+                        <td>${i + 1}</td>
                         <td>${v.ginfo[1]}</td>
                         <td>${v.ginfo[2]}</td>
                         <td>${v.ginfo[3]}</td>
                         <td>${1}</td>
                         <td>${v.ginfo[3]}</td>
                         <td>
-                            <button @click="console.log(33)">×</botton>
+                            <button class="cfn" data-idx="${v.idx}">×</botton>
                         </td>
                     </tr>
-                `);
-    
+                `
+                );
+
                 $("#mycart")
                     .css({
                         position: "fixed",
@@ -110,15 +121,19 @@ const store = new Vuex.Store({
                         },
                         1000
                     )
-                    .click(function(){
+                    .on("click", function () {
+                        if ($("#cartlist").length == 0) {
                             $("body").append(`<section id="cartlist"></section>`);
-                            $("#cartlist").html(`
+                            $("#cartlist")
+                                .html(
+                                    `
                                 <a href="#" class="cbtn cbtn2">×</a>
                                 <table>
                                     <caption>
                                         <h1 style="font-size:40px">카트 리스트</h1>
                                     </caption>
                                     <tr>
+                                        <th>상품</th>
                                         <th>번호</th>
                                         <th>상품명</th>
                                         <th>상품코드</th>
@@ -129,50 +144,70 @@ const store = new Vuex.Store({
                                     </tr>
                                     ${list}
                                 </table>
-                            `)
-                            .css({
-                                position:"fixed",
-                                top:"0",
-                                right:"-60vw",
-                                width:"60vw",
-                                height:"100vh",
-                                backgroundColor:"rgba(255,255,255,.8)",
-                                zIndex:"9999999",
-                            })
-                            .animate({
-                                right:"0"
-                            },600,"easeInOutQuint")
-                            .find("table").css({
-                                width:"90%",
-                                margin:"50px auto",
-                                fontSize:"14px",
-                                borderTop:"2px solid #222",
-                                borderBottom:"2px solid #222",
-                            })
-                            .find("td").css({
-                                padding:"10px 0",
-                                borderTop:"1px solid #555",
-                                textAlign: "center",
-                            })
-                            .parents("table").find("th").css({
-                                padding:"15px 0",
-                                backgroundColor:"#ccc",
-                                fontSize:"16px",
-                            })
-                            .parents("table").find("caption").css({
-                                padding: "20px 0",
-                                textDecoration:"underline",
-                                textDecorationStyle:"wavy",
-                            })
-                
-                            $(".cbtn2").click(()=>{
-                                $("#cartlist").animate({
-                                    right:"-60vw"
-                                },600,"easeInOutQuint")
-                            })
-                    })
+                            `
+                                )
+                                .css({
+                                    position: "fixed",
+                                    top: "0",
+                                    right: "-60vw",
+                                    width: "60vw",
+                                    height: "100vh",
+                                    backgroundColor: "rgba(255,255,255,.8)",
+                                    zIndex: "9999999",
+                                })
+                                .find("table")
+                                .css({
+                                    width: "90%",
+                                    margin: "50px auto",
+                                    fontSize: "14px",
+                                    borderTop: "2px solid #222",
+                                    borderBottom: "2px solid #222",
+                                })
+                                .find("td")
+                                .css({
+                                    padding: "10px 0",
+                                    borderTop: "1px solid #555",
+                                    textAlign: "center",
+                                })
+                                .parents("table")
+                                .find("th")
+                                .css({
+                                    padding: "15px 0",
+                                    backgroundColor: "#ccc",
+                                    fontSize: "16px",
+                                })
+                                .parents("table")
+                                .find("caption")
+                                .css({
+                                    padding: "20px 0",
+                                    textDecoration: "underline",
+                                    textDecorationStyle: "wavy",
+                                });
+                        }
 
-                
+                        $("#mycart").click(() => {
+                            $("#cartlist").animate(
+                                {
+                                    right: "0",
+                                },
+                                600,
+                                "easeInOutQuint"
+                            );
+                        });
+                        $(".cbtn2").click(() => {
+                            $("#cartlist").animate(
+                                {
+                                    right: "-60vw",
+                                },
+                                600,
+                                "easeInOutQuint"
+                            );
+                        });
+
+                        $(".cfn").click(function () {
+                            store.commit("delRec", $(this).attr("data-idx"));
+                        });
+                    });
             }
 
             console.log("추가후:", org);
@@ -185,55 +220,64 @@ const store = new Vuex.Store({
         }, ////////// setLS /////////////
 
         // 특정항목 데이터 삭제 함수 ///////
-        delRec(di) {
+        delRec(dt, di) {
             // di는 배열데이터 idx값
-            console.log("삭제호출:",di);
+            console.log("삭제호출:", di);
 
-            // 1. 로컬스토리지 데이터 가져오기 : minfo
+            // 1. 로컬스토리지 데이터 가져오기 : cart
             // 가져온 후 객체형으로 사용하도록 파싱한다!!!
-            let org = localStorage.getItem("minfo");
+            let org = localStorage.getItem("cart");
             org = JSON.parse(org);
             console.log("제거전객체:", org);
 
             // 2. 특정데이터 배열항목 삭제
             // splice(순번,개수) -> 순번부터 몇개 지움
-            // confirm(메시지) 
+            // confirm(메시지)
             // -> 확인,취소 중 확인일 경우 true (취소는 false)
-            if(confirm("정말정말정말로 지우시게요?")){
-                org.forEach((v,i)=>{
-                    if(v.idx==di)
-                        org.splice(i,1);
-                })
-                console.log("제거후객체:", org);
-            }
 
+            org.forEach((v, i) => {
+                if (v.idx == di) {
+                    if (confirm("정말정말정말로 지우시게요?")) {
+                        org.splice(i, 1);
+                    }
+                }
+            });
+            console.log("제거후객체:", org);
 
             // 3. 객체를 문자형으로 변환후 로컬스토리지에 반영
-            localStorage.setItem("minfo", JSON.stringify(org));
-            console.log("반영후 로칼쓰:", localStorage.getItem("minfo"));
+            localStorage.setItem("cart", JSON.stringify(org));
+            console.log("반영후 로칼쓰:", localStorage.getItem("cart"));
 
-            // 4. 입력후 화면에 표시하기 위해 바인딩함수호출! 
-            const list = org.map((v,i)=>`
+            // 4. 입력후 화면에 표시하기 위해 바인딩함수호출!
+            const list = org.map(
+                (v, i) => `
                     <tr>
-                        <td>${i+1}</td>
+                        <td>
+                            <img src="${"images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"}" alt="item" style="width:50px">
+                        </td>
+                        <td>${i + 1}</td>
                         <td>${v.ginfo[1]}</td>
                         <td>${v.ginfo[2]}</td>
                         <td>${v.ginfo[3]}</td>
                         <td>${1}</td>
                         <td>${v.ginfo[3]}</td>
                         <td>
-                            <button onclick="$store.commit('delRec',${v.idx})">×</botton>
+                            <button class="cfn" data-idx="${v.idx}">×</botton>
                         </td>
                     </tr>
-                `);  
+                `
+            );
 
-                $("#cartlist").html(`
+            $("#cartlist")
+                .html(
+                    `
                 <a href="#" class="cbtn cbtn2">×</a>
                 <table>
                     <caption>
                         <h1 style="font-size:40px">카트 리스트</h1>
                     </caption>
                     <tr>
+                        <th>상품</th>
                         <th>번호</th>
                         <th>상품명</th>
                         <th>상품코드</th>
@@ -244,11 +288,63 @@ const store = new Vuex.Store({
                     </tr>
                     ${list}
                 </table>
-            `)
+            `
+                )
 
+                .css({
+                    position: "fixed",
+                    top: "0",
+                    right: "0",
+                    width: "60vw",
+                    height: "100vh",
+                    backgroundColor: "rgba(255,255,255,.8)",
+                    zIndex: "9999999",
+                })
+                .find("table")
+                .css({
+                    width: "90%",
+                    margin: "50px auto",
+                    fontSize: "14px",
+                    borderTop: "2px solid #222",
+                    borderBottom: "2px solid #222",
+                })
+                .find("td")
+                .css({
+                    padding: "10px 0",
+                    borderTop: "1px solid #555",
+                    textAlign: "center",
+                })
+                .parents("table")
+                .find("th")
+                .css({
+                    padding: "15px 0",
+                    backgroundColor: "#ccc",
+                    fontSize: "16px",
+                })
+                .parents("table")
+                .find("caption")
+                .css({
+                    padding: "20px 0",
+                    textDecoration: "underline",
+                    textDecorationStyle: "wavy",
+                });
+
+            $(".cbtn2").click(() => {
+                $("#cartlist").animate(
+                    {
+                        right: "-60vw",
+                    },
+                    600,
+                    "easeInOutQuint"
+                );
+            });
+
+            $("#mycart").attr("title", org.length + "개의 상품이 카트에 있습니다");
+
+            $(".cfn").click(function () {
+                store.commit("delRec", $(this).attr("data-idx"));
+            });
         }, /////////////// delRec ////////////
-
-        
     },
 });
 

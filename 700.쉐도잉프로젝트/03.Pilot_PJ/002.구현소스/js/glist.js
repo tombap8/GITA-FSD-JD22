@@ -39,7 +39,6 @@ const myvue = new Vue({
         gdata: store.state.gdata
     },
     methods:{
-        
         // comp(val1, val2){
         //     return val1.idx < val2.idx;
         // }
@@ -71,6 +70,8 @@ const myvue = new Vue({
 
         $("#logo").click(() => (location.href = "index.html"));
 
+      
+
         
         // store.state.gdata.sort(this.comp);
     },
@@ -81,5 +82,8 @@ const myvue = new Vue({
     },
 }); //////// 전체영역 뷰 인스턴스 ////////
 
+Vue.prototype.$myFn = function(aa){
+    console.log(aa);
+}
 
 
