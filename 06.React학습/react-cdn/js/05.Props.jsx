@@ -31,10 +31,10 @@ function Car2(props){
         <React.Fragment>
             <h2>모델명은 {props.brand.model}이고 
             차색은 {props.brand.color}입니다!</h2>
-            <img src="./images/ray.png" alt="레이" />
+            <img src="./images/ray.png" alt="레이" style={props.brand.opt}/>
         </React.Fragment>
     );
-
+ 
 } ////////// Car 컴포넌트 /////////////////
 
 ///// 차종류를 물어보는 컴포넌트 - Car컴포넌트 호출 ////
@@ -48,14 +48,17 @@ function Brand(){
     );
 } //////// Brand 컴포넌트 //////////////
 
+// 속성을 객체로 여러개 셋팅하기!
+    const carInfo = [{color:"라잇블루",model:"2022년형",opt:{filter:'hue-rotate(0deg)'}},
+    {color:"랏떼그린",model:"2024년형",opt:{filter:'hue-rotate(239deg)'}}];
+
 ///// 차정보를 자세히 물어보는 컴포넌트 - Car2컴포넌트 호출 ////
-function Brand2(){
-    // 속성을 객체로 여러개 셋팅하기!
-    const carInfo = {color:"라잇블루",model:"2022년형"};
+function Brand2(props){
+    
     return(
         <React.Fragment>
             <h1>더 자세히 말씀해주세요?</h1>
-            <Car2 brand={carInfo} />
+            <Car2 brand={carInfo[props.num]} />
             {/* 
                 컴포넌트 호출시 속성셋팅함 
                 중괄호{}는 표현식임!
@@ -66,5 +69,5 @@ function Brand2(){
 
 // 출력하기 //////
 const root1 = ReactDOM.createRoot(document.getElementById("root1"));
-root1.render(<div><Brand /><Brand2 /></div>)
+root1.render(<div><Brand /><Brand2 num="0"  /><Brand2 num="1" /></div>)
 
