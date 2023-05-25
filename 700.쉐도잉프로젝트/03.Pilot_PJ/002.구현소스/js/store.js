@@ -21,35 +21,34 @@ const store = new Vuex.Store({
             },
             스타일: {
                 // 스타일메뉴
-                menu: ["SPECIAL SUMMER STYLE","GOLF LIFE", "CAMPING STYLE", "SPORT STYLE"],
+                menu: ["SPECIAL SUMMER STYLE", "GOLF LIFE", "CAMPING STYLE", "SPORT STYLE"],
                 // 배너개수
                 cnt: 5,
                 // 카테고리명
                 cat: "style",
-                // 상태코드
-                scode: 0,
             },
         },
         // 공통처리 메뉴 변수
-        menu: ["NEW ARRIVAL", "WINDBREAKER", "BEACH STYLE", "SPORT STYLE"],
+        menu: [],
         // 공통처리 배너개수 변수
-        cnt: 3,
+        cnt: 0,
         // 공통처리 카테고리명 변수
-        cat: "men",
-        // 4. 해당 객체속성명
+        cat: "",
         // 공통처리 분류명
         name: "",
-        // 
+        // 상품속성코드(클래스명)
         cls:"m1",
+        // 상품이름
         gname:"",
+        // 상품코드
         gcode:"",
+        // 상품가격
         gprice:"",
     },
     // state 데이터 변경 메서드구역!
     mutations: {
         // 데이터 변경 셋업 메서드
         chgData(dt,pm){ // dt-state데이터, pm-전달값
-            pm = pm.replace("#/","");
             console.log("데이터변경:",pm);
             // pm에 객체데이터 속성명이 전달됨(남성/여성/스타일)
             // 1. 해당 카테고리 개수 업데이트
@@ -58,7 +57,7 @@ const store = new Vuex.Store({
             dt.cat = dt.subData[pm].cat;
             // 3. 해당 카테고리 메뉴 업데이트
             dt.menu = dt.subData[pm].menu;
-            // 4. 해당 객체속성명 업데이트
+            // 4. 해당 분류명 업데이트
             dt.name = pm;
         }, ///////// chgData메서드 ///////
     },

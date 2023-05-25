@@ -18,7 +18,7 @@ import store from "./store.js";
 let swiper;
 
 // 바로실행구역 함수구역 ///
-// 바로실행구역을 쓰는이유:
+// 바로실행구역을 쓰는이유: 
 // 변수나 명령어를 다른 영역과 구분하여
 // 코딩할때 주로 사용됨!
 // GET방식 데이터를 store에서 초기값으로 셋팅하는 것을
@@ -32,7 +32,8 @@ let swiper;
     // 분류별 서브 페이지 구성하기!
     // location.href -> 상단 url읽어옴!
     // indexOf("?")!==-1 -> 물음표가 있으면!
-    if (location.href.indexOf("?") !== -1) pm = location.href.split("?")[1].split("=")[1];
+    if (location.href.indexOf("?") !== -1) 
+        pm = location.href.split("?")[1].split("=")[1];
     // 물음표(?)로 잘라서 뒤엣것,이퀄(=)로 잘라서 뒤엣것
     // 파라미터 값만 추출함!
     // pm에 할당이 되었다면 undefined가 아니므로 true
@@ -42,7 +43,11 @@ let swiper;
 
     // decodeURI() - 변경할 문자열만 있어야 변환됨
     // decodeURIComponent() - url전체에 섞여 있어도 모두 변환
+
 })(); ////////////// 바로실행함수구역 ///////////////////
+
+// DOM연결전 데이터 가공작업
+console.log("created구역");
 
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
 // 1. 배너파트 컴포넌트
@@ -124,22 +129,29 @@ new Vue({
         // 스크롤리빌 플러그인 적용호출!
         $.fn.scrollReveal();
 
-        // 전체메뉴클릭시 ////////////
+        // 전체메뉴클릭시 ///////////
         $(".mlist a").click((e) => {
+            // 0. 기본이동막기
             e.preventDefault();
+
             // 1. 전체메뉴창 닫기
             $(".ham").trigger("click");
-            // 2. 부드러운 스크롤 씽크맞춤(0) + 맨위이동
-            sc_pos = 0;
-            $("html,body").animate({ scrollTop: "0" }, 1);
-            // 3. 스와이퍼 첫 슬라이드로 이동 
-            swiper.slideTo(0);
-            // 4. 스크롤리빌 다시 호출!
-            $.fn.scrollReveal();
-            // 5. URL 강제변경하기
-            // 변경이유: SPA변경시 전달변수내용일치 -> 새로고침시 현재변경로딩!
-            history.pushState(null, null, "sub.html?cat=" + store.state.name);
 
+            // 2. 부드러운 스크롤 위치값 업데이트 + 맨위이동
+            sc_pos = 0;
+            $("html,body").animate({scrollTop:"0"},1);
+
+            // 3. 스와이퍼 첫번째 슬라이드로 이동!
+            swiper.slideTo(0);
+            // 첫슬라이드는 0번: 스와이퍼 API이용!
+
+            // 4. 등장액션 스크롤리빌 다시 호출!
+            $.fn.scrollReveal();
+            
+            // 5. URL 강제변경하기
+            // 변경이유 : SPA변경시 전달변수내용일치 
+            // -> 새로고침시 현재변경로딩!
+            history.pushState(null,null,"sub.html?cat="+store.state.name);
             /***************************************************** 
             [ history.pushState() 메서드 ]
 
@@ -158,16 +170,33 @@ new Vue({
                 history.pushState(null,null,"my.html?hi=bye") 
             *****************************************************/
 
-            // 6. 열려있을수 있는 상세보기 닫기
+            // 6. 상세보기 박스가 열려있을 수 있으므로 닫기!
             $("#bgbx").hide();
+
         });
         // $(선택요소).trigger(이벤트명)
         // -> 선택요소의 이벤트 강제발생함!
         // 참고) JS 클릭이벤트 강제발생
         // document.querySelector(요소).click();
 
-        $(".gnb a").click(function () {
-            let newpos = $($(this).attr("href")).offset().top;
+        // GNB 메뉴 클릭시 해당위치로 스크롤이동 애니메이션
+        // 각 .gnb a 에는 href="#c2" 이런식으로 아이디요소가 있음!
+        // a요소의 #아이디명 으로 기본 위치이동은 되지만
+        // 스크롤 애니메이션은 되지 않는다!
+        // 이것을 제이쿼리로 구현하자!!!
+        $(".gnb a").click(function (e) {
+            // 1. 기본이동막기
+            e.preventDefault();
+
+            // 2. 클릭된 a요소의 href값 읽어오기
+            let aid = $(this).attr("href");
+
+            // 3. 아이디요소 박스 위치구하기
+            let newpos = $(aid).offset().top;
+
+            console.log("이동아이디:", aid, "/위치:", newpos);
+
+            // 4. 애니메이션 이동
             $("html,body").animate(
                 {
                     scrollTop: newpos + "px",
@@ -176,42 +205,53 @@ new Vue({
                 "easeOutQuint"
             );
 
+            // 5. 부드러운 스크롤 변수에 현재위치값 업데이트!
             sc_pos = newpos;
-        }); ////////// click ////////////
+        }); //////////// click /////////
 
+        // 로고 클릭시 첫페이지로 이동!!!
         $("#logo").click(() => (location.href = "index.html"));
 
-        $(".flist a").click(function (e) {
+        // 상품 클릭시 상세보기 정보 셋팅하여 보이기
+        $(".flist a").click(function(e){
+            // 0. 기본이동막기
             e.preventDefault();
 
-            $("#bgbx").slideDown(400);
-
+            // 1. 클릭된 요소의 부모(li)의 클래스 읽어오기
             let cls = $(this).parent().attr("class");
+            console.log("클래스명:",cls);
+
+            // 2. 클릭된 요소의 다음형제요소의 정보값읽어오기
+            // split("<br>") br태그로 잘라서 배열에 담음!
             let ginfo = $(this).next(".ibox").html().split("<br>");
-            console.log(cls, ginfo);
+            console.log("상품정보:",ginfo);
+
+            // 3. 뷰엑스 스토어 업데이트(리액티브 데이터 반영!)
             store.state.cls = cls;
             store.state.gname = ginfo[0];
             store.state.gcode = ginfo[1];
             store.state.gprice = ginfo[2];
-        });
 
-        $(".cbtn").click((e) => {
+            // 4. 슬라이드 애니메이션 하여 나타나기!
+            $("#bgbx").slideDown(400);
+
+        }); /////////////// click ///////////
+
+        // 상세보기 박스 닫기버튼 클릭시 닫기!
+        $(".cbtn").click(e=>{
             e.preventDefault();
             $("#bgbx").slideUp(400);
-        });
+        }); //////// click ////////////
 
-        $(".small a").click(function(e){
+        // 상세보기 썸네일 링크 셋팅
+        $(".small a").click(e=>{
             e.preventDefault();
-            // $(".gimg img").attr("src",$(this).find("img").attr("src"));
-        });
+            // 추가기능코드 구현...
+        }); //////// click ////////////
 
-
-    },
+    }, ///////////// mounted ///////////////
     // created 실행구역 : DOM연결전
-    created: function () {
-        // DOM연결전 데이터 가공작업
-        console.log("created구역");
-    },
+    created: function () {},
 }); //////// 상단영역 뷰 인스턴스 ////////
 
 //###### 하단영역 뷰 인스턴스 생성하기 ##########
@@ -321,9 +361,12 @@ function sinsangFn() {
             let clsnm = $(this).attr("class");
 
             // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
-            let gd_info = sinsang[$(this).parents("#c1").attr("data-cat")][clsnm];
+            // 중간 객체속성명 상위부모박스 #c1의 data-cat속성값
+            // 읽어와서 sinsang[요기][] -> 요기에 넣기!
+            let cat = $(this).parents("#c1").attr("data-cat");
+            let gd_info = sinsang[cat][clsnm];
 
-            // console.log(clsnm,gd_info);
+            console.log("data-cat:", cat);
 
             // 3. 상품정보박스 만들고 보이게하기
             // 마우스 오버된 li자신 (this)에 넣어준다!

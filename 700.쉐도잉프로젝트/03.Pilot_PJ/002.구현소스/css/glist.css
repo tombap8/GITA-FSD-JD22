@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 파일럿 PJ 카테고리 서브페이지 CSS - sub.css */
+/* 파일럿 PJ 전체 리스트페이지 CSS - glist.css */
 
 /* 외부CSS 합치기 */
 @import url(reset.css);
@@ -61,6 +61,7 @@ body{
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
+    font-size: 20px;
     background-color: #fff;
 }
 /* 페이징박스 */
