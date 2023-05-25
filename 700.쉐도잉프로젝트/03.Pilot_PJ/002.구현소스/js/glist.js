@@ -70,9 +70,6 @@ const myvue = new Vue({
 
         $("#logo").click(() => (location.href = "index.html"));
 
-      
-
-        
         // store.state.gdata.sort(this.comp);
     },
     // created 실행구역 : DOM연결전
