@@ -114,7 +114,7 @@ function EventShow() {
                     src="https://images.chosun.com/resizer/SFIqPKffr3HQHoHFOxKvnN-L2YU=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/NVMCI5M33KHBCY4JVHDPWRCBYY.jpg"
                     onMouseOver={() => {
                         aladin("./images/ala4.jpg");
-                    }}
+                    }}  
                 />
                 {/* 첫번째 슛 버튼 : onclick 이벤트 적용! */}
             </div>
