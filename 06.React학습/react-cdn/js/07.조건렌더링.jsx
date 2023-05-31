@@ -1,7 +1,6 @@
 ///////////////////////////////////////
 // 07. 조건 렌더링 + 리스트 렌더링 JSX //
 ///////////////////////////////////////
-
 // 리액트에서는 조건부로 구성요소를 렌더링 할 수 있다!
 
 ////////////////////////////////////////
@@ -130,8 +129,22 @@ root4.render(<WishList2 wlist={cars2} />);
 // 3. 조건연산자(삼항연산자)를 사용하여 조건부 렌더링하기 //
 ////////////////////////////////////////////////////////
 
-function MadeGoal() {
-    return <h2>골입니다!골인!골인!!!</h2>;
+const worksrc = {
+    "피카소":"https://m.theartin.net/web/product/big/201907/30c5a0fdd153bfdfdc8f19b2f4166fa8.jpg",
+    "모네":"https://dimg.donga.com/wps/NEWS/IMAGE/2015/12/11/75316598.3.jpg"
+};
+
+function MakeWork(props) {
+    return(
+        <div>
+            <h2>{props.painter}</h2>
+            <img src={worksrc[props.painter]}
+            alt={props.name}
+            style={{width:"400px"}}
+            title={props.name} />
+        </div>
+    ) 
+    
 }
 
 function MissedGoal(){
@@ -140,12 +153,22 @@ function MissedGoal(){
 
 // 골인 여부를 결정하는 메인 컴포넌트
 function Goal(props){ // 전달되는 속성명은 isGoal
-    const result = props.isGoal; // true / false 전달됨
+    const [result, setResult] = React.useState(false);
+    // let result = props.isGoal; // true / false 전달됨
+
+
+    const again = () => {
+        setResult(!result);
+        console.log(result);
+    }
+
     return(
         <React.Fragment>
             <h2>한국팀 지금 슛~~~!</h2>
+            <button onClick={again}>다시해봐~!</button>
             {/* 삼항연산자 -> 조건식 ? 출력1 : 출력2 */}
-            { result ? <MadeGoal /> : <MissedGoal /> }
+            <div id="mm"></div>
+            { result ? <MakeWork painter="피카소" name="우는여인" /> : <MakeWork painter="모네" name="양산을 쓴 여인" /> }
         </React.Fragment>
     );
 
