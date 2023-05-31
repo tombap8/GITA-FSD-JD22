@@ -61,6 +61,11 @@ npm install jquery
 사용:
 import $ from 'jquery';
 
++ 제이쿼리 UI설치
+npm i jquery-ui
+사용:
+import jQuery-ui from 'jquery-ui';
+
 9. 배포 명령어
 npm run build
 -> build폴더 생성됨(압축소스)
