@@ -1,10 +1,11 @@
 @charset "utf-8";
-
+.top{
+    background-image: linear-gradient(to bottom,#CCC,#111);
+    border: 4px double #000;
+}
 .gnb{
     width: 800px;
     margin: 0 auto;
-    border: 4px double #000;
-    background-image: linear-gradient(to bottom,#CCC,#111);
 }
 .gnb ul{
     display: flex;
