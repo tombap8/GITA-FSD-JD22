@@ -12,14 +12,20 @@
         </style>
         <script>
             const org_num = [4, 5, 8, 10, 2, 1, 9, 3, 7, 6];
+            const org_num2 = ['파','타','하','가','바','사','다','라','차'];
 
             window.addEventListener("DOMContentLoaded", () => {
                 const newArray = (obj) => {
                     let temp = obj.map((x) => `<img src="./images/num/num_0${x}.png" alt="Number">`);
                     document.querySelector(".showNum").innerHTML = temp.join("");
                 };
+                const newArray2 = (obj) => {
+                    let temp = obj.map((x) => `<span style="font-size:34px;display:inline-block;margin:0 10px">${x}</span>`);
+                    document.querySelector(".showNum2").innerHTML = temp.join("");
+                };
 
                 newArray(org_num);
+                newArray2(org_num2);
 
                 document.querySelector(".sel").onchange = () => {
                     let opt = event.currentTarget.value;
@@ -45,6 +51,33 @@
                         ));
                     }
                 };
+
+                document.querySelector(".sel2").onchange = () => {
+                    let opt = event.currentTarget.value;
+                    if (opt==1) {
+                        console.log(
+                            newArray2(
+                                org_num2.sort(function (x, y) {
+                                    if (x > y) return 1;
+                                    if (x === y) return 0;
+                                    if (x < y) return -1;
+                                })
+                                // org_num2.sort(function (a, b) {
+                                //     return a - b;
+                                // })
+                            )
+                        );
+                    } else if (opt == 2) {
+                        console.log(
+                        newArray2(
+                            org_num2.sort(function (x, y) {
+                                    if (x < y) return 1;
+                                    if (x === y) return 0;
+                                    if (x > y) return -1;
+                                })
+                        ));
+                    }
+                };
             });
         </script>
     </head>
@@ -55,5 +88,12 @@
             <option value="2">내림차순</option>
         </select>
         <div class="showNum"></div>
+
+        <select name="sel2" id="sel2" class="sel2">
+            <option value="0">정렬선택</option>
+            <option value="1">오름차순</option>
+            <option value="2">내림차순</option>
+        </select>
+        <div class="showNum2"></div>
     </body>
 </html>
