@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .showNum img {
+                height: 100px;
+            }
+        </style>
+        <script>
+            const org_num = [4, 5, 8, 10, 2, 1, 9, 3, 7, 6];
+
+            window.addEventListener("DOMContentLoaded", () => {
+                const newArray = (obj) => {
+                    let temp = obj.map((x) => `<img src="./images/num/num_0${x}.png" alt="Number">`);
+                    document.querySelector(".showNum").innerHTML = temp.join("");
+                };
+
+                newArray(org_num);
+
+                document.querySelector(".sel").onchange = () => {
+                    let opt = event.currentTarget.value;
+                    if (opt==1) {
+                        console.log(
+                            newArray(
+                                // org_num.sort(function (a, b) {
+                                //     if (a > b) return 1;
+                                //     if (a === b) return 0;
+                                //     if (a < b) return -1;
+                                // })
+                                org_num.sort(function (a, b) {
+                                    return a - b;
+                                })
+                            )
+                        );
+                    } else if (opt == 2) {
+                        console.log(
+                        newArray(
+                            org_num.sort(function (a, b) {
+                                return b - a;
+                            })
+                        ));
+                    }
+                };
+            });
+        </script>
+    </head>
+    <body>
+        <select name="sel" id="sel" class="sel">
+            <option value="0">정렬선택</option>
+            <option value="1">오름차순</option>
+            <option value="2">내림차순</option>
+        </select>
+        <div class="showNum"></div>
+    </body>
+</html>
