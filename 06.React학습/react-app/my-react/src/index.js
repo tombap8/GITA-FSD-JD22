@@ -9,6 +9,7 @@ import MOVIES from "./DC/MOVIES";
 import NEWS from "./DC/NEWS";
 import VIDEO from "./DC/VIDEO";
 import MEMBER from "./DC/MEMBER";
+import ScrollToTop from "./DC/ScrollToTop";
 
 /* 
     [ 리액트 라우터 ]
@@ -32,6 +33,7 @@ import MEMBER from "./DC/MEMBER";
 export default function App(){
     return(
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 {/* 레이아웃 컴포넌트를 루트로 잡아준다! */}
                 <Route path="/" element={<Layout />} >
