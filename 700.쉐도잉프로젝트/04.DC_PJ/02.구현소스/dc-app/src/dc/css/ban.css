@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* 메인배너용 CSS - ban.css */
+.banner{
+    position: relative;
+    overflow: hidden;
+    /* 넘치는 배너 숨기기 */
+}
+.bantit{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 30%;
+    padding: 25px;
+    color: #fff;
+    text-shadow: 0 0 3px #000;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.bantit h3{
+    font-size: 16px;
+}
+.bantit h2{
+    font-size: 36px;
+    margin: 10px 0 20px;
+}
+.bantit p{
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: bold;
+}
+/* 배너슬라이드 */
+.slider{
+    position: relative;
+    left: 0;
+    display: flex;
+}
+.slider li{
+    position: relative;
+    /* 부모자격 */
+    width: 100%;
+    flex-shrink: 0;
+    /* 강제축소옵션 해제 */
+}
+/* 배너 컨텐츠버튼 */
+.banner button{
+    border-radius: 25px;
+    padding: 8px 40px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+    transition: .3s;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+}
+.banner button:hover{
+    background-color: #0074e8;
+    color: #fff;
+}
+.banimg{
+    width: 100%;
+}
+
+/* 이동버튼 */
+.banner .abtn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 30px;
+    padding: 0;
+    box-sizing: content-box;
+    line-height: 40px;
+    cursor: pointer;
+}
+.lb{
+    left: 5vw;
+}
+.rb{
+    right: 5vw;
+}
+/* 블릿 */
+.indic{
+    position: absolute;
+    left: 50%;
+    bottom: 3vh;
+    transform: translateX(-50%);
+    display: flex;
+}
+.indic li{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 0 5px;
+    cursor: pointer;
+    text-shadow: 0 0 2px #000;
+}
+.indic li.on{
+    background-color: rgba(255, 255, 255, 0.9);
+}
