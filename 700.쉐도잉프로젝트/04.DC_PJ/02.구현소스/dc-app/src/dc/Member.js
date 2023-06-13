@@ -108,6 +108,8 @@ function Member() {
         // 1. 위에 입력한 비밀번호와 일치여부
         if(pwd === e.target.value) setChkPwdError(false); // 에러아님!
         else setChkPwdError(true); // 에러임!
+        
+        console.log(e.target.value);
 
         // 2. 입력값 반영하기
         setChkPwd(e.target.valid);
@@ -119,17 +121,54 @@ function Member() {
         // 1. 빈값 체크
         if(e.target.value !== "") setUserNameError(false);
         else setUserNameError(true);
+        
+        console.log(e.target.value);
 
         // 2. 입력값 반영하기
         setUserName(e.target.value);
 
     }; ////////////// changeChkPwd /////////////////
 
+    // 5. 이메일 유효성검사
+    const changeEmail = e => {
+        const valid = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+        if (valid.test(e.target.value) || !e.target.value) setEmailError(false);
+        else setEmailError(true);
+        setEmail(e.target.value);
+
+    }; ////////////// changeChkPwd /////////////////
+
+    // 전체 유효성검사 체크
+    const totalValid = () => {
+        // 모든 입력창 검사(에러시 에러후크에 true전달!)
+        if(!userId) setUserIdError(true);
+        if(!pwd) setPwdError(true);
+        if(!chkPwd) setChkPwdError(true);
+        if(!userName) setUserNameError(true);
+        if(!email) setEmailError(true);
+
+        // 모두 true일 경우 true값 리턴
+        if(userId && pwd && chkPwd && userName && email) return true;
+        else return false;
+    }
+
+    // 회원가입 버튼 클릭시 처리 메서드
+    const onSubmit = (e) => {
+        // 기본이동 서브밋 막기
+        e.preventDefault();
+
+        // 유효성검사 전체 통과시
+        if(totalValid()) alert("처리페이지로 이동!^^");
+        // 유효성검사 불통과시
+        else alert("입력을 수정하세요!");
+        
+    }
+
     return (
         <>
             {/* 모듈코드 */}
             <section className="membx">
-                <h2>Member</h2>
+                <h2>Join Us</h2>
                 <form>
                     <ul>
                         <li>
@@ -190,7 +229,7 @@ function Member() {
                                 type="password"
                                 maxLength="20"
                                 placeholder="Please enter your Confirm Password"
-                                value={chkPwd}
+                                value={chkPwd||undefined}
                                 onChange={changeChkPwd}
                             />
                             {
@@ -229,9 +268,36 @@ function Member() {
                             }
                             
                             </li>
-                        <li>{/* 5.이메일 */}</li>
-                        <li>{/* 6.버튼 */}</li>
-                        <li>{/* 7.로그인페이지링크 */}</li>
+                        <li>
+                            {/* 5.이메일 */}
+                            <label>Email : </label>
+                            <input
+                                type="text"
+                                maxLength="50"
+                                placeholder="Please enter your Email"
+                                value={email}
+                                onChange={changeEmail}
+                            />
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true이면 요소출력
+                                emailError && (
+                                    <div className="msg">
+                                        <small style={{ color: "red", fontSize: "10px" }}>
+                                        Please enter a valid email format
+                                        </small>
+                                    </div>
+                                )
+                            }
+                        </li>
+                        <li>
+                            {/* 6.버튼 */}
+                            <button className="sbtn" onClick={onSubmit}>Submit</button>
+                        </li>
+                        <li>
+                            {/* 7.로그인페이지링크 */}
+                            
+                        </li>
                     </ul>
                 </form>
             </section>
