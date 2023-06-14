@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import $ from "jquery";
 import "./css/member.css";
+import { Link } from "react-router-dom";
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -290,13 +291,14 @@ function Member() {
                                 )
                             }
                         </li>
-                        <li>
+                        <li style={{overflow:"hidden"}}>
                             {/* 6.버튼 */}
                             <button className="sbtn" onClick={onSubmit}>Submit</button>
                         </li>
                         <li>
                             {/* 7.로그인페이지링크 */}
-                            
+                            <span className="text">Are you already a member? 
+                            <Link to="/login" className="link"> Log In </Link></span>
                         </li>
                     </ul>
                 </form>
