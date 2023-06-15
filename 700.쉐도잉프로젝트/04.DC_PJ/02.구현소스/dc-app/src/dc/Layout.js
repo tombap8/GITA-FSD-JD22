@@ -6,6 +6,9 @@ import { Link, Outlet } from "react-router-dom";
 /* 폰트어썸 임포트 */
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { bmenu, gnb_data } from "./data/common";
+import ScrollTop from "./common/ScrollTop";
+import { useState } from "react";
 /******************************************************* 
     [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
     1. <Link to="/경로명"></Link>
@@ -15,101 +18,54 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
     -> 라우터 연결 컴포넌트 출력자리 컴포넌트
 *******************************************************/
 
-const Layout = () => {
-    /* GNB메뉴 데이터구성하기 */
-    const gnb_data = [
-        //    {
-        //        txt:"Home",
-        //        link:"/",
-        //     },
-        {
-            txt: "CHARACTERS",
-            link: "/ct",
-        },
-        {
-            txt: "COMICS",
-            link: "/co1",
-            sub: [
-                {
-                    txt: "LATEST COMICS",
-                    link: "/co1",
-                },
-                {
-                    txt: "DC UNIVERSE INFINITE",
-                    link: "/co2",
-                },
-                {
-                    txt: "ALL COMICS SERIES",
-                    link: "/co3",
-                },
-            ],
-        },
-        {
-            txt: "MOVIES & TV",
-            link: "/mv",
-            sub: [
-                {
-                    txt: "DC MOVIES",
-                    link: "/mv",
-                },
-                {
-                    txt: "DC SERIES",
-                    link: "/mv",
-                },
-                {
-                    txt: "DC ON HBO MAX",
-                    link: "/mv",
-                },
-            ],
-        },
-        {
-            txt: "GAMES",
-            link: "/gm",
-        },
-        {
-            txt: "NEWS",
-            link: "/nw",
-        },
-        {
-            txt: "VIDEO",
-            link: "/vd",
-        },
-    ];
 
-    /* 하단링크 데이터 셋업! */
-    const bmenu = [
-        {
-            txt: "Privacy Policy",
-            link: "https://www.warnermediaprivacy.com/policycenter/b2c/WM/",
-        },
-        {
-            txt: "Terms",
-            link: "https://www.dcuniverseinfinite.com/terms?_gl=1*5nxhg2*_gcl_au*MTk3OTgxNzUwMi4xNjgzMTc3NDg3",
-        },
-        {
-            txt: "Ad Choices",
-            link: "https://www.warnermediaprivacy.com/policycenter/b2c/wm/",
-        },
-        {
-            txt: "Accessibility",
-            link: "https://policies.warnerbros.com/terms/en-us/#accessibility",
-        },
-        {
-            txt: "Cookie Settings",
-            link: "https://www.dc.com/#compliance-link",
-        },
-    ];
+const Layout = () => {
+    
+    const [logSts,setLogSts] = useState(localStorage.getItem("minfo"));
+    const [logMsg,setLogMsg] = useState("");
+    
+    const myFn = (x) => {
+        console.log("누구?",x)
+    }
+
+    const setFn = () => {
+        setLogSts(localStorage.getItem("minfo"));
+        
+        if(localStorage.getItem("minfo")){
+            setLogMsg("Welcome "+
+            JSON.parse(localStorage.getItem("minfo"))["unm"]);
+        }
+
+        
+    }
+    
+    const logout = () => {
+        localStorage.removeItem("minfo");
+        setLogSts(null);
+        console.log("로그아웃됨!",logSts);
+    }
+
 
     return (
         <>
+        
+            {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
+            <ScrollTop sfn={setFn} />
             {/* 1.상단영역 */}
             <header className="top">
+                {
+                    logSts !== null &&
+                    <div className="logmsg" 
+                    style={{position:"absolute",left:"50%",transform:"translateX(-50%))"}}>
+                        {logMsg}
+                    </div>
+                }
                 {/* 네비게이션 파트 */}
                 <nav className="gnb">
                     <ul>
                         <li>
                             <Link to="/main">
-                                <Logo gb="top" />
+                                <Logo gb="top" tt={myFn} />
                             </Link>
                         </li>
                         {gnb_data.map((v, i) => (
@@ -144,9 +100,21 @@ const Layout = () => {
                         <li>
                             <Link to="/mem">Join Us</Link>
                         </li>
-                        <li>
-                            <Link to="/login">LOG IN</Link>
-                        </li>
+
+                        {
+                            logSts === null &&
+                            <li>
+                                <Link to="/login">LOG IN</Link>
+                            </li>
+
+                        }
+                        {
+                            logSts !== null &&
+                            <li>
+                                <a href="#" onClick={logout}>LOG OUT</a>
+                            </li>
+
+                        }
                     </ul>
                 </nav>
             </header>

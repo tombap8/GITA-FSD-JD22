@@ -24,8 +24,12 @@ const Logo = (props) => {
         bottom: "80px",
     };
 
+    const chFn = (x) => {
+        props.tt(x);
+    }
+
     return (
-        <h1 style={mystyle[props.gb]}>
+        <h1 style={mystyle[props.gb]} onClick={()=>chFn('자식이양!')}>
             <img src={isrc.logo} style={{ width: istyle[props.gb] }} />
         </h1>
     );
