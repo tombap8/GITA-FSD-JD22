@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import $ from "jquery";
 import "./css/member.css";
-import { Link } from "react-router-dom";
-import { initLocStg } from "./localdb/locstg";
+import { Link, useNavigate } from "react-router-dom";
+import { clearData, initData } from "./fns/fnMem"; 
+
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -37,6 +38,17 @@ function jqFn() {
 function Member() {
     // 요구사항 : 각 입력항목에 맞는 유효성검사를 입력하는 순간!
     //            실시간으로 체크하여 결과를 화면에 리턴한다!
+
+    // [ 리액트 라우터 이동시 이동메서드 사용하기 : useNavigate ]
+    // 1. Link 를 사용한 셋팅으로 라우터를 이동하였다!
+    // -> 코드적으로 이동할때는? 바로 useNavigate
+    // 2. import 하기 : import {useNavigate} from "react-router-dom";
+    // 3. 사용법 : 
+    // 변수 = useNavigate()
+    // -> 변수(라우터경로)
+
+    // 라우터 이동 네비게이트 생성하기
+    const goRoute = useNavigate();
 
     // [ 후크 useState 메서드 셋팅하기 ]
     // [ 1. 입력요소 후크변수 ]
@@ -73,6 +85,34 @@ function Member() {
     // 후크변수 메시지
     const [idMsg, setIdMsg] = useState(msgId[0]);
 
+    // [ 로컬쓰 클리어 ] // -> fns/fnMem.js로 보냄
+    // const clearData = () => {
+    //     localStorage.clear();
+    //     console.log("로컬쓰 클리어!");
+    // }; /////////// clearData //////////////
+
+    // [ 로컬쓰 초기체크셋팅! ] /// -> fns/fnMem.js로 보냄
+    // const initData = () => {
+
+    //     // 만약 로컬스 "mem-data"가 null이면 만들어준다!
+    //     if (localStorage.getItem("mem-data") === null) {
+    //         localStorage.setItem(
+    //             "mem-data",
+    //             `
+    //                 [
+    //                     {
+    //                         "idx": "1",
+    //                         "uid":"tomtom",
+    //                         "pwd":"1111",
+    //                         "unm":"Tom",
+    //                         "eml":"tom@gmail.com"
+    //                     }
+    //                 ]
+    //             `
+    //         );
+    //     }
+    // }; ///////////// initData /////////////////
+
     // [ 3. 유효성 검사 메서드 ]
     // 1. 아이디 유효성 검사
     const changeUserId = (e) => {
@@ -88,15 +128,15 @@ function Member() {
         // 정규식.test() -> 정규식 검사결과 리턴 메서드
         // 결과: true이면 에러상태값 false / false이면 에러상태값 true
         if (valid.test(e.target.value)) {
-            // 로컬스토리지 초기화체크
-            initLocStg();
+            // 로컬쓰 데이터 체크 함수호출
+            initData();
+
             // 아이디 형식에는 맞지만 사용중인 아이디인지 검사하기
             let memData = localStorage.getItem("mem-data");
             console.log("로컬쓰:", memData);
             // 로컬쓰 null아닌경우
             if (memData) {
-
-                // 로컬쓰에 기존 아이디중 있는지 확인하기   
+                // 로컬쓰에 기존 아이디중 있는지 확인하기
                 // 문자형데이터를 객체형 데이터로 변환(배열형!)
                 memData = JSON.parse(memData);
                 console.log("검사:", memData);
@@ -117,18 +157,15 @@ function Member() {
                         isOK = false;
                     } ////// if /////
                 }); ///////// forEach //////////////
-                
+
                 // 기존아이디가 없으면 들어감!
-                if(isOK){
+                if (isOK) {
                     console.log("바깥");
                     // 메시지변경(처음메시지로 변경)
-                    setIdMsg(msgId[0]);              
+                    setIdMsg(msgId[0]);
                     // 아이디에러상태값 업데이트
                     setUserIdError(false);
-
                 } /////////// if : isOK /////////
-
-
             } ///////// if ////////////////////
             else {
                 console.log("DB가 없어욧!!!");
@@ -236,9 +273,6 @@ function Member() {
         if (totalValid()) {
             // alert("처리페이지로 이동!");
 
-            // 로컬스토리지 초기화체크!
-            initLocStg();
-
             // 로컬스 변수할당
             let memData = localStorage.getItem("mem-data");
 
@@ -267,8 +301,13 @@ function Member() {
             // 로컬쓰에 반영하기
             localStorage.setItem("mem-data", JSON.stringify(memData));
 
-            // 로컬쓰 확인
-            console.log(localStorage.getItem("mem-data"));
+            // 로그인 페이지로 이동(라우터이동하기!)
+            // useNavigate 사용!
+            $(".sbtn").text("넌 이제 회원인거야~!!");
+            setTimeout(() => {
+                goRoute('/login');                
+            }, 1500);
+
         } /// if ////
         // 불통과시 ////////////////
         else {
@@ -277,10 +316,10 @@ function Member() {
     }; ///////////// onSubmit ////////////////
 
     return (
-        <>
+        <div className="outbx">
             {/* 모듈코드 */}
             <section className="membx">
-                <h2>Join Us</h2>
+                <h2 onClick={clearData}>Join Us</h2>
                 <form method="post" action="process.php">
                     <ul>
                         <li>
@@ -435,7 +474,7 @@ function Member() {
 
             {/* 빈루트를 만들고 JS로드함수포함 */}
             {jqFn()}
-        </>
+        </div>
     );
 }
 
