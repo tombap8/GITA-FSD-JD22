@@ -84,4 +84,4 @@ const bmenu = [
     },
 ];
 
-export {gnb_data,bmenu};
+export { gnb_data, bmenu };

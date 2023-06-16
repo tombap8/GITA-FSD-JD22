@@ -2,13 +2,13 @@
 import Logo from "./Logo";
 import "./css/layout.css";
 import { Link, Outlet } from "react-router-dom";
+import { gnb_data, bmenu } from "./data/common";
 
 /* 폰트어썸 임포트 */
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { bmenu, gnb_data } from "./data/common";
-import ScrollTop from "./common/ScrollTop";
 import { useState } from "react";
+import ScrollTop from "./common/ScrollTop";
 /******************************************************* 
     [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
     1. <Link to="/경로명"></Link>
@@ -18,54 +18,78 @@ import { useState } from "react";
     -> 라우터 연결 컴포넌트 출력자리 컴포넌트
 *******************************************************/
 
-
+   
+    
 const Layout = () => {
-    
+
+     // 자식컴포넌트 값 전달 테스트 함수
+    const callMe = (x) => {
+        console.log("누구?",x);
+    }; ////////// callMe /////////////
+
+    // 로그인 상태  Hook변수 : 로컬쓰 "minfo" 초기할당!
     const [logSts,setLogSts] = useState(localStorage.getItem("minfo"));
+    // 로그인 환영메시지 Hook변수
     const [logMsg,setLogMsg] = useState("");
-    
-    const myFn = (x) => {
-        console.log("누구?",x)
-    }
+    // 로그인 환영메시지 스타일
+    const logstyle = {
+        position:"absolute",
+        left:"50%",
+        transform:"translateX(-50%)"
+    }; //////// logstyle ///////////
 
-    const setFn = () => {
+    // 로그인 셋팅 함수 //////////
+    // -> ScrollTop.js 의 useEffect 함수구역에서 호출!
+    const setLogin = () => {
+        // 1. 로그인 Hook변수 업데이트하기
         setLogSts(localStorage.getItem("minfo"));
-        
-        if(localStorage.getItem("minfo")){
-            setLogMsg("Welcome "+
-            JSON.parse(localStorage.getItem("minfo"))["unm"]);
-        }
 
-        
-    }
-    
+        // 2. 로컬쓰값이 null이 아니면 메시지 뿌리기
+        if(localStorage.getItem("minfo")){
+            // 메시지 셋팅하기 : 객체안의 "unm"속성이 사용자이름!
+            setLogMsg("Welcome " + 
+            JSON.parse(localStorage.getItem("minfo"))["unm"]);
+        } ////////////// if ///////////////
+
+
+    }; ///////// setLogin ////////////
+
+    // 로그아웃 함수 ///////////////////
+    // -> LOGOUT 버튼에서 호출함!
     const logout = () => {
+        // 1. 로컬쓰 "minfo" 삭제하기
         localStorage.removeItem("minfo");
+        // 2. 로그인상태 Hook 변수 업데이트하기
         setLogSts(null);
         console.log("로그아웃됨!",logSts);
-    }
+
+    }; ////////////// logout ///////////
 
 
     return (
         <>
         
-            {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
-            <ScrollTop sfn={setFn} />
+            {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함!
+            + 로그인셋팅함수 호출전달하기! 자식에게 setLogin함수전달 */}
+            <ScrollTop sfn={setLogin} />
             {/* 1.상단영역 */}
             <header className="top">
+
+                {/* 로그인 환영메시지 : 조건-logSts값이 null이 아니면 */}
                 {
                     logSts !== null &&
-                    <div className="logmsg" 
-                    style={{position:"absolute",left:"50%",transform:"translateX(-50%))"}}>
+                    <div className="logmsg" style={logstyle}>
                         {logMsg}
                     </div>
                 }
+
+
                 {/* 네비게이션 파트 */}
                 <nav className="gnb">
                     <ul>
                         <li>
                             <Link to="/main">
-                                <Logo gb="top" tt={myFn} />
+                                <Logo gb="top" tt={callMe} />
                             </Link>
                         </li>
                         {gnb_data.map((v, i) => (
@@ -97,23 +121,27 @@ const Layout = () => {
                         <li style={{ marginLeft: "auto" }}>
                             <FontAwesomeIcon icon={faSearch} />
                         </li>
-                        <li>
-                            <Link to="/mem">Join Us</Link>
-                        </li>
-
                         {
+                            /* 회원가입,로그인은 로그인아닌 상태일때만 */
                             logSts === null &&
-                            <li>
-                                <Link to="/login">LOG IN</Link>
-                            </li>
-
+                            <>
+                                <li>
+                                    <Link to="/mem">Join Us</Link>
+                                </li>
+                                <li>
+                                    <Link to="/login">LOGIN</Link>
+                                </li>
+                            </>
                         }
+
                         {
+                            /* 로그아웃버튼은 로인인상태일때만 */
                             logSts !== null &&
                             <li>
-                                <a href="#" onClick={logout}>LOG OUT</a>
+                                <a href="#" onClick={logout}>
+                                    LOGOUT
+                                </a>
                             </li>
-
                         }
                     </ul>
                 </nav>
@@ -127,7 +155,7 @@ const Layout = () => {
             <footer className="info">
                 <ul>
                     <li>
-                        <Logo gb="bottom" />
+                        <Logo gb="bottom" tt={callMe} />
                     </li>
                     <li>
                         <ol className="bmenu">
