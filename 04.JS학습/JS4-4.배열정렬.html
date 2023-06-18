@@ -12,7 +12,7 @@
         </style>
         <script>
             const org_num = [4, 5, 8, 10, 2, 1, 9, 3, 7, 6];
-            const org_num2 = ['파','타','하','가','바','사','다','라','차'];
+            const org_num2 = ["파", "타", "하", "가", "바", "사", "다", "라", "차"];
 
             window.addEventListener("DOMContentLoaded", () => {
                 const newArray = (obj) => {
@@ -29,7 +29,7 @@
 
                 document.querySelector(".sel").onchange = () => {
                     let opt = event.currentTarget.value;
-                    if (opt==1) {
+                    if (opt == 1) {
                         console.log(
                             newArray(
                                 // org_num.sort(function (a, b) {
@@ -44,17 +44,18 @@
                         );
                     } else if (opt == 2) {
                         console.log(
-                        newArray(
-                            org_num.sort(function (a, b) {
-                                return b - a;
-                            })
-                        ));
+                            newArray(
+                                org_num.sort(function (a, b) {
+                                    return b - a;
+                                })
+                            )
+                        );
                     }
                 };
 
                 document.querySelector(".sel2").onchange = () => {
                     let opt = event.currentTarget.value;
-                    if (opt==1) {
+                    if (opt == 1) {
                         console.log(
                             newArray2(
                                 org_num2.sort(function (x, y) {
@@ -69,16 +70,104 @@
                         );
                     } else if (opt == 2) {
                         console.log(
-                        newArray2(
-                            org_num2.sort(function (x, y) {
+                            newArray2(
+                                org_num2.sort(function (x, y) {
                                     if (x < y) return 1;
                                     if (x === y) return 0;
                                     if (x > y) return -1;
                                 })
-                        ));
+                            )
+                        );
                     }
                 };
-            });
+
+                const list1 = [
+                    {
+                        idx: "1",
+                        tit: "나야나",
+                        cont: "ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ",
+                    },
+                    {
+                        idx: "4",
+                        tit: "여기는 어디?",
+                        cont: "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
+                    },
+                    {
+                        idx: "8",
+                        tit: "나는 구누?",
+                        cont: "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+                    },
+                ]; /////////////// list1 /////////////
+
+                const htc = list1.map(
+                    (v) => `
+                        <tr>
+                            <td>
+                                ${v.idx}
+                            </td>
+                            <td>
+                                ${v.tit}
+                            </td>
+                            <td>
+                                ${v.cont}
+                            </td>
+                        </tr>
+                    `
+                    );
+                    document.querySelector(".showList1 table").innerHTML = htc.join("");
+
+
+                    document.querySelector("#sel3").onchange = e => {
+                        let opt = e.target.value;
+                        let cta = document.querySelector(".cta").value;
+                        console.log(opt,cta);
+                        if(opt==1){
+                            list1.sort(function (x, y) {
+                                if (x[cta] < y[cta]) return 1;
+                                if (x[cta] === y[cta]) return 0;
+                                if (x[cta] > y[cta]) return -1;
+                            })
+                            
+
+                        }///// if /////
+                        else if(opt==2){
+                            list1.sort(function (x, y) {
+                                if (x[cta] > y[cta]) return 1;
+                                if (x[cta] === y[cta]) return 0;
+                                if (x[cta] < y[cta]) return -1;
+                            })
+                        }
+                            
+                            const htc = list1.map(
+                            (v) => `
+                                <tr>
+                                    <td>
+                                        ${v.idx}
+                                    </td>
+                                    <td>
+                                        ${v.tit}
+                                    </td>
+                                    <td>
+                                        ${v.cont}
+                                    </td>
+                                </tr>
+                            `
+                            );
+                            console.log(list1);
+                            document.querySelector(".showList1 table").innerHTML = 
+                            htc.join("");
+
+
+
+
+                    }; //////////////// onchange ///////////////////
+
+
+
+                });
+
+
+
         </script>
     </head>
     <body>
@@ -95,5 +184,19 @@
             <option value="2">내림차순</option>
         </select>
         <div class="showNum2"></div>
+
+        <select name="cta" id="cta" class="cta">
+            <option value="idx">idx</option>
+            <option value="tit">tit</option>
+            <option value="cont">cont</option>
+        </select>
+        <select name="sel3" id="sel3" class="sel3">
+            <option value="0">정렬선택</option>
+            <option value="1">오름차순</option>
+            <option value="2">내림차순</option>
+        </select>
+        <div class="showList1">
+            <table></table>
+        </div>
     </body>
 </html>
