@@ -262,7 +262,7 @@
                         tit: "올해는 다른 회사로 이직한다!",
                         cont: "⚜️갈라콘 서포트에 많은 참여 부탁드립니다!",
                     },
-                ]; /////////////// list1 /////////////
+                ]; /////////////// list2 /////////////
 
                 const htc = list1.map(
                     (v) => `
@@ -483,6 +483,39 @@
 
 
                    }; ///////////// 검색버튼 //////////////////
+
+
+                   const list3 = {
+                    item1:{
+                        idx: 15,
+                        tit: "당근마켓에 가자",
+                        cont: "ㄷㄷㄷㄷㄷㄷabcㄷㄷㄷㄷㄷㄷ",
+                    },
+                    item2:{
+                        idx: 74,
+                        tit: "점심에 뭐먹지?",
+                        cont: "오스틴님 생일 서포트 안내",
+                    },
+                    item3:{
+                        idx: 18,
+                        tit: "직돌이는 쉬고싶다~!",
+                        cont: "활동정지에 대한 파생글 무통보 삭제 및 경고",
+                    },
+                    item4:{
+                        idx: 104,
+                        tit: "올해는 다른 회사로 이직한다!",
+                        cont: "⚜️갈라콘 서포트에 많은 참여 부탁드립니다!",
+                    },
+                }; /////////////// list3 /////////////
+
+                console.log(list3);
+                let newobj = Object.keys(list3);
+                // let newobj = Object.keys(list3).map(v=>list3[v]);
+                console.log(newobj);
+                console.log(newobj.reverse());
+                newobj = newobj.map(v=>list3[v]);
+                console.log(newobj);
+
                                 
             }); ///////////// load ///////////////////////
         </script>
