@@ -121,7 +121,7 @@
                 return x == y ? 0 : x > y ? -1 : 1;
                 });
                 2. 날짜정렬도 숫자와 동일함(날짜데이터 자체가 숫자형으로 되어있음!)
-                3. 특정언어의 특수문자일 경우 localCompare() 메서드로 문자열비교함
+                3. 특정언어의 특수문자일 경우 localeCompare() 메서드로 문자열비교함
                 예)  x.localeCompare(y)
 
                 ***************************************************
@@ -223,44 +223,44 @@
                     {
                         idx: 8,
                         tit: "나는 구누?",
-                        cont: "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+                        cont: "공동구매) 슬로건 공구 (계좌와 네이버폼)",
                     },
                     {
                         idx: 4,
                         tit: "여기는 어디?",
-                        cont: "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
+                        cont: "총공 공지] 오늘부터 일 2회, 총공 진행합니다",
                     },
                     {
                         idx: 1,
                         tit: "나야나",
-                        cont: "ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ",
+                        cont: "연합 갈라 서포트 계좌오픈",
                     },
                     {
                         idx: 15,
                         tit: "이제 얼마나 남은거니?",
-                        cont: "ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ",
+                        cont: "음악프로그램에 출연 요청글도 써볼까요?",
                     },
                 ]; /////////////// list1 /////////////
                 const list2 = [
                     {
                         idx: 15,
                         tit: "당근마켓에 가자",
-                        cont: "ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ",
+                        cont: "ㄷㄷㄷㄷㄷㄷabcㄷㄷㄷㄷㄷㄷ",
                     },
                     {
                         idx: 74,
                         tit: "점심에 뭐먹지?",
-                        cont: "ㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈ",
+                        cont: "오스틴님 생일 서포트 안내",
                     },
                     {
                         idx: 18,
                         tit: "직돌이는 쉬고싶다~!",
-                        cont: "ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ",
+                        cont: "활동정지에 대한 파생글 무통보 삭제 및 경고",
                     },
                     {
                         idx: 104,
                         tit: "올해는 다른 회사로 이직한다!",
-                        cont: "ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ",
+                        cont: "⚜️갈라콘 서포트에 많은 참여 부탁드립니다!",
                     },
                 ]; /////////////// list1 /////////////
 
@@ -358,6 +358,8 @@
                 );
                 console.log(list2);
 
+                
+
                 document.querySelector(".showList4").innerHTML = `
                                 <table>
                                     <thead>
@@ -372,29 +374,115 @@
                                     </tbody>
                                 </table>
                                 `;
+                   document.querySelector(".sample").onclick = () => {
+
+                       // 정확한 검색
+                      let res1 = list2.find((v,i)=>{
+                          if(v.tit=="당근마켓에 가자") return true;
+                       })
+                       
+                       console.log("검색어:'당근마켓에 가자'\n결과:",res1,"\n타입:",typeof res1);
+    
+                       // like 검색 : find() 사용 - 단일배열값리턴(타입:배열값형)
+                      let res2 = list2.find((v,i)=>{
+                          if(v.tit.indexOf("다")!==-1) return true;
+                       })
+                       
+                       console.log("검색어:'다'\n결과:",res2,"\n타입:",typeof res2);
+    
+                       // like 검색 : filter() 사용 - 다중배열값리턴(타입:배열형)
+                      let res3 = list2.filter((v,i)=>{
+                          if(v.tit.indexOf("당근")!==-1) return true;
+                       })
+                       
+                       console.log("검색어:'당근'\n결과:",res3,"\n타입:",typeof res3);
+
+                   }; //////////////// sample ////////////////
+
+
+                   // 검색버튼 클릭시 검색 결과 보이기
                    document.querySelector(".sbtn").onclick = () => {
+                    // 1. 검색어 가져오기 : #stxt
+                    let stxt = document.querySelector("#stxt").value;
+                    if(stxt=="") {
+                        alert("검색어를 넣어주세요~!^^");
+                        return;
+                    } //////// if ////////////
+
+                    // 2. 검색조건 가져오기 : .cta4
+                    let cta = document.querySelector(".cta4").value;
+                    console.log("검색기준:",cta);
+
+                    // 3. 다중값 리턴 LIKE검색
+                    // filter() + indexOf() 사용!!!
+                    let res = list2.filter((v,i)=>{
+                        if(String(v[cta]).indexOf(stxt)!==-1) return true;
+                    }); /////////// filter ///////////
+
+                    console.log("결과:",res);
+                    
+                    // 4. 검색결과가 있으면 출력
+                    if(res.length!=0){
+                        const htc = res.map(
+                            (v) => `
+                                <tr>
+                                    <td>
+                                        ${v.idx}
+                                    </td>
+                                    <td>
+                                        ${v.tit}
+                                    </td>
+                                    <td>
+                                        ${v.cont}
+                                    </td>
+                                </tr>
+                            `
+                        );
 
 
-                        // 정확한 검색
-                       let res1 = list2.find((v,i)=>{
-                           if(v.tit=="당근마켓에 가자") return true;
-                        })
-                        
-                        console.log("여기요!!!",res1,typeof res1);
 
-                        // like 검색
-                       let res2 = list2.find((v,i)=>{
-                           if(v.tit.indexOf("다")!==-1) return true;
-                        })
-                        
-                        console.log("여기요!!!",res2,typeof res2);
+                        document.querySelector(".showList4").innerHTML = `
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>내용</th>
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+                                        ${htc.join("")}
+                                    </tbody>
+                                </table>
+                                `;
 
-                       let res3 = list2.filter((v,i)=>{
-                           if(v.tit.indexOf("당근")!==-1) return true;
-                        })
-                        
-                        console.log("여기요!!!",res3,typeof res3);
-                   }    
+                    } ////////////// if : 결과있음 ////////
+                    else{
+
+                        document.querySelector(".showList4").innerHTML = `
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>내용</th>
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="3">
+                                                결과값이 없습니다
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                `;
+
+                    } //////////// else : 결과없음 /////////
+
+
+
+                   }; ///////////// 검색버튼 //////////////////
                                 
             }); ///////////// load ///////////////////////
         </script>
@@ -456,8 +544,9 @@
                     <option value="1">오름차순</option>
                     <option value="2">내림차순</option>
                 </select>
-                <input type="text" maxlength="50" />
+                <input id="stxt" type="text" maxlength="50" />
                 <button class="sbtn">검색</button>
+                <button class="sample">샘플</button>
             </div>
             <div class="showList4"></div>
         </div>
