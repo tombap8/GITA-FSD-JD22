@@ -360,6 +360,80 @@ const ban_data = {
             "btn":"",
         },
     ],
+    "HARLEY QUINN":[
+        {
+            "src":"./images/cat/harleyquinn/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/3.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/4.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/5.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/6.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/7.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
+    "PEACEMAKER":[
+        {
+            "src":"./images/cat/peacemaker/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/peacemaker/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/peacemaker/3.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
 };
 
 // 데이터 내보내기

@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* 캐릭터 리스트 모듈용 CSS - catlist.css  */
+ul{
+    display: flex;
+}

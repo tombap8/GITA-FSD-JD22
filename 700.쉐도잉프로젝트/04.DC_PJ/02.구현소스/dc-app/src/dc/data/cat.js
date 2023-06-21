@@ -181,6 +181,52 @@ const cat_data = [
         alignment: "hero",
         type: "indiv",
     },
+    {
+        idx: "8",
+        tmsrc: "./images/cat/cat8.jpg",
+        cname: "HARLEY QUINN",
+        cdesc: `The multiverse would be a much less lively place without the hijinks and shenanigans of the former Dr. Harleen Quinzel, the one and only Clown Princess of Crime.
+        ^
+        Sometimes love can make people do crazy things. Other times? It drives them completely insane. Such is the case with Harley Quinn, formerly Dr. Harleen Quinzel. A promising psychologist and intern at Arkham Asylum in Gotham City, Harleen was given the chance to get up close and personal with the Joker, an experience that wound up ending…badly. Harleen became obsessed with her subject, and after falling madly in love with the Clown Prince of Crime, she helped him escape the asylum.
+        ^
+        Her love for the Joker inspired Harleen to adopt a new identity, that of Harley Quinn, the Joker’s sidekick-slash-love interest—whether he wanted one or not. (Most of the time? He did not.)
+        ^
+        In time, Harley came to realize the Joker was holding her back and she struck out on her own. She became an entrepreneur and a member of several slightly less-than-reputable super teams (including the Suicide Squad), Gotham City’s all-girl gang the Gotham City Sirens, and a traveling sideshow. Along the way Harley has become one of the most popular super-villains in the DC Universe, thanks in part to her versatility, charisma and cheery-but-deranged outlook on life.
+        ^
+        After all, as Harley would say, if you're going to go a little crazy, you may as well sit back and enjoy the ride!`,
+        facts: `Powers:
+        complete unpredictability, superhuman agility, skilled fighter, intelligence, emotional manipulation, immunity to toxins
+        ^
+        First Appearance:        
+        BATMAN:THE ANIMATED SERIES (1992)
+        ^
+        Base of Operations:        
+        Gotham City
+        ^
+        Occupation:        
+        Former psychiatrist
+        ^
+        Real Name:        
+        Harleen Quinzel`,
+        alignment: "comp",
+        type: "indiv",
+    },
+    {
+        idx: "9",
+        tmsrc: "./images/cat/cat9.jpg",
+        cname: "PEACEMAKER",
+        cdesc: `A huge, hulking specimen with muscles on his muscles, Christopher Smith is a world class marksman—just like his fellow Suicide Squad member, Bloodsport. (But if you ask him, better.) Having adopted the name Peacemaker, Christopher is more than willing to fight, kill and even start a war...all in the name of keeping the peace.`,
+        facts: `Powers:
+        combat skill, top level marksman, weapons expert
+        ^
+        First Appearance:        
+        THE FIGHTIN' 5 #40 (1966)
+        ^
+        Alias/Alter Ego:        
+        Christopher Smith`,
+        alignment: "comp",
+        type: "indiv",
+    },
 ];
 
 // 내보내기
