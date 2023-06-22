@@ -434,6 +434,22 @@ const ban_data = {
             "btn":"",
         },
     ],
+    "BLACK ADAM":[
+        {
+            "src":"./images/cat/blackadam/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/blackadam/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
 };
 
 // 데이터 내보내기
