@@ -14,7 +14,7 @@ import Video from "./dc/Video";
 import Member from "./dc/Member";
 import LogIn from "./dc/LogIn";
 import Detail from "./dc/Detail";
-import Search from "./dc/Search";
+import Search from "./dc/modules/Search";
 
 /********************************************* 
     [ 리액트 라우터 ]

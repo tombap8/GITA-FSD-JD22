@@ -1,7 +1,6 @@
-///  어떤 모듈 - 어떤.js
+///  캐릭터리스트 모듈 - CatList.js
 import $ from 'jquery';
 import "../css/catlist.css";
-import cat_data from '../data/cat';
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
@@ -10,20 +9,25 @@ function jqFn(){
     }); //////// jQB ///////////
 } ////////////// jQFn ///////////
 
-function CatList(){
-    const sdt = cat_data;
+function CatList(props){
+
+    // 선택데이터
+    let sdt = props.dt;
+
     return(
         <>
         {/* 모듈코드 */}
-        <ul>
-            {
-                sdt.map((v,i)=>
-                    <li key={i}>
-                        <img src={v.tmsrc} alt={v.cname} />
-                    </li>
-                )
-            }
+        <ul className='clist'>
+        {
+            sdt.map((v,i)=>
+                <li key={i}>
+                    <img src={v.tmsrc} alt={v.cname} />
+                    <h3>{v.cname}</h3>
+                </li>
+            )
+        }
         </ul>
+        {/* {console.log(sdt)} */}
         {/* 빈루트를 만들고 JS로드함수포함 */}
         {jqFn()}
         </>
