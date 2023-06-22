@@ -1,9 +1,13 @@
 ///  검색 모듈 - Search.js
-import $ from 'jquery';
+import $, { event } from 'jquery';
 import { useState } from 'react';
 import cat_data from '../data/cat';
 import "../css/search.css";
 import CatList from './CatList';
+
+/* 폰트어썸 임포트 */
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
@@ -16,6 +20,36 @@ function Search(){
 
     // 데이터 선택하기 : Hook 데이터 구성하기
     let [sdt,setSdt] = useState(cat_data);
+    let [tot,setTot] = useState(sdt.length);
+
+    const schList = () => {
+        let inp = document.querySelector('#schin');
+        let keyword = inp.value;
+        if(keyword.trim()=='') {
+            alert('input your keyword!');
+            inp.focus();
+            return;
+        }
+        console.log("검색:",keyword);
+
+        let newList = cat_data.filter(v=>{
+            if(v.cname.toLowerCase().indexOf(keyword)!==-1) return true;
+        });
+
+        console.log(newList);
+
+        if(newList) {
+            setSdt(newList);
+            setTot(newList.length);
+        }
+        else console.log("no data");
+    }; ///////////// schList /////////////////
+
+    const enterKey = e => {
+        if(e.key === 'Enter') {
+            schList();
+        }
+      }
 
 
     return(
@@ -24,13 +58,16 @@ function Search(){
         <section className='schbx'>
             {/* 1. 옵션선택박스 */}
             <div className='schopt'>
-
+                <div className='searching'>
+                    <FontAwesomeIcon icon={faSearch} className='schbtn' onClick={schList} />
+                    <input id='schin' type='text' placeholder='Filter by Keywords' onKeyDown={enterKey} />
+                </div>
             </div>
             {/* 2. 결과리스트박스 */}
             <div className='listbx'>
                 {/* 결과타이틀 */}
                 <h2 className='restit'>
-                    BROWSE CHARACTERS
+                    BROWSE CHARACTERS({tot})
                 </h2>
                 {/* 정렬선택박스 */}
                 <aside className='sortbx'>

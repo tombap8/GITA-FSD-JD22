@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 상세 페이지 컴포넌트 - detail.css */
+/* 상세 페이지 컴포넌트 CSS - detail.css */
 
 .detail{
     font-family: 'Roboto Condensed', sans-serif;
@@ -25,4 +25,10 @@
 .facts>div{    
     max-width: 80%;
     margin: 0 auto;
+}
+.facts h3{
+    font-size: 45px;
+}
+.facts table td{
+    padding: 15px 0;
 }
