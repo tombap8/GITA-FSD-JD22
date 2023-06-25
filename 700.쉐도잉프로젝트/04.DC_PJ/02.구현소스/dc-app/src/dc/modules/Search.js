@@ -6,7 +6,7 @@ import "../css/search.css";
 import CatList from "./CatList";
 
 /* 폰트어썸 임포트 */
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faGrin, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // 제이쿼리 로드구역 함수 /////////
@@ -14,14 +14,20 @@ function jqFn() {
     $(() => {}); //////// jQB ///////////
 } ////////////// jQFn ///////////
 
+// 첫번째 데이터 정렬 : 컴포넌트 바깥에서 초기정렬셋팅할것!
+cat_data.sort((x,y)=>{
+    return x.cname===y.cname?0:x.cname>y.cname?1:-1;
+})
+
 function Search() {
+
     // 데이터 선택하기 : Hook 데이터 구성하기
     // -> 데이터 정렬을 반영하기 위해 정렬상태값을 같이설정함!
     // 데이터구성 : [배열데이터,정렬상태값]
     // 정렬상태값 : 0 - 오름차순, 1 - 내림차순, 2 - 정렬전
     // 설정이유 : 데이터 정렬만 변경될 경우 배열데이터가
     //          변경되지 않은 것으로 Hook 상태관리에서 인식함!
-    let [sdt, setSdt] = useState([cat_data, 2]);
+    let [sdt, setSdt] = useState([cat_data, 0]);
     // sdt[0] -> 배열데이터만 가져갈 경우 0번째로 선택함!
 
     // 데이터 건수 : Hook 데이터 구성하기
@@ -72,6 +78,7 @@ function Search() {
 
         // 임시변수 : 배열데이터만 가져옴
         let temp = sdt[0];
+        console.log("정렬대상:",temp);
 
         // 2. 옵션에 따른 정렬반영하기
 
@@ -92,6 +99,65 @@ function Search() {
         setSdt([temp, Number(opt)]);
 
     }; //////////// sortList 함수 //////////////
+
+    let chkele = document.querySelectorAll(".chkhdn");
+
+    const chkSearch = (e) => {
+        let cid = e.target.id;
+        let chked = e.target.checked;
+        console.log(cid,chked);
+
+        // 임시변수 : 배열데이터만 가져옴
+        let temp = sdt[0];
+        console.log("정렬대상:",temp);
+
+        let newList = [];
+
+
+        let num=0;
+        chkele.forEach(v=>{if(v.checked)num++});
+        console.log(num);
+
+        // 3. 데이터 검색하기
+        // 배열값 다중검색 메서드 -> filter()
+        // 검색대상: 전체원본데이터 (cat_data)
+        if(chked){
+            let nowdt = cat_data.filter((v) => {
+                if (v.alignment.toLowerCase().indexOf(cid) !== -1) return true;
+            }); ////////// filter /////////////////
+            
+            if(num>1){
+                newList=[...temp,...nowdt];
+            }
+            else{
+                newList = nowdt;
+            }
+
+        }
+        else{
+            console.log(cid);
+            for(let i=0;i<temp.length;i++){
+                if(temp[i].alignment === cid){ 
+                    temp.splice(i,1);
+                    // delete temp[i];
+                    console.log("선택:",i)
+                    i--;
+                }
+            }
+           
+            newList = temp;
+
+        }
+
+        console.log("검색결과:", newList);
+
+        // 4. 검색결과 리스트 업데이트하기
+        // Hook변수인 데이터변수와 데이터건수 변수를 업데이트함!
+        setSdt([newList, 2]);
+        setTot(newList.length);
+
+    }; //////////// chkSearch /////////////////
+
 
     return (
         <>
@@ -116,6 +182,31 @@ function Search() {
                             onKeyUp={enterKey}
                         />
                     </div>
+                    {/* 체크박스구역 */}
+                    <div className="chkbx">
+                        <ul>
+                            <li>
+                                <h2>ALIGNMENT<span className="spbtn">＋</span></h2>
+                                <ol>
+                                    <li>
+                                        Heroes
+                                        <input type="checkbox" id="hero" className="chkhdn" onChange={chkSearch} />
+                                        <label htmlFor="hero" className="chklb"></label>
+                                    </li>
+                                    <li>
+                                        It's Complicated
+                                        <input type="checkbox" id="comp" className="chkhdn" onChange={chkSearch} />
+                                        <label htmlFor="comp" className="chklb"></label>
+                                    </li>
+                                    <li>
+                                        Villains
+                                        <input type="checkbox" id="villain" className="chkhdn" onChange={chkSearch} />
+                                        <label htmlFor="villain" className="chklb"></label>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 {/* 2. 결과리스트박스 */}
                 <div className="listbx">
@@ -124,7 +215,7 @@ function Search() {
                     {/* 정렬선택박스 */}
                     <aside className="sortbx">
                         <select className="sel" name="sel" id="sel" onChange={sortList}>
-                            <option value="0" selected>A-Z</option>
+                            <option value="0">A-Z</option>
                             <option value="1">Z-A</option>
                         </select>
                     </aside>
