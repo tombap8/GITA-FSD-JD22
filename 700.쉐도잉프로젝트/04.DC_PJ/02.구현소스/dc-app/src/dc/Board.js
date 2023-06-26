@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import "jquery-ui-dist/jquery-ui";
 import "./css/board.css";
-import bdata from "./data/data.json"
+import orgdata from "./data/data.json"
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
@@ -11,7 +11,7 @@ function jqFn(){
     }); //////// jQB ///////////
 } ////////////// jQFn ///////////
 
-let jsn = bdata;
+let jsn = orgdata;
 
 function Board(){
     // [ 제이슨 파일 데이터 로컬스토리지에 넣기 ]
