@@ -3,6 +3,7 @@ import $ from 'jquery';
 import "jquery-ui-dist/jquery-ui";
 import "./css/board.css";
 import orgdata from "./data/data.json"
+import { useEffect } from 'react';
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
@@ -27,8 +28,8 @@ console.log("로컬스:", localStorage.getItem("bdata"));
 // 3. 로컬스토리지 데이터를 파싱하여 게시판 리스트에 넣기
 // 3-1. 로컬 스토리지 데이터 파싱하기
 let bdata = JSON.parse(localStorage.getItem("bdata"));
-// console.log("로컬스파싱:",bdata,
-// "/개수:",bdata.length);
+console.log("로컬스파싱:",bdata,
+"/개수:",bdata.length);
 
 
 // 페이지번호 : 페이지단위별 순서번호
@@ -51,6 +52,7 @@ function bindList(pgnum){ // pgnum - 페이지번호
     let blist = "";
     // 전체 레코드 개수
     let totnum = bdata.length;
+    console.log(pgnum);
     
     // 1.일반형 for문으로 특정대상 배열 데이터 가져오기
     // 데이터 순서: 번호,글제목,글쓴이,등록일자,조회수
@@ -125,6 +127,8 @@ function bindList(pgnum){ // pgnum - 페이지번호
 
 } /////////////// bindList함수 ///////////////
 
+const callFn = () => bindList(1);
+useEffect(callFn,[])
 
     return(
         <>
@@ -177,7 +181,6 @@ function bindList(pgnum){ // pgnum - 페이지번호
                 </tr>
             </tbody>
         </table>
-        {bindList()}
         </>
     )
 }
