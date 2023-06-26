@@ -91,7 +91,6 @@ input:focus{
     width: 20px;
     height: 20px;
     background-color: #ccc;
-    vertical-align: -3px;
 }
 input:checked+.chklb{
     background-color: #0d6efd;
