@@ -2,25 +2,26 @@
 import $ from 'jquery';
 import "jquery-ui-dist/jquery-ui";
 import "./css/board.css";
-import axios from "axios";
+import bdata from "./data/data.json"
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
     $(()=>{
-
+        
     }); //////// jQB ///////////
 } ////////////// jQFn ///////////
 
-function Board(){
+let jsn = bdata;
 
+function Board(){
     // [ 제이슨 파일 데이터 로컬스토리지에 넣기 ]
 // 1. 변수에 제이슨 파일을 엑시오스로 불러온다
-const jsn = axios.get('./data/data.json');
 console.log(jsn);
 
 
+
 // 2. 로컬스토리지 변수를 설정하여 할당하기
-localStorage.setItem("bdata", jsn);
+localStorage.setItem("bdata", JSON.stringify(jsn));
 console.log("로컬스:", localStorage.getItem("bdata"));
 
 // 3. 로컬스토리지 데이터를 파싱하여 게시판 리스트에 넣기
@@ -124,11 +125,12 @@ function bindList(pgnum){ // pgnum - 페이지번호
 
 } /////////////// bindList함수 ///////////////
 
+
     return(
         <>
         {/* 모듈코드 */}
         {/* 게시판 리스트 */}
-        <table class="dtbl" id="board">
+        <table className="dtbl" id="board">
             <caption>
                 OPINION
             </caption>
@@ -146,14 +148,14 @@ function bindList(pgnum){ // pgnum - 페이지번호
             {/* 중앙 레코드 표시부분 */}
             <tbody>
                 <tr>
-                    <td colspan="5">There is no data.</td>
+                    <td colSpan="5">There is no data.</td>
                 </tr>
             </tbody>
 
             {/* 하단 페이징 표시부분 */}
             <tfoot>
                 <tr>
-                    <td colspan="5" class="paging">
+                    <td colSpan="5" className="paging">
                          {/* 페이징번호 위치  */}
                     </td>
                 </tr>
@@ -161,21 +163,21 @@ function bindList(pgnum){ // pgnum - 페이지번호
         </table>
 
         <br />
-        <table class="dtbl btngrp">
-            <tr>
-                <td>
-                    <button>
-                        <a href="list.php">List</a>
-                    </button>
-                    <button class="wbtn">
-                        <a href="write.php">Write</a>
-                    </button>
-                </td>
-            </tr>
+        <table className="dtbl btngrp">
+            <tbody>
+                <tr>
+                    <td>
+                        <button>
+                            <a href="list.php">List</a>
+                        </button>
+                        <button className="wbtn">
+                            <a href="write.php">Write</a>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-        
-        {/* 빈루트를 만들고 JS로드함수포함 */}
-        {bindList(1)}
+        {bindList()}
         </>
     )
 }
