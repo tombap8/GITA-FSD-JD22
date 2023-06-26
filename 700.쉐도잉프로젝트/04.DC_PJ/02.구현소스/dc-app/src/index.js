@@ -15,6 +15,7 @@ import Member from "./dc/Member";
 import LogIn from "./dc/LogIn";
 import Detail from "./dc/Detail";
 import Search from "./dc/modules/Search";
+import Board from "./dc/Board";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -66,6 +67,7 @@ export default function App(){
                     <Route path="login" element={<LogIn />} />
                     <Route path="det" element={<Detail />} />
                     <Route path="sch" element={<Search />} />
+                    <Route path="board" element={<Board />} />
                </Route>
 
             </Routes>
