@@ -1,12 +1,12 @@
 ///  검색 모듈 - Search.js
 import $ from "jquery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cat_data from "../data/cat";
 import "../css/search.css";
 import CatList from "./CatList";
 
 /* 폰트어썸 임포트 */
-import { faBars, faGrin, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // 제이쿼리 로드구역 함수 /////////
@@ -14,12 +14,17 @@ function jqFn() {
     $(() => {}); //////// jQB ///////////
 } ////////////// jQFn ///////////
 
-// 첫번째 데이터 정렬 : 컴포넌트 바깥에서 초기정렬셋팅할것!
+// 최초 원본데이터 정렬변경하기(오름차순)
+// 주의사항: 컴포넌트에 포함시키지 말것!
+// 왜? 배열의 정렬정보가 컴포넌트에 포함될 경우
+// 정렬변경이 되지 않는다! 따라서 컴포넌트 바깥위에서
+// 데이터 정렬이 변경된 원본배열을 만들어준것을
+// 컴포넌트 내부에서 사용하도록 하면 기존 정렬변경이 반영됨!
 cat_data.sort((x,y)=>{
     return x.cname===y.cname?0:x.cname>y.cname?1:-1;
 })
 
-function Search() {
+function Search(props) { // props.skw - 전달키워드
 
     // 데이터 선택하기 : Hook 데이터 구성하기
     // -> 데이터 정렬을 반영하기 위해 정렬상태값을 같이설정함!
@@ -27,7 +32,7 @@ function Search() {
     // 정렬상태값 : 0 - 오름차순, 1 - 내림차순, 2 - 정렬전
     // 설정이유 : 데이터 정렬만 변경될 경우 배열데이터가
     //          변경되지 않은 것으로 Hook 상태관리에서 인식함!
-    let [sdt, setSdt] = useState([cat_data, 0]);
+    let [sdt, setSdt] = useState([cat_data, 2]);
     // sdt[0] -> 배열데이터만 가져갈 경우 0번째로 선택함!
 
     // 데이터 건수 : Hook 데이터 구성하기
@@ -78,7 +83,6 @@ function Search() {
 
         // 임시변수 : 배열데이터만 가져옴
         let temp = sdt[0];
-        console.log("정렬대상:",temp);
 
         // 2. 옵션에 따른 정렬반영하기
 
@@ -100,63 +104,120 @@ function Search() {
 
     }; //////////// sortList 함수 //////////////
 
+    // 체크박스 요소
     let chkele = document.querySelectorAll(".chkhdn");
 
+    /////// 체크박스 검색함수 ////////////
     const chkSearch = (e) => {
+        // 1. 체크박스 아이디 : 검색항목의 값(alignment)
         let cid = e.target.id;
+        
+        // 2. 체크박스 체크여부 : checked (true/false)
         let chked = e.target.checked;
-        console.log(cid,chked);
+        console.log("아이디:",cid,chked);
 
-        // 임시변수 : 배열데이터만 가져옴
+        // 임시변수 : 기존입력된 데이터 가져옴
         let temp = sdt[0];
-        console.log("정렬대상:",temp);
-
+        console.log("기존저장데이터:",temp);
+        // 결과집합변수
         let newList = [];
 
-
-        let num=0;
+        // 3. 체크박스 체크개수세기 : 1개초과시 배열합치기할것임!
+        let num = 0;
         chkele.forEach(v=>{if(v.checked)num++});
-        console.log(num);
+        console.log("체크개수:",num);
 
-        // 3. 데이터 검색하기
-        // 배열값 다중검색 메서드 -> filter()
-        // 검색대상: 전체원본데이터 (cat_data)
+
+        // 4. 체크박스 체크여부에 따른 분기
+        // (1) 체크여부가 true일때 해당 검색어로 검색하기
         if(chked){
-            let nowdt = cat_data.filter((v) => {
-                if (v.alignment.toLowerCase().indexOf(cid) !== -1) return true;
-            }); ////////// filter /////////////////
-            
-            if(num>1){
-                newList=[...temp,...nowdt];
-            }
+            // 현재데이터 변수에 담기
+            let nowdt = cat_data.filter(v=>{
+                if(v.alignment === cid) return true;
+            }); ///////// filter /////////
+
+            // 체크개수가 1초과일때 배열합치기
+            if(num > 1){ // 스프레드 연산자(...)사용!
+                // 기존데이터(temp)+새데이터(nowdt)
+                newList = [...temp,...nowdt];
+            } /////// if ////////////
+            // 체크개수 1일때 ////
             else{
                 newList = nowdt;
-            }
+            } ////// else ///////////
 
-        }
+
+        } ////////// if : 체크박스 true ///////
+        //(2) 체크박스가 false일때 데이터지우기
         else{
-            console.log(cid);
-            for(let i=0;i<temp.length;i++){
-                if(temp[i].alignment === cid){ 
+            console.log("지울데이터:",cid);
+            // splice삭제시 일반for문으로 --처리해야함!
+            for(let i=0; i < temp.length; i++){
+                // 조건은 체크박스 풀린 값
+                if(temp[i].alignment === cid){
+                    // 배열지우기 메서드 : splice(순번,개수)
                     temp.splice(i,1);
-                    // delete temp[i];
-                    console.log("선택:",i)
+                    // 중요!!! splice로 지우면 배열항목자체가
+                    // 삭제 되므로 for문 돌때 개수가 줄어든다!
+                    // 따라서 다음번호를 지울때 ++을 --처리필수!
                     i--;
-                }
-            }
-           
+
+                    // delete temp[i];
+                    // -> delete 배열지우기는 배열의 값만지우고
+                    // 그값은 undefined처리된다 
+                    // 따라서 리스트처리시 에러가 날 수 있음!
+                    // 이 경우에 꼭 배열주소 전체를 삭제하는
+                    // splice를 사용하도록 한다!!!
+                    
+                } //////////// if ////////////
+
+            } //////////// for문 ////////////
+
+            console.log("삭제처리배열:",temp);
+
+            // 결과처리하기 : 삭제처리된 temp를 결과에 넣기!
             newList = temp;
 
-        }
+        } /////////// else : 체크박스 false //////
 
-        console.log("검색결과:", newList);
-
-        // 4. 검색결과 리스트 업데이트하기
-        // Hook변수인 데이터변수와 데이터건수 변수를 업데이트함!
-        setSdt([newList, 2]);
+        // 5. 검색결과 리스트 업데이트 하기
+        // Hook 데이터변수+데이터건수
+        setSdt([newList],2);
         setTot(newList.length);
 
-    }; //////////// chkSearch /////////////////
+
+
+    }; //////////// chkSearch 함수 ////////////
+
+    // 검색어가 있으면 검색함수 호출하기!
+    // 검색함수는 검색어 입력창으로 부터 검색어를 가져가므로
+    // 넘어온 검색어는 검색입력창에 넣은 후 검색함수를 호출한다!
+    const linkSearch = () => {
+        console.log("링크검색어:",props.skw);
+        // 검색어가 빈값 아니면
+        if(props.skw != ""){
+
+            // 1. 검색창 원상복귀하기
+            document.querySelector(".searchingGnb")
+            .style.display = "none";
+            
+            document.querySelector(".searchingGnb+a")
+            .style.opacity = "1";
+
+            // 2. 검색페이지 검색창에 키워드 넣기
+            document.querySelector(".searching input")
+            .value = props.skw;
+
+            // 3. 검색함수 호출하기
+            schList();
+
+        } ///////// if ///////////////
+
+    }; ///////////// linkSearch ////////////////////
+
+    // 검색어가 있을때 검색함수의 호출은 페이지로딩후
+    // 체크해주는 useEffect를 활용한다!
+    useEffect(linkSearch,[]);
 
 
     return (
@@ -186,22 +247,49 @@ function Search() {
                     <div className="chkbx">
                         <ul>
                             <li>
-                                <h2>ALIGNMENT<span className="spbtn">＋</span></h2>
+                                <h2>
+                                    ALIGNMENT
+                                    <span className="spbtn">
+                                        ＋
+                                    </span>
+                                </h2>
+                                {/* 체크박스리스트 */}
                                 <ol>
                                     <li>
                                         Heroes
-                                        <input type="checkbox" id="hero" className="chkhdn" onChange={chkSearch} />
-                                        <label htmlFor="hero" className="chklb"></label>
+                                        <input 
+                                        type="checkbox"
+                                        id="hero"
+                                        className="chkhdn"
+                                        onChange={chkSearch} 
+                                        />
+                                        <label
+                                        htmlFor="hero"
+                                        className="chklb"></label>
                                     </li>
                                     <li>
                                         It's Complicated
-                                        <input type="checkbox" id="comp" className="chkhdn" onChange={chkSearch} />
-                                        <label htmlFor="comp" className="chklb"></label>
+                                        <input 
+                                        type="checkbox"
+                                        id="comp"
+                                        className="chkhdn"
+                                        onChange={chkSearch} 
+                                        />
+                                        <label
+                                        htmlFor="comp"
+                                        className="chklb"></label>
                                     </li>
                                     <li>
-                                        Villains
-                                        <input type="checkbox" id="villain" className="chkhdn" onChange={chkSearch} />
-                                        <label htmlFor="villain" className="chklb"></label>
+                                        Villiains
+                                        <input 
+                                        type="checkbox"
+                                        id="villain"
+                                        className="chkhdn"
+                                        onChange={chkSearch} 
+                                        />
+                                        <label
+                                        htmlFor="villain"
+                                        className="chklb"></label>
                                     </li>
                                 </ol>
                             </li>

@@ -14,8 +14,7 @@ import Video from "./dc/Video";
 import Member from "./dc/Member";
 import LogIn from "./dc/LogIn";
 import Detail from "./dc/Detail";
-import Search from "./dc/modules/Search";
-import Board from "./dc/Board";
+import Result from "./dc/Result";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -66,8 +65,7 @@ export default function App(){
                     <Route path="mem" element={<Member />} />
                     <Route path="login" element={<LogIn />} />
                     <Route path="det" element={<Detail />} />
-                    <Route path="sch" element={<Search />} />
-                    <Route path="board" element={<Board />} />
+                    <Route path="res" element={<Result />} />
                </Route>
 
             </Routes>
