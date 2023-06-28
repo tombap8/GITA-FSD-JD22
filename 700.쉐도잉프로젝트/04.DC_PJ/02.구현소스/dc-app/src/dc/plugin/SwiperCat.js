@@ -25,7 +25,7 @@ export default function SwiperCat(props) {
         <>
             <Swiper
                 // slidesPerView={2}
-                spaceBetween={20}
+                spaceBetween={10}
                 navigation={true}
                 modules={[Navigation]}
                 // 스와이퍼 사이즈별 슬라이드수 변경!
