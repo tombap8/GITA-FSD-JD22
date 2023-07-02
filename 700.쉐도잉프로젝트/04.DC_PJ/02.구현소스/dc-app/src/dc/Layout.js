@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import "./css/layout.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { gnb_data, bmenu } from "./data/common";
+import $ from 'jquery';
 
 /* 폰트어썸 임포트 */
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -92,6 +93,19 @@ const Layout = () => {
         goNav('/res',{state:{keyword:kw}})
     }; ///////////// goSearch ////////////////
 
+    //// 전체 메뉴 보이기/숨기기 함수 ////
+    const chgMenu = () => {
+        let topA = $(".top");
+        let isOn = topA.is(".on");
+        if(isOn) topA.removeClass("on")
+        else topA.addClass("on");
+    }; /////////////// chgMenu ///////////
+
+    //// 상단 class on넣기/빼기 함수 ////
+    const chgTop = () => {
+        $(".top").removeClass("on");
+    }; /////////////// chgMenu ///////////
+
     return (
         <>
             {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함!
@@ -115,7 +129,7 @@ const Layout = () => {
                             </Link>
                         </li>
                         {gnb_data.map((v, i) => (
-                            <li key={i}>
+                            <li key={i} onClick={chgTop}>
                                 <Link to={v.link}>{v.txt}</Link>
                                 {/* {console.log(v.sub)} */}
                                 {/* v.sub가 없으면 undefined */}
@@ -167,10 +181,10 @@ const Layout = () => {
                             /* 회원가입,로그인은 로그인아닌 상태일때만 */
                             logSts === null && (
                                 <>
-                                    <li>
+                                    <li onClick={chgTop}>
                                         <Link to="/mem">Join Us</Link>
                                     </li>
-                                    <li>
+                                    <li onClick={chgTop}>
                                         <Link to="/login">LOGIN</Link>
                                     </li>
                                 </>
@@ -180,7 +194,7 @@ const Layout = () => {
                         {
                             /* 로그아웃버튼은 로인인상태일때만 */
                             logSts !== null && (
-                                <li>
+                                <li onClick={chgTop}>
                                     <a href="#" onClick={logout}>
                                         LOGOUT
                                     </a>
@@ -188,6 +202,7 @@ const Layout = () => {
                             )
                         }
                     </ul>
+                    <button className="hambtn" onClick={chgMenu}></button>
                 </nav>
             </header>
             {/* 2. 메인영역 */}

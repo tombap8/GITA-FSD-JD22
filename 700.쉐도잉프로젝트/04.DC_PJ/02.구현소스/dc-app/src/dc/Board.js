@@ -4,6 +4,7 @@ import "jquery-ui-dist/jquery-ui";
 import "./css/board.css";
 import orgdata from "./data/data.json"
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
@@ -124,11 +125,20 @@ function bindList(pgnum){ // pgnum - 페이지번호
     }); /////////// click /////////////
 
 
-
 } /////////////// bindList함수 ///////////////
 
-const callFn = () => bindList(1);
-useEffect(callFn,[])
+const chkLogin = () => {
+    let log = localStorage.getItem("minfo");
+    if(log) setBdsts(true);
+}; //////////// chkLogin /////////////////
+
+const callFn = () => {
+    bindList(1);
+    chkLogin();
+};
+useEffect(callFn,[]);
+
+const [bdsts,setBdsts] = useState(false);
 
     return(
         <>
@@ -167,20 +177,23 @@ useEffect(callFn,[])
         </table>
 
         <br />
-        <table className="dtbl btngrp">
-            <tbody>
-                <tr>
-                    <td>
-                        <button>
-                            <a href="list.php">List</a>
-                        </button>
-                        <button className="wbtn">
-                            <a href="write.php">Write</a>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        {
+            bdsts &&
+            <table className="dtbl btngrp">
+                <tbody>
+                    <tr>
+                        <td>
+                            <button>
+                                <a href="list.php">List</a>
+                            </button>
+                            <button className="wbtn">
+                                <a href="write.php">Write</a>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
         </>
     )
 }
