@@ -32,6 +32,23 @@ function Board() {
     // 상단에서 불러옴!
     // 실시간 데이터 변경 관리를 Hook변수화 하여 처리함!
     const [jsn,setJsn] = useState(org); // 초기데이터 셋팅
+    
+    // 게시판 모드별 상태구분 Hook 변수만들기 ////
+    // 모드구분값 : CRUD (Create/Read/Update/Delete)
+    // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 삭제(U에 포함!)
+    // 상태추가 : L - 글목록
+    const [bdmode,setBdmode]  = useState('L');
+
+    // 로그인 상태 Hook 변수 만들기 ///
+    // 상태값 : false - 로그아웃상태 / true - 로그인상태
+    const [log,setLog] = useState(false);
+
+    // 쓰기버튼 출력여부상태 : 로그인사용자와 글작성자 일치시 true
+    const [wtmode,setWtmode] = useState(false);
+
+    // 수정모드에서 현재글 정보 셋팅하기
+    const [currItem,setCurrItem] = useState([]);
+
 
     // 2. 로컬스토리지 변수를 설정하여 할당하기
     localStorage.setItem("bdata", JSON.stringify(jsn));
@@ -168,13 +185,13 @@ function Board() {
 
 
     // 현재로그인 사용자 정보
-    let [nowmem,setNowmem] = useState('');
+    let [nowmem,setNowmem] = useState(JSON.parse(localStorage.getItem('minfo')));
 
     /// 로그인 상태 체크 함수 //////////
     const chkLogin = () => {
         // 로컬스에 'minfo'가 있는지 체크
         let chk = localStorage.getItem('minfo');
-        // console.log("요기:",chk);
+        console.log("요기:",chk);
         // 로컬스에 셋팅했을 경우 상태Hook에 treu값 업데이트!
         if(chk) setLog(true);
         else setLog(false);
@@ -182,25 +199,12 @@ function Board() {
         // 현재로그인한 맴버정보
         if(chk){
             setNowmem(JSON.parse(chk));
-            console.log("현재너:",nowmem);
         }
+        console.log("현재너:",nowmem);
 
     }; ////////// chkLogin /////////////
 
 
-    // 게시판 모드별 상태구분 Hook 변수만들기 ////
-    // 모드구분값 : CRUD (Create/Read/Update/Delete)
-    // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 삭제(U에 포함!)
-    // 상태추가 : L - 글목록
-    const [bdmode,setBdmode]  = useState('L');
-
-    // 로그인 상태 Hook 변수 만들기 ///
-    // 상태값 : false - 로그아웃상태 / true - 로그인상태
-    const [log,setLog] = useState(false);
-
-    const [wtmode,setWtmode] = useState(false);
-
-    const [currItem,setCurrItem] = useState([]);
 
     // 모드전환함수 //////////////////////
     const chgMode = e => {
