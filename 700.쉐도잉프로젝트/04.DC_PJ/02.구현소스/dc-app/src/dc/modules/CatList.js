@@ -1,7 +1,7 @@
 ///  캐릭터리스트 모듈 - CatList.js
 import $ from 'jquery';
-import "../css/catlist.css";
 import { Link } from 'react-router-dom';
+import "../css/catlist.css";
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
@@ -18,21 +18,19 @@ function CatList(props){
     return(
         <>
         {/* 모듈코드 */}
-        
         <ul className='clist'>
         {
             sdt.map((v,i)=>
                 <li key={i}>
-                    <Link to="/det" 
-                        state={
-                            {
-                                cname:v.cname,
-                                cdesc:v.cdesc,
-                                facts:v.facts
-                            }
-                        }>
-                        <img src={v.tmsrc} alt={v.cname} />
-                        <h3>{v.cname}</h3>
+                    <Link
+                        to="/det"
+                        state={{
+                            cname: v.cname,
+                            cdesc: v.cdesc,
+                            facts: v.facts,
+                        }}>
+                    <img src={v.tmsrc} alt={v.cname} />
+                    <h3>{v.cname}</h3>
                     </Link>
                 </li>
             )

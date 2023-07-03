@@ -1,5 +1,7 @@
 @charset "utf-8";
 /* Search 모듈용 CSS - search.css  */
+
+/* 검색입력창 박스 */
 .searching{
     width: 250px;
     height: 40px;
@@ -50,6 +52,7 @@ input:focus{
     width: 70%;
 }
 
+
 /* 정렬박스 */
 .sortbx{
     padding-bottom: 15px;
@@ -81,6 +84,8 @@ input:focus{
 }
 .chkbx ol>li{
     padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
 .chkbx input[type=checkbox]{
     display: none;

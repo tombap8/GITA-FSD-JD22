@@ -33,7 +33,7 @@ export default function SwiperCat(props) {
                     200: {
                         slidesPerView: 3,
                     },
-                    800: {
+                    700: {
                         slidesPerView: 4,
                     },
                     1000: {
