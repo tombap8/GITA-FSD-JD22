@@ -256,7 +256,7 @@ input:focus{
         margin-left: 5px;
     }
     /* 검색박스 */
-    .searchingGnb{
+    .searchingGnb{  
         left: 80px;
         width: 80%;
     }
