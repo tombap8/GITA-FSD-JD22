@@ -91,12 +91,25 @@
     if(!strcmp($mode,"form")){
     ?>
 
+    
+
+    if(txt=='Submit' && bdmode=='C') {
+        console.log($("textarea").val());
+        let tx = $("textarea").val()
+        console.log(tx.replace(/\n/g,'<br>'));
+        localStorage.setItem("hh",tx);
+        console.log(localStorage.getItem("hh"));
+        let xxx = new Date().toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-');
+        console.log(xxx);
+        
+    }
+
     <form name="write_form" method="post" action="write.php?mode=post">
         <table class="dtblview">
-            <caption>방명록 게시판</caption>
+            <caption>OPINION</caption>
             <tr>
                 <td width="100">
-                    이름
+                    Name
                 </td>
                 <td width="650">
                     <input type="text" name="name" size="20">
@@ -104,15 +117,7 @@
             </tr>
             <tr>
                 <td>
-                    패스워드
-                </td>
-                <td>
-                    <input type="password" name="passwd" size="20">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    이메일
+                    emial
                 </td>
                 <td>
                     <input type="text" name="email" size="40">
@@ -120,15 +125,7 @@
             </tr>
             <tr>
                 <td>
-                    홈페이지
-                </td>
-                <td>
-                    <input type="text" name="homepage" size="40">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    글 제목
+                    Title
                 </td>
                 <td>
                     <input type="text" name="subject" size="60">
@@ -136,11 +133,9 @@
             </tr>
             <tr>
                 <td>
-                    글 내용
+                    Content
                 </td>
                 <td>
-                    HTML TAG <input type="checkbox" name="html_tag">
-                    <br>
                     <textarea name="content" cols="60" rows="10"></textarea>
                 </td>
             </tr>
