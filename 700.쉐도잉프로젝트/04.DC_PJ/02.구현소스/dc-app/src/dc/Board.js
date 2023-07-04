@@ -180,7 +180,7 @@ function Board() {
 
             });
 
-        })
+        }); ///////////// click /////////////
     } /////////////// bindList함수 ///////////////
 
 
@@ -249,7 +249,7 @@ function Board() {
                 // 날짜데이터처리
                 let today = new Date();
                 let yy = today.getFullYear();
-                let mm = today.getMonth();
+                let mm = today.getMonth()+1;
                 mm = mm<10?"0"+mm:mm
                 let dd = today.getDate();
                 dd = dd<10?"0"+dd:dd
@@ -288,7 +288,7 @@ function Board() {
             }
 
         } ////////////// 새로입력 ///////////
-            // (4) 수정모드(U) 일때 
+        // (4) 수정모드(U) 일때 //////////////
         else if(txt=="Modify"){ 
             setBdmode('U');
 
